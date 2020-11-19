@@ -156,7 +156,7 @@
 		background-color:gray;
 	}
 	#mapDiv b{
-		margin-bottom:200px;
+		height:200px;
 	}
 	/*지도&고도정보*/
 	#map_Altitude{
