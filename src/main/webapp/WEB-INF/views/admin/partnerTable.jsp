@@ -3,7 +3,8 @@
     
 
 <!-- Page Content -->
-		<h1>동행모집게시판</h1>
+<div id="adminTable">
+	<h1 id=tableHead>동행모집게시판</h1>
 		<ul id="partnerList">
 			<li>번호</li>
 			<li>제목</li>
@@ -23,4 +24,5 @@
 			<li>106</li>
 			<li>2020-10-01</li>
 		</ul>
+</div>
 <!-- Page Content -->

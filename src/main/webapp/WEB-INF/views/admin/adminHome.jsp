@@ -119,6 +119,8 @@
 			
 		</ul>
 		
+		
+		
 	</div>
 	<!-- /Page Sidebar -->
 	
@@ -147,45 +149,52 @@
 				}
 			 %>
 		</select>
-		<input type="text" name="searchWord" id="searchWord" maxlength="20" placeholder="검색어 입력"/>
-		<input type="button" name="search" id="searchBtn" value="검색" style="background-color: rgb(0,176,176)"/>
-		<jsp:include page ='<%=pagefile+".jsp"%>'/>
-	</div>
 	
-	<div id="paging">
-		<ul>
-			<!-- 이전페이지 -->
-			<li>
-				<%if(nowPage==1){ %>
-				◀
-				<%}else{ %>
-					<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=nowPage-1 %>">◀</a>
-				<%} %>
-			</li>
-			<% for(int p=startPage; p<startPage+onePageNum; p++){ 
-				if(p<=totalPage){
-					if(p==nowPage){
-			 %>
-				<li>
-					<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=p %>"style="color:rgb(0,176,176);"><%=p %></a>
-				</li>
-				
-			<%} else {%>
-			<li>
-				<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%= p%>"><%=p %></a>
+				<input type="text" name="searchWord" id="searchWord" maxlength="20" placeholder="검색어 입력"/>
+				<input type="button" name="search" id="searchBtn" value="검색" style="background-color: rgb(0,176,176)"/>
 		
-			</li>
-			<%}
-			}//if
-		}//for%>
-		<li>
-			<%if(nowPage<totalPage){ //다음페이지가 없을 경우
-			%>
-				<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=nowPage+1 %>">▶</a>
-			<%} %>
-	</ul>
-</div>
-	<!-- Page Content -->
-</div>
+		
+			<jsp:include page ='<%=pagefile+".jsp"%>'/>
+		
+	
+	
+		<div id="paging">
+			<ul>
+				<!-- 이전페이지 -->
+				<li>
+					<%if(nowPage==1){ %>
+					◀
+					<%}else{ %>
+						<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=nowPage-1 %>">◀</a>
+					<%} %>
+				</li>
+				<% for(int p=startPage; p<startPage+onePageNum; p++){ 
+					if(p<=totalPage){
+						if(p==nowPage){
+				 %>
+					<li>
+						<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=p %>"style="color:rgb(0,176,176);"><%=p %></a>
+					</li>
+					
+				<%} else {%>
+				<li>
+					<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%= p%>"><%=p %></a>
+			
+				</li>
+				<%}
+				}//if
+			}//for%>
+			<li>
+				<%if(nowPage<totalPage){ //다음페이지가 없을 경우
+				%>
+					<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=nowPage+1 %>">▶</a>
+				<%} %>
+			</ul>
+			
+				
+		</div><!-- paging -->
+	</div><!-- adminContent -->
+</div><!-- adminhome -->
+<!-- Page Content -->
 </body>
 </html>

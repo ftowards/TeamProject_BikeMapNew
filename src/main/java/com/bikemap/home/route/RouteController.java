@@ -24,13 +24,12 @@ public class RouteController {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
 	//코스검색
 	@RequestMapping("/routeSearch")
 	public String routeSearch() {
 		return "route/routeSearch";
 	}
-	
+  
 	//코스검색(글보기)
 	@RequestMapping("/routeSearchView")
 	public String routeSearchView() {

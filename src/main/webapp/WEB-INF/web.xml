@@ -52,11 +52,33 @@
 	
 	<!-- 원하는 페이지에 include -->
 	<jsp-config>
+		<!-- 전체사용->일부사용으로 변경(최병대1119) -->
 		<jsp-property-group>
-			<url-pattern>/WEB-INF/views/*</url-pattern>
+			<url-pattern>/WEB-INF/views/home.jsp</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
 			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
 		</jsp-property-group>
+		<jsp-property-group>
+			<url-pattern>/WEB-INF/views/regist/*</url-pattern>
+			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
+			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
+		</jsp-property-group>
+		<jsp-property-group>
+			<url-pattern>/WEB-INF/views/review/*</url-pattern>
+			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
+			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
+		</jsp-property-group>
+		<jsp-property-group>
+			<url-pattern>/WEB-INF/views/route/*</url-pattern>
+			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
+			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
+		</jsp-property-group>
+		<jsp-property-group>
+			<url-pattern>/WEB-INF/views/tour/*</url-pattern>
+			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
+			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
+		</jsp-property-group>
+	
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/tour/tourList.jsp</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/headerTourList.jspf</include-prelude>
