@@ -24,7 +24,7 @@
 	<div id="placeList">
 		<div id="restaurant">
 			<ul>
-				<li>AAA음식점</li>
+				<li>3333음식점</li>
 				<li>BBBB식당</li>
 				<li>CCCC카페</li>
 				<li>DDD음식점</li>
@@ -32,7 +32,7 @@
 		</div>
 		<div id="tour">
 			<ul>
-				<li>AAA음식점</li>
+				<li>A2222음식점</li>
 				<li>BBBB식당</li>
 				<li>CCCC카페</li>
 				<li>DDD음식점</li>
