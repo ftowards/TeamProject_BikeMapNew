@@ -44,7 +44,7 @@
 		$("#fiftyOverCheckbox").click(function(){
 			fiftyOver.css('color','white').css('background-color','rgb(0,176,176)');
 		});
-		$("#departure,#arrive").datepicker({
+		$("#departure,#arrive,#deadline").datepicker({
 			changeYear :true,
 			changeMonth: true,
 			constrainInput:true,
@@ -82,38 +82,52 @@
 		</div>
 	
 		<div class="conditionDivTop">
-			<div><label class="labelClass">장&nbsp;소</label></div>
+			<div><label class="labelClass2">장소/시간</label></div>
 			<div>  
 				<select name="place" id="place">
 		          <option value="">&nbsp;집합장소</option>
-		          <option value="서울" >서울</option>
-		          <option value="부산">부산</option>
-		          <option value="대구">대구</option>
-		          <option value="인천">인천</option>
-		          <option value="광주">광주</option>
-		          <option value="대전">대전</option>
-		          <option value="울산">울산</option>
-		          <option value="세종">세종</option>
-		          <option value="경기">경기</option>
-		          <option value="강원">강원</option>
-		          <option value="충북">충북</option>
-		          <option value="충남">충남</option>
-		          <option value="전북">전북</option>
-		          <option value="전남">전남</option>
-		          <option value="경북">경북</option>
-		          <option value="경남">경남</option>
-		          <option value="제주">제주</option>
+		          <option value="서울" >&nbsp;서&nbsp;&nbsp;&nbsp;울</option>
+		          <option value="부산">&nbsp;부&nbsp;&nbsp;&nbsp;산</option>
+		          <option value="대구">&nbsp;대&nbsp;&nbsp;&nbsp;구</option>
+		          <option value="인천">&nbsp;인&nbsp;&nbsp;&nbsp;천</option>
+		          <option value="광주">&nbsp;광&nbsp;&nbsp;&nbsp;주</option>
+		          <option value="대전">&nbsp;대&nbsp;&nbsp;&nbsp;전</option>
+		          <option value="울산">&nbsp;울&nbsp;&nbsp;&nbsp;산</option>
+		          <option value="세종">&nbsp;세&nbsp;&nbsp;&nbsp;종</option>
+		          <option value="경기">&nbsp;경&nbsp;&nbsp;&nbsp;기</option>
+		          <option value="강원">&nbsp;강&nbsp;&nbsp;&nbsp;원</option>
+		          <option value="충북">&nbsp;충&nbsp;&nbsp;&nbsp;북</option>
+		          <option value="충남">&nbsp;충&nbsp;&nbsp;&nbsp;남</option>
+		          <option value="전북">&nbsp;전&nbsp;&nbsp;&nbsp;북</option>
+		          <option value="전남">&nbsp;전&nbsp;&nbsp;&nbsp;남</option>
+		          <option value="경북">&nbsp;경&nbsp;&nbsp;&nbsp;북</option>
+		          <option value="경남">&nbsp;경&nbsp;&nbsp;&nbsp;남</option>
+		          <option value="제주">&nbsp;제&nbsp;&nbsp;&nbsp;주</option>
 		      </select>
+			</div>
+			<div>
+				<select name="departureTime" id="departureTime">
+					<c:forEach var="i" begin="0" end="24" step="1">
+						<option value="${i }">${i }시</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div>
+				<select name="departureMinutes" id="departureMinutes">
+					<option value="zeroTime">00분</option>
+					<option value="halfTime">30분</option>
+				</select>
 			</div>
 		</div>
 	
 		<div class="conditionDivTop">
-			<div><label  class="labelClass">이동거리</label></div>
-			<div><input type="text" name="speed" placeholder="ex)10km" class="conditionBox"></div>
+			<div><label  class="labelClass2">이동거리</label></div>
+			<div><input type="text" name="distance" placeholder="ex)10km" class="conditionBox"></div>
 		</div>	
-		
 		<div class="conditionDivTop">
-			<div><label  class="labelClass">예상비용</label></div>
+			<div><label  class="labelClass2" >예상속도</label></div>
+			<div><input type="text" name="speed" placeholder="ex)10km" class="conditionBox"></div>
+			<div><label  class="labelClass2" style="margin-left:8px;">예상비용</label></div>
 			<div><input type="text" name="budget" placeholder="ex)80,000" class="conditionBox"></div>
 		</div>	
 		<span>&nbsp;</span>
@@ -134,7 +148,7 @@
 			<div><label id="genderBoy" for="boy">남</label></div>
 			<div><label id="genderGirl" for="girl">여</label></div>
 			
-			<div><input type="radio" name="reggender" id="they" value="3"></div>
+			<div><input type="radio" name="reggender" id="they"></div>
 			<div><input type="radio" name="reggender" id="boy" value="1"></div>
 			<div><input type="radio" name="reggender" id="girl" value="2"></div>
 	</div>
@@ -153,13 +167,25 @@
 			<div><label id="fiftyOver" for="fiftyOverCheckbox" style="width:100px">50대 이상</label></div>
 		</div>
 		
-		<div><input type="checkbox" name="regage" id="theyCheckbox" value="6"></div>
+		<div><input type="checkbox" name="regage" id="theyCheckbox"></div>
 		<div><input type="checkbox" name="regage" id="tenCheckbox" value="1"></div>
 		<div><input type="checkbox" name="regage" id="twentyCheckbox" value="2"></div>
 		<div><input type="checkbox" name="regage" id="thirtyCheckbox" value="3"></div>
 		<div><input type="checkbox" name="regage" id="fortyCheckbox" value="4"></div>
 		<div><input type="checkbox" name="regage" id="fiftyOverCheckbox" value="5"></div>
 	
+	
+		<div class="conditionDivTop" style="margin-top:20px;">
+			<div><label  class="labelClass2">마감날짜</label></div>
+			<div><input type="text" name="deadline" placeholder="마감날짜" id="deadline" maxlength="10" autocomplete="off"></div>
+			<div>
+				<select name="deadlineTime" id="deadlineTime">
+					<c:forEach var="i" begin="0" end="24" step="1">
+						<option value="${i }">${i }시</option>
+					</c:forEach>
+				</select>
+			</div>
+		</div>
 	</div>
 		<div id="writeForm">
 				
