@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <!-- Page Content -->
-		<h1>1:1 문의</h1>
+<div id="adminTable">
+		<h1 id=tableHead>1:1 문의</h1>
 		<ul id="questionList">
 			
 			<li>번호</li>
@@ -18,7 +19,7 @@
 			<li>sss555</li>
 			<li>동행 찾기 게시판에서 자꾸 오류가 나요</li>
 			<li>작성일자</li>
-			<li>답변여부</li>				
+			<li style="color:lightblue">답변여부</li>				
 		</ul>
-
+</div>
 <!-- Page Content -->

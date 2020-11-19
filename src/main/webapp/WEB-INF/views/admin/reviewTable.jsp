@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <!-- Page Content -->
-		<h1>리뷰</h1>
+<div id="adminTable">
+		<h1 id=tableHead>리뷰</h1>
 		<ul id="reviewList">
 			
 			<li>번호</li>
@@ -24,4 +25,5 @@
 			<li>2020-10-01</li>
 
 		</ul>
+</div>
 <!-- Page Content -->
