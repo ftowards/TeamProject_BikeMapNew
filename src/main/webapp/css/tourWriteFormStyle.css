@@ -51,7 +51,7 @@
 	}
 	#courseResultDiv{
 						width:500px;
-						height:400px;
+						height:500px;
 						background-color:lightblue;
 						float:left;	
 	
@@ -62,7 +62,7 @@
 					float:left;	
 			
 	}
-	.labelClass,#departure,#arrive,.conditionBox{	
+	.labelClass,#departure,#arrive,.conditionBox,.labelClass2,#deadline{	
 					
 					padding-top:4px;
 					text-align:center;
@@ -76,26 +76,39 @@
 					color:#fff;
 					float:left;
 			}
+	.labelClass2{
+			width:60px;
+			
+			
+	}		
 	.conditionDivTop{
 			 	width:320px;
 				height:40px;
 				margin-left:18px;
-				
-				
 				}
-	#departure,#arrive,.conditionBox{	
+				
+				
+	#departure,#arrive,#deadline{	
 					padding-top:3px;	
 					width:95px;
 					background-color:#fff;
 					color:rgb(123,123,123);
 					
 		}
-	#departure,#place,.conditionBox{
-										margin-left:20px;
+	.conditionBox{
+					padding-top:3px;	
+					width:65px;
+					background-color:#fff;
+					color:rgb(123,123,123);
+					
+					
+	}	
+	#departure,#place,.conditionBox,#deadline{
+										margin-left:7px;
 	}
 	
 	#label1{
-			margin-left:3px;
+			margin-left:9px;
 			color:rgb(123,123,123);
 			font-weight:bold;
 			font-size:15px;
@@ -158,7 +171,7 @@
 	.conditionDivBottom{
 						width:320px;
 						height:40px;
-						margin-left:60px;
+						margin-left:72px;
 					
 						
 	}	
@@ -206,7 +219,7 @@
 										color:rgb(69,69,79);							
 	}	
 		
-	#place{
+	#place,#departureTime,#departureMinutes,#deadlineTime{
 				padding-top:3px;
 				text-align:center;
 				border:1px solid rgb(123,123,123);
@@ -221,10 +234,14 @@
 				margin:0 15px 0 10px;
 				height:26px; 
 				text-align-last:center;
-				margin-left:20px;		
+				margin-left:15px;		
 	}	
 		
-		
+	#departureTime,#departureMinutes,#deadlineTime{
+										width:48px;
+										margin:0 0px 0 15px;
+	
+	}	
 		
 		
 		
