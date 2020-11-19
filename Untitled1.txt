@@ -10,3 +10,5 @@ ahnjihwon
 sora
 
 laptop
+
+desktop
