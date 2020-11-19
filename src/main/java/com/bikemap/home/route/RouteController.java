@@ -25,6 +25,18 @@ public class RouteController {
 		this.sqlSession = sqlSession;
 	}
 	
+	//코스검색
+	@RequestMapping("/routeSearch")
+	public String routeSearch() {
+		return "route/routeSearch";
+	}
+	
+	//코스검색(글보기)
+	@RequestMapping("/routeSearchView")
+	public String routeSearchView() {
+		return "route/routeSearchView";
+	}
+
 	// 코스 만들기 이동
 	// 코스 만들기 열 때 내 코스 카테고리 목록 가져가기
 	@RequestMapping("/courseMap")
@@ -59,5 +71,10 @@ public class RouteController {
 		String userid  = (String)session.getAttribute("logId");
 		
 		return routeDao.selectCategory(userid);
+	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		return "route/test";
 	}
 }
