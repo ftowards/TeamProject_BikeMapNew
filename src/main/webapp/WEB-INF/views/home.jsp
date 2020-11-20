@@ -14,7 +14,8 @@
 	</div>
 	<div id="hitRoute">
 		<div id="content1">
-			<span class="routeTitle">관리자 추천코스 여행</span><sub class="sub">561개</sub><br/><br/>
+			<span class="routeTitle">관리자 추천코스 여행&nbsp;</span>
+			<span style='float:left'><sub>561개</sub></span><br/><br/>
 			<div class="route">
 				<a href="#">
 					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
