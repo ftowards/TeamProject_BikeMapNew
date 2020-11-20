@@ -3,9 +3,9 @@
 		margin:0;
 		padding:0;
     }
-	#mainDiv{
+	.mainDiv{
 		width:800px;
-		height:1400px;
+		height:1500px;
 		margin:0 auto;
 	}
 	/*검색옵션바*/
@@ -56,7 +56,7 @@
 		height:220px;
 	}
 
-	#hitDiv > b, #title, #mapDiv b{
+	#hitDiv > b, .title, #mapDiv b{
 		color:#353535;
 		font-size:1.3em;
 		font-weight:600;
@@ -89,7 +89,7 @@
 		text-align:left;
 		background-color:white;
 	}
-	#title{
+	.title{
 		margin:10px 10px 20px 0;
 	}
 	#subTxt{
@@ -153,7 +153,6 @@
 	#mapDiv{
 		width:100%;
 		height:200px;
-		background-color:gray;
 	}
 	#mapDiv b{
 		height:200px;
@@ -161,60 +160,51 @@
 	/*지도&고도정보*/
 	#map_Altitude{
 		width:65%;
-		height:349px;
+		height:469px;
 		float:left;
-		background-color:pink;
+		margin-bottom:30px;
 	}
 	
 	/*코스이름&별점*/
 	#routeInfo{
 		width:35%;
 		float:left;
-		height:350px;
-		background-color:orange;
+		height:470px;
+		background-color:lightblue;
+		margin-bottom:30px;
 	}
 	
 	#placeList{
-		height:480px;
-		background-color:lightblue;
+		height:580px;
 	}
 	#placeList >*{
 		float:left;
 		width:23.33%;
-		margin-right:20px;
-		height:200px;
+		margin-right:17.1px;
 	}
-	/*음식점*/
-	#restaurant{
+
+	#restaurant, #tour, #accommodation{
 		height:200px;
-		background-color:yellow;	
+		background-color:white;
+		border:1px solid gray;	
 	}
-	/*관광지*/
-	#tour{
-		height:200px;
-		background-color:orange;	
-	}
-	/*숙박시설*/
-	#accommodation{
-		height:200px;
-		background-color:yellow;	
-	}
-	/*편의시설*/
+
 	#facilities{
 		height:200px;
-		margin:0px;
-		background-color:gray;	
+		background-color:white;
+		border:1px solid gray;
+		margin:0; padding:0;
 	}
 	
 	#commentDiv{
-		height:200px;
+		height:270px;
 	}
 	#cmtTitle{
-		padding:15px 0;
+		padding:20px 0;
 	}
 	#commentBox{
-		height:150px;
-		background-color:green;
+		width:894px;
+		height:140px;
 	}
 	
 	/*댓글*/

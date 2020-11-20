@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
-<div id="mainDiv">
+<div class="mainDiv">
 	<div id="optionBar" style='float:left;'>
 		<select name="departurue" style='padding-left:10px;'>
 		    <option value="">&nbsp;&nbsp;출발지를 선택하세요</option>
@@ -63,7 +63,7 @@
 		</div>
 	</div>
 	<div id="routeSearch">
-		<div id="title">코스검색</div>
+		<div class="title">코스검색</div>
 		<div id="subTxt">평점순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
 		<div id="paging">1&emsp;<span style='color:#00B0B0; font-weight:600;'>2</span>&emsp;3&emsp;4&emsp;5</div>
 	</div><br/>
