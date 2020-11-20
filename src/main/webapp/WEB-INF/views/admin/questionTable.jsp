@@ -17,7 +17,7 @@
 			
 			<li>80</li>
 			<li>sss555</li>
-			<li>동행 찾기 게시판에서 자꾸 오류가 나요</li>
+			<li class="wordCut">동행 찾기 게시판에서 자꾸 오류가 나요</li>
 			<li>작성일자</li>
 			<li style="color:lightblue">답변여부</li>				
 		</ul>
