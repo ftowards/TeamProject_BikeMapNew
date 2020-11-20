@@ -10,13 +10,6 @@ a {text-decoration: none;}
 		margin:0 auto;
 	}
 
-	.shadow{
-		background-color:black;
-		opacity:0.5;
-		position: relative;
-		z-index: 100;
-	}
-
 
 	#hitRoute{
 		width:100%;
@@ -24,11 +17,54 @@ a {text-decoration: none;}
 		text-align:center;
 	}
 	
+	
+	
+/*===================지환 사진 작업중 20/11/20===================*/
 	#content{
-		height:235px;
-		padding-left:65px;
+		width : 100%;
+		height: 400px;
+		margin-top : 30px;
+		margin-bottom : 20px;
+		text-align : center;
+	}
+	#contentlocation{
+		width: 100%;
+	    margin-top: 50px;
+	    text-align: center;
+		float: left;
 	}
 	
+	
+	#contentlocation img {
+		border-radius: 5px;
+		width:200px; 
+		height:200px;
+	
+	}
+	
+/* 	#national{ */
+/* 		width:100%; */
+/* 		height:400px; */
+/* 		margin-top:30px; */
+/* 		margin-bottom:150px; */
+/* 		text-align:center; */
+/* 	} */
+/* 	#location{ */
+/* 		width:100%; */
+/* 		margin-top:50px; */
+/* 		text-align:center; */
+/* 	} */
+/* 	#location img{ */
+/* 		border-radius: 10px / 10px; */
+/* 		margin: 5px 2px 0px; */
+/* 		width:125px; */
+/* 		height:160px; */
+/* 	} */
+	
+	
+	
+	
+
 	.hitIcon{
 		width:70px;
 		height:30px;
@@ -201,10 +237,14 @@ a {text-decoration: none;}
 		width:100%;
 		height:100%;
 	}
+
 	
 	.reviewContents{
 		border: 1px solid black; margin-bottom: 20px;width:800px;height:100px;  border-radius: 10px 10px; padding:10px; text-align:left; 
 		white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+	}
+	.content img {
+		border-radius: 5px;
 	}
 	
 	
@@ -259,6 +299,16 @@ a {text-decoration: none;}
 		border: 1px solid; 
 		clear: both;
 
+	}
+	
+	#subTxt{
+		color:#353535;
+		font-size:1em;
+		font-weight:600;
+	}
+	#lBar{
+		color:#7F7F7F;
+		font-weight:400;
 	}
 	
 	
