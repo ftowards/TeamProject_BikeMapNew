@@ -274,16 +274,17 @@
 		// value = 장소 정보(string 타입으로 변환한 것)
 		// type = 출발지 startPoint / 경유지 viaPoint / 도착지 arrivePoint
 		var json = JSON.parse(value);
+		
+		// 위치 데이터 추출
+		var point = "["+json.x+","+json.y+"]";
+		
 		console.log(value);
 		console.log(json.address_name);
-		var tag = "";
 		
+		// 출발지나 도착지 선택일 경우 원래 칸에 hidden 타입으로 입력
 		if(type == 'startPoint' || type == 'arrivePoint'){
-			tag += "<input type='hidden' name='"+type+"' value='"+value+"'/>";
-			$("#"+type).children("input").val(json.place_name);
-			$("#"+type).append();
-			
-			console.log("["+json.x+","+json.y+"]");
+			$("#"+type).children("input[type=text]").val(json.place_name);
+			$("#"+type).children("input[type=hidden]").val(point);
 		}
 	}
 
@@ -399,96 +400,168 @@
 
 ///////      길 찾기        ///////////////////////////////////////
 	
-	// 1. 경로 정보 가져오기
+	var coordinates = "";  // 검색할 위치 정보
+	var preference = "recommended"; // 검색 타입 // "shortest" "recommended"
+	var radiuses = ""; // 반경 -1 로 위치 정보 숫자만틈 세팅
 	
-		// 출발지 경유지 도착지 y x 가져올 것
+	var data = ""; // 리턴 받을 데이터 
 	
-	// 2. 경로 정보 검색 후 데이터 반환
-	let request = new XMLHttpRequest();
+	var encodeGeo = "";
 	
-	//	리퀘스트 타입															/// 경로 검색 다른 타입도 추가할 지 고민해봄
-	request.open('POST', "https://api.openrouteservice.org/v2/directions/cycling-regular");
-	
-	request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
-	request.setRequestHeader('Content-Type', 'application/json');
-	request.setRequestHeader('Authorization', '5b3ce3597851110001cf62483a51dabd7ec34a519a6a93992fe61ea7');
-	
-	var data = "";
-	request.onreadystatechange = function () {
-	  if (this.readyState === 4) {
-	    console.log('Status:', this.status);
-	    console.log('Headers:', this.getAllResponseHeaders());
-	    console.log('Body:', this.responseText);
-	    
-	    data = this.responseText;
-	    
-	    // 필요한 데이터
-	    // 1. summary
-	    
-	    var routeFinding = JSON.parse(data);
-	    var route = routeFinding.routes;
-	    console.log(route[0].summary);
-	    
-	    // 2. geometry 
-	    console.log(route[0].geometry);
-	    decode(route[0].geometry, true); 
-	    
-	  }
-	};
-	
-	// 데이터 세팅 // coordinates preference radiuses
-	const body = '{"coordinates":[[126.935316109263,37.5537457619471],[126.992123140096,37.5338817636524]],';
-		  body += '"attributes":["avgspeed","percentage","detourfactor"],"elevation":"true","geometry_simplify":"false",';
-		  body += '"maneuvers":"true","preference":"recommended","radiuses":[-1,-1],"units":"km","geometry":"true"}';
-	
-	request.send(body);
-	
-	// 3. geometry 해석하기
 	var points = [];  // 고저도 그리기용 / lat lng ele
 	var geometry = []; // 경로 그리기 용 / lat lng
-	function decode(geo, includeElevation){
-	      // array that holds the points
-	      let index = 0;
-	      const len = geo.length;
-	      let lat = 0; let lng = 0; let ele = 0;
-	      while (index < len) {
-	        let b;
-	        let shift = 0;
-	        let result = 0;
-	        do {
-	          b = geo.charAt(index++).charCodeAt(0) - 63; // finds ascii
-	          // and subtract it by 63
-	          result |= (b & 0x1f) << shift;
-	          shift += 5;
-	        } while (b >= 0x20);
+	
+	// 출발지 경유지 도착지 y x 가져올 것
+	
+	function searchRoute(){
+		// 1. 경로 정보 가져오기
+		var startPoint = $("input[name=startPoint]").val();
+		var arrivePoint = $("input[name=arrivePoint]").val();
+		
+		coordinates = "["+startPoint+","+arrivePoint+"]";
+		radiuses = "[50,50]";
+		
+		console.log(coordinates);
 
-	        lat += ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1));
-	        shift = 0;
-	        result = 0;
-	        do {
-	          b = geo.charAt(index++).charCodeAt(0) - 63;
-	          result |= (b & 0x1f) << shift;
-	          shift += 5;
-	        } while (b >= 0x20);
-	        lng += ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1));
 
-	        if (includeElevation) {
-	          shift = 0;
-	          result = 0;
-	          do {
-	            b = geo.charAt(index++).charCodeAt(0) - 63;
-	            result |= (b & 0x1f) << shift;
-	            shift += 5;
-	          } while (b >= 0x20);
-	          ele += ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1));
-	        }
-	        try {
-	          let location = [(lat / 1E5), (lng / 1E5)];
-	          geometry.push(location);
-	          if (includeElevation) location.push((ele / 100));
-	          points.push(location);
-	        } catch (e) {
-	        console.log(e);
-	        }
+		// 2. 경로 정보 검색 후 데이터 반환
+			// 데이터 세팅 // coordinates preference radiuses
+			//[[126.935316109263,37.5537457619471],[126.992123140096,37.5338817636524]]
+			//"preference":"recommended" /"shortest" / ,"radiuses":[-1,-1]		
+		var body = '{"coordinates":'+coordinates+',';
+	  		body += '"attributes":["avgspeed","percentage","detourfactor"],"elevation":"true","geometry_simplify":"false",';
+	     	body += '"maneuvers":"true","preference":"'+preference+'","radiuses":'+radiuses+',"units":"km","geometry":"true"}';
+		
+		// 3. 루트 검색 요청
+		let request = new XMLHttpRequest();	
+		//	리퀘스트 타입															/// 경로 검색 다른 타입도 추가할 지 고민해봄
+		request.open('POST', "https://api.openrouteservice.org/v2/directions/cycling-regular");
+		
+		request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
+		request.setRequestHeader('Content-Type', 'application/json');
+		request.setRequestHeader('Authorization', '5b3ce3597851110001cf62483a51dabd7ec34a519a6a93992fe61ea7');
+		
+		
+		request.onreadystatechange = function (){
+		  if (this.readyState === 4) {
+		    console.log('Status:', this.status);
+		    console.log('Headers:', this.getAllResponseHeaders());
+		    console.log('Body:', this.responseText);
+		    
+		    data = this.responseText;
+		    
+		    var routeFinding = JSON.parse(data);
+		    var route = routeFinding.routes;
+		    
+		    geometry = decode(route[0].geometry, false);
+		    points = decode(route[0].geometry, true);
+		    
+		    $.each(points, function(index, v){
+		    	console.log("위치 " + index + " >> " + v);
+		    });
+		    
+		    $.each(points, function(index, v){
+		    	console.log("위치+고도 " + index + " >> " + v);
+		    });
+		    
+		    setRouteLine();
+		  }
+		};
+		
+			// *** api 세팅
+		    
+		    // 필요한 데이터
+		    // 1. summary
+		    
+		    //var routeFinding = JSON.parse(data);
+		    //var route = routeFinding.routes;
+		    //console.log(route[0].summary);
+		    
+		    // 2. geometry 
+		    //console.log(route[0].geometry);
+		    //decode(route[0].geometry, true); 
+		    
+		request.send(body);
+	}
+	
+	// 3. geometry 해석하기
+  	function decode(encodedPolyline, includeElevation){
+	    // array that holds the points
+	    let points = []
+	    let index = 0
+	    const len = encodedPolyline.length
+	    let lat = 0
+	    let lng = 0
+	    let ele = 0
+	    while (index < len) {
+	      let b
+	      let shift = 0
+	      let result = 0
+	      do {
+	        b = encodedPolyline.charAt(index++).charCodeAt(0) - 63 // finds ascii
+	        // and subtract it by 63
+	        result |= (b & 0x1f) << shift
+	        shift += 5
+	      } while (b >= 0x20)
+	
+	      lat += ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1))
+	      shift = 0
+	      result = 0
+	      do {
+	        b = encodedPolyline.charAt(index++).charCodeAt(0) - 63
+	        result |= (b & 0x1f) << shift
+	        shift += 5
+	      } while (b >= 0x20)
+	      lng += ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1))
+	
+	      if (includeElevation) {
+	        shift = 0
+	        result = 0
+	        do {
+	          b = encodedPolyline.charAt(index++).charCodeAt(0) - 63
+	          result |= (b & 0x1f) << shift
+	          shift += 5
+	        } while (b >= 0x20)
+	        ele += ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1))
+	      }
+	      try {
+	        let location = [(lat / 1E5), (lng / 1E5)]
+	        if (includeElevation) location.push((ele / 100))
+	        points.push(location)
+	      } catch (e) {
+	        console.log(e)
 	      }
 	    }
+	    return points
+  	}
+    
+    
+    // 4. 경로 객체 생성하기
+    var polyline = "";
+    function setRouteLine(){
+    
+    	// 기존에 경로 객체가 있을 경우, 맵 상에서 지우기
+    	if(polyline != "") {
+    		polyline.setMap(null);
+		}
+    	
+    	var linePath = [];
+    	// 좌표 정보를 바탕으로 경로 배열 입력하기
+    	$.each(points, function(index, v){
+    		var p = new kakao.maps.LatLng(v[0], v[1]);
+    		linePath.push(p);
+    	});
+    	
+    	// 경로 객체 생성
+	    polyline = new kakao.maps.Polyline({
+						    path: linePath, // 선을 구성하는 좌표배열 입니다
+						    strokeWeight: 5, // 선의 두께 입니다
+						    strokeColor: '#00B0B0', // 선의 색깔입니다
+						    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+						    strokeStyle: 'solid' // 선의 스타일입니다
+		});
+		
+		// 지도 위에 세팅!
+		polyline.setMap(map);
+	}
+

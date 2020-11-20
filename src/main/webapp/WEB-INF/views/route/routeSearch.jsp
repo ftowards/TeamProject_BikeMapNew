@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 <div class="mainDiv">
 	<div id="optionBar" style='float:left;'>
-		<select name="departurue" style='padding-left:10px;'>
+		<select name="departurue" id="regionSelect">
 		    <option value="">&nbsp;&nbsp;출발지를 선택하세요</option>
 		    <option value="서울">&ensp;서울</option>
    		    <option value="부산">&ensp;부산</option>
@@ -23,7 +23,7 @@
 		    <option value="경남">&ensp;경남</option>
 		    <option value="제주">&ensp;제주</option>
 		</select>
-		<select name="arrive" style='padding-left:10px;'>
+		<select name="arrive" id="regionSelect">
 		    <option value="">&nbsp;&nbsp;도착지를 선택하세요</option>
 		    <option value="서울">&ensp;서울</option>
    		    <option value="부산">&ensp;부산</option>
@@ -73,15 +73,15 @@
 			<div><img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/></div>
 		</div>
 		<div class="contentDiv">
-			<a href="<%=request.getContextPath()%>/routeSearchView""><img class="thumbnail2" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
+			<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail2" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<div><img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/></div>
 		</div>
 		<div class="contentDiv">
-			<a href="<%=request.getContextPath()%>/routeSearchView""><img class="thumbnail2" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
+			<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail2" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<div><img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/></div><br/>
 		</div>
 		<div class="contentDiv">
-			<a href="<%=request.getContextPath()%>/routeSearchView""><img class="thumbnail2" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
+			<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail2" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<div><img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/></div>
 		</div>
 		<div class="contentDiv">

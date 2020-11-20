@@ -29,7 +29,7 @@ public class RouteController {
 	public String routeSearch() {
 		return "route/routeSearch";
 	}
-  
+
 	//코스검색(글보기)
 	@RequestMapping("/routeSearchView")
 	public String routeSearchView() {

@@ -138,11 +138,14 @@
 			<!-- 길찾기 -->
 			<div class="tab">
 				<ul>
-					<li id="startPoint"><input type="text"/></li>
-					<li id="arrivePoint"><input type="text"/></li>
+					<li id="startPoint"><input type="text"/>
+						<input type="hidden" name="startPoint"/></li>
+					<li id="arrivePoint"><input type="text"/>
+						<input type="hidden" name="arrivePoint"/></li>
 				</ul>
 				
-				<button class="">경로검색</button>
+				<select name=""></select>
+				<input type="button" value="경로 탐색" onclick="searchRoute();"/>
 			</div>
 			
 			<!-- 저장한 장소 목록 -->

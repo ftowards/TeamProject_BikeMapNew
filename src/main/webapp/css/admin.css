@@ -60,7 +60,9 @@
 	width: 80%;
 	float: right;
 	height: 400px;
-	background-color: #eee;
+	background-color: #dcdcdc
+	
+	;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -184,4 +186,72 @@
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
+}
+
+
+.layerpop {
+    display: none;
+    z-index: 1000;
+    border: 2px solid #ccc;
+    background: #fff;
+    cursor: move; }
+
+.layerpop_area .title {
+    padding: 10px 10px 10px 10px;
+    border: 0px solid #aaaaaa;
+    background: #f1f1f1;
+    color: #3eb0ce;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 24px; }
+
+.layerpop_area .layerpop_close {
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: url("../img/img_admin/btn_exit_off.png")no-repeat;
+    
+}
+.layerpop_area .layerpop_close:hover {
+    background: url("../img/img_admin/btn_exit_on.png")no-repeat;
+    cursor: pointer; 
+}
+
+.layerpop_area .content {
+    width: 96%;    
+    margin: 2%;
+    color: #828282; }
+    
+/* ============= 셀렉트 =========*/
+#adminSelect{
+		width:150px;
+		height:25px;
+		text-align:center;
+		font-size:1em;
+		font-weight:bold;
+		color:#7F7F7F;
+		border:0px;
+		border-radius:5px;
+		background-color:#dcdcdc;
+		background: url(../img/img_admin/selectBox.png) no-repeat 95% 50%;
+		-webkit-appearance: none; /* 네이티브 외형 감추기 */
+    	-moz-appearance: none;
+    	appearance: none;
+    	margin-right:5px;
+    	padding-left:10px;
+   }
+.mint_Btn{
+		  font-size:15px;
+		  font-weight:bold;
+		  border-radius: 5px;
+		  text-decoration: none;
+		  text-align : center;
+		  padding:3px 6px;
+		  margin:0 10px;
+		  color : white;
+		  border: 1px solid #00B0B0;
+		  background-color: #00B0B0;
 }
