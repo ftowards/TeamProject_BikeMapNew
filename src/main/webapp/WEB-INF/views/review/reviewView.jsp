@@ -27,23 +27,33 @@
 		</div>
 
 
-		<div class= "content" style="text-align:center;clear:both;">
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner1.jpg" style="width:200px; height:200px;"/></a>			
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner1.jpg" style="width:400px; height:200px;"/></a>
-		</div>
-	
-		<div class= "content" style="text-align:center;">				
+<!-- 		<div id = content> -->
+<!-- 			<div id= "contentlocation"> -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png"/></a> --%>
+<!-- 				</div>			 -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg"/></a> --%>
+<!-- 				</div> -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a> --%>
+<!-- 				</div><br/> -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a> --%>
+<!-- 				</div> -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a> --%>
+<!-- 				</div> -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a> --%>
+<!-- 				</div> -->
+<!-- 		</div> -->
+		
+<!-- 		<div style="text-align: left;"> -->
+<%-- 			<a href = "<%=request.getContextPath()%>/reviewList"><span id="title">후기</span></a><br><br> --%>
+<!-- 			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div> -->
+<!-- 		</div><br/> -->
 
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner3.jpg"style="width:200px; height:200px;"/></a>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner4.jpg"style="width:200px; height:200px;"/></a>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner5.jpg"style="width:200px; height:200px;"/></a>
-		</div>
-
-
-		<div style="text-align: left;">
-			<a href = "<%=request.getContextPath()%>/reviewList"><span id="title">후기</span></a><br><br>
-			<div class="subtitle"><span id="recommand">추천순</span> | <span id="new">최신순</span></div>
-		</div>
 		
 		
 
@@ -81,4 +91,8 @@
 </div>
 
 </div>
+
+</div>
+
+
 

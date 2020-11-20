@@ -6,7 +6,6 @@
 
 <!-- 후기게시판 제목 -->
 <div class = "mainDiv">
-
 		<div style="text-align: left;">
 			<span id="title">후기게시판보기</span><br><br>
 		</div>
