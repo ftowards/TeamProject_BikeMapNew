@@ -3,6 +3,12 @@
 		margin:0;
 		padding:0;
     }
+    hr{
+		border:0;
+		width:900px;
+		background-color:#ccc;
+		height:1px;
+	}
 	.mainDiv{
 		width:800px;
 		height:1500px;
@@ -15,7 +21,7 @@
 		margin-bottom:60px;
 		text-align:center;
 	}
-	select{
+	#regionSelect{
 		width:220px;
 		height:40px;
 		text-align:center;
@@ -30,6 +36,7 @@
     	-moz-appearance: none;
     	appearance: none;
     	margin-right:5px;
+    	padding-left:10px;
 	}
 	#km{
 		color:#7F7F7F;
@@ -155,8 +162,15 @@
 		height:200px;
 	}
 	#mapDiv b{
-		height:200px;
+		height:160px;
 	}
+	.wordCut{
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		font-size:1.6em;
+	}
+	
 	/*지도&고도정보*/
 	#map_Altitude{
 		width:65%;
@@ -166,49 +180,137 @@
 	}
 	
 	/*코스이름&별점*/
-	#routeInfo{
+	#routeInfoDiv{
 		width:35%;
 		float:left;
 		height:470px;
-		background-color:lightblue;
 		margin-bottom:30px;
 	}
+	#routeInfo{
+		height:52.5%;
+		padding-left:10px;
+	}
 	
+	#grade{
+		height:10%;
+		float:left;
+		padding:13px;
+	}
+	#gradeSelect{
+		width:185px;
+		height:30px;
+		font-size:1em;
+		font-weight:bold;
+		color:#353535;
+		border:0px;
+		border-radius:5px;
+		background-color:#eee;
+		background: url(../img/img_route/selectBox.png) no-repeat 95% 50%;
+		-webkit-appearance: none; /* 네이티브 외형 감추기 */
+    	-moz-appearance: none;
+    	appearance: none;
+    	margin-right:5px;
+    	padding-left:10px;
+	}
+	
+	 .gray_Btn{
+		border : #353535 2px solid;
+		border-radius: 5px;
+		background-color : #353535;
+		text-decoration: none;
+		text-align : center;
+		font-size : 12px;
+		padding : 4px 8px;
+		color: white;
+ 	}
+ 	.gray_Btn:hover{
+		color : #353535;
+		font-weight:bold;
+		background-color: white;
+ 	}
+ 	#grayBtn{
+ 		width:17%;
+ 		float:left;
+ 		position: relative;
+  		left:230px;
+ 	}
+ 	.mint_Btn{
+		font-size:15px;
+		font-weight:bold;
+		text-decoration: none;
+		text-align : center;
+		padding:3px 6px;
+		margin:0 10px;
+		color : white;
+		border: 1px solid #00B0B0;
+		background-color: #00B0B0;
+	}
+	.mint_Btn:hover{
+		color : white;
+		font-weight:bold;
+		background-color: #00B0B0;
+	}
+	.WMint_Btn{
+		font-size:15px;
+		font-weight:bold;
+		border-radius: 5px;
+		text-decoration: none;
+		text-align : center;
+		padding:3px 6px;
+		margin:0 10px;
+		color : #00B0B0;
+		border: 2px solid #00B0B0;
+		background-color: white;
+	}	
+
 	#placeList{
-		height:580px;
+		height:630px;
 	}
 	#placeList >*{
 		float:left;
-		width:23.33%;
+		width:185px;
+		height:200px;
 		margin-right:17.1px;
 	}
-
-	#restaurant, #tour, #accommodation{
-		height:200px;
-		background-color:white;
-		border:1px solid gray;	
+	#placeList:nth-child(1),#placeList:nth-child(2),#placeList:nth-child(3){
+		marign:10px 12px 10px 0;
 	}
 
-	#facilities{
-		height:200px;
+	#restaurant, #tour, #accommodation, #facilities{
 		background-color:white;
-		border:1px solid gray;
-		margin:0; padding:0;
+		border:1px solid gray;	
+		padding:10px;	
 	}
 	
 	#commentDiv{
 		height:270px;
 	}
 	#cmtTitle{
-		padding:20px 0;
+		font-weight:bold;
+		font-size:20px;
+		padding:70px 0 13px 0;
+	}
+	#saveBtn{
+		border-radius: 0;
+		position: relative;
+		left: 768px;
+		top: 158px;
+    	z-index:10;
 	}
 	#commentBox{
 		width:894px;
 		height:140px;
+		font-size:1.3em;
+		padding:5px;
+		margin-top:8px;
+		z-index:100;
 	}
 	
 	/*댓글*/
+	.userid{
+		font-weight:bold;
+		color:#353535;
+	}
 	#comment{
-		height:450px;
-		background-color:orange;
+		height:500px;
 	}
