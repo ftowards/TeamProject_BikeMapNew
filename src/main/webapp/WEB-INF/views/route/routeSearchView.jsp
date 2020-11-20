@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
+
 <div class="mainDiv" style='margin-top:100px; width:900px; height:1800px;'>
 	<div id="mapDiv" style='width:900px;'>
 		<b>코스정보보기</b><br/><br/>
 		<div class="wordCut" style='height:50px;'>사용자가 만든 코스의 제목이 들어갈 자리입니다. 제목이 길어지면 텍스트는 점으로 표시됩니다.</div>
+
 		<p>@hong1234</p>
 		<div id="map_Altitude">
 			<div>
@@ -82,11 +84,13 @@
 			</ul>
 		</div>
 	</div>
+
 	<div id="commentDiv">
 		<div id="cmtTitle">댓글 <span style='color:#00B0B0'>5</span></div>
 		<span class="userid">hong1234</span>
 		<input type="submit" value="등록" id="saveBtn" class="mint_Btn"/>
 		<textarea id="commentBox" placeholder="주제와 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
+
 	</div>
 	<br/><br/><hr/>
 	<div id="comment">

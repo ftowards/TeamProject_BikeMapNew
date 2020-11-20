@@ -8,6 +8,10 @@
 <meta name="viewport" content="width=device, initial-scale=1"/>
 <link rel="stylesheet" href="/home/css/admin.css" type="text/css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
+
+
 
 <title>Bike Map</title>
 <script>
@@ -50,44 +54,51 @@
 			$("#tableDiv").append('/inqTable.html');
 		});	
 	});*/
+    function wrapWindowByMask() {
+        //화면의 높이와 너비를 구한다.
+        var maskHeight = $(document).height(); 
+        var maskWidth = $(window).width();
+
+        //문서영역의 크기 
+        console.log( "document 사이즈:"+ $(document).width() + "*" + $(document).height()); 
+        //브라우저에서 문서가 보여지는 영역의 크기
+        console.log( "window 사이즈:"+ $(window).width() + "*" + $(window).height());        
+
+        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+        $('#mask').css({
+            'width' : maskWidth,
+            'height' : maskHeight
+        });
+
+        //애니메이션 효과
+        //$('#mask').fadeIn(1000);      
+        $('#mask').fadeTo("slow", 0.5);
+    }
+
+    function popupOpen() {
+        $('.layerpop').css("position", "absolute");
+        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+        $('.layerpop').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
+        $('.layerpop').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
+        $('.layerpop').draggable();
+        $('#layerbox').show();
+    }
+
+    function popupClose() {
+        $('#layerbox').hide();
+        $('#mask').hide();
+    }
+
+    function goDetail() {
+
+        /*팝업 오픈전 별도의 작업이 있을경우 구현*/ 
+
+        popupOpen(); //레이어 팝업창 오픈 
+        wrapWindowByMask(); //화면 마스크 효과 
+    }
+
+
 	
-	$('.btn-example').click(function(){
-	    var $href = $(this).attr('href');
-	    layer_popup($href);
-	});
-	function layer_popup(el){
-
-	    var $el = $(el);//레이어의 id를 $el 변수에 저장
-	    var isDim = $el.prev().hasClass('dimBg');//dimmed 레이어를 감지하기 위한 boolean 변수
-
-	    isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
-
-	    var $elWidth = ~~($el.outerWidth()),
-	        $elHeight = ~~($el.outerHeight()),
-	        docWidth = $(document).width(),
-	        docHeight = $(document).height();
-
-	    // 화면의 중앙에 레이어를 띄운다.
-	    if ($elHeight < docHeight || $elWidth < docWidth) {
-	        $el.css({
-	            marginTop: -$elHeight /2,
-	            marginLeft: -$elWidth/2
-	        })
-	    } else {
-	        $el.css({top: 0, left: 0});
-	    }
-
-	    $el.find('a.btn-layerClose').click(function(){
-	        isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
-	        return false;
-	    });
-
-	    $('.layer .dimBg').click(function(){
-	        $('.dim-layer').fadeOut();
-	        return false;
-	    });
-
-	}
 </script>
 </head>
 <body>
@@ -167,24 +178,22 @@
 			<%
 				if(pagefile.equalsIgnoreCase("userTable")){
 			%>
-			  <option value="userid" selected>회원 아이디</option>
 			  <option value="username">회원 이름</option>
 			<%
 				}else if(pagefile.equalsIgnoreCase("partnerTable")||pagefile.equalsIgnoreCase("reviewTable")){
 			%>  
-				<option value="subject">제목</option>
-			 	<option value="userid" selected>회원 아이디</option>
+				<option value="subject" selected>제목</option>
 			<%
 				}else if(pagefile.equalsIgnoreCase("questionTable")){			 
 			%>
-			 	<option value="subject">제목</option>
-			 	<option value="userid" selected>회원 아이디</option>
+			 	<option value="subject" selected>제목</option>
 			 	<option value="IsReply">답변여부</option>
 			<% 
 				}else{
 					System.out.println(pagefile);
 				}
 			 %>
+			 <option value="userid" selected>회원 아이디</option>
 		</select>
 	
 				<input type="text" name="searchWord" id="searchWord" maxlength="20" placeholder="검색어 입력"/>
