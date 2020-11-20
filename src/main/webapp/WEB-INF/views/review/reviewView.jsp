@@ -23,32 +23,32 @@
 			<span id="title">도시검색</span><br><br>
 		</div>
 
-		<div id = content>
-			<div id= "contentlocation">
-				<div>
-					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png"/></a>
-				</div>			
-				<div>
-					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg"/></a>
-				</div>
-				<div>
-					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>
-				</div><br/>
-				<div>
-					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a>
-				</div>
-				<div>
-					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a>
-				</div>
-				<div>
-					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a>
-				</div>
-		</div>
+<!-- 		<div id = content> -->
+<!-- 			<div id= "contentlocation"> -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png"/></a> --%>
+<!-- 				</div>			 -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg"/></a> --%>
+<!-- 				</div> -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a> --%>
+<!-- 				</div><br/> -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a> --%>
+<!-- 				</div> -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a> --%>
+<!-- 				</div> -->
+<!-- 				<div> -->
+<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a> --%>
+<!-- 				</div> -->
+<!-- 		</div> -->
 		
-		<div style="text-align: left;">
-			<a href = "<%=request.getContextPath()%>/reviewList"><span id="title">후기</span></a><br><br>
-			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
-		</div><br/>
+<!-- 		<div style="text-align: left;"> -->
+<%-- 			<a href = "<%=request.getContextPath()%>/reviewList"><span id="title">후기</span></a><br><br> --%>
+<!-- 			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div> -->
+<!-- 		</div><br/> -->
 		
 		
 <!-- 후기창 게시판-->
