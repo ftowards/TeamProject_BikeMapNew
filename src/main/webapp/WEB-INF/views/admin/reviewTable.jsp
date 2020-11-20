@@ -17,7 +17,7 @@
 			<!-- DB작업완료 후 for문 생성 -->
 			
 			<li>234</li>
-			<li>여수 3일 코스 !!!</li>
+			<li class="wordCut" >여수 3일 코스 !!!</li>
 			<li>sss333</li>
 			<li>34</li>
 			<li>2</li>
