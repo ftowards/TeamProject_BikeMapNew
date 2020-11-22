@@ -16,10 +16,12 @@ function getBytes(str){
     return cnt;
 }
 </script>
+
 <div class="mainDiv" style='margin-top:100px; width:900px; height:1800px;'>
 	<div id="mapDiv" style='width:900px;'>
 		<b>코스정보보기</b><br/><br/>
 		<div class="wordCut" style='height:50px;'>사용자가 만든 코스의 제목이 들어갈 자리입니다. 제목이 길어지면 텍스트는 점으로 표시됩니다.</div>
+
 		<p>@hong1234</p>
 		<div id="map_Altitude">
 			<div>
@@ -101,6 +103,7 @@ function getBytes(str){
 			</ul>
 		</div>
 	</div>
+
 	<div id="commentDiv">
 		<div id="cmtTitle">댓글 <span style='color:#00B0B0'>5</span></div>
 		<span class="userid">hong1234</span>

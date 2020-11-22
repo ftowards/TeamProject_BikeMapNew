@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
 <div class="container">
 
 <!-- 후기게시판 제목 -->
 <div class = "mainDiv">
-
 		<div style="text-align: left;">
 			<span id="title">후기게시판보기</span><br><br>
 		</div>
@@ -22,10 +22,13 @@
 		
 		<div class ="contentList">
 			<div>
+
+
 				<div class="right">
 				
 				<div>	
 					<span class="conttitle" style ="text-align:left;">타이틀</span>
+
 				</div>
 				<div>
 						<p class="review-content2">
@@ -38,6 +41,8 @@
 							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
 							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
 							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+
+
 						</p>
 					</div>
 				</div>
@@ -46,6 +51,7 @@
 	</div>
 	
 	
+
 <!-- 댓글 -->
 	<div class="comment">
 		<div>

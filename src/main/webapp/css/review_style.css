@@ -1,71 +1,101 @@
 @charset "UTF-8";
 body{margin:0; padding:0;}
-a {text-decoration: none;}
-
-/*=====================================reviewMain=====================================================*/
+	ul,li{margin:0px; padding:0px;list-style-type:none;} 
+	ul{list-style-type:none;}
+	/*=====================================header========================================================*/
+	header{margin:0;padding:0; height:100px;}
 	
-	.mainDiv{
-		width:800px;
-		height:800px;
-		margin:0 auto;
+	#logoDiv{text-align:right;width:55%;position:absolute;}
+	.lineDiv{background-color:rgb(64,64,64); height:2px;}
+	
+	
+	/*로그인,회원가입*/
+	#loginDiv{width:80%;}
+	#login{width:55%; height:50px;padding:20px 0 0 95%;}
+	#loginDiv li{line-height:55px; font-size:15px; float:left; width:15%;}
+	#login>li>img{width:25px;}
+	#login>li:last-child>input{
+								border:1px solid rgb(0,176,176);
+								border-radius:10px;
+								width:100px;
+								height:40px;
+								background-color:#fff;
+								color:rgb(0,176,176);
+								font-size:15px;}
+								
+	/*로그인 링크*/
+	#login a:link,#login a:visited{text-decoration:none; color:rgb(123,123,123);}	
+					
+	
+	/*네비게이션*/
+	#naviDiv{width:800px; margin:0 auto;}
+	#navi{height:50px; padding-bottom:10px}
+	#navi li{text-align:center; line-height:55px; font-size:20px;}
+	#navi>li{float:left; width:20%; height:50px;}
+	#navi>li>ul{display:none; position:relative; border:3px solid rgb(221,221,221);background-color:#fff; z-index:100;}	
+
+	 
+	 /*홈,루트짜기,코스검색,동행찾기,후기-->파란밑줄 선*/
+	#navi li #homeLine{margin:0 auto; width:20px; height:2px; background-color:rgb(0,176,176);  display:none;}
+	#navi li #routeLine{margin:0 auto; width:70px; height:2px; background-color:rgb(0,176,176); display:none;} 
+	#navi li #courseLine{margin:0 auto; width:70px; height:2px; background-color:rgb(0,176,176); display:none;} 
+	#navi li #searchLine{margin:0 auto; width:70px; height:2px; background-color:rgb(0,176,176); display:none;} 
+	#navi li #reviewLine{margin:0 auto; width:40px; height:2px; background-color:rgb(0,176,176); display:none;} 
+	
+
+
+	/*링크*/
+	#navi a:link,#navi a:visited{text-decoration:none;color:rgb(64,64,64);}
+	#navi a:hover{text-decoration:none; color:rgb(64,64,64);}
+	
+	.popupMenuColor:hover{background-color:rgb(221,221,221); height:55.5px;font-weight:bold;}
+
+	/*================================================footer==================================================================*/
+	#footer{margin:0;padding:0;}
+	#topDiv{height:64px; background-color:rgb(55,55,65);}
+	#bottomDiv{height:162px;background-color:rgb(69,69,79);}
+	
+	
+	#topDiv li{float:left; width:10%; font-size:13px;line-height:60px;}
+	#topDiv>ul{margin-left:100px;}
+	
+	#bottomDiv div:first-child{position:absolute; padding:40px 0 0 75px;width:60%; height:70px;}
+	#bottomDiv div:first-child>img{width:180px; height:75px;}
+	
+	#bottomDiv>#bottomLogoDiv{width:52%;height:80px;text-align:center;}
+	#bottomDiv #bottomLogoDiv>label{color:rgb(123,123,123);font-size:12px;line-height:120px;}
+	
+	#bottomDiv div:last-child{width:47.5%;height:80px;text-align:center;}
+	#bottomDiv div:last-child>label{color:rgb(123,123,123);font-size:12px;}
+	
+	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:rgb(123,123,123);}
+	
+	
+	.container{width:800px; margin : 0 auto;}
+
+	/*=====================================main=====================================================*/
+
+	.shadow{
+		background-color:black;
+		opacity:0.5;
+		position: relative;
+		z-index: 100;
 	}
-
-
+	#bxslider img{
+		width:800px;
+		height:300px;
+	}
+	
 	#hitRoute{
 		width:100%;
 		height:235px;
 		text-align:center;
 	}
-	
-	
-	
-/*===================지환 사진 작업중 20/11/20===================*/
-	#content{
-		width : 100%;
-		height: 400px;
-		margin-top : 30px;
-		margin-bottom : 20px;
-		text-align : center;
-	}
-	#contentlocation{
-		width: 100%;
-	    margin-top: 50px;
-	    text-align: center;
-		float: left;
+	#content1{
+		height:235px;
+		padding-left:65px;
 	}
 	
-	
-	#contentlocation img {
-		border-radius: 5px;
-		width:200px; 
-		height:200px;
-	
-	}
-	
-/* 	#national{ */
-/* 		width:100%; */
-/* 		height:400px; */
-/* 		margin-top:30px; */
-/* 		margin-bottom:150px; */
-/* 		text-align:center; */
-/* 	} */
-/* 	#location{ */
-/* 		width:100%; */
-/* 		margin-top:50px; */
-/* 		text-align:center; */
-/* 	} */
-/* 	#location img{ */
-/* 		border-radius: 10px / 10px; */
-/* 		margin: 5px 2px 0px; */
-/* 		width:125px; */
-/* 		height:160px; */
-/* 	} */
-	
-/*===================지환 사진 작업중 20/11/20===================*/
-	
-	
-	
-
 	.hitIcon{
 		width:70px;
 		height:30px;
@@ -128,46 +158,27 @@ a {text-decoration: none;}
 	
 /*=====================================reviewView START=====================================================*/
 
-	.container{
+	.container2{
 		width:100%; 
 		margin : 0 auto;
 	}
-			
+		
+	#bxslider2 img{
+		width:100%;
+		height:200px;
+	}
+	
 	.reviewBody{
 		width:800px; 
 		margin : 0 auto;
 	}
 	
-	
 	#searchKeyword { 
 		position: relative; 
 		width: 140px; 
+		border: 1px solid #999; 
 		z-index: 1; 
-		height:40px;
-		text-align:center;
-		font-size:1em;
-		font-weight:bold;
-		color:#7F7F7F;
-		border:0px;
-		border-radius:5px;
-		background-color:#F1F1F1;
-		background: url(../img/img_route/selectBox.png) no-repeat 95% 50%;
-		-webkit-appearance: none; /* 네이티브 외형 감추기 */
-    	-moz-appearance: none;
-    	appearance: none;
-		padding-left:10px;
-    	margin-right:5px;	
-    	
 	} 
-	#schBar{
-		 padding-left:10px;
-		 color:#7F7F7F; 
-		 font-size:1em; 
-		 font-weight:bolder;
-		 height: 30px;  
- 	     width: 300px;'/
-	}
-	
 	
 	#searchKeyword:before{
 		/* 화살표 대체 */ content: ""; 
@@ -181,7 +192,6 @@ a {text-decoration: none;}
 		border-right: 5px solid transparent;
 	 	border-top: 5px solid #333; 
  	} 
- 	
 	#searchKeyword label { 
 		position: absolute; 
 		top: 1px; 
@@ -190,7 +200,6 @@ a {text-decoration: none;}
 		color: #999; 
 		z-index: -1;  
 		} 
-		
 	#searchKeyword select { 
 		width: 100%; 
 		height: auto; 
@@ -204,19 +213,6 @@ a {text-decoration: none;}
 	 	-moz-appearance: none; 
 	 	appearance: none; 
 	}
-		
-	.mint_Btn{
-		  font-size:15px;
-		  font-weight:bold;
-		  border-radius: 5px;
-		  text-decoration: none;
-		  text-align : center;
-		  padding:3px 6px;
-		  margin:0 10px;
-		  color : white;
-		  border: 1px solid #00B0B0;
-		  background-color: #00B0B0;
-	}
 
 	#title{
 	  font-size: 20px;
@@ -227,8 +223,6 @@ a {text-decoration: none;}
 	  margin-bottom: 40px;
 	
 	}
-	
-	
 	.subtitle {
 		margin: 0px; padding:0px;
 		font-size: 12px;
@@ -238,21 +232,12 @@ a {text-decoration: none;}
 		width:100%;
 		height:100%;
 	}
-
 	
 	.reviewContents{
 		border: 1px solid black; margin-bottom: 20px;width:800px;height:100px;  border-radius: 10px 10px; padding:10px; text-align:left; 
 		white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 	}
-	.content img {
-		border-radius: 5px;
-	}
-	
-	
-/**/
 	.left{float: left; margin-right: 15px;}
-	
-
 	
 	.right{margin-right: 10px;}
 	
@@ -269,6 +254,19 @@ a {text-decoration: none;}
 			height:22px;
 			margin-left:578px;
 			position:absolute;
+	}
+		
+	.mint_Btn{
+		  font-size:15px;
+		  font-weight:bold;
+		  border-radius: 5px;
+		  text-decoration: none;
+		  text-align : center;
+		  padding:3px 6px;
+		  margin:0 10px;
+		  color : white;
+		  border: 1px solid #00B0B0;
+		  background-color: #00B0B0;
 	}
 
 
@@ -300,16 +298,6 @@ a {text-decoration: none;}
 		border: 1px solid; 
 		clear: both;
 
-	}
-	
-	#subTxt{
-		color:#353535;
-		font-size:1em;
-		font-weight:600;
-	}
-	#lBar{
-		color:#7F7F7F;
-		font-weight:400;
 	}
 	
 	
