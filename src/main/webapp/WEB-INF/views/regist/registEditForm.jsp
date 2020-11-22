@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/home/css/register.css" type="text/css"/>
+<link rel="stylesheet" href="/home/css/registerForm.css" type="text/css"/>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -53,8 +53,9 @@
 	});
 	
 </script>
-<div class="registerMainDiv">
+<div class="registerMainDiv" style='margin-bottom:150px'>
 	<form id="registerForm" method="post" action="<%=request.getContextPath()%>/registerFormOk">
+	<h2 style='padding-left:320px'>마이페이지</h2><hr/><br/><br/>
 		<div id = "label">
 			<ul>
 				<li>아이디</li>
@@ -68,27 +69,27 @@
 		</div>
 		<div id="input">
 			<ul>
-				<li><input type="text" name="userid" id="userid" maxlength="12" size="12" value="${user.userid }" disabled/>
-				<li><input type="password" name="userpwd" id="userpwd" maxlength="12" size="20"/>
-				<li><input type="password" name="userpwdChk" id="userpwdChk" maxlength="12" size="20"/></li>
-				<li><input type="text" name="username" id="username" maxlength="5" size="20" value="${user.username }" disabled/>
-				<li><input type="text" name="email1" id="email1" size="6" value="${user.email1 }"/>@<input type="text" id="email2" name="email2" size="6" value="${user.email2 }"/>
+				<li><input type="text" name="userid" id="userid" class="i4" maxlength="12" size="12" value="${user.userid }" disabled/>
+				<li><input type="password" name="userpwd" id="userpwd" class="i4" maxlength="12" size="20"/>
+				<li><input type="password" name="userpwdChk" id="userpwdChk" class="i4" maxlength="12" size="20"/></li>
+				<li><input type="text" name="username" id="username" class="i4" maxlength="5" size="20" value="${user.username }" disabled/>
+				<li><input type="text" name="email1" id="email1" class="i3" size="6" value="${user.email1 }"/><span class="tlbl"> @ </span><input type="text" id="email2" class="i3" name="email2" size="6" value="${user.email2 }"/>
 					<select id="domainSelect">
-						<option value="" selected>직접 입력</option>
+						<option value="" selected>직접입력</option>
 						<option value="naver.com">naver.com</option>
 						<option value="google.com">google.com</option>
 						<option value="daum.net">daum.net</option>
 						<option value="hotmali.com">hotmail.com</option>
 					</select></li>
-				<li><input type="radio" name="gender" id="gender" value="1" disabled <c:if test="${user.gender == 1}">checked</c:if>/>남 자
-					<input type="radio" name="gender" id="gender" value="2" disabled <c:if test="${user.gender == 2}">checked</c:if>/>여 자</li>
+				<li><input type="radio" name="gender" id="gender" value="1" disabled <c:if test="${user.gender == 1}">checked</c:if>/><span class="tlbl">남 자</span>
+					<input type="radio" name="gender" id="gender" value="2" disabled <c:if test="${user.gender == 2}">checked</c:if>/><span class="tlbl">여 자</span></li>
 				<li><input type="text" name="birth" id="datepicker" maxlength="10" value="${user.birth }" disabled/>			
 			</ul>
 		</div>
-		<hr/>
-		<div id="buttons">
-			<input type="submit" class = "button" value="수정"/>
-			<input type="button" class = "button" value="회원 탈퇴" onclick="location.href='/home/registDel'"/>
+		<hr id="hr3"/>
+		<div id="bottons">
+			<input type="submit" class="red_Btn" value="수정" style="width:90px"/>
+			<input type="button" id="gray_Btn" value="회원탈퇴" style="width:90px; height:35px; font-size:14px" onclick="location.href='/home/registDel'"/>
 		</div>
 	</form>
 </div> 
