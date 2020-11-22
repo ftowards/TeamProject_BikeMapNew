@@ -18,7 +18,7 @@
 			<b id="contentLbl2">탈퇴 후에는 모든 회원 정보가 삭제되오니 신중하게 결정해 주시기 바랍니다.</b>
 		</div>
 	</div>
-	<p class="contentText">
+	<p class="contentText" style='margin-top:20px'>
 		- 탈퇴 후에는 <span class="orangeTxt">아이디와 데이터 복구가 불가능합니다.</span><br/>
 		- 내 정보 및 서비스 이용 기록이 모두 삭제되며, 삭제된 데이터는 복구되지 않습니다.<br/>
 		- 게시판에 등록된 게시물은 자동 삭제 처리가 되지 않습니다.<br/>

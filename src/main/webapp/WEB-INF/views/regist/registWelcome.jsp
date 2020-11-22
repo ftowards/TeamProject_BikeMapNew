@@ -3,16 +3,19 @@
 <link rel="stylesheet" href="/home/css/registerForm.css" type="text/css"/>
 
 <div class="registerMainDiv2">
-	<h1>환영합니다!</h1>
+	<p id="welcome">환영합니다!</p>
 	<div id="box">
 		<div>
-		<h3>회원가입이 완료되었습니다.</h3>
+			<img id="welcomeImg" src="<%=request.getContextPath() %>/img/img_register/welcome.png"/>
+			<h2><span class="mintTxt">회원가입</span>이 완료되었습니다.</h2>
+			<div class="contentText">
+				입력하신 이메일로 인증 메일이 발송되었습니다.<br/>
+				이메일 인증 이후 서비스 이용이 가능합니다.
+			</div>
 		</div>
-		<p>입력하신 이메일로 인증 메일이 발송되었습니다.<br/>
-		이메일 인증 이후 서비스 이용이 가능합니다.</p>
 	</div>
-	<div>
-		<input type="button" value="메인으로 이동하기" class="button" onclick="location.href='/home'"/>
-		<input type="button" value="로그인하기" class="button" onclick="location.href='/home/login'"/>
+	<div id="welcomtBtns">
+		<input type="button" class="btn" id="gray_Btn" value="메인으로 이동하기" onclick="location.href='/home'"/>
+		<input type="button" class="btn" id="mint_Btn" value="로그인하기" onclick="location.href='/home/login'"/>
 	</div>
 </div> 
