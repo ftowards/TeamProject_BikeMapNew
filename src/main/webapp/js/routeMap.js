@@ -1,5 +1,6 @@
 // 1. 지도 만들기
 	var markers = [];
+	var routeMarker = [];
 	var container = document.getElementById("map");
 	var options = {
 			center : new kakao.maps.LatLng(37.5510907243016, 126.937364458741),
@@ -7,6 +8,27 @@
 			draggable : 'true',
 			
 	};
+	
+	// 루트 표시 마커 생성
+	var markerStart ;
+	var markerVia ;
+	var markerArrive ;
+	
+	// 마커 이미지 미리 생성
+	var startSrc = './img/img_route/markerStart.png', // 출발 마커이미지의 주소입니다    
+		startSize = new kakao.maps.Size(45, 45), // 출발 마커이미지의 크기입니다 
+		startOption = {offset: new kakao.maps.Point(21, 50)}; // 출발 마커이미지에서 마커의 좌표에 일치시킬 좌표를 설정합니다 (기본값은 이미지의 가운데 아래입니다)
+	var arriveSrc = './img/img_route/markerArrive.png', // 도착 마커이미지의 주소입니다    
+		arriveSize = new kakao.maps.Size(45, 45),  
+		arriveOption = {offset: new kakao.maps.Point(21, 50)};
+	var viaSrc = './img/img_route/markerVia.png', // 경유 마커이미지의 주소입니다    
+		viaSize = new kakao.maps.Size(45, 45), 
+		viaOption = {offset: new kakao.maps.Point(21, 50)};
+	
+	// 마커 이미지를 생성합니다
+	var startImage = new kakao.maps.MarkerImage(startSrc, startSize, startOption);
+	var arriveImage = new kakao.maps.MarkerImage(arriveSrc, arriveSize, arriveOption);
+	var viaImage = new kakao.maps.MarkerImage(viaSrc, viaSize, viaOption);
 	
 	// 지도 추가
 	var map = new kakao.maps.Map(container, options);
@@ -64,7 +86,7 @@
 		removeAllChildNods(listEl);
 		
 		// 기존에 표시된 마커 제거
-		removeMarker();
+		removeMarker(markers);
 		
 		for(var i = 0; i<places.length ; i++){
 			
@@ -139,11 +161,11 @@
 	}
 
 // 기존에 표시한 마커 제거
-	function removeMarker(){
-		for(var i = 0; i<markers.length; i++){
-			markers[i].setMap(null);
+	function removeMarker(markerGroup){
+		for(var i = 0; i<markerGroup.length; i++){
+			markerGroup[i].setMap(null);
 		}
-		markers =[];
+		markerGroup =[];
 	}
 
 // 페이지 번호 표시
@@ -185,7 +207,7 @@
 		var place = JSON.stringify(places);
 		
 		var group = places.category_group_code;
-		var content = '<div style="padding:5px; font-size:12px;">';
+		var content = '<div style="padding:5px; font-size:12px;">'; // 인포윈도우
 		
 		// 인포 윈도우 이름에 링크 설정
 		if(places.place_url){
@@ -194,9 +216,9 @@
 			content += places.place_name + '<hr/><ul>';
 		}
 		
-		content += "<button onclick='setRoutePoint(value, title)' title='startPoint' value='"+place+"'>출발지 저장</button>";
-		content += "<li onclick='console.log(11)'>경유지 지정</li>";
-		content += "<button onclick='setRoutePoint(value, title)' title='arrivePoint' value='"+place+"'>도착지 저장</button>";
+		content += "<button onclick='setRoutePoint(value, title)' title='startPoint' value='"+place+"'>출발지 지정</button><br/>";
+		content += "<button onclick='setRoutePoint(value, title)' title='viaPoint' value='"+place+"'>경유지 지정</button><br/>";
+		content += "<button onclick='setRoutePoint(value, title)' title='arrivePoint' value='"+place+"'>도착지 지정</button>";
 		
 		// 카테고리 추가 버튼 생성
 		if(group == 'FD6' || group =='CE7'){
@@ -267,24 +289,122 @@
 			$("#"+type).css("display", "block");
 		}
 	}	
-	
 
-// 출발지 지정
+///////////////////////////////// sortable 리스트 세팅 경로 루트 이동 가능하도록
+
+$(function(){
+	$("#routePoint").sortable();
+	$("#routePoint").children("input[type=text]").disableSelection();
+	
+	// 리스트 순서가 바뀔 때 마커 새로 설정
+	$( "#routePoint" ).on( "sortstop", function() {
+		setRouteMarker();
+		setDeleteBtn();		
+ 	});
+});
+
+
+// 경로 포인트 지정
+// 출발지 도착지 지정시 각각 첫번째 마지막 위치에 입력
+// 경유지 지정 시 마지막 li 앞에 데이터 입력 (경유지 5개 일 시 추가 안 됨)
 	function setRoutePoint(value, type){
 		// value = 장소 정보(string 타입으로 변환한 것)
 		// type = 출발지 startPoint / 경유지 viaPoint / 도착지 arrivePoint
 		var json = JSON.parse(value);
 		
 		// 위치 데이터 추출
-		var point = "["+json.x+","+json.y+"]";
+		var point = json.x+"/"+json.y;
 		
 		console.log(value);
 		console.log(json.address_name);
 		
-		// 출발지나 도착지 선택일 경우 원래 칸에 hidden 타입으로 입력
-		if(type == 'startPoint' || type == 'arrivePoint'){
-			$("#"+type).children("input[type=text]").val(json.place_name);
-			$("#"+type).children("input[type=hidden]").val(point);
+		// 이미 등록된 장소인지 확인
+		var overlap = 0;
+		$("input[name=routePoint]").each(function(){
+			if($(this).val() == point){
+				alert("이미 등록된 위치입니다.");
+				overlap ++;
+				return false;
+			}
+		});
+			
+		if(overlap == 0){ // overlap(중복 위치 아닐 때만 입력);
+			// 출발지나 도착지 선택일 경우 원래 칸에 hidden 타입으로 입력
+			if(type == 'startPoint'){
+				$("#routePoint>li:eq(0)").children("input[type=text]").attr("value",json.place_name);
+				$("#routePoint>li:eq(0)").children("input[type=hidden]").val(point);
+				
+			}else if(type == 'arrivePoint'){
+				$("#routePoint>li:last").children("input[type=text]").attr("value",json.place_name);
+				$("#routePoint>li:last").children("input[type=hidden]").val(point);
+			}else{ // 경유지 지정일 때 총 갯수 확인
+				var cnt = $("#routePoint").children("li").length;
+				console.log(cnt);
+				// 5개 이상일 때 오류 메세지 출력
+				if( cnt >= 7 ){
+					alert("경유지는 5개까지만 설정 가능합니다.");
+					return false;
+				}else{ // 경유지에 남은 자리가 있을 경우 추가 가능
+					var viaTag = "<li class='tab_liTag ui-sortable-handle'><input type='text' value='"+json.place_name+"'/>";
+						viaTag += "<input type='hidden' name='routePoint' value='"+point+"'/></li>";
+					$("#routePoint>li:last").before(viaTag);
+				}
+			}
+		} // 중복이 있을 경우 추가 액션 없음
+		setDeleteBtn();
+		setRouteMarker();
+	}
+	
+// 경유지 리스트에만 삭제 버튼 추가하기
+	function setDeleteBtn(){
+		var cnt = $("#routePoint").children("li").length ;
+		
+		var tag = "<button onclick='$(this).parent().remove();setRouteMarker();'>-</button>" ;
+		
+		$("#routePoint>li").children("button").remove();
+		
+		for (var i = 0 ; i < cnt ; i ++){
+			if( i > 0 && i < cnt-1){
+				$("#routePoint>li").eq(i).append(tag);
+			}
+		}
+	}
+
+
+// 루트 마커 세팅하기 
+// 여러 이벤트에 대응하기 위해 펑션 자체에서 경로 포인트의 좌표를 읽어와서 설정하도록
+	function setRouteMarker(){
+		
+		// 마커 지정할 좌표 순서대로 입력
+		var routePosition = [];
+		$("input[name=routePoint]").each(function(){
+			var points = $(this).val().split("/");
+			var p = new kakao.maps.LatLng(points[1], points[0]);
+			routePosition.push(p);
+		});
+		
+		// 기존 경로 마커 삭제
+		removeMarker(routeMarker);
+		
+		// 경로 마커 만들기
+		for(var i = 0 ; i < routePosition.length ; i++){
+			// 기본 마커 이미지는 경유 / 첫번째 좌표는 출발 마커 / 마지막 좌표는 도착 마커 배당
+			var markerImage = viaImage;
+			if(i == 0) { markerImage = startImage; }
+			else if(i == routePosition.length-1 ) {markerImage = arriveImage;}
+		
+			var marker = new kakao.maps.Marker({
+				position : routePosition[i]
+				, image : markerImage
+			});
+			
+			marker.setMap(map);
+			routeMarker.push(marker);
+		}
+		
+    	// 기존에 경로 객체가 있을 경우, 맵 상에서 지우기
+    	if(polyline != "") {
+    		searchRoute();
 		}
 	}
 
@@ -324,7 +444,6 @@
 		}
 		$("#"+type).append(newList);
 	}
-
 
 // 저장하기 
 
@@ -401,7 +520,7 @@
 ///////      길 찾기        ///////////////////////////////////////
 	
 	var coordinates = "";  // 검색할 위치 정보
-	var preference = "recommended"; // 검색 타입 // "shortest" "recommended"
+	var preference = ""; // 검색 타입 // "shortest" "recommended"
 	var radiuses = ""; // 반경 -1 로 위치 정보 숫자만틈 세팅
 	
 	var data = ""; // 리턴 받을 데이터 
@@ -409,20 +528,34 @@
 	var encodeGeo = "";
 	
 	var points = [];  // 고저도 그리기용 / lat lng ele
-	var geometry = []; // 경로 그리기 용 / lat lng
 	
 	// 출발지 경유지 도착지 y x 가져올 것
 	
 	function searchRoute(){
+		if($("#routePoint>li:first").children("input[type=text]").val() == "" || $("#routePoint>li:last").children("input[type=text]").val() == ""){
+			alert("경로를 검색할 위치를 입력하세요.");
+			return false;
+		}
+	
 		// 1. 경로 정보 가져오기
-		var startPoint = $("input[name=startPoint]").val();
-		var arrivePoint = $("input[name=arrivePoint]").val();
 		
-		coordinates = "["+startPoint+","+arrivePoint+"]";
-		radiuses = "[50,50]";
-		
-		console.log(coordinates);
-
+		// 경로 검색할 좌표 설정하기
+		preference = $("select[name=preference]").val();
+		console.log(preference);
+		coordinates = "[";
+		radiuses = "[";
+		var cnt = $("input[name=routePoint]").length;
+		for(var i = 0 ; i < cnt ; i++){
+			var points = $("input[name=routePoint]").eq(i).val().split("/");
+			var p = "["+points[0]+","+ points[1]+"]";
+			if ( i < cnt-1){
+				coordinates += p+",";
+				radiuses += "50,";
+			} else{
+				coordinates += p +"]";
+				radiuses += "50"+"]";
+			}
+		};
 
 		// 2. 경로 정보 검색 후 데이터 반환
 			// 데이터 세팅 // coordinates preference radiuses
@@ -441,7 +574,6 @@
 		request.setRequestHeader('Content-Type', 'application/json');
 		request.setRequestHeader('Authorization', '5b3ce3597851110001cf62483a51dabd7ec34a519a6a93992fe61ea7');
 		
-		
 		request.onreadystatechange = function (){
 		  if (this.readyState === 4) {
 		    console.log('Status:', this.status);
@@ -453,18 +585,16 @@
 		    var routeFinding = JSON.parse(data);
 		    var route = routeFinding.routes;
 		    
-		    geometry = decode(route[0].geometry, false);
 		    points = decode(route[0].geometry, true);
+		    setRouteLine(points);
 		    
-		    $.each(points, function(index, v){
-		    	console.log("위치 " + index + " >> " + v);
-		    });
+		    console.log(Math.round(route[0].summary.distance,2));
+		    console.log(route[0].summary.ascent);
 		    
-		    $.each(points, function(index, v){
-		    	console.log("위치+고도 " + index + " >> " + v);
-		    });
+		    $("#distance").text(route[0].summary.distance.toFixed(2));
 		    
-		    setRouteLine();
+		    $("#ascent").text(route[0].summary.ascent);
+		    $("#descent").text(route[0].summary.descent);
 		  }
 		};
 		
@@ -538,7 +668,10 @@
     
     // 4. 경로 객체 생성하기
     var polyline = "";
-    function setRouteLine(){
+    // Load the Visualization API and the columnchart package.
+    google.load("visualization", "1", { packages: ["columnchart"] });
+
+    function setRouteLine(points){
     
     	// 기존에 경로 객체가 있을 경우, 맵 상에서 지우기
     	if(polyline != "") {
@@ -563,5 +696,91 @@
 		
 		// 지도 위에 세팅!
 		polyline.setMap(map);
+		removeMarker(markers);
+		
+		// 경로 정보 제공
+				
+		
+        // Create an ElevationService.
+        const elevator = new google.maps.ElevationService();
+        
+        // 고저도 그릴 경로 세팅
+        var path =[];
+        $.each(points, function(idx, v){
+        	var p = new google.maps.LatLng(v[0], v[1]);
+        	path.push(p);
+        });
+        
+        // Draw the path, using the Visualization API and the Elevation service.
+        elevator.getElevationAlongPath(
+          {
+            path: path,
+            samples: 256,
+          },
+          plotElevation
+        );
+		
 	}
+		
+	// 경로 차트 그리기
+  // Takes an array of ElevationResult objects, draws the path on the map
+  // and plots the elevation profile on a Visualization API ColumnChart.
+  function plotElevation(elevations, status) {
+    const chartDiv = document.getElementById("elevation_chart");
 
+    if (status !== "OK") {
+      // Show the error code inside the chartDiv.
+      chartDiv.innerHTML =
+        "Cannot show elevation: request failed because " + status;
+      return;
+    }
+    // Create a new chart in the elevation_chart DIV.
+    const chart = new google.visualization.ColumnChart(chartDiv);
+    // Extract the data from which to populate the chart.
+    // Because the samples are equidistant, the 'Sample'
+    // column here does double duty as distance along the
+    // X axis.
+    const data = new google.visualization.DataTable();
+    data.addColumn("string", "Sample");
+    data.addColumn("number", "Elevation");
+
+    for (let i = 0; i < elevations.length; i++) {
+      data.addRow(["", elevations[i].elevation]);
+    }
+    // Draw the chart using the data within its DIV.
+    chart.draw(data, {
+      width : 280,
+      height: 150,
+      legend: "none",
+      titleY: "Elevation (m)",
+    });
+  }
+    
+	function changeStartArrive(){
+		$("#routePoint").prepend($("#routePoint>li:last"));
+		$("#routePoint").append($("#routePoint>li:eq(1)"));
+		setRouteMarker();
+	}
+	
+	function clearRoute(){
+		$("#routePoint>li").children("button").trigger("click");
+		$("#routePoint>li").children("input").attr("value", "");
+		
+		if(routeMarker != null){
+			removeMarker(routeMarker);
+		}
+		
+		// 기존에 경로 객체가 있을 경우, 맵 상에서 지우기
+    	if(polyline != "") {
+    		polyline.setMap(null);
+		}
+		
+		if($("#elevation_chart").children() != null){
+			$("#elevation_chart").children().remove();
+		}
+		
+		$("#distance").text("");
+		$("#ascent").text("");
+		$("#descent").text("");
+		
+	}
