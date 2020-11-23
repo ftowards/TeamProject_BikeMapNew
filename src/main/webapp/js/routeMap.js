@@ -6,7 +6,6 @@
 			center : new kakao.maps.LatLng(37.5510907243016, 126.937364458741),
 			level : 3,
 			draggable : 'true',
-			
 	};
 	
 	// 루트 표시 마커 생성
