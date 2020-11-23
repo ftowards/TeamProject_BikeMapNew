@@ -11,7 +11,10 @@
 	margin-top: 20px;
 	margin-left: 30px
 }
-
+ul, li{
+	list-style-type: none;
+	margin : 0 auto;
+}
 /* ================ 사이드바 ==============*/
 .navigation {
 	float: left;
@@ -125,6 +128,7 @@
 /* ================ 동행모집 ==================*/
 #partnerList>li:nth-child(-n+7) {
 	background-color:#ddd;
+	background:linear-gradient(to top, #ddd, white 5%);
 }
 #partnerList>li {
 	float: left;
@@ -226,7 +230,7 @@
     color: #828282; }
     
 /* ============= 셀렉트 =========*/
-#adminSelect{
+#adminSelect, #bigCate, #smallCate{
 		width:150px;
 		height:25px;
 		text-align:center;
@@ -242,7 +246,7 @@
     	appearance: none;
     	margin-right:5px;
     	padding-left:10px;
-   }
+ }
 .mint_Btn{
 		  font-size:15px;
 		  font-weight:bold;
@@ -254,4 +258,10 @@
 		  color : white;
 		  border: 1px solid #00B0B0;
 		  background-color: #00B0B0;
+}
+#partnerBtn{
+	width:100px;
+	height:10px;
+	border: 2px solid #ccc;
+	float:right;
 }
