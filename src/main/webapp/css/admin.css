@@ -272,6 +272,11 @@ ul, li{
 		  border: 1px solid red;
 		  background-color: red;
 }
+.adminstop_class{
+	width:20px;
+	float:left;
+	
+}
 #partnerBtn{
 	width:100px;
 	height:10px;
