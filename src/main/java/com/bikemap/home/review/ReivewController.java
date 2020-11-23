@@ -22,7 +22,6 @@ public class ReivewController {
 		return "review/reviewView";
 	}
 	
-	
 	//후기 게시판 보기
 	@RequestMapping("/reviewList")
 	public String ReviewList() {
@@ -32,5 +31,5 @@ public class ReivewController {
 	
 	
 	
-	
+		
 }
