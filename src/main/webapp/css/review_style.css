@@ -269,14 +269,6 @@ body{margin:0; padding:0;}
 		  background-color: #00B0B0;
 	}
 
-
-/* 	.review-list {border-top:1px solid #aaa;} */
-/* 	.review-item {position:relative; min-height:55px; padding:20px 20px 20px 140px; border-bottom:1px solid #ddd;}  */
-/* 	.review-item .product-item {background:tomato;} */
-/* 	.review-item .text-group {} */
-/* 	.review-item .text-group .sub-text {} */
-/* 	.review-item .text-group .sub-text + .sub-text:before {content:''; display:inline-block; width:1px; height:12px; margin:0 13px; background-color:#ddd;} */
-/* 	.review-item .review-content {margin-top:15px;font-size:15px;color:#000; *//* word-break:break-all;} */
 /*=====================================reviewView END=====================================================*/
 
 
@@ -301,6 +293,7 @@ body{margin:0; padding:0;}
 	}
 	
 	
+
 
 
 

@@ -6,7 +6,7 @@
 
 <!-- 후기게시판 제목 -->
 <div class = "mainDiv">
-		<div style="text-align: left;">
+		<div id = "titleletter"style="text-align: left;">
 			<span id="title">후기게시판보기</span><br><br>
 		</div>
 
@@ -16,8 +16,8 @@
 	<div class="reviewList-type1">
 		<div class= "content2" style="text-align:center;clear:both;">
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner1.jpg" style="width:407px; height:200px;"/></a><br>			
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img-ReviewMain/busan1.jpg" style="width:200px; height:200px;"/></a>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img-ReviewMain/busan1.jpg" style="width:200px; height:200px;"/></a>
+			<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png" style="width:200px; height:200px;"/></a>
+			<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg" style="width:200px; height:200px;"/></a>
 		</div>
 		
 		<div class ="contentList">

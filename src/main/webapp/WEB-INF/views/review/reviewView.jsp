@@ -6,8 +6,6 @@
 <!-- 후기보기메인 -->
 <div class="container">
 <div class = "mainDiv">
-
-
 	<div class="reviewBody" style="text-align: center;">	
 		<div class = "serch" style="margin-bottom:10px;">
 			<select name="searchKeyword" id="searchKeyword">
@@ -22,37 +20,39 @@
 		</div>
 		
 <!-- 도시 검색창 -->		
-		<div style="text-align: left;">
+		<div style="text-align: left; height : 13px;">
 			<span id="title">도시검색</span><br><br>
 		</div>
-
-
-<!-- 		<div id = content> -->
-<!-- 			<div id= "contentlocation"> -->
-<!-- 				<div> -->
-<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png"/></a> --%>
-<!-- 				</div>			 -->
-<!-- 				<div> -->
-<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg"/></a> --%>
-<!-- 				</div> -->
-<!-- 				<div> -->
-<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a> --%>
-<!-- 				</div><br/> -->
-<!-- 				<div> -->
-<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a> --%>
-<!-- 				</div> -->
-<!-- 				<div> -->
-<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a> --%>
-<!-- 				</div> -->
-<!-- 				<div> -->
-<%-- 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a> --%>
-<!-- 				</div> -->
-<!-- 		</div> -->
+		<div id = content>
+			<div id= "contentlocation">
+				
+					<div class = "contentlocationdiv">
+						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png"/></a>
+					</div>			
+					<div class = "contentlocationdiv">
+						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg"/></a>
+					</div>
+					<div class = "contentlocationdiv">
+						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>
+					</div>
+					<div class = "contentlocationdiv">
+						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a>
+					</div>
+					<div class = "contentlocationdiv">
+						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a>
+					</div>
+					<div class = "contentlocationdiv">
+						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a>
+				
+				</div>
+			</div>
+		</div>
 		
-<!-- 		<div style="text-align: left;"> -->
-<%-- 			<a href = "<%=request.getContextPath()%>/reviewList"><span id="title">후기</span></a><br><br> --%>
-<!-- 			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div> -->
-<!-- 		</div><br/> -->
+		
+		<div style="text-align: left;">
+			<a href = "<%=request.getContextPath()%>/reviewList"><span id="title">후기</span></a><br><br>
+			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
+		</div><br/>
 
 		
 		
@@ -74,7 +74,7 @@
 		<!-- 후기창 오른쪽 면 -->
 
 				<div class="right">
-					<ul >타이틀</ul>
+					<ul>타이틀</ul>
 					<div>
 						<p class="review-content">
 							내용내용내용내용내용내용내용내용내용내용내용내용내용
@@ -89,10 +89,8 @@
 		</div>
 	</div>
 </div>
-
 </div>
 
-</div>
 
 
 
