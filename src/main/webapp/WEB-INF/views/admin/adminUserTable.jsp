@@ -105,7 +105,7 @@
 				    <div id="userlayer" class="layerpop"
 				        style="width: 200px; height: 250px;">
 				        <article class="layerpop_area">
-				        <div class="title">회원정보</div>
+				        <div class="title" style="padding:15px; border-bottom:2px solid #00B0B0">회원정보</div>
 				        <a href="javascript:userPopupClose();" class="layerpop_close"
 				            id="userlayerbox_close"></a> <br/>
 				        <div class="content">
@@ -114,8 +114,10 @@
 				        신고횟수 : 10회<br/>
 				        정지여부 : <span style="font-color:red">정지중</span><br/>
 				        정지지간 : <span style="font-color:red">2020.11.14</span><br/>
-				        <input type="button" name="userBanned" value="정지하기" onclick="javascript:suspendPopupOpen();"/>
-				        <input type="button" name="userPage" value="회원페이지">
+				        <div style="border-bottom:2px solid #00B0B0; padding-bottom:10px">
+					        <input type="button" name="userBanned" value="정지하기" onclick="javascript:suspendPopupOpen();" class="red_Btn"/>
+					        <input type="button" name="userPage" value="회원페이지">
+				       </div>
 				        </div>
 				        </article>
 				    </div>

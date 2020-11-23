@@ -10,9 +10,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
 
-
-
+		
 <title>Bike Map</title>
 <script>
 	
@@ -112,7 +113,7 @@
 	<!-- Side Bar -->
 	<div class="navigation">
 	
-		<ul id="sidebar">
+		<ul id="sidebar" style="padding-top:50px; overflow:hidden">
 			<li>
 				<span class ="icon">회원 관리</span>
 				<a href="/home/adminUserTable">회원목록/검색</a>

@@ -1,4 +1,7 @@
 /* ================ 헤더 =================*/
+body{
+	font-family: 'Nanum Myeongjo', serif;
+}
 #adminTop {
 	background-color: #333333;
 	width: 100%;
@@ -62,11 +65,9 @@ ul, li{
 .adminContent {
 	width: 80%;
 	float: right;
-	height: 400px;
-	background-color: #dcdcdc
-	
-	;
-	margin: 0 auto;
+	height: 450px;
+	background-color: #dcdcdc;
+	margin: 0 auto; 
 	text-align: center;
 }
 
@@ -259,9 +260,24 @@ ul, li{
 		  border: 1px solid #00B0B0;
 		  background-color: #00B0B0;
 }
+.red_Btn{
+		  font-size:15px;
+		  font-weight:bold;
+		  border-radius: 5px;
+		  text-decoration: none;
+		  text-align : center;
+		  padding:3px 6px;
+		  margin:0 10px;
+		  color : white;
+		  border: 1px solid red;
+		  background-color: red;
+}
 #partnerBtn{
 	width:100px;
 	height:10px;
 	border: 2px solid #ccc;
+	float:right;
+}
+#replySubmit{
 	float:right;
 }
