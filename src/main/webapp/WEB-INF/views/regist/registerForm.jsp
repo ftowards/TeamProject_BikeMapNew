@@ -168,7 +168,7 @@
 				<li>비밀번호<span class="redTxt"> *</span></li>
 				<li>비밀번호 확인<span class="redTxt"> *</span></li>
 				<li>이  름<span class="redTxt"> *</span></li>
-				<li>이메일<span class="redTxt"> *</span></li>
+				<li style='margin-bottom:20px'>이메일<span class="redTxt"> *</span></li>
 				<li>성  별<span class="redTxt"> *</span></li>
 				<li>생년월일<span class="redTxt"> *</span></li>
 			</ul>
@@ -176,12 +176,12 @@
 		<div id="input">
 			<ul>
 				<li><input type="text" name="userid" id="userid" class="i1" maxlength="12" size="12"/> <input type="button" class="gray_Btn" id="idChk" value="중복검사"/>
-					<span class="reg">8~12자 영문(시작)/숫자/_ 사용</span></li>
+					<span class="reg">&nbsp;&ensp;※ 8~12자 영문(시작)/숫자/_ 사용</span></li>
 				<li><input type="password" name="userpwd" id="userpwd" class="i2" maxlength="12" size="20"/>
-					<span class="reg">8~12자리 영문/숫자/특수문자 사용</span></li>
+					<span class="reg">&ensp;※ 8~12자리 영문/숫자/특수문자 사용</span></li>
 				<li><input type="password" name="userpwdChk" id="userpwdChk" class="i2" maxlength="12" size="20"/></li>
 				<li><input type="text" name="username" id="username" class="i2" maxlength="5" size="20"/>
-					<span class="reg">한글로 최대 5자까지 입력</span></li>
+					<span class="reg">&ensp;※ 한글로 최대 5자까지 입력</span></li>
 				<li><input type="text" name="email1" id="email1" class="i3" size="6"/><span class="tlbl"> @ </span><input type="text" id="email2" class="i3" name="email2" size="6"/>
 					<select id="domainSelect" style='font-size:0.8em'>
 						<option value="" selected>직접입력</option>
@@ -191,14 +191,15 @@
 						<option value="hotmali.com">hotmail.com</option>
 					</select>
 					<input type="button" class="gray_Btn" id="emailChk" value="중복검사"/>
+					<br/><span class="reg" style='position:relative; bottom:20px;'>※ 이메일은 계정 활성화 및 아이디&비밀번호 찾기 인증 수단으로 사용됩니다.</span>
 					</li>
-				<li><input type="radio" name="gender" id="gender" value="1"/><span class="tlbl">남 자</span>
+				<li style='margin-top:20px'><input type="radio"name="gender" id="gender" value="1"/><span class="tlbl">남 자</span>
 					<input type="radio" name="gender" id="gender" value="2" checked/><span class="tlbl">여 자</span></li>
 				<li><input type="text" name="birth" id="datepicker" class="i2" maxlength="10"/>
-					<span class="reg">ex)1980-12-03</span></li>			
+					<span class="reg">&ensp;※ ex)1980-12-03</span></li>			
 			</ul>
 		</div>
-		<div id="buttons">
+		<div id="bottons2">
 			<input type="submit" class="mint_Btn" value="회원가입"/>
 			<input type="reset" class="WMint_Btn" value="다시쓰기"/>
 		</div>

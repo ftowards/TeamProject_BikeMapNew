@@ -8,6 +8,10 @@
 <meta name="viewport" content="width=device, initial-scale=1"/>
 <link rel="stylesheet" href="/home/css/admin.css" type="text/css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
+
+
 
 <title>Bike Map</title>
 <script>
@@ -50,6 +54,40 @@
 			$("#tableDiv").append('/inqTable.html');
 		});	
 	});*/
+    
+
+    function userPopupOpen() {
+        $('.layerpop').css("position", "absolute");
+        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+        $('.layerpop').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
+        $('.layerpop').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
+        $('.layerpop').draggable();
+        $('#userlayer').show();
+    }
+
+    function userPopupClose() {
+        $('#userlayer').hide();
+    }
+    
+    function suspendPopupOpen() {
+        $('.userSuspend').css("position", "absolute");
+        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+        $('#userSuspend').css("top",(($(window).height() - $('#userlayer').outerHeight()) / 2) + $(window).scrollTop());
+        $('#userSuspend').css("left",(($(window).width() - $('#userlayer').outerWidth()) / 2) + $(window).scrollLeft()+210);
+        $('#userSuspend').draggable();
+        $('#userSuspend').show();
+    }
+
+    function suspendPopupClose() {
+        $('#userSuspend').hide();
+    }
+
+    
+    function change_suspendTime(time){
+    	$('#suspendTime').val(time);
+    }
+	
+
 	
 </script>
 </head>
@@ -126,32 +164,30 @@
 	
 	<!-- Page Content -->
 	<div class="adminContent">
-		<select name="choice">
+		<select name="choice" id="adminSelect">
 			<%
 				if(pagefile.equalsIgnoreCase("userTable")){
 			%>
-			  <option value="userid" selected>회원 아이디</option>
 			  <option value="username">회원 이름</option>
 			<%
 				}else if(pagefile.equalsIgnoreCase("partnerTable")||pagefile.equalsIgnoreCase("reviewTable")){
 			%>  
-				<option value="subject">제목</option>
-			 	<option value="userid" selected>회원 아이디</option>
+				<option value="subject" selected>제목</option>
 			<%
 				}else if(pagefile.equalsIgnoreCase("questionTable")){			 
 			%>
-			 	<option value="subject">제목</option>
-			 	<option value="userid" selected>회원 아이디</option>
+			 	<option value="subject" selected>제목</option>
 			 	<option value="IsReply">답변여부</option>
 			<% 
 				}else{
 					System.out.println(pagefile);
 				}
 			 %>
+			 <option value="userid" selected>회원 아이디</option>
 		</select>
 	
 				<input type="text" name="searchWord" id="searchWord" maxlength="20" placeholder="검색어 입력"/>
-				<input type="button" name="search" id="searchBtn" value="검색" style="background-color: rgb(0,176,176)"/>
+				<input type="button" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
 		
 		
 			<jsp:include page ='<%=pagefile+".jsp"%>'/>

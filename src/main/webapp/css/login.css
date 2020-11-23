@@ -1,6 +1,5 @@
 	/*===================================login===================================*/
 	.registerMainDiv *{
-		
 		margin : 0 auto;
 	}
 
@@ -35,7 +34,7 @@
 		letter-spacing:-2px;
 		line-height:28px;
 		margin:0 auto;
-		margin-bottom:60px;
+		margin-bottom:40px;
 		font-size:14px;
 		color:#353535
 	}
@@ -79,19 +78,18 @@
 	.button:hover{
 		color : #00B0B0;
 		font-weight:bold;
-		background-color: white
+		background-color: white;
 	}
 
 	#loginBtn{
 		width : 20%;
 		height : 120px;
-		background-color:pink;
 	}
 	
 	#find_Info{
 		font-size:15px;
 		font-weight:bold;
-		padding-left:360px;
+		padding-left:280px;
 		margin-bottom:100px;
 	}
 	.white_Btn{
@@ -103,6 +101,12 @@
 		text-align : center;
 		background-color: white;
 		padding:3px 6px;
+	}
+	.white_Btn:hover{
+		color: white;
+		font-weight:bold;
+		border: 2px solid #8C8C8C;
+		background-color: #5D5D5D;
 	}
 	#text1{
 		color:#D8D8D8;
