@@ -2,38 +2,41 @@
 body{margin:0; padding:0;}
 a {text-decoration: none;}
 
-/*=====================================reviewMain=====================================================*/
-	
+		
+/*=====================================reviewView START=====================================================*/
 	.mainDiv{
-		width:800px;
-		height:800px;
+		width:1000px;
+		height:auto;
+		overflow: hidden;
 		margin:0 auto;
 	}
 
-
-	#hitRoute{
-		width:100%;
-		height:235px;
-		text-align:center;
+	.container{
+		width:100%; 
+		margin : 0 auto;
+	}
+			
+	.reviewBody{
+		width:800px; 
+		margin : 0 auto;
 	}
 	
-	
-	
-/*===================지환 사진 작업중 20/11/20===================*/
+		
+/*===================지환 사진 작업 완료 20/11/20===================*/
 	#content{
 		width : 100%;
 		height: 400px;
 		margin-top : 30px;
 		margin-bottom : 20px;
-		text-align : center;
 	}
+	
+
 	#contentlocation{
 		width: 100%;
 	    margin-top: 50px;
 /* 	    text-align: center; */
 		margin : auto;
 	}
-	
 	
 	#contentlocation img {
 		border-radius: 5px;
@@ -46,6 +49,7 @@ a {text-decoration: none;}
 		float: left;
 	}
 	
+
 /* 	#national{ */
 /* 		width:100%; */
 /* 		height:400px; */
@@ -59,89 +63,13 @@ a {text-decoration: none;}
 /* 		text-align:center; */
 /* 	} */
 /* 	#location img{ */
-/* 		border-radius: 10px / 10px; */
-/* 		margin: 5px 2px 0px; */
-/* 		width:125px; */
-/* 		height:160px; */
-/* 	} */
+/* 		border-radiu
 	
-/*===================지환 사진 작업중 20/11/20===================*/
-	
-	
-	
-
-	.hitIcon{
-		width:70px;
-		height:30px;
-		margin-left:85px;
-		position:absolute;
-	}
-	.thumbnail{
-		width:155px;
-		height:155px;
-		border-top-right-radius: 10px;
-		border-top-left-radius: 10px;
-	}
-	.routeTitle{
-		font-size:17px;
-		word-spacing:-3px;
-		margin-bottom:5px;
-	}
-	.routeTitle, .sub{
-		float:left;
-	}
-	.route{
-		float:left;
-		margin-right:5px;
-	}
-	
-	#routeSearch{
-		width:83%;
-		height:40px;
-		margin-top:20px;
-		margin-left:70px;
-		padding-top:8px;
-		text-align:center;
-		background-color:#008888;
-	}
-	#routeSearch a{
-		font-size:15px;
-		color:white;
-		padding-bottom:5px;
-		text-decoration: none;
-		font-weight:bold;
-	}
-	
-	#national{
-		width:100%;
-		height:400px;
-		margin-top:30px;
-		text-align:center;
-	}
-	#location{
-		width:100%;
-		text-align:center;
-	}
-	#location img{
-		border-radius: 10px / 10px;
-		margin: 5px 2px 0px;
-		width:125px;
-		height:160px;
-	}
-	
-	
-/*=====================================reviewView START=====================================================*/
-
-	.container{
-		width:100%; 
-		margin : 0 auto;
-	}
-			
-	.reviewBody{
-		width:800px; 
-		margin : 0 auto;
-	}
-	
+	 #reviewtitle{
+		 text-align: left; 
+		 margin-top: 60px;
+	 }
+/*===================지환 사진 작업 완료 20/11/20===================*/
 	
 	#searchKeyword { 
 		position: relative; 
@@ -232,106 +160,224 @@ a {text-decoration: none;}
 	
 	}
 	
-	
-	.subtitle {
-		margin: 0px; padding:0px;
-		font-size: 12px;
-		}
+
+	.subtitle { 
+ 	  font-size: 15px;
+	  font-weight: 600;
+	  letter-spacing: -0.6px;
+	  text-align: left;
+	  color: #212529;
+	  margin-bottom: 40px;
+ 		
+ 		} 
 	
 	.boardlist{
-		width:100%;
-		height:100%;
+	    width: 95%;
+	    height: 130px;
+	    border: 1px solid black;
+	    padding: 14px;
+	    margin: 7px;
+	    border-radius: 10px 10px;
 	}
-
 	
-	.reviewContents{
-		 border: 1px solid black;
-		 margin-bottom: 20px;
-		 width:98%;
-		 height:100px;  
-		 border-radius: 10px 10px; 
-		 padding:10px; 
-		 text-align:left; 
-		 white-space: nowrap; 
-		 overflow: hidden;
-		 text-overflow: ellipsis;
+	#reviewtext{
+	    /* width: 98%; */
+	    height: 70px;
+	    /* border-radius: 10px 10px; */
+	    /* padding: 10px; */
+	    text-align: left;
+	    /* white-space: nowrap; */
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    margin: -37px;
+	}
+	
+
 	}
 	.content img {
 		border-radius: 5px;
 	}
 	
-	
-/**/
+
 	.left{float: left; margin-right: 15px;}
-	
+	.left img {
+		border-radius: 5px;
+	}
+
 
 	
 	.right{margin-right: 10px;}
 	
+	
+	.writedate{
+	 clear: both;
+   	 float: left;
+		
+	}
+	
+	
+	
 	.badge1{
 			text-align: right;
-			width:38px;
-			height:22px;
-			margin-left:636px;
+			width:40px;
+			height:23px;
+			margin-left:563px;
+
 			position:absolute;
 	}
 	.badge2{
 			text-align: right;
-			width:38px;
-			height:22px;
-			margin-left:578px;
-			position:absolute;
+		    width: 40px;
+		    height: 23px;
+		    margin-left: 510px;
+		    position: absolute;
 	}
+	
+	#bottom {
+		height : 120px;
+	}
+	
+	
+
 
 /*=====================================reviewView END=====================================================*/
 
 
+
+
+
+
 /*=====================================reviewList START=====================================================*/
-	.reviewList-type1{
+
+
+
+	#titleletter {
+		text-align: left;
+		margin-top: 50px;
+  	  	margin-bottom: 50px;
 	
 	}
+
 	.content2 {
 		float: left;
+		margin-right: 30px;
+		clear:both;
+		width : 52%;
+	}
+
+	.contentlocationdiv2{
+		width : 50%;
+		float: left;
+		height : 200px;
+	
+	}
+	
+	.contentlocationdiv2 img {
+		width : 96%;
+		height : 95%;
+		border-radius: 5px;
+	}
+	
+	.reviewContents2{
+		border: 1px solid black; margin-bottom: 20px;width:800px;height:100px;  border-radius: 10px 10px; padding:10px; text-align:left; 
+		white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+	}
+
+
+	#conttitle {
+		text-align:left;
+		font-size: 33px;
+	 	font-weight: 600;
 		
 	}
-		.reviewContents2{
-			border: 1px solid black; margin-bottom: 20px;width:800px;height:100px;  border-radius: 10px 10px; padding:10px; text-align:left; 
-			white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-		}
-
 	
-	.comment{
-		border: 1px solid; 
-		clear: both;
-
+	#revcommentDiv{
+		height : 215px;
+		
+	}
+	#titlecomment{
+	 font-size: 20px;
+   	 font-weight: bold;
+     padding: 40px 0px 13px 0px;
+	
 	}
 	
-	#subTxt{
+	
+/*댓글창*/
+	#revcommentBox{
+	    width: 786px;
+    	height: 100px;
+		z-index: 100;
+		margin-top: 8px;
+		padding : 5px 0 0 10px;
+	
+	}
+	#revtxtCounting{
+		color:gray;
+		position: relative;
+/*  		left:50px; */
+		bottom: 31px;
+		z-index:110;
+		float: right;	
+	
+	}
+	#CMTbottomDiv{
+		background-color:white;
+		border-top:1px solid #ccc;
+		width:99%;
+		position: relative;
+		left:-49px;
+		z-index:99;
+	}	
+	#revsaveBtn{
+		width:50px;
+		border-radius: 0;
+		left: 763px;
+		top: 114px;
+    	z-index:200;
+	}
+	#revcommententer{
+		border : 1px solid black;
+		
+	
+	}
+	#emtry {
+		height : 30px;
+	}
+	
+	
+	
+/*댓글*/	
+	#revcomment{
+		heigth :800px;
+	
+	}
+	.userid{
+		font-weight:bold;
 		color:#353535;
-		font-size:1em;
-		font-weight:600;
+
 	}
-	#lBar{
-		color:#7F7F7F;
-		font-weight:400;
+	#comment{
+		height:500px;
+	}
+	#comment ul{
+		word-break:break-all;
+	}
+	#comment li{
+		margin-bottom:5px;
 	}
 	
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+/* 	#subTxt{ */
+/* 		color:#353535; */
+/* 		font-size:1em; */
+/* 		font-weight:600; */
+/* 	} */
+/* 	#lBar{ */
+/* 		color:#7F7F7F; */
+/* 		font-weight:400; */
+/* 	} */
 
 
 

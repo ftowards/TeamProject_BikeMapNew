@@ -72,11 +72,11 @@
 			
 			<!-- 길찾기 -->
 			<div class="tab">
-				<ul id="routePoint">
-					<li class="tab_liTag"><input type="text"/>
-						<input type="hidden" name="routePoint"/></li>
-					<li class="tab_liTag"><input type="text"/>
-						<input type="hidden" name="routePoint"/></li>
+				<ul>
+					<li id="startPoint" class="tab_liTag"><input type="text"/>
+						<input type="hidden" name="startPoint"/></li>
+					<li id="arrivePoint" class="tab_liTag"><input type="text"/>
+						<input type="hidden" name="arrivePoint"/></li>
 				</ul>
 				
 				<select name="preference">
