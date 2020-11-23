@@ -55,7 +55,7 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="userpwd" id="userpwd" style='width:270px; height:25px;'/></div>
 	</div>	
 	</form>
-	<p class="contentText" >
+	<p class="contentText" style='margin-top:20px'>
 			- 아이디 및 비밀번호는 영문 대소문자를 구별하오니 입력 시 주의하시기 바랍니다.<br/>
 			- 비밀번호는 주기적으로 변경, 관리하시기 바라며 타인에게 노출되지 않도록 주의하시기 바랍니다.<br/>
 			- 비회원일 경우, 일부 서비스가 제한됩니다.

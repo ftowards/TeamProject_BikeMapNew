@@ -50,7 +50,7 @@
 			<div><img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/></div>
 		</div>
 		<div class="contentDiv">
-			<a href="<%=request.getContextPath()%>/routeSearchView""><img class="thumbnail2" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
+			<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail2" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<div><img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/></div>
 		</div>
 		<div class="contentDiv">
