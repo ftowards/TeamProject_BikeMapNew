@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
+
 <!-- <div class="container"> -->
 
 <!-- 후기게시판 제목 -->
@@ -14,6 +15,7 @@
 <!-- 후기 게시판 내용 -->
 <div class="reviewBody" >	
 	<div class="reviewList-type1">
+
 		<div class= "content2">
 	
 			<div class = "contentlocationdiv2">
@@ -55,6 +57,7 @@
 	</div>
 	
 	
+
 
 <!--댓글-->
 			<div id="revcommentDiv">
@@ -106,4 +109,3 @@
 		</div>
 	</div>
 <!-- </div> -->
-

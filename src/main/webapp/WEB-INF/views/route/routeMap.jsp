@@ -3,6 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <link rel="stylesheet" href="/home/css/routeMap.css" type="text/css"/>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://www.google.com/jsapi"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR4IoCrZIntPC-l88uOp-01K7m9-2svjo&libraries=&v=weekly" defer></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+ <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <div id="container">
 	<div id="info">
 		<!-- 탭 아이콘 패널 -->
@@ -63,8 +68,7 @@
 				</div>
 		        <ul id="placesList"></ul>
 		        <div id="pagination"></div>
-			</div>
-			
+			</div>			
 			<!-- 길찾기 -->
 			<div class="tab">
 				<ul>
@@ -74,8 +78,19 @@
 						<input type="hidden" name="arrivePoint"/></li>
 				</ul>
 				
-				<select name=""></select>
-				<input type="button" value="경로 탐색" onclick="searchRoute();"/>
+				<select name="preference">
+					<option value="recommended" selected>추천 경로</option>
+					<option value="shortest">최단 거리</option>
+				</select>
+				<input type="button" value="경로 탐색" onclick="searchRoute();"/><br/>
+				<input type="button" value="지점 전환" onclick="changeStartArrive();"/><br/>
+				<input type="button" value="초기화" onclick="clearRoute();"/>
+				<div id="routeInfo">
+					총거리 : <span id="distance"></span>km<br/>
+					상승고도 : <span id="ascent"></span>m<br/>
+					하강고도 : <span id="descent"></span>m<br/>
+				</div>
+				<div id="elevation_chart"></div>
 			</div>
 			
 			<!-- 저장한 장소 목록 -->
@@ -112,7 +127,7 @@
 						</div>
 				</c:if>
 				<c:if test="${logId!=null }">
-				<form>
+				<form id="routeSave">
 					<input type="text" name="title" id="title" placeholder="코스 이름을 입력하세요"/>
 						<select name="catename" id="catename">
 							<c:forEach var="list" items="${category }">

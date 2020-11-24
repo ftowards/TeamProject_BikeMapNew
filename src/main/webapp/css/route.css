@@ -89,7 +89,14 @@
 		background-color:white;
 	}
 	.title{
-		margin:10px 10px 20px 0;
+		padding:0px 10px 10px 47px;
+	}
+	#starLbl{
+		font-size:23px;
+		font-weight:bold;
+		padding-left:5px;
+		position:relative;
+		bottom:7px;
 	}
 	#subTxt{
 		color:#353535;
@@ -169,6 +176,10 @@
 		height:469px;
 		float:left;
 		margin-bottom:30px;
+	}
+	#blueLine{
+		border:3px inset #5AB1C0;
+		margin-bottom:5px;
 	}
 	
 	/*코스이름&별점*/
@@ -259,21 +270,32 @@
 		height:630px;
 	}
 	#placeList >*{
+		color:#005766;
+		font-weight:bold;
 		float:left;
-		width:185px;
+		width:180px;
 		height:200px;
+		margin:0 auto;
 		margin-right:17.1px;
 		padding-left:10px;
 	}
+	#placeList ul{
+		margin-top:45px;
+	}
+	#placeList ul > li{
+		line-height:25px;
+	}
+
 	#placeList:nth-child(1),#placeList:nth-child(2),#placeList:nth-child(3){
 		marign:10px 12px 10px 0;
 	}
 
 	#restaurant, #tour, #accommodation, #facilities{
 		background-color:white;
-		border:1px solid gray;
+		border:2px inset #5AB1C0;
 		border-radius:5px;
-		padding:10px;	
+		padding:10px;
+		text-align:center;	
 	}
 	
 	#commentDiv{
@@ -338,4 +360,42 @@
 		font-size:1em;
 		font-weight:400;
 		padding-right:15px;	
+	}
+	
+
+	.blue_Btn{
+		  font-size:15px;
+		  font-weight:bold;
+		  border-radius: 5px;
+		  text-decoration: none;
+		  text-align : center;
+		  padding:3px 6px;
+		  margin:0 10px;
+		  color : white;
+		  border: 2px solid #247B8A;
+		  background-color: #247B8A;
+	}
+	.blue_Btn:hover{
+		color : #247B8A;
+		font-weight:bold;
+		background-color: white;
+		border:2px solid #247B8A;
+	}
+	.WBlue_Btn{
+		  font-size:15px;
+		  font-weight:bold;
+		  border-radius: 5px;
+		  text-decoration: none;
+		  text-align : center;
+		  padding:3px 6px;
+		  margin:0 10px;
+		  color : #247B8A;
+		  border: 2px solid #247B8A;
+		  background-color: white;
+	}
+	.WBlue_Btn:hover{
+		color : white;
+		font-weight:bold;
+		background-color: #247B8A;
+		border:2px solid #247B8A;
 	}
