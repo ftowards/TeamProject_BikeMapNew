@@ -138,16 +138,16 @@
 		
 		var el = document.createElement('li');
 		var itemStr = '<span class="markerbg marker_'+(index+1)+'"></span>'+
-					  '<div class="info">' + '<h5>'+places.place_name + '</h5>';
+					  '<div class="info">' + '<b style="font-size:16.5px; font-weight:bold; color:#002060">'+places.place_name + '</b>';
 					  
 		if(places.road_address_name){
-			itemStr += '<span>'+places.road_address_name + '</span>'+
-						'<span class="jibun gray">' + places.address_name + '</span>';
+			itemStr += '<span style="font-size:15px;">'+places.road_address_name + '</span>'+
+						'<span class="jibun gray" style="font-size:12.5px">' + places.address_name + '</span>';
 		}else{
 			itemStr += '<span>'+places.address_name + '</span>';
 		}
 		
-		itemStr +='<span class="tel">'+places.phone + '</span></div>';
+		itemStr +='<span class="tel" style="font-size:15px; font-weight:bold">'+places.phone + '</span></div>';
 		
 		el.innerHTML = itemStr;
 		el.className = 'item';
@@ -223,28 +223,28 @@
 		var place = JSON.stringify(places);
 		
 		var group = places.category_group_code;
-		var content = '<div style="padding:5px; font-size:12px;">'; // 인포윈도우
+		var content = '<div id="infoWin">'; // 인포윈도우
 		
 		// 인포 윈도우 이름에 링크 설정
 		if(places.place_url){
-			content += '<a href= "'+places.place_url+'" target="_blank">' + places.place_name + '</a><hr/><ul>';	
+			content += '<a href= "'+places.place_url+'" target="_blank" id="info_a">' + places.place_name + '</a><ul>';	
 		}else{
 			content += places.place_name + '<hr/><ul>';
 		}
 		
-		content += "<button onclick='setRoutePoint(value, title)' title='startPoint' value='"+place+"'>출발지 지정</button><br/>";
-		content += "<button onclick='setRoutePoint(value, title)' title='viaPoint' value='"+place+"'>경유지 지정</button><br/>";
-		content += "<button onclick='setRoutePoint(value, title)' title='arrivePoint' value='"+place+"'>도착지 지정</button>";
+		content += "<br/><button onclick='setRoutePoint(value, title)' title='startPoint' id='start_Btn' value='"+place+"'>출발지 지정</button><br/>";
+		content += "<button onclick='setRoutePoint(value, title)' title='viaPoint' id='via_Btn' value='"+place+"'>경유지 지정</button><br/>";
+		content += "<button onclick='setRoutePoint(value, title)' title='arrivePoint' id='arrive_Btn' value='"+place+"'>도착지 지정</button>";
 		
 		// 카테고리 추가 버튼 생성
 		if(group == 'FD6' || group =='CE7'){
-			content += "<hr><button onclick='setPlaceList(value, title)' title='foodList' value='"+place+"'>음식점 저장</button>";
+			content += "<hr><div class='categoryDiv1'><button onclick='setPlaceList(value, title)' title='foodList' class='food_Btn' value='"+place+"'>음식점 저장</button></div>";
 		}else if(group == 'CT1' || group =='AT4'){
-			content += "<hr><button onclick='setPlaceList(value, title)' title='sightsList' value='"+place+"'>관광지 저장</button>";
+			content += "<hr><div class='categoryDiv1'><button onclick='setPlaceList(value, title)' title='sightsList' class='sights_Btn' value='"+place+"'>관광지 저장</button></div>";
 		}else if(group == 'AD5'){
-			content += "<hr><button onclick='setPlaceList(value, title)' title='accomodationList' value='"+place+"'>숙박시설 저장</button>";
+			content += "<hr><div class='categoryDiv2'><button onclick='setPlaceList(value, title)' title='accomodationList' class='accomodation_Btn' value='"+place+"'>숙박시설 저장</div></button>";
 		}else if(group == 'CS2' || group == 'PK6' ||group == 'SW8' ||group == 'BK9' ||group == 'HP8' ||group == 'PM9'){
-			content += "<hr><button onclick='setPlaceList(value, title)' title='convenientList' value='"+place+"'>편의시설 저장</button>";
+			content += "<hr><div class='categoryDiv2'><button onclick='setPlaceList(value, title)' title='convenientList' class='convenient_Btn' value='"+place+"'>편의시설 저장</div></button>";
 		}
 		content += '</ul></div>';
 		

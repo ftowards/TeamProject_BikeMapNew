@@ -201,13 +201,15 @@
 		text-align: center;
 	}
 	#pagination a {
+		color:#353535;
 		display:inline-block;
 		margin-right:10px;
+		text-decoration:none;
 	}
 	#pagination .on {
 		font-weight: bold;
 		cursor: default;
-		color:#777;
+		color:#00B0B0;
 	}
 	
 	<!-- 카테고리 검색 탭 스타일 -->
@@ -229,14 +231,10 @@
 	
 	.food_Btn, .sights_Btn, .accomodation_Btn, .convenient_Btn{
 		float : left;
-		width : 25%;
-		height:33px;
 		border-radius: 5px;
 		text-decoration: none;
 		text-align : center;
-		font-size : 13px;
 		font-weight:bold;
-		margin : 5px 5px 0px 15px;
 		background-color: white;
 	}
 	.food_Btn{
@@ -412,4 +410,81 @@
 		background-color: white;
 	} 
 
+
+
+<!-- ==================js파일 스타일================= -->
+
+	#info_a{
+		
+	}
+	#infoWin{
+		padding:5px 5px 5px 15px;
+		font-size:12px;
+		text-align:center;
+		float:center;
+		width:150px;
+		height:140px;
+	}
+	#info_a:link {
+		text-decoration: none;
+		border: rgba(75, 112, 253, 0.3) solid;
+		border-width: 0 0 6px 0;
+	}
+	#start_Btn{
+		text-decoration: none;
+		text-align : center;
+		font-weight:bold;
+		border-radius:5px;
+		background-color : white;
+		border : 2px solid #0E6C15;
+		color: #0E6C15;
+	}
+	#via_Btn{
+		text-decoration: none;
+		text-align : center;
+		font-weight:bold;
+		border-radius:5px;
+		background-color : white;
+		border : 2px solid #D68A00;
+		color: #D68A00;	
+	}
+	#arrive_Btn{
+		text-decoration: none;
+		text-align : center;
+		font-weight:bold;
+		border-radius:5px;
+		background-color : white;
+		border : 2px solid #C41F04;
+		color: #C41F04;	
+	}
+	#start_Btn:hover{
+		color : white;
+		font-weight:bold;
+		border-radius:5px;
+		background-color: #0E6C15;
+	}	
+	#via_Btn:hover{
+		color : white;
+		font-weight:bold;
+		border-radius:5px;
+		background-color: #D68A00;
+	}
+	#arrive_Btn:hover{
+		color : white;
+		font-weight:bold;
+		border-radius:5px;
+		background-color: #C41F04;
+	}	
+	
+	
+
+
+	.categoryDiv1{
+		width:150px;
+		padding-left:30px;	
+	}
+	.categoryDiv2{
+		width:150px;
+		padding-left:23px;	
+	}
 	
