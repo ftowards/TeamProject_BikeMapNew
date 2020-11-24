@@ -840,9 +840,9 @@ $(function(){
     }
     // Draw the chart using the data within its DIV.
     chart.draw(data, {
-      width : 280,
-      height: 150,
-      legend: "none",
+     width : $("#elevation_chart").width(),
+     height: $("#elevation_chart").height(),
+     legend: "none",
       titleY: "Elevation (m)",
     });
   }

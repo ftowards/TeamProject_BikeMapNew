@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://www.google.com/jsapi"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR4IoCrZIntPC-l88uOp-01K7m9-2svjo&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
@@ -16,23 +20,47 @@ function getBytes(str){
     return cnt;
 }
 </script>
-
 <div class="mainDiv" style='margin-top:100px; width:900px; height:1800px;'>
 	<div id="mapDiv" style='width:900px;'>
 		<b>코스정보보기</b><br/><br/>
-		<div class="wordCut" style='height:50px;'>사용자가 만든 코스의 제목이 들어갈 자리입니다. 제목이 길어지면 텍스트는 점으로 표시됩니다.</div>
+		<div class="wordCut" style='height:50px;'>${routeVO.title}</div>
 
-		<p>@hong1234</p>
+		<p>${routeVO.userid }</p>
 		<div id="map_Altitude">
-			<div id="blueLine">
-				<img style='width:100%; height:100%;' src="<%=request.getContextPath() %>/img/img_route/임시2.png"/>
+			<div id="map" style='width:584px; height:300px;'>
 			</div>
-			<div style='border:2px solid #989898'>
-				<img style='width:100%; height:100%;' src="<%=request.getContextPath() %>/img/img_route/임시1.png"/>
+			<div id="elevation_chart" style='width:584px; height:165px;'>
 			</div>
 		</div>
 		<div id="routeInfoDiv">
 			<div id="routeInfo">
+				<ul>
+					<li><input type="text" value="${routeVO.routepoint1name }"/>
+						<input type="hidden" name="routePoint" value="${routeVO.routepoint1point }"/></li>
+					<li><input type="text" value="${routeVO.routepoint2name }"/>
+						<input type="hidden" name="routePoint" value="${routeVO.routepoint2point }"/></li>
+					<c:if test="${routeVO.routepoint3 != null }">
+						<li><input type="text" value="${routeVO.routepoint3name }"/>
+							<input type="hidden" name="routePoint" value="${routeVO.routepoint3point }"/></li>
+					</c:if>
+					<c:if test="${routeVO.routepoint4 != null }">
+						<li><input type="text" value="${routeVO.routepoint4name }"/>
+							<input type="hidden" name="routePoint" value="${routeVO.routepoint4point }"/></li>
+					</c:if>
+					<c:if test="${routeVO.routepoint5 != null }">
+						<li><input type="text" value="${routeVO.routepoint5name }"/>
+							<input type="hidden" name="routePoint" value="${routeVO.routepoint5point }"/></li>
+					</c:if>
+					<c:if test="${routeVO.routepoint6 != null }">
+						<li><input type="text" value="${routeVO.routepoint6name }"/>
+							<input type="hidden" name="routePoint" value="${routeVO.routepoint6point }"/></li>
+					</c:if>
+					<c:if test="${routeVO.routepoint7 != null }">
+						<li><input type="text" value="${routeVO.routepoint7name }"/>
+							<input type="hidden" name="routePoint" value="${routeVO.routepoint7point }"/></li>
+					</c:if>
+				</ul>
+				<input type="hidden" id="geocode" value="${routeVO.geocode }"/>
 				<div class="title">코스평점</div>
 				<div style='padding-left:47px'>
 					<img src="<%=request.getContextPath() %>/img/img_main/star.png"/>
@@ -40,10 +68,10 @@ function getBytes(str){
 				</div>
 				<div style='padding-left:50px; font-size:1em; font-weight:bold; color:#004554'>
 					<p>코스정보</p>
-					<ul style='line-height:26px'>
-						<li>총 거리 :&nbsp;<span>AAA</span></li>
-						<li>심층고도 :&nbsp;<span>BBB</span></li>
-						<li>하강고도 :&nbsp;<span>CCC</span></li>
+					<ul>
+						<li>총 거리 :&nbsp;<span>${routeVO.distance }</span>km</li>
+						<li>상승고도 :&nbsp;<span>${routeVO.ascent }</span>m</li>
+						<li>하강고도 :&nbsp;<span>${routeVO.descent }</span>m</li>
 					</ul>
 				</div>
 			</div>
@@ -66,36 +94,37 @@ function getBytes(str){
 		</div>
 	</div>
 	<div id="placeList">
-		<div id="restaurant">
-			<ul>
-				<li>음식점111</li>
+		<div >
+			<ul id="foodList">
+				
+				<li><c:if test="${placeVO.food1!= null }"></c:if></li>
 				<li>3333음식점</li>
 				<li>BBBB식당</li>
 				<li>CCCC카페</li>
 				<li>DDD음식점</li>
 			</ul>
 		</div>
-		<div id="tour">
-			<ul>
-				<li>관광지222</li>
+		<div>
+			<ul id="sightsList">
+				<li>관광지</li>
 				<li>A2222음식점</li>
 				<li>BBBB식당</li>
 				<li>CCCC카페</li>
 				<li>DDD음식점</li>
 			</ul>
 		</div>
-		<div id="accommodation">
-			<ul>
-				<li>숙박시설333</li>
+		<div>
+			<ul  id="accommodationList">
+				<li>숙박시설</li>
 				<li>AAA음식점</li>
 				<li>BBBB식당</li>
 				<li>CCCC카페</li>
 				<li>DDD음식점</li>
 			</ul>
 		</div>
-		<div id="facilities">
-			<ul>
-				<li>편의시설444</li>
+		<div>
+			<ul  id="convenientList">
+				<li>편의시설</li>
 				<li>AAA음식점</li>
 				<li>BBBB식당</li>
 				<li>CCCC카페</li>
@@ -142,3 +171,4 @@ function getBytes(str){
 	</div>
 	<div id="paging2" style='text-align:center; margin-top:30px;'>1&emsp;<span style='color:#00B0B0; font-weight:600;'>2</span>&emsp;3&emsp;4&emsp;5</div>
 </div>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/routeSearchView.js"></script>
