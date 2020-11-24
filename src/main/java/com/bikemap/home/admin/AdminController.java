@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bikemap.home.regist.RegistDaoImp;
-import com.bikemap.home.regist.RegistVO;
+
 
 
 @Controller
@@ -29,7 +28,7 @@ public class AdminController {
 	@RequestMapping("/adminUser")	
 	public ModelAndView adminUser() {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-		List<RegistVO>list = dao.registAllRecord();
+		List<AdminRegistVO>list = dao.registAllRecord();
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);

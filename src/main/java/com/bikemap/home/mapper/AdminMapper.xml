@@ -3,11 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bikemap.home.admin.AdminDaoImp">
-	
 	<!-- admin추가 -->
-	<select id="registAllRecord" resultType="com.bikemap.home.regist.RegistVO">
-		select rownum, a.userid, a.username, a.gender, a.birth, a.tourcnt, a.heart, a.report, b.endday
-		from regist a join suspend b on a.userid = b.userid order by rownum desc
+	<select id="registAllRecord" resultType="com.bikemap.home.admin.AdminRegistVO"><!-- VO하나만 합성으로 설정 -->
+		select rownum, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt, a.heart, a.report, to_char(b.endday, 'YYYY-MM-DD')
+		from regist a full outer join suspend b on a.userid = b.userid order by rownum desc
 	</select>
-	
 </mapper> 

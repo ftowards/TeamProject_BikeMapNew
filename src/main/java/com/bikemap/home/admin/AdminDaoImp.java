@@ -7,5 +7,5 @@ public interface AdminDaoImp {
 	
 		//관리자 항목 - =1124
 		// 전체 리스트가져오기
-		public List<RegistVO> registAllRecord();
+		public List<AdminRegistVO> registAllRecord();
 }

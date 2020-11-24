@@ -54,36 +54,15 @@ $(document).ready(function() {
 	<!-- Page Content -->
 	<div class="adminContent">
 		<select name="choice" id="adminSelect">
-			<%
-				if(pagefile.equalsIgnoreCase("userTable")){
-			%>
 				<option value="userid" selected>회원 아이디</option>
-			    <option value="username">회원 이름</option>
-			<%
-				}else if(pagefile.equalsIgnoreCase("partnerTable")||pagefile.equalsIgnoreCase("reviewTable")){
-			%>  
-				<option value="userid" selected>회원 아이디</option>
-				<option value="subject" selected>제목</option>
-			<%
-				}else if(pagefile.equalsIgnoreCase("questionTable")){			 
-			%>
-				<option value="userid" selected>회원 아이디</option>
-			 	<option value="subject" selected>제목</option>
-			 	<option value="IsReply">답변여부</option>
-			 	
-			<% 
-				}else{
-					System.out.println(pagefile);
-				}
-			 %>
-			 
+			    <option value="username">회원 이름</option>	 
 		</select>
 	
-				<input type="text" name="searchWord" id="searchWord" maxlength="20" placeholder="검색어 입력"/>
+				<input type="text" name="searchWord" id="userSearchWord"  class="searchText" maxlength="20" placeholder="검색어 입력"/>
 				<input type="button" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
 		
-		<div id="adminTable">
-				<h1 id=tableHead>회원관리</h1>
+			<div class="adminTable">
+				<h1 class="adminListHead">회원관리</h1>
 				<ul id="userList">
 							<li>번호</li>
 							<li>아이디</li>
@@ -96,7 +75,7 @@ $(document).ready(function() {
 							<li>정지기간</li>
 							<!-- DB작업완료 후 for문 생성 -->
 							<c:forEach items="${list}" var="vo" varStatus="status">
-								<li>${status.count}</li>
+								<li>${vo.rownum}</li>
 								<li id="contents" ><a href="javascript:userPopupOpen();">${vo.userid }</a></li>
 								
 	
@@ -114,13 +93,17 @@ $(document).ready(function() {
 								<li>${vo.heart}회</li>
 								<li style="color:red">
 									<c:if test="${vo.active==null}">
-										정지중
+										<input type="button" name="userBanned" onclick="javascript:suspendPopupOpen();" id="suspendBtn"/>
 									</c:if>
 								</li>
-								<li style="color:red">20/11/01~20/11/31</li>
+								<li style="color:red">${vo.endday}</li>
+							
+							
+							
+							
 							</c:forEach>
-				</ul>
-							   
+					</ul>
+					   
 				
 				    <!--Popup Start -->
 				    <div id="userlayer" class="layerpop"

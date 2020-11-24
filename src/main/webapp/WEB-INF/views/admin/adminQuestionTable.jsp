@@ -43,11 +43,11 @@
 			 	<option value="IsReply">답변여부</option>
 		</select>
 	
-				<input type="text" name="searchWord" id="searchWord" maxlength="20" placeholder="검색어 입력"/>
+				<input type="text" name="searchWord" id="questionSearchWord" class="searchText" maxlength="20" placeholder="검색어 입력"/>
 				<input type="button" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
 		
 				<div id="adminTable">
-				<h1 id=tableHead>1:1 문의</h1>
+				<h1 class=adminListHead>1:1 문의</h1>
 				<ul id="questionList">
 					
 					<li><input type="checkbox" id="checkAll" />번호</li>
