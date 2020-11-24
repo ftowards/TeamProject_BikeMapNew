@@ -1,0 +1,137 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device, initial-scale=1"/>
+<link rel="stylesheet" href="/home/css/admin.css" type="text/css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+		
+<title>Bike Map</title>
+<script>
+	
+	
+	
+	/* $(function(){  //페이지 보여주기 방식 변경
+		
+		//회원관리게시판, 처음 관리자화면 초기페이지
+		$("#userAdmin").click(function(){
+			var url = "/admin/ajaxObject";
+			$.ajax({
+				url:url,
+				success:function(result){
+					var tag ="<ul>";
+					tag += "<li>번호 = "+result.no+"</li>";
+					tag += "<li>이름 = "+result.username+"</li>";
+					tag += "<li>주소 = "+result.addr+"</li>";
+					tag += "</ul>";
+					
+					$("#tableDiv").append(tag);
+				},error:function(){
+					console.log("객체받기에러");
+				}
+			});
+		});
+		
+		//동행모집게시판 클릭
+		$("#partnerfreeboardAdmin").click(function(){
+			$(this).css('color','red');
+			$("#tableDiv").load('/WEB-INF/views/admin/partnerfreeboardTable.html');
+		});
+		//후기게시판 클릭
+		$("#reviewfreeboardAdmin").click(function(){
+			$(this).css('color','red');
+			$("#tableDiv").append('/reviewFreeboardTable.html');
+		});
+		//1:1 문의 게시판 클릭
+		$("#inqAdmin").click(function(){
+			$("#tableDiv").append('/inqTable.html');
+		});	
+	});*/
+    
+
+    function userPopupOpen() {
+        $('.layerpop').css("position", "absolute");
+        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+        $('.layerpop').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
+        $('.layerpop').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
+        $('.layerpop').draggable();
+        $('#userlayer').show();
+    }
+	function replyPopupOpen(){
+		$('.layerpop').css("position", "absolute");
+		
+	}
+
+    function userPopupClose() {
+        $('#userlayer').hide();
+    }
+    
+    function suspendPopupOpen() {
+        $('.userSuspend').css("position", "absolute");
+        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+        $('#userSuspend').css("top",(($(window).height() - $('#userlayer').outerHeight()) / 2) + $(window).scrollTop());
+        $('#userSuspend').css("left",(($(window).width() - $('#userlayer').outerWidth()) / 2) + $(window).scrollLeft()+210);
+        $('#userSuspend').draggable();
+        $('#userSuspend').show();
+    }
+
+    function suspendPopupClose() {
+        $('#userSuspend').hide();
+    }
+
+    
+    function change_suspendTime(time){
+    	$('#suspendTime').val(time);
+    }
+	
+    $(function(){
+		$("#checkAll").click(function(){
+			 $('input:checkbox').not(this).prop('checked', this.checked);
+		});
+	});
+    
+
+	
+</script>
+</head>
+<body>
+
+<div id="adminTop">
+	<img src="<%=request.getContextPath()%>/img/img_logo/logo_footer.png">
+</div>
+
+
+	
+	<!-- Side Bar -->
+	<div class="navigation">
+	
+		<ul id="sidebar" style="padding-top:50px; overflow:hidden">
+			<li>
+				<span class ="icon">회원 관리</span>
+				<a href="/home/adminUserTable">회원목록/검색</a>
+			</li>
+			
+			<li>
+				<span class ="icon">게시판 관리</span>
+				<a href="/home/adminPartnerTable">
+					<span class="title">동행모집 게시판</span>
+				</a>
+				<a href="/home/adminReviewTable">
+					<span class="title">후기 게시판</span>
+				</a>
+			</li>
+			<li>
+				<a href="/home/adminQuestionTable">
+					<span class ="icon">1:1 문의사항</span>
+				</a>
+			</li>
+		</ul>
+	</div>

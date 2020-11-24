@@ -58,6 +58,7 @@
 		<c:if test="${logStatus!='Y'}">	
 			<div id="loginDiv">
 				<ul id="login">
+					<a href="<%=request.getContextPath() %>/adminUserTable">관리자</a><!-- 최병대 테스트용1124 -->
 					<div id="loginLblDiv"><li><a href="<%=request.getContextPath()%>/login">로그인&nbsp;</a></li></div>
 					<div id="loginImgDiv"><li><img src="<%=request.getContextPath()%>/img/img_main/login_icon.png" id="loginIcon"/></li></div>
 					<div id="loginRegisterDiv"><li><input type="button" value="회원가입" onclick="location.href='<%=request.getContextPath()%>/registerForm'"></li></div>
@@ -71,7 +72,7 @@
 						<ul>
 								<img src="<%=request.getContextPath()%>/img/img_main/login_icon.png" id="logIdIcon">&nbsp;
 								<span id="logId"><b>${logId }</b></span>
-								<span id="mypage"><a href="#">마이페이지</a></span>
+								<span id="mypage"><a href="<%=request.getContextPath()%>/registEdit">마이페이지</a></span>
 							<div id=classDiv>
 								<li class="c1"><a href="#">저장된 루트</a></li>
 								<li class="c1"><a href="#">1:1문의</a></li>
@@ -89,8 +90,8 @@
 	<div id="naviDiv">
 	<ul id="navi">
 		<li><a href="<%=request.getContextPath()%>/">&nbsp;홈&nbsp;</a><div id="homeLine"></div></li>
-		<li><a href="#">루트짜기</a><div id="routeLine"></div></li>
-		<li><a href="<%=request.getContextPath()%>/routeSearch">코스검색</a><div id="courseLine"></div></li>
+		<li><a href="<%=request.getContextPath()%>/courseMap">루트짜기</a><div id="routeLine"></div></li>
+		<li><a href="<%=request.getContextPath()%>/routeSearch">루트검색</a><div id="courseLine"></div></li>
 		<li><a href="#">동행찾기</a><div id="searchLine"></div>
 			<ul>
 				<li><div class="popupMenuColor"><a href="<%=request.getContextPath()%>/tourWriteForm">만들기</a></div></li>
@@ -99,7 +100,7 @@
 				<li><div class="popupMenuColor"><a href="#">내모임</a></div></li>
 			</ul>
 		</li>
-		<li><a href="#">후기</a><div id="reviewLine"></div></li>
+		<li><a href="<%=request.getContextPath()%>/reviewMain">후기</a><div id="reviewLine"></div></li>
 		</ul>
 	</div>
 <div class="lineDiv"></div>
