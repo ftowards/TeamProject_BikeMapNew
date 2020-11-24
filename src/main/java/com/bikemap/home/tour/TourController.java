@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,38 +28,71 @@ public class TourController {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+
+	// 게시판 목록 & 페이징
 	@RequestMapping("/tourList")
-	public String tourList() {
+	public String TourList(PagingVO vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="onePageRecord", required=false)String onePageRecord) {
+		
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		List<TourVO> list = dao.selectAllTour(vo);
+		
+		int totalRecord = dao.getTotalTourRecord();
+		if (nowPage == null && onePageRecord == null) {
+			nowPage = "1";
+			onePageRecord = "8";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (onePageRecord == null) { 
+			onePageRecord = "8";
+		}
+		vo = new PagingVO(totalRecord, Integer.parseInt(nowPage), Integer.parseInt(onePageRecord));
+		
+		model.addAttribute("paging", vo);
+		model.addAttribute("viewAll",dao.selectAllTour(vo));
 		return "tour/tourList";
 	}
+																							
+	//글보기
+	@RequestMapping("/tourView")
+	public ModelAndView TourView(int notour) {
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		TourVO vo = dao.tourSelect(notour);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("vo", vo);
+		mav.setViewName("tour/tourView");
+		
+		return mav;
+	}
+	
+	
 	// 글쓰기 폼 이동
 	@RequestMapping("/tourWriteForm")
 	public String tourBoardWrite() {
-		return "tour/tourWriteForm";
+		return "/tour/tourWriteForm";
 	}
-	// 글쓰기 등록
-	@RequestMapping(value="/tourWriteFormOk", method=RequestMethod.POST, produces="application/text;charset=UTF-8")
+	// 글쓰기 등록 , produces="application/text;charset=UTF-8"
+	@RequestMapping(value="/tourWriteFormOk", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView tourWriteFormOk(TourVO vo ,HttpServletRequest req, HttpSession ses) {
+	public int tourWriteFormOk(TourVO vo ,HttpServletRequest req, HttpSession ses) {
 		vo.setIp(req.getRemoteAddr());
 		vo.setUserid((String)ses.getAttribute("logId"));
 		
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
-		int result = dao.tourInsert(vo);
 		
-		ModelAndView mav = new ModelAndView();
-		if(result>0) {
-			mav.setViewName("redirect/tourList");
-		}else {
-			mav.setViewName("tour/tourWriteForm");
-			
+		int result=0;
+		try {
+			result = dao.tourInsert(vo);
+		
+		}catch(Exception e) {
+			e.getStackTrace();
 		}
-		
-		return null;
+
+		return result;
 	}
-	@RequestMapping(value="/regage",method = RequestMethod.POST)
-	@ResponseBody
-	public void arrCheck(@RequestParam(value="valueArrTest[]") List<TourVO> valueArr) {
-		
-	}
+	
 }

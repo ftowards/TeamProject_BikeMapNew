@@ -88,7 +88,7 @@
 	<div class="lineDiv"></div>
 	<div id="naviDiv">
 	<ul id="navi">
-		<li><a href="<%=request.getContextPath()%>/">홈</a><div id="homeLine"></div></li>
+		<li><a href="<%=request.getContextPath()%>/">&nbsp;홈&nbsp;</a><div id="homeLine"></div></li>
 		<li><a href="<%=request.getContextPath()%>/courseMap">루트짜기</a><div id="routeLine"></div></li>
 		<li><a href="<%=request.getContextPath()%>/routeSearch">루트검색</a><div id="courseLine"></div></li>
 		<li><a href="#">동행찾기</a><div id="searchLine"></div>

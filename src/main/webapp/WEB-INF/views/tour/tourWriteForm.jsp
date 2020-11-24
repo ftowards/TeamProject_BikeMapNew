@@ -2,48 +2,67 @@
 <link rel="stylesheet" href="/home/css/tourWriteFormStyle.css" type="text/css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
- <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+<script src="/home/api/ckeditor/ckeditor.js"></script>
+
 <script>
+
+$(function(){
+	$("#reggender").on('change', function(){
+		console.log(111);
+		if($(this).is(":checked")){
+			$("#whole").css('color','white').css('background-color','rgb(0,176,176)');
+			for(var i = 0 ; i < $("input[name=reggender]").length ; i++){
+				if(!($("input[name=reggender]").eq(i).prop("checked"))){
+					$("input[name=reggender]").eq(i).trigger('click');
+				}
+			}
+		}else{
+			$("#whole").css('color','rgb(123,123,123)').css('background-color','white');
+			for(var i = 0 ; i < $("input[name=reggender]").length ; i++){
+				if($("input[name=reggender]").eq(i).prop("checked")){
+					$("input[name=reggender]").eq(i).trigger('click');
+				
+				}
+			}
+		}
+	});
+	$("input[name=reggender]").on('change', function(){
+		var type = $(this).attr("id");
+		if($(this).prop("checked")){
+			$("#gender"+type).css('color','white').css('background-color','rgb(0,176,176)');
+		}else{
+			$("#gender"+type).css('color','rgb(123,123,123)').css('background-color','white');
+		}
+	});
+
+	$("#regage").on('change',function(){
+		if($(this).is(":checked")){
+			$("#whole2").css('color','white').css('background-color','rgb(0,176,176)');
+			for(var i = 0; i < $("input[name=regage]").length ; i++){
+				if(!($("input[name=regage]").eq(i).prop("checked"))){
+					$("input[name=regage]").eq(i).trigger('click');
+				}
+			}
+		}else{
+			$("#whole2").css('color','rgb(123,123,123)').css('background-color','white');
+			for(var i = 0 ; i < $("input[name=regage]").length ; i++){
+				if($("input[name=regage]").eq(i).prop("checked")){
+					$("input[name=regage]").eq(i).trigger('click');
+				}
+			}
+		}
+	});
+	$("input[name=regage]").on('change', function(){
+		var type = $(this).attr("id");
+		if($(this).prop("checked")){
+			$("#regage"+type).css('color','white').css('background-color','rgb(0,176,176)');
+		}else{
+			$("#regage"+type).css('color','rgb(123,123,123)').css('background-color','white');
+		}
+	});
+});
+
 	$(function(){
-		var whole = $("#whole");
-		var genderBoy = $("#genderBoy");
-		var genderGirl = $("#genderGirl");
-		var whole2 = $("#whole2");
-		var ten = $("#ten");
-		var twenty = $("#twenty");
-		var thirty = $("#thirty");
-		var forty = $("#forty");
-		var fiftyOver = $("#fiftyOver");
-		
-		
-		$("#they").click(function(){
-			whole.css('color','white').css('background-color','rgb(0,176,176)');
-		
-		});
-		$("#genderBoy").click(function(){
-			genderBoy.css('color','white').css('background-color','rgb(0,176,176)');
-		});
-		$("#genderGirl").click(function(){
-			genderGirl.css('color','white').css('background-color','rgb(0,176,176)');
-		});
-		$("#theyCheckbox").click(function(){
-			whole2.css('color','white').css('background-color','rgb(0,176,176)');
-		});
-		$("#tenCheckbox").click(function(){
-			ten.css('color','white').css('background-color','rgb(0,176,176)');
-		});
-		$("#twentyCheckbox").click(function(){
-			twenty.css('color','white').css('background-color','rgb(0,176,176)');
-		});
-		$("#thirtyCheckbox").click(function(){
-			thirty.css('color','white').css('background-color','rgb(0,176,176)');
-		});
-		$("#fortyCheckbox").click(function(){
-			forty.css('color','white').css('background-color','rgb(0,176,176)');
-		});
-		$("#fiftyOverCheckbox").click(function(){
-			fiftyOver.css('color','white').css('background-color','rgb(0,176,176)');
-		});
 		$("#departure,#arrive,#deadline").datepicker({
 			changeYear :true,
 			changeMonth: true,
@@ -56,150 +75,177 @@
 			yearRange:"2019:2020"
 		
 		});
-		CKEDITOR.replace('content',{
+	 	CKEDITOR.replace('content',{
 			height:400
-		});
+		}); 
 		
+		$("#tourWriteForm").submit(function(){
+			
+			if($("#departure").val()==""){
+				alert("출발날짜를 입력하세요.");
+				return false;
+			}
+			if($("#arrive").val()==""){
+				alert("도착날짜를 입력하세요.");
+				return false;
+			}
+			if($("#place").val()==""){
+				alert("출발장소를 입력하세요.");
+				return false;
+			}
+		 	if($("#departureTime").val()==""){
+				alert("출발시간을 입력하세요.");
+				return false;
+			}
+			 
+			if($("#tourWriteTitle").val()==""){
+				alert("제목을 입력하세요.");
+				return false;		
+			}
+			
+		 	if(CKEDITOR.instances.content.getData()==""){
+				alert("글내용을 입력하세요.");
+				return false;
+			}
+			 
+			var url = "/home/tourWriteFormOk";
+			var params = $("#tourWriteForm").serialize();
+			
+			$.ajax({
+				type : 'POST',
+				url : url,
+				data : params,
+				success : function(result){
+					if(result>0){
+						alert("글이 등록되었습니다.")
+						location.href="/home/tourList";
+					}else{
+						alert("글등록이 실패하였습니다.");
+					}
+				},error:function(){
+					console.log("글쓰기 오류");
+				}
+			});
+			return false;
+		});
 	});
 </script>
 <div id="mainDiv">
-<form method="post" action="<%=request.getContextPath()%>/tourWriteFormOk">
+	<form id="tourWriteForm">
 	<div id="tourWriteFormTitleDiv"><label id="tourWriteFormTitleLbl"><b>동행찾기 게시판 글쓰기</b></label><br/><hr/></div>
 	
-	<div id="CourseSearchDiv">
-		<div><input type="text" name="courseSearchBox" placeholder="코스검색(코스번호/키워드)"/></div>
-		<div><input type="button" name="courseSearchBtn" value="검&nbsp;&nbsp;색"/></div>
+	<div id="RouteSearchDiv">
+		<div><input type="text" name="noroute" placeholder="코스검색(코스번호/키워드)"/></div>
+		<div><input type="button" name="routeSearchBtn" value="검&nbsp;&nbsp;색"/></div>
 	</div>
 	
-	<div id="courseResultDiv">코스사진~~~~~</div>
+	<div id="routeResultDiv">코스사진~~~~~</div>
 	
 	<div id="conditionDiv">
-		<div class="conditionDivTop">
-			<div class="labelClass"><label>일&nbsp;정</label></div>
-			<div><input type="text" name="departure" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"></div>
-			<div><label  id="label1">~</label></div>
-			<div><input type="text" name="arrive"	placeholder="도착날짜" id="arrive" maxlength="10" autocomplete="off"></div>
-		</div>
-	
-		<div class="conditionDivTop">
-			<div><label class="labelClass2">장소/시간</label></div>
-			<div>  
-				<select name="place" id="place">
-		          <option value="">&nbsp;집합장소</option>
-		          <option value="서울" >&nbsp;서&nbsp;&nbsp;&nbsp;울</option>
-		          <option value="부산">&nbsp;부&nbsp;&nbsp;&nbsp;산</option>
-		          <option value="대구">&nbsp;대&nbsp;&nbsp;&nbsp;구</option>
-		          <option value="인천">&nbsp;인&nbsp;&nbsp;&nbsp;천</option>
-		          <option value="광주">&nbsp;광&nbsp;&nbsp;&nbsp;주</option>
-		          <option value="대전">&nbsp;대&nbsp;&nbsp;&nbsp;전</option>
-		          <option value="울산">&nbsp;울&nbsp;&nbsp;&nbsp;산</option>
-		          <option value="세종">&nbsp;세&nbsp;&nbsp;&nbsp;종</option>
-		          <option value="경기">&nbsp;경&nbsp;&nbsp;&nbsp;기</option>
-		          <option value="강원">&nbsp;강&nbsp;&nbsp;&nbsp;원</option>
-		          <option value="충북">&nbsp;충&nbsp;&nbsp;&nbsp;북</option>
-		          <option value="충남">&nbsp;충&nbsp;&nbsp;&nbsp;남</option>
-		          <option value="전북">&nbsp;전&nbsp;&nbsp;&nbsp;북</option>
-		          <option value="전남">&nbsp;전&nbsp;&nbsp;&nbsp;남</option>
-		          <option value="경북">&nbsp;경&nbsp;&nbsp;&nbsp;북</option>
-		          <option value="경남">&nbsp;경&nbsp;&nbsp;&nbsp;남</option>
-		          <option value="제주">&nbsp;제&nbsp;&nbsp;&nbsp;주</option>
-		      </select>
+			<div class="conditionDivTop">
+				<div class="labelClass"><label>일&nbsp;정</label></div>
+				<div><input type="text" name="departure" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"/></div>
+				<div><label  id="label1">~</label></div>
+				<div><input type="text" name="arrive"	placeholder="도착날짜" id="arrive" maxlength="10" autocomplete="off"/></div>
 			</div>
-			<div>
-				<select name="departureTime" id="departureTime">
-					<c:forEach var="i" begin="0" end="24" step="1">
-						<option value="${i }">${i }시</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div>
-				<select name="departureMinutes" id="departureMinutes">
-					<option value="zeroTime">00분</option>
-					<option value="halfTime">30분</option>
-				</select>
-			</div>
-		</div>
-	
-		<div class="conditionDivTop">
-			<div><label  class="labelClass2">이동거리</label></div>
-			<div><input type="text" name="distance" placeholder="ex)10km" class="conditionBox"></div>
-		</div>	
-		<div class="conditionDivTop">
-			<div><label  class="labelClass2" >예상속도</label></div>
-			<div><input type="text" name="speed" placeholder="ex)10km" class="conditionBox"></div>
-			<div><label  class="labelClass2" style="margin-left:8px;">예상비용</label></div>
-			<div><input type="text" name="budget" placeholder="ex)80,000" class="conditionBox"></div>
-		</div>	
-		<span>&nbsp;</span>
-		<div class="conditionDivTop">
-			<div><label  class="labelClass">작성자</label></div>
-			<div><label id="useridBox">userid</label></div>
-			<div><label  class="labelClass">인&nbsp;원</label></div>
-				
-					<select name="room" id="room" style="text-align-last:center">
-					<c:forEach var="i" begin="2" end="10" step="1">
-						<option value="${i }">${i }</option>
-					</c:forEach>
-					</select>
-		</div>
-		<div class="conditionDivTop">
-			<div><label class="labelClass">성&nbsp;별</label></div>
-			<div><label id="whole" for="they">전&nbsp;체</label></div>
-			<div><label id="genderBoy" for="boy">남</label></div>
-			<div><label id="genderGirl" for="girl">여</label></div>
-			
-			<div><input type="radio" name="reggender" id="they"></div>
-			<div><input type="radio" name="reggender" id="boy" value="1"></div>
-			<div><input type="radio" name="reggender" id="girl" value="2"></div>
-	</div>
-	
-		<div class="conditionDivTop">
-			<div><label class="labelClass">나&nbsp;이</label></div>
-			<div><label id="whole2" for="theyCheckbox">전&nbsp;체</label></div>
-			<div><label id="ten" for="tenCheckbox">10대</label></div>
-		</div>
-		<div class="conditionDivBottom">
-			<div><label id="twenty" for="twentyCheckbox">20대</label></div>
-			<div><label id="thirty" for="thirtyCheckbox">30대</label></div>
-			<div><label id="forty" for="fortyCheckbox">40대</label></div>
-		</div>
-		<div class="conditionDivBottom">
-			<div><label id="fiftyOver" for="fiftyOverCheckbox" style="width:100px">50대 이상</label></div>
-		</div>
 		
-		<div><input type="checkbox" name="regage" id="theyCheckbox"></div>
-		<div><input type="checkbox" name="regage" id="tenCheckbox" value="1"></div>
-		<div><input type="checkbox" name="regage" id="twentyCheckbox" value="2"></div>
-		<div><input type="checkbox" name="regage" id="thirtyCheckbox" value="3"></div>
-		<div><input type="checkbox" name="regage" id="fortyCheckbox" value="4"></div>
-		<div><input type="checkbox" name="regage" id="fiftyOverCheckbox" value="5"></div>
-	
-	
-		<div class="conditionDivTop" style="margin-top:20px;">
-			<div><label  class="labelClass2">마감날짜</label></div>
-			<div><input type="text" name="deadline" placeholder="마감날짜" id="deadline" maxlength="10" autocomplete="off"></div>
-			<div>
-				<select name="deadlineTime" id="deadlineTime">
-					<c:forEach var="i" begin="0" end="24" step="1">
-						<option value="${i }">${i }시</option>
-					</c:forEach>
-				</select>
+			<div class="conditionDivTop">
+				<div><label class="labelClass2">장소/시간</label></div>
+				<div>  
+					<input type="text" name="place" id="place" placeholder="ex)신촌역3번 출구"/>
+				</div>
+				<div>
+					<select name="departureTime" id="departureTime">
+						<c:forEach var="i" begin="0" end="24" step="1">
+							<option value="${i }">${i }시</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div>
+					<select name="departureMinutes" id="departureMinutes">
+						<option value="zeroTime">00분</option>
+						<option value="halfTime">30분</option>
+					</select>
+				</div>
+			</div>
+		
+			<div class="conditionDivTop">
+				<div><label  class="labelClass2">이동거리</label></div>
+				<div><input type="text" name="distance" placeholder="ex)10km" class="conditionBox"/></div>
+			</div>	
+			<div class="conditionDivTop">
+				<div><label  class="labelClass2" >예상속도</label></div>
+				<div><input type="text" name="speed" id="speed" placeholder="ex)1km" class="conditionBox"/></div>
+				<div><label  class="labelClass2" style="margin-left:8px;">예상비용</label></div>
+				<div><input type="text" name="budget" placeholder="ex)80,000" class="conditionBox"/></div>
+			</div>	
+			<span>&nbsp;</span>
+			<div class="conditionDivTop">
+				<div><label  class="labelClass">작성자</label></div>
+				<div><label id="useridBox">${logId}</label></div>
+				<div><label  class="labelClass">인&nbsp;원</label></div>
+					
+						<select name="room" id="room" style="text-align-last:center">
+						<c:forEach var="i" begin="2" end="10" step="1">
+							<option value="${i }">${i }</option>
+						</c:forEach>
+						</select>
+			</div>
+			<div class="conditionDivTop">
+				<div><label class="labelClass">성&nbsp;별</label></div>
+				<div><label id="whole" for="reggender">전&nbsp;체</label></div>
+				<div><label id="genderboy" for="boy">남</label></div>
+				<div><label id="gendergirl" for="girl">여</label></div>
+				
+				<div><input type="checkbox" name="reggender" id="reggender"/></div>
+				<div><input type="checkbox" name="reggender" id="boy" value="1" /></div>
+				<div><input type="checkbox" name="reggender" id="girl" value="2" /></div>
+			</div>
+		
+			<div class="conditionDivTop">
+				<div><label class="labelClass">나&nbsp;이</label></div>
+				<div><label id="whole2" for="regage">전&nbsp;체</label></div>
+				<div><label id="regageten" for="ten">10대</label></div>
+			</div>
+			<div class="conditionDivBottom">
+				<div><label id="regagetwenty" for="twenty">20대</label></div>
+				<div><label id="regagethirty" for="thirty">30대</label></div>
+				<div><label id="regageforty" for="forty">40대</label></div>
+			</div>
+			<div class="conditionDivBottom">
+				<div><label id="regagefiftyOver" for="fiftyOver" style="width:100px">50대 이상</label></div>
+			</div>
+			
+			<div><input type="checkbox" name="regage" id="regage" /></div>
+			<div><input type="checkbox" name="regage" id="ten" value="1" /></div>
+			<div><input type="checkbox" name="regage" id="twenty" value="2"/></div>
+			<div><input type="checkbox" name="regage" id="thirty" value="3" /></div>
+			<div><input type="checkbox" name="regage" id="forty" value="4" /></div>
+			<div><input type="checkbox" name="regage" id="fiftyOver" value="5"/></div>
+		
+		
+			<div class="conditionDivTop" style="margin-top:20px;">
+				<div><label  class="labelClass2">마감날짜</label></div>
+				<div><input type="text" name="deadline" placeholder="마감날짜" id="deadline" maxlength="10" autocomplete="off"/></div>
+				<div>
+					<select name="deadlineTime" id="deadlineTime">
+						<c:forEach var="i" begin="0" end="24" step="1">
+							<option value="${i }">${i }시</option>
+						</c:forEach>
+					</select>
+				</div>
 			</div>
 		</div>
-	</div>
-		<div id="writeForm">
-				
-				<ul>
-					<li><input type="text" name="title" id="title" placeholder="제목을 입력해주세요."/></li>
-					<li><textarea name="content" id="content"></textarea>
-					<div id="writebuttonDiv">
-						<input type="submit" value="등&nbsp;&nbsp;록"/>
-						<input type="reset" value="다시쓰기"/>
-					</div>
-				
-				</ul>
-			
-		</div>
-	</div>
+			<div id="writeForm">		
+					<ul>
+						<li><input type="text" name="title" id="tourWriteTitle" placeholder="제목을 입력해주세요."/></li>
+						<li><textarea name="content" id="content"></textarea></li>
+						<li><div id="writebuttonDiv">
+							<input type="submit" value="등&nbsp;&nbsp;록"/>
+							<input type="reset" value="다시쓰기"/>
+						</div></li>
+					</ul>
+			</div>
 	</form>
 </div>
+

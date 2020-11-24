@@ -1,4 +1,7 @@
 /* ================ 헤더 =================*/
+body{
+	font-family: 'Nanum Myeongjo', serif;
+}
 #adminTop {
 	background-color: #333333;
 	width: 100%;
@@ -11,7 +14,11 @@
 	margin-top: 20px;
 	margin-left: 30px
 }
-
+ul, li{
+	list-style-type: none;
+	margin : 0 auto;
+	padding: 0;
+}
 /* ================ 사이드바 ==============*/
 .navigation {
 	float: left;
@@ -22,8 +29,7 @@
 	background-color: #ddd;
 	height: 400px;
 	list-style-type: none;
-	margin: 0;
-	padding: 0;
+
 }
 
 .navigation a {
@@ -59,11 +65,9 @@
 .adminContent {
 	width: 80%;
 	float: right;
-	height: 400px;
-	background-color: #dcdcdc
-	
-	;
-	margin: 0 auto;
+	height: 450px;
+	background-color: #dcdcdc;
+	margin: 0 auto; 
 	text-align: center;
 }
 
@@ -100,12 +104,12 @@
 }
 
 /* ================ 회원관리 =================*/
-#userList>li:nth-child(-n+10) {
+#userList>li:nth-child(-n+9) {
 	background-color:#ddd;
 }
 #userList>li {
 	float: left;
-	width: 10%;
+	width: 11%;
 	height: 40px;
 	line-height: 40px;
 	font-size:0.8em;
@@ -117,7 +121,6 @@
 #userList, #userList>li {
 	margin: 0px;
 	padding: 0;
-	list-style-type: none;
 	background-color: #fff;
 }
 #userList{margin:0px 15px 0px 5px;}
@@ -194,7 +197,9 @@
     z-index: 1000;
     border: 2px solid #ccc;
     background: #fff;
-    cursor: move; }
+    cursor: move; 
+    font-size: 0.8em;
+ }
 
 .layerpop_area .title {
     padding: 10px 10px 10px 10px;
@@ -213,7 +218,6 @@
     top: 10px;
     right: 10px;
     background: url("../img/img_admin/btn_exit_off.png")no-repeat;
-    
 }
 .layerpop_area .layerpop_close:hover {
     background: url("../img/img_admin/btn_exit_on.png")no-repeat;
@@ -223,10 +227,14 @@
 .layerpop_area .content {
     width: 96%;    
     margin: 2%;
-    color: #828282; }
+    color: #828282; 
+	float:left;
+}
     
+
 /* ============= 셀렉트 =========*/
-#adminSelect{
+
+#adminSelect, #bigCate, #smallCate{
 		width:150px;
 		height:25px;
 		text-align:center;
@@ -242,8 +250,21 @@
     	appearance: none;
     	margin-right:5px;
     	padding-left:10px;
-   }
+ }
+
 .mint_Btn{
+		  font-size:15px;
+		  font-weight:bold;
+		  border-radius: 5px;
+		  text-decoration: none;
+		  text-align : center;
+		  padding:3px 6px;
+		  margin:0 auto;
+		  color : white;
+		  border: 1px solid #00B0B0;
+		  background-color: #00B0B0;
+}
+.red_Btn{
 		  font-size:15px;
 		  font-weight:bold;
 		  border-radius: 5px;
@@ -252,6 +273,30 @@
 		  padding:3px 6px;
 		  margin:0 10px;
 		  color : white;
-		  border: 1px solid #00B0B0;
-		  background-color: #00B0B0;
+		  border: 1px solid red;
+		  background-color: red;
+}
+.adminstop_class{
+	width:20px;
+	float:left;
+	
+}
+#partnerBtn{
+	width:100px;
+	height:10px;
+	border: 2px solid #ccc;
+	float:right;
+}
+#replySubmit{
+	float:right;
+}
+.pop2Row{
+	margin-bottom:20px;
+}
+.pop2Left{
+	float:left;
+	width:60px;
+	
+	font-weight:bold;
+	
 }

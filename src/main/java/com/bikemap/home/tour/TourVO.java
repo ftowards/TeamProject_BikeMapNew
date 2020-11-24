@@ -4,12 +4,13 @@ public class TourVO {
 	private int notour;
 	private String title;
 	private String userid;
-	private int nocourse;
+	private int noroute;
 	private String content;
 	private String deadline;
 	private String departure;
 	private String arrive;
 	private String place;
+	private String distance;
 	private int speed;
 	private int budget;
 	private int room;
@@ -18,9 +19,7 @@ public class TourVO {
 	private String writedate;
 	private String state;
 	private String ip;
-	
-	
-	
+
 	public int getNotour() {
 		return notour;
 	}
@@ -39,11 +38,11 @@ public class TourVO {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public int getNocourse() {
-		return nocourse;
+	public int getNoroute() {
+		return noroute;
 	}
-	public void setNocourse(int nocourse) {
-		this.nocourse = nocourse;
+	public void setNoroute(int noroute) {
+		this.noroute = noroute;
 	}
 	public String getContent() {
 		return content;
@@ -74,6 +73,12 @@ public class TourVO {
 	}
 	public void setPlace(String place) {
 		this.place = place;
+	}
+	public String getDistance() {
+		return distance;
+	}
+	public void setDistance(String distance) {
+		this.distance = distance;
 	}
 	public int getSpeed() {
 		return speed;
@@ -125,7 +130,6 @@ public class TourVO {
 	}
 	
 	
-
-
+	
 	
 }

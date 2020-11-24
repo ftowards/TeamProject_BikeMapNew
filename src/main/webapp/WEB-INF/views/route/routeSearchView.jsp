@@ -62,11 +62,11 @@ function getBytes(str){
 				</ul>
 				<input type="hidden" id="geocode" value="${routeVO.geocode }"/>
 				<div class="title">코스평점</div>
-				<div>
+				<div style='padding-left:47px'>
 					<img src="<%=request.getContextPath() %>/img/img_main/star.png"/>
-					<b>4.8</b>
+					<label id="starLbl">4.8</label>
 				</div>
-				<div style='padding-left:50px; font-size:1.1em'>
+				<div style='padding-left:50px; font-size:1em; font-weight:bold; color:#004554'>
 					<p>코스정보</p>
 					<ul>
 						<li>총 거리 :&nbsp;<span>${routeVO.distance }</span>km</li>
@@ -88,8 +88,8 @@ function getBytes(str){
 				<input type="button" value="확&nbsp;인" class="gray_Btn" id="grayBtn"/>
 			</div>
 			<div style='text-align:center; margin-top:130px;'>
-				<input type="submit" name="save" value="저&nbsp;장" class="mint_Btn" style='border-radius: 5px;'/>
-				<input type="submit" name="recruitment" value="인원모집" class="WMint_Btn"/>
+				<input type="submit" name="save" value="저&nbsp;장" class="blue_Btn" style='border-radius: 5px; width:80px; height:40px'/>
+				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='height:40px'/>
 			</div>
 		</div>
 	</div>

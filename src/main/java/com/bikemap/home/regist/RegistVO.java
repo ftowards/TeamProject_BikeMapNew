@@ -17,6 +17,7 @@ public class RegistVO {
 	private int tourcnt;
 	private String active;
 	private String code;
+	
 
 	public String getUserid() {
 		return userid;
@@ -102,4 +103,8 @@ public class RegistVO {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	
+	//1124추가
+	
 }

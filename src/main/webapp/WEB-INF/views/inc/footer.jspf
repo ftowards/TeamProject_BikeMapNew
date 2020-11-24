@@ -7,7 +7,7 @@
 			<li><a href="#">서비스문의 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|</a></li>
 			<li><a href="#">이용약관&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|</a></li>
 			<li><a href="#">여행자약관 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|</a></li>
-			<li><a href="#">가이드약관</a></li>
+			<li><a href="<%=request.getContextPath()%>/adminUser">가이드약관</a></li>
 		</ul>
 	</div>
 	<div id="bottomDiv">

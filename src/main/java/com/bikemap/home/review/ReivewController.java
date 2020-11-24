@@ -28,8 +28,12 @@ public class ReivewController {
 		return "review/reviewList";
 	}
 	
+	//글쓰기 폼
+	@RequestMapping("/reviewWriteForm")
+	public String ReviewWriteForm() {
+		return "review/reviewWriteForm";
+	}
 	
 	
 	
-		
 }

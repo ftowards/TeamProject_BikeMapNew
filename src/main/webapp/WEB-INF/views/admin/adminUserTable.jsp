@@ -11,7 +11,6 @@
 		pagefile="userTable";
 	}
 	
-	
 	//dao 선언
 	//총레코드수
 	int totalRecord = 30;//총레코드수
@@ -37,6 +36,18 @@
 	
 
 %>
+<script>
+
+$(document).ready(function() {
+    $('#reportMsg').on('keyup', function() {
+        if($(this).val().length > 250) {//varchar500이므로...
+            $(this).val($(this).val().substring(0, 250));
+        }
+    });
+});
+
+</script>
+
 
 	<!-- /Page Sidebar -->
 	
@@ -74,36 +85,46 @@
 		<div id="adminTable">
 				<h1 id=tableHead>회원관리</h1>
 				<ul id="userList">
-							<li><input type="checkbox" id="checkAll" />번호</li>
+							<li>번호</li>
 							<li>아이디</li>
 							<li>이름</li>
 							<li>성별</li>
 							<li>나이</li>
 							<li>모임횟수</li>
 							<li>좋아요</li>
-							<li>신고</li>
 							<li>정지여부</li>
 							<li>정지기간</li>
 							<!-- DB작업완료 후 for문 생성 -->
-							
-							<li><input type="checkbox" class="check"/>857</li>
-							<li id="contents" ><a href="javascript:userPopupOpen();">hong1234</a></li>
-							
-							
-							<li>홍길동</li>
-							<li>남</li>
-							<li>54세</li>
-							<li>34회</li>
-							<li>14회</li>
-							<li style="color:red">10회</li>
-							<li style="color:red">정지중</li>
-							<li style="color:red">20/11/01~20/11/31</li>
+							<c:forEach items="${list}" var="vo" varStatus="status">
+								<li>${status.count}</li>
+								<li id="contents" ><a href="javascript:userPopupOpen();">${vo.userid }</a></li>
+								
+	
+								<li>${vo.username}</li>
+								<li>
+									<c:if test="${vo.gender=='M'}">
+										남
+									</c:if>
+									<c:if test="${vo.gender=='F'}">
+										여
+									</c:if>
+								</li>
+								<li>${vo.birth}세</li>
+								<li>${vo.tourcnt}회</li>
+								<li>${vo.heart}회</li>
+								<li style="color:red">
+									<c:if test="${vo.active==null}">
+										정지중
+									</c:if>
+								</li>
+								<li style="color:red">20/11/01~20/11/31</li>
+							</c:forEach>
 				</ul>
 							   
 				
 				    <!--Popup Start -->
 				    <div id="userlayer" class="layerpop"
-				        style="width: 200px; height: 250px;">
+				        style="width: 200px; height: 300px;">
 				        <article class="layerpop_area">
 				        <div class="title" style="padding:15px; border-bottom:2px solid #00B0B0">회원정보</div>
 				        <a href="javascript:userPopupClose();" class="layerpop_close"
@@ -112,8 +133,8 @@
 				       	hong1234<br/>
 				       	가입 : 2020.07.24<br/>
 				        신고횟수 : 10회<br/>
-				        정지여부 : <span style="font-color:red">정지중</span><br/>
-				        정지지간 : <span style="font-color:red">2020.11.14</span><br/>
+				        <div id="pop1_IsStop">정지여부 : <span style="font-color:red">정지중</span></div>
+				        <div id="pop1_StopTime">정지지간 : <span style="font-color:red">2020.11.14</span><br/></div>
 				        <div style="border-bottom:2px solid #00B0B0; padding-bottom:10px">
 					        <input type="button" name="userBanned" value="정지하기" onclick="javascript:suspendPopupOpen();" class="red_Btn"/>
 					        <input type="button" name="userPage" value="회원페이지">
@@ -123,21 +144,27 @@
 				    </div>
 				    
 				    <div id="userSuspend" class="layerpop"
-				    	style="width:300px;height:250px;">
+				    	style="width:330px;height:300px;">
 				    	<form action="">
 					    	<article class="layerpop_area">
 					    	<div class="title">회원 정지 설정</div>
 					    	<a href="javascript:suspendPopupClose();" class="layerpop_close"
 					    		id="suspendlayerbox_close"></a><br/>
-					    	<div class="content">
-					    	정지 기간 <input type="number" id="suspendTime" min="0" max="90"/>일
-					    	<input type="button" name="30days" value="30" onclick="change_suspendTime(this.value)"/>
-					    	<input type="button" name="60days" value="60" onclick="change_suspendTime(this.value)"/>
-					    	<input type="button" name="90days" value="90" onclick="change_suspendTime(this.value)"/><br/>
-					    	사유 <span id="spUsername">홍길동</span>회원님은 <span id="spReportNum">10회</span>
-					    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.<br/>
-					    	메세지 <textarea placeholder="이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다."></textarea><br>
-					    	<input type="submit" name="reportMessage" value="등록"/>
+					    	<div class="content" id="">
+						    	<div class="pop2Row"> 
+						    		<span class="pop2Left">정지 기간</span> <input type="number" id="suspendTime" min="0" max="90"/>일
+						    		<input type="button" name="30days" value="30" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
+						    		<input type="button" name="60days" value="60" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
+						    		<input type="button" name="90days" value="90" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
+						    	</div>
+						    	
+						    	<div class="pop2Row"><span class="pop2Left">사유</span><span id="spUsername">홍길동</span>회원님은 <span id="spReportNum">10회</span>
+						    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.
+						    	</div>
+						    	<div>
+						    		<span class="pop2Left">메세지</span> <textarea cols="30" rows="6" id="reportMsg" style="overflow:hidden">이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.</textarea>
+								</div>
+						    	<input type="submit" name="reportMessage" value="등록"/>
 					    	</div>
 					    	</article>
 				    	</form>
@@ -155,7 +182,7 @@
 							<%if(nowPage==1){ %>
 							◀
 							<%}else{ %>
-								<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=nowPage-1 %>">◀</a>
+								<a href="/home/adminUser?nowPage=<%=nowPage-1 %>">◀</a>
 							<%} %>
 						</li>
 						<% for(int p=startPage; p<startPage+onePageNum; p++){ 
@@ -163,12 +190,12 @@
 								if(p==nowPage){
 						 %>
 							<li>
-								<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=p %>"style="color:rgb(0,176,176);"><%=p %></a>
+								<a href="/home/adminUser?nowPage=<%=p %>"style="color:rgb(0,176,176);"><%=p %></a>
 							</li>
 							
 						<%} else {%>
 						<li>
-							<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%= p%>"><%=p %></a>
+							<a href="/home/adminUser?nowPage=<%= p%>"><%=p %></a>
 					
 						</li>
 						<%}
@@ -177,7 +204,7 @@
 					<li>
 						<%if(nowPage<totalPage){ //다음페이지가 없을 경우
 						%>
-							<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=nowPage+1 %>">▶</a>
+							<a href="/home/adminUser?nowPage=<%=nowPage+1 %>">▶</a>
 						<%} %>
 					</ul>
 					

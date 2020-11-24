@@ -22,12 +22,13 @@
 	}
 	#searchLbl{
 		font-size:14px;
-		margin-left:2px;
+		position:relative;
+		bottom:2px;
 	}
 	#listImg{
-		margin-left:11px;
-		width:23px;
-		height:23px;
+		margin-left:13px;
+		width:18px;
+		height:18px;
 	}
 	
 	#info{
@@ -85,6 +86,7 @@
 		display:block;
 	}
 	
+	
 	#pannel1{
 		height: 100%;
 		overflow : auto;
@@ -96,7 +98,7 @@
 		color : white;
 		z-index : 500;
 	}
-	#placeList{}
+
 	#searchWord{
 		width : 88%;
 		height : 30px;
@@ -106,6 +108,20 @@
 		border : 2px solid black;
 		padding-left:10px;
 	}
+	input#searchWord{
+		 background-image: url(../img/img_route/search.png);
+		 background-repeat: no-repeat;
+		 text-indent: 15px;
+	}
+	
+	input#searchWord:focus{
+		font:none;
+		background-image:none;
+	}
+	input#searchWord:focus::-webkit-input-placeholder {
+		color: transparent;
+	}
+	
 	#chkBicycle{
 		margin-left:12px;
 	}
@@ -185,13 +201,15 @@
 		text-align: center;
 	}
 	#pagination a {
+		color:#353535;
 		display:inline-block;
 		margin-right:10px;
+		text-decoration:none;
 	}
 	#pagination .on {
 		font-weight: bold;
 		cursor: default;
-		color:#777;
+		color:#00B0B0;
 	}
 	
 	<!-- 카테고리 검색 탭 스타일 -->
@@ -211,27 +229,53 @@
 		background-color: gray;
 	}
 	
-	.button{
+	.food_Btn, .sights_Btn, .accomodation_Btn, .convenient_Btn{
 		float : left;
-		width : 25%;
-		height:33px;
-		border : 2px solid #247B8A;
 		border-radius: 5px;
 		text-decoration: none;
 		text-align : center;
-		font-size : 13px;
 		font-weight:bold;
-		margin : 5px 5px 0px 15px;
-		color : #247B8A;
 		background-color: white;
 	}
-	.button:hover{
-		color: white;
-		background-color: #247B8A;
-		border:2px solid #247B8A;
+	.food_Btn{
+		border : 2px solid #EB3807;
+		color : #EB3807;
+	}
+	.food_Btn:hover, .sights_Btn:hover, .accomodation_Btn:hover, .convenient_Btn:hover{
+		color : white;
+		font-weight:bold;	
+	}
+	.food_Btn:hover{
+		background-color: #EB3807;
+	}
+	.sights_Btn{
+		border : 2px solid #002060;
+		color: #002060;
+	}
+	.sights_Btn:hover{
+		background-color: #002060;
+	}
+	.accomodation_Btn{
+		border : 2px solid #5A147A;
+		color: #5A147A;
+	}
+	.accomodation_Btn:hover{
+		background-color: #5A147A;
+	}
+	.convenient_Btn{
+		border : 2px solid #2E75B6;
+		color: #2E75B6;
+	}
+	.convenient_Btn:hover{
+		background-color: #2E75B6;
 	}
 	
-	<!-- 저장리스트 스타일 -->
+	#routeInfo{
+		padding:20px 0 0 16px;
+	}
+	
+	
+	<!-- 저장한 장소 목록 -->
 	#pannel3{
 		width : 100%;
 		overflow: auto;
@@ -244,7 +288,6 @@
 		font-weight:bold;
 		line-height : 40px;
 		padding-left:15px;
-		background-color: #247B8A;
 		color : white;
 		border-bottom : 1px solid white;
 	}
@@ -302,3 +345,146 @@
 		background-color: #00B0B0;
 		border:2px solid #00B0B0;
 	}
+	
+	#title{
+		width:230px;
+		height:30px;
+		margin-bottom:10px;
+		border:0;
+    	border-radius: 5px;
+    	font-weight:bold;
+    	padding-left: 8px;
+   		background-color: #F1F1F1;
+	}
+	#routeSave{
+		padding:40px 0 0 20px;
+	}
+	#txt2{
+		font-size:10px;
+	}
+	
+
+	.selectBox{
+		height:30px;
+		font-size:0.8em;
+		font-weight:bold;
+		color:#353535;
+		border:0px;
+		border-radius:5px;
+		background-color:#eee;
+		background: url(../img/img_route/selectBox.png) no-repeat 92% 55%;
+		-webkit-appearance: none; /* 네이티브 외형 감추기 */
+    	-moz-appearance: none;
+    	appearance: none;
+    	margin-right:5px;
+    	padding-left:10px;
+    	margin-bottom:20px;
+	}
+	
+	.saveTxt{
+		color:#00B0B0;
+		font-weight:bold;
+		font-size:13px;
+		padding-left:8px;
+	}
+	.saveTxt2{
+		font-size:15px;
+	}
+	
+	
+	.gray_Btn{
+		border : #353535 2px solid;
+		border-radius:5px;
+		background-color : #353535;
+		text-decoration: none;
+		text-align : center;
+		font-size : 16px;
+		font-weight:bold;
+		padding : 6px 12px;
+		margin : 10px 0 0 6px;
+		color: white;
+	}
+	.gray_Btn:hover{
+		color : #353535;
+		font-weight:bold;
+		background-color: white;
+	} 
+
+
+
+<!-- ==================js파일 스타일================= -->
+
+	#info_a{
+		
+	}
+	#infoWin{
+		padding:5px 5px 5px 15px;
+		font-size:12px;
+		text-align:center;
+		float:center;
+		width:150px;
+		height:140px;
+	}
+	#info_a:link {
+		text-decoration: none;
+		border: rgba(75, 112, 253, 0.3) solid;
+		border-width: 0 0 6px 0;
+	}
+	#start_Btn{
+		text-decoration: none;
+		text-align : center;
+		font-weight:bold;
+		border-radius:5px;
+		background-color : white;
+		border : 2px solid #0E6C15;
+		color: #0E6C15;
+	}
+	#via_Btn{
+		text-decoration: none;
+		text-align : center;
+		font-weight:bold;
+		border-radius:5px;
+		background-color : white;
+		border : 2px solid #D68A00;
+		color: #D68A00;	
+	}
+	#arrive_Btn{
+		text-decoration: none;
+		text-align : center;
+		font-weight:bold;
+		border-radius:5px;
+		background-color : white;
+		border : 2px solid #C41F04;
+		color: #C41F04;	
+	}
+	#start_Btn:hover{
+		color : white;
+		font-weight:bold;
+		border-radius:5px;
+		background-color: #0E6C15;
+	}	
+	#via_Btn:hover{
+		color : white;
+		font-weight:bold;
+		border-radius:5px;
+		background-color: #D68A00;
+	}
+	#arrive_Btn:hover{
+		color : white;
+		font-weight:bold;
+		border-radius:5px;
+		background-color: #C41F04;
+	}	
+	
+	
+
+
+	.categoryDiv1{
+		width:150px;
+		padding-left:30px;	
+	}
+	.categoryDiv2{
+		width:150px;
+		padding-left:23px;	
+	}
+	
