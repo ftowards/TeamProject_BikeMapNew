@@ -128,7 +128,7 @@
 						</div>
 				</c:if>
 				<c:if test="${logId!=null }">
-				<form>
+				<form id="routeSave">
 					<input type="text" name="title" id="title" placeholder="코스 이름을 입력하세요"/>
 						<select name="catename" id="catename">
 							<c:forEach var="list" items="${category }">
