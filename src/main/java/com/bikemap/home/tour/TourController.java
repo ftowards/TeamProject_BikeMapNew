@@ -29,9 +29,9 @@ public class TourController {
 		this.sqlSession = sqlSession;
 	}
 
-		
+	// 게시판 목록 & 페이징
 	@RequestMapping("/tourList")
-	public String boardList(PagingVO vo, Model model
+	public String TourList(PagingVO vo, Model model
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="onePageRecord", required=false)String onePageRecord) {
 		
@@ -55,7 +55,19 @@ public class TourController {
 		return "tour/tourList";
 	}
 																							
-	
+	//글보기
+	@RequestMapping("/tourView")
+	public ModelAndView TourView(int notour) {
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		TourVO vo = dao.tourSelect(notour);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("vo", vo);
+		mav.setViewName("tour/tourView");
+		
+		return mav;
+	}
 	
 	
 	// 글쓰기 폼 이동
