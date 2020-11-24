@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -72,8 +73,36 @@ public class RouteController {
 		return routeDao.selectCategory(userid);
 	}
 	
-	@RequestMapping("/test")
-	public String test() {
-		return "route/test";
+	@RequestMapping(value="/insertRoute", method= {RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public int insertRoute(HttpSession session, RouteVO routeVO, RouteListVO routeListVO, RoutePlaceVO routePlaceVO) {
+		int result = 0;
+		String userid = (String)session.getAttribute("logId");
+		routeVO.setUserid(userid);
+		routeListVO.setUserid(userid);
+		
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		// 루트 저장
+		result = dao.insertRoute(routeVO);
+		try {
+			// 루트 저장 성공 시
+			if(result == 1) {
+				// 루트 번호를 구하여
+				int noRoute = dao.lastRouteNo(userid);
+				
+				// 1. 루트 리스트 저장
+				routeListVO.setNoroute(noRoute);
+				dao.insertRouteList(routeListVO);
+				
+				// 2. 장소 리스트 저장
+				routePlaceVO.setNoroute(noRoute);
+				dao.insertRoutePlaceList(routePlaceVO);
+			}
+		}catch(Exception e) {
+			e.getStackTrace();
+			result = 0;
+		}
+		return result;
 	}
 }

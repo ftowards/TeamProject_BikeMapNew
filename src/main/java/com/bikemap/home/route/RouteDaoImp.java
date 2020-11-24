@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface RouteDaoImp {
 	
+	/// 루트 카테고리 ///// 
 	// 코스 카테고리 읽어오기
 	public List<RouteCateVO> selectCategory(String userid);
 
@@ -15,4 +16,19 @@ public interface RouteDaoImp {
 	
 	// 코스 카테고리 삭제
 	public int delCategory(int nocoursecate);
+	
+	/// 루트 /////////////
+	// 루트 추가
+	public int insertRoute(RouteVO vo);
+
+	// 루트 마지막 번호 얻어오기
+	public int lastRouteNo(String userid);
+	
+	/// 루트 리스트 ////////
+	// 루트 저장 후 리스트에 추가하기
+	public int insertRouteList(RouteListVO vo);
+	
+	/// 루트 플레이스 ///////
+	// 루트 저장 후 장소 리스트 저장하기
+	public int insertRoutePlaceList(RoutePlaceVO vo);
 }
