@@ -7,8 +7,8 @@
 <div class="container">
 <div class = "mainDiv">
 
-	<div class="reviewBody" style="text-align: center;">	
-		<div class = "serch" style="margin-bottom:10px;">
+	<div class="reviewBody">	
+		<div class = "serch">
 			<select name="searchKeyword" id="searchKeyword">
 				<option value="1">키워드</option>
 				<option value="2">글제목</option>
@@ -22,10 +22,12 @@
 		
 
 <!-- 도시 검색창 -->		
-		<div style="text-align: left; height : 13px; margin-top: 60px;">
-			<span id="title">도시검색</span><br><br>
+		<div class= "reviewtitle">
+			<span class="title">도시검색</span><br><br>
 		</div>
-		<div id = content>
+		
+		
+		<div class = content>
 			<div id= "contentlocation">
 
 					<div class = "contentlocationdiv">
@@ -45,20 +47,16 @@
 					</div>
 					<div class = "contentlocationdiv">
 						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a>
-				
 				</div>
 			</div>
 		</div>
-		
-		
 
-		<div id= "reviewtitle">
 
-			<a href = "<%=request.getContextPath()%>/reviewList"><span id="title">후기</span></a><br><br>
+<!-- 	후기 제목 -->
+		<div class= "reviewtitle">
+			<a href = "<%=request.getContextPath()%>/reviewList"><span class="title">후기</span></a><br><br>
 			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
 		</div><br/>
-
-		
 		
 
 <!-- 후기창 게시판-->
@@ -74,7 +72,7 @@
 
 				<div class="right">
 					<div class= "subtitle">
-						<span>타이틀</span>
+						<span><a href="<%=request.getContextPath()%>/reviewWriteForm">제목</a></span>
 						<a href="#">
 							<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/>
 						</a> 
@@ -110,7 +108,7 @@
 			<!-- 후기창 오른쪽 면 -->
 					<div class="right">
 						<div class= "subtitle">
-							<span>타이틀</span>
+							<span>제목</span>
 							<a href="#">
 								<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/>
 							</a> 
@@ -142,7 +140,7 @@
 		<!-- 후기창 오른쪽 면 -->
 				<div class="right">
 					<div class= "subtitle">
-						<span>타이틀</span>
+						<span>제목</span>
 							<a href="#">
 								<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/>
 							</a> 

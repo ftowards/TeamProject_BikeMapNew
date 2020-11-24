@@ -7,13 +7,12 @@
 
 <!-- 후기게시판 제목 -->
 <div class = "mainDiv">
-		<div id = "titleletter">
-			<span id="title">후기게시판보기</span><br><br>
-		</div>
 
-		
 <!-- 후기 게시판 내용 -->
 <div class="reviewBody" >	
+		<div id = "titleletter">
+			<span class="title">후기게시판보기</span><br><br>
+		</div>
 	<div class="reviewList-type1">
 
 		<div class= "content2">
@@ -108,4 +107,3 @@
 			
 		</div>
 	</div>
-<!-- </div> -->
