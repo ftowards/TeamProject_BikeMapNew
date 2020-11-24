@@ -68,8 +68,7 @@
 				</div>
 		        <ul id="placesList"></ul>
 		        <div id="pagination"></div>
-			</div>
-			
+			</div>			
 			<!-- 길찾기 -->
 			<div class="tab">
 				<ul>
