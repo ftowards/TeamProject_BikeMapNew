@@ -37,4 +37,5 @@
 	<select id="emailDoubleChk" resultType="int">
 		select count(email) from regist where email = #{param1}
 	</select>	
+	
 </mapper> 

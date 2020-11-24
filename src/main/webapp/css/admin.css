@@ -17,6 +17,7 @@ body{
 ul, li{
 	list-style-type: none;
 	margin : 0 auto;
+	padding: 0;
 }
 /* ================ 사이드바 ==============*/
 .navigation {
@@ -28,8 +29,7 @@ ul, li{
 	background-color: #ddd;
 	height: 400px;
 	list-style-type: none;
-	margin: 0;
-	padding: 0;
+
 }
 
 .navigation a {
@@ -104,12 +104,12 @@ ul, li{
 }
 
 /* ================ 회원관리 =================*/
-#userList>li:nth-child(-n+10) {
+#userList>li:nth-child(-n+9) {
 	background-color:#ddd;
 }
 #userList>li {
 	float: left;
-	width: 10%;
+	width: 11%;
 	height: 40px;
 	line-height: 40px;
 	font-size:0.8em;
@@ -121,7 +121,6 @@ ul, li{
 #userList, #userList>li {
 	margin: 0px;
 	padding: 0;
-	list-style-type: none;
 	background-color: #fff;
 }
 #userList{margin:0px 15px 0px 5px;}
@@ -129,7 +128,6 @@ ul, li{
 /* ================ 동행모집 ==================*/
 #partnerList>li:nth-child(-n+7) {
 	background-color:#ddd;
-	background:linear-gradient(to top, #ddd, white 5%);
 }
 #partnerList>li {
 	float: left;
@@ -199,7 +197,9 @@ ul, li{
     z-index: 1000;
     border: 2px solid #ccc;
     background: #fff;
-    cursor: move; }
+    cursor: move; 
+    font-size: 0.8em;
+ }
 
 .layerpop_area .title {
     padding: 10px 10px 10px 10px;
@@ -218,7 +218,6 @@ ul, li{
     top: 10px;
     right: 10px;
     background: url("../img/img_admin/btn_exit_off.png")no-repeat;
-    
 }
 .layerpop_area .layerpop_close:hover {
     background: url("../img/img_admin/btn_exit_on.png")no-repeat;
@@ -228,8 +227,11 @@ ul, li{
 .layerpop_area .content {
     width: 96%;    
     margin: 2%;
-    color: #828282; }
+    color: #828282; 
+	float:left;
+}
     
+
 /* ============= 셀렉트 =========*/
 
 #adminSelect, #bigCate, #smallCate{
@@ -287,4 +289,14 @@ ul, li{
 }
 #replySubmit{
 	float:right;
+}
+.pop2Row{
+	margin-bottom:20px;
+}
+.pop2Left{
+	float:left;
+	width:60px;
+	
+	font-weight:bold;
+	
 }
