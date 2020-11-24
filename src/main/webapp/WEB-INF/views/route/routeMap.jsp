@@ -19,6 +19,7 @@
 				<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png"/></label></li>	
 			</ul>
 		</div>
+		
 		<!-- 지도 검색 조작 패널 -->
 		<div id="infoPannel">
 			<input type="radio" name="tab" class="tabIcon" id="tab1" checked/>
