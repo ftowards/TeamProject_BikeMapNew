@@ -46,23 +46,23 @@
 				 	-->
 					<ul id="category" style="display:none;">
 						<li>
-							<button value="FD6" class="food_Btn" onclick="searchPlaceCategory(value);">음식점</button>
-							<button value="CE7" class="food_Btn" onclick="searchPlaceCategory(value);">카&nbsp;&nbsp;&nbsp;페</button>
+							<button value="FD6" class="food_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">음식점</button>
+							<button value="CE7" class="food_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">카&nbsp;&nbsp;&nbsp;페</button>
 						</li>
 						<li>
-							<button value="CT1" class="sights_Btn" onclick="searchPlaceCategory(value);">문화시설</button>
-							<button value="AT4" class="sights_Btn" onclick="searchPlaceCategory(value);">관광명소</button>
+							<button value="CT1" class="sights_Btn" style='width:24%; height:33px; font-size:12.5px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">문화시설</button>
+							<button value="AT4" class="sights_Btn" style='width:24%; height:33px; font-size:12.5px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">관광명소</button>
 						</li>
 						<li>
-							<button value="AD5" class="accomodation_Btn" onclick="searchPlaceCategory(value);">숙&nbsp;&nbsp;&nbsp;박</button>
+							<button value="AD5" class="accomodation_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">숙&nbsp;&nbsp;&nbsp;박</button>
 						</li>
 						<li>
-							<button value="CS2" class="convenient_Btn" onclick="searchPlaceCategory(value);">편의점</button>
-							<button value="PM9" class="convenient_Btn" onclick="searchPlaceCategory(value);">약&nbsp;&nbsp;&nbsp;국</button>
-							<button value="HP8" class="convenient_Btn" onclick="searchPlaceCategory(value);">병&nbsp;&nbsp;&nbsp;원</button>
-							<button value="PK6" class="convenient_Btn" onclick="searchPlaceCategory(value);">주차장</button>
-							<button value="SW8" class="convenient_Btn" onclick="searchPlaceCategory(value);">지하철</button>
-							<button value="BK9" class="convenient_Btn" onclick="searchPlaceCategory(value);">은&nbsp;&nbsp;&nbsp;행</button>
+							<button value="CS2" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">편의점</button>
+							<button value="PM9" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">약&nbsp;&nbsp;&nbsp;국</button>
+							<button value="HP8" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">병&nbsp;&nbsp;&nbsp;원</button>
+							<button value="PK6" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">주차장</button>
+							<button value="SW8" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">지하철</button>
+							<button value="BK9" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">은&nbsp;&nbsp;&nbsp;행</button>
 						</li>
 						<hr/>
 					</ul>
