@@ -130,14 +130,14 @@
 					    	<a href="javascript:suspendPopupClose();" class="layerpop_close"
 					    		id="suspendlayerbox_close"></a><br/>
 					    	<div class="content">
-					    	정지 기간 <input type="number" id="suspendTime" min="0" max="90"/>일
-					    	<input type="button" name="30days" value="30" onclick="change_suspendTime(this.value)"/>
-					    	<input type="button" name="60days" value="60" onclick="change_suspendTime(this.value)"/>
-					    	<input type="button" name="90days" value="90" onclick="change_suspendTime(this.value)"/><br/>
-					    	사유 <span id="spUsername">홍길동</span>회원님은 <span id="spReportNum">10회</span>
-					    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.<br/>
-					    	메세지 <textarea placeholder="이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다."></textarea><br>
-					    	<input type="submit" name="reportMessage" value="등록"/>
+						    	<span class="adminstop_class">정지 기간</span> <input type="number" id="suspendTime" min="0" max="90"/>일
+						    	<input type="button" name="30days" value="30" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
+						    	<input type="button" name="60days" value="60" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
+						    	<input type="button" name="90days" value="90" class="mint_Btn" onclick="change_suspendTime(this.value)"/><br/>
+						    	<span class="adminstop_class">사유</span> <span id="spUsername">홍길동</span>회원님은 <span id="spReportNum">10회</span>
+						    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.<br/>
+						    	<span class="adminstop_class">메세지</span> <textarea placeholder="이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다."></textarea><br>
+						    	<input type="submit" name="reportMessage" value="등록"/>
 					    	</div>
 					    	</article>
 				    	</form>
@@ -155,7 +155,7 @@
 							<%if(nowPage==1){ %>
 							◀
 							<%}else{ %>
-								<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=nowPage-1 %>">◀</a>
+								<a href="/home/adminUserTable?nowPage=<%=nowPage-1 %>">◀</a>
 							<%} %>
 						</li>
 						<% for(int p=startPage; p<startPage+onePageNum; p++){ 
@@ -163,12 +163,12 @@
 								if(p==nowPage){
 						 %>
 							<li>
-								<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=p %>"style="color:rgb(0,176,176);"><%=p %></a>
+								<a href="/home/adminUserTable?nowPage=<%=p %>"style="color:rgb(0,176,176);"><%=p %></a>
 							</li>
 							
 						<%} else {%>
 						<li>
-							<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%= p%>"><%=p %></a>
+							<a href="/home/adminUserTable?nowPage=<%= p%>"><%=p %></a>
 					
 						</li>
 						<%}

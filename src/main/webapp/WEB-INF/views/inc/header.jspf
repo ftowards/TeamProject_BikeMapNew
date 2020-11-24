@@ -58,6 +58,7 @@
 		<c:if test="${logStatus!='Y'}">	
 			<div id="loginDiv">
 				<ul id="login">
+					<a href="<%=request.getContextPath() %>/adminUserTable">관리자</a><!-- 최병대 테스트용1124 -->
 					<div id="loginLblDiv"><li><a href="<%=request.getContextPath()%>/login">로그인&nbsp;</a></li></div>
 					<div id="loginImgDiv"><li><img src="<%=request.getContextPath()%>/img/img_main/login_icon.png" id="loginIcon"/></li></div>
 					<div id="loginRegisterDiv"><li><input type="button" value="회원가입" onclick="location.href='<%=request.getContextPath()%>/registerForm'"></li></div>
