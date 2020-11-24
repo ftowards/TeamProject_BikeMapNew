@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonObject;
+
+
 @Controller
 public class RouteController {
 
@@ -33,8 +36,23 @@ public class RouteController {
 
 	//코스검색(글보기)
 	@RequestMapping("/routeSearchView")
-	public String routeSearchView() {
-		return "route/routeSearchView";
+	public ModelAndView routeSearchView(int noroute) {
+		ModelAndView mav = new ModelAndView();
+		
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		RouteVO vo = dao.selectRoute(noroute);
+		RoutePlaceVO placeVO = dao.selectRoutePlace(noroute);
+		
+		System.out.println(vo.getRoutepoint1name());
+		System.out.println(vo.getRoutepoint1point());
+		
+		mav.addObject("routeVO", vo);
+		
+		
+		
+		mav.setViewName("route/routeSearchView");
+		return mav;
 	}
 
 	// 코스 만들기 이동

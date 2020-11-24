@@ -24,6 +24,9 @@ public interface RouteDaoImp {
 	// 루트 마지막 번호 얻어오기
 	public int lastRouteNo(String userid);
 	
+	// 루트 한개 읽기
+	public RouteVO selectRoute(int noroute);
+	
 	/// 루트 리스트 ////////
 	// 루트 저장 후 리스트에 추가하기
 	public int insertRouteList(RouteListVO vo);
@@ -31,4 +34,7 @@ public interface RouteDaoImp {
 	/// 루트 플레이스 ///////
 	// 루트 저장 후 장소 리스트 저장하기
 	public int insertRoutePlaceList(RoutePlaceVO vo);
+	
+	// 루트 한 개의 장소 리스트 읽기
+	public RoutePlaceVO selectRoutePlace(int noroute);
 }

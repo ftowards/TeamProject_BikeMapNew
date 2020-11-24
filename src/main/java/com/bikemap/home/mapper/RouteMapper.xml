@@ -33,4 +33,14 @@
 		#{accom3, jdbcType=VARCHAR}, #{accom4, jdbcType=VARCHAR}, #{accom5, jdbcType=VARCHAR}, #{conve1, jdbcType=VARCHAR},
 		#{conve2, jdbcType=VARCHAR}, #{conve3, jdbcType=VARCHAR}, #{conve4, jdbcType=VARCHAR}, #{conve5, jdbcType=VARCHAR})
 	</insert>	
+	<select id="selectRoute" resultType="com.bikemap.home.route.RouteVO">
+		select noroute, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint4, routepoint5, routepoint6, routepoint7,
+		geocode, userid, distance, ascent, descent, region, to_char(wirtedate, 'YY-MM-DD HH24:MI') writedate from route
+		where noroute = #{param1} and closed = 'F'
+	</select>
+	<select id="selectRoutePlace" resultType="com.bikemap.home.route.RoutePlaceVO">
+		select noroute, food1, food2, food3, food4, food5, sights1, sights2, sights3, sights4, sights5,
+		accom1, accom2, accom3, accom4, accom5, conve1, conve2, conve3, conve4, conve5 from routeplace
+		where noroute = #{param1}
+	</select>
 </mapper> 
