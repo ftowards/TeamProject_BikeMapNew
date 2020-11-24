@@ -3,8 +3,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.bikemap.home.tour.TourDaoImp">
+ <select id="selectAllTour" resultType="com.bikemap.home.tour.TourVO" parameterType="com.bikemap.home.tour.PagingVO">
+	select * from (
+			select rownum rn, A.* 
+				from (
+						select notour,title,to_char(departure,'YY/MM/DD') departure,to_char(arrive,'YY/MM/DD') arrive  
+						from tour 
+						order by notour desc 
+						) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+ </select>
+ <select id="getTotalTourRecord" resultType="int">
+ 	select count(notour) from tour
+ 
+ </select>
  <insert id="tourInsert" parameterType="com.bikemap.home.tour.TourVO">
- 	insert into tour(notour,title,userid,nocourse,content,departure,arrive,place,room,reggender,regage,writedate,ip)
- 	values(a_sq.nextval,#{title},#{userid},#{nocourse},#{content},#{departure},#{arrive},#{place},#{room},#{reggender},#{regage},sysdate,#{ip})
+	insert into tour(notour, title, userid, noroute, content, deadline, departure, arrive, place, distance, speed, budget, room, reggender, regage, writedate,ip)
+	values(a_sq.nextval, #{title}, #{userid}, #{noroute}, #{content}, #{deadline}, #{departure}, #{arrive}, #{place}, #{distance}, #{speed}, #{budget}, #{room}, #{reggender}, #{regage}, sysdate,#{ip} )
  </insert>
  </mapper>

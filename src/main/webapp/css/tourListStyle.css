@@ -26,7 +26,7 @@
 					float:left;
 			}
 			
-	#startDate,#endDate,#startPlace,#distance{	
+	#departure,#arrive,#place,#distance{	
 				border:1px solid rgb(0,176,176);
 				text-align:center;
 				border-radius:10px;
@@ -47,10 +47,10 @@
 			font-weight:bold;
 			font-size:15px;
 	}
-	#startDate,#startPlace,#distance,#whole,#whole2{
+	#departure,#place,#distance,#whole,#whole2{
 				margin-left:50px;
 	}
-	#endDate{
+	#arrive{
 				margin:-20px 0 0 50px;
 				
 				}
@@ -65,12 +65,12 @@
 				margin-left:80px;
 	
 	}
-	#genderDiv{
+	#regGenderDiv{
 			height:60px;
 			margin-left:80px;
 			
 	}
-	#whole,#whole2,#ten,#twenty,#thirty,#forty,#fiftyOver{
+	#whole,#whole2,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver{
 			position:relative;
 			padding-top:9px;
 			text-align:center;
@@ -86,7 +86,7 @@
 	
 	}
 	
-	#genderBoy,#genderGirl{
+	#genderboy,#gendergirl{
 			position:relative;
 			padding-top:9px;
 			text-align:center;
@@ -102,17 +102,17 @@
 			margin-left:10px;
 	}
 
-	#ageDiv{
+	#regAgeDiv{
 			height:80px;
 			margin-left:80px;
 			
 	
 	}
-	#ten,#twenty,#thirty,#forty,#fiftyOver{
+	#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver{
 														margin-left:10px;
 	}
 	input:focus{outline:none;}
-	input[type=radio]{
+	input[type=checkbox]{
 						display:none;
 	}
 
@@ -171,36 +171,50 @@
 	} 
 	#paging ul{
 				width:178px;
-				margin-left:689px;		
+				margin-left:675px;		
 	}
 	#paging li{
 				float:left; 
-				width:25px; 
+				width:23px; 
 				height:40px; 
 				font-size:15px;
+			
 	} 	
+	
+	#paging li a:link,#paging li a:visited{
+											text-decoration:none;
+											color:rgb(64,64,64);
+	}
 	#tourBoardListDivTop,#tourBoardListDivBottom{
 													width:820px;
-													height:220px;
+													height:440px;
+													
 													
 	}	
-	#tourBoardListDivTop img,
-	#tourBoardListDivBottom img,.blackWrapDiv{
-												width:190px;
-												height:200px;
-												float:left;
-												margin-right:15px;
-								
+	
+	.tourImgDivClass{
+				width:23%;
+				height:200px;
+				float:left;
+				margin:0 8px 35px 5px;
+	}
+	.tourImgClass{
+				width:190px;
+				height:200px;
+				float:left;
+				margin:0 8px 35px 0px;
+	
 	}
 	.blackWrapDiv{
 					width:190px;
 					height:200px;
 					position:absolute;
-					margin:0px;
 					background-color:black;
 					opacity:50%;
 					z-index:9;
-	}
+					float:left;
+					
+	} 
 	.blackWrapDiv>p:first-child, .blackWrapDiv>p:nth-child(2),.blackWrapDiv>hr, 
 	.blackWrapDiv>p:last-child{
 								color:#fff;
