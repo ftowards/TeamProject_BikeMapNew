@@ -16,16 +16,16 @@
 	 						color:rgb(64,64,64);
 	 					
 	}
-	#CourseSearchDiv{
+	#RouteSearchDiv{
 						height:50px;
 						
 	}
 	input:focus{outline:none;}
 	
-	#CourseSearchDiv input{
+	#RouteSearchDiv input{
 							float:left;	
 	}
-	#CourseSearchDiv input[type=text]{
+	#RouteSearchDiv input[type=text]{
 										width:300px;
 										padding:4px 0 0 10px;
 										border:1px solid rgb(221,221,221);
@@ -36,7 +36,7 @@
 										font-weight:bold;
 										color:rgb(64,64,64)									
 	}
-	#CourseSearchDiv input[type=button]{
+	#RouteSearchDiv input[type=button]{
 										width:70px;
 										padding-top:2px;
 										border:1px solid rgb(69,69,79);
@@ -49,7 +49,7 @@
 										color:#fff;		
 										margin-left:25px;					
 	}
-	#courseResultDiv{
+	#routeResultDiv{
 						width:500px;
 						height:500px;
 						background-color:lightblue;
@@ -62,7 +62,7 @@
 					float:left;	
 			
 	}
-	.labelClass,#departure,#arrive,.conditionBox,.labelClass2,#deadline{	
+	.labelClass,#departure,#arrive,.conditionBox,.labelClass2,#deadline,#place{	
 					
 					padding-top:4px;
 					text-align:center;
@@ -88,13 +88,16 @@
 				}
 				
 				
-	#departure,#arrive,#deadline{	
+	#departure,#arrive,#deadline,#place{	
 					padding-top:3px;	
 					width:95px;
 					background-color:#fff;
 					color:rgb(123,123,123);
 					
 		}
+	#place{
+		width:110px;
+	}
 	.conditionBox{
 					padding-top:3px;	
 					width:65px;
@@ -121,7 +124,7 @@
 			height:10px;
 		}
 		
-	#useridBox,#room,#place{
+	#useridBox,#room{
 				padding-top:3px;
 				text-align:center;
 				border:1px solid rgb(123,123,123);
@@ -142,7 +145,7 @@
 					height:25px;
 				
 	}
-	#whole,#whole2,#ten,#twenty,#thirty,#forty,#fiftyOver,#genderBoy,#genderGirl{
+	#whole,#whole2,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver,#genderboy,#gendergirl{
 															padding-top:4px;
 															text-align:center;
 															border:1px solid rgb(123,123,123);
@@ -156,12 +159,14 @@
 															float:left;
 	
 	}
+	
+
 		
-	#genderBoy,#genderGirl{	
+	#genderboy,#gendergirl{	
 							width:30px;
 							margin-left:10px;
 	}	
-	#whole,#whole2,#ten,#twenty,#thirty,#forty,#fiftyOver{
+	#whole,#whole2,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver{
 															margin-left:10px;
 	}		
 	input[type=checkbox],input[type=radio]{
@@ -219,7 +224,7 @@
 										color:rgb(69,69,79);							
 	}	
 		
-	#place,#departureTime,#departureMinutes,#deadlineTime{
+	#departureTime,#departureMinutes,#deadlineTime{
 				padding-top:3px;
 				text-align:center;
 				border:1px solid rgb(123,123,123);
@@ -234,12 +239,12 @@
 				margin:0 15px 0 10px;
 				height:26px; 
 				text-align-last:center;
-				margin-left:15px;		
+				margin-left:8px;		
 	}	
 		
 	#departureTime,#departureMinutes,#deadlineTime{
 										width:48px;
-										margin:0 0px 0 15px;
+										margin:0 0px 0 6px;
 	
 	}	
 		
