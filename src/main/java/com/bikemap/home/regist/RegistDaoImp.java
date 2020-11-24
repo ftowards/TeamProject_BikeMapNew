@@ -1,5 +1,7 @@
 package com.bikemap.home.regist;
 
+import java.util.List;
+
 public interface RegistDaoImp {
 
 	// 회원 가입
@@ -34,4 +36,12 @@ public interface RegistDaoImp {
 	
 	// 이메일 중복 확인
 	public int emailDoubleChk(String email);
+	
+	
+	
+	
+	
+	
+	
+
 }
