@@ -76,11 +76,7 @@
 		});
 		
 	});	
-	
-	function selChange() {
-		var sel = document.getElementById('onePageRecordCount').value;
-		location.href="tourList?nowPage=${paging.nowPage}&onePageRecordCount="+sel;
-	}
+
 
 </script>
 <div id="mainDiv">
@@ -160,7 +156,7 @@
 	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
 	<div id="tourBoardListDivTop">
 		<c:forEach var ="list" items="${viewAll }">
-		<div class="tourImgDivClass">
+		<a href="<%=request.getContextPath()%>/tourView?notour=${list.notour}"><div class="tourImgDivClass">
 			<div><img src="<%=request.getContextPath()%>/img/img_tour/map.png" class="tourImgClass"/></div>
 			<div class="blackWrapDiv">	
 				<p  style="font-size:15px;">${list.title }</p>
@@ -169,6 +165,7 @@
 				<p style="font-size:36px; "><b>1Day</b></p>
 			</div>
 		</div>	
+		</a>
 		</c:forEach>
 	</div>
 

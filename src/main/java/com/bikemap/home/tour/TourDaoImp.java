@@ -13,4 +13,8 @@ public int getTotalTourRecord();
 
 //레코드 추가 -글쓰기
 public int tourInsert(TourVO vo);
+
+//게시판 글보기(레코드 하나 선택)
+public TourVO tourSelect(int notour);
+
 }
