@@ -79,8 +79,11 @@ $(function(){
 	 	CKEDITOR.replace('content',{
 			
 		}); 
-		
+	 
+	 	
 		$("#tourWriteForm").submit(function(){
+			CKEDITOR.instances.content.updateElement();		
+			
 			
 			if($("#departure").val()==""){
 				alert("출발날짜를 입력하세요.");
@@ -240,7 +243,7 @@ $(function(){
 		</div>
 			<div id="writeForm">		
 					<ul>
-						<li><input type="text" name="title" id="tourWriteTitle" placeholder="제목을 입력해주세요."/></li>
+						<li><input type="text" name="title" id="tourWriteTitle" placeholder="제목을 입력해주세요." maxlength="25"/></li>
 						<li><textarea name="content" id="content"></textarea></li>
 						<li><div id="writebuttonDiv">
 							<input type="submit" value="등&nbsp;&nbsp;록"/>
