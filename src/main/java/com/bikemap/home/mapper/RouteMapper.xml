@@ -35,7 +35,7 @@
 	</insert>	
 	<select id="selectRoute" resultType="com.bikemap.home.route.RouteVO">
 		select noroute, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint4, routepoint5, routepoint6, routepoint7,
-		geocode, userid, distance, ascent, descent, region, to_char(wirtedate, 'YY-MM-DD HH24:MI') writedate from route
+		geocode, userid, distance, ascent, descent, region, to_char(writedate, 'YY-MM-DD HH24:MI') writedate from route
 		where noroute = #{param1} and closed = 'F'
 	</select>
 	<select id="selectRoutePlace" resultType="com.bikemap.home.route.RoutePlaceVO">

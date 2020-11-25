@@ -945,15 +945,15 @@ $(function(){
 		}
 		
 		for(var i = 1 ; i <= $("input[name=sightsList]").length ; i++){
-			data += "&food"+i+"="+$("input[name=sightsList]").eq(i-1).val();
+			data += "&sights"+i+"="+$("input[name=sightsList]").eq(i-1).val();
 		}
 		
 		for(var i = 1 ; i <= $("input[name=accomodationList]").length ; i++){
-			data += "&food"+i+"="+$("input[name=accomodationList]").eq(i-1).val();
+			data += "&accom"+i+"="+$("input[name=accomodationList]").eq(i-1).val();
 		}
 		
 		for(var i = 1 ; i <= $("input[name=convenientList]").length ; i++){
-			data += "&food"+i+"="+$("input[name=convenientList]").eq(i-1).val();
+			data += "&conve"+i+"="+$("input[name=convenientList]").eq(i-1).val();
 		}
 		/////////// 장소 데이터 ////////////
 		console.log(data);
