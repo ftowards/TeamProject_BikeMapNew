@@ -69,11 +69,11 @@
 			 
 		</select>
 	
-				<input type="text" name="searchWord" id="searchWord" maxlength="20" placeholder="검색어 입력"/>
+				<input type="text" name="searchWord" id="reviewSearchWord" class="searchText" maxlength="20" placeholder="검색어 입력"/>
 				<input type="button" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
 		
 				<div id="adminTable">
-				<h1 id=tableHead>리뷰</h1>
+				<h1 class="adminListHead">리뷰</h1>
 				<ul id="reviewList">
 					
 					<li><input type="checkbox" id="checkAll" />번호</li>
@@ -108,7 +108,7 @@
 							<%if(nowPage==1){ %>
 							◀
 							<%}else{ %>
-								<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=nowPage-1 %>">◀</a>
+								<a href="/home/adminReview?nowPage=<%=nowPage-1 %>">◀</a>
 							<%} %>
 						</li>
 						<% for(int p=startPage; p<startPage+onePageNum; p++){ 
@@ -133,8 +133,6 @@
 							<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=nowPage+1 %>">▶</a>
 						<%} %>
 					</ul>
-					
-						
 				</div><!-- paging -->
 				<div id="partnerBtn">
 					<%
@@ -147,8 +145,6 @@
 					%>
 				</div><!-- btn -->
 			</div><!-- adminContent -->
-	
-</div><!-- adminhome -->
 <!-- Page Content -->
 </body>
 </html>

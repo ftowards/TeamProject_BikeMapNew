@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />  
+
 <!-- Page Content -->
 
 
@@ -53,37 +58,19 @@ $(document).ready(function() {
 	
 	<!-- Page Content -->
 	<div class="adminContent">
+		<form>
+		    <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /><!-- //검색조건 -->
+   	 		<input type="hidden" name="searchValue" value="${pageVO.searchValue }" /><!-- //검색어 -->
 		<select name="choice" id="adminSelect">
-			<%
-				if(pagefile.equalsIgnoreCase("userTable")){
-			%>
-				<option value="userid" selected>회원 아이디</option>
-			    <option value="username">회원 이름</option>
-			<%
-				}else if(pagefile.equalsIgnoreCase("partnerTable")||pagefile.equalsIgnoreCase("reviewTable")){
-			%>  
-				<option value="userid" selected>회원 아이디</option>
-				<option value="subject" selected>제목</option>
-			<%
-				}else if(pagefile.equalsIgnoreCase("questionTable")){			 
-			%>
-				<option value="userid" selected>회원 아이디</option>
-			 	<option value="subject" selected>제목</option>
-			 	<option value="IsReply">답변여부</option>
-			 	
-			<% 
-				}else{
-					System.out.println(pagefile);
-				}
-			 %>
-			 
+			<option value="userid" selected>회원 아이디</option>
+			<option value="username">회원 이름</option>	 
 		</select>
 	
-				<input type="text" name="searchWord" id="searchWord" maxlength="20" placeholder="검색어 입력"/>
-				<input type="button" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
+			<input type="text" name="searchWord" id="userSearchWord"  class="searchText" maxlength="20" placeholder="검색어 입력"/>
+			<input type="submit" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
 		
-		<div id="adminTable">
-				<h1 id=tableHead>회원관리</h1>
+		<div class="adminTable">
+				<h1 class="adminListHead">회원관리</h1>
 				<ul id="userList">
 							<li>번호</li>
 							<li>아이디</li>
@@ -96,10 +83,8 @@ $(document).ready(function() {
 							<li>정지기간</li>
 							<!-- DB작업완료 후 for문 생성 -->
 							<c:forEach items="${list}" var="vo" varStatus="status">
-								<li>${status.count}</li>
+								<li>${vo.rownum}</li>
 								<li id="contents" ><a href="javascript:userPopupOpen();">${vo.userid }</a></li>
-								
-	
 								<li>${vo.username}</li>
 								<li>
 									<c:if test="${vo.gender=='M'}">
@@ -113,14 +98,18 @@ $(document).ready(function() {
 								<li>${vo.tourcnt}회</li>
 								<li>${vo.heart}회</li>
 								<li style="color:red">
-									<c:if test="${vo.active==null}">
-										정지중
+									<c:if test="${vo.endday==null||vo.endday}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
+										<input type="button" name="userBanned" onclick="javascript:suspendPopupOpen('${vo.userid}');" id="suspendBtn"/>
 									</c:if>
+									<c:if test="${vo.endday!=null}">
+										<input type="button" name="userBannedEdit" onclick="javascript:suspendEditPopupOpen('${vo.userid}')" id="suspendEditBtn"/>
+									</c:if>
+							
 								</li>
-								<li style="color:red">20/11/01~20/11/31</li>
+								<li style="color:red">~${vo.endday}</li>
 							</c:forEach>
-				</ul>
-							   
+					</ul>
+					   
 				
 				    <!--Popup Start -->
 				    <div id="userlayer" class="layerpop"
@@ -143,38 +132,9 @@ $(document).ready(function() {
 				        </article>
 				    </div>
 				    
-				    <div id="userSuspend" class="layerpop"
-				    	style="width:330px;height:300px;">
-				    	<form action="">
-					    	<article class="layerpop_area">
-					    	<div class="title">회원 정지 설정</div>
-					    	<a href="javascript:suspendPopupClose();" class="layerpop_close"
-					    		id="suspendlayerbox_close"></a><br/>
-					    	<div class="content" id="">
-						    	<div class="pop2Row"> 
-						    		<span class="pop2Left">정지 기간</span> <input type="number" id="suspendTime" min="0" max="90"/>일
-						    		<input type="button" name="30days" value="30" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
-						    		<input type="button" name="60days" value="60" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
-						    		<input type="button" name="90days" value="90" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
-						    	</div>
-						    	
-						    	<div class="pop2Row"><span class="pop2Left">사유</span><span id="spUsername">홍길동</span>회원님은 <span id="spReportNum">10회</span>
-						    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.
-						    	</div>
-						    	<div>
-						    		<span class="pop2Left">메세지</span> <textarea cols="30" rows="6" id="reportMsg" style="overflow:hidden">이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.</textarea>
-								</div>
-						    	<input type="submit" name="reportMessage" value="등록"/>
-					    	</div>
-					    	</article>
-				    	</form>
-				    </div>
+				    
 				</div>
 				<!-- Page Content -->
-				
-		
-	
-	
 				<div id="paging">
 					<ul>
 						<!-- 이전페이지 -->
@@ -192,7 +152,6 @@ $(document).ready(function() {
 							<li>
 								<a href="/home/adminUser?nowPage=<%=p %>"style="color:rgb(0,176,176);"><%=p %></a>
 							</li>
-							
 						<%} else {%>
 						<li>
 							<a href="/home/adminUser?nowPage=<%= p%>"><%=p %></a>
@@ -210,9 +169,74 @@ $(document).ready(function() {
 					
 						
 				</div><!-- paging -->
-				
+				</form><!-- searchForm -->
 			</div><!-- adminContent -->
-	
+			
+			<!-- suspend popup -->
+			<div id="userSuspend" class="layerpop"
+				    	style="width:330px;height:300px;">
+				    	
+				    	<form action="<%=request.getContextPath()%>/adminUser/userSuspendOk" method="POST">
+				    	<input type="hidden" name="userid" id="userid" value=""/><!-- DB쪽 보낼데이터 -->
+					    	<article class="layerpop_area">
+					    	<div class="title">회원 정지 설정</div>
+					    	<a href="javascript:suspendPopupClose();" class="layerpop_close"
+					    		id="suspendlayerbox_close"></a><br/>
+					    	<div id="supspendDiv">
+						    	<div class="pop2Row"> 
+						    		<span class="pop2Left">정지 기간</span> <input type="number" id="suspendTime" name="endday" min="0" max="90"/>일
+						    		<input type="button" name="30days" value="30" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
+						    		<input type="button" name="60days" value="60" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
+						    		<input type="button" name="90days" value="90" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
+						    	</div>
+						    	<div class="pop2Row"><span class="pop2Left">사유</span><span id="spUserid">홍길동</span>회원님은 <span id="spReportNum">10회</span>
+						    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.
+						    	</div>
+						    	<div>
+						    		<span class="pop2Left">메세지</span> 
+						    		<textarea cols="30" rows="6" id="reportMsg" style="overflow:hidden" name="cause">
+						    			이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.
+						    		</textarea>
+								</div>
+						    	<input type="submit" value="등록"/>
+					    	</div>
+					    	</article>
+				    	</form>
+			</div>
+			<!-- suspend POP -->
+			
+			<!-- suspend Editpopup -->
+			<div id="userSuspendEdit" class="layerpop"
+				    	style="width:330px;height:300px;">
+				    	
+				    	<form action="<%=request.getContextPath()%>/adminUser/userSuspendEditOk" method="POST">
+				    	<input type="hidden" name="userid" id="userid" value=""/><!-- DB쪽 보낼데이터 -->
+					    	<article class="layerpop_area">
+					    	<div class="title">회원 정지 수정</div>
+					    	<a href="javascript:suspendEditPopupClose();" class="layerpop_close"
+					    		id="suspendlayerbox_close"></a><br/>
+					    	<div id="supspendDiv">
+						    	<div class="pop2Row"> 
+						    		<span class="pop2Left">정지 기간 변경</span> <input type="number" id="suspendTime" name="endday" min="0" max="90"/>일
+						    		<input type="button" name="30days" value="30" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
+						    		<input type="button" name="60days" value="60" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
+						    		<input type="button" name="90days" value="90" class="mint_Btn" onclick="change_suspendTime(this.value)"/> 
+						    	</div>
+						    	<div class="pop2Row"><span class="pop2Left">사유</span><span id="spUserid"> </span> 회원님은 <span id="spReportNum">10회</span>
+						    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.
+						    	</div>
+						    	<div>
+						    		<span class="pop2Left">메세지</span> 
+						    		<textarea cols="30" rows="6" id="reportMsg" style="overflow:hidden" name="cause">
+						    			이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.
+						    		</textarea>
+								</div>
+						    	<input type="submit" value="등록"/>
+					    	</div>
+					    	</article>
+				    	</form>
+			</div>
+			<!-- suspend POP -->
 </div><!-- adminhome -->
 <!-- Page Content -->
 </body>

@@ -1,4 +1,4 @@
-/* ================ 헤더 =================*/
+/* ================ 헤더 및 공통 =================*/
 body{
 	font-family: 'Nanum Myeongjo', serif;
 }
@@ -7,29 +7,41 @@ body{
 	width: 100%;
 	height: 100px;
 }
-
 #adminTop>img {
 	width: 150px;
 	height: 50px;
 	margin-top: 20px;
-	margin-left: 30px
+	margin-left: 80px
 }
 ul, li{
 	list-style-type: none;
-	margin : 0 auto;
+	margin : 0;
 	padding: 0;
 }
+a{
+	text-decoration: none;
+}
+
+.wordCut {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.adminTable{
+	backgound-color:#fff;
+	padding:5px;
+}
+
 /* ================ 사이드바 ==============*/
 .navigation {
 	float: left;
-	width: 20%
-} /*=== left꼭넣자....===*/
-.navigation ul {
-	margin-top: 100px;
+	width: 20%;
+	height: 600px;
 	background-color: #ddd;
-	height: 400px;
-	list-style-type: none;
-
+} /*=== left꼭넣자....===*/
+.navigation>ul{
+	margin-top: 100px;
+	
 }
 
 .navigation a {
@@ -39,7 +51,6 @@ ul, li{
 	padding: 15px;
 	text-decoration: none;
 }
-
 .icon {
 	font-weight: bold;
 	padding: 15px;
@@ -65,8 +76,8 @@ ul, li{
 .adminContent {
 	width: 80%;
 	float: right;
-	height: 450px;
-	background-color: #dcdcdc;
+	height: 600px;
+	background-color: #F7F7F7;
 	margin: 0 auto; 
 	text-align: center;
 }
@@ -80,7 +91,6 @@ ul, li{
 	height: 30px;
 	overflow: auto;
 	margin: 0 auto;
-	
 	width: 30%; <!-- 맞춰보자 -->
 }
 
@@ -97,12 +107,9 @@ ul, li{
 	text-decoration: none;
 }
 
-.wordCut {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+.adminListHead{
+	margin:30px 400px 25px 0px;
 }
-
 /* ================ 회원관리 =================*/
 #userList>li:nth-child(-n+9) {
 	background-color:#ddd;
@@ -119,11 +126,24 @@ ul, li{
 	font-size:0.5em;
 }
 #userList, #userList>li {
-	margin: 0px;
-	padding: 0;
 	background-color: #fff;
 }
 #userList{margin:0px 15px 0px 5px;}
+
+
+element.style {
+}
+.searchText {
+    width: 300px;
+    padding: 4px 0 0 10px;
+    border: 1px solid rgb(221,221,221);
+    border-radius: 8px;
+    height: 25px;
+    background-color: rgb(221,221,221);
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(64,64,64);
+}
 
 /* ================ 동행모집 ==================*/
 #partnerList>li:nth-child(-n+7) {
@@ -142,9 +162,7 @@ ul, li{
 }
 
 #partnerList>ul, #partnerList>li {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
+	
 }
 
 /* ================ 리뷰테이블 ================*/
@@ -208,7 +226,9 @@ ul, li{
     color: #3eb0ce;
     font-size: 1.3em;
     font-weight: bold;
-    line-height: 24px; }
+    line-height: 24px;
+    height:0px;
+}
 
 .layerpop_area .layerpop_close {
     width: 25px;
@@ -276,10 +296,19 @@ ul, li{
 		  border: 1px solid red;
 		  background-color: red;
 }
-.adminstop_class{
-	width:20px;
+#suspendBtn{
+    width: 26px;
+    height: 26px;
+    display: block;
+    margin-left:22px;
+    margin-top:7px;
+    background: url("../img/img_admin/stop_25_25.png")no-repeat;
+    object-fit: fill;
+}
+#suspendDiv{
 	float:left;
-	
+	margin-left:15px;
+	text-align:center;
 }
 #partnerBtn{
 	width:100px;
@@ -298,5 +327,4 @@ ul, li{
 	width:60px;
 	
 	font-weight:bold;
-	
 }

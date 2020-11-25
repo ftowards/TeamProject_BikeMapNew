@@ -3,11 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bikemap.home.admin.AdminDaoImp">
-	
 	<!-- admin추가 -->
-	<select id="registAllRecord" resultType="com.bikemap.home.regist.RegistVO">
-		select rownum, a.userid, a.username, a.gender, a.birth, a.tourcnt, a.heart, a.report, b.endday
-		from regist a join suspend b on a.userid = b.userid order by rownum desc
+	<select id="registAllRecord" resultType="com.bikemap.home.admin.AdminRegistVO"><!-- VO하나만 합성으로 설정 -->
+	 	select rownum, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt, a.heart, a.report,(select to_char(s.endday,'YY-MM-DD')	
+		from suspend s <![CDATA[ where s.userid = a.userid and rownum=1 and s.endday>=sysdate]]>)endday from regist a order by rownum desc
 	</select>
-	
+	<!-- 정지 추가하기	 -->
+	<insert id="suspendInsert" parameterType="com.bikemap.home.admin.AdminSuspendVO">
+ 		insert into suspend(userid, endday, cause)
+		values(#{userid}, to_date(sysdate+#{endday}, 'YY-MM-DD'),#{cause})
+	</insert>
+	<!-- 
+		SELECT ENDDAY FROM SUSPEND WHERE ROWNUM <=1 ORDER BY ENDDAY
+		SELECT ENDDAY FROM SUSPEND WHERE USERID ='슈퍼맨' AND ROWNUM <=1 ORDER BY ENDDAY
+	 -->
+	<update id="suspendUpdate" parameterType="com.bikemap.home.admin.AdminSuspendVO">
+		update suspend set endday=#{endday}, cause=#{cause} 
+		where rownum=1 and userid=#{userid} and endday>=sysdate;
+	</update>
 </mapper> 
