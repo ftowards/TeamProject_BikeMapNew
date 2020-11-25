@@ -1,5 +1,6 @@
 package com.bikemap.home.route;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,10 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 
 @Controller
 public class RouteController {
@@ -31,8 +28,28 @@ public class RouteController {
 	}
 	//코스검색
 	@RequestMapping("/routeSearch")
-	public String routeSearch() {
-		return "route/routeSearch";
+	public ModelAndView routeSearch() {
+		ModelAndView mav = new ModelAndView();
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		mav.setViewName("route/routeSearch");
+		return mav;
+	}
+	
+	@RequestMapping(value="/searchRouteOk", method= {RequestMethod.POST})
+	@ResponseBody
+	public List<RouteVO> routeSearchOk(RoutePagingVO pagingVO){
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		List<RouteVO> list = new ArrayList<RouteVO>();
+		
+		try {
+			int totalRecord = dao.searchResultRecord(pagingVO);
+			pagingVO.setTotalRecord(totalRecord);
+			
+			list = dao.selectRouteSearch(pagingVO);
+		}catch(Exception e) {
+			System.out.println("에러 " + e.getMessage());
+		}
+		return list;
 	}
 
 	//코스검색(글보기)
