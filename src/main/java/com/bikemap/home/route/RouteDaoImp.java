@@ -27,6 +27,15 @@ public interface RouteDaoImp {
 	// 루트 한개 읽기
 	public RouteVO selectRoute(int noroute);
 	
+	// 루트 검색하기
+	public List<RouteVO> selectRouteSearch(RoutePagingVO pagingVO);
+	
+	// 검색 결과 레코드 수 구하기
+	public int searchResultRecord(RoutePagingVO pagingVO);
+	
+
+	
+	
 	/// 루트 리스트 ////////
 	// 루트 저장 후 리스트에 추가하기
 	public int insertRouteList(RouteListVO vo);

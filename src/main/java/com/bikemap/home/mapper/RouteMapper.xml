@@ -14,9 +14,9 @@
 	</select>
 	<insert id="insertRoute" parameterType="com.bikemap.home.route.RouteVO">
 		insert into route(noroute, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint5, routepoint6, routepoint7,
-		geocode, userid, distance, ascent, descent, region, closed) 
+		geocode, polyline, mapcenter, maplevel, userid, distance, ascent, descent, region, closed) 
 		values(a_sq.nextval, #{title}, #{routepoint1}, #{routepoint2}, #{routepoint3,jdbcType=VARCHAR}, #{routepoint4,jdbcType=VARCHAR}, #{routepoint5,jdbcType=VARCHAR}, #{routepoint6,jdbcType=VARCHAR},
-		#{routepoint7,jdbcType=VARCHAR}, #{geocode}, #{userid}, #{distance}, #{ascent}, #{descent}, #{region}, #{closed})
+		#{routepoint7,jdbcType=VARCHAR}, #{geocode}, #{polyline}, #{mapcenter}, #{maplevel}, #{userid}, #{distance}, #{ascent}, #{descent}, #{region}, #{closed})
 	</insert>
 	<select id="lastRouteNo" resultType="int">
 		select noroute from (select noroute from route where userid = #{param1} order by 1 desc) where rownum = 1
@@ -34,7 +34,7 @@
 		#{conve2, jdbcType=VARCHAR}, #{conve3, jdbcType=VARCHAR}, #{conve4, jdbcType=VARCHAR}, #{conve5, jdbcType=VARCHAR})
 	</insert>	
 	<select id="selectRoute" resultType="com.bikemap.home.route.RouteVO">
-		select noroute, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint4, routepoint5, routepoint6, routepoint7,
+		select noroute, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint5, routepoint6, routepoint7,
 		geocode, userid, distance, ascent, descent, region, to_char(writedate, 'YY-MM-DD HH24:MI') writedate from route
 		where noroute = #{param1} and closed = 'F'
 	</select>
@@ -42,5 +42,17 @@
 		select noroute, food1, food2, food3, food4, food5, sights1, sights2, sights3, sights4, sights5,
 		accom1, accom2, accom3, accom4, accom5, conve1, conve2, conve3, conve4, conve5 from routeplace
 		where noroute = #{param1}
+	</select>
+	<select id="searchResultRecord" resultType="int" parameterType="com.bikemap.home.route.RoutePagingVO">
+		select count(noroute) from route where ${searchKey} like '%'||#{searchWord}||'%'
+	</select>
+	<select id="selectRouteSearch" resultType="com.bikemap.home.route.RouteVO" parameterType="com.bikemap.home.route.RoutePagingVO">
+		<![CDATA[
+		select * from (select * from 
+		(select noroute, title, polyline, mapcenter, maplevel, userid from route
+		where ${searchKey} like '%'||#{searchWord}||'%'
+		order by noroute desc) where rownum <= (#{nowPage} * #{onePageRecord}) order by noroute asc) 
+		where rownum <= #{lastPageRecordCount} order by noroute desc
+		]]> 
 	</select>
 </mapper> 

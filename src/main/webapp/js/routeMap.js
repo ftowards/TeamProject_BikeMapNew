@@ -759,6 +759,7 @@ $(function(){
     
     // 4. 경로 객체 생성하기
     var polyline = "";
+    var linePath = [];
     // Load the Visualization API and the columnchart package.
     google.load("visualization", "1", { packages: ["columnchart"] });
 
@@ -769,7 +770,7 @@ $(function(){
     		polyline.setMap(null);
 		}
     	
-    	var linePath = [];
+    	linePath = [];
     	// 좌표 정보를 바탕으로 경로 배열 입력하기
     	$.each(points, function(index, v){
     		var p = new kakao.maps.LatLng(v[0], v[1]);
@@ -924,6 +925,10 @@ $(function(){
 			return false;
 		}else{
 			data += "&geocode="+geocode;
+			data += "&polyline="+linePath;
+			data += "&mapcenter="+ map.getCenter();
+			data += "&maplevel="+ map.getLevel();
+			
 		}
 		
 		// 4. 거리 상승 하강 고도 설정
