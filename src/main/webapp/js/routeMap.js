@@ -138,7 +138,7 @@
 		
 		var el = document.createElement('li');
 		var itemStr = '<span class="markerbg marker_'+(index+1)+'"></span>'+
-					  '<div class="info">' + '<b style="font-size:16.5px; font-weight:bold; color:#002060">'+places.place_name + '</b>';
+					  '<div class="info">' + '<b style="font-size:15px; font-weight:bold; color:#002060">'+places.place_name + '</b>';
 					  
 		if(places.road_address_name){
 			itemStr += '<span style="font-size:15px;">'+places.road_address_name + '</span>'+
@@ -238,13 +238,13 @@
 		
 		// 카테고리 추가 버튼 생성
 		if(group == 'FD6' || group =='CE7'){
-			content += "<hr><div class='categoryDiv1'><button onclick='setPlaceList(value, title)' title='foodList' class='food_Btn' value='"+place+"'>음식점 저장</button></div>";
+			content += "<hr><div class='categoryDiv1'><button onclick='setPlaceList(value, title)' title='foodList' class='food_Btn2' value='"+place+"'>음식점 저장</button></div>";
 		}else if(group == 'CT1' || group =='AT4'){
-			content += "<hr><div class='categoryDiv1'><button onclick='setPlaceList(value, title)' title='sightsList' class='sights_Btn' value='"+place+"'>관광지 저장</button></div>";
+			content += "<hr><div class='categoryDiv1'><button onclick='setPlaceList(value, title)' title='sightsList' class='sights_Btn2' value='"+place+"'>관광지 저장</button></div>";
 		}else if(group == 'AD5'){
-			content += "<hr><div class='categoryDiv2'><button onclick='setPlaceList(value, title)' title='accomodationList' class='accomodation_Btn' value='"+place+"'>숙박시설 저장</div></button>";
+			content += "<hr><div class='categoryDiv2'><button onclick='setPlaceList(value, title)' title='accomodationList' class='accomodation_Btn2' value='"+place+"'>숙박시설 저장</div></button>";
 		}else if(group == 'CS2' || group == 'PK6' ||group == 'SW8' ||group == 'BK9' ||group == 'HP8' ||group == 'PM9'){
-			content += "<hr><div class='categoryDiv2'><button onclick='setPlaceList(value, title)' title='convenientList' class='convenient_Btn' value='"+place+"'>편의시설 저장</div></button>";
+			content += "<hr><div class='categoryDiv2'><button onclick='setPlaceList(value, title)' title='convenientList' class='convenient_Btn2' value='"+place+"'>편의시설 저장</div></button>";
 		}
 		content += '</ul></div>';
 		
