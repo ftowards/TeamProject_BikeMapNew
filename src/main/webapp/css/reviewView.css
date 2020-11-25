@@ -375,7 +375,7 @@ a {text-decoration: none;}
 
 
 .fileDrop{
-	width: 99%;
+	width: 99.3%;
 	border : 2px dotted #0b58a2;
 	height: 200px;
 }
@@ -391,12 +391,23 @@ a {text-decoration: none;}
 	text-align: center;	
 	
 }
+.form-control{
+	width : 99%;
+	
+	
+}
 
 .pull-right{
 	float: right;
 	
+}
+
+.form-group{
+	margin-bottom: 6px;
 	
 }
+
+
 
 
 

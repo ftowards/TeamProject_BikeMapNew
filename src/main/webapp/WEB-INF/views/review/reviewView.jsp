@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
+<link rel="stylesheet" href="/home/api/lightbox/css/lightbox.css"/>
+<script src="/home/api/light/js/lightbox.js"></script>
+
 
 <!-- 후기보기메인 -->
 <div class="container">
@@ -31,10 +34,10 @@
 			<div id= "contentlocation">
 
 					<div class = "contentlocationdiv">
-						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png"/></a>
+						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png" /></a>
 					</div>			
 					<div class = "contentlocationdiv">
-						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg"/></a>
+						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg" /></a>
 					</div>
 					<div class = "contentlocationdiv">
 						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>

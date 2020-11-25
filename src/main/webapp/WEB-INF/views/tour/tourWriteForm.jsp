@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/home/css/tourWriteFormStyle.css" type="text/css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
- <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/home/api/ckeditor/ckeditor.js"></script>
 
 <script>
@@ -75,8 +75,9 @@ $(function(){
 			yearRange:"2019:2020"
 		
 		});
+		
 	 	CKEDITOR.replace('content',{
-			height:400
+			
 		}); 
 		
 		$("#tourWriteForm").submit(function(){
@@ -130,6 +131,7 @@ $(function(){
 		});
 	});
 </script>
+
 <div id="mainDiv">
 	<form id="tourWriteForm">
 	<div id="tourWriteFormTitleDiv"><label id="tourWriteFormTitleLbl"><b>동행찾기 게시판 글쓰기</b></label><br/><hr/></div>
