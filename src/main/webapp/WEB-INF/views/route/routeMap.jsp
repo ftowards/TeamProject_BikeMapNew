@@ -73,28 +73,29 @@
 			<!-- 길찾기 -->
 			<div class="tab">
 				<ul id="routePoint">
-					<li id="startPoint" class="tab_liTag"><input type="text"/>
+					<li id="startPoint" class="tab_liTag"><input type="text" style='margin-top:20px' placeholder="출발지를 지정하세요"/>
 						<input type="hidden" name="routePoint"/></li>
-					<li id="arrivePoint" class="tab_liTag"><input type="text"/>
+					<li id="arrivePoint" class="tab_liTag"><input type="text" placeholder="도착지를 지정하세요"/>
 						<input type="hidden" name="routePoint"/></li>
 				</ul>
-				<div style='padding-left:14px'>
+				<div style='padding-left:33px; margin-top:10px;'>
 					<select name="preference" class="selectBox" style='width:130px'>
 						<option value="recommended" selected>추천 경로</option>
 						<option value="shortest">최단 거리</option>
 					</select>
-					<input type="button" value="경로 탐색" onclick="searchRoute();" class="gray_Btn" style='font-size:14px'/>
+					<input type="button" value="경로 탐색" onclick="searchRoute();" class="mint_Btn" style='font-size:14px; height:30px'/>
 				</div>
-				<div style='padding-left:12px'>
+				<div style='padding-left:50px'>
 					<input type="button" value="지점 전환" onclick="changeStartArrive();" class="gray_Btn" style='font-size:14px'/>
-					<input type="button" value="초기화" onclick="clearRoute();" class="gray_Btn" style='font-size:13px'/>
+					<input type="button" value="초기화" onclick="clearRoute();" class="gray_Btn" style='font-size:13px; width:85px'/>
 				</div>
 				<div id="routeInfo">
-					총거리 : <span id="distance"></span>km<br/>
+					총 거리 : <span id="distance"></span>km<br/>
 					상승고도 : <span id="ascent"></span>m<br/>
 					하강고도 : <span id="descent"></span>m<br/>
 				</div>
 				<div id="elevation_chart"></div>
+				<div id="chart_Back"></div>
 			</div>
 			
 			<!-- 저장한 장소 목록 -->
@@ -126,14 +127,14 @@
 							<h4 style='padding-left:45px; color:#005766'>로그인 후 이용 가능합니다.</h4>
 						</div>
 						<div id="logButtons">
-							<input type="button" name="login" value="로그인" class="mint_Btn" onclick="location.href='/home/login'"/>
+							<input type="button" name="login" value="로그인" class="mint_Btn" style='width:80px; height:35px; font-size:15px' onclick="location.href='/home/login'"/>
 							<input type="button" name="login" value="회원가입" class="WMint_Btn" onclick="location.href='/home/registerForm'"/>
 						</div>
 				</c:if>
 				<c:if test="${logId!=null }">
 				<form id="routeSave">
 					<input type="text" name="title" id="title" placeholder=" 코스 이름을 입력하세요"/><br/>
-						<select name="catename" class="selectBox" style='width:170px'>
+						<select name="catename" class="selectBox" style='width:170px; margin-left:20px'>
 							<c:forEach var="list" items="${category }">
 								<option value="${list.nocoursecate }" title="${list.catename }">${list.catename}</option>
 							</c:forEach>
@@ -142,11 +143,12 @@
 							</c:if>
 						</select><br/>
 						<span class="saveTxt">※ 코스 공개여부를 설정해주세요</span><br/>
-					<div style='margin-top:10px;'>
+					<div style='margin:10px 0 0 14px;'>
 						<input type="radio" name="closed" value="F" checked/><span class="saveTxt2"> 공개</span>&emsp;&emsp;&emsp;
 						<input type="radio" name="closed" value="T"/><span class="saveTxt2"> 비공개</span>
 					</div><br/>
-					<input type="submit" value="저장하기" class="gray_Btn" style='font-size:16px'/>
+					<img id="movingImg" src="<%=request.getContextPath() %>/img/img_route/moving.gif"/><br/>
+					<input type="submit" value="나의 코스 저장하기" class="mint_Btn" id="saveBtn"/>
 				</form>
 				</c:if>
 			</div>
