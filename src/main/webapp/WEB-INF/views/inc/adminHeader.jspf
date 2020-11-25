@@ -16,46 +16,6 @@
 		
 <title>Bike Map</title>
 <script>
-	
-	
-	
-	/* $(function(){  //페이지 보여주기 방식 변경
-		
-		//회원관리게시판, 처음 관리자화면 초기페이지
-		$("#userAdmin").click(function(){
-			var url = "/admin/ajaxObject";
-			$.ajax({
-				url:url,
-				success:function(result){
-					var tag ="<ul>";
-					tag += "<li>번호 = "+result.no+"</li>";
-					tag += "<li>이름 = "+result.username+"</li>";
-					tag += "<li>주소 = "+result.addr+"</li>";
-					tag += "</ul>";
-					
-					$("#tableDiv").append(tag);
-				},error:function(){
-					console.log("객체받기에러");
-				}
-			});
-		});
-		
-		//동행모집게시판 클릭
-		$("#partnerfreeboardAdmin").click(function(){
-			$(this).css('color','red');
-			$("#tableDiv").load('/WEB-INF/views/admin/partnerfreeboardTable.html');
-		});
-		//후기게시판 클릭
-		$("#reviewfreeboardAdmin").click(function(){
-			$(this).css('color','red');
-			$("#tableDiv").append('/reviewFreeboardTable.html');
-		});
-		//1:1 문의 게시판 클릭
-		$("#inqAdmin").click(function(){
-			$("#tableDiv").append('/inqTable.html');
-		});	
-	});*/
-    
 
     function userPopupOpen() {
         $('.layerpop').css("position", "absolute");
@@ -74,13 +34,16 @@
         $('#userlayer').hide();
     }
     
-    function suspendPopupOpen() {
-        $('.userSuspend').css("position", "absolute");
+    function suspendPopupOpen(userid) {
+        $('.layerpop').css("position", "absolute");
         //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
-        $('#userSuspend').css("top",(($(window).height() - $('#userlayer').outerHeight()) / 2) + $(window).scrollTop());
-        $('#userSuspend').css("left",(($(window).width() - $('#userlayer').outerWidth()) / 2) + $(window).scrollLeft());
+        $('#userSuspend').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
+        $('#userSuspend').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
         $('#userSuspend').draggable();
         $('#userSuspend').show();
+        $('#userid').val(userid);
+        $('#spUserid').text(userid);
+        
     }
 
     function suspendPopupClose() {

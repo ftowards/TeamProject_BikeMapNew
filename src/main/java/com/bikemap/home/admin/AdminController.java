@@ -3,12 +3,16 @@ package com.bikemap.home.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 
 
 
@@ -25,7 +29,7 @@ public class AdminController {
 		this.sqlSession = sqlSession;
 	}
 	//회원관리전체리스트
-	@RequestMapping("/adminUser")	
+	@RequestMapping("/adminUser")
 	public ModelAndView adminUser() {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		List<AdminRegistVO>list = dao.registAllRecord();
@@ -35,6 +39,35 @@ public class AdminController {
 		mav.setViewName("admin/adminUserTable");
 		return mav;
 	}
+	//정지추가
+	@RequestMapping(value="/adminUser/userSuspendOk", method=RequestMethod.POST)
+	public ModelAndView userSuspendOk(AdminSuspendVO vo) {
+		
+		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
+		int result = dao.suspendInsert(vo);
+		ModelAndView mav = new ModelAndView();
+		
+		if(result>0) {
+			mav.setViewName("redirectAttributes");
+		}else {
+			mav.setViewName("admin/result");
+		}
+		return mav;
+	}
+	//정지 수정 및 삭제
+	@RequestMapping(value="/adminUser/userSuspendEditOk", method=RequestMethod.POST)
+	public ModelAndView userSuspendUpdateOk(AdminSuspendVO vo) {
+		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
+		int result = dao.suspendUpdate(vo);
+		ModelAndView mav = new ModelAndView();
+		if(result>0) {//업데이트
+			mav.setViewName("redirect:adminUser");
+		}else {
+			mav.setViewName("board/result");
+		}
+		return mav;
+	}
+	
 	//동행찾기패널
 	@RequestMapping("/adminPartner")
 	public String adminPartner() {

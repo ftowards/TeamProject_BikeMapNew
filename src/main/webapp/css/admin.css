@@ -226,7 +226,9 @@ element.style {
     color: #3eb0ce;
     font-size: 1.3em;
     font-weight: bold;
-    line-height: 24px; }
+    line-height: 24px;
+    height:0px;
+}
 
 .layerpop_area .layerpop_close {
     width: 25px;
@@ -303,6 +305,11 @@ element.style {
     background: url("../img/img_admin/stop_25_25.png")no-repeat;
     object-fit: fill;
 }
+#suspendDiv{
+	float:left;
+	margin-left:15px;
+	text-align:center;
+}
 #partnerBtn{
 	width:100px;
 	height:10px;
@@ -320,5 +327,4 @@ element.style {
 	width:60px;
 	
 	font-weight:bold;
-	
 }

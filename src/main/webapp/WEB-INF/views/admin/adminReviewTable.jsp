@@ -133,8 +133,6 @@
 							<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=nowPage+1 %>">▶</a>
 						<%} %>
 					</ul>
-					
-						
 				</div><!-- paging -->
 				<div id="partnerBtn">
 					<%
@@ -147,8 +145,6 @@
 					%>
 				</div><!-- btn -->
 			</div><!-- adminContent -->
-	
-</div><!-- adminhome -->
 <!-- Page Content -->
 </body>
 </html>
