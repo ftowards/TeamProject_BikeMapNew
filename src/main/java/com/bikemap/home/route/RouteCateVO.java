@@ -6,10 +6,10 @@ public class RouteCateVO {
 	private String catename;
 	private String userid;
 	
-	public int getNocoursecate() {
+	public int getNoroutecate() {
 		return noroutecate;
 	}
-	public void setNocoursecate(int noroutecate) {
+	public void setNoroutecate(int noroutecate) {
 		this.noroutecate = noroutecate;
 	}
 	public String getCatename() {

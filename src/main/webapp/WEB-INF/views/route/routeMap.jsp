@@ -133,9 +133,9 @@
 				<c:if test="${logId!=null }">
 				<form id="routeSave">
 					<input type="text" name="title" id="title" placeholder=" 코스 이름을 입력하세요"/><br/>
-						<select name="catename" class="selectBox" style='width:170px'>
+						<select id="catename" class="selectBox" style='width:170px'>
 							<c:forEach var="list" items="${category }">
-								<option value="${list.nocoursecate }" title="${list.catename }">${list.catename}</option>
+								<option value="${list.noroutecate }" title="${list.catename }">${list.catename}</option>
 							</c:forEach>
 							<c:if test="${fn:length(category) < 5}">
 								<option value="addCategory">카테고리 추가</option>

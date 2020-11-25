@@ -19,6 +19,7 @@ function getBytes(str){
     }
     return cnt;
 }
+
 </script>
 <div class="mainDiv" style='margin-top:100px; width:900px; height:1800px;'>
 	<div id="mapDiv" style='width:900px;'>
@@ -94,42 +95,113 @@ function getBytes(str){
 		</div>
 	</div>
 	<div id="placeList">
-		<div >
+		<div >음식점
 			<ul id="foodList">
-				
-				<li><c:if test="${placeVO.food1!= null }"></c:if></li>
-				<li>3333음식점</li>
-				<li>BBBB식당</li>
-				<li>CCCC카페</li>
-				<li>DDD음식점</li>
+				<c:if test="${placeVO.food1placename != null }">
+					<li><a href="${placeVO.food1placeurl }" target="_blank">${placeVO.food1placename }</a>
+						<input type="hidden" name="foodList" value="${placeVO.food1point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.food2placename != null }">
+					<li><a href="${placeVO.food2placeurl }" target="_blank">${placeVO.food2placename }</a>
+						<input type="hidden" name="foodList" value="${placeVO.food1point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.food3placename != null }">
+					<li><a href="${placeVO.food3placeurl }" target="_blank">${placeVO.food3placename }</a>
+						<input type="hidden" name="foodList" value="${placeVO.food3point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.food4placename != null }">
+					<li><a href="${placeVO.food4placeurl }" target="_blank">${placeVO.food4placename }</a>
+						<input type="hidden" name="foodList" value="${placeVO.food4point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.food5placename != null }">
+					<li><a href="${placeVO.food5placeurl }" target="_blank">${placeVO.food5placename }</a>
+						<input type="hidden" name="foodList" value="${placeVO.food5point }"/><li>
+				</c:if>
 			</ul>
+			<label class="switch">
+  				<input type="checkbox" name="foodMarker"><span class="slider round"></span>
+			</label>
 		</div>
-		<div>
+		<div>관광지
 			<ul id="sightsList">
-				<li>관광지</li>
-				<li>A2222음식점</li>
-				<li>BBBB식당</li>
-				<li>CCCC카페</li>
-				<li>DDD음식점</li>
+				<c:if test="${placeVO.sights1placename != null }">
+					<li><a href="${placeVO.sights1placeurl }" target="_blank">${placeVO.sights1placename }</a>
+						<input type="hidden" name="sightsList" value="${placeVO.sights1point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.sights2placename != null }">
+					<li><a href="${placeVO.sights2placeurl }" target="_blank">${placeVO.sights2placename }</a>
+						<input type="hidden" name="sightsList" value="${placeVO.sights1point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.sights3placename != null }">
+					<li><a href="${placeVO.sights3placeurl }" target="_blank">${placeVO.sights3placename }</a>
+						<input type="hidden" name="sightsList" value="${placeVO.sights3point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.sights4placename != null }">
+					<li><a href="${placeVO.sights4placeurl }" target="_blank">${placeVO.sights4placename }</a>
+						<input type="hidden" name="sightsList" value="${placeVO.sights4point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.sights5placename != null }">
+					<li><a href="${placeVO.sights5placeurl }" target="_blank">${placeVO.sights5placename }</a>
+						<input type="hidden" name="sightsList" value="${placeVO.sights5point }"/><li>
+				</c:if>
 			</ul>
+			<label class="switch">
+  				<input type="checkbox" name="sightsMarker"><span class="slider round"></span>
+			</label>
 		</div>
-		<div>
+		<div>숙박시설
 			<ul  id="accommodationList">
-				<li>숙박시설</li>
-				<li>AAA음식점</li>
-				<li>BBBB식당</li>
-				<li>CCCC카페</li>
-				<li>DDD음식점</li>
+				<c:if test="${placeVO.accom1placename != null }">
+					<li><a href="${placeVO.accom1placeurl }" target="_blank">${placeVO.accom1placename }</a>
+						<input type="hidden" name="accommodationList" value="${placeVO.accom1point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.accom2placename != null }">
+					<li><a href="${placeVO.accom2placeurl }" target="_blank">${placeVO.accom2placename }</a>
+						<input type="hidden" name="accommodationList" value="${placeVO.accom1point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.accom3placename != null }">
+					<li><a href="${placeVO.accom3placeurl }" target="_blank">${placeVO.accom3placename }</a>
+						<input type="hidden" name="accommodationList" value="${placeVO.accom3point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.accom4placename != null }">
+					<li><a href="${placeVO.accom4placeurl }" target="_blank">${placeVO.accom4placename }</a>
+						<input type="hidden" name="accommodationList" value="${placeVO.accom4point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.accom5placename != null }">
+					<li><a href="${placeVO.accom5placeurl }" target="_blank">${placeVO.accom5placename }</a>
+						<input type="hidden" name="accommodationList" value="${placeVO.accom5point }"/><li>
+				</c:if>
 			</ul>
+			<label class="switch">
+  				<input type="checkbox" name="accommodationMarker"><span class="slider round"></span>
+			</label>
 		</div>
-		<div>
+		<div>편의시설
 			<ul  id="convenientList">
-				<li>편의시설</li>
-				<li>AAA음식점</li>
-				<li>BBBB식당</li>
-				<li>CCCC카페</li>
-				<li>DDD음식점</li>
+				<c:if test="${placeVO.conve1placename != null }">
+					<li><a href="${placeVO.conve1placeurl }" target="_blank">${placeVO.conve1placename }</a>
+						<input type="hidden" name="convenientList" value="${placeVO.conve1point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.conve2placename != null }">
+					<li><a href="${placeVO.conve2placeurl }" target="_blank">${placeVO.conve2placename }</a>
+						<input type="hidden" name="convenientList" value="${placeVO.conve1point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.conve3placename != null }">
+					<li><a href="${placeVO.conve3placeurl }" target="_blank">${placeVO.conve3placename }</a>
+						<input type="hidden" name="convenientList" value="${placeVO.conve3point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.conve4placename != null }">
+					<li><a href="${placeVO.conve4placeurl }" target="_blank">${placeVO.conve4placename }</a>
+						<input type="hidden" name="convenientList" value="${placeVO.conve4point }"/><li>
+				</c:if>
+				<c:if test="${placeVO.conve5placename != null }">
+					<li><a href="${placeVO.conve5placeurl }" target="_blank">${placeVO.conve5placename }</a>
+						<input type="hidden" name="convenientList" value="${placeVO.conve5point }"/><li>
+				</c:if>
 			</ul>
+			<label class="switch">
+  				<input type="checkbox" name="convenientMarker"><span class="slider round"></span>
+			</label>
 		</div>
 	</div>
 

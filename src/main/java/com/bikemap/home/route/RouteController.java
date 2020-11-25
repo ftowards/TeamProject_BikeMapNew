@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 
 @Controller
@@ -44,12 +45,8 @@ public class RouteController {
 		RouteVO vo = dao.selectRoute(noroute);
 		RoutePlaceVO placeVO = dao.selectRoutePlace(noroute);
 		
-		System.out.println(vo.getRoutepoint1name());
-		System.out.println(vo.getRoutepoint1point());
-		
 		mav.addObject("routeVO", vo);
-		
-		
+		mav.addObject("placeVO", placeVO);
 		
 		mav.setViewName("route/routeSearchView");
 		return mav;

@@ -4,7 +4,7 @@
 	
 	var foodMarker = [],
 		sightsMarker = [],
-		accomodationMarker = [],
+		accommodationMarker = [],
 		convenientMarker = [];
 	
 	var container = document.getElementById("map");
@@ -83,9 +83,90 @@ $(function(){
 	
 	var points = decode($("#geocode").val(), true);
 	setRouteLine(points);
-	map.setBounds(bounds);
-});
 	
+	// 장소 마커 만들기
+	for(var idx = 1 ; idx <= 4 ; idx++){
+		if(idx == 1){
+			selector = "input[name=foodList]";
+			markerImage = foodImage;
+		}else if(idx == 2){
+			selector = "input[name=sightsList]";
+			markerImage = sightsImage;
+		}else if(idx == 3){
+			selector = "input[name=accommodationList]";
+			markerImage = accomImage;
+		}else if(idx == 4){
+			selector = "input[name=convenientList]";
+			markerImage = conveImage;
+		}
+		
+		var routePosition = [];
+		$(selector).each(function(){
+			var array = $(this).val().split("/");
+			var p = new kakao.maps.LatLng(array[1], array[0]);
+			
+			console.log(p);
+			bounds.extend(p);
+			routePosition.push(p);
+		});
+		
+		for(var i = 0 ; i < routePosition.length ; i++){
+			var marker = new kakao.maps.Marker({
+				position : routePosition[i]
+				, image : markerImage
+				
+			});
+			
+			if(idx == 1){foodMarker.push(marker);}
+			else if(idx == 2){sightsMarker.push(marker);}
+			else if(idx == 3){accommodationMarker.push(marker);}
+			else if(idx == 4){convenientMarker.push(marker);}
+		}
+	}
+	
+	map.setBounds(bounds);
+	
+	
+});
+/////////////////// event //////////////////////////
+
+// 장소 마커 표시 -- 푸드
+$("input[name=foodMarker]").on("change",function(){
+	if($(this).prop("checked")){
+		setPlaceMarker(foodMarker);
+	}else{
+		removeMarker(foodMarker);
+	}
+});
+
+// 장소 마커 표시 -- 관광지
+$("input[name=sightsMarker]").on("change",function(){
+	if($(this).prop("checked")){
+		setPlaceMarker(sightsMarker);
+	}else{
+		removeMarker(sightsMarker);
+	}
+});
+
+// 장소 마커 표시 -- 숙박
+$("input[name=accommodationMarker]").on("change",function(){
+	if($(this).prop("checked")){
+		setPlaceMarker(accommodationMarker);
+	}else{
+		removeMarker(accommodationMarker);
+	}
+});
+
+// 장소 마커 표시 -- 편의시설
+$("input[name=convenientMarker]").on("change",function(){
+	if($(this).prop("checked")){
+		setPlaceMarker(convenientMarker);
+	}else{
+		removeMarker(convenientMarker);
+	}
+});
+
+
 /////////////////// function //////////////////////
 
 // 기존에 표시한 마커 제거
@@ -112,45 +193,12 @@ $(function(){
 
 
 // 장소 마커 설정하기
-	function setPlaceMarker(markers){
-		
-		if(markers == foodMarker){
-			selector = "input[name=foodList]";
-			markerImage = foodImage;
-		}else if(markers == sightsMarker){
-			selector = "input[name=sightsList]";
-			markerImage = sightsImage;
-		}else if(markers == accomodationMarker){
-			selector = "input[name=accomodationList]";
-			markerImage = accomImage;
-		}else if(markers == convenientMarker){
-			selector = "input[name=convenientList]";
-			markerImage = conveImage;
-		}
-		
-		var routePosition = [];
-		$(selector).each(function(){
-			
-			var json = JSON.parse($(this).val());
-			var p = new kakao.maps.LatLng(json.y, json.x);
-			
-			console.log(p);
-			routePosition.push(p);
-		});
-		
-		removeMarker(markers);
-		
-		for(var i = 0 ; i < routePosition.length ; i++){
-			var marker = new kakao.maps.Marker({
-				position : routePosition[i]
-				, image : markerImage
-			});
-			
-			marker.setMap(map);
-			markers.push(marker);
+	function setPlaceMarker(markers){		
+		for(var i = 0 ; i < markers.length ; i++){
+			markers[i].setMap(map);
 		}
 	}
-
+	
 // 카테고리 추가
 	$("#catename").on('change',function(){
 		if($(this).val() == 'addCategory'){
