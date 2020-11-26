@@ -54,13 +54,13 @@ public class RouteController {
 
 	//코스검색(글보기)
 	@RequestMapping("/routeSearchView")
-	public ModelAndView routeSearchView(int noroute) {
+	public ModelAndView routeSearchView(int noboard) {
 		ModelAndView mav = new ModelAndView();
 		
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		
-		RouteVO vo = dao.selectRoute(noroute);
-		RoutePlaceVO placeVO = dao.selectRoutePlace(noroute);
+		RouteVO vo = dao.selectRoute(noboard);
+		RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
 		
 		mav.addObject("routeVO", vo);
 		mav.addObject("placeVO", placeVO);
@@ -79,6 +79,7 @@ public class RouteController {
 			String userid  = (String)session.getAttribute("logId");
 			List<RouteCateVO> categoryList = routeDao.selectCategory(userid);
 			mav.addObject("category", categoryList);
+			
 		}
 		
 		mav.setViewName("route/routeMap");
@@ -121,18 +122,23 @@ public class RouteController {
 			// 루트 저장 성공 시
 			if(result == 1) {
 				// 루트 번호를 구하여
-				int noRoute = dao.lastRouteNo(userid);
+				int noBoard = dao.lastRouteNo(userid);
 				
 				// 1. 루트 리스트 저장
-				routeListVO.setNoroute(noRoute);
+				routeListVO.setNoboard(noBoard);
+				
+				System.out.println(routeListVO.getNoboard());
+				System.out.println(routeListVO.getNoroutecate());
+				System.out.println(routeListVO.getUserid());
+				
 				dao.insertRouteList(routeListVO);
 				
 				// 2. 장소 리스트 저장
-				routePlaceVO.setNoroute(noRoute);
+				routePlaceVO.setNoboard(noBoard);
 				dao.insertRoutePlaceList(routePlaceVO);
 			}
 		}catch(Exception e) {
-			e.getStackTrace();
+			System.out.println(e.getMessage());
 			result = 0;
 		}
 		return result;

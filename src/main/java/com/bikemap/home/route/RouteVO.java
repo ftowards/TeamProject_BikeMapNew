@@ -2,7 +2,7 @@ package com.bikemap.home.route;
 
 public class RouteVO {
 	
-	private int noroute;
+	private int noboard;
 	private String title;
 	private String routepoint1;
 	private String routepoint2;
@@ -27,11 +27,11 @@ public class RouteVO {
 	
 	private double rating;
 	
-	public int getNoroute() {
-		return noroute;
+	public int getNoboard() {
+		return noboard;
 	}
-	public void setNoroute(int noroute) {
-		this.noroute = noroute;
+	public void setNoboard(int noboard) {
+		this.noboard = noboard;
 	}
 	public String getTitle() {
 		return title;

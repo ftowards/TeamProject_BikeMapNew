@@ -4,7 +4,7 @@ public class RouteListVO {
 	
 	private String userid;
 	private int noroutecate;
-	private int noroute;
+	private int noboard;
 	
 	public String getUserid() {
 		return userid;
@@ -18,10 +18,10 @@ public class RouteListVO {
 	public void setNoroutecate(int noroutecate) {
 		this.noroutecate = noroutecate;
 	}
-	public int getNoroute() {
-		return noroute;
+	public int getNoboard() {
+		return noboard;
 	}
-	public void setNoroute(int noroute) {
-		this.noroute = noroute;
+	public void setNoboard(int noboard) {
+		this.noboard = noboard;
 	}
 }
