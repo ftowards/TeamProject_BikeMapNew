@@ -25,13 +25,13 @@
 					
 					for(var i = 0 ; i < result.length ; i++){
 						var listTag = "";
-						listTag += "<div class='contentDiv'><a href='routeSearchView?noroute="+result[i].noroute+"'><div id='map"+i+"' style='width:250px;height:250px;'></div></a>";
+						listTag += "<div class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"'><div id='map"+i+"' style='width:250px;height:250px;'></div></a>";
 						listTag += "<div><img class='star' src='/home/img/img_main/star.png'/></div></div>";
 						
 						$("#content").append(listTag);
 						
-						console.log(result[0].mapcenter);
-						var array = result[0].mapcenter.replace("(","").replace(")","").split(",");
+						console.log(result[i].mapcenter);
+						var array = result[i].mapcenter.replace("(","").replace(")","").split(",");
 						
 						var container = document.getElementById("map"+i);
 						var options = {
