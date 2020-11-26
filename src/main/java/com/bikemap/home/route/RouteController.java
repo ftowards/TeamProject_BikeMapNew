@@ -87,9 +87,7 @@ public class RouteController {
 	
 	@RequestMapping(value="/searchRoutePaging", method= {RequestMethod.POST})
 	@ResponseBody
-	public RoutePagingVO searchRoutePageing(RoutePagingVO pagingVO) {
-		System.out.println(pagingVO.getNowPage());
-		
+	public RoutePagingVO searchRoutePageing(RoutePagingVO pagingVO) {		
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		try {
 			int totalRecord = dao.searchResultRecord(pagingVO);
