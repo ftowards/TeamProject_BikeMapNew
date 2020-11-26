@@ -73,9 +73,9 @@
 			<!-- 길찾기 -->
 			<div class="tab">
 				<ul id="routePoint">
-					<li id="startPoint" class="tab_liTag"><input type="text" id="startBox" placeholder="출발지를 지정하세요"/>
+					<li id="startPoint" class="tab_liTag"><input type="text" class="startBox" placeholder="출발지를 지정하세요"/>
 						<input type="hidden" name="routePoint"/></li>
-					<li id="arrivePoint" class="tab_liTag"><input type="text" id="arriveBox" placeholder="도착지를 지정하세요"/>
+					<li id="arrivePoint" class="tab_liTag"><input type="text" class="arriveBox" placeholder="도착지를 지정하세요"/>
 						<input type="hidden" name="routePoint"/></li>
 				</ul>
 				<div style='padding-left:33px; margin-top:10px'>
@@ -147,14 +147,12 @@
 						<input type="radio" name="closed" value="F" checked/><span class="saveTxt2"> 공개</span>&emsp;&emsp;&emsp;
 						<input type="radio" name="closed" value="T"/><span class="saveTxt2"> 비공개</span>
 					</div><br/>
-					<form id="descriptionForm" method="post" action="">
-						<div id="saveDiv3">
-							<textarea name="description" id="description" placeholder="코스에 대한 설명을 적어주세요:)" rows="6" cols="15"></textarea><br/>
-						</div>
-						<div id="saveDiv2">
-							<input type="submit" value="나의 코스 저장하기" class="blue_Btn" id="saveBtn"/>
-						</div>
-					</form>
+					<div id="saveDiv3">
+						<textarea name="description" id="description" placeholder="코스에 대한 설명을 적어주세요:)" rows="6" cols="15"></textarea><br/>
+					</div>
+					<div id="saveDiv2">
+						<input type="submit" value="나의 코스 저장하기" class="blue_Btn" id="saveBtn"/>
+					</div>
 					<div id="saveDiv1">
 						<img src="<%=request.getContextPath() %>/img/img_route/bicycle.gif"/>
 					</div>

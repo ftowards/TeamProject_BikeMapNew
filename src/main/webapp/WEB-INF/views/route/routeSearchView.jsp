@@ -6,22 +6,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-$(document).on('keyup', '#commentBox', function(e){
-    var commentBox = $(this).val();
-    $('#cntSPAN').text(getBytes(commentBox));    
-});
- 
-function getBytes(str){
-    var cnt = 0;
-    for(var i =0; i<str.length;i++) {
-        cnt += (str.charCodeAt(i) >128) ? 2 : 1;
-    }
-    return cnt;
-}
 
-</script>
-<div class="mainDiv" style='margin-top:100px; width:900px; height:1800px;'>
+<div id="mainDiv2">
 	<div id="mapDiv" style='width:900px;'>
 		<b>코스정보보기</b><br/><br/>
 		<div class="wordCut" style='height:50px;'>${routeVO.title}</div>
@@ -204,6 +190,6 @@ function getBytes(str){
 			</label>
 		</div>
 	</div>
-
+	<%@ include file="../inc/reply.jspf"%>
 </div>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/routeSearchView.js"></script>

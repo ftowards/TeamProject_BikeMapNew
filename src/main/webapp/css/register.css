@@ -1,4 +1,13 @@
 	/*===================================registDel===================================*/
+	textarea:focus {
+		outline: none;
+	}
+	button:focus {
+		outline: none;
+	}
+	input:focus {
+		outline: none;
+	}
 	.registerMainDiv *{
 		width:800px;
 		margin : 0 auto;

@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
-<div class="mainDiv">
+<div style='width:800px; height:1500px; margin:0 auto'>
 	<form id="searchRoute" method="post" action="#" class="optionBar" style='float:left;'>
 		<select name="searchKey" class="regionSelect">
    		    <option value="title">코스이름</option>
@@ -33,7 +33,7 @@
 		<div id="paging">
 			<ul>
 			<!-- 이전 페이지 -->
-				<c:if test="${pageVO.nowPage != 1 }">
+				<c:if test="${pagingVO.nowPage != 1 }">
 					<li><a href="#">Prev</a></li>
 				</c:if>
 				<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
@@ -47,7 +47,7 @@
 					</c:if>
 				</c:forEach>
 			<!-- 다음 페이지 -->
-				<c:if test="${pageVO.nowPage != pageVO.totalPage }">
+				<c:if test="${pagingVO.nowPage != pagingVO.totalPage }">
 					<li><a href="#">Next</a></li>
 				</c:if>
 			</ul>

@@ -99,9 +99,5 @@
 			<url-pattern>/WEB-INF/views/tour/tourView.jsp</url-pattern>
 			<include-coda>/WEB-INF/views/inc/reply.jspf</include-coda>
 		</jsp-property-group>
-		<jsp-property-group>
-			<url-pattern>/WEB-INF/views/route/routeSearchView.jsp</url-pattern>
-			<include-coda>/WEB-INF/views/inc/reply.jspf</include-coda>
-		</jsp-property-group>
 	</jsp-config>
 </web-app>
