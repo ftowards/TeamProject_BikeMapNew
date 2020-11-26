@@ -29,11 +29,11 @@
 	</div>
 	<div id="routeSearch">
 		<div class="title">코스검색</div>
-		<div id="subTxt">평점순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
+		<div id="subTxt">최신순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>평점순</span></div>
 		<div id="paging">
 			<ul>
 			<!-- 이전 페이지 -->
-				<c:if test="${pageVO.nowPage != 1 }">
+				<c:if test="${pagingVO.nowPage != 1 }">
 					<li><a href="#">Prev</a></li>
 				</c:if>
 				<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
@@ -47,7 +47,7 @@
 					</c:if>
 				</c:forEach>
 			<!-- 다음 페이지 -->
-				<c:if test="${pageVO.nowPage != pageVO.totalPage }">
+				<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
 					<li><a href="#">Next</a></li>
 				</c:if>
 			</ul>

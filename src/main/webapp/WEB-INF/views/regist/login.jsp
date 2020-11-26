@@ -19,8 +19,11 @@
 				url : url,
 				data : data,
 				success : function(result){
-					if(result > 0){
+					if(result == 1){
+						alert("로그인 되었습니다.");
 						location.href="/home";
+					}else if(result == 2){
+						alert("메일 인증이 되지 않은 아이디 입니다.\n가입 시 입력한 이메일에서 인증 절차를 진행해주십시오.");					
 					}else{
 						alert("로그인 실패하였습니다.\n로그인 정보를 확인해주세요.");
 					}
@@ -67,5 +70,5 @@
 			<span id="text2">아직 회원이 아니신가요?&nbsp;
 				<input type="button" value="회원가입" onclick="location.href='/home/registerForm'" class="white_Btn"/>
 			</span>
-		</div>
+	</div>
 </div> 
