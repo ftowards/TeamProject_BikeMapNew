@@ -76,6 +76,7 @@
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/tour/*</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
+			<include-coda>/WEB-INF/views/inc/reply.jspf</include-coda>
 			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
 		</jsp-property-group>
 		<jsp-property-group>
@@ -90,6 +91,7 @@
 			<url-pattern>/WEB-INF/views/route/routeSearch.jsp</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/headerTourList.jspf</include-prelude>
 		</jsp-property-group>
+		<!-- =================================reply============================ -->
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/review/reviewView.jsp</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/headerTourList.jspf</include-prelude>
