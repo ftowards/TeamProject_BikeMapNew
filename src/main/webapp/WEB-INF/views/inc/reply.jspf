@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/home/css/tourViewStyle.css" type="text/css"/>
+<link rel="stylesheet" href="/home/css/reply.css" type="text/css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
@@ -77,13 +77,13 @@
 	});
 
 </script>
-<div id="mainDiv">
+
 		<!-- ========================댓글 달기====================================================== -->
-			<div id="tourReplyDivMain">
-				<div id="tourReplyDiv">
+		<div id="mainDiv">
+			<div id="tourReplyDiv">
 					<div>댓글</div>
 					<div style="color:rgb(0,176,176)"><b>3</b></div>
-				</div>
+			</div>
 				<div id="tourReplyUseridDiv">${logId}</div>
 				<div id="tourReplytWriteDiv">
 					<form method="post" id="tourReplyForm">
@@ -95,10 +95,9 @@
 				</div>
 				<div id="tourReplyViewDiv">
 				
-				<ul id="tourReplyList">
+					<ul id="tourReplyList">
 			
 					</ul>
 				</div>	
 		</div>
 
-</div>
