@@ -31,8 +31,41 @@ public class RouteController {
 	public ModelAndView routeSearch() {
 		ModelAndView mav = new ModelAndView();
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		RoutePagingVO pagingVO = new RoutePagingVO();
+		
+		try {
+			int totalRecord = dao.searchTotalRecord();
+			pagingVO.setTotalRecord(totalRecord);
+			
+			List<RouteVO> list ;
+		
+			list = dao.selectRouteAll(pagingVO);
+			mav.addObject("list", list);
+			mav.addObject("pagingVO", pagingVO);
+			
+		}catch(Exception e) {
+			System.out.println("루트 검색 화면 호출 에러 " + e.getMessage());
+		}
+		
 		mav.setViewName("route/routeSearch");
 		return mav;
+	}
+	
+	@RequestMapping(value="/searchRouteAll", method= {RequestMethod.POST})
+	@ResponseBody
+	public List<RouteVO> routeSearchAll(RoutePagingVO pagingVO){
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		List<RouteVO> list = new ArrayList<RouteVO>();
+		
+		try {
+			int totalRecord = dao.searchResultRecord(pagingVO);
+			pagingVO.setTotalRecord(totalRecord);
+			
+			list = dao.selectRouteAll(pagingVO);
+		}catch(Exception e) {
+			System.out.println("에러 " + e.getMessage());
+		}
+		return list;
 	}
 	
 	@RequestMapping(value="/searchRouteOk", method= {RequestMethod.POST})
@@ -50,6 +83,22 @@ public class RouteController {
 			System.out.println("에러 " + e.getMessage());
 		}
 		return list;
+	}
+	
+	@RequestMapping(value="/searchRoutePaging", method= {RequestMethod.POST})
+	@ResponseBody
+	public RoutePagingVO searchRoutePageing(RoutePagingVO pagingVO) {
+		System.out.println(pagingVO.getNowPage());
+		
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		try {
+			int totalRecord = dao.searchResultRecord(pagingVO);
+			pagingVO.setTotalRecord(totalRecord);
+			
+		}catch(Exception e) {
+			System.out.println("에러 " + e.getMessage());
+		}
+		return pagingVO;
 	}
 
 	//코스검색(글보기)
@@ -79,7 +128,6 @@ public class RouteController {
 			String userid  = (String)session.getAttribute("logId");
 			List<RouteCateVO> categoryList = routeDao.selectCategory(userid);
 			mav.addObject("category", categoryList);
-			
 		}
 		
 		mav.setViewName("route/routeMap");
@@ -126,11 +174,6 @@ public class RouteController {
 				
 				// 1. 루트 리스트 저장
 				routeListVO.setNoboard(noBoard);
-				
-				System.out.println(routeListVO.getNoboard());
-				System.out.println(routeListVO.getNoroutecate());
-				System.out.println(routeListVO.getUserid());
-				
 				dao.insertRouteList(routeListVO);
 				
 				// 2. 장소 리스트 저장

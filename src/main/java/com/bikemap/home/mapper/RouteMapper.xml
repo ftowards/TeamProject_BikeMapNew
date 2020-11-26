@@ -55,4 +55,16 @@
 		where rownum <= #{lastPageRecordCount} order by noboard desc
 		]]> 
 	</select>
+	<select id="searchTotalRecord" resultType= "int">
+		select count(noboard) from route
+	</select>
+	<select id="selectRouteAll" resultType="com.bikemap.home.route.RouteVO" parameterType="com.bikemap.home.route.RoutePagingVO">
+		<![CDATA[
+		select * from (select * from 
+		(select noboard, title, polyline, mapcenter, maplevel, userid from route
+		order by noboard desc) where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
+		where rownum <= #{lastPageRecordCount} order by noboard desc
+		]]> 
+	
+	</select>
 </mapper> 
