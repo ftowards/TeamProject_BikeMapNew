@@ -76,11 +76,12 @@ $(function(){
 		
 		});
 		
-	 	CKEDITOR.replace('content',{
-			
+
+		CKEDITOR.replace('content',{
+			height:400
 		}); 
 	 
-	 	
+		
 		$("#tourWriteForm").submit(function(){
 			CKEDITOR.instances.content.updateElement();		
 			
@@ -140,7 +141,7 @@ $(function(){
 	<div id="tourWriteFormTitleDiv"><label id="tourWriteFormTitleLbl"><b>동행찾기 게시판 글쓰기</b></label><br/><hr/></div>
 	
 	<div id="RouteSearchDiv">
-		<div><input type="text" name="noroute" placeholder="코스검색(코스번호/키워드)"/></div>
+		<div><input type="text" name="reference" placeholder="코스검색(코스번호/키워드)"/></div>
 		<div><input type="button" name="routeSearchBtn" value="검&nbsp;&nbsp;색"/></div>
 	</div>
 	

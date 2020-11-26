@@ -3,7 +3,6 @@
 
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
 <link rel="stylesheet" href="/home/api/lightbox/css/lightbox.css"/>
-<script src="/home/api/light/js/lightbox.js"></script>
 
 
 <!-- 후기보기메인 -->
@@ -20,7 +19,7 @@
 			</select>
 
 			<input type="text" id="schBar"> 
-			<input type="submit" class="mint_Btn" value="검색" style='width:70px; height:40px'/>
+			<input type="submit" class="mint_Btn" value="검 색"/>
 		</div>
 		
 

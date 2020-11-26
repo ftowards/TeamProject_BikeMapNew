@@ -5,7 +5,7 @@ import com.google.gson.JsonParser;
 
 public class RoutePlaceVO {
 	
-	private int noroute;
+	private int noboard;
 	private String food1;
 		private JsonObject food1json;
 	private String food2;
@@ -50,11 +50,11 @@ public class RoutePlaceVO {
 	private String conve5;
 		private JsonObject conve5json;
 		
-	public int getNoroute() {
-		return noroute;
+	public int getNoboard() {
+		return noboard;
 	}
-	public void setNoroute(int noroute) {
-		this.noroute = noroute;
+	public void setNoboard(int noroute) {
+		this.noboard = noroute;
 	}
 	public String getFood1() {
 		return food1;

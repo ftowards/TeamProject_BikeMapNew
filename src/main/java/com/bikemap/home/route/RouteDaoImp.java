@@ -25,13 +25,19 @@ public interface RouteDaoImp {
 	public int lastRouteNo(String userid);
 	
 	// 루트 한개 읽기
-	public RouteVO selectRoute(int noroute);
+	public RouteVO selectRoute(int noboard);
 	
 	// 루트 검색하기
 	public List<RouteVO> selectRouteSearch(RoutePagingVO pagingVO);
 	
 	// 검색 결과 레코드 수 구하기
 	public int searchResultRecord(RoutePagingVO pagingVO);
+	
+	// 전체 루트 숫자 검색하기
+	public int searchTotalRecord();
+	
+	// 전체 루트 검색
+	public List<RouteVO> selectRouteAll(RoutePagingVO pagingVO);
 	
 
 	

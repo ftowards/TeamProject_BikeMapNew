@@ -45,7 +45,7 @@ a {text-decoration: none;}
 		  letter-spacing: -0.6px;
 		  text-align: left;
 		  color: #212529;
-		  margin-bottom: 40px;
+		  margin-bottom: 50px;
 	 		
 	 		} 
 	 /* 버튼 */
@@ -60,6 +60,8 @@ a {text-decoration: none;}
 			  color : white;
 			  border: 1px solid #00B0B0;
 			  background-color: #00B0B0;
+			  width : 70px;
+			  height : 40px;
 		}
 	 		
 	 		
@@ -183,11 +185,11 @@ a {text-decoration: none;}
 	
 	#reviewtext{
 	    /* width: 98%; */
-	    height: 70px;
+	    height: 40px;
 	    /* border-radius: 10px 10px; */
 	    /* padding: 10px; */
 	    text-align: left;
-	    /* white-space: nowrap; */
+	    white-space: normal;
 	    overflow: hidden;
 	    text-overflow: ellipsis;
 	    margin: -37px;
@@ -393,19 +395,51 @@ a {text-decoration: none;}
 }
 .form-control{
 	width : 99%;
-	
-	
-}
-
-.pull-right{
-	float: right;
-	
+	margin: 20px 0px 20px 0px;
+	height: 30px;
+	border: 1px solid #ebecef;
 }
 
 .form-group{
 	margin-bottom: 6px;
+	border: 1px solid #ebecef;
 	
 }
+.toplayout{
+	margin : 6px;
+	
+}
+
+.box-footer{
+	margin-bottom: 100px;
+	text-align: center;
+	
+}
+
+#btn{
+	width: 70px;
+    padding-top: 2px;
+    border: 1px solid rgb(69,69,79);
+    border-radius: 8px;
+    height: 30px;
+    background-color: rgb(69,69,79);
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    margin: 20px 0 0 25px;
+}
+#rebtn{
+	width: 79px;
+    background-color: #fff;
+    color: rgb(69,69,79);
+	border-radius: 8px;
+	height: 32px;
+	font-size: 15px;
+    font-weight: bold;
+    margin: 20px 0 0 25px;
+	}
+
 
 
 

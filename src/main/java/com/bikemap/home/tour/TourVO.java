@@ -1,10 +1,10 @@
 package com.bikemap.home.tour;
 
 public class TourVO {
-	private int notour;
+	private int noboard;
 	private String title;
 	private String userid;
-	private int noroute;
+	private int reference;
 	private String content;
 	private String deadline;
 	private String departure;
@@ -20,11 +20,11 @@ public class TourVO {
 	private String state;
 	private String ip;
 
-	public int getNotour() {
-		return notour;
+	public int getNoboard() {
+		return noboard;
 	}
-	public void setNotour(int notour) {
-		this.notour = notour;
+	public void setNoboard(int noboard) {
+		this.noboard = noboard;
 	}
 	public String getTitle() {
 		return title;
@@ -38,11 +38,11 @@ public class TourVO {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public int getNoroute() {
-		return noroute;
+	public int getReference() {
+		return reference;
 	}
-	public void setNoroute(int noroute) {
-		this.noroute = noroute;
+	public void setReference(int reference) {
+		this.reference = reference;
 	}
 	public String getContent() {
 		return content;
