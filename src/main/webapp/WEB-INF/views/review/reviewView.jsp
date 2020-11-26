@@ -20,7 +20,7 @@
 			</select>
 
 			<input type="text" id="schBar"> 
-			<input type="submit" class="mint_Btn" value="검색" style='width:70px; height:40px'/>
+			<input type="submit" class="mint_Btn" value="검 색"/>
 		</div>
 		
 
