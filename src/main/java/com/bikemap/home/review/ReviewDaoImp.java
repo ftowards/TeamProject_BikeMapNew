@@ -1,5 +1,5 @@
 package com.bikemap.home.review;
 
-public class ReviewDaoImp {
+public interface ReviewDaoImp {
 
 }

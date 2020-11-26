@@ -3,7 +3,6 @@
 
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
 <link rel="stylesheet" href="/home/api/lightbox/css/lightbox.css"/>
-<script src="/home/api/light/js/lightbox.js"></script>
 
 
 <!-- 후기보기메인 -->
