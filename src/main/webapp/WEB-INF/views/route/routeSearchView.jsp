@@ -205,42 +205,5 @@ function getBytes(str){
 		</div>
 	</div>
 
-	<div id="commentDiv">
-		<div id="cmtTitle">댓글 <span style='color:#00B0B0'>5</span></div>
-		<span class="userid">hong1234</span>
-		<input type="submit" value="등록" id="saveBtn" class="mint_Btn"/>
-		<textarea id="commentBox" name="commentBox" placeholder="주제와 무관한 댓글, 악플은 삭제될 수 있습니다." rows="5" cols="20" maxlength="100"></textarea>
-		<div id="txtCounting"><span id="cntSPAN">0</span>&nbsp;<span>/200</span></div>
-		<div id="CMTbottomDiv"></div>
-	</div>
-	<hr/>
-	<div id="comment">
-		<ul>
-			<li class="userid">goguma</li>
-			<li>총 200자인 긴 댓글은 이렇게 표시됩니다! 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다</li>
-			<li>2020.10.20 13:48</li>
-		</ul><hr style="margin:15px 0 15px 0;"/>
-		<ul>
-			<li class="userid">goguma</li>
-			<li>좋은 코스입니다.</li>
-			<li>2020.10.20 13:48</li>
-		</ul><hr/>
-		<ul>
-			<li class="userid">goguma</li>
-			<li>좋은 코스입니다.</li>
-			<li>2020.10.20 13:48</li>
-		</ul><hr/>
-		<ul>
-			<li class="userid">goguma</li>
-			<li>좋은 코스입니다.</li>
-			<li>2020.10.20 13:48</li>
-		</ul><hr/>
-		<ul>
-			<li class="userid">goguma</li>
-			<li>좋은 코스입니다.</li>
-			<li>2020.10.20 13:48</li>
-		</ul><hr/>
-	</div>
-	<div id="paging2" style='text-align:center; margin-top:30px;'>1&emsp;<span style='color:#00B0B0; font-weight:600;'>2</span>&emsp;3&emsp;4&emsp;5</div>
 </div>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/routeSearchView.js"></script>
