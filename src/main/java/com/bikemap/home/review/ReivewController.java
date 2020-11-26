@@ -22,11 +22,13 @@ public class ReivewController {
 		return "review/reviewView";
 	}
 	
+	
 	//후기 게시판 보기
 	@RequestMapping("/reviewList")
 	public String ReviewList() {
 		return "review/reviewList";
 	}
+	
 	
 	//글쓰기 폼
 	@RequestMapping("/reviewWriteForm")
@@ -34,6 +36,7 @@ public class ReivewController {
 		return "review/reviewWriteForm";
 	}
 	
+	//레코드 추가 글쓰기
 	
 	
 }

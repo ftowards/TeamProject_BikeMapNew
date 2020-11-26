@@ -28,6 +28,8 @@ public class AdminController {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+	
+	
 	//회원관리전체리스트
 	@RequestMapping("/adminUser")
 	public ModelAndView adminUser() {
@@ -39,6 +41,7 @@ public class AdminController {
 		mav.setViewName("admin/adminUserTable");
 		return mav;
 	}
+	
 	//정지추가
 	@RequestMapping(value="/adminUser/userSuspendOk", method=RequestMethod.POST)
 	public ModelAndView userSuspendOk(AdminSuspendVO vo) {
@@ -54,6 +57,7 @@ public class AdminController {
 		}
 		return mav;
 	}
+	
 	//정지 수정 및 삭제
 	@RequestMapping(value="/adminUser/userSuspendEditOk", method=RequestMethod.POST)
 	public ModelAndView userSuspendUpdateOk(AdminSuspendVO vo) {
