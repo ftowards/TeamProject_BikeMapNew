@@ -6,7 +6,7 @@
 	<!-- admin추가 -->
 	<select id="registAllRecord" resultType="com.bikemap.home.admin.AdminRegistVO"><!-- VO하나만 합성으로 설정 -->
 	 	select rownum, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt, a.heart, a.report,(select to_char(s.endday,'YY-MM-DD')	
-		from suspend s <![CDATA[ where s.userid = a.userid and rownum=1 and s.endday>=sysdate]]>)endday from regist a order by rownum desc
+		from suspend s <![CDATA[ where s.userid = a.userid and rownum=1 and s.endday>=sysdate]]>) endday from regist a order by rownum desc
 	</select>
 	<!-- 정지 추가하기	 -->
 	<insert id="suspendInsert" parameterType="com.bikemap.home.admin.AdminSuspendVO">
@@ -21,4 +21,12 @@
 		update suspend set endday=endday+#{endday}, cause=#{cause} 
 		where rownum=1 and userid=#{userid} and endday>=sysdate
 	</update>
+	<select id = "getStopState" resultType="int"><!-- VO하나만 합성으로 설정 -->
+	 	select count(userid) from suspend where rownum=1 and userid=#{userid} and endday>=sysdate
+	</select>
+	
+	<select id = "getEndday" parameterType="com.bikemap.home.admin.AdminSuspendVO" resultType="com.bikemap.home.admin.AdminSuspendVO"><!-- VO하나만 합성으로 설정 -->
+	 	select to_char(endday,'YY-MM-DD') enddayStr, userid from suspend where rownum=1 and userid=#{userid} and endday>=sysdate
+	</select>
+	
 </mapper> 
