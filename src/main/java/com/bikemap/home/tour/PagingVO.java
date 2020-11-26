@@ -10,6 +10,9 @@ public class PagingVO {
 	private int startPageNum = 1;
 	private int lastPageRecordCount = 8; // 마지막 페이지 레코드 숫자
 	
+	private String searchKey;
+	private String searchWord;
+	
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -63,6 +66,21 @@ public class PagingVO {
 	}
 	public void setLastPageRecordCount(int lastPageRecordCount) {
 		this.lastPageRecordCount = lastPageRecordCount;
+	}
+	public String getSearchKey() {
+		return searchKey;
+	}
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
+	public String getSearchWord() {
+		return searchWord;
+	}
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
 	}
 	
 }

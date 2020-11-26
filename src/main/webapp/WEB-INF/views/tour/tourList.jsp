@@ -76,11 +76,40 @@
 		});
 		
 	});	
+	//페이징 리스트 만들기
+	function setPaging(vo){
+		//이전 페이징 삭제
+		$("#paging").children().remove();
+		var tag="<ul>";
+		
+		if(vo.nowPage != 1){
+			tag += "<li><a href='javascript.movePage("+(vo.nowPage-1)+");'>Prev</a></li>";
+		}
+		for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount-1; i++){
+			if(vo.totalPage >= i){
+				if(vo.nowPage == i){
+					tag += "<li style='color:rgb(0,176,176)'><b>"+i+"</b></li>";
+				}else{
+					tag += "<li><a href='javascript:movePage("+i+")' style='color:black;'>"+i+"</a></li>";
+				}
+			}
+		}
+		if(vo.nowPage != vo.totalPage){
+			tag += "<li><a href='javascript:movePage("+(vo.nowPage+1)")'>Next</a></li>";
+		}
+		$("#paging").append(tag);
+	}
 
-
+	//페이지 이동
+	function movePage(p){
+		
+		//페이징 변경
+		var url ="<%=request.getContextPath()%>/search"
+	}
+	
 </script>
 <div id="mainDiv">
-	
+<form id="searchTour">	
 	<div id="dateDiv">
 		<div class="labelClass"><label>일&nbsp;정</label></div>
 		<div><input type="text" name="departure" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"></div>
@@ -127,47 +156,48 @@
 		
 	</div>
 	<div id="searchAndReset">
-		<div><input type="button" name="search" value="검&nbsp;색" id="search"></div>
+		<div><input type="submit" name="search" value="검&nbsp;색" id="search"></div>
 		<div><input type="reset" name="reset" value="초기화" id="reset"></div>
 	</div>
+</form>
 	<hr/>
 	<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label></div>
 	<div  id="paging">
 		<ul>
-			<c:if test="${paging.startPageNum != 1 }">
-			<li><a href="<%=request.getContextPath() %>/tourList?nowPage=${paging.startPageNum - 1 }&onePageRecord=${paging.onePageRecord}">&lt;</a></li>
-		</c:if>
-		<c:forEach begin="${paging.startPageNum }" end="${paging.startPageNum + paging.onePageNumCount -1 }" var="p">
-			<c:choose>
-				<c:when test="${p == paging.nowPage }">
-					<li  style="color:rgb(0,176,176)"><b>${p }</b></li>
-				</c:when>
-				<c:when test="${p != paging.nowPage }">
-					<li><a href="<%=request.getContextPath() %>/tourList?nowPage=${p }&onePageRecord=${paging.onePageRecord}">${p }</a></li>
-				</c:when>
-			</c:choose>
-		</c:forEach>
-
+			<c:forEach begin="${paging.startPageNum }" end="${paging.startPageNum + paging.onePageNumCount -1 }" var="p">
+				<c:if test="${paging.totalPage >= p }">
+					<c:if test="${paging.nowPage == p }">
+						<li style="color:rgb(0,176,176)"><b>${p }</b></li>
+					</c:if>
+					<c:if test="${paging.nowPage != p }">
+						<li><a href="<%=request.getContextPath() %>/tourList?nowPage=${p }&onePageRecord=${paging.onePageRecord}">${p }</a></li>
+					</c:if>
+				</c:if>
+			</c:forEach>
+			<!-- 다음페이지 -->
+				<c:if test="${paging.nowPage != paging.totalPage }">
+					<li><a href="<%=request.getContextPath()%>/tourList?nowPage=${paging.nowPage+1}"></a></li>
+				</c:if>
 		</ul>
 	</div>
 	
 	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
 	<div id="tourBoardListDivTop">	
 		<c:forEach var ="list" items="${viewAll }">
-		<a href="<%=request.getContextPath()%>/tourView?noboard=${list.noboard}"><div class="tourImgDivClass">
-			<div><img src="<%=request.getContextPath()%>/img/img_tour/map.png" class="tourImgClass"/></div>
-			<div class="blackWrapDiv">	
-				<p  style="font-size:15px;">${list.title }</p>
-				<p style="font-size:12px;">${list.departure}~${list.arrive }</p>
-				<hr style="width:150px;"/>
-				<p style="font-size:36px; "><b>1Day</b></p>
-			</div>
-		</div>	
+			<a href="<%=request.getContextPath()%>/tourView?noboard=${list.noboard}">
+			<div class="tourImgDivClass">
+				<div><img src="<%=request.getContextPath()%>/img/img_tour/map.png" class="tourImgClass"/></div>
+					<div class="blackWrapDiv">	
+						<p  style="font-size:15px;">${list.title }</p>
+						<p style="font-size:12px;">${list.departure}~${list.arrive }</p>
+						<hr style="width:150px;"/>
+						<p style="font-size:36px; "><b>1Day</b></p>
+					</div>
+			</div>	
 		</a>
 		</c:forEach>
 	</div>
 
 	
 		<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
-	</div>
 </div>
