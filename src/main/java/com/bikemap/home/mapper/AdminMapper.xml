@@ -18,7 +18,7 @@
 		SELECT ENDDAY FROM SUSPEND WHERE USERID ='슈퍼맨' AND ROWNUM <=1 ORDER BY ENDDAY
 	 -->
 	<update id="suspendUpdate" parameterType="com.bikemap.home.admin.AdminSuspendVO">
-		update suspend set endday=#{endday}, cause=#{cause} 
-		where rownum=1 and userid=#{userid} and endday>=sysdate;
+		update suspend set endday=endday+#{endday}, cause=#{cause} 
+		where rownum=1 and userid=#{userid} and endday>=sysdate
 	</update>
 </mapper> 
