@@ -31,36 +31,30 @@ public class TourController {
 
 	// 게시판 목록 & 페이징
 	@RequestMapping("/tourList")
-	public String TourList(PagingVO vo, Model model
-			, @RequestParam(value="nowPage", required=false)String nowPage
-			, @RequestParam(value="onePageRecord", required=false)String onePageRecord) {
-		
+	public ModelAndView TourList() {
+		ModelAndView mav = new ModelAndView();
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
-		List<TourVO> list = dao.selectAllTour(vo);
+		PagingVO pagingVO = new PagingVO();
+		List<TourVO> list = dao.selectAllTour(pagingVO);
 		
+		System.out.println(list.size());
 		int totalRecord = dao.getTotalTourRecord();
-		if (nowPage == null && onePageRecord == null) {
-			nowPage = "1";
-			onePageRecord = "8";
-		} else if (nowPage == null) {
-			nowPage = "1";
-		} else if (onePageRecord == null) { 
-			onePageRecord = "8";
-		}
-		vo = new PagingVO(totalRecord, Integer.parseInt(nowPage), Integer.parseInt(onePageRecord));
+		pagingVO.setTotalRecord(totalRecord);
+				
+		mav.addObject("paging", pagingVO);
+		mav.addObject("viewAll",list);
 		
-		model.addAttribute("paging", vo);
-		model.addAttribute("viewAll",dao.selectAllTour(vo));
-		return "tour/tourList";
+		mav.setViewName("tour/tourList");
+		return mav;
 	}
 																							
 	//글보기
 	@RequestMapping("/tourView")
-	public ModelAndView TourView(int notour) {
+	public ModelAndView TourView(int noboard) {
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
-		TourVO vo = dao.tourSelect(notour);
+		TourVO vo = dao.tourSelect(noboard);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("vo", vo);
@@ -81,6 +75,7 @@ public class TourController {
 	public int tourWriteFormOk(TourVO vo ,HttpServletRequest req, HttpSession ses) {
 		vo.setIp(req.getRemoteAddr());
 		vo.setUserid((String)ses.getAttribute("logId"));
+		System.out.println(11111);
 		
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		

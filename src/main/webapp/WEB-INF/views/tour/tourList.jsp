@@ -134,10 +134,10 @@
 	<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label></div>
 	<div  id="paging">
 		<ul>
-			<c:if test="${paging.startPage != 1 }">
-			<li><a href="<%=request.getContextPath() %>/tourList?nowPage=${paging.startPage - 1 }&onePageRecord=${paging.onePageRecord}">&lt;</a></li>
+			<c:if test="${paging.startPageNum != 1 }">
+			<li><a href="<%=request.getContextPath() %>/tourList?nowPage=${paging.startPageNum - 1 }&onePageRecord=${paging.onePageRecord}">&lt;</a></li>
 		</c:if>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+		<c:forEach begin="${paging.startPageNum }" end="${paging.startPageNum + paging.onePageNumCount -1 }" var="p">
 			<c:choose>
 				<c:when test="${p == paging.nowPage }">
 					<li  style="color:rgb(0,176,176)"><b>${p }</b></li>
@@ -147,16 +147,14 @@
 				</c:when>
 			</c:choose>
 		</c:forEach>
-		<c:if test="${paging.endPage != paging.lastPage}">
-			<li><a href="<%=request.getContextPath() %>/tourList?nowPage=${paging.endPage+1 }&onePageRecord=${paging.onePageRecord}">&gt;</a></li>
-		</c:if>
+
 		</ul>
 	</div>
 	
 	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
-	<div id="tourBoardListDivTop">
+	<div id="tourBoardListDivTop">	
 		<c:forEach var ="list" items="${viewAll }">
-		<a href="<%=request.getContextPath()%>/tourView?notour=${list.notour}"><div class="tourImgDivClass">
+		<a href="<%=request.getContextPath()%>/tourView?noboard=${list.noboard}"><div class="tourImgDivClass">
 			<div><img src="<%=request.getContextPath()%>/img/img_tour/map.png" class="tourImgClass"/></div>
 			<div class="blackWrapDiv">	
 				<p  style="font-size:15px;">${list.title }</p>

@@ -2,7 +2,7 @@
 	#mainDiv{
 				width:800px;
 				margin:0 auto;
-				height:2500px;			
+				height:1300px;			
 	}
 	#tourViewFormTitleDiv{
 							height:80px;
@@ -200,7 +200,7 @@
 			margin-top:30px;
 			height:700px;
 			float:left;
-			background-color:orange;
+			
 			
 	}	
 	#tourWriteTitle{
@@ -297,6 +297,8 @@
 					margin-left:15px;
 					
 	}
+	
+	/*=======================댓글===============================================*/
 	#tourReplyDivMain{
 						float:left;
 						height:50px;
@@ -355,7 +357,7 @@
 	#tourReplyViewDiv{
 						float:left;
 						width:800px;
-						height:500px;
+						height:1500px;
 			
 	}
 	#tourReplyUseridDiv{
@@ -363,12 +365,12 @@
 							float:left;
 							font-size:20px;
 							font-weight:bold;
-							height:35px;
+							height:43px;
 							color:rgb(64,64,64);
 	}	
 	
 	
-	/*=======================댓글===============================================*/
+
 	.tourReplyEdit,.tourReplyDel{
 									text-align:center;
 									border:1px solid rgb(123,123,123);

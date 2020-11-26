@@ -8,9 +8,14 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.bikemap.home.tour.PagingVO;
+import com.bikemap.home.tour.TourVO;
 
 @Controller
 public class TourReplyController {
@@ -36,14 +41,24 @@ public class TourReplyController {
 		return dao.tourReplyInsert(vo);	
 	}
 	
-	//=============댓글보기==========================================
+	//=============댓글보기&페이징==========================================
 	@RequestMapping("/tourReplyList")
 	@ResponseBody
-	public List<TourReplyVO> tourReplyAllSelect(int notour){
+	public List<TourReplyVO> tourReplyAllSelect(int noboard) {
 		
+		
+	//	System.out.println(noboard);
 		TourReplyDaoImp dao = sqlSession.getMapper(TourReplyDaoImp.class);
+
 		
-		return dao.tourReplyAllSelect(notour);
+		
+		return dao.tourReplyAllSelect(noboard);
+		
+		
+		
+		
+		
+	
 	}
 	
 	

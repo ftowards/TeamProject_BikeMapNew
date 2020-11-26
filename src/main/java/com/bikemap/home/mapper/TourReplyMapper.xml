@@ -4,11 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bikemap.home.tourReply.TourReplyDaoImp">
  <insert id="tourReplyInsert" parameterType="com.bikemap.home.tourReply.TourReplyVO">
- 	insert into tourreply(notourreply,notour,userid,reply,writedate) 
- 	values(a_sq.nextval,#{notour},#{userid},#{reply},sysdate)
+ 	insert into reply(noreply,noboard,userid,reply) 
+ 	values(a_sq.nextval,#{noboard},#{userid},#{reply})
  </insert>
- <select id="tourReplyAllSelect" parameterType="int" resultType="com.bikemap.home.tourReply.TourReplyVO">
- 	select notourreply,userid,reply,writedate from tourreply where notour=#{param1} 
- 	order by notourreply desc
+ <select id="tourReplyAllSelect" parameterType="map" resultType="com.bikemap.home.tourReply.TourReplyVO">
+
+ 	select noreply,userid,reply,to_char(writedate,'YY-MM-DD HH24:MI') writedate from reply where noboard=#{noboard} 
+ 	order by noreply desc
+
+ </select>
+  <select id="getTotalTourReplyRecord" resultType="int">
+ 	select count(noreply) from reply
  </select>
 </mapper>
