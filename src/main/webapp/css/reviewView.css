@@ -60,6 +60,8 @@ a {text-decoration: none;}
 			  color : white;
 			  border: 1px solid #00B0B0;
 			  background-color: #00B0B0;
+			  width : 70px;
+			  height : 40px;
 		}
 	 		
 	 		
@@ -393,19 +395,49 @@ a {text-decoration: none;}
 }
 .form-control{
 	width : 99%;
-	
-	
-}
-
-.pull-right{
-	float: right;
-	
+	margin: 20px 0px 20px 0px;
+	height: 30px;
 }
 
 .form-group{
 	margin-bottom: 6px;
 	
 }
+.toplayout{
+	margin : 6px;
+	
+}
+
+.box-footer{
+	margin-bottom: 100px;
+	text-align: center;
+	
+}
+
+#btn{
+	width: 70px;
+    padding-top: 2px;
+    border: 1px solid rgb(69,69,79);
+    border-radius: 8px;
+    height: 30px;
+    background-color: rgb(69,69,79);
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    margin: 20px 0 0 25px;
+}
+#rebtn{
+	width: 79px;
+    background-color: #fff;
+    color: rgb(69,69,79);
+	border-radius: 8px;
+	height: 32px;
+	font-size: 15px;
+    font-weight: bold;
+    margin: 20px 0 0 25px;
+	}
+
 
 
 
