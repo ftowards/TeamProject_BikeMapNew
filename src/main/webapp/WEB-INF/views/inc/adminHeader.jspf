@@ -17,23 +17,12 @@
 <title>Bike Map</title>
 <script>
 
-    function userPopupOpen() {
-        $('.layerpop').css("position", "absolute");
-        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
-        $('.layerpop').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
-        $('.layerpop').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
-        $('.layerpop').draggable();
-        $('#userlayer').show();
-    }
+    
 	function replyPopupOpen(){
 		$('.layerpop').css("position", "absolute");
 		
 	}
 
-    function userPopupClose() {
-        $('#userlayer').hide();
-    }
-    
     function suspendPopupOpen(userid) {
         $('.layerpop').css("position", "absolute");
         //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
@@ -43,25 +32,72 @@
         $('#userSuspend').show();
         $('#userid').val(userid);
         $('#spUserid').text(userid);
-        
     }
 
     function suspendPopupClose() {
         $('#userSuspend').hide();
     }
-
     
+    function suspendEditPopupOpen(userid) {
+        $('.layerpop').css("position", "absolute");
+        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+        $('#userSuspendEdit').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
+        $('#userSuspendEdit').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
+        $('#userSuspendEdit').draggable();
+        $('#userSuspendEdit').show();
+        $('#suspendEditUserid').val(userid);
+        $('#spEditUserid').text(userid);
+    }
+    function suspendEditPopupClose() {
+        $('#userSuspendEdit').hide();
+    }
+    //버튼 클릭시 정지기간 조정
     function change_suspendTime(time){
     	$('#suspendTime').val(time);
+    }
+    function change_suspendEditTime(time){
+    	$('#suspendEditTime').val(time);
     }
 	
     $(function(){
 		$("#checkAll").click(function(){
 			 $('input:checkbox').not(this).prop('checked', this.checked);
-		});
-	});
+			 System.out.println("왜안되냐");
+		});	
+    });
+    $(function(){
+    	// 라디오버튼 클릭시 이벤트 발생
+		$('input:radio[name=selSuspend]').click(function(){
+     		
+            if($('input[name=selSuspend]:checked').val() == "0"){
+                //$('input:number[name=endday]').attr("readonly",true);
+                $('input[name=endday]').val(-91);
+                $('#aa').hide();
+                // radio 버튼의 value 값이 0이라면 비활성화, 최대값+1을 빼준다.->정지 해제
+     
+            }else if($("input[name=selSuspend]:checked").val() == "1"){
+                  $('input[name=endday]').val(0);
+                  $('#aa').show();
+                  // radio 버튼의 value 값이 1이라면 활성화
+            }
+        });
+    });
     
-
+    function formSubmit() {
+        var params = jQuery("#userSuspendEditFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+        jQuery.ajax({
+            url: 'userSuspendUpdateOk',
+            type: 'POST',
+            data:params,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+            dataType: 'html',
+            success: function (result) {
+                if (result){
+                    // 데이타 성공일때 이벤트 작성
+                }
+            }
+        });
+    }
 	
 </script>
 </head>

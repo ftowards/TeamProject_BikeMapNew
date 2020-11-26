@@ -305,6 +305,15 @@ element.style {
     background: url("../img/img_admin/stop_25_25.png")no-repeat;
     object-fit: fill;
 }
+#suspendEditBtn{
+	width: 26px;
+    height: 26px;
+    display: block;
+    margin-left:22px;
+    margin-top:7px;
+    background: url("../img/img_admin/edit_25_25.png")no-repeat;
+    object-fit: fill;
+}
 #suspendDiv{
 	float:left;
 	margin-left:15px;

@@ -209,20 +209,26 @@ $(document).ready(function() {
 			<div id="userSuspendEdit" class="layerpop"
 				    	style="width:330px;height:300px;">
 				    	
-				    	<form action="<%=request.getContextPath()%>/adminUser/userSuspendEditOk" method="POST">
-				    	<input type="hidden" name="userid" id="userid" value=""/><!-- DB쪽 보낼데이터 -->
+				    	<form id="userSuspendEditFrm">
+				    	<input type="hidden" name="userid" id="suspendEditUserid" value=""/><!-- DB쪽 보낼데이터 -->
+					    
 					    	<article class="layerpop_area">
 					    	<div class="title">회원 정지 수정</div>
 					    	<a href="javascript:suspendEditPopupClose();" class="layerpop_close"
 					    		id="suspendlayerbox_close"></a><br/>
 					    	<div id="supspendDiv">
-						    	<div class="pop2Row"> 
-						    		<span class="pop2Left">정지 기간 변경</span> <input type="number" id="suspendTime" name="endday" min="0" max="90"/>일
-						    		<input type="button" name="30days" value="30" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
-						    		<input type="button" name="60days" value="60" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
-						    		<input type="button" name="90days" value="90" class="mint_Btn" onclick="change_suspendTime(this.value)"/> 
+					    		<div class="pop2Row">
+					    			<input type="radio" name="selSuspend" value="0" >정지해제
+					    			<input type="radio" name="selSuspend" value="1" checked="checked">정지기간연장
+					    		</div> 
+					    		
+						    	<div class="pop2Row" id="aa"> 
+						    		<span class="pop2Left">정지 기간 변경</span> <input type="number" id="suspendEditTime" name="endday"  placeholder="(-입력시 정지기간 감소)"/>일
+						    		<input type="button" name="days" value="3" class="mint_Btn" onclick="change_suspendEditTime(this.value)"/>
+						    		<input type="button" name="days" value="6" class="mint_Btn" onclick="change_suspendEditTime(this.value)"/>
+						    		<input type="button" name="days" value="9" class="mint_Btn" onclick="change_suspendEditTime(this.value)"/> 
 						    	</div>
-						    	<div class="pop2Row"><span class="pop2Left">사유</span><span id="spUserid"> </span> 회원님은 <span id="spReportNum">10회</span>
+						    	<div class="pop2Row"><span class="pop2Left">사유</span><span id="spEditUserid"> </span> 회원님은 <span id="spReportNum">10회</span>
 						    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.
 						    	</div>
 						    	<div>
@@ -231,7 +237,7 @@ $(document).ready(function() {
 						    			이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.
 						    		</textarea>
 								</div>
-						    	<input type="submit" value="등록"/>
+						    	<input type="button" value="등록" onclick="javascript:formSubmit()" />
 					    	</div>
 					    	</article>
 				    	</form>
