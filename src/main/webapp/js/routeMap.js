@@ -37,7 +37,7 @@
 	
 	// 루트 마커 이미지를 생성합니다
 	var startImage = new kakao.maps.MarkerImage('./img/img_route/markerStart.png', markerSize, markerOption);
-	var arriveImage = new kakao.maps.MarkerImage('./img/img_route/markerArrive.png', markerSize, markerOption);
+	var arriveImage = new kakao.maps.MarkerImage('./img/img_route/markerArrive2.png', markerSize, markerOption);
 	var viaImage = new kakao.maps.MarkerImage('./img/img_route/markerVia.png', markerSize, markerOption);
 	
 	// 장소 마커 이미지 생성
@@ -157,7 +157,7 @@
 
 // 마커 생성 후 지도에 표시
 	function addMarker(position, idx, title){
-	    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png'; // 마커 이미지 url, 스프라이트 이미지를 씁니다
+	    var imageSrc = '/home/img/img_route/marker_number_gray.png'; // 마커 이미지 url, 스프라이트 이미지를 씁니다
 		var imageSize = new kakao.maps.Size(36,37);
 		var imgOptions = {
 				spriteSize : new kakao.maps.Size(36,691),
@@ -480,7 +480,7 @@ $(function(){
 	function setDeleteBtn(){
 		var cnt = $("#routePoint").children("li").length ;
 		
-		var tag = "<button onclick='$(this).parent().remove();setRouteMarker();'>-</button>" ;
+		var tag = "<button id='listDel_Btn' onclick='$(this).parent().remove();setRouteMarker();'><img id='listDel_img' src='/home/img/img_route/listDelBtn.png'/></button>" ;
 		
 		$("#routePoint>li").children("button").remove();
 		
@@ -780,9 +780,9 @@ $(function(){
     	// 경로 객체 생성
 	    polyline = new kakao.maps.Polyline({
 						    path: linePath, // 선을 구성하는 좌표배열 입니다
-						    strokeWeight: 5, // 선의 두께 입니다
-						    strokeColor: '#00B0B0', // 선의 색깔입니다
-						    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+						    strokeWeight: 6, // 선의 두께 입니다
+						    strokeColor: '#FF0162', // 선의 색깔입니다
+						    strokeOpacity: 0.6, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 						    strokeStyle: 'solid' // 선의 스타일입니다
 		});
 		
