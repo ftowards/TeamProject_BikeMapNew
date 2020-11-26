@@ -43,34 +43,31 @@ public class AdminController {
 	}
 	
 	//정지추가
-	@RequestMapping(value="/adminUser/userSuspendOk", method=RequestMethod.POST)
-	public ModelAndView userSuspendOk(AdminSuspendVO vo) {
-		
+	@RequestMapping(value="/userSuspendOk", method=RequestMethod.POST)
+	@ResponseBody
+	public AdminSuspendVO userSuspendOk(AdminSuspendVO vo) {
+		AdminSuspendVO Avo = null;
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		int result = dao.suspendInsert(vo);
-		ModelAndView mav = new ModelAndView();
-		
 		if(result>0) {
-			mav.setViewName("redirectAttributes");
-		}else {
-			mav.setViewName("admin/result");
+			Avo = dao.getEndday(vo);
 		}
-		return mav;
+		//System.out.println(Avo.getEnddayStr()+"    log");
+		return Avo;
 	}
 	
-	//정지 수정 및 삭제
-	@RequestMapping(value="/adminUser/userSuspendUpdateOk", method=RequestMethod.POST)
+
+	//정지 수정
+	@RequestMapping(value="/userSuspendUpdateOk", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView userSuspendUpdateOk(AdminSuspendVO vo) {
+	public AdminSuspendVO userSuspendUpdateOk(AdminSuspendVO vo) {
+		AdminSuspendVO Avo = null;
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		int result = dao.suspendUpdate(vo);
-		ModelAndView mav = new ModelAndView();
-		if(result>0) {//업데이트
-			mav.setViewName("redirect:adminUser");
-		}else {
-			mav.setViewName("board/result");
+		if(result>0) {
+			Avo = dao.getEndday(vo);
 		}
-		return mav;
+		return Avo;
 	}
 	
 	//동행찾기패널

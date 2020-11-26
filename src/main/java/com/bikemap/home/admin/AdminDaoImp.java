@@ -14,5 +14,8 @@ public interface AdminDaoImp {
 		//회원 정지수정하기
 		public int suspendUpdate(AdminSuspendVO vo);
 		
+		public int getStopState(String userid);
+		
+		public AdminSuspendVO getEndday(AdminSuspendVO vo);
 		
 }

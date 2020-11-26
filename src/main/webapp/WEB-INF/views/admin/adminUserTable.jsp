@@ -99,10 +99,10 @@ $(document).ready(function() {
 								<li>${vo.heart}회</li>
 								<li style="color:red">
 									<c:if test="${vo.endday==null||vo.endday}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
-										<input type="button" name="userBanned" onclick="javascript:suspendPopupOpen('${vo.userid}');" id="suspendBtn"/>
+										<input type="button" title="${vo.userid}" id="suspendBtn"/>
 									</c:if>
 									<c:if test="${vo.endday!=null}">
-										<input type="button" name="userBannedEdit" onclick="javascript:suspendEditPopupOpen('${vo.userid}')" id="suspendEditBtn"/>
+										<input type="button"  title="${vo.userid}" id="suspendEditBtn"/>
 									</c:if>
 							
 								</li>
@@ -176,7 +176,7 @@ $(document).ready(function() {
 			<div id="userSuspend" class="layerpop"
 				    	style="width:330px;height:300px;">
 				    	
-				    	<form action="<%=request.getContextPath()%>/adminUser/userSuspendOk" method="POST">
+				    	<form id="userSuspendFrm" >
 				    	<input type="hidden" name="userid" id="userid" value=""/><!-- DB쪽 보낼데이터 -->
 					    	<article class="layerpop_area">
 					    	<div class="title">회원 정지 설정</div>
@@ -198,7 +198,7 @@ $(document).ready(function() {
 						    			이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.
 						    		</textarea>
 								</div>
-						    	<input type="submit" value="등록"/>
+						    	<input type="submit" value="등록" />
 					    	</div>
 					    	</article>
 				    	</form>
@@ -237,7 +237,7 @@ $(document).ready(function() {
 						    			이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.
 						    		</textarea>
 								</div>
-						    	<input type="button" value="등록" onclick="javascript:formSubmit()" />
+						    	<input type="submit" value="등록" />
 					    	</div>
 					    	</article>
 				    	</form>

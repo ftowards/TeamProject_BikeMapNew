@@ -3,6 +3,7 @@ package com.bikemap.home.admin;
 public class AdminSuspendVO {
 	private String userid;
 	private int endday;
+	private String enddayStr;
 	private String cause;
 	
 	
@@ -13,6 +14,7 @@ public class AdminSuspendVO {
 		this.userid = userid;
 	}
 	public int getEndday() {
+		
 		return endday;
 	}
 	public void setEndday(int endday) {
@@ -23,6 +25,12 @@ public class AdminSuspendVO {
 	}
 	public void setCause(String cause) {
 		this.cause = cause;
+	}
+	public String getEnddayStr() {
+		return enddayStr;
+	}
+	public void setEnddayStr(String enddayStr) {
+		this.enddayStr = enddayStr;
 	}
 	
 	
