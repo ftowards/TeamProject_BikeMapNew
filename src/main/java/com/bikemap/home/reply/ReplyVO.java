@@ -1,6 +1,6 @@
-package com.bikemap.home.tourReply;
+package com.bikemap.home.reply;
 
-public class TourReplyVO {
+public class ReplyVO {
 	private int noreply;
 	private int noboard;
 	private String userid;
@@ -38,6 +38,4 @@ public class TourReplyVO {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
-	
-	
 }

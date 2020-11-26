@@ -189,6 +189,7 @@
 			</label>
 		</div>
 	</div>
+	<input type='hidden' id="noboard" value="${routeVO.noboard }"/>
 	<%@ include file="../inc/reply.jspf"%>
 </div>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/routeSearchView.js"></script>
