@@ -12,6 +12,7 @@
 <div class="reviewBody" >	
 		<div id = "titleletter">
 			<span class="title">후기게시판보기</span><br><br>
+			<a href="<%=request.getContextPath()%>/reviewWriteForm"><span class = "title">글쓰기</span></a>
 		</div>
 	<div class="reviewList-type1">
 

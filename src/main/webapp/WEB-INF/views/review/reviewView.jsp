@@ -56,7 +56,7 @@
 
 <!-- 	후기 제목 -->
 		<div class= "reviewtitle">
-			<a href = "<%=request.getContextPath()%>/reviewList"><span class="title">후기</span></a><br><br>
+		<span class="title"><a href = "<%=request.getContextPath()%>/reviewList">후기</a></span><br><br>
 			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
 		</div><br/>
 		
@@ -74,7 +74,7 @@
 
 				<div class="right">
 					<div class= "subtitle">
-						<span><a href="<%=request.getContextPath()%>/reviewWriteForm">제목</a></span>
+						<span>제목</span>
 						<a href="#">
 							<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/>
 						</a> 

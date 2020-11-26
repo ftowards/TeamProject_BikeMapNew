@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bikemap.home.review.ReviewDaoImp">
+
+	<insert id = "reviewInsert" parameterType="com.bikemap.home.review.ReviewVO">
+		insert into review(noboard, subject, userid, content, reference, ip)
+		values(a_sq.nextval, #{subject}, #{userid}, #{content}, #{reference, jdbcType=INTEGER}, #{ip})
+	</insert>
+ 
+ 
+ 
+ 
+</mapper>
