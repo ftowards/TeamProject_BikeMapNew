@@ -1,6 +1,7 @@
 package com.bikemap.home.reply;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -32,30 +33,47 @@ public class ReplyController {
 	public int replyInsert(ReplyVO vo, HttpSession ses) {
 		ReplyDaoImp dao = sqlSession.getMapper(ReplyDaoImp.class);
 		vo.setUserid((String)ses.getAttribute("logId"));
+		int result = 0;
+		try {
+			result = dao.replyInsert(vo);
+		}catch(Exception e) {
+			System.out.println("댓글 쓰기 에러 " + e.getMessage());
+		}
 		
-		System.out.println(vo.getNoboard());
-		
-		return dao.replyInsert(vo);	
+		return result;	
 	}
 	
-	//=============댓글보기&페이징==========================================
+	//=============댓글보기==========================================
 	@RequestMapping("/replyList")
 	@ResponseBody
-	public List<ReplyVO> replyAllSelect(int noboard) {
-		
-		
-	//	System.out.println(noboard);
+	public List<ReplyVO> replyAllSelect(ReplyPagingVO vo) {
 		ReplyDaoImp dao = sqlSession.getMapper(ReplyDaoImp.class);
-
+		List<ReplyVO> list = new ArrayList<ReplyVO>();
+		try {
+			int totalReply = dao.getTotalReplyRecord(vo);
+			vo.setTotalRecord(totalReply);
+			list = dao.replyAllSelect(vo);
+		}catch(Exception e) {
+			System.out.println("댓글 페이징 에러 " + e.getMessage());
+		}
 		
-		
-		return dao.replyAllSelect(noboard);
-		
-		
-		
-		
-		
+		return list;
+	}
 	
+	// 댓글 페이징 
+	@RequestMapping(value="/replyPaging", method=RequestMethod.POST)
+	@ResponseBody
+	public ReplyPagingVO replyPaging(ReplyPagingVO vo) {
+		ReplyDaoImp dao = sqlSession.getMapper(ReplyDaoImp.class);
+		
+		try {
+			int totalReply = dao.getTotalReplyRecord(vo);
+			vo.setTotalRecord(totalReply);
+			
+		}catch(Exception e) {
+			System.out.println("댓글 페이징 에러 " + e.getMessage());
+		}
+		return vo;
 	}
 	
 	
