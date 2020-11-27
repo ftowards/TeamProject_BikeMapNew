@@ -2,12 +2,33 @@
 <link rel="stylesheet" href="/home/css/reply.css" type="text/css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- ========================댓글 달기====================================================== -->
+<div id="mainDiv">
+	<div id="replyDiv">
+		<div>댓글</div>
+		<div style="color:rgb(0,176,176)" id="totalRecord"></div>
+	</div>
+	<form method="post" id="replyForm">
+		<input type="radio" name="order" value="desc" checked/>최신순
+		<input type="radio" name="order" value="asc" />작성순
+		<div id="replyUseridDiv">${logId}</div>
+		<div id="replytWriteDiv">
+			<textarea name="reply" id="replyWrite" maxlength="100" placeholder=" 주제와 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
+			<div id="textCntDiv"><span id="cntSPAN" style="padding-right:10px;">0</span>&nbsp;/200</div>
+				<div><input type="submit" value="등 록" id="replySubmit"></div>
+		</div>
+	</form>
+	<div id="replyViewDiv">
+		<ul id="replyList"></ul>
+		<ul id="paging"></ul>
+	</div>	
+</div>
 <script>
-
 	$(function(){
 		
+		var nowPage = 1;
 		// 페이지 로딩 시 실행
-		replyListSelect();
+		movePage(1);
 		
 		//===============댓글쓰기 200자 제한================
 		$("#replyWrite").keyup(function(){
@@ -15,10 +36,8 @@
 		    $('#cntSPAN').text(getBytes(commentBox)); 
 		});
 
-
-
-	//===================댓글 쓰기==============================================
-	//댓글이 있는지 없는지 확인
+		//===================댓글 쓰기==============================================
+		//댓글이 있는지 없는지 확인
 		$("#replyForm").submit(function(){
 			if($("#replyWrite").val()==""){
 				alert("댓글 내용을 입력해주세요.");
@@ -34,14 +53,17 @@
 				url:url
 				,data:params
 				,success:function(result){
-					replyListSelect();
+					replyListSelect(1);
 					$("#replyWrite").val("");
 				},error:function(){
 					console.log("댓글쓰기 에러 발생..");
 				}
 			});
-			
 			return false;
+		});
+		
+		$("input[name=order]").on('change',function(){
+			movePage(nowPage);
 		});
 
 	});
@@ -55,12 +77,42 @@
 	    return cnt;
 	}
 	
+	// 페이징 리스트 만들기
+	function setPaging(vo){
+		// 이전 페이징 삭제
+		$("#paging").children().remove();
+		nowPage = vo.nowPage;
+		var tag = "";
+		
+		if(vo.nowPage != 1){
+			tag += "<li><a href='javascript:movePage("+(vo.nowPage -1)+");'>Prev</a></li>";
+		}
+		
+		for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount -1 ; i++){
+			if(vo.totalPage >= i){
+				if(vo.nowPage == i){
+					tag += "<li style='color:#00B0B0; font-weight:600;'>"+i+"</li>";
+				}else{
+					tag += "<li><a href='javascript:movePage("+i+")' style='color:black; font-weight:600;'>"+i+"</a></li>";
+				}
+			}
+		}
+		if(vo.nowPage != vo.totalPage){
+			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
+		}
+		$("#paging").append(tag);
+		$("#totalRecord").text(vo.totalRecord);
+	}
+	
 	//==================댓글 리스트 구하기=================
 	
-	function replyListSelect(){
+	function replyListSelect(page){
+		$("#replyList").children().remove();
+		
 		var url ="/home/replyList";
 		var params="noboard="+$("#noboard").val();
-		
+			params += "&nowPage="+page+"&order="+$("input[name=order]:checked").val();
+			
 		$.ajax({
 			url:url
 			,data:params
@@ -83,25 +135,27 @@
 		
 		});
 	}
+	
+	// 페이지 이동
+	function movePage(page){
+		
+		// 페이징 먼저 변경
+		var url = "<%=request.getContextPath()%>/replyPaging";
+		var params="noboard="+$("#noboard").val();
+			params += "&nowPage="+page+"&order="+$("input[name=order]:checked").val();
+			
+		$.ajax({
+			type : 'POST',
+			url : url,
+			data : params,
+			success : function(result){
+				setPaging(result);
+			},error : function(){
+				console.log("페이징 오류");
+			}
+		});
+		
+		replyListSelect(page);
+	}
 
 </script>
-
-<!-- ========================댓글 달기====================================================== -->
-<div id="mainDiv">
-	<div id="replyDiv">
-		<div>댓글</div>
-		<div style="color:rgb(0,176,176)"><b>3</b></div>
-	</div>
-	<div id="replyUseridDiv">${logId}</div>
-	<div id="replytWriteDiv">
-		<form method="post" id="replyForm">
-		<textarea name="reply" id="replyWrite" maxlength="100" placeholder=" 주제와 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
-		<div id="textCntDiv"><span id="cntSPAN" style="padding-right:10px;">0</span>&nbsp;/200</div>
-			<div><input type="submit" value="등 록" id="replySubmit"></div>
-		</form>	
-	</div>
-	<div id="replyViewDiv">
-	<ul id="replyList"></ul>
-	</div>	
-</div>
-
