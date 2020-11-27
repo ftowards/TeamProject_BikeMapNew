@@ -87,9 +87,7 @@ public class RouteController {
 	
 	@RequestMapping(value="/searchRoutePaging", method= {RequestMethod.POST})
 	@ResponseBody
-	public RoutePagingVO searchRoutePageing(RoutePagingVO pagingVO) {
-		System.out.println(pagingVO.getNowPage());
-		
+	public RoutePagingVO searchRoutePageing(RoutePagingVO pagingVO) {		
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		try {
 			int totalRecord = dao.searchResultRecord(pagingVO);
@@ -135,7 +133,7 @@ public class RouteController {
 	}
 	
 	// 코스 만들기에서 코스 카테고리 추가
-	@RequestMapping("/insertCategory")
+	@RequestMapping(value="/insertCategory", method= {RequestMethod.POST})
 	@ResponseBody
 	public int insertCategory(HttpSession session, RouteCateVO vo) {
 		RouteDaoImp routeDao = sqlSession.getMapper(RouteDaoImp.class);

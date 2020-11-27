@@ -13,6 +13,8 @@ public class RoutePagingVO {
 	private String searchKey;
 	private String searchWord;
 	
+	private String order = "noboard" ; // 아니면 "rating"
+	
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -79,5 +81,10 @@ public class RoutePagingVO {
 	public void setSearchWord(String searchWord) {
 		this.searchWord = searchWord;
 	}
-	
+	public String getOrder() {
+		return order;
+	}
+	public void setOrder(String order) {
+		this.order = order;
+	}
 }

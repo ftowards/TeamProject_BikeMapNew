@@ -1,6 +1,6 @@
-package com.bikemap.home.tourReply;
+package com.bikemap.home.reply;
 
-public class TourReplyPagingVO {
+public class ReplyPagingVO {
 	private int nowPage; // 현재페이지
 	private int startPage; //시작페이지
 	private int endPage; //끝페이지
@@ -15,9 +15,9 @@ public class TourReplyPagingVO {
 
 	
 	
-	public TourReplyPagingVO() {
+	public ReplyPagingVO() {
 	}
-	public TourReplyPagingVO(int totalRecord, int nowPage, int onePageRecord) {
+	public ReplyPagingVO(int totalRecord, int nowPage, int onePageRecord) {
 		setNowPage(nowPage);
 		setonePageRecord(onePageRecord);
 		settotalRecord(totalRecord);
