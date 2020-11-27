@@ -68,6 +68,7 @@ public class RouteController {
 		return list;
 	}
 	
+	// 루트 리스트 검색
 	@RequestMapping(value="/searchRouteOk", method= {RequestMethod.POST})
 	@ResponseBody
 	public List<RouteVO> routeSearchOk(RoutePagingVO pagingVO){
@@ -85,6 +86,7 @@ public class RouteController {
 		return list;
 	}
 	
+	// 루트 검색 페이지 페이징 처리
 	@RequestMapping(value="/searchRoutePaging", method= {RequestMethod.POST})
 	@ResponseBody
 	public RoutePagingVO searchRoutePageing(RoutePagingVO pagingVO) {		

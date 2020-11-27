@@ -16,7 +16,7 @@
 		insert into route(noboard, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint5, routepoint6, routepoint7,
 		geocode, polyline, mapcenter, maplevel, userid, distance, ascent, descent, region, closed, description) 
 		values(a_sq.nextval, #{title}, #{routepoint1}, #{routepoint2}, #{routepoint3,jdbcType=VARCHAR}, #{routepoint4,jdbcType=VARCHAR}, #{routepoint5,jdbcType=VARCHAR}, #{routepoint6,jdbcType=VARCHAR},
-		#{routepoint7,jdbcType=VARCHAR}, #{geocode}, #{polyline}, #{mapcenter}, #{maplevel}, #{userid}, #{distance}, #{ascent}, #{descent}, #{region}, #{closed}, #{description})
+		#{routepoint7,jdbcType=VARCHAR}, #{geocode}, #{polyline}, #{mapcenter}, #{maplevel}, #{userid}, #{distance, jdbcType=NUMERIC}, #{ascent, jdbcType=NUMERIC}, #{descent, jdbcType=NUMERIC}, #{region}, #{closed}, #{description})
 	</insert>
 	<select id="lastRouteNo" resultType="int">
 		select noboard from (select noboard from route where userid = #{param1} order by 1 desc) where rownum = 1
@@ -35,7 +35,7 @@
 	</insert>	
 	<select id="selectRoute" resultType="com.bikemap.home.route.RouteVO">
 		select noboard, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint5, routepoint6, routepoint7,
-		geocode, userid, distance, ascent, descent, region, to_char(writedate, 'YY-MM-DD HH24:MI') writedate from route
+		geocode, polyline, userid, distance, ascent, descent, region, to_char(writedate, 'YY-MM-DD HH24:MI') writedate from route
 		where noboard = #{param1} and closed = 'F'
 	</select>
 	<select id="selectRoutePlace" resultType="com.bikemap.home.route.RoutePlaceVO">
