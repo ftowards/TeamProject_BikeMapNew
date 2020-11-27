@@ -2,6 +2,15 @@
 body{
 	font-family: 'Nanum Myeongjo', serif;
 }
+textarea:focus {
+	outline: none;
+}
+button:focus {
+	outline: none;
+}
+input:focus {
+	outline: none;
+}
 #adminTop {
 	background-color: #333333;
 	width: 100%;

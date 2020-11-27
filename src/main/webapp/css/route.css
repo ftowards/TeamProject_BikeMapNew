@@ -10,12 +10,24 @@
 		background-color:#ccc;
 		height:1px;
 	}
-
-	.mainDiv{
+ 	textarea:focus {
+  		outline: none;
+ 	}
+ 	button:focus {
+    	outline: none;
+ 	}
+ 	input:focus {
+    	outline: none;
+	}
+	textarea#tourReplyWrite::placeholder{
+		font-size:16px;
+		font-weight:bold;
+		color:#AAAAAA;
+	}
+	#mainDiv2{
 		width:800px;
 		height:1200px;
 		margin:0 auto;
-
 	}
 	/*검색옵션바*/
 	.optionBar{
@@ -64,7 +76,7 @@
 	#hitCourse{
 		float:left;
 		height:200px;
-		margin: 15px 0 50px 0;
+		margin: 15px 0 35px 0;
 	}
 	.thumbnail{
 		width:19.4%;
@@ -103,17 +115,35 @@
 		color:#353535;
 		font-size:1em;
 		font-weight:600;
+		margin-bottom:20px;
 	}
 	#lBar{
 		color:#7F7F7F;
 		font-weight:400;
 	}
+	/*댓글창*/
 	#paging{
+		width:790px;
+		height:50px;
 		color:#353535;
-		font-size:1em;
-		font-weight:400;
-		float:right;
-		padding-right:15px;	
+		font-size:1.1em;
+		margin : 0 auto;
+		text-align: center;
+	}
+	#paging ul{
+		display:inline-block;
+	}
+	#paging ul li{
+		list-style-type: none;
+		float: left;
+		margin-left:30px;
+	}
+	#paging a{
+		text-decoration:none;
+	}
+	#paging a:link, #paging a:active{
+		color:#7F7F7F;
+		font-weight:bold;
 	}
 	
 	/*컨텐츠*/
@@ -160,6 +190,7 @@
 	#mapDiv{
 		width:100%;
 		height:200px;
+		margin-top:100px;
 	}
 	#mapDiv b{
 		height:160px;

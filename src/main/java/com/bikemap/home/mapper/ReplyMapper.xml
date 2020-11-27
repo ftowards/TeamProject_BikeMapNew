@@ -3,17 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bikemap.home.reply.ReplyDaoImp">
- <insert id="replyInsert" parameterType="com.bikemap.home.reply.ReplyVO">
- 	insert into reply(noreply,noboard,userid,reply) 
- 	values(a_sq.nextval,#{noboard},#{userid},#{reply})
- </insert>
- <select id="replyAllSelect" parameterType="map" resultType="com.bikemap.home.reply.ReplyVO">
-
- 	select noreply,userid,reply,to_char(writedate,'YY-MM-DD HH24:MI') writedate from reply where noboard=#{noboard} 
- 	order by noreply desc
-
- </select>
-  <select id="getTotalReplyRecord" resultType="int">
- 	select count(noreply) from reply
- </select>
+	<insert id="replyInsert" parameterType="com.bikemap.home.reply.ReplyVO">
+		insert into reply(noreply, noboard, userid, reply) 
+		values(a_sq.nextval, #{noboard}, #{userid}, #{reply})
+	</insert>
+	<select id="replyAllSelect" parameterType="com.bikemap.home.reply.ReplyPagingVO" resultType="com.bikemap.home.reply.ReplyVO">
+		<![CDATA[
+	 	select * from 
+	 		(select * from 
+	 			(select noreply,userid, reply, to_char(writedate,'YY-MM-DD HH24:MI') writedate from reply where noboard=#{noboard} 
+	 			 order by noreply ${order}) 
+	 		where rownum <= (#{nowPage} * #{onePageRecord})	order by noreply
+ 		]]> 
+	 		<if test='#{order} == "desc"'>
+	 			asc
+	 		</if>
+	 		<if test='#{order} == "asc"'>
+	 			desc
+	 		</if>
+	 	<![CDATA[
+	 		) where rownum <= #{lastPageRecordCount} order by noreply ${order}
+	 	]]> 
+	</select>
+	<select id="getTotalReplyRecord" resultType="int" parameterType="com.bikemap.home.reply.ReplyPagingVO">
+	 		select count(noreply) from reply where noboard= #{noboard}
+	</select>
 </mapper>

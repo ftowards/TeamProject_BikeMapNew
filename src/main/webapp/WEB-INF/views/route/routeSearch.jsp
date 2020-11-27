@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
-<div class="mainDiv">
+<div style='width:800px; height:1300px; margin:0 auto'>
 	<form id="searchRoute" method="post" action="#" class="optionBar" style='float:left;'>
 		<select name="searchKey" class="regionSelect">
    		    <option value="title">코스이름</option>
@@ -30,6 +30,9 @@
 	<div id="routeSearch">
 		<div class="title">코스검색</div>
 		<div id="subTxt">최신순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>평점순</span></div>
+		<div id="content"></div>
+	</div>
+	<hr/>
 		<div id="paging">
 			<ul>
 			<!-- 이전 페이지 -->
@@ -47,14 +50,19 @@
 					</c:if>
 				</c:forEach>
 			<!-- 다음 페이지 -->
-				<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
+				<c:if test="${pagingVO.nowPage != pagingVO.totalPage }">
 					<li><a href="#">Next</a></li>
 				</c:if>
 			</ul>
-		</div><br/>
-		<div id="content"></div>
-	</div>
+		</div>
 </div>
+<style>
+	.star-rating{width : 205px;}
+	.star-rating, .star-rating span{display : inline-block; height: 39px; overflow:hidden;  
+		background : url(/home/img/img_route/star.png) no-repeat;}
+	.star-rating span{background-position : left bottom ; float : left;line-height:0; vertical-align : top;}
+</style>
+
 <script>
 	$(function(){
 		
@@ -67,7 +75,6 @@
 				alert("검색어를 입력하세요.");
 				return false;
 			};
-			
 			movePage(1);
 			return false;
 		});
@@ -83,7 +90,12 @@
 		for(var i = 0 ; i < result.length ; i++){
 			var listTag = "";
 			listTag += "<div class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"'><div id='map"+i+"' style='width:250px;height:250px;'></div></a>";
-			listTag += "<div><img class='star' src='/home/img/img_main/star.png'/></div></div>";
+			var rateWidth =  (result[i].rating/5 *205);
+			listTag += "<span class='star star-rating'><span style='width:"+rateWidth+"px'></span></span></div>";
+			
+			
+			
+			console.log(rateWidth);
 			
 			$("#content").append(listTag);
 			
@@ -139,6 +151,8 @@
 		if(vo.nowPage != vo.totalPage){
 			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 		}
+
+		tag += "</ul>";
 		$("#paging").append(tag);
 					
 	}
@@ -150,6 +164,7 @@
 		var url = "<%=request.getContextPath()%>/searchRoutePaging";
 		var data = $("#searchRoute").serialize();
 			data += "&nowPage="+page;
+		
 			
 		$.ajax({
 			type : 'POST',
@@ -183,5 +198,4 @@
 			}
 		});
 	}
-	
 </script>

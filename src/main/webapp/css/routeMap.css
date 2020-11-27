@@ -89,7 +89,11 @@
 		font-weight:bold;
 		letter-spacing:1px;
 	}
+<<<<<<< HEAD
+
+=======
 	
+>>>>>>> refs/remotes/origin/master
 	.tab_liTag input:not(.startBox, .arriveBox){
 		border:2px solid #ccc;
 		color:#3B3B3B;
