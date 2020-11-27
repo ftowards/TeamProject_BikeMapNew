@@ -210,12 +210,29 @@
     	})
     	
     });
+<<<<<<< HEAD
+    
+    function formSubmit() {
+        var params = jQuery("#userSuspendEditFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+        jQuery.ajax({
+            url: 'userSuspendUpdateOk',
+            type: 'POST',
+            data:params,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+            success: function (result) {
+                if (result){
+                    // 데이타 성공일때 이벤트 작성
+                }
+            }
+        });
+    }
+=======
    
+>>>>>>> 6443ccd246dac840a4ea185dd19b1bed0a7c4efc
 	
 </script>
 </head>
 <body>
-
 <div id="adminTop">
 	<img src="<%=request.getContextPath()%>/img/img_logo/logo_footer.png">
 </div>
