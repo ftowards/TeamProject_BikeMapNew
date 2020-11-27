@@ -36,17 +36,13 @@ public class RouteController {
 		try {
 			int totalRecord = dao.searchTotalRecord();
 			pagingVO.setTotalRecord(totalRecord);
-			
-			List<RouteVO> list ;
-		
+			List<RouteVO> list ;	
 			list = dao.selectRouteAll(pagingVO);
 			mav.addObject("list", list);
-			mav.addObject("pagingVO", pagingVO);
-			
+			mav.addObject("pagingVO", pagingVO);		
 		}catch(Exception e) {
 			System.out.println("루트 검색 화면 호출 에러 " + e.getMessage());
-		}
-		
+		}		
 		mav.setViewName("route/routeSearch");
 		return mav;
 	}
