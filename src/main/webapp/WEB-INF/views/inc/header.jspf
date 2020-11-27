@@ -99,7 +99,7 @@
 				<li><div class="popupMenuColor"><a href="#">내모임</a></div></li>
 			</ul>
 		</li>
-		<li><a href="<%=request.getContextPath()%>/reviewMain">후기</a><div id="reviewLine"></div></li>
+		<li><a href="<%=request.getContextPath()%>/reviewView">후기</a><div id="reviewLine"></div></li>
 		</ul>
 	</div>
 <div class="lineDiv"></div>

@@ -2,8 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
-<link rel="stylesheet" href="/home/api/lightbox/css/lightbox.css"/>
-
 
 <!-- 후기보기메인 -->
 <div class="container">
@@ -56,123 +54,52 @@
 
 <!-- 	후기 제목 -->
 		<div class= "reviewtitle">
-			<a href = "<%=request.getContextPath()%>/reviewList"><span class="title">후기</span></a><br><br>
-			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
+			<span class="title">후기 게시판</span><br><br>
+			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span>
+				<input type="button" style = "float : right"class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'">
+			</div>
 		</div><br/>
 		
 
 <!-- 후기창 게시판-->
 
-		<div id="paging2" style='text-align:right;'>1&emsp;<span style='color:#00B0B0; font-weight:600;'>2</span>&emsp;3&emsp;4&emsp;5</div>
-		<div class ="boardlist">
-			<div class="reviewContents" >
-	<!-- 후기창 왼쪽 면-->
-				<div class ="left">
-					<img src="<%=request.getContextPath() %>/img/img_main/banner5.jpg"style="width:100px; height:100px;"/>
-				</div>
-		<!-- 후기창 오른쪽 면 -->
-
-				<div class="right">
-					<div class= "subtitle">
-						<span><a href="<%=request.getContextPath()%>/reviewWriteForm">제목</a></span>
-						<a href="#">
-							<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/>
-						</a> 
-						<a href="#">
-							<img class="badge2" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/>
-						</a> 
-					</div>
-						<p id="reviewtext">
-
-							내용내용내용내용내용내용내용내용내용내용내용내용내용
-							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-						</p>
-				</div>
-			<div class="writedate">
-					<li class="userid" style="float:left;">@goguma</li>
-					<li style="float:right; margin-left: 550px;">2020.10.20 13:48</li>
-			</div>
-			
- 			</div>
-		</div>
-<!-- 두번째 게시판 -->	
-			<div class ="boardlist">
-				<div class="reviewContents" >
-				
-				
-			<!-- 후기창 왼쪽 면-->
-					<div class ="left">
-						<img src="<%=request.getContextPath() %>/img/img_main/banner5.jpg"style="width:100px; height:100px;"/>
-					</div>
-			<!-- 후기창 오른쪽 면 -->
-					<div class="right">
-						<div class= "subtitle">
-							<span>제목</span>
-							<a href="#">
-								<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/>
-							</a> 
-							<a href="#">
-								<img class="badge2" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/>
-							</a> 
-						</div>
-							<p id="reviewtext">
-								내용내용내용내용내용내용내용내용내용내용내용내용내용
-								내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-								내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-								내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-								내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-							</p>
-					</div>
-				<div class="writedate">
-						<li class="userid" style="float:left;">@goguma</li>
-						<li style="float:right; margin-left: 550px;">2020.10.20 13:48</li>
-				</div>
- 			</div>
-		</div>
-<!-- 세번째 게시판 -->		
-		<div class ="boardlist">
-			<div class="reviewContents" >
-		<!-- 후기창 왼쪽 면-->
-				<div class ="left">
-					<img src="<%=request.getContextPath() %>/img/img_main/banner5.jpg"style="width:100px; height:100px;"/>
-				</div>
-		<!-- 후기창 오른쪽 면 -->
-				<div class="right">
-					<div class= "subtitle">
-						<span>제목</span>
-							<a href="#">
-								<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/>
-							</a> 
-							<a href="#">
-								<img class="badge2" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/>
-						</a> 
-					</div>
-					
-					</div>
-						<p id="reviewtext">
-							내용내용내용내용내용내용내용내용내용내용내용내용내용
-							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-							내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-						</p>
-				</div>
-			<div class="writedate">
-					<li class="userid" style="float:left;">@goguma</li>
-					<li style="float:right; margin-left: 550px;">2020.10.20 13:48</li>
-			</div>
-			
- 			</div>
-		</div>
-		<div id= "bottom">
 		
+		
+		<c:forEach var="vo" items="${list}">
+				<div class ="boardlist">
+					<div class="reviewContents">
+			<!-- 후기창 왼쪽 면-->
+						<div class ="left">
+							<img src="<%=request.getContextPath() %>/img/img_main/banner5.jpg"style="width:100px; height:100px;"/>
+						</div>
+				<!-- 후기창 오른쪽 면 -->
+		
+						<div class="right">
+							<div class= "subtitle">
+								<li>${vo.noboard }&emsp;<a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
+<!-- 								<a href="#"> -->
+<%-- 									<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/> --%>
+<!-- 								</a>  -->
+<!-- 								<a href="#"> -->
+<%-- 									<img class="badge2" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/> --%>
+<!-- 								</a>  -->
+							</div>
+								<li id="reviewtext">${vo.content }</li>
+						</div>
+						<div class="writedate">
+								<li class="userid" style="float:left; margin-left: 5px;">${vo.userid }</li>
+								<li style="margin-left: 595px;">${vo.writedate }</li>
+						</div>
+						
+		 			</div>
+				</div>
+			</c:forEach>
+		
+		<div id="paging2" style='text-align:center; margin: 20px;'>1&emsp;<span style='color:#00B0B0; font-weight:600; '>2</span>&emsp;3&emsp;4&emsp;5</div>
 		</div>
+		<div id= "bottom"></div>
 		
 	</div>
-</div>
 </div>
 
 
