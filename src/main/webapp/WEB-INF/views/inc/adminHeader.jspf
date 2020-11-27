@@ -37,6 +37,21 @@
     function change_suspendEditTime(time){
     	$('#suspendEditTime').val(time);
     }
+    
+    function formSubmit() {
+        var params = jQuery("#userSuspendEditFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+        jQuery.ajax({
+            url: 'userSuspendUpdateOk',
+            type: 'POST',
+            data:params,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+            success: function (result) {
+                if (result){
+                    // 데이타 성공일때 이벤트 작성
+                }
+            }
+        });
+    }
     //페이징 리스트 만들기
     function setPaging(vo){
 		// 이전 페이징 삭제
@@ -60,6 +75,7 @@
 		}
 		$("#paging").append(tag);		
 	}
+    
     
 	function movePage(page){
 		
@@ -97,6 +113,7 @@
 			}
 		});
 	}
+	
     
      $(function(){    	
     	//관리자 정지 화면
@@ -210,26 +227,9 @@
     	})
     	
     });
-<<<<<<< HEAD
+     
     
-    function formSubmit() {
-        var params = jQuery("#userSuspendEditFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
-        jQuery.ajax({
-            url: 'userSuspendUpdateOk',
-            type: 'POST',
-            data:params,
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
-            success: function (result) {
-                if (result){
-                    // 데이타 성공일때 이벤트 작성
-                }
-            }
-        });
-    }
-=======
-   
->>>>>>> 6443ccd246dac840a4ea185dd19b1bed0a7c4efc
-	
+
 </script>
 </head>
 <body>
@@ -243,7 +243,6 @@
 				<span class ="icon">회원 관리</span>
 				<a href="/home/adminUser">회원목록/검색</a>
 			</li>
-			
 			<li>
 				<span class ="icon">게시판 관리</span>
 				<a href="/home/adminPartner">

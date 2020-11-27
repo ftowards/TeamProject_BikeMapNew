@@ -5,13 +5,12 @@
 <mapper namespace="com.bikemap.home.admin.AdminDaoImp">
 	<!-- admin추가 -->
 	<select id="selectRegistAll" parameterType="com.bikemap.home.admin.AdminSearchVO" resultType="com.bikemap.home.admin.AdminRegistVO"><!-- VO하나만 합성으로 설정 -->
-	 	select rownum, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt, a.heart, a.report,(select to_char(s.endday,'YY-MM-DD')	
+	 	select rownum, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt, a.heart, a.report, (select to_char(s.endday,'YY-MM-DD')	
 		from suspend s <![CDATA[ where s.userid = a.userid and rownum=1 and s.endday>=sysdate]]>) endday from regist a <include refid="search"></include> order by rownum desc
 	</select>
 	<!-- 페이지 검색시 사용 -->
 	<sql id="search">
-		<if test="searchType != null">
-										
+		<if test="searchType != null">					
 			<if test="searchType == 'userAll'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' OR  USERNAME LIKE '%' || #{searchWord} || '%'</if>
 			<if test="searchType == 'userid'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' </if>
 			<if test="searchType == 'username'.toString()">WHERE USERNAME LIKE '%' || #{searchWord} || '%' </if>
@@ -41,12 +40,8 @@
 	<select id = "getStopState" resultType="int"><!-- VO하나만 합성으로 설정 -->
 	 	select count(userid) from suspend where rownum=1 and userid=#{userid} and endday>=sysdate
 	</select>
-	
 	<select id = "getEndday" parameterType="com.bikemap.home.admin.AdminSuspendVO" resultType="com.bikemap.home.admin.AdminSuspendVO"><!-- VO하나만 합성으로 설정 -->
 	 	select to_char(endday,'YY-MM-DD') enddayStr, userid from suspend where rownum=1 and userid=#{userid} and endday>=sysdate
 	</select>
-	
 
-	
-	
 </mapper> 

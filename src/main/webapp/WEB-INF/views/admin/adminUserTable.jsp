@@ -6,11 +6,6 @@
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />  
 
 <!-- Page Content -->
-<script>
-
-
-
-</script>
 	<!-- /Page Sidebar -->
 	
 	<!-- Page Content -->
@@ -26,6 +21,7 @@
 			<input type="text" name="searchWord" id="userSearchWord"  class="searchText" maxlength="20" placeholder="검색어 입력"/>
 			<input type="submit" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
 		</form><!-- searchForm -->
+		
 		<div class="adminTable">
 				<h1 class="adminListHead">회원관리</h1>
 				<ul id="userList">
