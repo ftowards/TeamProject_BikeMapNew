@@ -154,8 +154,6 @@
 				console.log("페이징 오류");
 			}
 		});
-		
 		replyListSelect(page);
 	}
-
 </script>

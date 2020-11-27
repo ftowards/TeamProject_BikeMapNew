@@ -29,7 +29,7 @@ public class TourController {
 		this.sqlSession = sqlSession;
 	}
 
-	// 게시판 목록 & 페이징
+	// 게시판 목록
 	@RequestMapping("/tourList")
 	public ModelAndView TourList() {
 		ModelAndView mav = new ModelAndView();
@@ -38,7 +38,7 @@ public class TourController {
 		PagingVO pagingVO = new PagingVO();
 		List<TourVO> list = dao.selectAllTour(pagingVO);
 		
-		System.out.println(list.size());
+		
 		int totalRecord = dao.getTotalTourRecord();
 		pagingVO.setTotalRecord(totalRecord);
 				
@@ -85,9 +85,38 @@ public class TourController {
 		
 		}catch(Exception e) {
 			e.getStackTrace();
-		}
+		}	
 
 		return result;
 	}
+	//페이징
+	@RequestMapping(value="/searchTourPaging", method=RequestMethod.POST)
+	@ResponseBody
+	public PagingVO searchTourPaging(PagingVO paging) {
+	
+		System.out.println("getnowPage===="+paging.getNowPage());
+		
+		
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		try {
+			int totalRecord = dao.getTotalTourRecord();
+			
+			System.out.println("totalRecord==="+totalRecord);
+			paging.setTotalRecord(totalRecord);
+			
+		}catch(Exception e) {
+			System.out.println("페이징에러"+e.getMessage());
+		}
+		return paging;
+	}
 	
 }
+
+
+
+
+
+
+
+
+

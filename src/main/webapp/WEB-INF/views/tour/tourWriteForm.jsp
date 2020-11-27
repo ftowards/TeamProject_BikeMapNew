@@ -203,7 +203,7 @@ $(function(){
 				<div><label id="genderboy" for="boy">남</label></div>
 				<div><label id="gendergirl" for="girl">여</label></div>
 				
-				<div><input type="checkbox" name="reggender" id="reggender"/></div>
+				<div><input type="checkbox"  id="reggender"/></div>
 				<div><input type="checkbox" name="reggender" id="boy" value="1" /></div>
 				<div><input type="checkbox" name="reggender" id="girl" value="2" /></div>
 			</div>
@@ -222,7 +222,7 @@ $(function(){
 				<div><label id="regagefiftyOver" for="fiftyOver" style="width:100px">50대 이상</label></div>
 			</div>
 			
-			<div><input type="checkbox" name="regage" id="regage" /></div>
+			<div><input type="checkbox"  id="regage" /></div>
 			<div><input type="checkbox" name="regage" id="ten" value="1" /></div>
 			<div><input type="checkbox" name="regage" id="twenty" value="2"/></div>
 			<div><input type="checkbox" name="regage" id="thirty" value="3" /></div>
