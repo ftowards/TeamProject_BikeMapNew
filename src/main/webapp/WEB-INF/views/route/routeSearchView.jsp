@@ -6,7 +6,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<div class="mainDiv" style='margin-top:100px; width:800px; height:1500px;'>
+
+<div id="mainDiv2">
 	<div id="mapDiv" style='width:900px;'>
 		<b>코스정보보기</b><br/><br/>
 		<div class="wordCut" style='height:50px;'>${routeVO.title}</div>
