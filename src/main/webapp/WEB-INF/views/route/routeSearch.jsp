@@ -151,6 +151,7 @@
 		if(vo.nowPage != vo.totalPage){
 			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 		}
+
 		tag += "</ul>";
 		$("#paging").append(tag);
 					

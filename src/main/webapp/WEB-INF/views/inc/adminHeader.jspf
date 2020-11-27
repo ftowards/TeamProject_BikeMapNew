@@ -22,8 +22,6 @@
 		$('.layerpop').css("position", "absolute");
 		
 	}
-
-    
     function suspendPopupClose() {
         $('#userSuspend').hide();
     }
@@ -39,9 +37,76 @@
     function change_suspendEditTime(time){
     	$('#suspendEditTime').val(time);
     }
-	
-     $(function(){
-    	 
+    //페이징 리스트 만들기
+    function setPaging(vo){
+		// 이전 페이징 삭제
+		$("#paging").children().remove();
+		var tag = "<ul>";
+		
+		if(vo.nowPage != 1){
+			tag += "<li><a href='javascript:movePage("+(vo.nowPage -1)+");'>Prev</a></li>";
+		}
+		for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount -1 ; i++){
+			if(vo.totalPage >= i){
+				if(vo.nowPage == i){
+					tag += "<li style='color:#00B0B0; font-weight:600;'>"+i+"</li>";
+				}else{
+					tag += "<li><a href='javascript:movePage("+i+")' style='color:black; font-weight:600;'>"+i+"</a></li>";
+				}
+			}
+		}
+		if(vo.nowPage != vo.totalPage){
+			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
+		}
+		$("#paging").append(tag);		
+	}
+    
+	function movePage(page){
+		
+		// 페이징 먼저 변경
+		var url = "<%=request.getContextPath()%>/adminUser";
+		var data = $("#searchRoute").serialize();
+			data += "&nowPage="+page;
+			
+		$.ajax({
+			type : 'POST',
+			url : url,
+			data : data,
+			success : function(result){
+				setPaging(result);
+			},error : function(){
+				console.log("페이징 오류");
+			}
+		});
+		
+		
+		url = "<%=request.getContextPath()%>/selectRegistAll";
+
+		$.ajax({
+			type : 'POST',
+			url : url,
+			data : data,
+			success : function(result){
+				if( result.length <= 0 ){
+					alert("검색 결과가 없습니다.");
+				} else{ 
+					makeThumbnail(result);
+				}
+			}, error : function(){
+				console.log("페이지 + 검색 결과 호출 에러");
+			}
+		});
+	}
+    
+     $(function(){    	
+    	//관리자 정지 화면
+    	$(document).ready(function() {
+    		    $('#reportMsg').on('keyup', function() {
+    		        if($(this).val().length > 250) {//varchar500이므로...
+    		            $(this).val($(this).val().substring(0, 250));
+    		        }
+    		    });
+    	});
     	//팝업
     	$(document).on('click','#suspendBtn',function(){
 	    	btn = $(this);
@@ -135,7 +200,14 @@
 		        });
 		        return false;
 		 });
-    	
+    	$("#adminSearchUser").submit(function(){
+    		if($(#searchWord).val() == ""){
+    			alert("검색어를 입력하세요.")ㅣ
+    			return false;
+    		}
+    		movePage(1);
+    		return false;
+    	})
     	
     });
    
