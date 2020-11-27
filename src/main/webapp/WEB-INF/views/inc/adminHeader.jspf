@@ -90,7 +90,6 @@
             type: 'POST',
             data:params,
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
-            dataType: 'html',
             success: function (result) {
                 if (result){
                     // 데이타 성공일때 이벤트 작성
@@ -102,7 +101,6 @@
 </script>
 </head>
 <body>
-
 <div id="adminTop">
 	<img src="<%=request.getContextPath()%>/img/img_logo/logo_footer.png">
 </div>

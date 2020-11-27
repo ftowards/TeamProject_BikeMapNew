@@ -55,7 +55,7 @@ public class AdminController {
 		return mav;
 	}
 	//정지 수정 및 삭제
-	@RequestMapping(value="/adminUser/userSuspendUpdateOk", method=RequestMethod.POST)
+	@RequestMapping(value="/userSuspendUpdateOk", method=RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView userSuspendUpdateOk(AdminSuspendVO vo) {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
