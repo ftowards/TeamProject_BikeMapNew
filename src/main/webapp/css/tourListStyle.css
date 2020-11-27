@@ -185,6 +185,11 @@
 											text-decoration:none;
 											color:rgb(64,64,64);
 	}
+	
+	
+	
+	
+	
 	#tourBoardListDivTop,#tourBoardListDivBottom{
 													width:820px;
 													height:440px;
@@ -213,10 +218,11 @@
 					opacity:50%;
 					z-index:9;
 					float:left;
+		
 					
 	} 
-	.blackWrapDiv>p:first-child, .blackWrapDiv>p:nth-child(2),.blackWrapDiv>hr, 
-	.blackWrapDiv>p:last-child{
+	.tourBoardTitle, .tourBoardWrite,.blackWrapDiv>hr, 
+	.tourBoardDay{
 								color:#fff;
 								text-align:center;
 	}
@@ -226,9 +232,19 @@
 	}
 	.blackWrapDiv>p:last-child{
 						margin-top:20px;
-						opacity:100%;
+					
 	}
-
+	.tourBoardTitle a:visited{
+								text-decoration:none;
+								color:#fff;
+	}
+	
+	
+	
+	
+	
+	
+	
 	#tourWriteDiv input{
 								border:1px solid black;
 								border-radius:10px;
