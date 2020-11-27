@@ -75,7 +75,7 @@
 			yearRange:"2019:2020"
 		});
 	
-		
+		 movePage(1);
 	});	
 	
 </script>
@@ -157,27 +157,20 @@
 	</div>
 	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
 	<div id="tourBoardListDivTop">	
-		<c:forEach var ="list" items="${viewAll }">
-			<a href="<%=request.getContextPath()%>/tourView?noboard=${list.noboard}">
-			<div class="tourImgDivClass">
-				<div><img src="<%=request.getContextPath()%>/img/img_tour/map.png" class="tourImgClass"/></div>
-					<div class="blackWrapDiv">	
-						<p  style="font-size:15px;">${list.title }</p>
-						<p style="font-size:12px;">${list.departure}~${list.arrive }</p>
-						<hr style="width:150px;"/>
-						<p style="font-size:36px; "><b>1Day</b></p>
-					</div>
-			</div>	
-		</a>
-		</c:forEach>
-	
+			
 	</div>
+	
+	
+	
 		<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
 </div>
 <script>
+
+
 	function setPaging(vo){
 	// 이전 페이징 삭제
 	$("#paging").children().remove();
+	nowPage = vo.nowPage;
 	var tag = "<ul>";
 	
 	if(vo.nowPage != 1){
@@ -199,7 +192,7 @@
 	}
 	
 	$("#paging").append(tag);
-				
+		
 }
 	//페이지 이동
 	function movePage(p){
@@ -219,8 +212,43 @@
 			},error:function(){
 			console.log("페이징 오류");
 		}
-	});			
+	});	
+		tourListSelect(p);
 }
+	
+	function tourListSelect(p){
+		$("#tourBoardListDivTop").children().remove();
+		
+		var url ="/home/tourPagingList";
+		var params = "nowPage="+p;
+		
+		console.log("페이징 params==="+params);
+		
+		$.ajax({
+			url:url
+			,data:params
+			,success:function(result){
+				var $result = $(result);
+				var tag="";
+				$result.each(function(i,v){
+				
+					tag += "<div class='tourImgDivClass'>";
+					tag += "<div><img src='<%=request.getContextPath()%>/img/img_tour/map.png' class='tourImgClass'/></div>";
+					tag += "<div class='blackWrapDiv'>";	
+					tag += "<p style='font-size:15px;' class='tourBoardTitle'><b>"+ v.title+"</b></p>";
+					tag += "<p style='font-size:12px;' class='tourBoardWrite'>"+v.departure+'~'+v.arrive+"</p>";
+					tag += "<hr style='width:150px;'/>";
+					tag += "<p style='font-size:36px;' class='tourBoardDay'><b>1Day</b></p>";
+					tag += "</div></div>";
+				});
+				$("#tourBoardListDivTop").html(tag);
+			},error:function(){
+				console.log("리스트 선택 에러 발생....");
+			}
+		
+		});
+		
+	}
 </script>
 
 

@@ -1,5 +1,6 @@
 package com.bikemap.home.tour;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.bikemap.home.reply.ReplyDaoImp;
+import com.bikemap.home.reply.ReplyPagingVO;
+import com.bikemap.home.reply.ReplyVO;
 
 @Controller
 public class TourController {
@@ -31,22 +36,41 @@ public class TourController {
 
 	// 게시판 목록
 	@RequestMapping("/tourList")
-	public ModelAndView TourList() {
+	public ModelAndView TourList(PagingVO vo) {
 		ModelAndView mav = new ModelAndView();
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
-		
 		PagingVO pagingVO = new PagingVO();
 		List<TourVO> list = dao.selectAllTour(pagingVO);
-		
-		
-		int totalRecord = dao.getTotalTourRecord();
-		pagingVO.setTotalRecord(totalRecord);
-				
+	
+		try {
+			int totalRecord = dao.getTotalTourRecord();
+			pagingVO.setTotalRecord(totalRecord);
+			
+		}catch(Exception e) {
+			System.out.println("동행찾기게시판 페이징 에러"+ e.getMessage());
+		}
+	
 		mav.addObject("paging", pagingVO);
 		mav.addObject("viewAll",list);
 		
 		mav.setViewName("tour/tourList");
 		return mav;
+	}
+	//=============댓글보기==========================================
+	@RequestMapping("/tourPagingList")
+	@ResponseBody
+	public List<TourVO> tourAllSelect(PagingVO vo) {
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		List<TourVO> list = new ArrayList<TourVO>();
+		try {
+			int totalReply = dao.getTotalTourRecord();
+			vo.setTotalRecord(totalReply);
+			list = dao.selectAllTour(vo);
+		}catch(Exception e) {
+			System.out.println("댓글 페이징 에러 " + e.getMessage());
+		}
+		
+		return list;
 	}
 																							
 	//글보기
