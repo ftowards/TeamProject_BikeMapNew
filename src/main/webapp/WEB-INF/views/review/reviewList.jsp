@@ -8,7 +8,6 @@
 <!-- 후기게시판 제목 -->
 <div class = "mainDiv">
 <div class = "toplayout" style = "margin:0 auto; width : 800px">
-	<a href="<%=request.getContextPath()%>/reviewView"><input type="submit" value="목록" id="revsaveBtn" class="mint_Btn"/></a>
 
 </div>
 <!-- 후기 게시판 내용 -->
@@ -35,32 +34,29 @@
 <!-- 		</div> -->
 		
 		<div class ="contentList">
-		<div>
-<!-- 			<div class="right"> -->
-			<div>	
-				<li id="conttitle">${vo.subject }서울-부산</li><br>
-				<div style = "border-bottom: 1px solid #ebecef;">
-					<li>${vo.userid }jihwooo</li>
-					<li>${vo.writedate }2020.10.20 13:48 &nbsp; 조회 : ${vo.hit }4,000</li>
-				</div>
-			</div>
 			<div>
-				<p class="review-content2">${vo.content }
-							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
-							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
-							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
-							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
-							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
-							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
-							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
-							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
-							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
-				</p>
-			</div>
-<!-- 			</div> -->
- 			</div>
+				<div>	
+					<li id="conttitle">${vo.subject }</li><br>
+					<div style = "border-bottom: 1px solid #ebecef; padding-bottom: 20px;">
+						<div style = "float : left;">
+							<li style = "font-size: small;">${vo.userid }</li>
+							<li style = "font-size: small;">${vo.writedate }&nbsp; 조회 : ${vo.hit }</li>
+						</div>
+						<div  style ="margin-left: 518px;">
+							<a href="<%=request.getContextPath()%>/reviewView"><input type="submit" value="삭제" id="revsaveBtn" class="gray_Btn"/></a>
+							<a href="<%=request.getContextPath()%>/reviewView"><input type="submit" value="수정" id="revsaveBtn" class="gray_Btn"/></a>
+							<a href="<%=request.getContextPath()%>/reviewView"><input type="submit" value="목록" id="revsaveBtn" class="mint_Btn"/></a>
+							
+						</div>
+					</div>
+				</div>
+				<div>
+					<li class="review-content2">${vo.content }	</li>
+				</div>
+	 		</div>
 		</div>
 	</div>
+	
 	
 	
 

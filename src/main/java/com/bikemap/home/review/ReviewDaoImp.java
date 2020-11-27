@@ -13,4 +13,8 @@ public interface ReviewDaoImp {
 	//레코드 추가 - 글쓰기
 	public int reviewInsert(ReviewVO vo);
 	
+	//레코드 1개 선택
+	public ReviewVO reviewSelect(int noboard);
+	
+	
 }

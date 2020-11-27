@@ -54,16 +54,16 @@
 
 <!-- 	후기 제목 -->
 		<div class= "reviewtitle">
-			<span class="title">후기</span><br><br>
+			<span class="title">후기 게시판</span><br><br>
 			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span>
-				<input type="button" style = "float : right"class="mint_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'">
+				<input type="button" style = "float : right"class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'">
 			</div>
 		</div><br/>
 		
 
 <!-- 후기창 게시판-->
 
-		<div id="paging2" style='text-align:right;'>1&emsp;<span style='color:#00B0B0; font-weight:600;'>2</span>&emsp;3&emsp;4&emsp;5</div>
+		
 		
 		<c:forEach var="vo" items="${list}">
 				<div class ="boardlist">
@@ -76,7 +76,7 @@
 		
 						<div class="right">
 							<div class= "subtitle">
-								<li><a href = "<%=request.getContextPath()%>/reviewList">${vo.subject }</a>&emsp;&emsp;&emsp;${vo.noboard }</li>
+								<li>${vo.noboard }&emsp;<a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
 <!-- 								<a href="#"> -->
 <%-- 									<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/> --%>
 <!-- 								</a>  -->
@@ -94,6 +94,8 @@
 		 			</div>
 				</div>
 			</c:forEach>
+		
+		<div id="paging2" style='text-align:center; margin: 20px;'>1&emsp;<span style='color:#00B0B0; font-weight:600; '>2</span>&emsp;3&emsp;4&emsp;5</div>
 		</div>
 		<div id= "bottom"></div>
 		

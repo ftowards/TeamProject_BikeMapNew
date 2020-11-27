@@ -30,19 +30,6 @@ public class ReivewController {
 		
 	}
 	
-	//후기 게시판 목록
-//	@RequestMapping("/reviewView")
-//	public String ReviewView() {
-//		return "review/reviewView";
-//	}
-//	
-	
-	//후기 게시판 보기
-	@RequestMapping("/reviewList")
-	public String ReviewList() {
-		return "review/reviewList";
-	}
-	
 	//글쓰기 폼 이동
 	@RequestMapping("/reviewWriteForm")
 	public String ReviewWriteForm() {
@@ -61,8 +48,6 @@ public class ReivewController {
 		
 		return mav;
 	}
-	
-	
 	
 	
 	//레코드 추가 글쓰기
@@ -93,5 +78,32 @@ public class ReivewController {
 		}
 		return "review/reviewList";
 	}
+
+	
+	
+	//레코드 한개 선택 - 글 보기
+	@RequestMapping("/reviewList")
+	public ModelAndView reviewSelect(int noboard) {
+		ReviewDaoImp dao =  sqlSession.getMapper(ReviewDaoImp.class);
+		
+//		dao.hitCount(no);
+		ReviewVO vo = dao.reviewSelect(noboard);
+		
+			
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("vo",vo);
+		mav.setViewName("review/reviewList");
+		
+		return mav;
+	}
+
+
 }
 	
+
+
+
+
+
+
+
