@@ -127,10 +127,11 @@
 		height:50px;
 		color:#353535;
 		font-size:1.1em;
-		padding-left:30px;
+		margin : 0 auto;
+		text-align: center;
 	}
 	#paging ul{
-		padding-left:180px;
+		display:inline-block;
 	}
 	#paging ul li{
 		list-style-type: none;

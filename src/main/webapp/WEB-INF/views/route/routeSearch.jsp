@@ -31,7 +31,8 @@
 		<div class="title">코스검색</div>
 		<div id="subTxt">최신순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>평점순</span></div>
 		<div id="content"></div>
-	</div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	</div>
+	<hr/>
 	<!-- ================댓글창============= -->
 		<div id="paging">
 			<ul>
