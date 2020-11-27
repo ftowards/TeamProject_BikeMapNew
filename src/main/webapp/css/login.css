@@ -1,4 +1,13 @@
 	/*===================================login===================================*/
+	textarea:focus {
+		outline: none;
+	}
+	button:focus {
+		outline: none;
+	}
+	input:focus {
+		outline: none;
+	}
 	.registerMainDiv *{
 		margin : 0 auto;
 	}
@@ -89,8 +98,8 @@
 	#find_Info{
 		font-size:15px;
 		font-weight:bold;
-		padding-left:280px;
 		margin-bottom:100px;
+		text-align : center;
 	}
 	.white_Btn{
 		color: #5D5D5D;

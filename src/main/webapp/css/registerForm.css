@@ -1,4 +1,13 @@
 /*==============================registerForm&registEditForm==============================*/
+	textarea:focus {
+		outline: none;
+	}
+	button:focus {
+		outline: none;
+	}
+	input:focus {
+		outline: none;
+	}
 	hr{
 		border:0;
 		width:725px;

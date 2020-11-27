@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
-<div class="mainDiv">
+<div style='width:800px; height:1300px; margin:0 auto'>
 	<form id="searchRoute" method="post" action="#" class="optionBar" style='float:left;'>
 		<select name="searchKey" class="regionSelect">
    		    <option value="title">코스이름</option>
@@ -29,11 +29,15 @@
 	</div>
 	<div id="routeSearch">
 		<div class="title">코스검색</div>
-		<div id="subTxt">평점순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
+		<div id="subTxt">최신순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>평점순</span></div>
+		<div id="content"></div>
+	</div>
+	<hr/>
+	<!-- ================댓글창============= -->
 		<div id="paging">
 			<ul>
 			<!-- 이전 페이지 -->
-				<c:if test="${pageVO.nowPage != 1 }">
+				<c:if test="${pagingVO.nowPage != 1 }">
 					<li><a href="#">Prev</a></li>
 				</c:if>
 				<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
@@ -47,14 +51,13 @@
 					</c:if>
 				</c:forEach>
 			<!-- 다음 페이지 -->
-				<c:if test="${pageVO.nowPage != pageVO.totalPage }">
+				<c:if test="${pagingVO.nowPage != pagingVO.totalPage }">
 					<li><a href="#">Next</a></li>
 				</c:if>
 			</ul>
-		</div><br/>
-		<div id="content"></div>
-	</div>
+		</div>
 </div>
+
 <script>
 	$(function(){
 		
@@ -139,7 +142,7 @@
 		if(vo.nowPage != vo.totalPage){
 			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 		}
-		
+		tag += "</ul>";
 		$("#paging").append(tag);
 					
 	}
@@ -185,5 +188,4 @@
 			}
 		});
 	}
-	
 </script>

@@ -23,6 +23,8 @@ public class RouteVO {
 	private double descent;
 	private String region;
 	private String closed;
+	private String description;
+	
 	private String writedate;
 	
 	private double rating;
@@ -140,6 +142,12 @@ public class RouteVO {
 	}
 	public void setClosed(String closed) {
 		this.closed = closed;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getWritedate() {
 		return writedate;

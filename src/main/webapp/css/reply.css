@@ -1,25 +1,33 @@
 @charset "UTF-8";
 	/*=======================댓글===============================================*/
-
-	#tourReplyDiv div{
+	textarea:focus {
+		outline: none;
+	}
+	button:focus {
+		outline: none;
+	}
+	input:focus {
+		outline: none;
+	}
+	#replyDiv div{
 						float:left;
 						font-size:22px;
 						font-weight:bold;
 						color:rgb(64,64,64);
 						
 	}
-	#tourReplyDivMain div div:last-child{
+	#replyDivMain div div:last-child{
 									margin:-8px 0 0 5px;
 									font-size:30px;
 	}
 	
-	#tourReplytWriteDiv{
+	#replytWriteDiv{
 							width:795px;
 							height:150px;
 							float:left;
 				
 	}
-	#tourReplyWrite{
+	#replyWrite{
 						width:795px;
 						height:100px;
 						position:absolute;
@@ -27,7 +35,7 @@
 						
 	
 	}
-	#tourTextCntDiv{
+	#rextCntDiv{
 					
 					border-top:1px solid #ccc;
 					width:750px;
@@ -38,7 +46,7 @@
 					float:left;
 					
 	}
-	#tourReplySubmit{
+	#replySubmit{
 						float:left;
 						background-color:rgb(0,176,176);
 						color:#fff;
@@ -50,13 +58,13 @@
 						text-align:center;
 	
 	}
-	#tourReplyViewDiv{
+	#replyViewDiv{
 						float:left;
 						
 						
 			
 	}
-	#tourReplyUseridDiv{
+	#replyUseridDiv{
 							width:800px;
 							float:left;
 							font-size:20px;
@@ -67,7 +75,7 @@
 	
 	
 
-	.tourReplyEdit,.tourReplyDel{
+	.replyEdit,.replyDel{
 									text-align:center;
 									border:1px solid rgb(123,123,123);
 									border-radius:10px;
@@ -80,11 +88,11 @@
 									margin:40px 0 0 15px;
 	
 	}
-	.tourReplyEdit{
+	.replyEdit{
 					background-color:rgb(123,123,123);
 					color:#fff;
 	}
-	.tourReplyEditDiv{
+	.replyEditDiv{
 						width:120px;
 						height:30px;
 						position:absolute;

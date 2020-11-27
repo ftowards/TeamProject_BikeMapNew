@@ -80,7 +80,7 @@
 	.tab_liTag{
 		padding:10px 0 0 15px;
 	}
-	.tab_liTag > input{
+	.tab_liTag input[type=text]{
 		width:200px;
 		height:26px;
 		border-radius:5px;
@@ -89,25 +89,29 @@
 		font-weight:bold;
 		letter-spacing:1px;
 	}
+<<<<<<< HEAD
 
-	.tab_liTag input:not(#startBox, #arriveBox){
+=======
+	
+>>>>>>> refs/remotes/origin/master
+	.tab_liTag input:not(.startBox, .arriveBox){
 		border:2px solid #ccc;
 		color:#3B3B3B;
 	}
-	#startBox{
+	.startBox{
 		color:#548434;
 		background-color:#E6F2DE;
 		border:2px solid #548434;	
 	}
-	input#startBox::-webkit-input-placeholder {
+	input.startBox::-webkit-input-placeholder {
 		color: #548434;
 	}
-	#arriveBox{
+	.arriveBox{
 		color:#EA3E3E;
 		background-color:#FFE5E5;
 		border:2px solid #EA3E3E;	
 	}
-	input#arriveBox::-webkit-input-placeholder {
+	input.arriveBox::-webkit-input-placeholder {
 		color: #EA3E3E;
 	}
 	
@@ -653,7 +657,7 @@
 		color : #2E75B6;
 	}
 	
-	#listDel_Btn{
+	.listDel_Btn{
 		border:0;
 		background-color:white;
 	}
