@@ -168,7 +168,5 @@ $(function(){
 				<div><button type="submit" name="state" value="3" id="stateCancel">참가취소</button></div>
 			</form>		 
 			</div>
-	
-
 </div>
 

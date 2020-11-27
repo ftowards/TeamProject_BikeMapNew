@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
-<div style='width:800px; height:1500px; margin:0 auto'>
+<div style='width:800px; height:1300px; margin:0 auto'>
 	<form id="searchRoute" method="post" action="#" class="optionBar" style='float:left;'>
 		<select name="searchKey" class="regionSelect">
    		    <option value="title">코스이름</option>
@@ -29,7 +29,10 @@
 	</div>
 	<div id="routeSearch">
 		<div class="title">코스검색</div>
-		<div id="subTxt">평점순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
+		<div id="subTxt">최신순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>평점순</span></div>
+		<div id="content"></div>
+	</div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<!-- ================댓글창============= -->
 		<div id="paging">
 			<ul>
 			<!-- 이전 페이지 -->
@@ -51,10 +54,9 @@
 					<li><a href="#">Next</a></li>
 				</c:if>
 			</ul>
-		</div><br/>
-		<div id="content"></div>
-	</div>
+		</div>
 </div>
+
 <script>
 	$(function(){
 		
@@ -184,5 +186,4 @@
 			}
 		});
 	}
-	
 </script>

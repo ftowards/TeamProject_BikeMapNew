@@ -139,10 +139,14 @@ public class RegistController {
 		int result = 0;
 		try {
 			if(resultVO.getUsername() != null) {
-				session.setAttribute("logStatus", "Y");
-				session.setAttribute("logId", resultVO.getUserid());
-				session.setAttribute("logName", resultVO.getUsername());
-				result = 1;
+				if(resultVO.getActive().equals("Y")) {
+					session.setAttribute("logStatus", "Y");
+					session.setAttribute("logId", resultVO.getUserid());
+					session.setAttribute("logName", resultVO.getUsername());
+					result = 1;
+				}else {
+					result = 2;
+				}
 			}
 		}catch(Exception e) {
 			e.getMessage();

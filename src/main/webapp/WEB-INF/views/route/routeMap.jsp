@@ -73,9 +73,9 @@
 			<!-- 길찾기 -->
 			<div class="tab">
 				<ul id="routePoint">
-					<li id="startPoint" class="tab_liTag"><input type="text" class="startBox" placeholder="출발지를 지정하세요"/>
+					<li class="tab_liTag"><input type="text" class="startBox" placeholder="출발지를 지정하세요" readonly/>
 						<input type="hidden" name="routePoint"/></li>
-					<li id="arrivePoint" class="tab_liTag"><input type="text" class="arriveBox" placeholder="도착지를 지정하세요"/>
+					<li class="tab_liTag"><input type="text" class="arriveBox" placeholder="도착지를 지정하세요" readonly/>
 						<input type="hidden" name="routePoint"/></li>
 				</ul>
 				<div style='padding-left:33px; margin-top:10px'>
@@ -148,7 +148,7 @@
 						<input type="radio" name="closed" value="T"/><span class="saveTxt2"> 비공개</span>
 					</div><br/>
 					<div id="saveDiv3">
-						<textarea name="description" id="description" placeholder="코스에 대한 설명을 적어주세요:)" rows="6" cols="15"></textarea><br/>
+						<textarea name="description" id="description" placeholder="코스에 대한 설명을 적어주세요:)" rows="6" cols="15" style="resize:none" maxlength="50"></textarea><br/>
 					</div>
 					<div id="saveDiv2">
 						<input type="submit" value="나의 코스 저장하기" class="blue_Btn" id="saveBtn"/>

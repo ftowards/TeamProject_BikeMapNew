@@ -59,7 +59,7 @@
 		</div>
 		<form id="findIdForm">
 			<input type="text" name="username" placeholder="  이름을 입력해주세요."/><br/>
-			<input type="text" name="email" placeholder="  가입 시 등록한 이메일을 입력해주세요."/>
+			<input type="text" name="email" placeholder="  가입 시 등록한 이메일을 입력해주세요."/><br/>
 			<input type="submit" class="mint_Btn" value=" 아이디 찾기"  style='width:685px; height:50px; font-size:1.2em;'/>
 		</form>
 
@@ -69,8 +69,8 @@
 		<form id="findPwdForm">
 			<input type="text" name="username" placeholder="  이름을 입력해주세요."/><br/>
 			<input type="text" name="userid" placeholder="  아이디를 입력해주세요."/><br/>
-			<input type="text" name="email" placeholder="  가입 시 등록한 이메일을 입력해주세요."/>
-			<input type="submit" class="WMint_Btn" value= "비밀번호 찾기" style='width:685px; height:50px; font-size:1.2em;'/>
+			<input type="text" name="email" placeholder="  가입 시 등록한 이메일을 입력해주세요."/><br/>
+			<input type="submit" class="WMint_Btn" value= "비밀번호 찾기" style='width:685px; height:50px; font-size:1.2em;'/><br/>
 			<input type="button" class="mint_Btn" value="로그인" onclick="location.href='/home/login'" style='width:680px; height:45px;  font-size:1.2em;'/>
 		</form>
 	</div>

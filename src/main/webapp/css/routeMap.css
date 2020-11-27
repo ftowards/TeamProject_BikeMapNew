@@ -80,7 +80,7 @@
 	.tab_liTag{
 		padding:10px 0 0 15px;
 	}
-	.tab_liTag > input{
+	.tab_liTag input[type=text]{
 		width:200px;
 		height:26px;
 		border-radius:5px;
@@ -89,7 +89,11 @@
 		font-weight:bold;
 		letter-spacing:1px;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> refs/remotes/origin/master
 	.tab_liTag input:not(.startBox, .arriveBox){
 		border:2px solid #ccc;
 		color:#3B3B3B;
@@ -653,7 +657,7 @@
 		color : #2E75B6;
 	}
 	
-	#listDel_Btn{
+	.listDel_Btn{
 		border:0;
 		background-color:white;
 	}
