@@ -6,7 +6,7 @@
 
     hr{
 		border:0;
-		width:900px;
+		width:800px;
 		background-color:#ccc;
 		height:1px;
 	}
@@ -70,7 +70,7 @@
 
 	#hitDiv > b, .title, #mapDiv b{
 		color:#353535;
-		font-size:1.3em;
+		font-size:18px;
 		font-weight:600;
 	}
 	#hitCourse{
@@ -102,10 +102,11 @@
 		background-color:white;
 	}
 	.title{
+		margin-top:20px;
 		padding:0px 10px 10px 0px;
 	}
 	#starLbl{
-		font-size:23px;
+		font-size:20px;
 		font-weight:bold;
 		padding-left:5px;
 		position:relative;
@@ -187,6 +188,9 @@
 	
 	
 	/*==========================routeSearchView.jsp==============================*/
+	#mainDiv2{
+		height:1900px;
+	}
 	#mapDiv{
 		width:100%;
 		height:200px;
@@ -195,17 +199,28 @@
 	#mapDiv b{
 		height:160px;
 	}
+	#titleLine{
+		background-color:#353535;
+		margin-bottom:35px;
+	}
 	.wordCut{
 		white-space:nowrap;
 		overflow:hidden;
 		text-overflow:ellipsis;
 		font-size:1.6em;
 	}
+	.txtShadow{
+		margin-top:30px;
+		color:#005766;
+		height:32px;
+		text-shadow: 2px 2px 6px #8EC7D0;	
+	}
+	
 	
 	/*지도&고도정보*/
 	#map_Altitude{
-		width:65%;
-		height:469px;
+		width:600px;
+		height:700px;
 		float:left;
 		margin-bottom:30px;
 	}
@@ -216,13 +231,13 @@
 	
 	/*코스이름&별점*/
 	#routeInfoDiv{
-		width:35%;
+		width:200px;
 		float:left;
-		height:470px;
+		height:580px;
 		margin-bottom:30px;
 	}
 	#routeInfo{
-		height:52.5%;
+		height:auto;
 		padding-left:10px;
 	}
 	
@@ -232,15 +247,15 @@
 		padding:13px;
 	}
 	#gradeSelect{
-		width:170px;
+		width:120px;
 		height:30px;
-		font-size:0.95em;
+		font-size:14px;
 		font-weight:bold;
 		color:#353535;
 		border:0px;
 		border-radius:5px;
 		background-color:#eee;
-		background: url(../img/img_route/selectBox.png) no-repeat 92% 55%;
+		background: url(../img/img_route/selectBox.png) no-repeat 94% 55%;
 		-webkit-appearance: none; /* 네이티브 외형 감추기 */
     	-moz-appearance: none;
     	appearance: none;
@@ -299,25 +314,25 @@
 	}	
 
 	#placeList{
-		height:630px;
+		text-align:center;
 	}
 	#placeList >*{
 		color:#005766;
 		font-weight:bold;
 		float:left;
-		width:180px;
-		height:200px;
-		margin:0 auto;
-		margin-right:17.1px;
-		padding-left:10px;
+		padding-left:50px;
 	}
 	#placeList ul{
+		display:inline;
 		margin-top:45px;
 	}
 	#placeList ul > li{
 		line-height:25px;
+		font-size:12px;
 	}
-
+	#placeList a:link{
+		text-decoration: none;
+	}
 	#placeList:nth-child(1),#placeList:nth-child(2),#placeList:nth-child(3){
 		marign:10px 12px 10px 0;
 	}
@@ -403,6 +418,7 @@
 		  text-align : center;
 		  padding:3px 6px;
 		  margin:0 10px;
+		  float:left;
 		  color : white;
 		  border: 2px solid #247B8A;
 		  background-color: #247B8A;

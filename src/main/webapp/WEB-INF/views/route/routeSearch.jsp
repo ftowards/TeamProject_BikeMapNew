@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
-<div style='width:800px; height:1300px; margin:0 auto'>
+<div style='width:800px; height:1380px; margin:0 auto'>
 	<form id="searchRoute" method="post" action="#" class="optionBar" style='float:left;'>
 		<select name="searchKey" class="regionSelect">
    		    <option value="title">코스이름</option>
@@ -32,7 +32,8 @@
 		<div id="subTxt">최신순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>평점순</span></div>
 		<div id="content"></div>
 	</div>
-	<hr/>
+	<hr style='background-color:white'/>
+	<!-- ================댓글창============= -->
 		<div id="paging">
 			<ul>
 			<!-- 이전 페이지 -->
