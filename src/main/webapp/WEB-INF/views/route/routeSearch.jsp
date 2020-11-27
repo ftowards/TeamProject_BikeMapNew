@@ -151,6 +151,7 @@
 		var url = "<%=request.getContextPath()%>/searchRoutePaging";
 		var data = $("#searchRoute").serialize();
 			data += "&nowPage="+page;
+		
 			
 		$.ajax({
 			type : 'POST',

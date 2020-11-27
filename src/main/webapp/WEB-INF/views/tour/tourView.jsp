@@ -168,7 +168,7 @@ $(function(){
 				<div><button type="submit" name="state" value="3" id="stateCancel">참가취소</button></div>
 			</form>		 
 			</div>
-	
-
+	<input type="hidden" name="noboard" value="${vo.noboard}">
+	<%@ include file="../inc/reply.jspf"%>
 </div>
 
