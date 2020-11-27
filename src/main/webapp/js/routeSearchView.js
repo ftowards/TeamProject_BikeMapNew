@@ -50,8 +50,8 @@
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1, removable : true});
 	
 /////////////////// 기본 데이터 세팅 /////////////////
-	
 $(function(){
+
 	// 루트 마커 세팅하기 
 	// 마커 지정할 좌표 순서대로 입력
 	var routePosition = [];
@@ -122,6 +122,13 @@ $(function(){
 			else if(idx == 3){accommodationMarker.push(marker);}
 			else if(idx == 4){convenientMarker.push(marker);}
 		}
+	}
+	
+	// 경로 지도 범위에 포함 시키기
+	var polylineArray = $("#polyline").val().replaceAll("),(","||").replace("(","").replace(")","").replaceAll("||",",").split(",");
+	for ( var k = 0 ; k < polylineArray.length ; k+=2){
+		var p = new kakao.maps.LatLng(polylineArray[k], polylineArray[k+1]);
+		bounds.extend(p);
 	}
 	
 	map.setBounds(bounds);

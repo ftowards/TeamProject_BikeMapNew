@@ -94,10 +94,5 @@
 			<url-pattern>/WEB-INF/views/review/reviewView.jsp</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/headerTourList.jspf</include-prelude>
 		</jsp-property-group>
-		<!-- =================================reply============================ -->
-		<jsp-property-group>
-			<url-pattern>/WEB-INF/views/tour/tourView.jsp</url-pattern>
-			<include-coda>/WEB-INF/views/inc/reply.jspf</include-coda>
-		</jsp-property-group>
 	</jsp-config>
 </web-app>

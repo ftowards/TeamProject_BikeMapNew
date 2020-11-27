@@ -36,17 +36,13 @@ public class RouteController {
 		try {
 			int totalRecord = dao.searchTotalRecord();
 			pagingVO.setTotalRecord(totalRecord);
-			
-			List<RouteVO> list ;
-		
+			List<RouteVO> list ;	
 			list = dao.selectRouteAll(pagingVO);
 			mav.addObject("list", list);
-			mav.addObject("pagingVO", pagingVO);
-			
+			mav.addObject("pagingVO", pagingVO);		
 		}catch(Exception e) {
 			System.out.println("루트 검색 화면 호출 에러 " + e.getMessage());
-		}
-		
+		}		
 		mav.setViewName("route/routeSearch");
 		return mav;
 	}
@@ -68,6 +64,7 @@ public class RouteController {
 		return list;
 	}
 	
+	// 루트 리스트 검색
 	@RequestMapping(value="/searchRouteOk", method= {RequestMethod.POST})
 	@ResponseBody
 	public List<RouteVO> routeSearchOk(RoutePagingVO pagingVO){
@@ -85,6 +82,7 @@ public class RouteController {
 		return list;
 	}
 	
+	// 루트 검색 페이지 페이징 처리
 	@RequestMapping(value="/searchRoutePaging", method= {RequestMethod.POST})
 	@ResponseBody
 	public RoutePagingVO searchRoutePageing(RoutePagingVO pagingVO) {		

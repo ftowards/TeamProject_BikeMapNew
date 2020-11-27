@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="/home/css/tourListStyle.css" type="text/css"/>
- <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	$(function(){
 		
@@ -74,38 +74,9 @@
 			monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 			yearRange:"2019:2020"
 		});
+	
 		
 	});	
-	//페이징 리스트 만들기
-	function setPaging(vo){
-		//이전 페이징 삭제
-		$("#paging").children().remove();
-		var tag="<ul>";
-		
-		if(vo.nowPage != 1){
-			tag += "<li><a href='javascript.movePage("+(vo.nowPage-1)+");'>Prev</a></li>";
-		}
-		for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount-1; i++){
-			if(vo.totalPage >= i){
-				if(vo.nowPage == i){
-					tag += "<li style='color:rgb(0,176,176)'><b>"+i+"</b></li>";
-				}else{
-					tag += "<li><a href='javascript:movePage("+i+")' style='color:black;'>"+i+"</a></li>";
-				}
-			}
-		}
-		if(vo.nowPage != vo.totalPage){
-			tag += "<li><a href='javascript:movePage("+(vo.nowPage+1)")'>Next</a></li>";
-		}
-		$("#paging").append(tag);
-	}
-
-	//페이지 이동
-	function movePage(p){
-		
-		//페이징 변경
-		var url ="<%=request.getContextPath()%>/search"
-	}
 	
 </script>
 <div id="mainDiv">
@@ -164,23 +135,26 @@
 	<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label></div>
 	<div  id="paging">
 		<ul>
-			<c:forEach begin="${paging.startPageNum }" end="${paging.startPageNum + paging.onePageNumCount -1 }" var="p">
-				<c:if test="${paging.totalPage >= p }">
-					<c:if test="${paging.nowPage == p }">
-						<li style="color:rgb(0,176,176)"><b>${p }</b></li>
-					</c:if>
-					<c:if test="${paging.nowPage != p }">
-						<li><a href="<%=request.getContextPath() %>/tourList?nowPage=${p }&onePageRecord=${paging.onePageRecord}">${p }</a></li>
-					</c:if>
+			<!-- 이전 페이지 -->
+				<c:if test="${paging.nowPage != 1 }">
+					<li><a href="#">Prev</a></li>
 				</c:if>
-			</c:forEach>
-			<!-- 다음페이지 -->
-				<c:if test="${paging.nowPage != paging.totalPage }">
-					<li><a href="<%=request.getContextPath()%>/tourList?nowPage=${paging.nowPage+1}"></a></li>
-				</c:if>
+				<c:forEach var="p" begin="${paging.startPageNum }" end="${paging.startPageNum + paging.onePageNumCount -1}">
+					<c:if test="${paging.totalPage >= p }">
+						<c:if test="${paging.nowPage == p }">
+							<li style='color:#00B0B0; font-weight:600;'>${p }</li>
+						</c:if>
+						<c:if test="${paging.nowPage != p }">
+							<li><a href='javascript:movePage(${p })' style='color:black; font-weight:600;'>${p }</a></li>
+						</c:if>
+					</c:if>
+				</c:forEach>
+		<!-- 다음 페이지 -->
+			<c:if test="${paging.nowPage != paging.totalPage }">
+				<li><a href="#">Next</a></li>
+			</c:if>
 		</ul>
 	</div>
-	
 	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
 	<div id="tourBoardListDivTop">	
 		<c:forEach var ="list" items="${viewAll }">
@@ -196,8 +170,60 @@
 			</div>	
 		</a>
 		</c:forEach>
-	</div>
-
 	
+	</div>
 		<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
 </div>
+<script>
+	function setPaging(vo){
+	// 이전 페이징 삭제
+	$("#paging").children().remove();
+	var tag = "<ul>";
+	
+	if(vo.nowPage != 1){
+		tag += "<li><a href='javascript:movePage("+(vo.nowPage -1)+");'>Prev</a></li>";
+	}
+	
+	for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount -1 ; i++){
+		if(vo.totalPage >= i){
+			if(vo.nowPage == i){
+				tag += "<li style='color:#00B0B0; font-weight:600;'>"+i+"</li>";
+			}else{
+				tag += "<li><a href='javascript:movePage("+i+")' style='color:black; font-weight:600;'>"+i+"</a></li>";
+			}
+		}
+	}
+	
+	if(vo.nowPage != vo.totalPage){
+		tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
+	}
+	
+	$("#paging").append(tag);
+				
+}
+	//페이지 이동
+	function movePage(p){
+
+		//페이징 변경
+		var url ="<%=request.getContextPath()%>/searchTourPaging";
+		var params = "nowPage="+p;
+		
+		console.log(params);
+	
+		$.ajax({
+			 type: 'POST'
+			,url:url
+			,data:params
+			,success:function(result){
+				setPaging(result);
+			},error:function(){
+			console.log("페이징 오류");
+		}
+	});			
+}
+</script>
+
+
+
+
+

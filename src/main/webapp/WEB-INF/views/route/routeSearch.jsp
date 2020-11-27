@@ -57,6 +57,12 @@
 			</ul>
 		</div>
 </div>
+<style>
+	.star-rating{width : 205px;}
+	.star-rating, .star-rating span{display : inline-block; height: 39px; overflow:hidden;  
+		background : url(/home/img/img_route/star.png) no-repeat;}
+	.star-rating span{background-position : left bottom ; float : left;line-height:0; vertical-align : top;}
+</style>
 
 <script>
 	$(function(){
@@ -70,7 +76,6 @@
 				alert("검색어를 입력하세요.");
 				return false;
 			};
-			
 			movePage(1);
 			return false;
 		});
@@ -86,7 +91,12 @@
 		for(var i = 0 ; i < result.length ; i++){
 			var listTag = "";
 			listTag += "<div class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"'><div id='map"+i+"' style='width:250px;height:250px;'></div></a>";
-			listTag += "<div><img class='star' src='/home/img/img_main/star.png'/></div></div>";
+			var rateWidth =  (result[i].rating/5 *205);
+			listTag += "<span class='star star-rating'><span style='width:"+rateWidth+"px'></span></span></div>";
+			
+			
+			
+			console.log(rateWidth);
 			
 			$("#content").append(listTag);
 			
@@ -142,6 +152,7 @@
 		if(vo.nowPage != vo.totalPage){
 			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 		}
+
 		tag += "</ul>";
 		$("#paging").append(tag);
 					
@@ -154,6 +165,7 @@
 		var url = "<%=request.getContextPath()%>/searchRoutePaging";
 		var data = $("#searchRoute").serialize();
 			data += "&nowPage="+page;
+		
 			
 		$.ajax({
 			type : 'POST',
