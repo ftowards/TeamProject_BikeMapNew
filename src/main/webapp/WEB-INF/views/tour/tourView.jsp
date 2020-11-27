@@ -58,75 +58,7 @@ $(function(){
 			$("#regage"+type).css('color','rgb(123,123,123)').css('background-color','white');
 		}
 	});
-	
-	
-	//===============댓글쓰기 200자 제한================
-	$("#tourReplyWrite").keyup(function(){
-		var commentBox = $(this).val();
-	    $('#cntSPAN').text(getBytes(commentBox)); 
-	});
-	function getBytes(str){
-	    var cnt = 0;
-	    for(var i =0; i<str.length;i++) {
-	        cnt += (str.charCodeAt(i) >128) ? 2 : 1;
-	    }
-	    return cnt;
-	}
-	//==================댓글 리스트 구하기=================
-		function tourReplyListSelect(){
-		var url ="/home/tourReplyList";
-		var params="notour=${vo.notour}";
-		
-		$.ajax({
-			url:url
-			,data:params
-			,success:function(result){
-				var $result = $(result);
-				var tag="";
-				$result.each(function(i,v){
-					tag += "<li style='color:rgb(64,64,64)'><b>"+ v.userid+"</b></li>";
-					if(v.userid=='${logId}'){
-						tag+="<div class='tourReplyEditDiv'><input type='button' class='tourReplyEdit' value='수정'/>";
-						tag+="<input type='button' class='tourReplyDel' value='삭제'/></div>";
-					}
-					tag+="<li style='margin-top:10px;'>"+v.reply+"</li>";
-					tag+="<li style='margin-top:10px;'>"+v.writedate+"</li><hr/>";
-				});
-				$("#tourReplyList").html(tag);
-			},error:function(){
-				console.log("댓글 선택 에러 발생....");
-			}
-			
-		});
-	}
 
-	//===================댓글 쓰기==============================================
-	//댓글이 있는지 없는지 확인
-	$("#tourReplyForm").submit(function(){
-		if($("#tourReplyWrite").val()==""){
-			alert("댓글 내용을 입력해주세요.");
-			return false;
-		}
-		//데이터 구하기
-		var url ="/home/tourReplyWriteOk";
-		var params = $("#tourReplyForm").serialize();
-		
-		$.ajax({
-			url:url
-			,data:params
-			,success:function(result){
-				tourReplyListSelect();
-				$("#tourReplyWrite").val("");
-				
-			},error:function(){
-				console.log("댓글쓰기 에러 발생..");
-			}
-		});
-		
-		return false;
-	});
-	
-	tourReplyListSelect();
 });
 
 </script>
@@ -135,7 +67,7 @@ $(function(){
 	<div id="tourViewFormTitleDiv"><label id="tourViewFormTitleLbl"><b>동행찾기 게시판 글보기(게스트)</b></label><br/><hr/></div>
 	
 	<div id="RouteSearchDiv">
-		<div><input type="text" name="noroute" placeholder="코스검색(코스번호/키워드)"/></div>
+		<div><input type="text" name="reference" placeholder="코스검색(코스번호/키워드)"/></div>
 		<div><input type="button" name="routeSearchBtn" value="검&nbsp;&nbsp;색"/></div>
 	</div>
 	
@@ -236,28 +168,7 @@ $(function(){
 				<div><button type="submit" name="state" value="3" id="stateCancel">참가취소</button></div>
 			</form>		 
 			</div>
-			
-		<!-- ========================댓글 달기====================================================== -->
-			<div id="tourReplyDivMain">
-				<div id="tourReplyDiv">
-					<div>댓글</div>
-					<div style="color:rgb(0,176,176)"><b>3</b></div>
-				</div>
-				<div id="tourReplyUseridDiv">${logId}</div>
-				<div id="tourReplytWriteDiv">
-					<form method="post" id="tourReplyForm">
-					<textarea name="reply" id="tourReplyWrite" maxlength="100" placeholder="주제와 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
-					<div id="tourTextCntDiv"><span id="cntSPAN" style="padding-right:10px;">0</span>&nbsp;/200</div>
-						<input type="hidden" name="notour" value="${vo.notour}">	
-						<div><input type="submit" value="등 록" id="tourReplySubmit"></div>
-					</form>	
-				</div>
-				<div id="tourReplyViewDiv">
-				<hr/>
-				<ul id="tourReplyList">
-			
-					</ul>
-				</div>	
-		</div>
+	<input type="hidden" id="noboard" value="${vo.noboard}">
+	<%@ include file="../inc/reply.jspf"%>
 </div>
 

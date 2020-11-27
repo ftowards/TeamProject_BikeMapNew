@@ -2,7 +2,7 @@
 	#mainDiv{
 				width:800px;
 				margin:0 auto;
-				height:2500px;			
+				height:2000px;			
 	}
 	#tourViewFormTitleDiv{
 							height:80px;
@@ -195,26 +195,20 @@
 					
 						
 	}	
-		
-	#writeForm{
-			margin-top:30px;
-			height:700px;
-			float:left;
-			background-color:orange;
-			
-	}	
+	
 	#tourWriteTitle{
 			width:220px;
 			height:25px;
 			font-weight:bold;
 			font-size:35px;
-			margin-bottom:50px;
+			margin:20px 0 50px 0;
 	}
 
 	#content{
 				width:800px;
-				height:600px;
+			
 				float:left;
+		
 						
 	}
 
@@ -297,99 +291,4 @@
 					margin-left:15px;
 					
 	}
-	#tourReplyDivMain{
-						float:left;
-						height:50px;
-						width:800px;
-					
-	}
-	#tourReplyDiv div{
-						float:left;
-						font-size:22px;
-						font-weight:bold;
-						color:rgb(64,64,64);
-						
-	}
-	#tourReplyDivMain div div:last-child{
-									margin:-8px 0 0 5px;
-									font-size:30px;
-	}
 	
-	#tourReplytWriteDiv{
-							width:795px;
-							height:150px;
-							float:left;
-				
-	}
-	#tourReplyWrite{
-						width:795px;
-						height:100px;
-						position:absolute;
-						float:left;
-						
-	
-	}
-	#tourTextCntDiv{
-					
-					border-top:1px solid #ccc;
-					width:750px;
-					height:28px;
-					position:absolute;
-					margin-top:76px;
-					text-align:right;
-					float:left;
-					
-	}
-	#tourReplySubmit{
-						float:left;
-						background-color:rgb(0,176,176);
-						color:#fff;
-						border:none;
-						width:50px;
-						height:30px;
-						position:absolute;
-						margin:77px 0 0 746px;
-						text-align:center;
-	
-	}
-	#tourReplyViewDiv{
-						float:left;
-						width:800px;
-						height:500px;
-			
-	}
-	#tourReplyUseridDiv{
-							width:800px;
-							float:left;
-							font-size:20px;
-							font-weight:bold;
-							height:35px;
-							color:rgb(64,64,64);
-	}	
-	
-	
-	/*=======================댓글===============================================*/
-	.tourReplyEdit,.tourReplyDel{
-									text-align:center;
-									border:1px solid rgb(123,123,123);
-									border-radius:10px;
-									width:40px;
-									height:25px;
-									background-color:#fff;
-									font-size:12px;
-									color:rgb(123,123,123);
-									float:left;
-									margin:40px 0 0 15px;
-	
-	}
-	.tourReplyEdit{
-					background-color:rgb(123,123,123);
-					color:#fff;
-	}
-	.tourReplyEditDiv{
-						width:120px;
-						height:30px;
-						position:absolute;
-						margin-left:680px;
-	
-	}

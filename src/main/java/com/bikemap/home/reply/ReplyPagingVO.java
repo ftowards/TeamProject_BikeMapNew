@@ -1,19 +1,20 @@
-package com.bikemap.home.route;
+package com.bikemap.home.reply;
 
-public class RoutePagingVO {
+public class ReplyPagingVO {
 	
 	private int nowPage = 1;
 	private int totalRecord ;
 	private int totalPage ;
-	private int onePageRecord = 6; // 한 페이지에 표시할 레코드 숫자
+	private int onePageRecord = 10; // 한 페이지에 표시할 레코드 숫자
 	private int onePageNumCount = 5; // 한 번에 표시할 페이지 숫자
 	private int startPageNum = 1;
-	private int lastPageRecordCount = 6; // 마지막 페이지 레코드 숫자
+	private int lastPageRecordCount = 10; // 마지막 페이지 레코드 숫자
 	
-	private String searchKey;
-	private String searchWord;
+	private int noboard;
+	private String order = "desc"; // 초기값 최신순 or "asc"
 	
-	private String order = "noboard" ; // 아니면 "rating"
+	public ReplyPagingVO() {
+	}
 	
 	public int getNowPage() {
 		return nowPage;
@@ -69,21 +70,19 @@ public class RoutePagingVO {
 	public void setLastPageRecordCount(int lastPageRecordCount) {
 		this.lastPageRecordCount = lastPageRecordCount;
 	}
-	public String getSearchKey() {
-		return searchKey;
+
+	public int getNoboard() {
+		return noboard;
 	}
-	public void setSearchKey(String searchKey) {
-		this.searchKey = searchKey;
+
+	public void setNoboard(int noboard) {
+		this.noboard = noboard;
 	}
-	public String getSearchWord() {
-		return searchWord;
-	}
-	public void setSearchWord(String searchWord) {
-		this.searchWord = searchWord;
-	}
+
 	public String getOrder() {
 		return order;
 	}
+
 	public void setOrder(String order) {
 		this.order = order;
 	}

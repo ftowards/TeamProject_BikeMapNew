@@ -76,11 +76,12 @@ $(function(){
 		
 		});
 		
-	 	CKEDITOR.replace('content',{
-			
+
+		CKEDITOR.replace('content',{
+			height:400
 		}); 
 	 
-	 	
+		
 		$("#tourWriteForm").submit(function(){
 			CKEDITOR.instances.content.updateElement();		
 			
@@ -140,7 +141,7 @@ $(function(){
 	<div id="tourWriteFormTitleDiv"><label id="tourWriteFormTitleLbl"><b>동행찾기 게시판 글쓰기</b></label><br/><hr/></div>
 	
 	<div id="RouteSearchDiv">
-		<div><input type="text" name="noroute" placeholder="코스검색(코스번호/키워드)"/></div>
+		<div><input type="text" name="reference" placeholder="코스검색(코스번호/키워드)"/></div>
 		<div><input type="button" name="routeSearchBtn" value="검&nbsp;&nbsp;색"/></div>
 	</div>
 	
@@ -202,7 +203,7 @@ $(function(){
 				<div><label id="genderboy" for="boy">남</label></div>
 				<div><label id="gendergirl" for="girl">여</label></div>
 				
-				<div><input type="checkbox" name="reggender" id="reggender"/></div>
+				<div><input type="checkbox"  id="reggender"/></div>
 				<div><input type="checkbox" name="reggender" id="boy" value="1" /></div>
 				<div><input type="checkbox" name="reggender" id="girl" value="2" /></div>
 			</div>
@@ -221,7 +222,7 @@ $(function(){
 				<div><label id="regagefiftyOver" for="fiftyOver" style="width:100px">50대 이상</label></div>
 			</div>
 			
-			<div><input type="checkbox" name="regage" id="regage" /></div>
+			<div><input type="checkbox"  id="regage" /></div>
 			<div><input type="checkbox" name="regage" id="ten" value="1" /></div>
 			<div><input type="checkbox" name="regage" id="twenty" value="2"/></div>
 			<div><input type="checkbox" name="regage" id="thirty" value="3" /></div>

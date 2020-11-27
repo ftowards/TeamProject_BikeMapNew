@@ -6,22 +6,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-$(document).on('keyup', '#commentBox', function(e){
-    var commentBox = $(this).val();
-    $('#cntSPAN').text(getBytes(commentBox));    
-});
- 
-function getBytes(str){
-    var cnt = 0;
-    for(var i =0; i<str.length;i++) {
-        cnt += (str.charCodeAt(i) >128) ? 2 : 1;
-    }
-    return cnt;
-}
 
-</script>
-<div class="mainDiv" style='margin-top:100px; width:900px; height:1800px;'>
+<div id="mainDiv2">
 	<div id="mapDiv" style='width:900px;'>
 		<b>코스정보보기</b><br/><br/>
 		<div class="wordCut" style='height:50px;'>${routeVO.title}</div>
@@ -204,43 +190,8 @@ function getBytes(str){
 			</label>
 		</div>
 	</div>
-
-	<div id="commentDiv">
-		<div id="cmtTitle">댓글 <span style='color:#00B0B0'>5</span></div>
-		<span class="userid">hong1234</span>
-		<input type="submit" value="등록" id="saveBtn" class="mint_Btn"/>
-		<textarea id="commentBox" name="commentBox" placeholder="주제와 무관한 댓글, 악플은 삭제될 수 있습니다." rows="5" cols="20" maxlength="100"></textarea>
-		<div id="txtCounting"><span id="cntSPAN">0</span>&nbsp;<span>/200</span></div>
-		<div id="CMTbottomDiv"></div>
-	</div>
-	<hr/>
-	<div id="comment">
-		<ul>
-			<li class="userid">goguma</li>
-			<li>총 200자인 긴 댓글은 이렇게 표시됩니다! 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다 긴 댓글은 이렇게 표시됩니다</li>
-			<li>2020.10.20 13:48</li>
-		</ul><hr style="margin:15px 0 15px 0;"/>
-		<ul>
-			<li class="userid">goguma</li>
-			<li>좋은 코스입니다.</li>
-			<li>2020.10.20 13:48</li>
-		</ul><hr/>
-		<ul>
-			<li class="userid">goguma</li>
-			<li>좋은 코스입니다.</li>
-			<li>2020.10.20 13:48</li>
-		</ul><hr/>
-		<ul>
-			<li class="userid">goguma</li>
-			<li>좋은 코스입니다.</li>
-			<li>2020.10.20 13:48</li>
-		</ul><hr/>
-		<ul>
-			<li class="userid">goguma</li>
-			<li>좋은 코스입니다.</li>
-			<li>2020.10.20 13:48</li>
-		</ul><hr/>
-	</div>
-	<div id="paging2" style='text-align:center; margin-top:30px;'>1&emsp;<span style='color:#00B0B0; font-weight:600;'>2</span>&emsp;3&emsp;4&emsp;5</div>
+	<input type='hidden' id="noboard" value="${routeVO.noboard }"/>
+	<%@ include file="../inc/reply.jspf"%>
 </div>
+<input type="hidden" id="polyline" value="${routeVO.polyline }"/>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/routeSearchView.js"></script>

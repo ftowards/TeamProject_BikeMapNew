@@ -1,6 +1,19 @@
 @charset "UTF-8";
-body{margin:0; padding:0;}
-a {text-decoration: none;}
+	body{
+		margin:0; padding:0;
+	}
+	a {
+		text-decoration: none;
+	}
+	textarea:focus {
+		outline: none;
+	}
+	button:focus {
+		outline: none;
+	}
+	input:focus {
+		outline: none;
+	}
 
 /* ===================================== 공통 ===================================== */
 	.container{
@@ -45,7 +58,7 @@ a {text-decoration: none;}
 		  letter-spacing: -0.6px;
 		  text-align: left;
 		  color: #212529;
-		  margin-bottom: 40px;
+		  margin-bottom: 50px;
 	 		
 	 		} 
 	 /* 버튼 */
@@ -185,11 +198,11 @@ a {text-decoration: none;}
 	
 	#reviewtext{
 	    /* width: 98%; */
-	    height: 70px;
+	    height: 40px;
 	    /* border-radius: 10px 10px; */
 	    /* padding: 10px; */
 	    text-align: left;
-	    /* white-space: nowrap; */
+	    white-space: normal;
 	    overflow: hidden;
 	    text-overflow: ellipsis;
 	    margin: -37px;
@@ -397,10 +410,12 @@ a {text-decoration: none;}
 	width : 99%;
 	margin: 20px 0px 20px 0px;
 	height: 30px;
+	border: 1px solid #ebecef;
 }
 
 .form-group{
 	margin-bottom: 6px;
+	border: 1px solid #ebecef;
 	
 }
 .toplayout{

@@ -1,41 +1,36 @@
-package com.bikemap.home.route;
+package com.bikemap.home.admin;
 
-public class RoutePagingVO {
+public class AdminPagingVO {
 	
 	private int nowPage = 1;
 	private int totalRecord ;
 	private int totalPage ;
-	private int onePageRecord = 6; // 한 페이지에 표시할 레코드 숫자
+	private int onePageRecord = 10; // 한 페이지에 표시할 레코드 숫자
 	private int onePageNumCount = 5; // 한 번에 표시할 페이지 숫자
 	private int startPageNum = 1;
 	private int lastPageRecordCount = 6; // 마지막 페이지 레코드 숫자
 	
-	private String searchKey;
-	private String searchWord;
-	
-	private String order = "noboard" ; // 아니면 "rating"
 	
 	public int getNowPage() {
 		return nowPage;
 	}
 	public void setNowPage(int nowPage) {
 		this.nowPage = nowPage;
-		// 시작 페이지 계산
+		
 		setStartPageNum((nowPage-1)/onePageNumCount*onePageNumCount+1);
 	}
 	public int getTotalRecord() {
 		return totalRecord;
 	}
-	
 	public void setTotalRecord(int totalRecord) {
 		this.totalRecord = totalRecord;
 		setTotalPage();
-		
 		if(nowPage != totalPage) {
 			lastPageRecordCount = onePageRecord;
-		} else if(totalRecord%onePageRecord == 0){
+			
+		}else if(totalRecord%onePageRecord == 0) {
 			lastPageRecordCount = onePageRecord;
-		} else {
+		}else {
 			lastPageRecordCount = totalRecord%onePageRecord;
 		}
 	}
@@ -43,8 +38,9 @@ public class RoutePagingVO {
 		return totalPage;
 	}
 	public void setTotalPage() {
-		this.totalPage = (int) Math.ceil((double) totalRecord / onePageRecord);
+		this.totalPage = (int)Math.ceil((double)totalRecord / onePageRecord);
 	}
+	
 	public int getOnePageRecord() {
 		return onePageRecord;
 	}
@@ -69,22 +65,9 @@ public class RoutePagingVO {
 	public void setLastPageRecordCount(int lastPageRecordCount) {
 		this.lastPageRecordCount = lastPageRecordCount;
 	}
-	public String getSearchKey() {
-		return searchKey;
-	}
-	public void setSearchKey(String searchKey) {
-		this.searchKey = searchKey;
-	}
-	public String getSearchWord() {
-		return searchWord;
-	}
-	public void setSearchWord(String searchWord) {
-		this.searchWord = searchWord;
-	}
-	public String getOrder() {
-		return order;
-	}
-	public void setOrder(String order) {
-		this.order = order;
-	}
+	
+	
+	
+	
+	
 }

@@ -44,29 +44,8 @@
 	<!-- Page Content -->
 	<div class="adminContent">
 		<select name="choice" id="adminSelect">
-			<%
-				if(pagefile.equalsIgnoreCase("userTable")){
-			%>
 				<option value="userid" selected>회원 아이디</option>
-			    <option value="username">회원 이름</option>
-			<%
-				}else if(pagefile.equalsIgnoreCase("partnerTable")||pagefile.equalsIgnoreCase("reviewTable")){
-			%>  
-				<option value="userid" selected>회원 아이디</option>
-				<option value="subject" selected>제목</option>
-			<%
-				}else if(pagefile.equalsIgnoreCase("questionTable")){			 
-			%>
-				<option value="userid" selected>회원 아이디</option>
-			 	<option value="subject" selected>제목</option>
-			 	<option value="IsReply">답변여부</option>
-			 	
-			<% 
-				}else{
-					System.out.println(pagefile);
-				}
-			 %>
-			 
+				<option value="subject" selected>제목</option>		 
 		</select>
 	
 				<input type="text" name="searchWord" id="reviewSearchWord" class="searchText" maxlength="20" placeholder="검색어 입력"/>
@@ -116,12 +95,12 @@
 								if(p==nowPage){
 						 %>
 							<li>
-								<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%=p %>"style="color:rgb(0,176,176);"><%=p %></a>
+								<a href="/home/adminReview?nowPage=<%=p %>"style="color:rgb(0,176,176);"><%=p %></a>
 							</li>
 							
 						<%} else {%>
 						<li>
-							<a href="/home/adminHome?page=<%=pagefile %>&nowPage=<%= p%>"><%=p %></a>
+							<a href="/home/adminReview?nowPage=<%= p%>"><%=p %></a>
 					
 						</li>
 						<%}

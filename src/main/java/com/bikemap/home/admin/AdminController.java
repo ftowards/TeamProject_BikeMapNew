@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
-
-
 @Controller
 public class AdminController {
 	SqlSession sqlSession;
@@ -31,42 +28,72 @@ public class AdminController {
 	//회원관리전체리스트
 	@RequestMapping("/adminUser")
 	public ModelAndView adminUser() {
-		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-		List<AdminRegistVO>list = dao.registAllRecord();
-		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", list);
+		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
+		AdminPagingVO pagingVO = new AdminPagingVO();
+		try {	
+			int totalRecord = dao.searchTotalRecord();
+			pagingVO.setTotalRecord(totalRecord);
+			List<AdminRegistVO>list = dao.selectRegistAll(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
+			mav.addObject("list", list);
+			mav.addObject("pagingVO", pagingVO);	
+		}catch(Exception e) {
+			System.out.println("회원 검색 화면 호출 에러"+e.getMessage());
+		}	
 		mav.setViewName("admin/adminUserTable");
 		return mav;
 	}
+	//회원관리 선택화면 출력
+	@RequestMapping("/adminSearchUser")
+	public ModelAndView adminUser(AdminSearchVO vo) {//검색할 항목, 검색어 가져옴
+		ModelAndView mav = new ModelAndView();
+		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
+		//검색한 항목의 페이징처리
+		AdminPagingVO pagingVO = new AdminPagingVO();
+		try {	
+			int selectRecord = dao.searchRecord(vo); //검색할 항목으로 검색된 페이지 수 구함
+			pagingVO.setTotalRecord(selectRecord);
+			List<AdminRegistVO>list = dao.selectRegistAll(vo);
+			list = dao.selectRegistAll(vo);
+			mav.addObject("list", list);				
+			mav.addObject("pagingVO", pagingVO);	
+		}catch(Exception e) {
+			System.out.println("회원 검색 화면 호출 에러"+e.getMessage());
+		}	
+		mav.setViewName("admin/adminUserTable");
+			return mav;
+		}
+	
 	//정지추가
-	@RequestMapping(value="/adminUser/userSuspendOk", method=RequestMethod.POST)
-	public ModelAndView userSuspendOk(AdminSuspendVO vo) {
-		
+	@RequestMapping(value="/userSuspendOk", method=RequestMethod.POST)
+	@ResponseBody
+	public AdminSuspendVO userSuspendOk(AdminSuspendVO vo) {
+		AdminSuspendVO Avo = null;
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		int result = dao.suspendInsert(vo);
-		ModelAndView mav = new ModelAndView();
-		
 		if(result>0) {
-			mav.setViewName("redirectAttributes");
-		}else {
-			mav.setViewName("admin/result");
+			Avo = dao.getEndday(vo);
 		}
-		return mav;
+		//System.out.println(Avo.getEnddayStr()+"    log");
+		return Avo;
 	}
+<<<<<<< HEAD
 	//정지 수정 및 삭제
+=======
+	
+
+	//정지 수정
+>>>>>>> 6443ccd246dac840a4ea185dd19b1bed0a7c4efc
 	@RequestMapping(value="/userSuspendUpdateOk", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView userSuspendUpdateOk(AdminSuspendVO vo) {
+	public AdminSuspendVO userSuspendUpdateOk(AdminSuspendVO vo) {
+		AdminSuspendVO Avo = null;
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		int result = dao.suspendUpdate(vo);
-		ModelAndView mav = new ModelAndView();
-		if(result>0) {//업데이트
-			mav.setViewName("redirect:adminUser");
-		}else {
-			mav.setViewName("board/result");
+		if(result>0) {
+			Avo = dao.getEndday(vo);
 		}
-		return mav;
+		return Avo;
 	}
 	
 	//동행찾기패널

@@ -1,24 +1,23 @@
-package com.bikemap.home.tourReply;
+package com.bikemap.home.reply;
 
-public class TourReplyVO {
-	private int notourreply;
-	private int notour;
+public class ReplyVO {
+	private int noreply;
+	private int noboard;
 	private String userid;
 	private String reply;
 	private String writedate;
 	
-	
-	public int getNotourreply() {
-		return notourreply;
+	public int getNoreply() {
+		return noreply;
 	}
-	public void setNotourreply(int notourreply) {
-		this.notourreply = notourreply;
+	public void setNoreply(int noreply) {
+		this.noreply = noreply;
 	}
-	public int getNotour() {
-		return notour;
+	public int getNoboard() {
+		return noboard;
 	}
-	public void setNotour(int notour) {
-		this.notour = notour;
+	public void setNoboard(int noboard) {
+		this.noboard = noboard;
 	}
 	public String getUserid() {
 		return userid;
@@ -37,7 +36,5 @@ public class TourReplyVO {
 	}
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
-	}
-	
-	
+	}	
 }

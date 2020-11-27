@@ -37,7 +37,7 @@
 	
 	// 루트 마커 이미지를 생성합니다
 	var startImage = new kakao.maps.MarkerImage('./img/img_route/markerStart.png', markerSize, markerOption);
-	var arriveImage = new kakao.maps.MarkerImage('./img/img_route/markerArrive.png', markerSize, markerOption);
+	var arriveImage = new kakao.maps.MarkerImage('./img/img_route/markerArrive2.png', markerSize, markerOption);
 	var viaImage = new kakao.maps.MarkerImage('./img/img_route/markerVia.png', markerSize, markerOption);
 	
 	// 장소 마커 이미지 생성
@@ -157,7 +157,7 @@
 
 // 마커 생성 후 지도에 표시
 	function addMarker(position, idx, title){
-	    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png'; // 마커 이미지 url, 스프라이트 이미지를 씁니다
+	    var imageSrc = '/home/img/img_route/marker_number_gray.png'; // 마커 이미지 url, 스프라이트 이미지를 씁니다
 		var imageSize = new kakao.maps.Size(36,37);
 		var imgOptions = {
 				spriteSize : new kakao.maps.Size(36,691),
@@ -344,13 +344,13 @@
 			
 			// 리스트에 여유가 있고, 먼저 등록이 되지 않았을 경우 새로운 리스트 작성
 			if(overlap == 0){
-				newList += "<li title='"+json.id+"'><a href='"+json.place_url+"' target='_blank'><input type='text' value='"+json.place_name+"'/></a>";
-				newList += "<input type='hidden' name='"+type+"' value='"+value+"'/><button onclick='$(this).parent().remove();";
+				newList += "<li class='tab_liTag' title='"+json.id+"'><a href='"+json.place_url+"' target='_blank'><input type='text' value='"+json.place_name+"' readonly/></a>";
+				newList += "<input type='hidden' name='"+type+"' value='"+value+"'/><button class='listDel_Btn' onclick='$(this).parent().remove();";
 					if(type == 'foodList') { newList += "setPlaceMarker(foodMarker);";}
 					else if(type== 'sightsList') { newList += "setPlaceMarker(sightsMarker);";}
 					else if(type== 'accomodationList'){newList += "setPlaceMarker(accomodationMarker);";}
 					else if(type== 'convenientList'){newList += "setPlaceMarker(convenientMarker);";}
-				newList += "'>-</button></li>";
+				newList += "'><img id='listDel_img' src='/home/img/img_route/listDelBtn.png'/></button></li>";
 				$("#"+type).append(newList);
 					
 				if($("#"+type).css("display") == 'block'){
@@ -417,7 +417,8 @@ $(function(){
 	// 리스트 순서가 바뀔 때 마커 새로 설정
 	$( "#routePoint" ).on( "sortstop", function() {
 		setRouteMarker();
-		setDeleteBtn();		
+		setDeleteBtn();	
+		setStartArriveClass();
  	});
 });
 
@@ -450,12 +451,12 @@ $(function(){
 			// 출발지나 도착지 선택일 경우 원래 칸에 hidden 타입으로 입력
 			if(type == 'startPoint'){
 				$("#routePoint>li:eq(0)").children("input[type=text]").attr("value",json.place_name);
-				$("#routePoint>li:eq(0)").children("input[type=hidden]").val(point);
+				$("#routePoint>li:eq(0)").children("input[name=routePoint]").val(point);
 				$("#routePoint>li:eq(0)").append("<input type='hidden' name='region' value='"+json.address_name+"'/>");
 				
 			}else if(type == 'arrivePoint'){
 				$("#routePoint>li:last").children("input[type=text]").attr("value",json.place_name);
-				$("#routePoint>li:last").children("input[type=hidden]").val(point);
+				$("#routePoint>li:last").children("input[name=routePoint]").val(point);
 				$("#routePoint>li:last").append("<input type='hidden' name='region' value='"+json.address_name+"'/>");
 			}else{ // 경유지 지정일 때 총 갯수 확인
 				var cnt = $("#routePoint").children("li").length;
@@ -465,7 +466,7 @@ $(function(){
 					alert("경유지는 5개까지만 설정 가능합니다.");
 					return false;
 				}else{ // 경유지에 남은 자리가 있을 경우 추가 가능
-					var viaTag = "<li class='tab_liTag ui-sortable-handle'><input type='text' value='"+json.place_name+"'/>";
+					var viaTag = "<li class='tab_liTag ui-sortable-handle'><input type='text' value='"+json.place_name+"' readonly/>";
 						viaTag += "<input type='hidden' name='routePoint' value='"+point+"'/>"
 						viaTag += "<input type='hidden' name='region' value='"+json.address_name+"'/></li>";
 					$("#routePoint>li:last").before(viaTag);
@@ -474,23 +475,39 @@ $(function(){
 		} // 중복이 있을 경우 추가 액션 없음
 		setDeleteBtn();
 		setRouteMarker();
+
 	}
 	
 // 경유지 리스트에만 삭제 버튼 추가하기
 	function setDeleteBtn(){
 		var cnt = $("#routePoint").children("li").length ;
-		
-		var tag = "<button onclick='$(this).parent().remove();setRouteMarker();'>-</button>" ;
-		
+		var tag = "<button class='listDel_Btn' onclick='$(this).parent().remove();setRouteMarker();'><img id='listDel_img' src='/home/img/img_route/listDelBtn.png'/></button>";
 		$("#routePoint>li").children("button").remove();
-		
 		for (var i = 0 ; i < cnt ; i ++){
 			if( i > 0 && i < cnt-1){
 				$("#routePoint>li").eq(i).append(tag);
 			}
 		}
 	}
-
+	
+// 루트 첫번째 마지막 li에만 start arrivebox 태그 넣기
+	function setStartArriveClass(){
+		for (var i = 0 ; i < $("#routePoint>li").length; i++){
+			var obj = $("#routePoint>li").eq(i).children("input[type=text]");
+			if(i == 0){
+				obj.removeClass();
+				obj.addClass('startBox');
+				obj.attr("placeholder","출발지를 지정하세요");
+			}else if(i > 0 && i < $("#routePoint>li").length-1){
+				obj.removeClass();
+				obj.attr("placeholder","");
+			}else{
+				obj.removeClass();
+				obj.addClass('arriveBox');
+				obj.attr("placeholder","도착지를 지정하세요");
+			}
+		}
+	}
 
 // 루트 마커 세팅하기 
 // 여러 이벤트에 대응하기 위해 펑션 자체에서 경로 포인트의 좌표를 읽어와서 설정하도록
@@ -523,15 +540,11 @@ $(function(){
 			routeMarker.push(marker);
 		}
 		
-    	// 기존에 경로 객체가 있을 경우, 맵 상에서 지우기
-    	if(polyline != "") {
-    		searchRoute();
+		if($("input[name=routePoint]:first").val() != "" && $("input[name=routePoint]:last").val() != ""){
+			searchRoute();
 		}
 	}
 	
-
-// 저장하기 
-
 // 카테고리 추가
 	$("#catename").on('change',function(){
 		if($(this).val() == 'addCategory'){
@@ -551,10 +564,12 @@ $(function(){
 			
 			// 중복이 없다면 비동기식으로 새로운 카테고리 추가
 			if(overlap ==0){
-				var url = "<%=request.getContextPath()%>/insertCategory";
+				var url = "/home/insertCategory";
 				var data = "catename="+catename;
 	
+				console.log(111);
 				$.ajax({
+					type : 'POST',
 					url : url,
 					data : data,
 					success : function(result){
@@ -576,7 +591,7 @@ $(function(){
 
 // 카테고리 새로 설정하기
 	function selectCategory(){
-		var url = "<%=request.getContextPath()%>/selectCategory";
+		var url = "/home/selectCategory";
 		var tag = "";
 		
 		$.ajax({
@@ -585,7 +600,7 @@ $(function(){
 				var cnt = 0;
 				// 카테고리 리스트 추가
 				$.each(result, function(index, value){
-					tag += "<option value='"+value.nocoursecate+"' title='"+ value.catename+"'>"+value.catename+"</option>";
+					tag += "<option value='"+value.noroutecate+"' title='"+ value.catename+"'>"+value.catename+"</option>";
 					cnt++;
 				});
 				
@@ -780,9 +795,9 @@ $(function(){
     	// 경로 객체 생성
 	    polyline = new kakao.maps.Polyline({
 						    path: linePath, // 선을 구성하는 좌표배열 입니다
-						    strokeWeight: 5, // 선의 두께 입니다
-						    strokeColor: '#00B0B0', // 선의 색깔입니다
-						    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+						    strokeWeight: 6, // 선의 두께 입니다
+						    strokeColor: '#FF0162', // 선의 색깔입니다
+						    strokeOpacity: 0.6, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 						    strokeStyle: 'solid' // 선의 스타일입니다
 		});
 		
@@ -880,6 +895,7 @@ $(function(){
 		$("#descent").text("");	
 		
 		$("#title").val("");
+		$("#description").val("");
 	}
 	
 	function getRegion(){
@@ -939,7 +955,8 @@ $(function(){
 		var region = getRegion();
 		data += "&region="+region;
 		data += "&closed="+$("input[name=closed]").val();
-		console.log(data);
+		data += "&description="+$("#description").val();
+		
 		////////// 루트 데이터 //////////
 		
 		data += "&noroutecate="+$("#catename").val();
@@ -961,7 +978,6 @@ $(function(){
 			data += "&conve"+i+"="+$("input[name=convenientList]").eq(i-1).val();
 		}
 		/////////// 장소 데이터 ////////////
-		console.log(data);
 		
 		var url = "/home/insertRoute";
 		
@@ -980,6 +996,5 @@ $(function(){
 				console.log("루트 저장 에러");
 			}
 		});
-		
 		return false;
 	});
