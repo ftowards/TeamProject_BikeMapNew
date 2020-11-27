@@ -17,7 +17,7 @@
 <title>Bike Map</title>
 <script>
 
-    var btn, userid;
+    
 	function replyPopupOpen(){
 		$('.layerpop').css("position", "absolute");
 		
@@ -114,16 +114,13 @@
 		});
 	}
 	
-    
+	 var btn, userid;
      $(function(){    	
     	//관리자 정지 화면
-    	$(document).ready(function() {
-    		    $('#reportMsg').on('keyup', function() {
-    		        if($(this).val().length > 250) {//varchar500이므로...
-    		            $(this).val($(this).val().substring(0, 250));
-    		        }
-    		    });
-    	});
+    	
+    	
+    	
+    	
     	//팝업
     	$(document).on('click','#suspendBtn',function(){
 	    	btn = $(this);
@@ -217,14 +214,21 @@
 		        });
 		        return false;
 		 });
+    	
     	$("#adminSearchUser").submit(function(){
-    		if($(#searchWord).val() == ""){
-    			alert("검색어를 입력하세요.")ㅣ
+    		if($("#userSearchWord").val() == ""){
+    			alert("검색어를 입력하세요.");
     			return false;
     		}
     		movePage(1);
     		return false;
-    	})
+    	});
+    	
+    	$('#reportMsg').on('keyup', function() {
+ 		   if($(this).val().length > 200) {//varchar500이므로...
+ 		         $(this).val($(this).val().substring(0, 200));
+ 		   }
+ 		});
     	
     });
      

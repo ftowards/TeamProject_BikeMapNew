@@ -40,10 +40,10 @@
 								<li id="contents" ><a href="javascript:userPopupOpen();">${vo.userid }</a></li>
 								<li>${vo.username}</li>
 								<li>
-									<c:if test="${vo.gender=='M'}">
+									<c:if test="${vo.gender=='1'}">
 										남
 									</c:if>
-									<c:if test="${vo.gender=='F'}">
+									<c:if test="${vo.gender=='2'}">
 										여
 									</c:if>
 								</li>
@@ -51,7 +51,7 @@
 								<li>${vo.tourcnt}회</li>
 								<li>${vo.heart}회</li>
 								<li style="color:red">
-									<c:if test="${vo.endday==null||vo.endday}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
+									<c:if test="${vo.endday==null}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
 										<input type="button" title="${vo.userid}" id="suspendBtn"/>
 									</c:if>
 									<c:if test="${vo.endday!=null}">
@@ -117,7 +117,6 @@
 			<!-- suspend popup -->
 			<div id="userSuspend" class="layerpop"
 				    	style="width:330px;height:300px;">
-				    	
 				    	<form id="userSuspendFrm" >
 				    	<input type="hidden" name="userid" id="userid" value=""/><!-- DB쪽 보낼데이터 -->
 					    	<article class="layerpop_area">
