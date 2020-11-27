@@ -3,7 +3,6 @@ package com.bikemap.home.admin;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class AdminController {
 			mav.addObject("list", list);
 			mav.addObject("pagingVO", pagingVO);	
 		}catch(Exception e) {
-			System.out.println("회원 검색 화면 호출 에러"+e.getMessage());
+			System.out.println("회원 검색 화면 호출 에러111"+e.getMessage());
 		}	
 		mav.setViewName("admin/adminUserTable");
 		return mav;
@@ -77,6 +76,7 @@ public class AdminController {
 		//System.out.println(Avo.getEnddayStr()+"    log");
 		return Avo;
 	}
+
 	@RequestMapping(value="/userSuspendUpdateOk", method=RequestMethod.POST)
 	@ResponseBody
 	public AdminSuspendVO userSuspendUpdateOk(AdminSuspendVO vo) {

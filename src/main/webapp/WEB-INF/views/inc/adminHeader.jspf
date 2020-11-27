@@ -17,7 +17,7 @@
 <title>Bike Map</title>
 <script>
 
-    var btn, userid;
+    
 	function replyPopupOpen(){
 		$('.layerpop').css("position", "absolute");
 		
@@ -36,6 +36,21 @@
     }
     function change_suspendEditTime(time){
     	$('#suspendEditTime').val(time);
+    }
+    
+    function formSubmit() {
+        var params = jQuery("#userSuspendEditFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+        jQuery.ajax({
+            url: 'userSuspendUpdateOk',
+            type: 'POST',
+            data:params,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+            success: function (result) {
+                if (result){
+                    // 데이타 성공일때 이벤트 작성
+                }
+            }
+        });
     }
     //페이징 리스트 만들기
     function setPaging(vo){
@@ -60,6 +75,7 @@
 		}
 		$("#paging").append(tag);		
 	}
+    
     
 	function movePage(page){
 		
@@ -97,16 +113,14 @@
 			}
 		});
 	}
-    
+	
+	 var btn, userid;
      $(function(){    	
     	//관리자 정지 화면
-    	$(document).ready(function() {
-    		    $('#reportMsg').on('keyup', function() {
-    		        if($(this).val().length > 250) {//varchar500이므로...
-    		            $(this).val($(this).val().substring(0, 250));
-    		        }
-    		    });
-    	});
+    	
+    	
+    	
+    	
     	//팝업
     	$(document).on('click','#suspendBtn',function(){
 	    	btn = $(this);
@@ -200,36 +214,26 @@
 		        });
 		        return false;
 		 });
+    	
     	$("#adminSearchUser").submit(function(){
-    		if($(#searchWord).val() == ""){
-    			alert("검색어를 입력하세요.")ㅣ
+    		if($("#userSearchWord").val() == ""){
+    			alert("검색어를 입력하세요.");
     			return false;
     		}
     		movePage(1);
     		return false;
-    	})
+    	});
+    	
+    	$('#reportMsg').on('keyup', function() {
+ 		   if($(this).val().length > 200) {//varchar500이므로...
+ 		         $(this).val($(this).val().substring(0, 200));
+ 		   }
+ 		});
     	
     });
-<<<<<<< HEAD
+     
     
-    function formSubmit() {
-        var params = jQuery("#userSuspendEditFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
-        jQuery.ajax({
-            url: 'userSuspendUpdateOk',
-            type: 'POST',
-            data:params,
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
-            success: function (result) {
-                if (result){
-                    // 데이타 성공일때 이벤트 작성
-                }
-            }
-        });
-    }
-=======
-   
->>>>>>> 6443ccd246dac840a4ea185dd19b1bed0a7c4efc
-	
+
 </script>
 </head>
 <body>
@@ -243,7 +247,6 @@
 				<span class ="icon">회원 관리</span>
 				<a href="/home/adminUser">회원목록/검색</a>
 			</li>
-			
 			<li>
 				<span class ="icon">게시판 관리</span>
 				<a href="/home/adminPartner">
