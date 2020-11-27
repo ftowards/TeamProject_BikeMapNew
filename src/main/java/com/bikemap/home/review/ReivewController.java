@@ -1,5 +1,7 @@
 package com.bikemap.home.review;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -29,11 +31,11 @@ public class ReivewController {
 	}
 	
 	//후기 게시판 목록
-	@RequestMapping("/reviewMain")
-	public String ReviewView() {
-		return "review/reviewView";
-	}
-	
+//	@RequestMapping("/reviewView")
+//	public String ReviewView() {
+//		return "review/reviewView";
+//	}
+//	
 	
 	//후기 게시판 보기
 	@RequestMapping("/reviewList")
@@ -41,12 +43,27 @@ public class ReivewController {
 		return "review/reviewList";
 	}
 	
-	
-	//글쓰기 폼
+	//글쓰기 폼 이동
 	@RequestMapping("/reviewWriteForm")
 	public String ReviewWriteForm() {
 		return "review/reviewWriteForm";
 	}
+	
+	//글쓰기 전체 레코드 선택
+	@RequestMapping("/reviewView")
+	public ModelAndView reviewAllRecord() {
+			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+			List<ReviewVO> list = dao.reviewAllRecord();
+			
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("list", list);
+			mav.setViewName("review/reviewView");
+		
+		return mav;
+	}
+	
+	
+	
 	
 	//레코드 추가 글쓰기
 	@RequestMapping(value="/reviewWriteFormOk", method=RequestMethod.POST, produces="application/text;charset=UTF-8")

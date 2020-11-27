@@ -7,39 +7,45 @@
 
 <!-- 후기게시판 제목 -->
 <div class = "mainDiv">
+<div class = "toplayout" style = "margin:0 auto; width : 800px">
+	<a href="<%=request.getContextPath()%>/reviewView"><input type="submit" value="목록" id="revsaveBtn" class="mint_Btn"/></a>
 
+</div>
 <!-- 후기 게시판 내용 -->
 <div class="reviewBody" >	
 		<div id = "titleletter">
-			<span class="title">후기게시판보기</span><br><br>
-			<a href="<%=request.getContextPath()%>/reviewWriteForm"><span class = "title">글쓰기</span></a>
+<!-- 			<span class="title">후기게시판보기</span><br><br> -->
 		</div>
 	<div class="reviewList-type1">
 
-		<div class= "content2">
+<!-- 		<div class= "content2"> -->
 	
-			<div class = "contentlocationdiv2">
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png"/></a>
-			</div>
-			<div class = "contentlocationdiv2">
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg"/></a>
-			</div> <br/>
-			<div class = "contentlocationdiv2">
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>
-			</div>
-			<div class = "contentlocationdiv2">
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a>
-			</div>
-		</div>
+<!-- 			<div class = "contentlocationdiv2"> -->
+<%-- 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png"/></a> --%>
+<!-- 			</div> -->
+<!-- 			<div class = "contentlocationdiv2"> -->
+<%-- 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg"/></a> --%>
+<!-- 			</div> <br/> -->
+<!-- 			<div class = "contentlocationdiv2"> -->
+<%-- 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a> --%>
+<!-- 			</div> -->
+<!-- 			<div class = "contentlocationdiv2"> -->
+<%-- 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a> --%>
+<!-- 			</div> -->
+<!-- 		</div> -->
 		
 		<div class ="contentList">
 		<div>
-			<div class="right">
+<!-- 			<div class="right"> -->
 			<div>	
-				<span id="conttitle">서울-부산</span>
+				<li id="conttitle">${vo.subject }서울-부산</li><br>
+				<div style = "border-bottom: 1px solid #ebecef;">
+					<li>${vo.userid }jihwooo</li>
+					<li>${vo.writedate }2020.10.20 13:48 &nbsp; 조회 : ${vo.hit }4,000</li>
+				</div>
 			</div>
 			<div>
-				<p class="review-content2">
+				<p class="review-content2">${vo.content }
 							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
 							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
 							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
@@ -51,7 +57,7 @@
 							국가는 노인과 청소년의 복지향향을 위한 정책을 실시할 의무를 진다 
 				</p>
 			</div>
-			</div>
+<!-- 			</div> -->
  			</div>
 		</div>
 	</div>
