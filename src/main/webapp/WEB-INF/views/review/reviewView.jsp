@@ -87,8 +87,10 @@
 								<li id="reviewtext">${vo.content }</li>
 						</div>
 						<div class="writedate">
+							<ul>
 								<li class="userid" style="float:left; margin-left: 5px;">${vo.userid }</li>
 								<li style="margin-left: 595px;">${vo.writedate }</li>
+							</ul>
 						</div>
 						
 		 			</div>
@@ -101,7 +103,3 @@
 		
 	</div>
 </div>
-
-
-
-

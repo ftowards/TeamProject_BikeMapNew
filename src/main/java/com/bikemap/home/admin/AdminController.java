@@ -77,13 +77,6 @@ public class AdminController {
 		//System.out.println(Avo.getEnddayStr()+"    log");
 		return Avo;
 	}
-<<<<<<< HEAD
-	//정지 수정 및 삭제
-=======
-	
-
-	//정지 수정
->>>>>>> 6443ccd246dac840a4ea185dd19b1bed0a7c4efc
 	@RequestMapping(value="/userSuspendUpdateOk", method=RequestMethod.POST)
 	@ResponseBody
 	public AdminSuspendVO userSuspendUpdateOk(AdminSuspendVO vo) {
