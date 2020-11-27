@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class TempKey {
 
-	public String qetKey() {
+	public String getKey(int size) {
 		Random ran = new Random();
 		StringBuffer sb = new StringBuffer();
 		int num = 0;
@@ -16,7 +16,7 @@ public class TempKey {
 			} else {
 				continue;
 			}
-		}while(sb.length() < 48);
+		}while(sb.length() < size);
 		
 		return sb.toString();
 	}

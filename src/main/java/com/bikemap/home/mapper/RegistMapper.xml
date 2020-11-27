@@ -23,7 +23,7 @@
 		select userid from regist where username = #{username} and email=#{email}
 	</select>
 	<select id="registFindPwd" resultType="com.bikemap.home.regist.RegistVO" parameterType="com.bikemap.home.regist.RegistVO">
-		select email from regist where username=#{username} and userid=#{userid} and email=#{email}
+		select userid, email from regist where username=#{username} and userid=#{userid} and email=#{email}
 	</select>
 	<select id="checkAuth" resultType="com.bikemap.home.regist.RegistVO" parameterType="com.bikemap.home.regist.RegistVO">
 		select username, active, email, code from regist where email=#{email} and code=#{code}

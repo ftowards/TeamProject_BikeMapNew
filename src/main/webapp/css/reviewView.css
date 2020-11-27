@@ -76,6 +76,23 @@
 			  width : 70px;
 			  height : 40px;
 		}
+		.gray_Btn{
+		
+			  font-size:15px;
+			  font-weight:bold;
+			  border-radius: 5px;
+			  text-decoration: none;
+			  text-align : center;
+			  padding:3px 6px;
+			  margin:0 10px;
+			  color : white;
+			  background-color: rgb(69,69,79);
+			  width : 70px;
+			  height : 40px;
+			  border: 1px solid rgb(69,69,79);
+			border-radius: 5px;
+		}
+		
 	 		
 	 		
 	 		
@@ -198,7 +215,7 @@
 	
 	#reviewtext{
 	    /* width: 98%; */
-	    height: 40px;
+	    height: 60px;
 	    /* border-radius: 10px 10px; */
 	    /* padding: 10px; */
 	    text-align: left;
@@ -206,7 +223,8 @@
 	    overflow: hidden;
 	    text-overflow: ellipsis;
 	    margin: -37px;
-	}
+	    border-top: 1px solid #ebecef;
+	} 
 	
 
 	}
@@ -271,6 +289,7 @@
 		text-align: left;
 		margin-top: 50px;
   	  	margin-bottom: 50px;
+  	  	
 	
 	}
 
@@ -345,13 +364,13 @@
 		left:-49px;
 		z-index:99;
 	}	
-	#revsaveBtn{
-		width:50px;
-		border-radius: 0;
-		left: 763px;
-		top: 114px;
-    	z-index:200;
-	}
+/* 	#revsaveBtn{ */
+/* 		width:50px; */
+/* 		border-radius: 0; */
+/* 		left: 763px; */
+/* 		top: 114px; */
+/*     	z-index:200; */
+/* 	} */
 	#revcommententer{
 		border : 1px solid black;
 		

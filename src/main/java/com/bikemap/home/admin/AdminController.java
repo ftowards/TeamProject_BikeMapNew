@@ -76,7 +76,7 @@ public class AdminController {
 		//System.out.println(Avo.getEnddayStr()+"    log");
 		return Avo;
 	}
-	
+
 	@RequestMapping(value="/userSuspendUpdateOk", method=RequestMethod.POST)
 	@ResponseBody
 	public AdminSuspendVO userSuspendUpdateOk(AdminSuspendVO vo) {
