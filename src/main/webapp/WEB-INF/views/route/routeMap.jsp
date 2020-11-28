@@ -8,15 +8,17 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<div id="container">
+<div id="mainDivMap">
 	<div id="info">
 		<!-- 탭 아이콘 패널 -->
 		<div id="naviIcon">
 			<ul>
-				<li><label for="tab1"><img src="<%=request.getContextPath() %>/img/img_course/searchGray.png"/></label></li>
-				<li><label for="tab2"><img src="<%=request.getContextPath() %>/img/img_course/mapGray.png" /></label></li>
-				<li><label for="tab3"><img src="<%=request.getContextPath() %>/img/img_course/buildingGray.png"/></label></li>
-				<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png"/></label></li>	
+				
+					<li><label for="tab1"><img src="<%=request.getContextPath() %>/img/img_course/searchGray.png" id="searchGray"/></label></li>
+					<li><label for="tab2"><img src="<%=request.getContextPath() %>/img/img_course/mapGray.png" id="mapGray"/></label></li>
+					<li><label for="tab3"><img src="<%=request.getContextPath() %>/img/img_course/buildingGray.png"/></label></li>
+					<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png"/></label></li>	
+			
 			</ul>
 		</div>
 		

@@ -6,100 +6,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device, initial-scale=1"/>
 <link rel="stylesheet" href="/home/css/style2.css" type="text/css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="/home/api/jquery.bxslider.css" type="text/css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/home/api/jquery.bxslider.js"></script>
 <title>BikeMap</title>
-<script>
-	$(function(){
-		$("#navi>li").hover(function(){
-			$(this).children("ul").css("display","block");
-			$(this).children("div").css("display","block");
-		},function(){
-			$(this).children("ul").css("display","none");
-			$(this).children("div").css("display","none");	
-		});
-		$("#logout>li").hover(function(){
-			$(this).children("ul").css("display","block");
-			$(this).children("div").css("display","block");
-		},function(){
-			$(this).children("ul").css("display","none");
-			$(this).children("div").css("display","none");	
-		});
-		$("#bxslider").bxSlider({
-			mode: 'horizontal'			//horizontal랑 fade중 고르기..
-			,slideWidth: 800		//가로
-			,slideHeight: 300		//세로
-			,auto: true				//자동 실행
-			,speed: 1000			//속도
-			,infiniteLoop: true		//무한루프
-			,autoHover: true		//마우스 hover시 화면전환 정지
-		});
-		/*=========================소라 수정20/11/13===========================================*/
-		$("#bxsliderTour").bxSlider({
-			mode: 'horizontal'			
-			,auto: true				
-			,speed: 200			
-			,infiniteLoop: true		
-			,autoHover: true		
-			,pager: false //페이징삭제
-		});
-	});
-</script>
 </head>
 <body>
-<div class="container">
-<header>
-	<div>
-		<div id="logoDiv">
-			<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/img/img_logo/logo_main.png"/></a>
-		</div>
-		<c:if test="${logStatus!='Y'}">	
-			<div id="loginDiv">
-				<ul id="login">
-					<div id="loginLblDiv"><li><a href="<%=request.getContextPath()%>/login">로그인&nbsp;</a></li></div>
-					<div id="loginImgDiv"><li><img src="<%=request.getContextPath()%>/img/img_main/login_icon.png" id="loginIcon"/></li></div>
-					<div id="loginRegisterDiv"><li><input type="button" value="회원가입" onclick="location.href='<%=request.getContextPath()%>/registerForm'"></li></div>
-				</ul>
-			</div>
-		</c:if>
-		<c:if test="${logStatus!=null && logStatus=='Y'}">	
-			<div id="logoutDiv">
-				<ul id="logout">
-					<li><input type="button" value="${logName}&nbsp;님">
-						<ul>
-								<img src="<%=request.getContextPath()%>/img/img_main/login_icon.png" id="logIdIcon">&nbsp;
-								<span id="logId"><b>${logId }</b></span>
-								<span id="mypage"><a href="<%=request.getContextPath()%>/registEdit">마이페이지</a></span>
-							<div id=classDiv>
-								<li class="c1"><a href="#">저장된 루트</a></li>
-								<li class="c1"><a href="#">1:1문의</a></li>
-								<li class="c1"><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
-							</div>
-						</ul>
-					</li>
-					<div id="loginImgAlarmDiv"><li><img src="<%=request.getContextPath()%>/img/img_main/alarm_icon.png" id="alarmIcon"/></li></div>
-				</ul>
-			</div>
-		</c:if>
-	</div>	
-</header>
-	<div class="lineDiv"></div>
-	<div id="naviDiv">
-	<ul id="navi">
-		<li><a href="<%=request.getContextPath()%>/">&nbsp;홈&nbsp;</a><div id="homeLine"></div></li>
-		<li><a href="<%=request.getContextPath()%>/courseMap">루트짜기</a><div id="routeLine"></div></li>
-		<li><a href="<%=request.getContextPath()%>/routeSearch">루트검색</a><div id="courseLine"></div></li>
-		<li><a href="#">동행찾기</a><div id="searchLine"></div>
-			<ul>
-				<li><div class="popupMenuColor"><a href="<%=request.getContextPath()%>/tourWriteForm">만들기</a></div></li>
-				<li><div class="popupMenuColor"><a href="<%=request.getContextPath()%>/tourList">검색</a></div></li>
-				<li><div class="popupMenuColor"><a href="#">참여모임</a></div></li>
-				<li><div class="popupMenuColor"><a href="#">내모임</a></div></li>
-			</ul>
-		</li>
-		<li><a href="<%=request.getContextPath()%>/reviewView">후기</a><div id="reviewLine"></div></li>
-		</ul>
-	</div>
-<div class="lineDiv"></div>
+<div class="navbar navbar-inverse" style="z-index:800">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                        <a href="<%=request.getContextPath()%>/" class="navbar-brand">BikeMap</a>
+                    </div>
+
+                    <div class="navbar-collapse collapse" id="mobile_menu">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="<%=request.getContextPath()%>/">홈</a></li>
+                            <li><a href="<%=request.getContextPath()%>/courseMap" class="dropdown-toggle">루트짜기</a></li>
+                            <li><a href="<%=request.getContextPath()%>/routeSearch">루트검색</a></li>
+                            <li><a href="<%=request.getContextPath()%>/tourList">동행검색</a></li>
+                            <li><a href="<%=request.getContextPath()%>/reviewView">후기</a></li>
+                        </ul>
+					 <ul class="nav navbar-nav navbar-right">        
+					<c:if test="${logStatus!=null && logStatus=='Y'}">	
+                            <li><a href="#" class="dropdown-toggle"  data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>${logName}님<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+                                    <li><a href="<%=request.getContextPath()%>/registEdit">마이페이지</a></li>
+                                    <li><a href="#">저장된 루트</a></li>
+                                    <li><a href="#">1:1문의</a></li>
+                                    <li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
+                                </ul>                            
+                            </li>
+                     </c:if>       
+                         <c:if test="${logStatus!='Y'}">	
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> 로그인 / 회원가입 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<%=request.getContextPath()%>/login">로그인</a></li>
+                                    <li><a onclick="location.href='<%=request.getContextPath()%>/registerForm'">회원가입</a></li>
+                                </ul>
+                            </li>
+                          </c:if>  
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

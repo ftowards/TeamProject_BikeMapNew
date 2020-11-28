@@ -4,185 +4,71 @@ body{margin:0; padding:0;
     overflow-y:auto;}
 	ul,li{margin:0px; padding:0px;list-style-type:none;} 
 	ul{list-style-type:none;}
-	/*=====================================header========================================================*/
-	/*로고*/
-	header{margin:0;padding:0; height:100px;}
-	
+		
+	.container{margin : 0; padding:0}
+	#mainDiv{width:800px; margin:0 auto;}
+	#mainDivHome{width:800px; margin:0 auto;}
 
-	#logoDiv{text-align:right;width:57%;margin-top:25px;float:left;}
-	.lineDiv{background-color:rgb(64,64,64); height:1px; margin:0; padding:0; z-index:9}
-	#logoDiv img{
-					width:220px; 
-					height:70px;
-				}
-	
-	/*=======================로그인 전,회원가입==============================================*/
-	#loginDiv{	
-				float:left;	
-				width:43%; 
-				height:100px; 
-					
+ 	#mainBxSliderFrontground{
+ 							background-color:black;
+ 							margin-top:-20px;
+ 							width:100%;
+ 							height:600px;
+ 							opacity:40%;
+ 							position:absolute;
+ 							z-index:100
+ 	}
+	#mainLabel{
+				position:absolute;
+				margin:170px 0 0 520px;
+ 				z-index:120;
+ 				width:100%
+ 			
+	}
+	#mainLabel label:first-child{
+							position:absolute;
+			 				z-index:120;
+			 				color:white;
+			 				font-size:45px;
+			 				font-family:'Amalfi Coast';
+			 				font-weight:lighter;
 				
 	}
-	#loginLblDiv{
-					width:63px;
-					heigth:200px;
-					float:left;
-					margin:40px 0 0 350px;
+	#mainLabel label:nth-child(2n){
+							position:absolute;
+			 				z-index:120;
+			 				color:white;
+			 				margin:100px 0 0 108px;
+			 				font-family:'batang';
+			 				letter-spacing:1px;
+			 				font-weight:lighter;
 				
+	}
+	#mainLabel button{
+							position:absolute;
+			 				z-index:120;
+			 				color:white;
+			 				margin:130px 0 0 170px;
+			 				font-weight:bold;
+							padding-top:4px;
+							text-align:center;
+							border:1px solid #fff;
+							border-radius:10px;
+							width:150px;
+							height:28px;
+							background-color:transparent;
+							font-size:15px;
+							font-weight:bold;
 				
-	}
-	#loginImgDiv{
-					width:50px;
-					heigth:100px;
-					float:left;
-					margin:38px 0 0 410px;
-					position:absolute;
-	
-	}
-	#loginRegisterDiv{
-					width:50px;
-					heigth:100px;
-					float:left;
-					margin:34px 0 0 470px;
-					position:absolute;
-					
-	}
-	#loginLblDiv>li:first-child{
-							float:left;
-							font-size:18px;
-								
-							
-	}
-	#loginImgDiv>li:nth-child(2n){
-									float:left;
-										
-							
-	}
-	#loginRegisterDiv>li:last-child{
-						float:left;
-							
 						
 	}
-	#loginIcon{
-				width:30px;
-	}
-
-	#login>li{
-				float:left;
-			
-	}
-
-	/*로그인 링크*/
-	#loginLblDiv a:link,#loginLblDiv a:visited{text-decoration:none; color:rgb(123,123,123);}	
-
-	/*회원가입 버튼*/			
-	#loginRegisterDiv>li:last-child>input{
-								border:1px solid rgb(0,176,176);
-								border-radius:10px;
-								width:100px;
-								height:40px;
-								background-color:#fff;
-								color:rgb(0,176,176);
-								font-size:15px;}		
-	
-	/*===================================로그인 후,회원가입=====================================*/
-	#logoutDiv{
-				float:left;
-				width:43%; 
-				height:100px; 
-				
-	}
-	
-	#loginImgAlarmDiv{	
-						width:50px;
-						heigth:100px;
-						float:left;
-						margin:42px 0 0 530px;
-						position:absolute;
-	
-	
-	}
-	#loginImgAlarmDiv>li:last-child{
-							float:left;
-	}
-	#logout>li:first-child{
-							font-size:15px;
-							margin:40px 0 0 400px;
-	}
-	#alarmIcon{
-				width:30px;
-	}
-
-	#logout>li{
-				float:left;
-			
-	}
-	
-	/*logName 버튼*/			
-	#logout>li:first-child>input{
-								border:1px solid rgb(0,176,176);
-								border-radius:10px;
-								width:100px;
-								height:40px;
-								background-color:#fff;
-								color:rgb(0,176,176);
-								font-size:15px;}	
-	
-	#logout>li>ul{
-					display:none; 
-					width:230px; 
-					position:absolute; 
-					border:3px solid rgb(221,221,221);
-					background-color:#fff; 
-					z-index:100; 
-					line-height:55px;
-					margin-left:-140px;
-					
-					
-	}
-	#logIdIcon{width:40px; position:absolute; padding:20px 0 0 20px;}
-	#logId{position:absolute; padding:8px 0 0 60px; color:rgb(64,64,64);}
-	#mypage{position:absolute; padding:35px 0 0 60px;}
-	#classDiv{padding-top:30px;}
-	.c1{padding-left:20px;}
-	#classDiv .c1:first-child{border-bottom:2px solid rgb(221,221,221);border-top:2px solid rgb(221,221,221);}
-	#classDiv .c1:nth-child(2n){border-bottom:2px solid rgb(221,221,221);}
-	
-	/*logId 링크*/
-	#mypage a:link,#mypage a:visited{text-decoration:none;color:rgb(0,176,176);}
-	#mypage a:hover{text-decoration:none; color:rgb(0,176,176);}
-	.c1 a:link, .c1 a:visited{text-decoration:none; color:rgb(64,64,64);}
-	.c1 a:hover{text-decoration:none; color:rgb(64,64,64);}
-	
-	
-	/*네비게이션*/
-	#naviDiv{margin-left:26%;}
-	#navi{height:50px; padding-bottom:10px;}
-	#navi li{text-align:center; line-height:55px; font-size:20px;}
-	#navi>li{float:left; width:13%; height:50px;position:relative;}
-	#navi>li>ul{display:none; position:absolute; border:3px solid rgb(221,221,221); width:100%; background-color:#fff; z-index:100;}
-	
-	 
-	 /*홈,루트짜기,코스검색,동행찾기,후기-->파란밑줄 선*/
-	#navi li #homeLine{margin:0 auto; width:20px; height:2px; background-color:rgb(0,176,176);  display:none;}
-	#navi li #routeLine{margin:0 auto; width:70px; height:2px; background-color:rgb(0,176,176); display:none;} 
-	#navi li #courseLine{margin:0 auto; width:70px; height:2px; background-color:rgb(0,176,176); display:none;} 
-	#navi li #searchLine{margin:0 auto; width:70px; height:2px; background-color:rgb(0,176,176); display:none;} 
-	#navi li #reviewLine{margin:0 auto; width:40px; height:2px; background-color:rgb(0,176,176); display:none;} 
-	
-
-
-	/*링크*/
-	#navi a:link,#navi a:visited{text-decoration:none;color:rgb(64,64,64);}
-	#navi a:hover{text-decoration:none; color:rgb(64,64,64);}
-	
-	.popupMenuColor:hover{background-color:rgb(221,221,221); height:55.5px;font-weight:bold;}
-
+	 button:focus {
+    				outline: none;
+ }
 	/*================================================footer==================================================================*/
 	#footer{margin:0;padding:0;}
-	#topDiv{height:64px; background-color:rgb(55,55,65);}
-	#bottomDiv{height:162px;background-color:rgb(69,69,79);}
+	#topDiv{height:64px; background-color:rgb(52,52,52);}
+	#bottomDiv{height:162px;background-color:rgb(34,34,34);}
 	
 	
 	#topDiv li{float:left; width:10%; font-size:13px;line-height:60px;}
@@ -194,28 +80,26 @@ body{margin:0; padding:0;
 									height:70px;}
 	
 	#bottomDiv>#bottomLogoDiv{width:52%;height:80px;text-align:center;}
-	#bottomDiv #bottomLogoDiv>label{color:rgb(123,123,123);font-size:12px;line-height:120px;}
+	#bottomDiv #bottomLogoDiv>label{color:#9d9d9d;font-size:12px;line-height:120px;}
 	
 	#bottomDiv div:last-child{width:47.5%;height:80px;text-align:center;}
-	#bottomDiv div:last-child>label{color:rgb(123,123,123);font-size:12px;}
+	#bottomDiv div:last-child>label{color:#9d9d9d;;font-size:12px;}
 	
-	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:rgb(123,123,123);}
+	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:#9d9d9d;;}
 	
-	
-	.container{margin : 0; padding:0}
-	#mainDiv{width:800px; margin : 0 auto;}
-	
-	/*=====================================main=====================================================*/
 
-	.shadow{
-		background-color:black;
-		opacity:0.5;
-		position: relative;
-		z-index: 100;
+	/*=====================================main=====================================================*/
+	#mainBxSliderDiv{
+			margin:-25px -5px 0 -5px;
+			height:600px;
+			overflow:hidden;
+		
+			
 	}
+
 	#bxslider img{
-		width:800px;
-		height:300px;
+		margin-top:-50px;
+		
 	}
 	
 	#hitRoute{
@@ -306,4 +190,7 @@ body{margin:0; padding:0;
  	 box-shadow: none !important;
  	 padding:0;
 
+	}
+	#mainDivHeaderSub{
+						margin:-28px -5px 0 -5px;
 	}

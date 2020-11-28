@@ -1,8 +1,15 @@
 @charset "UTF-8";
+body{margin:0; padding:0;      
+	overflow-x:hidden;
+    overflow-y:auto;}
+	ul,li{margin:0px; padding:0px;list-style-type:none;} 
+	ul{list-style-type:none;}
 	#mainDiv{
 				width:800px; 
 				margin:0 auto;
 				height:1000px;
+				padding:0;
+			
 	}
 	#dateDiv{
 			 

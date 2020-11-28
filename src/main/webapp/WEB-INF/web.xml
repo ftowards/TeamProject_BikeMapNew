@@ -61,22 +61,18 @@
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/regist/*</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
-			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
 		</jsp-property-group>
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/review/*</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
-			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
 		</jsp-property-group>
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/route/*</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
-			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
 		</jsp-property-group>
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/tour/*</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
-			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
 		</jsp-property-group>
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/admin/*</url-pattern>
