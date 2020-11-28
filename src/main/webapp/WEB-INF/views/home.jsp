@@ -1,17 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<div id="mainDiv">
-	<div>
-	<div class="shadow"></div>
-		<ul id="bxslider">
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner1.jpg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner2.jpg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner3.jpg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner4.jpg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/banner5.jpg"/></a></li>
-		</ul>
-	</div>
+ <%@ include file="/WEB-INF/views/inc/headerMainBxSlider.jspf"%>
+<div id="mainDivHome">
 	<div id="hitRoute">
 		<div id="content1">
 			<span class="routeTitle">관리자 추천코스 여행&nbsp;</span>
