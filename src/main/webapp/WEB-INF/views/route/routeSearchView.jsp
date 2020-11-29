@@ -161,7 +161,7 @@
 				<div class="title">코스평점</div>
 				<div>
 					<img src="<%=request.getContextPath() %>/img/img_main/star.png" style="width:135px"/>
-					<label id="starLbl">4.8</label>
+					<label id="starLbl">${routeVO.rating }</label><span>(${routeVO.ratecnt })</span>
 				</div>
 				<div style='padding-left:25px; font-size:1em; font-weight:bold; color:#004554'>
 					<p>코스정보</p>

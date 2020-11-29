@@ -35,7 +35,8 @@
 	</insert>	
 	<select id="selectRoute" resultType="com.bikemap.home.route.RouteVO">
 		select noboard, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint5, routepoint6, routepoint7,
-		geocode, polyline, userid, distance, ascent, descent, region, to_char(writedate, 'YY-MM-DD HH24:MI') writedate from route
+		geocode, polyline, userid, distance, ascent, descent, region, to_char(writedate, 'YY-MM-DD HH24:MI') writedate,
+		round(rating, 1) rating, ratecnt from route
 		where noboard = #{param1} and closed = 'F'
 	</select>
 	<select id="selectRoutePlace" resultType="com.bikemap.home.route.RoutePlaceVO">
@@ -44,27 +45,38 @@
 		where noboard = #{param1}
 	</select>
 	<select id="searchResultRecord" resultType="int" parameterType="com.bikemap.home.route.RoutePagingVO">
-		select count(noboard) from route where ${searchKey} like '%'||#{searchWord}||'%'
+		select count(noboard) from route where ${searchKey} like '%'||#{searchWord}||'%' and closed = 'F'
 	</select>
 	<select id="selectRouteSearch" resultType="com.bikemap.home.route.RouteVO" parameterType="com.bikemap.home.route.RoutePagingVO">
 		<![CDATA[
 		select * from (select * from 
 		(select noboard, title, polyline, mapcenter, maplevel, userid from route
-		where ${searchKey} like '%'||#{searchWord}||'%'
+		where ${searchKey} like '%'||#{searchWord}||'%' and closed = 'F'
 		order by ${order} desc) where rownum <= (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
 		where rownum <= #{lastPageRecordCount} order by ${order}  desc
 		]]> 
 	</select>
 	<select id="searchTotalRecord" resultType= "int">
-		select count(noboard) from route
+		select count(noboard) from route where closed = 'F'
 	</select>
 	<select id="selectRouteAll" resultType="com.bikemap.home.route.RouteVO" parameterType="com.bikemap.home.route.RoutePagingVO">
 		<![CDATA[
 		select * from (select * from 
-		(select noboard, title, polyline, mapcenter, maplevel, userid, rating from route 
+		(select noboard, title, polyline, mapcenter, maplevel, userid, rating from route where closed = 'F'
 		 order by ${order} desc) where rownum <= (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
 		where rownum <= #{lastPageRecordCount} order by ${order} desc
 		]]> 
-	
+	</select>
+	<select id="checkRateAlready" resultType="int" parameterType="com.bikemap.home.route.RouteVO">
+		select count(userid) from routerate where noboard = #{noboard}
+	</select>
+	<update id="ratingRoute" parameterType="com.bikemap.home.route.RouteVO">
+		update route SET rating = ((rating * ratecnt)+ #{rating})/(ratecnt+1) , ratecnt = ratecnt +1  where noboard = #{noboard}
+	</update>
+	<insert id="insertRouteRateList" parameterType="com.bikemap.home.route.RouteVO">
+		insert into routerate(noboard, userid) values(#{noboard}, #{userid})
+	</insert>
+	<select id="selectRouteRating" resultType="com.bikemap.home.route.RouteVO" parameterType="com.bikemap.home.route.RouteVO">
+		select round(rating, 1) rating, ratecnt from route where noboard=#{noboard}
 	</select>
 </mapper> 

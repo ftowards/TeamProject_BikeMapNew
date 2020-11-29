@@ -41,10 +41,23 @@ public interface RouteDaoImp {
 	
 
 	
+	//// 루트 평점 주기 ////
+	// 기존에 부여한 평점이 있는 지 확인
+	public int checkRateAlready(RouteVO vo);
+	
+	// 평점 주기
+	public int ratingRoute(RouteVO vo);
+	
+	// 평점 부여 여부 입력하기
+	public int insertRouteRateList(RouteVO vo);
+	
+	// 평점 구하기
+	public RouteVO selectRouteRating(RouteVO vo);
 	
 	/// 루트 리스트 ////////
 	// 루트 저장 후 리스트에 추가하기
 	public int insertRouteList(RouteListVO vo);
+	
 	
 	/// 루트 플레이스 ///////
 	// 루트 저장 후 장소 리스트 저장하기

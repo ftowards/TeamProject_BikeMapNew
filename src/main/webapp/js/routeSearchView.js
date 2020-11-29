@@ -173,6 +173,36 @@ $("input[name=convenientMarker]").on("change",function(){
 	}
 });
 
+////// 평점 주기
+$("#grayBtn").on('click', function(){
+  	var rating = $("#gradeSelect").val();
+  	
+  	if(rating == ""){
+  		alert("평점을 선택해주세요.");
+  		return false;
+  	}
+  	
+  	var url = "/home/rateRoute";
+  	var data = "noboard="+$("#noboard").val();
+  		data += "&rating="+rating;
+  		
+  	$.ajax({
+  		type : 'POST',
+  		url : url,
+  		data : data,
+  		success : function(result){
+  			if(result == 2){
+  				alert("이미 평점을 등록한 루트입니다.");
+  			}else {
+  				alert("평점이 등록되었습니다.");
+  				setRating();
+  			}
+  		},error : function(){
+  			console.log("평점 입력 오류");
+  		}
+  	});
+});
+
 
 /////////////////// function //////////////////////
 
@@ -418,4 +448,22 @@ $("input[name=convenientMarker]").on("change",function(){
       legend: "none",
       titleY: "Elevation (m)",
     });
+  }
+  
+  // 평점 부여 후 변경
+  function setRating(){
+  	var url = "/home/selectRouteRating";
+  	var data = "noboard="+$("#noboard").val();
+  	
+  	$.ajax({
+  		type : 'POST',
+  		url : url,
+  		data : data,
+  		success : function(result){
+  			$("#starLbl").text(result.rating);
+  			$("#starLbl").next().text("("+result.ratecnt+")");
+  		},error : function(){
+  			console.log("평점 호출 에러");
+  		}
+  	});
   }

@@ -193,8 +193,8 @@
 					<input type="button" class="gray_Btn" id="emailChk" value="중복검사"/>
 					<br/><span class="reg" style='position:relative; bottom:20px;'>※ 이메일은 계정 활성화 및 아이디&비밀번호 찾기 인증 수단으로 사용됩니다.</span>
 					</li>
-				<li style='margin-top:20px'><input type="radio"name="gender" id="gender" value="1"/><span class="tlbl">남 자</span>
-					<input type="radio" name="gender" id="gender" value="2" checked/><span class="tlbl">여 자</span></li>
+				<li style='margin-top:20px'><input type="radio"name="gender" value="1"/><span class="tlbl">남 자</span>
+					<input type="radio" name="gender"value="2" checked/><span class="tlbl">여 자</span></li>
 				<li><input type="text" name="birth" id="datepicker" class="i2" maxlength="10"/>
 					<span class="reg">&ensp;※ ex)1980-12-03</span></li>			
 			</ul>
