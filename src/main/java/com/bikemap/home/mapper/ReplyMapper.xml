@@ -26,6 +26,12 @@
 	 	]]> 
 	</select>
 	<select id="getTotalReplyRecord" resultType="int" parameterType="com.bikemap.home.reply.ReplyPagingVO">
-	 		select count(noreply) from reply where noboard= #{noboard}
+	 	select count(noreply) from reply where noboard= #{noboard}
 	</select>
+	<delete id="delReply" parameterType="com.bikemap.home.reply.ReplyVO">
+		delete from reply where noreply = #{noreply}
+	</delete>
+	<update id="updateReply" parameterType="com.bikemap.home.reply.ReplyVO">
+		update reply set reply=#{reply} where noreply=#{noreply}
+	</update>
 </mapper>

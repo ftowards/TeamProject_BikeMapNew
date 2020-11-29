@@ -13,5 +13,11 @@ public interface ReplyDaoImp {
 	
 	//총 레코드 수
 	public int getTotalReplyRecord(ReplyPagingVO vo);
+	
+	//댓글 삭제
+	public int delReply(ReplyVO vo);
+	
+	//댓글 수정
+	public int updateReply(ReplyVO vo);
 
 }
