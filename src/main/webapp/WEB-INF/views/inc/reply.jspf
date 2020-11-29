@@ -14,7 +14,7 @@
 	<form method="post" id="replyForm">
 		<c:if test="${logId == null }">
 			<div id="replytWriteDiv">
-				<textarea name="reply" id="replyWrite" maxlength="100" placeholder=" 로그인 후 작성 가능합니다." readonly style="resize:none"></textarea>
+				<textarea maxlength="100" placeholder=" 로그인 후 작성 가능합니다." readonly style="resize:none"></textarea>
 			</div>
 		</c:if>
 		<c:if test="${logId != null}">
@@ -128,13 +128,22 @@
 				var $result = $(result);
 				var tag="";
 				$result.each(function(i,v){
+					// 댓글 보이는 창
+					tag += "<ul id='reply"+v.noreply+"' class='replyList'>";
 					tag += "<li style='color:rgb(64,64,64)'><b>"+ v.userid+"</b></li>";
+					tag +="<li>"+v.reply+"</li>";
+					tag +="<li>"+v.writedate;
 					if(v.userid=='${logId}'){
-						tag+="<div class='replyEditDiv'><input type='button' class='replyEdit' value='수정'/>";
-						tag+="<input type='button' class='replyDel' value='삭제'/></div>";
+						tag+="<input type='button' class='replyDel' value='삭제' onclick='delReply("+v.noreply+");'/>";
+						tag+="<input type='button' class='replyEdit' value='수정' onclick='editReply("+v.noreply+");'/>";
 					}
-					tag+="<li style='margin-top:10px;'>"+v.reply+"</li>";
-					tag+="<li style='margin-top:10px;'>"+v.writedate+"</li><hr/>";
+					tag += "</li></ul>";
+					
+					// 댓글 수정 창
+					tag += "<ul id='replyEdit"+v.noreply+"' class = 'replyList' style='display:none;'>";
+					tag += "<li><textarea maxlength='100' placeholder=' 주제와 무관한 댓글, 악플은 삭제될 수 있습니다.' style='width : 100%; height : 80px; resize:none'>"+v.reply+"</textarea>";
+					tag += "<li>&nbsp<input type='button' class='replyDel' value='취소' onclick='editCancle("+v.noreply+")'style='float:right;'/>";
+					tag += "<input type='button' class='replyEdit' value='확인' onclick='editOk("+v.noreply+")'style='float:right;'/></li></ul><hr/>";
 				});
 				$("#replyList").html(tag);
 			},error:function(){
@@ -163,5 +172,66 @@
 			}
 		});
 		replyListSelect(page);
+	}
+	
+	// 댓글 삭제하기
+	function delReply(noreply){		
+		var chk = confirm("삭제하시겠습니까?" + noreply);
+		
+		if(chk){
+			var url = "/home/delReply";
+			var data = "noreply="+noreply;
+			
+			$.ajax({
+				type : 'POST',
+				url : url,
+				data : data,
+				success : function(result){
+					if(result	 == 1){
+						movePage(1);
+					}else{
+						alert("댓글 삭제 오류입니다.\n다시 시도해주세요.");
+					}
+				},error : function(){
+					console.log("댓글 삭제 오류");
+				}
+			});
+		}
+	}
+	
+	// 댓글 수정하기 1. 수정폼 전환
+	function editReply(noreply){
+		$("#reply"+noreply).css("display","none");
+		$("#replyEdit"+noreply).css("display","block");
+	}
+	
+	// 댓글 수정하기 2. 취소
+	function editCancle(noreply){
+		$("#reply"+noreply).css("display","block");
+		$("#replyEdit"+noreply).css("display","none");
+	}
+	
+	// 댓글 수정하기 3. 확인
+	function editOk(noreply){
+		var txt = $("#replyEdit"+noreply).children().children("textarea").val()
+		if(txt ==""){
+			alert("수정할 댓글 내용을 입력해주세요.");
+			return false;
+		}		
+		var url = "/home/updateReply";
+		var data = "reply="+txt+"&noreply="+noreply;
+		
+		$.ajax({
+			type : 'POST',
+			url : url,
+			data : data,
+			success : function(result){
+				if(result == 1){
+					movePage(1);
+				}
+			},error : function(){
+				console.log("댓글 수정 오류");
+			}
+		});
 	}
 </script>

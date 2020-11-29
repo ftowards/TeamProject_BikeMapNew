@@ -76,6 +76,32 @@ public class ReplyController {
 		return vo;
 	}
 	
+	// 댓글 삭제하기
+	@RequestMapping(value="/delReply", method=RequestMethod.POST)
+	@ResponseBody
+	public int delReply(ReplyVO vo) {
+		ReplyDaoImp dao = sqlSession.getMapper(ReplyDaoImp.class);
+		int result = 0;
+		try {
+			result = dao.delReply(vo);
+		}catch(Exception e) {
+			System.out.println("댓글 삭제 에러 " + e.getMessage());
+		}
+		return result;
+	}
 	
+	// 댓글 수정하기
+	@RequestMapping(value="/updateReply", method=RequestMethod.POST)
+	@ResponseBody
+	public int updateReply(ReplyVO vo) {
+		ReplyDaoImp dao = sqlSession.getMapper(ReplyDaoImp.class);
+		int result = 0;
+		try {
+			result = dao.updateReply(vo);
+		}catch(Exception e) {
+			System.out.println("댓글 수정 에러 " + e.getMessage());
+		}
+		return result;
+	}
 	
 }
