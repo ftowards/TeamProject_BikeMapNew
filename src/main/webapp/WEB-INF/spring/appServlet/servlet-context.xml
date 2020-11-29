@@ -33,7 +33,7 @@
 		<beans:property name="username" value="scott"></beans:property>
 		<beans:property name="password" value="tiger"></beans:property>
 	</beans:bean>
-	
+
 	<beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"></beans:property>
 		<beans:property name="mapperLocations">

@@ -28,6 +28,7 @@ public class RouteVO {
 	private String writedate;
 	
 	private double rating;
+	private int ratecnt;
 	
 	public int getNoboard() {
 		return noboard;
@@ -162,7 +163,12 @@ public class RouteVO {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
-	
+	public int getRatecnt() {
+		return ratecnt;
+	}
+	public void setRatecnt(int ratecnt) {
+		this.ratecnt = ratecnt;
+	}
 	////////////// 삽질의 시작 /////////////////////
 	public String getRoutepoint1name() {
 		return routepoint1.substring(0,routepoint1.indexOf("[/]"));

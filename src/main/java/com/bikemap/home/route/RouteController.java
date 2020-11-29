@@ -182,4 +182,42 @@ public class RouteController {
 		}
 		return result;
 	}
+	
+	// 평점 부여하기
+	@RequestMapping(value="/rateRoute", method=RequestMethod.POST)
+	@ResponseBody
+	public int rateRoute(HttpSession session, RouteVO vo) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		vo.setUserid((String)session.getAttribute("logId"));
+		try {			
+			result = dao.checkRateAlready(vo);
+			if(result == 1) {
+				return 2; // 이미 평점을 줬을 경우 2를 리턴
+			}else {
+				// 평점이 없을 경우 평점 부여 / routerate 테이블에 아이디 추가
+				result = dao.ratingRoute(vo);
+				if(result == 1) {
+					result = dao.insertRouteRateList(vo);
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("평점 주기 에러 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	@RequestMapping(value="/selectRouteRating", method=RequestMethod.POST)
+	@ResponseBody
+	public RouteVO selectRouteRating(RouteVO vo) {
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			vo = dao.selectRouteRating(vo);
+		}catch(Exception e) {
+			System.out.println("평점 호출 에러" +e.getMessage());
+		}
+		return vo;
+	}
 }
