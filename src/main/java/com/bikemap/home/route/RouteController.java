@@ -104,12 +104,15 @@ public class RouteController {
 		
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		
-		RouteVO vo = dao.selectRoute(noboard);
-		RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
-		
-		mav.addObject("routeVO", vo);
-		mav.addObject("placeVO", placeVO);
-		
+		try {
+			RouteVO vo = dao.selectRoute(noboard);
+			RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
+			
+			mav.addObject("routeVO", vo);
+			mav.addObject("placeVO", placeVO);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		mav.setViewName("route/routeSearchView");
 		return mav;
 	}

@@ -3,45 +3,79 @@
  <%@ include file="/WEB-INF/views/inc/headerMainBxSlider.jspf"%>
 <div id="mainDivHome">
 	<div id="hitRoute">
+		<span class="routeTitle">
+			추천코스 여행&nbsp;
+			<sub>561개</sub>
+		</span><br/>
 		<div id="content1">
-			<span class="routeTitle">관리자 추천코스 여행&nbsp;</span>
-			<span style='float:left'><sub>561개</sub></span><br/><br/>
 			<div class="route">
 				<a href="#">
 					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
 				</a><br/>
-				<img style='width:50%; height:50%;' src="<%=request.getContextPath() %>/img/img_main/star.png"/>
+				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
 			</div>
 			<div class="route">
 				<a href="#">
 					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
 				</a><br/>
-				<img style='width:50%; height:50%;' src="<%=request.getContextPath() %>/img/img_main/star.png"/>
+				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
 			</div>
 			<div class="route">
 				<a href="#">
 					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
 				</a><br/>
-				<img style='width:50%; height:50%;' src="<%=request.getContextPath() %>/img/img_main/star.png"/>
+				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
 			</div>
 			<div class="route">
 				<a href="#">
 					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
 				</a><br/>
-				<img style='width:50%; height:50%;' src="<%=request.getContextPath() %>/img/img_main/star.png"/>
+				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
+			</div><br/>
+			<div class="route">
+				<a href="#">
+					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
+					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
+				</a><br/>
+				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
+			</div>
+			<div class="route">
+				<a href="#">
+					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
+					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
+				</a><br/>
+				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
+			</div>
+			<div class="route">
+				<a href="#">
+					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
+					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
+				</a><br/>
+				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
+			</div>
+			<div class="route">
+				<a href="#">
+					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
+					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
+				</a><br/>
+				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
 			</div>
 		</div>
-	</div>
+	</div><br/>
+	
 	<div id="routeSearch">
-		<sub><img style='width:4%' src="<%=request.getContextPath() %>/img/img_main/search.png"/></sub>
-		<a href="#">최근 다녀온 200개 루트 검색</a>
+		<a href="<%=request.getContextPath()%>/routeSearch">
+			<img style='width:3%' src="<%=request.getContextPath() %>/img/img_main/search.png"/>
+			최근 다녀온 200개 루트 검색
+		</a>
 	</div>
 	
 	<div id="national">
+		<span class="routeTitle">코스 후기</span><br/>
 		<div id="location">
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
@@ -54,5 +88,8 @@
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 		</div>
+	</div>
+	<div>
+		<a href="#" class="topIcon"><img src="<%=request.getContextPath() %>/img/img_main/top.png"/></a>
 	</div>
 </div>

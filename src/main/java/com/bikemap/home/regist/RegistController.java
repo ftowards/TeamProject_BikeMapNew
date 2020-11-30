@@ -319,4 +319,10 @@ public class RegistController {
 		
 		return result;
 	}
+	
+	// 로그인 팝업 띄우기
+	@RequestMapping("/loginPopup")
+	public String loginPopup() {
+		return "popup/login";
+	}
 }

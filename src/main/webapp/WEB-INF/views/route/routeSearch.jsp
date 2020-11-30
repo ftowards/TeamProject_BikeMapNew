@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
-<div style='width:800px; height:1380px; margin:0 auto'>
+<div class="routeSearchDiv">
 	<form id="searchRoute" method="post" action="#" class="optionBar" style='float:left;'>
 		<select name="searchKey" class="regionSelect">
    		    <option value="title">코스이름</option>
@@ -10,24 +10,34 @@
 		    <option value="region">지역</option>
 		</select>
 		<input type="text" id="searchWord" name="searchWord" class="schBar" style='padding-left:10px; color:#7F7F7F; font-size:1em; font-weight:bolder;'/>
-		<input type="submit" class="mint_Btn" value="검 색" style='width:70px; height:40px'/>
+		<input type="submit" class="mint_Btn" value="검 색" style='width:6%; height:90%'/>
 	</form>
-	<div id="hitDiv">
-		<b>관리자 추천코스</b>
-		<div id="hitCourse">
-				<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-				<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-				<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-				<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-				<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
+	<div class="hitDiv" style="text-align:left">
+		<b>관리자 추천코스</b><br/><br/>
+		<div>
+			<div class="hitCourse">
+				<img class="hitIcon2" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
+				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/></a>
+			</div>
+			<div class="hitCourse">
+				<img class="hitIcon2" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
+				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/></a>
+			</div>
+			<div class="hitCourse">
+				<img class="hitIcon2" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
+				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/></a>
+			</div>
+			<div class="hitCourse">
+				<img class="hitIcon2" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
+				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/></a>
+			</div>
+			<div class="hitCourse">
+				<img class="hitIcon2" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
+				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/></a>
+			</div>
 		</div>
 	</div>
-	<div id="routeSearch">
+	<div class="routeSearch">
 		<div class="title">코스검색</div>
 		<div id="subTxt">최신순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>평점순</span></div>
 		<div id="content"></div>
@@ -58,7 +68,7 @@
 		</div>
 </div>
 <style>
-	.star-rating{width : 205px;}
+	.star-rating{margin:45px 80px 0 0;width : 205px;}
 	.star-rating, .star-rating span{display : inline-block; height: 39px; overflow:hidden;  
 		background : url(/home/img/img_route/star.png) no-repeat;}
 	.star-rating span{background-position : left bottom ; float : left;line-height:0; vertical-align : top;}
@@ -90,7 +100,7 @@
 		
 		for(var i = 0 ; i < result.length ; i++){
 			var listTag = "";
-			listTag += "<div class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"'><div id='map"+i+"' style='width:250px;height:250px;'></div></a>";
+			listTag += "<div class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"'><div id='map"+i+"' style='width:90%;height:80%;box-shadow: 3px 3px 3px rgb(150,150,150); display:inline-block;'></div></a>";
 			var rateWidth =  (result[i].rating/5 *205);
 			listTag += "<span class='star star-rating'><span style='width:"+rateWidth+"px'></span></span></div>";
 			
