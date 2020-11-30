@@ -24,6 +24,9 @@
 	<insert id="insertRouteList" parameterType="com.bikemap.home.route.RouteListVO">
 		insert into routelist(userid, noroutecate, noboard) values(#{userid}, #{noroutecate}, #{noboard})
 	</insert>
+	<select id="chkRouteList" resultType = "int" parameterType="com.bikemap.home.route.RouteListVO">
+		select count(noboard) from routelist where noboard=#{noboard} and userid =#{userid}
+	</select>
 	<insert id="insertRoutePlaceList" parameterType="com.bikemap.home.route.RoutePlaceVO">
 		insert into routeplace(noboard, food1, food2, food3, food4, food5, sights1, sights2, sights3, sights4, sights5,
 		accom1, accom2, accom3, accom4, accom5, conve1, conve2, conve3, conve4, conve5) values(#{noboard},
@@ -50,7 +53,7 @@
 	<select id="selectRouteSearch" resultType="com.bikemap.home.route.RouteVO" parameterType="com.bikemap.home.route.RoutePagingVO">
 		<![CDATA[
 		select * from (select * from 
-		(select noboard, title, polyline, mapcenter, maplevel, userid from route
+		(select noboard, title, polyline, userid, region, distance, mapcenter, maplevel, nvl(rating,0) rating from route
 		where ${searchKey} like '%'||#{searchWord}||'%' and closed = 'F'
 		order by ${order} desc) where rownum <= (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
 		where rownum <= #{lastPageRecordCount} order by ${order}  desc
@@ -62,7 +65,7 @@
 	<select id="selectRouteAll" resultType="com.bikemap.home.route.RouteVO" parameterType="com.bikemap.home.route.RoutePagingVO">
 		<![CDATA[
 		select * from (select * from 
-		(select noboard, title, polyline, mapcenter, maplevel, userid, rating from route where closed = 'F'
+		(select noboard, title, polyline, userid, region, distance, mapcenter, maplevel, nvl(rating,0) rating from route where closed = 'F'
 		 order by ${order} desc) where rownum <= (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
 		where rownum <= #{lastPageRecordCount} order by ${order} desc
 		]]> 

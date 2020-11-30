@@ -10,6 +10,10 @@
 		background-color:#ccc;
 		height:1px;
 	}
+	.borderHr{
+		background-color:white;
+		margin:0;
+	}
  	textarea:focus {
   		outline: none;
  	}
@@ -31,7 +35,7 @@
 	}
 	/*검색옵션바*/
 	.optionBar{
-		width:800px;
+		width:100%;
 		height:50px;
 		margin-bottom:60px;
 		text-align:center;
@@ -94,8 +98,8 @@
 	
 	/*코스검색 컨텐츠 전체*/
 	#routeSearch{
-		width:800px;
-		height:130px;
+		width:1200px;
+		height:300px;
 		margin-left:5px;
 		padding-top:200px;
 		text-align:left;
@@ -112,19 +116,28 @@
 		position:relative;
 		bottom:7px;
 	}
-	#subTxt{
+	
+	#routeSearch>input[type=radio]{
+		display:none;
+	}
+	.subTxt{
+		color:#AEAAAA;
+	}
+	#routeSearch>input[type=radio]:checked+label{
 		color:#353535;
 		font-size:1em;
 		font-weight:600;
 		margin-bottom:20px;
 	}
+
 	#lBar{
 		color:#7F7F7F;
 		font-weight:400;
 	}
 	/*댓글창*/
 	#paging{
-		width:790px;
+		position:relative;
+		width:1200px;
 		height:50px;
 		color:#353535;
 		font-size:1.1em;
@@ -149,7 +162,7 @@
 	
 	/*컨텐츠*/
 	#content{
-		width:800px;
+		width:1200px;
 		height:700px;
 	}
 	.thumbnail2{
@@ -163,9 +176,58 @@
 	}
 	.contentDiv{
 		float:left;
-		width:33.3%;
+		width:25%;
 		text-align:center;
 	}
+	.map{
+		width : 250px;
+		height : 250px;
+		margin : 0 auto;
+	}
+	
+	.routeSubscript{
+		width : 250px;
+		margin : 0 auto;
+	}
+	
+	.routeSubscript>ul{
+		display:inline-block;
+	}
+	
+	.routeSubscript li{
+		float: left;
+		width : 50%;
+		text-align:center;
+		
+		font-size:15px;
+		font-weight:bold;
+	    color : gray;
+		
+		margin-bottom : 3px;
+	}
+	
+	.routeSubscript li:first-child, .routeSubscript li:nth-of-type(2){
+		width : 250px;
+		text-align:left;
+	}
+	
+	.routeSubscript li:last-child{
+		width : 250px;
+		text-align:center;
+	}
+	
+	.star-rating{width : 125px;}
+	.star-rating, .star-rating span{display : inline-block; height: 39px; overflow:hidden;  
+		background : url(/home/img/img_route/starGray.png) no-repeat;
+		}
+		
+	.star-rating span{
+		background : url(/home/img/img_route/starColored.png) no-repeat;;
+		float : left;
+		line-height:0; 
+		vertical-align : top;}
+	
+	
 	.star{
 		width:150px;
 		height:30px;
