@@ -13,33 +13,7 @@ $(function(){
 		});
 		
 		
-		
-		/*$("#inputBtn").submit(function(){
-			CKEDITOR.instances.content.updateElement();
-			console.log("서브밋 클릭함.");
-			var url ="/reviewWriteFormOk";
-			var params = $("#reviewWriteForm").serialize();
-			
-			
-			$ajax({
-				type : "POST",
-				url : url,
-				data : params,
-				success : function (result){
-					if(result>0){
-						alert("글이 등록되었습니다.")
-						location.href="/home/reivewList";
-					}else{
-						alert("글등록이 실패하였습니다.")
-					}
-					
-				},error : function() {
-					console.log("글쓰기 오류");
-					
-				}
-			});
-			return false;
-		}); */
+
 	});
 	
 	
