@@ -129,7 +129,7 @@
 							<h4 style='padding-left:45px; color:#005766'>로그인 후 이용 가능합니다.</h4>
 						</div>
 						<div id="logButtons">
-							<input type="button" name="login" value="로그인" class="mint_Btn" style='width:80px; height:35px; font-size:15px' onclick="location.href='/home/login'"/>
+							<input type="button" id="login" name="login" value="로그인" class="mint_Btn" style='width:80px; height:35px; font-size:15px'/>
 							<input type="button" name="login" value="회원가입" class="WMint_Btn" onclick="location.href='/home/registerForm'"/>
 						</div>
 				</c:if>
