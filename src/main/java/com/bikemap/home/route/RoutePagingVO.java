@@ -5,10 +5,10 @@ public class RoutePagingVO {
 	private int nowPage = 1;
 	private int totalRecord ;
 	private int totalPage ;
-	private int onePageRecord = 6; // 한 페이지에 표시할 레코드 숫자
+	private int onePageRecord = 8; // 한 페이지에 표시할 레코드 숫자
 	private int onePageNumCount = 5; // 한 번에 표시할 페이지 숫자
 	private int startPageNum = 1;
-	private int lastPageRecordCount = 6; // 마지막 페이지 레코드 숫자
+	private int lastPageRecordCount = 8; // 마지막 페이지 레코드 숫자
 	
 	private String searchKey;
 	private String searchWord;

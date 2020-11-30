@@ -13,23 +13,7 @@ body{
 		list-style-type:none;
 	}
 		
-	.container{
-		margin:0;
-		padding:0;
-	}
-	#mainDiv{
-		width:800px;
-		margin:0 auto;
-	}
-	
-	#mainDivHome{
-		width:1200px;
-		height:2000px;
-		margin:0 auto;
-	}
-	
-	
-	@font-face{				
+	@Font-FACE{				
 		font-family:"AMALFI COAST";
 		src:url("/font/AMALFI COAST.TTF");
 	}
@@ -108,7 +92,7 @@ body{
 	#bottomDiv div:last-child{width:47.5%;height:80px;text-align:center;}
 	#bottomDiv div:last-child>label{color:#9d9d9d;;font-size:12px;}
 	
-	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:#9d9d9d;;}
+	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:#9d9d9d;}
 	
 
 	/*=====================================main=====================================================*/

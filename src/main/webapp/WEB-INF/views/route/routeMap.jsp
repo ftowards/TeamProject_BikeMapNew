@@ -135,7 +135,7 @@
 				</c:if>
 				<c:if test="${logId!=null }">
 				<form id="routeSave">
-					<input type="text" name="title" id="title" placeholder=" 코스 이름을 입력하세요"/><br/>
+					<input type="text" name="title" id="title" placeholder="루트 이름을 입력하세요"/><br/>
 						<select id="catename" class="selectBox" style='width:190px; margin-left:8px'>
 							<c:forEach var="list" items="${category }">
 								<option value="${list.noroutecate }" title="${list.catename }">${list.catename}</option>
@@ -144,16 +144,16 @@
 								<option value="addCategory">카테고리 추가</option>
 							</c:if>
 						</select><br/>
-						<span class="saveTxt">※ 코스 공개여부를 설정해주세요</span><br/>
+						<span class="saveTxt">※ 루트 공개여부를 설정해주세요</span><br/>
 					<div style='margin:8px 0 0 18px;'>
 						<input type="radio" name="closed" value="F" checked/><span class="saveTxt2"> 공개</span>&emsp;&emsp;&emsp;
 						<input type="radio" name="closed" value="T"/><span class="saveTxt2"> 비공개</span>
 					</div><br/>
 					<div id="saveDiv3">
-						<textarea name="description" id="description" placeholder="코스에 대한 설명을 적어주세요:)" rows="6" cols="15" style="resize:none" maxlength="50"></textarea><br/>
+						<textarea name="description" id="description" placeholder="루트에 대한 설명을 적어주세요:)" rows="6" cols="15" style="resize:none" maxlength="50"></textarea><br/>
 					</div>
 					<div id="saveDiv2">
-						<input type="submit" value="나의 코스 저장하기" class="blue_Btn" id="saveBtn"/>
+						<input type="submit" value="나의 루트 저장하기" class="blue_Btn" id="saveBtn"/>
 					</div>
 					<div id="saveDiv1">
 						<img src="<%=request.getContextPath() %>/img/img_route/bicycle.gif"/>
