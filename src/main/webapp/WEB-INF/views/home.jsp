@@ -5,7 +5,7 @@
 	<div id="hitRoute">
 		<span class="routeTitle">
 			추천코스 여행&nbsp;
-			<sub style='bottom:1px'>561개</sub>
+			<sub>561개</sub>
 		</span><br/>
 		<div id="content1">
 			<div class="route">
@@ -89,5 +89,7 @@
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 		</div>
 	</div>
-	<a href="#" class="topIcon"><img src="<%=request.getContextPath() %>/img/img_main/top.png"/></a>
+	<div class="topIcon">
+		<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/top.png"/></a>
+	</div>
 </div>

@@ -21,7 +21,7 @@
 	<div id="mainLabel">
 		<label>To Travel is to Live</label>
 		<label>나만의 소중한 여행을 직접 만들어보세요</label>
-		<button>START</button>
+		<button type="button" onclick="location.href='courseMap'">START</button>
 	</div>
 	<div id="mainBxSliderDiv">
 		<ul id="bxslider">
