@@ -1,6 +1,7 @@
 package com.bikemap.home.regist;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class TempKey {
 

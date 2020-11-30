@@ -420,8 +420,26 @@ $(function(){
 		setDeleteBtn();	
 		setStartArriveClass();
  	});
+ 	
+ 	// 로그인 팝업 띄우기
+ 	$("#login").on('click',function(){
+ 		console.log(111);
+ 		window.open("/home/loginPopup","Bikemap Login","width=600px, height=200px, left =200px, top=200px");
+ 	});
+ 	
+ 	// map 사이즈 조절
+ 	resizeMap();
+ 	
+ 	$(window).resize(function(){
+ 		resizeMap();
+ 	});
 });
-
+	// map 사이즈 변경
+	function resizeMap(){
+		var width = window.innerWidth - 430 + "px";	
+	 	$("#map").css("width",width);
+	 	map.relayout();
+ 	}
 
 // 경로 포인트 지정
 // 출발지 도착지 지정시 각각 첫번째 마지막 위치에 입력
