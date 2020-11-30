@@ -157,6 +157,10 @@ body{
 		top:100px;
 		left:10px;
 	}
+	.routeTitle sub{
+		bottom:1px;
+		color:#005766;
+	}
 	.route{
 		height:390px;
 		float:left;
