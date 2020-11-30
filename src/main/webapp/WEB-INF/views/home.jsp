@@ -68,7 +68,7 @@
 	</div><br/>
 	
 	<div id="routeSearch">
-		<a href="#">
+		<a href="<%=request.getContextPath()%>/routeSearch">
 			<img style='width:3%' src="<%=request.getContextPath() %>/img/img_main/search.png"/>
 			최근 다녀온 200개 루트 검색
 		</a>
@@ -89,7 +89,7 @@
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 		</div>
 	</div>
-	<div class="topIcon">
-		<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/top.png"/></a>
+	<div>
+		<a href="#" class="topIcon"><img src="<%=request.getContextPath() %>/img/img_main/top.png"/></a>
 	</div>
 </div>

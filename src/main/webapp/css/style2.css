@@ -1,17 +1,26 @@
 @charset "UTF-8";
 body{
-	margin:0; padding:0;      
-	overflow-x:hidden;
-    overflow-y:auto;
+		margin:0; padding:0;      
+		overflow-x:hidden;
+    	overflow-y:auto;
 	}
 	ul,li{
-		margin:0px; padding:0px;
+		margin:0px;
+		padding:0px;
 		list-style-type:none;
 	} 
-	ul{list-style-type:none;}
+	ul{
+		list-style-type:none;
+	}
 		
-	.container{margin : 0; padding:0}
-	#mainDiv{width:800px; margin:0 auto;}
+	.container{
+		margin:0;
+		padding:0;
+	}
+	#mainDiv{
+		width:800px;
+		margin:0 auto;
+	}
 	
 	#mainDivHome{
 		width:1200px;
@@ -21,70 +30,64 @@ body{
 	
 	
 	@font-face{				
-				font-family:"AMALFI COAST";
-				src:url("/font/AMALFI COAST.TTF");
-}
+		font-family:"AMALFI COAST";
+		src:url("/font/AMALFI COAST.TTF");
+	}
 			 				
 
  	#mainBxSliderFrontground{
- 							background-color:black;
- 							margin-top:-20px;
- 							width:100%;
- 							height:600px;
- 							opacity:40%;
- 							position:absolute;
- 							z-index:100
+ 		background-color:black;
+ 		margin-top:-20px;
+ 		width:100%;
+ 		height:600px;
+ 		opacity:40%;
+ 		position:absolute;
+ 		z-index:100;
  	}
 	#mainLabel{
-				position:absolute;
-				margin:170px;
- 				z-index:120;
- 				width:100%
+		position:absolute;
+		margin:170px;
+ 		z-index:120;
+ 		width:100%
  			
 	}
 	#mainLabel label:first-child{
-							position:absolute;
-			 				z-index:120;
-			 				color:white;
-			 				font-size:45px;
-			 				font-weight:lighter;
-			 				font-family:"AMALFI COAST";
-			 				margin-left:600px;
-			 	
-				
+		position:absolute;
+		z-index:120;
+		color:white;
+		font-size:45px;
+		font-weight:lighter;
+		font-family:"AMALFI COAST";
+		margin-left:600px;			
 	}
 	#mainLabel label:nth-child(2n){
-							position:absolute;
-			 				z-index:120;
-			 				color:white;
-			 				margin:100px 0 0 690px;
-			 				font-family:'batang';
-			 				letter-spacing:1px;
-			 				font-weight:lighter;
-			 				
-				
+		position:absolute;
+		z-index:120;
+		color:white;
+		margin:100px 0 0 690px;
+		font-family:'batang';
+		letter-spacing:1px;
+		font-weight:lighter;			
 	}
 	#mainLabel button{
-							position:absolute;
-			 				z-index:120;
-			 				color:white;
-			 				margin:130px 0 0 755px;
-			 				font-weight:bold;
-							padding-top:4px;
-							text-align:center;
-							border:1px solid #fff;
-							border-radius:10px;
-							width:150px;
-							height:28px;
-							background-color:transparent;
-							font-size:15px;
-							font-weight:bold;
-				
-						
+		position:absolute;
+		z-index:120;
+		color:white;
+		margin:130px 0 0 755px;
+		font-weight:bold;
+		padding-top:4px;
+		text-align:center;
+		border:1px solid #fff;
+		border-radius:10px;
+		width:150px;
+		height:28px;
+		background-color:transparent;
+		font-size:15px;
+		font-weight:bold;					
 	}
 	 button:focus {
-    				outline: none;
- }
+   		outline: none;
+	}
 	/*================================================footer==================================================================*/
 	#footer{margin:0;padding:0;}
 	#topDiv{height:64px; background-color:rgb(52,52,52);}
@@ -117,7 +120,6 @@ body{
 
 	#bxslider img{
 		margin-top:-50px;
-		
 	}
 	
 	#hitRoute{
@@ -209,12 +211,9 @@ body{
 		width:225px;
 		height:260px;
 	}
-	.topIcon{
-		 background-image: url(../img/img_route/search.png);
-	}
 	.topIcon img{
 		width:75px;
-		height:80px;
+		height:90px;
 		position:relative;
 		left:1250px;
 		bottom:30px;
@@ -231,12 +230,12 @@ body{
 	
 	
 	.bx-wrapper {
-	 -moz-box-shadow: none !important;
- 	 -webkit-box-shadow: none !important;
- 	 box-shadow: none !important;
- 	 padding:0;
+	 	-moz-box-shadow: none !important;
+ 	 	-webkit-box-shadow: none !important;
+ 	 	box-shadow: none !important;
+ 	 	padding:0;
 
 	}
 	#mainDivHeaderSub{
-						margin:-28px -5px 0 -5px;
+		margin:-28px -5px 0 -5px;
 	}
