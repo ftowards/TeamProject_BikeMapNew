@@ -28,7 +28,6 @@
 		
 		<div class = content>
 			<div id= "contentlocation">
-
 					<div class = "contentlocationdiv">
 						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png" /></a>
 					</div>			

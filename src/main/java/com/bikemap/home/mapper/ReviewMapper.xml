@@ -35,9 +35,8 @@
  	
  	<!--글삭제 -->
  	
- 	<delete id = "reviewDelete">
- 		delete from review where noboard=#{param1} and userid=#{param2}
- 	
+ 	<delete id = "reviewDelete" >
+ 		delete from review where noboard=#{noboard} and userid=#{userid}
  	</delete>
  
 </mapper>

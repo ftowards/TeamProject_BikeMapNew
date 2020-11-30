@@ -139,6 +139,7 @@ public class ReivewController {
 	public ModelAndView reviewDel(int noboard, HttpSession ses) {
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 		int result = dao.reviewDelete(noboard,(String)ses.getAttribute("userid"));
+		System.out.println(noboard+",   "+(String)ses.getAttribute("userid"));
 		
 		ModelAndView mav = new ModelAndView();
 		if(result>0) {

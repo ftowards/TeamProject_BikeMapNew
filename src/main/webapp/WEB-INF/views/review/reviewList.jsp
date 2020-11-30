@@ -5,11 +5,8 @@
 <script>
 	$(function(){
 		$("#reviewdel").click(function(){
-			
-			
 			if(confirm("삭제하시겠습니까?")){
-				location.href="/home/reviewDel?noboard=${vo.noboard}";
-				
+				location.href="/home/reviewDel?noboard=${vo.noboard}";		
 			}
 		});
 	});
