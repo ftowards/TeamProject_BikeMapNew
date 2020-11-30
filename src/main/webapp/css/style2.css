@@ -29,10 +29,11 @@ body{
 	}
 	
 	
-	@font-face{				
+
 		font-family:"AMALFI COAST";
 		src:url("/font/AMALFI COAST.TTF");
 	}
+
 			 				
 
  	#mainBxSliderFrontground{
@@ -108,7 +109,7 @@ body{
 	#bottomDiv div:last-child{width:47.5%;height:80px;text-align:center;}
 	#bottomDiv div:last-child>label{color:#9d9d9d;;font-size:12px;}
 	
-	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:#9d9d9d;;}
+	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:#9d9d9d;}
 	
 
 	/*=====================================main=====================================================*/
