@@ -7,21 +7,21 @@
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<div id="mainDiv2">
-	<div id="mapDiv" style='width:800px;'>
+<div class="routeSearchViewDiv">
+	<div id="mapDiv" style='width:1200px;'>
 		<b>코스정보보기</b><br/><hr id="titleLine"/>
 		<div class="wordCut">${routeVO.title}</div>
 
 		<div class="txtShadow">@${routeVO.userid }</div>
 		<div id="map_Altitude">
-			<div id="map" style='width:584px; height:300px;'>
+			<div id="map" style='width:100%; height:50%; margin-bottom:30px;'>
 			</div>
-			<div id="elevation_chart" style='width:584px; height:165px;'>
+			<div id="elevation_chart" style='width:100%; height:25%;'>
 			</div>
 	<div id="placeList">
-		<div>음식점<br/>
+		<div><span style='color:#d4350a'>음식점</span><br/>
 			<label class="switch">
-  				<input type="checkbox" name="foodMarker"><span class="slider round"></span>
+  				<input type="checkbox" name="foodMarker" class="foodCheck"><span class="slider round"></span>
 			</label><br/>
 				<ul id="foodList" style='margin-top:15px'>
 					<c:if test="${placeVO.food1placename != null }">
@@ -46,9 +46,9 @@
 					</c:if>
 				</ul>
 			</div>
-		<div>관광지<br/>
+		<div><span style='color:#032b7b'>관광지</span><br/>
 			<label class="switch">
-  				<input type="checkbox" name="sightsMarker"><span class="slider round"></span>
+  				<input type="checkbox" name="sightsMarker" class="sightCheck"><span class="slider round" style='background-color:#042e82'></span>
 			</label><br/>
 				<ul id="sightsList" style='margin-top:15px'>
 					<c:if test="${placeVO.sights1placename != null }">
@@ -73,9 +73,9 @@
 					</c:if>
 				</ul>
 			</div>
-		<div>숙박시설<br/>
+		<div><span style='color:#4a0e65'>숙박시설</span><br/>
 			<label class="switch">
-  				<input type="checkbox" name="accommodationMarker"><span class="slider round"></span>
+  				<input type="checkbox" name="accommodationMarker" class="accommodationCheck"><span class="slider round" style='background-color:#631786'></span>
 			</label><br/>
 				<ul id="accommodationList" style='margin-top:15px'>
 					<c:if test="${placeVO.accom1placename != null }">
@@ -100,9 +100,9 @@
 					</c:if>
 				</ul>
 			</div>
-		<div>편의시설<br/>
+		<div><span style='color:#276cab'>편의시설</span><br/>
 			<label class="switch">
-  				<input type="checkbox" name="convenientMarker"><span class="slider round"></span>
+  				<input type="checkbox" name="convenientMarker" class="convenientCheck"><span class="slider round" style='background-color:#519de2'></span>
 			</label><br/>
 				<ul id="convenientList" style='margin-top:15px'>
 					<c:if test="${placeVO.conve1placename != null }">
@@ -157,13 +157,13 @@
 							<input type="hidden" name="routePoint" value="${routeVO.routepoint7point }"/></li>
 					</c:if>
 				</ul>
-				<input type="hidden" id="geocode" value="${routeVO.geocode }"/>
+				<input type="hidden" id="geocode" value="${routeVO.geocode }"/><br/>
 				<div class="title">코스평점</div>
 				<div>
-					<img src="<%=request.getContextPath() %>/img/img_main/star.png" style="width:135px"/>
+					<img src="<%=request.getContextPath() %>/img/img_main/star.png" style="width:185px; padding-left:7%;"/>
 					<label id="starLbl">${routeVO.rating }</label><span>(${routeVO.ratecnt })</span>
 				</div>
-				<div style='padding-left:25px; font-size:1em; font-weight:bold; color:#004554'>
+				<div class="course_Info">
 					<p>코스정보</p>
 					<ul>
 						<li>총 거리 :&nbsp;<span>${routeVO.distance }</span>km</li>
@@ -184,9 +184,9 @@
 				    </select>
 				<input type="button" value="확&nbsp;인" class="gray_Btn" id="grayBtn"/>
 			</div>
-			<div style='text-align:center; margin-top:130px;'>
-				<input type="submit" name="save" value="저&nbsp;장" class="blue_Btn" style='border-radius: 5px; width:80px; height:40px'/>
-				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='height:40px'/>
+			<div style='text-align:center; margin-top:155px;'>
+				<input type="submit" name="save" value="저&nbsp;장" class="blue_Btn" style='border-radius: 5px; width:30%; height:40px'/>
+				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='width:30%; height:40px'/>
 			</div>
 		</div>
 	</div><br/><br/>
