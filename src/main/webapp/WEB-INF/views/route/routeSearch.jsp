@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
+
 <div style='width:1200px; height:1380px; margin:0 auto'>
 	<div class="optionBar" >
 		<form id="searchRoute" method="post" action="#">
@@ -17,7 +18,7 @@
 	<div id="hitDiv">
 		<b>추천코스</b>
 	</div>
-	<div id="routeSearch">
+	<div class="routeSearch">
 		<div class="title">코스검색</div>
 		<input type="radio"  name="order" id="orderNoboard" value="noboard" checked/><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar">&ensp;|&ensp;</span>
 		<input type="radio" name="order" id="orderRating" value="rating" /><label for="orderRating" class="subTxt" >평점순</label>
@@ -78,6 +79,7 @@
 		$("#content").children().remove();		
 		for(var i = 0 ; i < result.length ; i++){
 			var listTag = "";
+
 			if(i== 0){
 				listTag += "<ul>";
 			}
