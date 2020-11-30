@@ -8,6 +8,13 @@ body{margin:0; padding:0;
 	.container{margin : 0; padding:0}
 	#mainDiv{width:800px; margin:0 auto;}
 	#mainDivHome{width:800px; margin:0 auto;}
+	
+	
+	@font-face{				
+				font-family:"AMALFI COAST";
+				src:url("/font/AMALFI COAST.TTF");
+}
+			 				
 
  	#mainBxSliderFrontground{
  							background-color:black;
@@ -20,7 +27,7 @@ body{margin:0; padding:0;
  	}
 	#mainLabel{
 				position:absolute;
-				margin:170px 0 0 520px;
+				margin:170px;
  				z-index:120;
  				width:100%
  			
@@ -30,25 +37,28 @@ body{margin:0; padding:0;
 			 				z-index:120;
 			 				color:white;
 			 				font-size:45px;
-			 				font-family:'Amalfi Coast';
 			 				font-weight:lighter;
+			 				font-family:"AMALFI COAST";
+			 				margin-left:600px;
+			 	
 				
 	}
 	#mainLabel label:nth-child(2n){
 							position:absolute;
 			 				z-index:120;
 			 				color:white;
-			 				margin:100px 0 0 108px;
+			 				margin:100px 0 0 690px;
 			 				font-family:'batang';
 			 				letter-spacing:1px;
 			 				font-weight:lighter;
+			 				
 				
 	}
 	#mainLabel button{
 							position:absolute;
 			 				z-index:120;
 			 				color:white;
-			 				margin:130px 0 0 170px;
+			 				margin:130px 0 0 755px;
 			 				font-weight:bold;
 							padding-top:4px;
 							text-align:center;
