@@ -12,7 +12,7 @@
 		<b>코스정보보기</b><br/><hr id="titleLine"/>
 		<div class="wordCut">${routeVO.title}</div>
 
-		<div class="txtShadow">@${routeVO.userid }</div>
+		<div id="userid" class="txtShadow">${routeVO.userid }</div>
 		<div id="map_Altitude">
 			<div id="map" style='width:584px; height:300px;'>
 			</div>
@@ -185,7 +185,7 @@
 				<input type="button" value="확&nbsp;인" class="gray_Btn" id="grayBtn"/>
 			</div>
 			<div style='text-align:center; margin-top:130px;'>
-				<input type="submit" name="save" value="저&nbsp;장" class="blue_Btn" style='border-radius: 5px; width:80px; height:40px'/>
+				<input type="submit" id="routeCollect" name="save" value="저&nbsp;장" class="blue_Btn" style='border-radius: 5px; width:80px; height:40px'/>
 				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='height:40px'/>
 			</div>
 		</div>

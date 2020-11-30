@@ -423,7 +423,6 @@ $(function(){
  	
  	// 로그인 팝업 띄우기
  	$("#login").on('click',function(){
- 		console.log(111);
  		window.open("/home/loginPopup","Bikemap Login","width=600px, height=200px, left =200px, top=200px");
  	});
  	
