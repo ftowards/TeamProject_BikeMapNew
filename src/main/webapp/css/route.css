@@ -6,7 +6,7 @@
 
     hr{
 		border:0;
-		width:800px;
+		width:1200px;
 		background-color:#ccc;
 		height:1px;
 	}
@@ -24,25 +24,32 @@
 		font-weight:bold;
 		color:#AAAAAA;
 	}
+	.routeSearchDiv{
+		text-align:center;
+		width:1200px;
+		height:1700px;
+		margin:0 auto;
+		margin-top:200px;
+	}
 	#mainDiv2{
-		width:800px;
+		width:1200px;
 		height:1200px;
 		margin:0 auto;
 	}
 	/*검색옵션바*/
 	.optionBar{
-		width:800px;
+		width:100%;
 		height:50px;
-		margin-bottom:60px;
+		margin-bottom:100px;
 		text-align:center;
 	}
 	.regionSelect{
-		width:150px;
-		height:40px;
+		width:12%;
+		height:90%;
 		text-align:center;
-		font-size:1em;
+		font-size:17px;
 		font-weight:bold;
-		color:#7F7F7F;
+		color:#5d5b5b;
 		border:0px;
 		border-radius:5px;
 		background-color:#eee;
@@ -51,59 +58,62 @@
     	-moz-appearance: none;
     	appearance: none;
     	margin-right:5px;
-    	padding-left:10px;
+    	padding-left:25px;
+    	box-shadow:3px 3px 3px #ccc;
 	}
 	.schBar{
-		width:400px;
-		height:38px;
+		width:50%;
+		height:90%;
 		border:0px;
 		border-radius:5px;
 		padding-left:10px;
 		z-index: 1;
 		background-color:#F1F1F1;
+		box-shadow:3px 3px 3px #ccc;
 		
 	}
-	/*관리자 추천코스*/
+	/*관리자 추천코스*/	
 	#hitCourse{
+		width:100%;
 		height:220px;
 	}
 
-	#hitDiv > b, .title, #mapDiv b{
+	.hitDiv > b, .title, #mapDiv b{
 		color:#353535;
-		font-size:18px;
+		font-size:23px;
 		font-weight:600;
 	}
-	#hitCourse{
-		float:left;
-		height:200px;
-		margin: 15px 0 35px 0;
+	.hitDiv > b{
+		padding-left:10px;
 	}
+
 	.thumbnail{
-		width:19.4%;
-		height:150px;
-		margin-top:1px;
+		float:left;
+		width:18.8%;
+		height:100%;
 		border-radius:5px;
+		margin-left:13px;
 	}
-	.hitIcon{
-		width:70px;
-		height:30px;
-		margin-left:85px;
+	.hitIcon2{
+		width:90px;
+		height:38px;
+		margin-left:-94.5px;
 		position:absolute;
-		border-radius:5px;
+		border-top-right-radius:5px;
 	}
 	
 	/*코스검색 컨텐츠 전체*/
-	#routeSearch{
-		width:800px;
-		height:130px;
+	.routeSearch{
+		width:100%;
+		height:80%;
 		margin-left:5px;
 		padding-top:200px;
 		text-align:left;
 		background-color:white;
 	}
 	.title{
-		margin-top:20px;
-		padding:0px 10px 10px 0px;
+		margin-top:150px;
+		padding:0px 10px 10px 20px;
 	}
 	#starLbl{
 		font-size:20px;
@@ -114,9 +124,10 @@
 	}
 	#subTxt{
 		color:#353535;
-		font-size:1em;
+		font-size:16px;
 		font-weight:600;
 		margin-bottom:20px;
+		padding-left:20px;
 	}
 	#lBar{
 		color:#7F7F7F;
@@ -127,7 +138,7 @@
 		width:790px;
 		height:50px;
 		color:#353535;
-		font-size:1.1em;
+		font-size:20px;
 		margin : 0 auto;
 		text-align: center;
 	}
@@ -149,8 +160,8 @@
 	
 	/*컨텐츠*/
 	#content{
-		width:800px;
-		height:700px;
+		width:100%;
+		height:800px;
 	}
 	.thumbnail2{
 		width:250px;
@@ -164,6 +175,7 @@
 	.contentDiv{
 		float:left;
 		width:33.3%;
+		height:50%;
 		text-align:center;
 	}
 	.star{
@@ -173,7 +185,7 @@
 	}
 	
 	.mint_Btn{
-		  font-size:15px;
+		  font-size:16px;
 		  font-weight:bold;
 		  border-radius: 5px;
 		  text-decoration: none;
@@ -183,6 +195,7 @@
 		  color : white;
 		  border: 1px solid #00B0B0;
 		  background-color: #00B0B0;
+		  box-shadow:3px 3px 3px #ccc;
 	}
 	
 	
@@ -404,7 +417,7 @@
 	}
 	#paging2{
 		color:#353535;
-		font-size:1em;
+		font-size:20px;
 		font-weight:400;
 		padding-right:15px;	
 	}
