@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="/home/css/tourListStyle.css" type="text/css"/>
+<link rel="stylesheet" href="/home/css/tourListStyle.css" type="text/css"/>  
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
 	$(function(){
 		
@@ -79,22 +80,37 @@
 	});	
 	
 </script>
-<div id="mainDiv">
+<div id="mainDivTour">
+<div class="tourSearchListDiv">
 <form id="searchTour">	
 	<div id="dateDiv">
 		<div class="labelClass"><label>일&nbsp;정</label></div>
 		<div><input type="text" name="departure" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"></div>
-		<div><label  id="label1">~</label></div>
+		<select name="departureeTime" class="departureTime">
+			<c:forEach var="i" begin="0" end="24" step="1">
+				<option value="${i }">${i }시</option>
+			</c:forEach>
+		</select>
+		<div><label class="label1">~</label></div>
 		<div><input type="text" name="arrive"	placeholder="도착날짜" id="arrive" maxlength="10" autocomplete="off"></div>
+		<select name="arriveTime" class="arriveTime"  style="margin-top:-29px">
+			<c:forEach var="i" begin="0" end="24" step="1">
+				<option value="${i }">${i }시</option>
+			</c:forEach>
+		</select>
 	</div>
 	
 	<div id="placeDiv">
 		<div><label class="labelClass">장&nbsp;소</label></div>
-		<div><input type="text" name="place" placeholder="출발장소" id="place"></div>
+		<div><input type="text" name="place" placeholder="출발장소" id="place" autocomplete="off"></div>
 		
 		<div id="placeAndDistanceDiv">
 			<div><label id="distanceLbl">이동거리</label></div>
-			<div><input type="text" name="distance" placeholder="ex)10km" id="distance"></div>
+			<div><input type="text" name="distance" class="distance" maxlength="4" autocomplete="off" ></div>
+			<label class="kmLbl1">km</label>
+			<div style="margin-top:-10px;"><label class="label2">~</label></div>
+			<div><input type="text" name="distance" class="distance" maxlength="4" autocomplete="off" style="margin:-34px 0 0 230px"></div>
+			<div class="kmLbl2">km</div>
 		</div>	
 	</div>
 	
@@ -131,7 +147,9 @@
 		<div><input type="reset" name="reset" value="초기화" id="reset"></div>
 	</div>
 </form>
-	<hr/>
+
+	
+
 	<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label></div>
 	<div  id="paging">
 		<ul>
@@ -155,14 +173,15 @@
 			</c:if>
 		</ul>
 	</div>
+	
 	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
 	<div id="tourBoardListDivTop">	
 			
 	</div>
 	
 	
-	
 		<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
+</div>
 </div>
 <script>
 
@@ -174,7 +193,7 @@
 	var tag = "<ul>";
 	
 	if(vo.nowPage != 1){
-		tag += "<li><a href='javascript:movePage("+(vo.nowPage -1)+");'>Prev</a></li>";
+		tag += "<li style='margin-right:25px;'><a href='javascript:movePage("+(vo.nowPage -1)+");'>Prev</a></li>";
 	}
 	
 	for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount -1 ; i++){
@@ -222,7 +241,7 @@
 		var url ="/home/tourPagingList";
 		var params = "nowPage="+p;
 		
-		console.log("페이징 params==="+params);
+	
 		
 		$.ajax({
 			url:url
@@ -235,10 +254,10 @@
 					tag += "<div class='tourImgDivClass'>";
 					tag += "<div><img src='<%=request.getContextPath()%>/img/img_tour/map.png' class='tourImgClass'/></div>";
 					tag += "<div class='blackWrapDiv'>";	
-					tag += "<p style='font-size:15px;' class='tourBoardTitle'><b>"+ v.title+"</b></p>";
-					tag += "<p style='font-size:12px;' class='tourBoardWrite'>"+v.departure+'~'+v.arrive+"</p>";
-					tag += "<hr style='width:150px;'/>";
-					tag += "<p style='font-size:36px;' class='tourBoardDay'><b>1Day</b></p>";
+					tag += "<p style='font-size:25px;' class='tourBoardTitle'><b>"+ v.title+"</b></p>";
+					tag += "<p style='font-size:20px;' class='tourBoardWrite'>"+v.departure+'~'+v.arrive+"</p>";
+					tag += "<hr style='width:200px;'/>";
+					tag += "<p style='font-size:40px;' class='tourBoardDay'><b>1Day</b></p>";
 					tag += "</div></div>";
 				});
 				$("#tourBoardListDivTop").html(tag);
