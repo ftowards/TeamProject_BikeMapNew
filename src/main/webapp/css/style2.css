@@ -12,6 +12,22 @@ body{
 	ul{
 		list-style-type:none;
 	}
+			
+	.container{
+		margin:0;
+		padding:0;
+	}
+	#mainDiv{
+		width:800px;
+		margin:0 auto;
+	}
+	
+	#mainDivHome{
+		width:1200px;
+		height:2000px;
+		margin:0 auto;
+	}
+	
 		
 	@Font-FACE{				
 		font-family:"AMALFI COAST";

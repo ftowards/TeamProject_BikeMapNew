@@ -107,7 +107,7 @@
 	}
 	
 	/*코스검색 컨텐츠 전체*/
-	#routeSearch{
+	.routeSearch{
 		width:1200px;
 		height:300px;
 		margin-left:5px;
@@ -200,6 +200,7 @@
 
 		width:25%;
 		text-align:center;
+		margin-bottom : 20px;
 	}
 	.map{
 		width : 250px;
@@ -219,6 +220,7 @@
 	.routeSubscript li{
 		float: left;
 		width : 50%;
+		height : 25px;
 		text-align:center;
 		
 		font-size:15px;
@@ -241,10 +243,10 @@
 	.star-rating{width : 125px;}
 	.star-rating, .star-rating span{display : inline-block; height: 39px; overflow:hidden;  
 		background : url(/home/img/img_route/starGray.png) no-repeat;
-		}
+	}
 		
 	.star-rating span{
-		background : url(/home/img/img_route/starColored.png) no-repeat;;
+		background : url(/home/img/img_route/starColored.png) no-repeat;
 		float : left;
 		line-height:0; 
 		vertical-align : top;}
