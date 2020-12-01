@@ -607,13 +607,12 @@ function getTourTime(){
 		
 		});
 		
-
-		CKEDITOR.replace('content',{
+	 	CKEDITOR.replace('content',{
 			height:600
 			,width:1200
 		
 		}); 
-	 
+	  
 		
 		$("#tourWriteForm").submit(function(){
 			CKEDITOR.instances.content.updateElement();		
@@ -664,6 +663,7 @@ function getTourTime(){
 				url : url,
 				data : params,
 				success : function(result){
+					console.log(result);
 					if(result>0){
 						alert("글이 등록되었습니다.")
 						location.href="/home/tourList";

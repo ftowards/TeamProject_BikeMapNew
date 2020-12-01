@@ -20,6 +20,8 @@ public class AdminSuspendVO {
 	public void setEndday(int endday) {
 		this.endday = endday;
 	}
+	
+	
 	public String getCause() {
 		return cause;
 	}

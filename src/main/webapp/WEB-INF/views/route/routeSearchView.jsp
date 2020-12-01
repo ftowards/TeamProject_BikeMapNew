@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<div class="routeSearchViewDiv">
+<div class="routeSearchViewDiv2">
 	<div id="mapDiv" style='width:1200px;'>
 		<b>코스정보보기</b><br/><hr id="titleLine"/>
 		<div class="wordCut">${routeVO.title}</div>
@@ -16,10 +16,10 @@
 		<div id="map_Altitude">
 			<div id="map" style='width:100%; height:50%; margin-bottom:30px;'>
 			</div>
-			<div id="elevation_chart" style='width:100%; height:25%;'>
+			<div id="elevation_chart">
 			</div>
 	<div id="placeList">
-		<div><span style='color:#d4350a'>음식점</span><br/>
+		<div><span id="foodTxt">음식점</span><br/>
 			<label class="switch">
   				<input type="checkbox" name="foodMarker" class="foodCheck"><span class="slider round"></span>
 			</label><br/>
@@ -46,7 +46,7 @@
 					</c:if>
 				</ul>
 			</div>
-		<div><span style='color:#032b7b'>관광지</span><br/>
+		<div><span id="sightsTxt">관광지</span><br/>
 			<label class="switch">
   				<input type="checkbox" name="sightsMarker" class="sightCheck"><span class="slider round"></span>
 			</label><br/>
@@ -73,7 +73,7 @@
 					</c:if>
 				</ul>
 			</div>
-		<div><span style='color:#4a0e65'>숙박시설</span><br/>
+		<div><span id="accommodationTxt">숙박시설</span><br/>
 			<label class="switch">
   				<input type="checkbox" name="accommodationMarker" class="accommodationCheck"><span class="slider round"></span>
 			</label><br/>
@@ -100,7 +100,7 @@
 					</c:if>
 				</ul>
 			</div>
-		<div><span style='color:#276cab'>편의시설</span><br/>
+		<div><span id="convenientTxt">편의시설</span><br/>
 			<label class="switch">
   				<input type="checkbox" name="convenientMarker" class="convenientCheck"><span class="slider round"></span>
 			</label><br/>
@@ -161,7 +161,7 @@
 				<div class="title">코스평점</div>
 				<div>
 					<img src="<%=request.getContextPath() %>/img/img_main/star.png" style="width:185px; padding-left:7%;"/>
-					<label id="starLbl">${routeVO.rating }</label><span>(${routeVO.ratecnt })</span>
+					<label id="starLbl">${routeVO.rating }</label><span style='color:gray'>(참여 ${routeVO.ratecnt })</span>
 				</div>
 				<div class="course_Info">
 					<p>코스정보</p>
@@ -175,7 +175,7 @@
 			<div id="grade">
 				<div class="title">별점주기</div>
 					<select name="departurue" id="gradeSelect">
-				    	<option value="">별점주기</option>
+				    	<option value="">별점을 선택하세요</option>
 					    <option value="5">★★★★★</option>
 						<option value="4">★★★★☆</option>
 						<option value="3">★★★☆☆</option>
@@ -184,12 +184,12 @@
 				    </select>
 				<input type="button" value="확&nbsp;인" class="gray_Btn" id="grayBtn"/>
 			</div>
-			<div style='text-align:center; margin-top:155px;'>
+			<div class="saveBtns">
 				<input type="submit" id="routeCollect" name="save" value="저&nbsp;장" class="blue_Btn" style='border-radius: 5px; width:80px; height:40px'/>
 				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='height:40px'/>
 			</div>
 		</div>
-	</div><br/><br/>
+	</div><br/><hr/><br/>
 	<input type='hidden' id="noboard" value="${routeVO.noboard }"/>
 	<%@ include file="../inc/reply.jspf"%>
 </div>

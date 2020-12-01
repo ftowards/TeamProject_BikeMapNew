@@ -80,9 +80,7 @@
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a><br/>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
 			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>

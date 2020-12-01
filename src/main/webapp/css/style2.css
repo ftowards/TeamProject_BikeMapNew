@@ -24,29 +24,30 @@ body{
 	
 	#mainDivHome{
 		width:1200px;
-		height:2000px;
+		height:2100px;
 		margin:0 auto;
 	}
-	
-		
+
 	@Font-FACE{				
 		font-family:"AMALFI COAST";
 		src:url("/font/AMALFI COAST.TTF");
 	}
-			 				
+			 		
 
+			 				
+	}
  	#mainBxSliderFrontground{
  		background-color:black;
  		margin-top:-20px;
  		width:100%;
- 		height:600px;
+ 		height:800px;
  		opacity:40%;
  		position:absolute;
  		z-index:100;
  	}
 	#mainLabel{
 		position:absolute;
-		margin:170px;
+		margin:300px;
  		z-index:120;
  		width:100%
  			
@@ -55,16 +56,16 @@ body{
 		position:absolute;
 		z-index:120;
 		color:white;
-		font-size:45px;
+		font-size:55px;
 		font-weight:lighter;
 		font-family:"AMALFI COAST";
-		margin-left:600px;			
+		margin-left:400px;			
 	}
 	#mainLabel label:nth-child(2n){
 		position:absolute;
 		z-index:120;
 		color:white;
-		margin:100px 0 0 690px;
+		margin:120px 0 0 540px;
 		font-family:'batang';
 		letter-spacing:1px;
 		font-weight:lighter;			
@@ -73,16 +74,16 @@ body{
 		position:absolute;
 		z-index:120;
 		color:white;
-		margin:130px 0 0 755px;
+		margin:150px 0 0 600px;
 		font-weight:bold;
-		padding-top:4px;
+		padding-top:2px;
 		text-align:center;
 		border:1px solid #fff;
 		border-radius:10px;
 		width:150px;
-		height:28px;
+		height:32px;
 		background-color:transparent;
-		font-size:15px;
+		font-size:20px;
 		font-weight:bold;					
 	}
 	 button:focus {
@@ -114,13 +115,10 @@ body{
 	/*=====================================main=====================================================*/
 	#mainBxSliderDiv{
 		margin:-25px -5px 0 -5px;
-		height:600px;
+		height:800px;
 		overflow:hidden;
 	}
 
-	#bxslider img{
-		margin-top:-50px;
-	}
 	
 	#hitRoute{
 		width:1200px;
@@ -142,9 +140,9 @@ body{
 		border-top-right-radius:10px;
 	}
 	.thumbnail{
-		width:290px;
-		height:290px;
-		margin-left:5px;
+		width:285px;
+		height:285px;
+		margin-left:10px;
 		border-top-right-radius: 10px;
 		border-top-left-radius: 10px;
 	}
@@ -207,16 +205,16 @@ body{
 	}
 	#location img{
 		border-radius: 10px / 10px;
-		margin: 5px 5px 5px 0px;
-		width:225px;
-		height:260px;
+		margin: 5px 15px 15px 0px;
+		width:280px;
+		height:340px;
 	}
 	.topIcon img{
-		width:75px;
-		height:90px;
+		width:90px;
+		height:110px;
 		position:relative;
-		left:1250px;
-		bottom:30px;
+		left:1300px;
+		bottom:-110px;
 	}
 	/*=========================소라 수정20/11/13===========================================*/	
 	

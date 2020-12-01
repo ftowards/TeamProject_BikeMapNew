@@ -12,14 +12,13 @@ public class ReviewVO {
 	private String ip;
 	
 	
-	
-	
 	public int getNoboard() {
 		return noboard;
 	}
 	public void setNoboard(int noboard) {
 		this.noboard = noboard;
 	}
+	
 	public String getSubject() {
 		return subject;
 	}

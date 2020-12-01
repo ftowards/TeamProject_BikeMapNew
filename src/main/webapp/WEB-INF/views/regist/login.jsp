@@ -48,14 +48,17 @@
 	</div>
 	<form id="loginForm">
 	<div id="loginDiv2">
-		<div id="useridDiv" >ID
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="text" name="userid" style='width:270px; height:25px;'/></div>
-			<div id="loginBtnDiv">
-		<input type="submit" class="mint_Btn" value="로그인"/>
-	</div>
-		<div id="userPwddDiv">PASSWORD
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="userpwd" id="userpwd" style='width:270px; height:25px;'/></div>
+		<div id="useridDiv">
+			<span class="loginLabel">ID</span>
+			<input type="text" name="userid"/></div>
+
+				<div id="loginBtnDiv">
+					<input type="submit" class="mint_Btn" value="Login"/>
+				</div>
+		<div id="userPwdDiv">
+			<span class="loginLabel">PASSWORD</span>
+			<input type="password" name="userpwd" id="userpwd"/>
+		</div>
 	</div>	
 	</form>
 	<p class="contentText" style='margin-top:20px'>
@@ -67,8 +70,7 @@
 		아이디, 비밀번호를 잊어버리셨나요?&nbsp;
 		<input type="button" value="아이디/비밀번호 찾기" onclick="location.href='/home/registFindInfo'" class="white_Btn"/>
 		<span id="text1">|</span>
-			<span id="text2">아직 회원이 아니신가요?&nbsp;
-				<input type="button" value="회원가입" onclick="location.href='/home/registerForm'" class="white_Btn"/>
-			</span>
+		아직 회원이 아니신가요?&nbsp;
+		<input type="button" value="회원가입" onclick="location.href='/home/registerForm'" class="white_Btn"/>
 	</div>
 </div> 

@@ -26,6 +26,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.bikemap.home" />
+	<context:component-scan base-package="com.bikemap.home" />
 	
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
@@ -33,7 +34,6 @@
 		<beans:property name="username" value="scott"></beans:property>
 		<beans:property name="password" value="tiger"></beans:property>
 	</beans:bean>
-
 	<beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"></beans:property>
 		<beans:property name="mapperLocations">
