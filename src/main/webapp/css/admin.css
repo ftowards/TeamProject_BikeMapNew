@@ -3,7 +3,6 @@ body{
 	font-family: 'Nanum Myeongjo', serif;
 	width:1200px;
 	margin: 0 auto;
-	
 }
 textarea:focus {
 	outline: none;
@@ -19,11 +18,18 @@ input:focus {
 	width: 1200px;
 	height: 100px;
 }
-#adminTopimg {
+#adminTop img {
 	width: 150px;
 	height: 50px;
 	margin-top: 20px;
 	margin-left: 80px
+}
+.adminSearchBar{
+	width:1200px;
+	height:50px;
+	text-align:center;
+	padding-top:15px;
+	background-color: rgb(0, 176, 176);
 }
 
 ul, li{
@@ -60,7 +66,7 @@ a{
 	width:150px;
 	height:400px;
 	margin :0 auto;
-	margin-top : 200px;
+	margin-top : 150px;
 }
 
 .navigation a {
@@ -131,6 +137,7 @@ a{
 /* ================ 회원관리 =================*/
 #userList>li:nth-child(-n+9) {
 	background-color:#ddd;
+	border-top:1px solid gray;
 	margin-bottom:4px;
 }
 #userList>li:nth-child(n+10):nth-child(-n+18){
@@ -170,6 +177,7 @@ element.style {
 /* ================ 동행모집 ==================*/
 #partnerList>li:nth-child(-n+7) {
 	background-color:#ddd;
+	border-top:1px solid gray;
 	margin-bottom:4px;
 }
 #partnerList>li:nth-child(n+8):nth-child(-n+14){
@@ -187,13 +195,12 @@ element.style {
 	width: 40%
 }
 
-#partnerList>ul, #partnerList>li {
-	
-}
+#partnerList{margin:0px 15px 0px 5px;}
 
 /* ================ 리뷰테이블 ================*/
 #reviewList>li:nth-child(-n+7) {
 	background-color:#ddd;
+	border-top:1px solid gray;
 	margin-bottom:4px;
 }
 #reviewList>li:nth-child(n+8):nth-child(-n+14){
@@ -208,18 +215,16 @@ element.style {
 }
 
 #reviewList>li:nth-child(7n+2) {
-	width: 40%
+	width: 40%;
+	text-align:none;
+	
 }
-
-#reviewList>ul, #reviewList>li {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
+#reviewList{margin:0px 15px 0px 5px;}
 
 /* =============== 문의 테이블 ==============*/
 #questionList>li:nth-child(-n+5) {
 	background-color:#ddd;
+	border-top:1px solid gray;
 	margin-bottom:4px;
 	
 }
@@ -239,12 +244,7 @@ element.style {
 	width: 40%
 }
 
-#questionList>ul, #questionList>li {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
+#questionList{margin:0px 15px 0px 5px;}
 
 .layerpop {
     display: none;
@@ -319,6 +319,18 @@ element.style {
 		  color : white;
 		  border: 1px solid #00B0B0;
 		  background-color: #00B0B0;
+}
+.gray_Btn{
+		  font-size:15px;
+		  font-weight:bold;
+		  border-radius: 5px;
+		  text-decoration: none;
+		  text-align : center;
+		  padding:3px 6px;
+		  margin:0 auto;
+		  color : white;
+		  border: 1px solid #343434;
+		  background-color: #343434;
 }
 .red_Btn{
 		  font-size:15px;

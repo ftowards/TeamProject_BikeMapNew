@@ -10,17 +10,6 @@
 	
 	<!-- Page Content -->
 	<div class="adminContent">
-		<form id="adminSearchUser" method="post" action="<%=request.getContextPath()%>/adminUser">
-		   <!-- <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /> //검색조건 
-   	 		<input type="hidden" name="searchValue" value="${pageVO.searchValue }" /> //검색어 -->
-		<select name="searchType" id="adminSelect">
-			<option value="userAll" selected>전체</option>
-			<option value="userid">회원 아이디</option>
-			<option value="username" >회원 이름</option>	 
-		</select>
-			<input type="text" name="searchWord" id="userSearchWord"  class="searchText" maxlength="20" placeholder="검색어 입력"/>
-			<input type="submit" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
-		</form><!-- searchForm -->
 		
 		<div class="adminTable">
 				<h1 class="adminListHead">회원관리</h1>

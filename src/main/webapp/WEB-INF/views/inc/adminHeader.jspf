@@ -52,8 +52,9 @@
 		var tag = "<ul>";
 		
 		if(vo.nowPage != 1){
-			tag += "<li><a href='javascript:movePage("+(vo.nowPage -1)+");'>Prev</a></li>";
+			tag += "<li style='margin-right:25px;'><a href='javascript:movePage("+(vo.nowPage -1)+");'>Prev</a></li>";
 		}
+		
 		for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount -1 ; i++){
 			if(vo.totalPage >= i){
 				if(vo.nowPage == i){
@@ -63,6 +64,7 @@
 				}
 			}
 		}
+		
 		if(vo.nowPage != vo.totalPage){
 			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 		}
@@ -72,13 +74,14 @@
     
 	function movePage(page){
 		// 페이징 먼저 변경
-		var url = "<%=request.getContextPath()%>/adminUser";
-		var data = $("#searchRoute").serialize();
-			data += "&nowPage="+page;
+		var url = "<%=request.getContextPath()%>/adminPaging";
+		var params = "nowPage="+page;
+		
+		
 		$.ajax({
 			type : 'POST',
 			url : url,
-			data : data,
+			data : params,
 			success : function(result){
 				setPaging(result);
 			},error : function(){
@@ -86,17 +89,16 @@
 			}
 		});
 		
-		url = "<%=request.getContextPath()%>/selectRegistAll";
-
+		url = "<%=request.getContextPath()%>/adminTour";
+ 
 		$.ajax({
 			type : 'POST',
 			url : url,
-			data : data,
 			success : function(result){
 				if( result.length <= 0 ){
 					alert("검색 결과가 없습니다.");
 				} else{ 
-					makeThumbnail(result);
+					
 				}
 			}, error : function(){
 				console.log("페이지 + 검색 결과 호출 에러");
@@ -222,13 +224,34 @@
 <div id="adminTop">
 	<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/img/img_logo/logo_footer.png" id="adminTopimg"></a>
 </div>
+<div class="adminSearchBar">
+	<form  method="post" action="<%=request.getContextPath()%>/adminUser">
+		
+		   <!-- <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /> //검색조건 
+   	 		<input type="hidden" name="searchValue" value="${pageVO.searchValue }" /> //검색어 -->
+		<select name="searchType" id="adminSelect">
+			<option value="userAll" selected>전체</option>
+		<c:if test="${type=='user'}">
+			<option value="userid">회원 아이디</option>
+			<option value="username" >회원 이름</option>
+		</c:if>
+		<c:if test="${type=='tour'||type=='review'}">
+			<option value="userid">작성자</option>
+			<option value="subject" >제목</option>
+			<option value="content" >본문내용</option>
+		</c:if>					 
+		</select>
+			<input type="text" name="searchWord" id="userSearchWord"  class="searchText" maxlength="20" placeholder="검색어 입력"/>
+			<input type="submit" name="search" id="searchBtn" value="검색" class="gray_Btn" style="width:50px; height:30px"/>
+	</form><!-- searchForm -->
+</div>
 <div id="adminBottom">
 	<!-- Side Bar -->
 	<div class="navigation">
 		<ul id="sidebar" >
 			<li>
 				<span class ="icon">회원 관리</span>
-				<a href="/home/adminUser" onclick="$(this).css('color','rgb(0, 176, 176)')">회원목록/검색</a>
+				<a href="/home/adminUser" >회원목록/검색</a>
 			</li>
 			<li>
 				<span class ="icon">게시판 관리</span>

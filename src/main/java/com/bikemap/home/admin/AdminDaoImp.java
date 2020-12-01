@@ -1,7 +1,8 @@
 package com.bikemap.home.admin;
 
 import java.util.List;
-import com.bikemap.home.regist.RegistVO;
+import com.bikemap.home.review.ReviewVO;
+import com.bikemap.home.tour.TourVO;
 
 public interface AdminDaoImp {
 	
@@ -33,10 +34,20 @@ public interface AdminDaoImp {
 		public int qnaUpdate(AdminQnaVO vo);
 		
 		//항목 - review
-		public List<AdminReviewVO>reviewAllRecord(AdminSearchVO vo);
+		public List<ReviewVO>reviewAllRecord(AdminSearchVO vo);
 		
 		public int searchReviewRecord(AdminSearchVO vo);
 		
 		public int reviewTotalRecord();
+		
+		
+		public List<TourVO>tourAllRecord(AdminSearchVO vo);
+				
+		public int searchTourRecord(AdminSearchVO vo);
+				
+		public int tourTotalRecord();
+		
+		
+		
 		
 }

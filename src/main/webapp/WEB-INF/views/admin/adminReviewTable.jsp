@@ -11,14 +11,7 @@
 	<!-- /Page Sidebar -->
 	
 	<!-- Page Content -->
-	<div class="adminContent">
-		<select name="choice" id="adminSelect">
-				<option value="userid" selected>회원 아이디</option>
-				<option value="subject" selected>제목</option>		 
-		</select>
-				<input type="text" name="searchWord" id="reviewSearchWord" class="searchText" maxlength="20" placeholder="검색어 입력"/>
-				<input type="button" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
-		
+	<div class="adminContent">	
 				<div id="adminTable">
 				<h1 class="adminListHead">리뷰</h1>
 				<ul id="reviewList">					
@@ -31,14 +24,14 @@
 					<li>등록일</li>
 					<!-- DB작업완료 후 for문 생성 -->
 					<c:forEach items="${list}" var="vo" varStatus="status">
-							<input type="checkbox" />&nbsp&nbsp<li> ${vo.noboard}</li>
+							<li> <input type="checkbox" />&nbsp&nbsp${vo.noboard}</li>
 							<li><a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
 							<li>${vo.userid}</li>
 							<li>3회</li>
 							<li>3회</li>
 							<li>${vo.hit}회</li>
 							<li>${vo.writedate}</li>
-							</c:forEach>
+					</c:forEach>
 				</ul>
 				</div>
 				<!-- Page Content -->

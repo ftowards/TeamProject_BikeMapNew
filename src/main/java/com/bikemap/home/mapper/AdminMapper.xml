@@ -64,12 +64,24 @@
 	<select id = "reviewTotalRecord" resultType="int">
 		select count(noboard) from review
 	</select>
-	<select id = "reviewAllRecord" resultType="com.bikemap.home.admin.AdminReviewVO">
+	<select id = "reviewAllRecord" resultType="com.bikemap.home.review.ReviewVO">
 		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit
 		from review order by noboard desc <include refid="search"></include>
 	</select>
-	<select id="searchReviewRecord" parameterType="com.bikemap.home.admin.AdminReviewVO" resultType="int">
-		select count(noboard) from regist <include refid="search"></include>
+	<select id="searchReviewRecord" parameterType="com.bikemap.home.review.ReviewVO" resultType="int">
+		select count(noboard) from review <include refid="search"></include>
+	</select>
+	
+	<!-- 리뷰 -->
+	<select id = "tourTotalRecord" resultType="int">
+		select count(noboard) from tour
+	</select>
+	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourVO">
+		select noboard, title, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate
+		from tour order by noboard desc <include refid="search"></include>
+	</select>
+	<select id="searchTourRecord" parameterType="com.bikemap.home.tour.TourVO" resultType="int">
+		select count(noboard) from tour <include refid="search"></include>
 	</select>
 	
 	

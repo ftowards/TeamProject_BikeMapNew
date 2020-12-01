@@ -7,15 +7,7 @@
 	
 	<!-- Page Content -->
 	<div class="adminContent">
-		<select name="choice" id="adminSelect" >
-				<option value="userid" selected>회원 아이디</option>
-				<option value="subject" selected>제목</option>
-			 
-		</select>
-	
-				<input type="text" name="searchWord" id="tourSearchWord" class="searchText" maxlength="20" placeholder="검색어 입력"/>
-				<input type="button" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
-		
+			
 				<div id="adminTable">
 				<h1 class="adminListHead">동행모집게시판</h1>
 					<ul id="partnerList">
@@ -29,13 +21,15 @@
 					
 						<!-- DB작업완료 후 for문 생성 -->
 						
-						<li><input type="checkbox" class="check"/>234</li>
-						<input type="checkbox" />&nbsp&nbsp<li class="wordCut">여수 3일 코스 !!!</li>
-						<li>sss333</li>
-						<li>34</li>
-						<li>2</li>
-						<li>106</li>
-						<li>2020-10-01</li>
+						<c:forEach items="${list}" var="vo" varStatus="status">
+							<li> <input type="checkbox" />&nbsp&nbsp${vo.noboard}</li>
+							<li><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
+							<li>${vo.userid}</li>
+							<li>3회 수정</li>
+							<li>3회 수정</li>
+							<li>3회 수정</li>
+							<li>${vo.writedate}</li>
+					</c:forEach>
 					</ul>
 			</div>
 			<!-- Page Content -->
