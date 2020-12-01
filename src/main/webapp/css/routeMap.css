@@ -139,7 +139,7 @@
 
 	#searchWord{
 		width : 88%;
-		height : 30px;
+		height : 40px;
 		font-weight:600;
 		border-radius : 5px;
 		margin : 10px;
@@ -340,17 +340,16 @@
 	#likeImg{
 		position:relative;
 		left:-5px;
-		top:5px;
 		width:23px;
 		height:23px;
 	}
 	#lockImg{
 		width:50px;
 		height:50px;
-		margin:100px 0 0 115px;
+		margin:160px 0 0 158px;
 	}
 	#logButtons{
-		padding-left:50px;
+		padding-left:90px;
 	}
 	.mint_Btn{
 		font-weight:bold;
@@ -390,8 +389,8 @@
 	}
 	
 	#title{
-		width:230px;
-		height:30px;
+		width:295px;
+		height:38px;
 		margin:0 0 10px 8px;
 		border:0;
     	border-radius: 5px;
@@ -413,8 +412,8 @@
 	}
 
 	.selectBox{
-		height:30px;
-		font-size:0.8em;
+		height:38px;
+		font-size:14px;
 		font-weight:bold;
 		color:#353535;
 		border:0px;
@@ -529,7 +528,7 @@
 	#saveDiv2{
 		position:relative;
 		z-index:33;
-		top:115px;
+		top:145px;
 	}
 	.blue_Btn{
 		font-weight:bold;
@@ -559,8 +558,8 @@
 	 	z-index:32!important;
 	}
 	#description{
-		width:230px;
-		height:80px;
+		width:295px;
+		height:127px;
 		margin-left:8px;
 		padding:5px;
 		border-radius:3px;
@@ -581,6 +580,7 @@
 	#saveDiv1 img{
 		width:155px;
 		height:125px;
+		margin-top:30px;
 	}	
 
 	.categoryDiv1{
