@@ -10,8 +10,12 @@
 		outline: none;
 	}
 	
+	.replyHr{
+		width : 800px;
+	}
 	.replyMain{
 		width : 800px;
+		margin : 0 auto;
 	}
 	
 	.replyMain>div{

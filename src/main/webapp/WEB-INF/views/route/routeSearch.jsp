@@ -20,8 +20,10 @@
 	</div>
 	<div class="routeSearch">
 		<div class="title">코스검색</div>
-		<input type="radio"  name="order" id="orderNoboard" value="noboard" checked/><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar">&ensp;|&ensp;</span>
-		<input type="radio" name="order" id="orderRating" value="rating" /><label for="orderRating" class="subTxt" >평점순</label>
+		<div class="orderRadio">
+			<input type="radio"  name="order" id="orderNoboard" value="noboard" checked/><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar">&ensp;|&ensp;</span>
+			<input type="radio" name="order" id="orderRating" value="rating" /><label for="orderRating" class="subTxt" >평점순</label>
+		</div>
 	</div>
 	<hr class='borderHr'/>
 	<div id="content"></div>
