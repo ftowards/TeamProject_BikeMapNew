@@ -323,7 +323,11 @@ $(function(){
 	$("#departure").on('change',function(){
 		var departure = $("#departure").val();
 		console.log(departure);
-		$("#deadline").val(departure);
+		
+		var date = $("#departure").datepicker("getDate");
+		$("#deadline").datepicker("setDate",date);
+		$("#arrive").datepicker("setDate",date);
+		
 	});
 	
 	// 2. 출발시간 설정 시 마감시간 변경
@@ -349,6 +353,8 @@ $(function(){
 			deadTime = dTime - 8; 
 			$("#deadlineTime>option").eq(deadTime).prop("selected",true);
 		}
+		
+		$("#arriveTime>option").eq(Number(dTime)+1).prop("selected",true);
 	});
 	
 	// 3. 도착일자는 출발 일자보다 작을 수 없다.
