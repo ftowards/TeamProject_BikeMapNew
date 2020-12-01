@@ -14,9 +14,11 @@
 			<if test="searchType == 'userAll'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' OR  USERNAME LIKE '%' || #{searchWord} || '%'</if>
 			<if test="searchType == 'userid'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' </if>
 			<if test="searchType == 'username'.toString()">WHERE USERNAME LIKE '%' || #{searchWord} || '%' </if>
+			<if test="searchType == 'id'.toString()">WHERE ID LIKE '%' || #{searchWord} || '%' </if>
+			<if test="searchType == 'qnaSubject'.toString()">WHERE SUBJECT </if>
 		</if>
 	</sql>
-	<select id="searchTotalRecord" resultType="int">
+	<select id="registTotalRecord" resultType="int">
 		select count(userid) from regist 
 	</select>
 	
@@ -43,5 +45,20 @@
 	<select id = "getEndday" parameterType="com.bikemap.home.admin.AdminSuspendVO" resultType="com.bikemap.home.admin.AdminSuspendVO"><!-- VO하나만 합성으로 설정 -->
 	 	select to_char(endday,'YY-MM-DD') enddayStr, userid from suspend where rownum=1 and userid=#{userid} and endday>=sysdate
 	</select>
+	
+	<select id="qnaTotalRecord" resultType="int">
+		select count(userid) from qna 
+	</select>
+	
+	<select id="selectQnaAll" parameterType="com.bikemap.home.admin.AdminQnaVO" resultType="com.bikemap.home.admin.AdminQnaVO">
+		select noqna, userid, subject,  to_char(writedate,'YYYY-MM-DD') writedate, answer from qna
+		<include refid="search"></include> order by noqna desc
+	</select>
+	<select id="selectQna" parameterType="int" resultType="com.bikemap.home.admin.AdminQnaVO">
+		select q.userid, q.subject, a.typename, q.content from qna q, qnaType a where q.noQnaType=a.noQnaType and noqna=#{noqna}
+	</select>
+	<update id="qnaUpdate" parameterType="com.bikemap.home.admin.AdminQnaVO">
+		update qna set answercontent=#{answercontent}, answer='Y', answerdate=sysdate where noqna=#{noqna}
+	</update>
 
 </mapper> 
