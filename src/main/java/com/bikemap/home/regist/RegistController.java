@@ -64,7 +64,7 @@ public class RegistController {
 		int result = 0;
 		
 		// vo에 인증 코드 세팅
-		vo.setCode(new TempKey().qetKey());
+		vo.setCode(new TempKey().getKey(48));
 		
 		try {
 		// 회원 가입
@@ -290,15 +290,39 @@ public class RegistController {
 			RegistVO resultVO = dao.registFindPwd(vo);			
 			if(resultVO.getEmail() != null) {
 				result = 1;
+				
+				// 임시 비밀번호 발송하는 메서드 필요
+				// 임시 비밀번호로 db 업데이트
+				
+				String tempPwd = new TempKey().getKey(16);
+				
+				MailHandler sendMail = new MailHandler(mailSender);
+		        sendMail.setSubject("[바이크맵] 임시 비밀번호입니다.");
+		        
+		        sendMail.setText(
+		        		new StringBuffer().append("<h1>임시 비밀번호</h1>").
+		        		append("<hr/><p>"+resultVO.getUserid()+" 회원님의 임시 비밀번호가 설정되었습니다.<br/>임시 비밀번호로 접속하신 후 비밀번호 변경하시기 바랍니다.<br/>").
+		        		append("임시 비밀번호 : " +tempPwd +"<br/>").
+		        		append("<a href='http://localhost:9090/home/login'target='_blank'>로그인 하러 가기</a>").toString());
+		        sendMail.setFrom("project.bikemap@gmail.com", "바이크맵");
+		        sendMail.setTo(resultVO.getEmail());
+		        
+		        sendMail.send();
+		        
+		        resultVO.setUserpwd(tempPwd);
+		        result = dao.updateUser(resultVO);
 			}
 		}catch(Exception e) {
-			e.getMessage();
+			System.out.println("비밀번호 찾기 에러 " + e.getMessage());
+			result = 0;
 		}
 		
-		if(result > 0) {
-			// 임시 비밀번호 발송하는 메서드 필요
-			// 임시 비밀번호로 db 업데이트
-		}
 		return result;
+	}
+	
+	// 로그인 팝업 띄우기
+	@RequestMapping("/loginPopup")
+	public String loginPopup() {
+		return "popup/login";
 	}
 }

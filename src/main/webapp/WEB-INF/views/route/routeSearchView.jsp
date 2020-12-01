@@ -6,17 +6,128 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<div class="mainDiv" style='margin-top:100px; width:800px; height:1500px;'>
-	<div id="mapDiv" style='width:900px;'>
-		<b>코스정보보기</b><br/><br/>
-		<div class="wordCut" style='height:50px;'>${routeVO.title}</div>
 
-		<p>${routeVO.userid }</p>
+<div class="routeSearchViewDiv2">
+	<div id="mapDiv" style='width:1200px;'>
+		<b>코스정보보기</b><br/><hr id="titleLine"/>
+		<div class="wordCut">${routeVO.title}</div>
+
+		<div id="userid" class="txtShadow">${routeVO.userid }</div>
 		<div id="map_Altitude">
-			<div id="map" style='width:584px; height:300px;'>
+			<div id="map" style='width:100%; height:50%; margin-bottom:30px;'>
 			</div>
-			<div id="elevation_chart" style='width:584px; height:165px;'>
+			<div id="elevation_chart">
 			</div>
+	<div id="placeList">
+		<div><span id="foodTxt">음식점</span><br/>
+			<label class="switch">
+  				<input type="checkbox" name="foodMarker" class="foodCheck"><span class="slider round"></span>
+			</label><br/>
+				<ul id="foodList" style='margin-top:15px'>
+					<c:if test="${placeVO.food1placename != null }">
+						<li><a href="${placeVO.food1placeurl }" target="_blank">${placeVO.food1placename }</a>
+							<input type="hidden" name="foodList" value="${placeVO.food1point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.food2placename != null }">
+						<li><a href="${placeVO.food2placeurl }" target="_blank">${placeVO.food2placename }</a>
+							<input type="hidden" name="foodList" value="${placeVO.food1point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.food3placename != null }">
+						<li><a href="${placeVO.food3placeurl }" target="_blank">${placeVO.food3placename }</a>
+							<input type="hidden" name="foodList" value="${placeVO.food3point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.food4placename != null }">
+						<li><a href="${placeVO.food4placeurl }" target="_blank">${placeVO.food4placename }</a>
+							<input type="hidden" name="foodList" value="${placeVO.food4point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.food5placename != null }">
+						<li><a href="${placeVO.food5placeurl }" target="_blank">${placeVO.food5placename }</a>
+							<input type="hidden" name="foodList" value="${placeVO.food5point }"/><li>
+					</c:if>
+				</ul>
+			</div>
+		<div><span id="sightsTxt">관광지</span><br/>
+			<label class="switch">
+  				<input type="checkbox" name="sightsMarker" class="sightCheck"><span class="slider round"></span>
+			</label><br/>
+				<ul id="sightsList" style='margin-top:15px'>
+					<c:if test="${placeVO.sights1placename != null }">
+						<li><a href="${placeVO.sights1placeurl }" target="_blank">${placeVO.sights1placename }</a>
+							<input type="hidden" name="sightsList" value="${placeVO.sights1point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.sights2placename != null }">
+						<li><a href="${placeVO.sights2placeurl }" target="_blank">${placeVO.sights2placename }</a>
+							<input type="hidden" name="sightsList" value="${placeVO.sights1point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.sights3placename != null }">
+						<li><a href="${placeVO.sights3placeurl }" target="_blank">${placeVO.sights3placename }</a>
+							<input type="hidden" name="sightsList" value="${placeVO.sights3point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.sights4placename != null }">
+						<li><a href="${placeVO.sights4placeurl }" target="_blank">${placeVO.sights4placename }</a>
+							<input type="hidden" name="sightsList" value="${placeVO.sights4point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.sights5placename != null }">
+						<li><a href="${placeVO.sights5placeurl }" target="_blank">${placeVO.sights5placename }</a>
+							<input type="hidden" name="sightsList" value="${placeVO.sights5point }"/><li>
+					</c:if>
+				</ul>
+			</div>
+		<div><span id="accommodationTxt">숙박시설</span><br/>
+			<label class="switch">
+  				<input type="checkbox" name="accommodationMarker" class="accommodationCheck"><span class="slider round"></span>
+			</label><br/>
+				<ul id="accommodationList" style='margin-top:15px'>
+					<c:if test="${placeVO.accom1placename != null }">
+						<li><a href="${placeVO.accom1placeurl }" target="_blank">${placeVO.accom1placename }</a>
+							<input type="hidden" name="accommodationList" value="${placeVO.accom1point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.accom2placename != null }">
+						<li><a href="${placeVO.accom2placeurl }" target="_blank">${placeVO.accom2placename }</a>
+							<input type="hidden" name="accommodationList" value="${placeVO.accom1point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.accom3placename != null }">
+						<li><a href="${placeVO.accom3placeurl }" target="_blank">${placeVO.accom3placename }</a>
+							<input type="hidden" name="accommodationList" value="${placeVO.accom3point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.accom4placename != null }">
+						<li><a href="${placeVO.accom4placeurl }" target="_blank">${placeVO.accom4placename }</a>
+							<input type="hidden" name="accommodationList" value="${placeVO.accom4point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.accom5placename != null }">
+						<li><a href="${placeVO.accom5placeurl }" target="_blank">${placeVO.accom5placename }</a>
+							<input type="hidden" name="accommodationList" value="${placeVO.accom5point }"/><li>
+					</c:if>
+				</ul>
+			</div>
+		<div><span id="convenientTxt">편의시설</span><br/>
+			<label class="switch">
+  				<input type="checkbox" name="convenientMarker" class="convenientCheck"><span class="slider round"></span>
+			</label><br/>
+				<ul id="convenientList" style='margin-top:15px'>
+					<c:if test="${placeVO.conve1placename != null }">
+						<li><a href="${placeVO.conve1placeurl }" target="_blank">${placeVO.conve1placename }</a>
+							<input type="hidden" name="convenientList" value="${placeVO.conve1point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.conve2placename != null }">
+						<li><a href="${placeVO.conve2placeurl }" target="_blank">${placeVO.conve2placename }</a>
+							<input type="hidden" name="convenientList" value="${placeVO.conve1point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.conve3placename != null }">
+						<li><a href="${placeVO.conve3placeurl }" target="_blank">${placeVO.conve3placename }</a>
+							<input type="hidden" name="convenientList" value="${placeVO.conve3point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.conve4placename != null }">
+						<li><a href="${placeVO.conve4placeurl }" target="_blank">${placeVO.conve4placename }</a>
+							<input type="hidden" name="convenientList" value="${placeVO.conve4point }"/><li>
+					</c:if>
+					<c:if test="${placeVO.conve5placename != null }">
+						<li><a href="${placeVO.conve5placeurl }" target="_blank">${placeVO.conve5placename }</a>
+							<input type="hidden" name="convenientList" value="${placeVO.conve5point }"/><li>
+					</c:if>
+				</ul>
+		</div>
+	</div>
 		</div>
 		<div id="routeInfoDiv">
 			<div id="routeInfo">
@@ -46,13 +157,13 @@
 							<input type="hidden" name="routePoint" value="${routeVO.routepoint7point }"/></li>
 					</c:if>
 				</ul>
-				<input type="hidden" id="geocode" value="${routeVO.geocode }"/>
+				<input type="hidden" id="geocode" value="${routeVO.geocode }"/><br/>
 				<div class="title">코스평점</div>
-				<div style='padding-left:47px'>
-					<img src="<%=request.getContextPath() %>/img/img_main/star.png"/>
-					<label id="starLbl">4.8</label>
+				<div>
+					<img src="<%=request.getContextPath() %>/img/img_main/star.png" style="width:185px; padding-left:7%;"/>
+					<label id="starLbl">${routeVO.rating }</label><span style='color:gray'>(참여 ${routeVO.ratecnt })</span>
 				</div>
-				<div style='padding-left:50px; font-size:1em; font-weight:bold; color:#004554'>
+				<div class="course_Info">
 					<p>코스정보</p>
 					<ul>
 						<li>총 거리 :&nbsp;<span>${routeVO.distance }</span>km</li>
@@ -73,123 +184,14 @@
 				    </select>
 				<input type="button" value="확&nbsp;인" class="gray_Btn" id="grayBtn"/>
 			</div>
-			<div style='text-align:center; margin-top:130px;'>
-				<input type="submit" name="save" value="저&nbsp;장" class="blue_Btn" style='border-radius: 5px; width:80px; height:40px'/>
+			<div class="saveBtns">
+				<input type="submit" id="routeCollect" name="save" value="저&nbsp;장" class="blue_Btn" style='border-radius: 5px; width:80px; height:40px'/>
 				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='height:40px'/>
 			</div>
 		</div>
-	</div>
-	<div id="placeList">
-		<div >음식점
-			<ul id="foodList">
-				<c:if test="${placeVO.food1placename != null }">
-					<li><a href="${placeVO.food1placeurl }" target="_blank">${placeVO.food1placename }</a>
-						<input type="hidden" name="foodList" value="${placeVO.food1point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.food2placename != null }">
-					<li><a href="${placeVO.food2placeurl }" target="_blank">${placeVO.food2placename }</a>
-						<input type="hidden" name="foodList" value="${placeVO.food1point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.food3placename != null }">
-					<li><a href="${placeVO.food3placeurl }" target="_blank">${placeVO.food3placename }</a>
-						<input type="hidden" name="foodList" value="${placeVO.food3point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.food4placename != null }">
-					<li><a href="${placeVO.food4placeurl }" target="_blank">${placeVO.food4placename }</a>
-						<input type="hidden" name="foodList" value="${placeVO.food4point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.food5placename != null }">
-					<li><a href="${placeVO.food5placeurl }" target="_blank">${placeVO.food5placename }</a>
-						<input type="hidden" name="foodList" value="${placeVO.food5point }"/><li>
-				</c:if>
-			</ul>
-			<label class="switch">
-  				<input type="checkbox" name="foodMarker"><span class="slider round"></span>
-			</label>
-		</div>
-		<div>관광지
-			<ul id="sightsList">
-				<c:if test="${placeVO.sights1placename != null }">
-					<li><a href="${placeVO.sights1placeurl }" target="_blank">${placeVO.sights1placename }</a>
-						<input type="hidden" name="sightsList" value="${placeVO.sights1point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.sights2placename != null }">
-					<li><a href="${placeVO.sights2placeurl }" target="_blank">${placeVO.sights2placename }</a>
-						<input type="hidden" name="sightsList" value="${placeVO.sights1point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.sights3placename != null }">
-					<li><a href="${placeVO.sights3placeurl }" target="_blank">${placeVO.sights3placename }</a>
-						<input type="hidden" name="sightsList" value="${placeVO.sights3point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.sights4placename != null }">
-					<li><a href="${placeVO.sights4placeurl }" target="_blank">${placeVO.sights4placename }</a>
-						<input type="hidden" name="sightsList" value="${placeVO.sights4point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.sights5placename != null }">
-					<li><a href="${placeVO.sights5placeurl }" target="_blank">${placeVO.sights5placename }</a>
-						<input type="hidden" name="sightsList" value="${placeVO.sights5point }"/><li>
-				</c:if>
-			</ul>
-			<label class="switch">
-  				<input type="checkbox" name="sightsMarker"><span class="slider round"></span>
-			</label>
-		</div>
-		<div>숙박시설
-			<ul  id="accommodationList">
-				<c:if test="${placeVO.accom1placename != null }">
-					<li><a href="${placeVO.accom1placeurl }" target="_blank">${placeVO.accom1placename }</a>
-						<input type="hidden" name="accommodationList" value="${placeVO.accom1point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.accom2placename != null }">
-					<li><a href="${placeVO.accom2placeurl }" target="_blank">${placeVO.accom2placename }</a>
-						<input type="hidden" name="accommodationList" value="${placeVO.accom1point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.accom3placename != null }">
-					<li><a href="${placeVO.accom3placeurl }" target="_blank">${placeVO.accom3placename }</a>
-						<input type="hidden" name="accommodationList" value="${placeVO.accom3point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.accom4placename != null }">
-					<li><a href="${placeVO.accom4placeurl }" target="_blank">${placeVO.accom4placename }</a>
-						<input type="hidden" name="accommodationList" value="${placeVO.accom4point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.accom5placename != null }">
-					<li><a href="${placeVO.accom5placeurl }" target="_blank">${placeVO.accom5placename }</a>
-						<input type="hidden" name="accommodationList" value="${placeVO.accom5point }"/><li>
-				</c:if>
-			</ul>
-			<label class="switch">
-  				<input type="checkbox" name="accommodationMarker"><span class="slider round"></span>
-			</label>
-		</div>
-		<div>편의시설
-			<ul  id="convenientList">
-				<c:if test="${placeVO.conve1placename != null }">
-					<li><a href="${placeVO.conve1placeurl }" target="_blank">${placeVO.conve1placename }</a>
-						<input type="hidden" name="convenientList" value="${placeVO.conve1point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.conve2placename != null }">
-					<li><a href="${placeVO.conve2placeurl }" target="_blank">${placeVO.conve2placename }</a>
-						<input type="hidden" name="convenientList" value="${placeVO.conve1point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.conve3placename != null }">
-					<li><a href="${placeVO.conve3placeurl }" target="_blank">${placeVO.conve3placename }</a>
-						<input type="hidden" name="convenientList" value="${placeVO.conve3point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.conve4placename != null }">
-					<li><a href="${placeVO.conve4placeurl }" target="_blank">${placeVO.conve4placename }</a>
-						<input type="hidden" name="convenientList" value="${placeVO.conve4point }"/><li>
-				</c:if>
-				<c:if test="${placeVO.conve5placename != null }">
-					<li><a href="${placeVO.conve5placeurl }" target="_blank">${placeVO.conve5placename }</a>
-						<input type="hidden" name="convenientList" value="${placeVO.conve5point }"/><li>
-				</c:if>
-			</ul>
-			<label class="switch">
-  				<input type="checkbox" name="convenientMarker"><span class="slider round"></span>
-			</label>
-		</div>
-	</div>
+	</div><br/><hr/><br/>
 	<input type='hidden' id="noboard" value="${routeVO.noboard }"/>
 	<%@ include file="../inc/reply.jspf"%>
 </div>
+<input type="hidden" id="polyline" value="${routeVO.polyline }"/>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/routeSearchView.js"></script>

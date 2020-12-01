@@ -8,15 +8,17 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<div id="container">
+<div id="mainDivMap">
 	<div id="info">
 		<!-- 탭 아이콘 패널 -->
 		<div id="naviIcon">
 			<ul>
-				<li><label for="tab1"><img src="<%=request.getContextPath() %>/img/img_course/searchGray.png"/></label></li>
-				<li><label for="tab2"><img src="<%=request.getContextPath() %>/img/img_course/mapGray.png" /></label></li>
-				<li><label for="tab3"><img src="<%=request.getContextPath() %>/img/img_course/buildingGray.png"/></label></li>
-				<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png"/></label></li>	
+				
+					<li><label for="tab1"><img src="<%=request.getContextPath() %>/img/img_course/searchGray.png" id="searchGray"/></label></li>
+					<li><label for="tab2"><img src="<%=request.getContextPath() %>/img/img_course/mapGray.png" id="mapGray"/></label></li>
+					<li><label for="tab3"><img src="<%=request.getContextPath() %>/img/img_course/buildingGray.png"/></label></li>
+					<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png"/></label></li>	
+			
 			</ul>
 		</div>
 		
@@ -127,13 +129,13 @@
 							<h4 style='padding-left:45px; color:#005766'>로그인 후 이용 가능합니다.</h4>
 						</div>
 						<div id="logButtons">
-							<input type="button" name="login" value="로그인" class="mint_Btn" style='width:80px; height:35px; font-size:15px' onclick="location.href='/home/login'"/>
+							<input type="button" id="login" name="login" value="로그인" class="mint_Btn" style='width:80px; height:35px; font-size:15px'/>
 							<input type="button" name="login" value="회원가입" class="WMint_Btn" onclick="location.href='/home/registerForm'"/>
 						</div>
 				</c:if>
 				<c:if test="${logId!=null }">
 				<form id="routeSave">
-					<input type="text" name="title" id="title" placeholder=" 코스 이름을 입력하세요"/><br/>
+					<input type="text" name="title" id="title" placeholder="루트 이름을 입력하세요"/><br/>
 						<select id="catename" class="selectBox" style='width:190px; margin-left:8px'>
 							<c:forEach var="list" items="${category }">
 								<option value="${list.noroutecate }" title="${list.catename }">${list.catename}</option>
@@ -142,16 +144,16 @@
 								<option value="addCategory">카테고리 추가</option>
 							</c:if>
 						</select><br/>
-						<span class="saveTxt">※ 코스 공개여부를 설정해주세요</span><br/>
+						<span class="saveTxt">※ 루트 공개여부를 설정해주세요</span><br/>
 					<div style='margin:8px 0 0 18px;'>
 						<input type="radio" name="closed" value="F" checked/><span class="saveTxt2"> 공개</span>&emsp;&emsp;&emsp;
 						<input type="radio" name="closed" value="T"/><span class="saveTxt2"> 비공개</span>
 					</div><br/>
 					<div id="saveDiv3">
-						<textarea name="description" id="description" placeholder="코스에 대한 설명을 적어주세요:)" rows="6" cols="15" style="resize:none" maxlength="50"></textarea><br/>
+						<textarea name="description" id="description" placeholder="루트에 대한 설명을 적어주세요:)" rows="6" cols="15" style="resize:none" maxlength="50"></textarea><br/>
 					</div>
 					<div id="saveDiv2">
-						<input type="submit" value="나의 코스 저장하기" class="blue_Btn" id="saveBtn"/>
+						<input type="submit" value="나의 루트 저장하기" class="blue_Btn" id="saveBtn"/>
 					</div>
 					<div id="saveDiv1">
 						<img src="<%=request.getContextPath() %>/img/img_route/bicycle.gif"/>

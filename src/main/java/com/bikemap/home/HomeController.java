@@ -1,6 +1,7 @@
 package com.bikemap.home;
 
 import java.util.Locale;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+
 		return "home";
 	}	
 }

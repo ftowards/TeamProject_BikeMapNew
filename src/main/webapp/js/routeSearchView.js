@@ -50,8 +50,8 @@
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1, removable : true});
 	
 /////////////////// 기본 데이터 세팅 /////////////////
-	
 $(function(){
+
 	// 루트 마커 세팅하기 
 	// 마커 지정할 좌표 순서대로 입력
 	var routePosition = [];
@@ -124,9 +124,19 @@ $(function(){
 		}
 	}
 	
+	// 경로 지도 범위에 포함 시키기
+	var polylineArray = $("#polyline").val().replaceAll("),(","||").replace("(","").replace(")","").replaceAll("||",",").split(",");
+	for ( var k = 0 ; k < polylineArray.length ; k+=2){
+		var p = new kakao.maps.LatLng(polylineArray[k], polylineArray[k+1]);
+		bounds.extend(p);
+	}
+	
 	map.setBounds(bounds);
 	
 	
+	$("#routeCollect").on('click',function(){
+ 		window.open("/home/routeCollect","Bikemap","width=400px, height=200px, left =300px, top=300px");
+ 	});
 });
 /////////////////// event //////////////////////////
 
@@ -164,6 +174,36 @@ $("input[name=convenientMarker]").on("change",function(){
 	}else{
 		removeMarker(convenientMarker);
 	}
+});
+
+////// 평점 주기
+$("#grayBtn").on('click', function(){
+  	var rating = $("#gradeSelect").val();
+  	
+  	if(rating == ""){
+  		alert("평점을 선택해주세요.");
+  		return false;
+  	}
+  	
+  	var url = "/home/rateRoute";
+  	var data = "noboard="+$("#noboard").val();
+  		data += "&rating="+rating;
+  		
+  	$.ajax({
+  		type : 'POST',
+  		url : url,
+  		data : data,
+  		success : function(result){
+  			if(result == 2){
+  				alert("이미 평점을 등록한 루트입니다.");
+  			}else {
+  				alert("평점이 등록되었습니다.");
+  				setRating();
+  			}
+  		},error : function(){
+  			console.log("평점 입력 오류");
+  		}
+  	});
 });
 
 
@@ -346,7 +386,7 @@ $("input[name=convenientMarker]").on("change",function(){
 	    polyline = new kakao.maps.Polyline({
 						    path: linePath, // 선을 구성하는 좌표배열 입니다
 						    strokeWeight: 5, // 선의 두께 입니다
-						    strokeColor: '#00B0B0', // 선의 색깔입니다
+						    strokeColor: '#FF0162', // 선의 색깔입니다
 						    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 						    strokeStyle: 'solid' // 선의 스타일입니다
 		});
@@ -411,4 +451,22 @@ $("input[name=convenientMarker]").on("change",function(){
       legend: "none",
       titleY: "Elevation (m)",
     });
+  }
+  
+  // 평점 부여 후 변경
+  function setRating(){
+  	var url = "/home/selectRouteRating";
+  	var data = "noboard="+$("#noboard").val();
+  	
+  	$.ajax({
+  		type : 'POST',
+  		url : url,
+  		data : data,
+  		success : function(result){
+  			$("#starLbl").text(result.rating);
+  			$("#starLbl").next().text("("+result.ratecnt+")");
+  		},error : function(){
+  			console.log("평점 호출 에러");
+  		}
+  	});
   }

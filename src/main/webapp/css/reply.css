@@ -1,93 +1,142 @@
 @charset "UTF-8";
 	/*=======================댓글===============================================*/
-
-	#replyDiv div{
-						float:left;
-						font-size:22px;
-						font-weight:bold;
-						color:rgb(64,64,64);
-						
+	textarea:focus {
+		outline: none;
 	}
-	#replyDivMain div div:last-child{
-									margin:-8px 0 0 5px;
-									font-size:30px;
+	button:focus {
+		outline: none;
+	}
+	input:focus {
+		outline: none;
 	}
 	
-	#replytWriteDiv{
-							width:795px;
-							height:150px;
-							float:left;
-				
+	.replyHr{
+		width : 800px;
+		margin-top:60px;
+	}
+	.replyMain{
+		width : 800px;
+		margin : 0 auto;
+	}
+	
+	.replyMain>div{
+		width : 100%;
+	}
+	
+	.titleMain{
+		height: 35px;
+	}
+	.titleMain>span{
+		float:left;
+		font-size:22px;
+		font-weight:bold;
+		color:rgb(64,64,64);
+		line-height:42px;
+	}
+	
+	.orderRadio{
+		float:right;
+	
+	}
+	
+	.orderBtn{font-weight : 300}
+	.orderRadio>input{display:none;}
+	.orderRadio>input[type=radio]:checked+label{
+		font-weight: 700;
+	}
+	
+	
+	.replyWriteBox{
+		width:795px;
+		height:140px;
+		border : 1px solid gray;
 	}
 	#replyWrite{
-						width:795px;
-						height:100px;
-						position:absolute;
-						float:left;
+				width:795px;
+				height:100px;
+				border-radius:10px 10px 0 0px;
+			
 						
 	
 	}
-	#rextCntDiv{
-					
-					border-top:1px solid #ccc;
-					width:750px;
-					height:28px;
-					position:absolute;
-					margin-top:76px;
-					text-align:right;
-					float:left;
-					
+	.textCntDiv{
+			border:1px solid gray;
+			border-top:1px solid #ccc;
+			width:795px;
+			height:30px;
+			text-align:right;
+			position:relative;
+			top : -6px;		
+			border-radius:0px 0 10px 10px;
+		
 	}
-	#replySubmit{
-						float:left;
-						background-color:rgb(0,176,176);
-						color:#fff;
-						border:none;
-						width:50px;
-						height:30px;
-						position:absolute;
-						margin:76px 0 0 750px;
-						text-align:center;
-	
+	.replySubmit{
+			background-color:rgb(0,176,176);
+			color:#fff;
+			border-radius:10px;
+			border:none;
+			width:50px;
+			height:30px;
+			text-align:center;
+			margin : 5px;
+			float:right;
+			box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	#replyViewDiv{
 						float:left;
-						width:800px;
-						
-			
 	}
 	#replyUseridDiv{
-							width:800px;
-							float:left;
-							font-size:20px;
-							font-weight:bold;
-							height:43px;
-							color:rgb(64,64,64);
+			width : 100%;
+			float:left;
+			font-size:20px;
+			font-weight:bold;
+			height:42px;
+			line-height: 42px;
+			color:rgb(64,64,64);
+	}
+	
+	.replyList>li{
+		margin-bottom:4px;
+		line-height : 25px;
+	}
+	
+	#replyList>hr{
+		margin:10px 0;
 	}	
 	
-	
-
 	.replyEdit,.replyDel{
-									text-align:center;
-									border:1px solid rgb(123,123,123);
-									border-radius:10px;
-									width:40px;
-									height:25px;
-									background-color:#fff;
-									font-size:12px;
-									color:rgb(123,123,123);
-									float:left;
-									margin:40px 0 0 15px;
-	
+							text-align:center;
+							border:none;
+							border-radius:10px;
+							width:40px;
+							height: 25px;
+							background-color:#fff;
+							font-size:12px;
+							color:rgb(123,123,123);
+							float: right;
+							margin-right : 15px;
+							box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	.replyEdit{
 					background-color:rgb(123,123,123);
 					color:#fff;
 	}
-	.replyEditDiv{
-						width:120px;
-						height:30px;
-						position:absolute;
-						margin-left:680px;
-	
+	#replyPaging{
+		text-align:center;
+		position:relative;
+		width:800px;
+		height:50px;
+		color:#353535;
+		font-size:1.1em;
+		margin : 0 auto;
+		text-align: center;
+	}
+	#replyPaging>ul{display:inline-block;}
+	#replyPaging li{float:left; margin-left:30px;}
+	#replyPaging a{
+		text-decoration:none;
+	}
+	#replyPaging a:link, #paging a:active{
+		color:#7F7F7F;
+		font-weight:bold;
 	}

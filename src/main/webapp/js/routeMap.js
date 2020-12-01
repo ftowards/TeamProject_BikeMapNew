@@ -420,8 +420,25 @@ $(function(){
 		setDeleteBtn();	
 		setStartArriveClass();
  	});
+ 	
+ 	// 로그인 팝업 띄우기
+ 	$("#login").on('click',function(){
+ 		window.open("/home/loginPopup","Bikemap Login","width=600px, height=200px, left =200px, top=200px");
+ 	});
+ 	
+ 	// map 사이즈 조절
+ 	resizeMap();
+ 	
+ 	$(window).resize(function(){
+ 		resizeMap();
+ 	});
 });
-
+	// map 사이즈 변경
+	function resizeMap(){
+		var width = window.innerWidth - 430 + "px";	
+	 	$("#map").css("width",width);
+	 	map.relayout();
+ 	}
 
 // 경로 포인트 지정
 // 출발지 도착지 지정시 각각 첫번째 마지막 위치에 입력
@@ -451,12 +468,12 @@ $(function(){
 			// 출발지나 도착지 선택일 경우 원래 칸에 hidden 타입으로 입력
 			if(type == 'startPoint'){
 				$("#routePoint>li:eq(0)").children("input[type=text]").attr("value",json.place_name);
-				$("#routePoint>li:eq(0)").children("input[type=hidden]").val(point);
+				$("#routePoint>li:eq(0)").children("input[name=routePoint]").val(point);
 				$("#routePoint>li:eq(0)").append("<input type='hidden' name='region' value='"+json.address_name+"'/>");
 				
 			}else if(type == 'arrivePoint'){
 				$("#routePoint>li:last").children("input[type=text]").attr("value",json.place_name);
-				$("#routePoint>li:last").children("input[type=hidden]").val(point);
+				$("#routePoint>li:last").children("input[name=routePoint]").val(point);
 				$("#routePoint>li:last").append("<input type='hidden' name='region' value='"+json.address_name+"'/>");
 			}else{ // 경유지 지정일 때 총 갯수 확인
 				var cnt = $("#routePoint").children("li").length;
@@ -475,6 +492,7 @@ $(function(){
 		} // 중복이 있을 경우 추가 액션 없음
 		setDeleteBtn();
 		setRouteMarker();
+
 	}
 	
 // 경유지 리스트에만 삭제 버튼 추가하기
@@ -539,15 +557,11 @@ $(function(){
 			routeMarker.push(marker);
 		}
 		
-    	// 기존에 경로 객체가 있을 경우, 맵 상에서 지우기
-    	if(polyline != "") {
-    		searchRoute();
+		if($("input[name=routePoint]:first").val() != "" && $("input[name=routePoint]:last").val() != ""){
+			searchRoute();
 		}
 	}
 	
-
-// 저장하기 
-
 // 카테고리 추가
 	$("#catename").on('change',function(){
 		if($(this).val() == 'addCategory'){
@@ -898,6 +912,7 @@ $(function(){
 		$("#descent").text("");	
 		
 		$("#title").val("");
+		$("#description").val("");
 	}
 	
 	function getRegion(){
@@ -998,6 +1013,5 @@ $(function(){
 				console.log("루트 저장 에러");
 			}
 		});
-		
 		return false;
 	});

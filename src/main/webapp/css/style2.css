@@ -1,188 +1,98 @@
 @charset "UTF-8";
-body{margin:0; padding:0;      
-	overflow-x:hidden;
-    overflow-y:auto;}
-	ul,li{margin:0px; padding:0px;list-style-type:none;} 
-	ul{list-style-type:none;}
-	/*=====================================header========================================================*/
-	/*로고*/
-	header{margin:0;padding:0; height:100px;}
-	
-
-	#logoDiv{text-align:right;width:57%;margin-top:25px;float:left;}
-	.lineDiv{background-color:rgb(64,64,64); height:1px; margin:0; padding:0; z-index:9}
-	#logoDiv img{
-					width:220px; 
-					height:70px;
-				}
-	
-	/*=======================로그인 전,회원가입==============================================*/
-	#loginDiv{	
-				float:left;	
-				width:43%; 
-				height:100px; 
-					
-				
+body{
+		margin:0; padding:0;      
+		overflow-x:hidden;
+    	overflow-y:auto;
 	}
-	#loginLblDiv{
-					width:63px;
-					heigth:200px;
-					float:left;
-					margin:40px 0 0 350px;
-				
-				
+	ul,li{
+		margin:0px;
+		padding:0px;
+		list-style-type:none;
+	} 
+	ul{
+		list-style-type:none;
 	}
-	#loginImgDiv{
-					width:50px;
-					heigth:100px;
-					float:left;
-					margin:38px 0 0 410px;
-					position:absolute;
-	
-	}
-	#loginRegisterDiv{
-					width:50px;
-					heigth:100px;
-					float:left;
-					margin:34px 0 0 470px;
-					position:absolute;
-					
-	}
-	#loginLblDiv>li:first-child{
-							float:left;
-							font-size:18px;
-								
-							
-	}
-	#loginImgDiv>li:nth-child(2n){
-									float:left;
-										
-							
-	}
-	#loginRegisterDiv>li:last-child{
-						float:left;
-							
-						
-	}
-	#loginIcon{
-				width:30px;
-	}
-
-	#login>li{
-				float:left;
 			
+	.container{
+		margin:0;
+		padding:0;
+	}
+	#mainDiv{
+		width:800px;
+		margin:0 auto;
+	}
+	
+	#mainDivHome{
+		width:1200px;
+		height:2100px;
+		margin:0 auto;
 	}
 
-	/*로그인 링크*/
-	#loginLblDiv a:link,#loginLblDiv a:visited{text-decoration:none; color:rgb(123,123,123);}	
+	@Font-FACE{				
+		font-family:"AMALFI COAST";
+		src:url("/font/AMALFI COAST.TTF");
+	}
+			 		
 
-	/*회원가입 버튼*/			
-	#loginRegisterDiv>li:last-child>input{
-								border:1px solid rgb(0,176,176);
-								border-radius:10px;
-								width:100px;
-								height:40px;
-								background-color:#fff;
-								color:rgb(0,176,176);
-								font-size:15px;}		
-	
-	/*===================================로그인 후,회원가입=====================================*/
-	#logoutDiv{
-				float:left;
-				width:43%; 
-				height:100px; 
-				
+			 				
 	}
-	
-	#loginImgAlarmDiv{	
-						width:50px;
-						heigth:100px;
-						float:left;
-						margin:42px 0 0 530px;
-						position:absolute;
-	
-	
+ 	#mainBxSliderFrontground{
+ 		background-color:black;
+ 		margin-top:-20px;
+ 		width:100%;
+ 		height:800px;
+ 		opacity:40%;
+ 		position:absolute;
+ 		z-index:100;
+ 	}
+	#mainLabel{
+		position:absolute;
+		margin:300px;
+ 		z-index:120;
+ 		width:100%
+ 			
 	}
-	#loginImgAlarmDiv>li:last-child{
-							float:left;
+	#mainLabel label:first-child{
+		position:absolute;
+		z-index:120;
+		color:white;
+		font-size:55px;
+		font-weight:lighter;
+		font-family:"AMALFI COAST";
+		margin-left:400px;			
 	}
-	#logout>li:first-child{
-							font-size:15px;
-							margin:40px 0 0 400px;
+	#mainLabel label:nth-child(2n){
+		position:absolute;
+		z-index:120;
+		color:white;
+		margin:120px 0 0 540px;
+		font-family:'batang';
+		letter-spacing:1px;
+		font-weight:lighter;			
 	}
-	#alarmIcon{
-				width:30px;
+	#mainLabel button{
+		position:absolute;
+		z-index:120;
+		color:white;
+		margin:150px 0 0 600px;
+		font-weight:bold;
+		padding-top:2px;
+		text-align:center;
+		border:1px solid #fff;
+		border-radius:10px;
+		width:150px;
+		height:32px;
+		background-color:transparent;
+		font-size:20px;
+		font-weight:bold;					
 	}
-
-	#logout>li{
-				float:left;
-			
+	 button:focus {
+   		outline: none;
 	}
-	
-	/*logName 버튼*/			
-	#logout>li:first-child>input{
-								border:1px solid rgb(0,176,176);
-								border-radius:10px;
-								width:100px;
-								height:40px;
-								background-color:#fff;
-								color:rgb(0,176,176);
-								font-size:15px;}	
-	
-	#logout>li>ul{
-					display:none; 
-					width:230px; 
-					position:absolute; 
-					border:3px solid rgb(221,221,221);
-					background-color:#fff; 
-					z-index:100; 
-					line-height:55px;
-					margin-left:-140px;
-					
-					
-	}
-	#logIdIcon{width:40px; position:absolute; padding:20px 0 0 20px;}
-	#logId{position:absolute; padding:8px 0 0 60px; color:rgb(64,64,64);}
-	#mypage{position:absolute; padding:35px 0 0 60px;}
-	#classDiv{padding-top:30px;}
-	.c1{padding-left:20px;}
-	#classDiv .c1:first-child{border-bottom:2px solid rgb(221,221,221);border-top:2px solid rgb(221,221,221);}
-	#classDiv .c1:nth-child(2n){border-bottom:2px solid rgb(221,221,221);}
-	
-	/*logId 링크*/
-	#mypage a:link,#mypage a:visited{text-decoration:none;color:rgb(0,176,176);}
-	#mypage a:hover{text-decoration:none; color:rgb(0,176,176);}
-	.c1 a:link, .c1 a:visited{text-decoration:none; color:rgb(64,64,64);}
-	.c1 a:hover{text-decoration:none; color:rgb(64,64,64);}
-	
-	
-	/*네비게이션*/
-	#naviDiv{margin-left:26%;}
-	#navi{height:50px; padding-bottom:10px;}
-	#navi li{text-align:center; line-height:55px; font-size:20px;}
-	#navi>li{float:left; width:13%; height:50px;position:relative;}
-	#navi>li>ul{display:none; position:absolute; border:3px solid rgb(221,221,221); width:100%; background-color:#fff; z-index:100;}
-	
-	 
-	 /*홈,루트짜기,코스검색,동행찾기,후기-->파란밑줄 선*/
-	#navi li #homeLine{margin:0 auto; width:20px; height:2px; background-color:rgb(0,176,176);  display:none;}
-	#navi li #routeLine{margin:0 auto; width:70px; height:2px; background-color:rgb(0,176,176); display:none;} 
-	#navi li #courseLine{margin:0 auto; width:70px; height:2px; background-color:rgb(0,176,176); display:none;} 
-	#navi li #searchLine{margin:0 auto; width:70px; height:2px; background-color:rgb(0,176,176); display:none;} 
-	#navi li #reviewLine{margin:0 auto; width:40px; height:2px; background-color:rgb(0,176,176); display:none;} 
-	
-
-
-	/*링크*/
-	#navi a:link,#navi a:visited{text-decoration:none;color:rgb(64,64,64);}
-	#navi a:hover{text-decoration:none; color:rgb(64,64,64);}
-	
-	.popupMenuColor:hover{background-color:rgb(221,221,221); height:55.5px;font-weight:bold;}
-
 	/*================================================footer==================================================================*/
 	#footer{margin:0;padding:0;}
-	#topDiv{height:64px; background-color:rgb(55,55,65);}
-	#bottomDiv{height:162px;background-color:rgb(69,69,79);}
+	#topDiv{height:64px; background-color:rgb(52,52,52);}
+	#bottomDiv{height:162px;background-color:rgb(34,34,34);}
 	
 	
 	#topDiv li{float:left; width:10%; font-size:13px;line-height:60px;}
@@ -194,100 +104,117 @@ body{margin:0; padding:0;
 									height:70px;}
 	
 	#bottomDiv>#bottomLogoDiv{width:52%;height:80px;text-align:center;}
-	#bottomDiv #bottomLogoDiv>label{color:rgb(123,123,123);font-size:12px;line-height:120px;}
+	#bottomDiv #bottomLogoDiv>label{color:#9d9d9d;font-size:12px;line-height:120px;}
 	
 	#bottomDiv div:last-child{width:47.5%;height:80px;text-align:center;}
-	#bottomDiv div:last-child>label{color:rgb(123,123,123);font-size:12px;}
+	#bottomDiv div:last-child>label{color:#9d9d9d;;font-size:12px;}
 	
-	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:rgb(123,123,123);}
+	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:#9d9d9d;}
 	
-	
-	.container{margin : 0; padding:0}
-	#mainDiv{width:800px; margin : 0 auto;}
-	
-	/*=====================================main=====================================================*/
 
-	.shadow{
-		background-color:black;
-		opacity:0.5;
-		position: relative;
-		z-index: 100;
+	/*=====================================main=====================================================*/
+	#mainBxSliderDiv{
+		margin:-25px -5px 0 -5px;
+		height:800px;
+		overflow:hidden;
 	}
-	#bxslider img{
-		width:800px;
-		height:300px;
-	}
+
 	
 	#hitRoute{
-		width:100%;
-		height:235px;
+		width:1200px;
+		height:950px;
 		text-align:center;
+		padding-top:90px;
 	}
 	#content1{
-		height:235px;
+		height:800px;
 		margin-top:130px;
-		padding-left:65px;
 	}
 	
 	.hitIcon{
-		width:70px;
-		height:30px;
-		margin-left:85px;
+		width:100px;
+		height:43px;
+		margin-left:42.5px;
+		padding-top:4px;
 		position:absolute;
+		border-top-right-radius:10px;
 	}
 	.thumbnail{
-		width:155px;
-		height:155px;
+		width:285px;
+		height:285px;
+		margin-left:10px;
 		border-top-right-radius: 10px;
 		border-top-left-radius: 10px;
 	}
 	.routeTitle{
-		font-size:17px;
-		word-spacing:-3px;
-		margin-bottom:5px;
-	}
-	.routeTitle, .sub{
 		float:left;
+		font-size:23px;
+		font-weight:bold;
+		word-spacing:-3px;
+		margin-bottom:6px;
+		padding-left:5px;
+		position:relative;
+		top:100px;
+		left:10px;
+	}
+	.routeTitle sub{
+		bottom:1px;
+		color:#005766;
 	}
 	.route{
+		height:390px;
 		float:left;
 		margin-right:5px;
 	}
+	.star{
+		width:175px;
+		height:35px;
+		position:relative;
+		bottom:35px;
+	}
 	
 	#routeSearch{
-		width:83%;
-		height:40px;
-		margin-top:20px;
-		margin-left:70px;
-		padding-top:8px;
+		width:1150px;
+		height:60px;
+		margin:40px 0 0 26px;
+		padding-top:10px;
 		text-align:center;
 		background-color:#008888;
+		box-shadow: 3px 3px 3px rgb(150,150,150);
 	}
 	#routeSearch a{
-		font-size:15px;
+		font-size:18px;
 		color:white;
 		padding-bottom:5px;
 		text-decoration: none;
 		font-weight:bold;
+		position:relative;
+		top:6px;
 	}
 	
 	#national{
-		width:100%;
-		height:400px;
-		margin-top:30px;
-		margin-bottom:150px;
+		width:1200px;
+		height:630px;
 		text-align:center;
 	}
 	#location{
-		width:100%;
-		margin-top:50px;
+		width:1200px;
+		height:auto;
+		margin-top:130px;
 		text-align:center;
 	}
 	#location img{
 		border-radius: 10px / 10px;
-		margin: 5px 2px 0px;
-		width:125px;
-		height:160px;
+		margin: 5px 15px 15px 0px;
+		width:280px;
+		height:340px;
+	}
+	.topIcon img{
+		width:90px;
+		height:110px;
+		position:relative;
+		left:1300px;
+		bottom:-110px;
 	}
 	/*=========================소라 수정20/11/13===========================================*/	
 	
@@ -301,9 +228,12 @@ body{margin:0; padding:0;
 	
 	
 	.bx-wrapper {
-	 -moz-box-shadow: none !important;
- 	 -webkit-box-shadow: none !important;
- 	 box-shadow: none !important;
- 	 padding:0;
+	 	-moz-box-shadow: none !important;
+ 	 	-webkit-box-shadow: none !important;
+ 	 	box-shadow: none !important;
+ 	 	padding:0;
 
+	}
+	#mainDivHeaderSub{
+		margin:-28px -5px 0 -5px;
 	}

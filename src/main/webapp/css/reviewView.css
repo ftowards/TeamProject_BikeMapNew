@@ -1,6 +1,20 @@
 @charset "UTF-8";
-body{margin:0; padding:0;}
-a {text-decoration: none;}
+<meta name="viewport" content="width=device-width,initial-scale=1">
+	body{
+		margin:0; padding:0;
+	}
+	a {
+		text-decoration: none;
+	}
+	textarea:focus {
+		outline: none;
+	}
+	button:focus {
+		outline: none;
+	}
+	input:focus {
+		outline: none;
+	}
 
 /* ===================================== 공통 ===================================== */
 	.container{
@@ -193,7 +207,7 @@ a {text-decoration: none;}
 	
 	.boardlist{
 	    width: 95%;
-	    height: 130px;
+	   height : 142px;
 	    border: 1px solid black;
 	    padding: 14px;
 	    margin: 7px;

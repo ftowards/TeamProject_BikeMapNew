@@ -2,72 +2,25 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />  
 
 <!-- Page Content -->
-
-
-
-<%
-	String pagefile = request.getParameter("page");
-	if(pagefile == null){//처음보여주는 페이지는 회원관리 페이지
-		pagefile="userTable";
-	}
-	
-	//dao 선언
-	//총레코드수
-	int totalRecord = 30;//총레코드수
-	int onePageRecord = 5;//한페이지당 출력할 레코드 수
-	int nowPage = 1;//현재페이지 번호 
-	int totalPage = 0;//총페이지 수
-	int onePageNum = 5;//한번에 표시할 페이지 수
-	int startPage = 1; //페이지 번호의 시작번호
-	//
-	//-----------------------------------------------
-	//현재페이지 정보 구하기
-	String nowPageStr = request.getParameter("nowPage");
-	if(nowPageStr != null){
-		nowPage = Integer.parseInt(nowPageStr);
-	}
-	//총페이지 수 계산하기 
-	totalPage = (int)Math.ceil(totalRecord/(double)onePageRecord);
-	//페이지 번호의 시작번호 구하기
-	startPage = ((nowPage-1)/onePageNum*onePageNum)+1;
-	
-	//전체레코드 구하기 페이지별 변경
-	//List<FreeboardVO> list = dao.getAllRecord(nowPage, onePageRecord, totalPage, totalRecord);
-	
-
-%>
-<script>
-
-$(document).ready(function() {
-    $('#reportMsg').on('keyup', function() {
-        if($(this).val().length > 250) {//varchar500이므로...
-            $(this).val($(this).val().substring(0, 250));
-        }
-    });
-});
-
-</script>
-
-
 	<!-- /Page Sidebar -->
 	
 	<!-- Page Content -->
 	<div class="adminContent">
-		<form>
-		    <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /><!-- //검색조건 -->
-   	 		<input type="hidden" name="searchValue" value="${pageVO.searchValue }" /><!-- //검색어 -->
-		<select name="choice" id="adminSelect">
-			<option value="userid" selected>회원 아이디</option>
-			<option value="username">회원 이름</option>	 
+		<form id="adminSearchUser" method="post" action="<%=request.getContextPath()%>/adminUser">
+		   <!-- <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /> //검색조건 
+   	 		<input type="hidden" name="searchValue" value="${pageVO.searchValue }" /> //검색어 -->
+		<select name="searchType" id="adminSelect">
+			<option value="userAll" selected>전체</option>
+			<option value="userid">회원 아이디</option>
+			<option value="username" >회원 이름</option>	 
 		</select>
-	
 			<input type="text" name="searchWord" id="userSearchWord"  class="searchText" maxlength="20" placeholder="검색어 입력"/>
 			<input type="submit" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>
+		</form><!-- searchForm -->
 		
 		<div class="adminTable">
 				<h1 class="adminListHead">회원관리</h1>
@@ -87,10 +40,10 @@ $(document).ready(function() {
 								<li id="contents" ><a href="javascript:userPopupOpen();">${vo.userid }</a></li>
 								<li>${vo.username}</li>
 								<li>
-									<c:if test="${vo.gender=='M'}">
+									<c:if test="${vo.gender=='1'}">
 										남
 									</c:if>
-									<c:if test="${vo.gender=='F'}">
+									<c:if test="${vo.gender=='2'}">
 										여
 									</c:if>
 								</li>
@@ -98,7 +51,7 @@ $(document).ready(function() {
 								<li>${vo.tourcnt}회</li>
 								<li>${vo.heart}회</li>
 								<li style="color:red">
-									<c:if test="${vo.endday==null||vo.endday}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
+									<c:if test="${vo.endday==null}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
 										<input type="button" title="${vo.userid}" id="suspendBtn"/>
 									</c:if>
 									<c:if test="${vo.endday!=null}">
@@ -137,45 +90,33 @@ $(document).ready(function() {
 				<!-- Page Content -->
 				<div id="paging">
 					<ul>
-						<!-- 이전페이지 -->
-						<li>
-							<%if(nowPage==1){ %>
-							◀
-							<%}else{ %>
-								<a href="/home/adminUser?nowPage=<%=nowPage-1 %>">◀</a>
-							<%} %>
-						</li>
-						<% for(int p=startPage; p<startPage+onePageNum; p++){ 
-							if(p<=totalPage){
-								if(p==nowPage){
-						 %>
-							<li>
-								<a href="/home/adminUser?nowPage=<%=p %>"style="color:rgb(0,176,176);"><%=p %></a>
-							</li>
-						<%} else {%>
-						<li>
-							<a href="/home/adminUser?nowPage=<%= p%>"><%=p %></a>
-					
-						</li>
-						<%}
-						}//if
-					}//for%>
-					<li>
-						<%if(nowPage<totalPage){ //다음페이지가 없을 경우
-						%>
-							<a href="/home/adminUser?nowPage=<%=nowPage+1 %>">▶</a>
-						<%} %>
+					<!-- 이전 페이지 -->
+						<c:if test="${pagingVO.nowPage != 1 }">
+							<li><a href="#">Prev</a></li>
+						</c:if>
+						<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
+							<c:if test="${pagingVO.totalPage >= page }">
+								<c:if test="${pagingVO.nowPage == page }">
+									<li style='color:#00B0B0; font-weight:600;'>${page }</li>
+								</c:if>
+								<c:if test="${pagingVO.nowPage != page }">
+									<li><a href="javascript:movePage(${page })" style='color:black; font-weight:600;'>${page }</a></li>
+								</c:if>
+							</c:if>
+						</c:forEach>
+					<!-- 다음 페이지 -->
+						<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
+							<li><a href="#">Next</a></li>
+						</c:if>
 					</ul>
-					
-						
-				</div><!-- paging -->
-				</form><!-- searchForm -->
+				</div><br/>
+			<!-- paging -->
+		
 			</div><!-- adminContent -->
 			
 			<!-- suspend popup -->
 			<div id="userSuspend" class="layerpop"
 				    	style="width:330px;height:300px;">
-				    	
 				    	<form id="userSuspendFrm" >
 				    	<input type="hidden" name="userid" id="userid" value=""/><!-- DB쪽 보낼데이터 -->
 					    	<article class="layerpop_area">
@@ -241,9 +182,10 @@ $(document).ready(function() {
 					    	</div>
 					    	</article>
 				    	</form>
+		
 			</div>
 			<!-- suspend POP -->
-</div><!-- adminhome -->
+</div><!--  adminBottom -->
 <!-- Page Content -->
 </body>
 </html>

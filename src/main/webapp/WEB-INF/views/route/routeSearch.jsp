@@ -2,34 +2,33 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
-<div class="mainDiv">
-	<form id="searchRoute" method="post" action="#" class="optionBar" style='float:left;'>
-		<select name="searchKey" class="regionSelect">
-   		    <option value="title">코스이름</option>
-		    <option value="userid">작성자</option>
-		    <option value="region">지역</option>
-		</select>
-		<input type="text" id="searchWord" name="searchWord" class="schBar" style='padding-left:10px; color:#7F7F7F; font-size:1em; font-weight:bolder;'/>
-		<input type="submit" class="mint_Btn" value="검 색" style='width:70px; height:40px'/>
-	</form>
+
+<div style='width:1200px; height:1380px; margin:0 auto'>
+	<div class="optionBar" >
+		<form id="searchRoute" method="post" action="#">
+			<select name="searchKey" class="regionSelect">
+	   		    <option value="title">코스이름</option>
+			    <option value="userid">작성자</option>
+			    <option value="region">지역</option>
+			</select>
+			<input type="text" id="searchWord" name="searchWord" class="schBar" style='padding-left:10px; color:#7F7F7F; font-size:1em; font-weight:bolder;'/>
+			<input type="submit" class="mint_Btn" value="검 색" style='width:70px; height:40px'/>
+		</form>
+	</div>
 	<div id="hitDiv">
-		<b>관리자 추천코스</b>
-		<div id="hitCourse">
-				<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-				<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-				<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-				<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-				<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-				<a href="<%=request.getContextPath()%>/routeSearchView"><img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
+		<b>추천코스</b>
+	</div>
+	<div class="routeSearch">
+		<div class="title">코스검색</div>
+		<div class="orderRadio">
+			<input type="radio"  name="order" id="orderNoboard" value="noboard" checked/><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar">&ensp;|&ensp;</span>
+			<input type="radio" name="order" id="orderRating" value="rating" /><label for="orderRating" class="subTxt" >평점순</label>
 		</div>
 	</div>
-	<div id="routeSearch">
-		<div class="title">코스검색</div>
-		<div id="subTxt">최신순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>평점순</span></div>
+	<hr class='borderHr'/>
+	<div id="content"></div>
+	<hr class='borderHr'/>
+	<!-- ================댓글창============= -->
 		<div id="paging">
 			<ul>
 			<!-- 이전 페이지 -->
@@ -47,17 +46,15 @@
 					</c:if>
 				</c:forEach>
 			<!-- 다음 페이지 -->
-				<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
+				<c:if test="${pagingVO.nowPage != pagingVO.totalPage }">
 					<li><a href="#">Next</a></li>
 				</c:if>
 			</ul>
-		</div><br/>
-		<div id="content"></div>
-	</div>
+		</div>
 </div>
 <script>
 	$(function(){
-		
+		var nowPage = 1;
 		// 페이지 로딩 시 전체 리스트 불러오기
 		movePage(1);
 			
@@ -67,9 +64,12 @@
 				alert("검색어를 입력하세요.");
 				return false;
 			};
-			
 			movePage(1);
 			return false;
+		});
+		
+		$("input[name=order]").on('change',function(){
+			movePage(nowPage);
 		});
 	});
 	
@@ -78,12 +78,23 @@
 	
 	// 지도 썸네일 만들기
  	function makeThumbnail(result){
-		$("#content").children().remove();
-		
+		$("#content").children().remove();		
 		for(var i = 0 ; i < result.length ; i++){
 			var listTag = "";
-			listTag += "<div class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"'><div id='map"+i+"' style='width:250px;height:250px;'></div></a>";
-			listTag += "<div><img class='star' src='/home/img/img_main/star.png'/></div></div>";
+
+			if(i== 0){
+				listTag += "<ul>";
+			}
+			// 썸네일 작성부
+			listTag += "<li class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"'><div id='map"+i+"' class='map'></div>";
+			// 루트 설명 작성부
+			listTag += "<div class='routeSubscript'><ul ><li class='wordCut'>"+result[i].title+"</li><li class='wordCut'>"+result[i].region+"</li><li>"+result[i].distance.toFixed(2)+"km</li>";
+			var rateWidth =  (result[i].rating/5 *125);
+			listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></a></ul></div></li>";
+			
+			if(i == result.length - 1){
+				listTag +="</ul>";
+			}
 			
 			$("#content").append(listTag);
 			
@@ -108,7 +119,7 @@
 		    var polyline = new kakao.maps.Polyline({
 			    path: linePath, // 선을 구성하는 좌표배열 입니다
 			    strokeWeight: 5, // 선의 두께 입니다
-			    strokeColor: '#00B0B0', // 선의 색깔입니다
+			    strokeColor: '#FF0162', // 선의 색깔입니다
 			    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 			    strokeStyle: 'solid' // 선의 스타일입니다
 			});
@@ -139,7 +150,8 @@
 		if(vo.nowPage != vo.totalPage){
 			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 		}
-		
+
+		tag += "</ul>";
 		$("#paging").append(tag);
 					
 	}
@@ -150,14 +162,16 @@
 		// 페이징 먼저 변경
 		var url = "<%=request.getContextPath()%>/searchRoutePaging";
 		var data = $("#searchRoute").serialize();
-			data += "&nowPage="+page;
-			
+			data += "&nowPage="+page+"&order="+$("input[name=order]:checked").val();
+		
+		console.log(data);	
 		$.ajax({
 			type : 'POST',
 			url : url,
 			data : data,
 			success : function(result){
 				setPaging(result);
+				nowPage = result.nowPage;
 			},error : function(){
 				console.log("페이징 오류");
 			}
@@ -184,5 +198,4 @@
 			}
 		});
 	}
-	
 </script>

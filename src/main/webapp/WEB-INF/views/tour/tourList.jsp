@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="/home/css/tourListStyle.css" type="text/css"/>
- <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="/home/css/tourListStyle.css" type="text/css"/>  
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
 	$(function(){
 		
@@ -74,56 +75,42 @@
 			monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 			yearRange:"2019:2020"
 		});
-		
+	
+		 movePage(1);
 	});	
-	//페이징 리스트 만들기
-	function setPaging(vo){
-		//이전 페이징 삭제
-		$("#paging").children().remove();
-		var tag="<ul>";
-		
-		if(vo.nowPage != 1){
-			tag += "<li><a href='javascript.movePage("+(vo.nowPage-1)+");'>Prev</a></li>";
-		}
-		for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount-1; i++){
-			if(vo.totalPage >= i){
-				if(vo.nowPage == i){
-					tag += "<li style='color:rgb(0,176,176)'><b>"+i+"</b></li>";
-				}else{
-					tag += "<li><a href='javascript:movePage("+i+")' style='color:black;'>"+i+"</a></li>";
-				}
-			}
-		}
-		if(vo.nowPage != vo.totalPage){
-			tag += "<li><a href='javascript:movePage("+(vo.nowPage+1)")'>Next</a></li>";
-		}
-		$("#paging").append(tag);
-	}
-
-	//페이지 이동
-	function movePage(p){
-		
-		//페이징 변경
-		var url ="<%=request.getContextPath()%>/search"
-	}
 	
 </script>
-<div id="mainDiv">
+<div id="mainDivTour">
+<div class="tourSearchListDiv">
 <form id="searchTour">	
 	<div id="dateDiv">
 		<div class="labelClass"><label>일&nbsp;정</label></div>
 		<div><input type="text" name="departure" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"></div>
-		<div><label  id="label1">~</label></div>
+		<select name="departureeTime" class="departureTime">
+			<c:forEach var="i" begin="0" end="24" step="1">
+				<option value="${i }">${i }시</option>
+			</c:forEach>
+		</select>
+		<div><label class="label1">~</label></div>
 		<div><input type="text" name="arrive"	placeholder="도착날짜" id="arrive" maxlength="10" autocomplete="off"></div>
+		<select name="arriveTime" class="arriveTime"  style="margin-top:-29px">
+			<c:forEach var="i" begin="0" end="24" step="1">
+				<option value="${i }">${i }시</option>
+			</c:forEach>
+		</select>
 	</div>
 	
 	<div id="placeDiv">
 		<div><label class="labelClass">장&nbsp;소</label></div>
-		<div><input type="text" name="place" placeholder="출발장소" id="place"></div>
+		<div><input type="text" name="place" placeholder="출발장소" id="place" autocomplete="off"></div>
 		
 		<div id="placeAndDistanceDiv">
 			<div><label id="distanceLbl">이동거리</label></div>
-			<div><input type="text" name="distance" placeholder="ex)10km" id="distance"></div>
+			<div><input type="text" name="distance" class="distance" maxlength="4" autocomplete="off" ></div>
+			<label class="kmLbl1">km</label>
+			<div style="margin-top:-10px;"><label class="label2">~</label></div>
+			<div><input type="text" name="distance" class="distance" maxlength="4" autocomplete="off" style="margin:-34px 0 0 230px"></div>
+			<div class="kmLbl2">km</div>
 		</div>	
 	</div>
 	
@@ -160,44 +147,130 @@
 		<div><input type="reset" name="reset" value="초기화" id="reset"></div>
 	</div>
 </form>
-	<hr/>
+
+	
+
 	<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label></div>
 	<div  id="paging">
 		<ul>
-			<c:forEach begin="${paging.startPageNum }" end="${paging.startPageNum + paging.onePageNumCount -1 }" var="p">
-				<c:if test="${paging.totalPage >= p }">
-					<c:if test="${paging.nowPage == p }">
-						<li style="color:rgb(0,176,176)"><b>${p }</b></li>
-					</c:if>
-					<c:if test="${paging.nowPage != p }">
-						<li><a href="<%=request.getContextPath() %>/tourList?nowPage=${p }&onePageRecord=${paging.onePageRecord}">${p }</a></li>
-					</c:if>
+			<!-- 이전 페이지 -->
+				<c:if test="${paging.nowPage != 1 }">
+					<li><a href="#">Prev</a></li>
 				</c:if>
-			</c:forEach>
-			<!-- 다음페이지 -->
-				<c:if test="${paging.nowPage != paging.totalPage }">
-					<li><a href="<%=request.getContextPath()%>/tourList?nowPage=${paging.nowPage+1}"></a></li>
-				</c:if>
+				<c:forEach var="p" begin="${paging.startPageNum }" end="${paging.startPageNum + paging.onePageNumCount -1}">
+					<c:if test="${paging.totalPage >= p }">
+						<c:if test="${paging.nowPage == p }">
+							<li style='color:#00B0B0; font-weight:600;'>${p }</li>
+						</c:if>
+						<c:if test="${paging.nowPage != p }">
+							<li><a href='javascript:movePage(${p })' style='color:black; font-weight:600;'>${p }</a></li>
+						</c:if>
+					</c:if>
+				</c:forEach>
+		<!-- 다음 페이지 -->
+			<c:if test="${paging.nowPage != paging.totalPage }">
+				<li><a href="#">Next</a></li>
+			</c:if>
 		</ul>
 	</div>
 	
 	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
 	<div id="tourBoardListDivTop">	
-		<c:forEach var ="list" items="${viewAll }">
-			<a href="<%=request.getContextPath()%>/tourView?noboard=${list.noboard}">
-			<div class="tourImgDivClass">
-				<div><img src="<%=request.getContextPath()%>/img/img_tour/map.png" class="tourImgClass"/></div>
-					<div class="blackWrapDiv">	
-						<p  style="font-size:15px;">${list.title }</p>
-						<p style="font-size:12px;">${list.departure}~${list.arrive }</p>
-						<hr style="width:150px;"/>
-						<p style="font-size:36px; "><b>1Day</b></p>
-					</div>
-			</div>	
-		</a>
-		</c:forEach>
+			
 	</div>
-
+	
 	
 		<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
 </div>
+</div>
+<script>
+
+
+	function setPaging(vo){
+	// 이전 페이징 삭제
+	$("#paging").children().remove();
+	nowPage = vo.nowPage;
+	var tag = "<ul>";
+	
+	if(vo.nowPage != 1){
+		tag += "<li style='margin-right:25px;'><a href='javascript:movePage("+(vo.nowPage -1)+");'>Prev</a></li>";
+	}
+	
+	for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount -1 ; i++){
+		if(vo.totalPage >= i){
+			if(vo.nowPage == i){
+				tag += "<li style='color:#00B0B0; font-weight:600;'>"+i+"</li>";
+			}else{
+				tag += "<li><a href='javascript:movePage("+i+")' style='color:black; font-weight:600;'>"+i+"</a></li>";
+			}
+		}
+	}
+	
+	if(vo.nowPage != vo.totalPage){
+		tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
+	}
+	
+	$("#paging").append(tag);
+		
+}
+	//페이지 이동
+	function movePage(p){
+
+		//페이징 변경
+		var url ="<%=request.getContextPath()%>/searchTourPaging";
+		var params = "nowPage="+p;
+		
+		console.log(params);
+	
+		$.ajax({
+			 type: 'POST'
+			,url:url
+			,data:params
+			,success:function(result){
+				setPaging(result);
+			},error:function(){
+			console.log("페이징 오류");
+		}
+	});	
+		tourListSelect(p);
+}
+	
+	function tourListSelect(p){
+		$("#tourBoardListDivTop").children().remove();
+		
+		var url ="/home/tourPagingList";
+		var params = "nowPage="+p;
+		
+	
+		
+		$.ajax({
+			url:url
+			,data:params
+			,success:function(result){
+				var $result = $(result);
+				var tag="";
+				$result.each(function(i,v){
+				
+					tag += "<div class='tourImgDivClass'>";
+					tag += "<div><img src='<%=request.getContextPath()%>/img/img_tour/map.png' class='tourImgClass'/></div>";
+					tag += "<div class='blackWrapDiv'>";	
+					tag += "<p style='font-size:25px;' class='tourBoardTitle'><b>"+ v.title+"</b></p>";
+					tag += "<p style='font-size:20px;' class='tourBoardWrite'>"+v.departure+'~'+v.arrive+"</p>";
+					tag += "<hr style='width:200px;'/>";
+					tag += "<p style='font-size:40px;' class='tourBoardDay'><b>1Day</b></p>";
+					tag += "</div></div>";
+				});
+				$("#tourBoardListDivTop").html(tag);
+			},error:function(){
+				console.log("리스트 선택 에러 발생....");
+			}
+		
+		});
+		
+	}
+</script>
+
+
+
+
+

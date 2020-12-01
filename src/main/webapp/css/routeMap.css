@@ -1,3 +1,4 @@
+@charset "UTF-8";
 	hr{
 		border:0;
 		border-top: 0.2em dotted #bbb;
@@ -11,18 +12,16 @@
 	input:focus {
   		outline: none;
 	}
-	#container{
-		width : 1150px;
-		height : 70vh;
-		margin:0 auto;
-		margin-top:50px;
-		margin-bottom:200px;
-		border-radius:5px;
-		border:3px solid #bbb;
-		position:relative;
-		z-index:10;
+	ul,li{
+			margin:0px; padding:0px;list-style-type:none;
 	}
-	#container>div{
+	#mainDivMap{
+		margin-top:-25px;
+		height:760px;
+	}
+	#mainDivMap>div{
+		margin:0;
+		padding:0;
 		float:left;
 		overflow:hidden;
 	}
@@ -42,7 +41,7 @@
 	}
 	
 	#info{
-		width:350px;
+		width:430px;
 		height:100%;
 	}
 	#info>div{
@@ -50,25 +49,22 @@
 	}
 	
 	#naviIcon{
-		width : 49px;
-		height : 100%;
+		width : 80px;
+		height : 99.5%;
 		background-color : #eee;
 	}
 	
 	#naviIcon img{
-		width : 38px;
-		maring : 4px auto;
-		margin-left:5.4px;
-		margin-top:6px;
+		width : 45px;
+		margin:23px 0 0 15px;
 	}
 	#infoPannel{
-		width : 300px;
+		width : 350px;
 		height : 100%;
 	}
 	#map{
-		width : 800px;
-		height : 100%;
-		background-color: lightblue;
+		width :950px;
+		height : 99.5%;
 	}
 	#infoPannel>input[type=radio]{
 		display:none;
@@ -89,7 +85,11 @@
 		font-weight:bold;
 		letter-spacing:1px;
 	}
+<<<<<<< HEAD
+
+=======
 	
+>>>>>>> refs/remotes/origin/master
 	.tab_liTag input:not(.startBox, .arriveBox){
 		border:2px solid #ccc;
 		color:#3B3B3B;
@@ -146,6 +146,7 @@
 		border : 2px inset #A6A6A6;
 		padding-left:10px;
 		letter-spacing:1px;
+		color:black;
 	}
 	input#searchWord{
 		 background-image: url(../img/img_route/search.png);
@@ -165,7 +166,7 @@
 		margin-left:12px;
 	}
 	
-	<!-- 검색한 리스트 스타일 -->
+	<!-- 寃��깋�븳 由ъ뒪�듃 �뒪���씪 -->
 	#menu_wrap hr {
 		display: block;
 		height: 1px;
@@ -251,7 +252,7 @@
 		color:#00B0B0;
 	}
 	
-	<!-- 카테고리 검색 탭 스타일 -->
+	<!-- 移댄뀒怨좊━ 寃��깋 �꺆 �뒪���씪 -->
 	#category{
 		widht : 100%;
 	}
@@ -320,7 +321,7 @@
 	}
 	
 	
-	<!-- 저장한 장소 목록 -->
+	<!-- ���옣�븳 �옣�냼 紐⑸줉 -->
 	#pannel3{
 		width : 100%;
 		overflow: auto;
@@ -420,7 +421,7 @@
 		border-radius:5px;
 		background-color:#eee;
 		background: url(../img/img_route/selectBox.png) no-repeat 92% 55%;
-		-webkit-appearance: none; /* 네이티브 외형 감추기 */
+		-webkit-appearance: none; /* �꽕�씠�떚釉� �쇅�삎 媛먯텛湲� */
     	-moz-appearance: none;
     	appearance: none;
     	margin-right:5px;
@@ -459,7 +460,7 @@
 
 
 
-<!-- ==================js파일 스타일================= -->
+<!-- ==================js�뙆�씪 �뒪���씪================= -->
 
 	#info_a{
 		

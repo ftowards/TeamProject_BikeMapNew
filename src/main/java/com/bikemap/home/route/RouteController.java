@@ -36,17 +36,13 @@ public class RouteController {
 		try {
 			int totalRecord = dao.searchTotalRecord();
 			pagingVO.setTotalRecord(totalRecord);
-			
-			List<RouteVO> list ;
-		
+			List<RouteVO> list ;	
 			list = dao.selectRouteAll(pagingVO);
 			mav.addObject("list", list);
-			mav.addObject("pagingVO", pagingVO);
-			
+			mav.addObject("pagingVO", pagingVO);		
 		}catch(Exception e) {
 			System.out.println("루트 검색 화면 호출 에러 " + e.getMessage());
-		}
-		
+		}		
 		mav.setViewName("route/routeSearch");
 		return mav;
 	}
@@ -68,6 +64,7 @@ public class RouteController {
 		return list;
 	}
 	
+	// 루트 리스트 검색
 	@RequestMapping(value="/searchRouteOk", method= {RequestMethod.POST})
 	@ResponseBody
 	public List<RouteVO> routeSearchOk(RoutePagingVO pagingVO){
@@ -85,6 +82,7 @@ public class RouteController {
 		return list;
 	}
 	
+	// 루트 검색 페이지 페이징 처리
 	@RequestMapping(value="/searchRoutePaging", method= {RequestMethod.POST})
 	@ResponseBody
 	public RoutePagingVO searchRoutePageing(RoutePagingVO pagingVO) {		
@@ -106,12 +104,15 @@ public class RouteController {
 		
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		
-		RouteVO vo = dao.selectRoute(noboard);
-		RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
-		
-		mav.addObject("routeVO", vo);
-		mav.addObject("placeVO", placeVO);
-		
+		try {
+			RouteVO vo = dao.selectRoute(noboard);
+			RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
+			
+			mav.addObject("routeVO", vo);
+			mav.addObject("placeVO", placeVO);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		mav.setViewName("route/routeSearchView");
 		return mav;
 	}
@@ -123,11 +124,14 @@ public class RouteController {
 		ModelAndView mav = new ModelAndView();
 		RouteDaoImp routeDao = sqlSession.getMapper(RouteDaoImp.class);
 		if(session.getAttribute("logId") != null) {
-			String userid  = (String)session.getAttribute("logId");
-			List<RouteCateVO> categoryList = routeDao.selectCategory(userid);
-			mav.addObject("category", categoryList);
+			try {
+				String userid  = (String)session.getAttribute("logId");
+				List<RouteCateVO> categoryList = routeDao.selectCategory(userid);
+				mav.addObject("category", categoryList);
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
-		
 		mav.setViewName("route/routeMap");
 		return mav;
 	}
@@ -150,6 +154,47 @@ public class RouteController {
 		String userid  = (String)session.getAttribute("logId");
 		
 		return routeDao.selectCategory(userid);
+	}
+	
+	// 루트 저장 팝업 열기
+	@RequestMapping("/routeCollect")
+	public ModelAndView routeCollectPopup(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		RouteDaoImp routeDao = sqlSession.getMapper(RouteDaoImp.class);
+		if(session.getAttribute("logId") != null) {
+			try {
+				String userid  = (String)session.getAttribute("logId");
+				List<RouteCateVO> categoryList = routeDao.selectCategory(userid);
+				mav.addObject("category", categoryList);
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		mav.setViewName("popup/routeCollect");
+		return mav;
+	}
+	
+	// 루트 저장하기
+	@RequestMapping("/insertRouteList")
+	@ResponseBody
+	public int insertRouteList(HttpSession session, RouteListVO vo) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		vo.setUserid((String)session.getAttribute("logId"));
+		
+		try {
+			// 중복 체크
+			result = dao.chkRouteList(vo);			
+			if(result >= 1) {
+				return 2;
+			}else {
+				// 신규 리스트 저장
+				result = dao.insertRouteList(vo);
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}		
+		return result;
 	}
 	
 	@RequestMapping(value="/insertRoute", method= {RequestMethod.POST,RequestMethod.GET})
@@ -183,5 +228,44 @@ public class RouteController {
 			result = 0;
 		}
 		return result;
+	}
+	
+	// 평점 부여하기
+	@RequestMapping(value="/rateRoute", method=RequestMethod.POST)
+	@ResponseBody
+	public int rateRoute(HttpSession session, RouteVO vo) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		vo.setUserid((String)session.getAttribute("logId"));
+		try {			
+			result = dao.checkRateAlready(vo);
+			if(result == 1) {
+				return 2; // 이미 평점을 줬을 경우 2를 리턴
+			}else {
+				// 평점이 없을 경우 평점 부여 / routerate 테이블에 아이디 추가
+				result = dao.ratingRoute(vo);
+				if(result == 1) {
+					result = dao.insertRouteRateList(vo);
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("평점 주기 에러 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 평점 재호출
+	@RequestMapping(value="/selectRouteRating", method=RequestMethod.POST)
+	@ResponseBody
+	public RouteVO selectRouteRating(RouteVO vo) {
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			vo = dao.selectRouteRating(vo);
+		}catch(Exception e) {
+			System.out.println("평점 호출 에러" +e.getMessage());
+		}
+		return vo;
 	}
 }
