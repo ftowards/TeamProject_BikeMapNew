@@ -125,8 +125,8 @@
 				<c:if test="${logId == null }">
 						<img id="lockImg" src="<%=request.getContextPath() %>/img/img_register/lock.png"/>
 						<div style='line-height:10px; margin-bottom:55px;'>
-							<h3 style='padding-left:83px'>코스 저장하기</h3>
-							<h4 style='padding-left:45px; color:#005766'>로그인 후 이용 가능합니다.</h4>
+							<h3 style='padding-left:107px'>코스 저장하기</h3>
+							<h4 style='padding-left:79px; color:#005766'>로그인 후 이용 가능합니다.</h4>
 						</div>
 						<div id="logButtons">
 							<input type="button" id="login" name="login" value="로그인" class="mint_Btn" style='width:80px; height:35px; font-size:15px'/>
