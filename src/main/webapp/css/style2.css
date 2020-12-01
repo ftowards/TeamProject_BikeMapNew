@@ -27,21 +27,12 @@ body{
 		height:2100px;
 		margin:0 auto;
 	}
-	
-<<<<<<< HEAD
-	
-	@font-face{				
 
-		font-family:"AMALFI COAST";
-		src:url("/font/AMALFI COAST.TTF");
-=======
-		
 	@Font-FACE{				
 		font-family:"AMALFI COAST";
 		src:url("/font/AMALFI COAST.TTF");
 	}
-			 				
->>>>>>> da63ffa9d9af0e72475be8f57aa08e320ca45759
+			 		
 
 			 				
 	}
@@ -127,7 +118,6 @@ body{
 		height:800px;
 		overflow:hidden;
 	}
-
 
 	
 	#hitRoute{
