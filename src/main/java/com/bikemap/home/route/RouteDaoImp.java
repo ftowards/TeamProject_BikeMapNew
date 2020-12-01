@@ -38,6 +38,9 @@ public interface RouteDaoImp {
 	
 	// 전체 루트 검색
 	public List<RouteVO> selectRouteAll(RoutePagingVO pagingVO);
+
+	// 레퍼런스 검색
+	public List<RouteVO> searchReference(String searchWord);
 	
 	
 	//// 루트 평점 주기 ////
@@ -52,6 +55,7 @@ public interface RouteDaoImp {
 	
 	// 평점 구하기
 	public RouteVO selectRouteRating(RouteVO vo);
+	
 	
 	/// 루트 리스트 ////////
 	// 루트 저장 후 리스트에 추가하기

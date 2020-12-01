@@ -82,4 +82,8 @@
 	<select id="selectRouteRating" resultType="com.bikemap.home.route.RouteVO" parameterType="com.bikemap.home.route.RouteVO">
 		select round(rating, 1) rating, ratecnt from route where noboard=#{noboard}
 	</select>
+	<select id="searchReference" resultType="com.bikemap.home.route.RouteVO">
+		select noboard, title, userid from route where title like '%'||#{param1}||'%' or userid like '%'||#{param1}||'%' or region like '%'||#{param1}||'%'
+		order by noboard desc
+	</select>
 </mapper> 
