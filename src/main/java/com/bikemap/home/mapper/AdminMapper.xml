@@ -64,7 +64,7 @@
 	<select id = "reviewTotalRecord" resultType="int">
 		select count(noboard) from review
 	</select>
-	<select id = "reviewAllRecord" resultType="com.bikemap.home.admin.ReviewVO">
+	<select id = "reviewAllRecord" resultType="com.bikemap.home.admin.AdminReviewVO">
 		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit
 		from review order by noboard desc <include refid="search"></include>
 	</select>
