@@ -133,7 +133,6 @@ public class AdminRegistVO {
 	public void setActive(String active) {
 		this.active = active;
 	}
-
 	public String getCode() {
 		return code;
 	}

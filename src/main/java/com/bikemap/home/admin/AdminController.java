@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bikemap.home.review.ReviewVO;
+import com.bikemap.home.tour.PagingVO;
+import com.bikemap.home.tour.TourDaoImp;
+import com.bikemap.home.tour.TourVO;
+
 
 @Controller
 public class AdminController {
@@ -43,6 +48,7 @@ public class AdminController {
 				list = dao.selectRegistAll(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
 			}
 			pagingVO.setTotalRecord(totalRecord);
+			mav.addObject("type", "user");
 			mav.addObject("list", list);
 			mav.addObject("pagingVO", pagingVO);	
 		}catch(Exception e) {
@@ -51,26 +57,6 @@ public class AdminController {
 		mav.setViewName("admin/adminUserTable");
 		return mav;
 	}
-	//회원관리 선택화면 출력
-//	@RequestMapping("/adminSearchUser")
-//	public ModelAndView adminUser(AdminSearchVO vo) {//검색할 항목, 검색어 가져옴
-//		ModelAndView mav = new ModelAndView();
-//		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-//		//검색한 항목의 페이징처리
-//		AdminPagingVO pagingVO = new AdminPagingVO();
-//		try {	
-//			int selectRecord = dao.searchRecord(vo); //검색할 항목으로 검색된 페이지 수 구함
-//			pagingVO.setTotalRecord(selectRecord);
-//			List<AdminRegistVO>list = dao.selectRegistAll(vo);
-//			mav.addObject("list", list);				
-//			mav.addObject("pagingVO", pagingVO);	
-//		}catch(Exception e) {
-//			System.out.println("회원 검색 화면 호출 에러"+e.getMessage());
-//		}	
-//		mav.setViewName("admin/adminUserTable");
-//			return mav;
-//		}
-	
 	//정지추가
 	@RequestMapping(value="/userSuspendOk", method=RequestMethod.POST)
 	@ResponseBody
@@ -98,10 +84,33 @@ public class AdminController {
 	}
 	
 	//동행찾기패널
-	@RequestMapping("/adminPartner")
-	public String adminPartner() {
-		return "admin/adminPartnerTable";
+	@RequestMapping("/adminTour")
+	public ModelAndView adminTour(AdminSearchVO vo) {
+		ModelAndView mav = new ModelAndView();
+		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
+		AdminPagingVO pagingVO = new AdminPagingVO();
+		try {	
+			int totalRecord = 0;
+			List<TourVO>list;
+			if(vo.getSearchType()!=null||vo.getSearchType()!="") {
+				totalRecord = dao.searchTourRecord(vo);
+				list = dao.tourAllRecord(vo);
+			}
+			else{
+				totalRecord = dao.tourTotalRecord();
+				list = dao.tourAllRecord(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
+			}
+			pagingVO.setTotalRecord(totalRecord);
+			mav.addObject("type", "tour");
+			mav.addObject("list", list);
+			mav.addObject("pagingVO", pagingVO);	
+		}catch(Exception e) {
+			System.out.println("회원 검색 화면 호출 에러111"+e.getMessage());
+		}	
+		mav.setViewName("admin/adminTourTable");
+		return mav;
 	}
+		
 	
 	//리뷰패널
 	@RequestMapping("/adminReview")
@@ -111,7 +120,7 @@ public class AdminController {
 			AdminPagingVO pagingVO = new AdminPagingVO();
 			try {	
 				int totalRecord = 0;
-				List<AdminReviewVO>list;
+				List<ReviewVO>list;
 				if(vo.getSearchType()!=null||vo.getSearchType()!="") {
 					totalRecord = dao.searchReviewRecord(vo);
 					list = dao.reviewAllRecord(vo);
@@ -121,6 +130,7 @@ public class AdminController {
 					list = dao.reviewAllRecord(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
 				}
 				pagingVO.setTotalRecord(totalRecord);
+				mav.addObject("type", "review");
 				mav.addObject("list", list);
 				mav.addObject("pagingVO", pagingVO);	
 			}catch(Exception e) {
@@ -141,6 +151,7 @@ public class AdminController {
 			pagingVO.setTotalRecord(totalRecord);
 			//
 			List<AdminQnaVO>list = dao.selectQnaAll(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
+			mav.addObject("type", "qna");
 			mav.addObject("list", list);
 			mav.addObject("pagingVO", pagingVO);	
 		}catch(Exception e) {
@@ -183,6 +194,26 @@ public class AdminController {
 			System.out.println("1대1문의 답변 제출 오류"+e.getMessage());
 		}
 		return mav;
+	}
+	
+	//페이징
+	@RequestMapping(value="/adminPaging", method=RequestMethod.POST)
+	@ResponseBody
+	public PagingVO adminPaging(PagingVO paging) {
+		
+		System.out.println("getnowPage===="+paging.getNowPage());
+			
+			
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		try {
+			int totalRecord = dao.getTotalTourRecord();				
+			System.out.println("totalRecord==="+totalRecord);
+			paging.setTotalRecord(totalRecord);
+				
+		}catch(Exception e) {
+			System.out.println("페이징에러"+e.getMessage());
+		}
+		return paging;
 	}
 	
 }

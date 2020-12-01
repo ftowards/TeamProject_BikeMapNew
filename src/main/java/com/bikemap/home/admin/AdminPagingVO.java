@@ -22,6 +22,7 @@ public class AdminPagingVO {
 	public int getTotalRecord() {
 		return totalRecord;
 	}
+	//전체 레코드 구하기
 	public void setTotalRecord(int totalRecord) {
 		this.totalRecord = totalRecord;
 		setTotalPage();

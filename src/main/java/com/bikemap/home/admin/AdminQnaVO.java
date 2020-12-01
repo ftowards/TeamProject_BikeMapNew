@@ -25,6 +25,8 @@ public class AdminQnaVO {
 	public void setNoqna(int noqna) {
 		this.noqna = noqna;
 	}
+	
+	
 	public String getSubject() {
 		return subject;
 	}

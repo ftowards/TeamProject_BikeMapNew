@@ -5,13 +5,7 @@
 	<!-- /Page Sidebar -->
 	<!-- Page Content -->
 	<div class="adminContent">
-		<select name="choice" id="adminSelect">	
-				<option value="userid" selected>회원 아이디</option>
-			 	<option value="subject" selected>제목</option>
-			 	<option value="IsReply">답변여부</option>
-		</select>
-				<input type="text" name="searchWord" id="questionSearchWord" class="searchText" maxlength="20" placeholder="검색어 입력"/>
-				<input type="button" name="search" id="searchBtn" value="검색" class="mint_Btn" style="width:50px; height:30px"/>	
+		
 				<div id="adminTable">
 				<h1 class=adminListHead>1:1 문의</h1>
 				<ul id="questionList">
@@ -55,8 +49,7 @@
 										<li><a href="javascript:movePage(${page })" style='color:black; font-weight:600;'>${page }</a></li>
 									</c:if>
 								</c:if>
-							</c:forEach>
-						
+							</c:forEach>				
 							<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
 								<li><a href="#">Next</a></li>
 							</c:if>
@@ -64,7 +57,7 @@
 				</div><br/>
 				<!-- /paging -->
 				<div id="partnerBtn">
-						<input type="button" id="partnerBtn1" name="partnerDeleteBtn" value="삭제하기" class="mint_Btn"/><input type="button" id="partnerBtn2" name="partnerHideBtn" value="비공개"/>
+				<input type="button" id="partnerBtn1" name="partnerDeleteBtn" value="삭제하기" class="mint_Btn"/><input type="button" id="partnerBtn2" name="partnerHideBtn" value="비공개"/>
 				</div><!-- btn -->
 			</div><!-- adminContent -->
 <!-- Page Content -->
