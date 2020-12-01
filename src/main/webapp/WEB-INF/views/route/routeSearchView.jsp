@@ -48,7 +48,7 @@
 			</div>
 		<div><span style='color:#032b7b'>관광지</span><br/>
 			<label class="switch">
-  				<input type="checkbox" name="sightsMarker" class="sightCheck"><span class="slider round" style='background-color:#042e82'></span>
+  				<input type="checkbox" name="sightsMarker" class="sightCheck"><span class="slider round"></span>
 			</label><br/>
 				<ul id="sightsList" style='margin-top:15px'>
 					<c:if test="${placeVO.sights1placename != null }">
@@ -75,7 +75,7 @@
 			</div>
 		<div><span style='color:#4a0e65'>숙박시설</span><br/>
 			<label class="switch">
-  				<input type="checkbox" name="accommodationMarker" class="accommodationCheck"><span class="slider round" style='background-color:#631786'></span>
+  				<input type="checkbox" name="accommodationMarker" class="accommodationCheck"><span class="slider round"></span>
 			</label><br/>
 				<ul id="accommodationList" style='margin-top:15px'>
 					<c:if test="${placeVO.accom1placename != null }">
@@ -102,7 +102,7 @@
 			</div>
 		<div><span style='color:#276cab'>편의시설</span><br/>
 			<label class="switch">
-  				<input type="checkbox" name="convenientMarker" class="convenientCheck"><span class="slider round" style='background-color:#519de2'></span>
+  				<input type="checkbox" name="convenientMarker" class="convenientCheck"><span class="slider round"></span>
 			</label><br/>
 				<ul id="convenientList" style='margin-top:15px'>
 					<c:if test="${placeVO.conve1placename != null }">
