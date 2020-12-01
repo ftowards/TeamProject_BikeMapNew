@@ -109,7 +109,7 @@
 																				border-radius:10px;
 																				width:70px;
 																				height:35px;
-																				background-color:rgb(123,123,123);
+																				background-color:rgb(0,176,176);
 																				font-size:15px;
 																				font-weight:bold;
 																				color:#fff;
@@ -321,18 +321,27 @@
 		
 
 	#roomCheckDiv{
-					float:left;
+				
 					height:40px;
-					width:800px;
+					width:1200px;
 					
 	}	
 	
+	.roomLineCheck{
+					width:500px;
+					background-color:yellow;
+					float:left;
+				
+					
+	}
 	
 	#roomCheckDiv div:first-child{
 									float:left;
+									margin-left:490px;
 									height:28px;
 									width:7px;
 									background-color:rgb(0,176,176);
+									
 	}	
 	
 	#roomCheckDiv div:last-child label{
@@ -343,15 +352,17 @@
 	}		
 
 	#tourStateDiv{
-					height:90px;
-					width:800px;
-					float:left;
+					height:150px;
+					width:700px;
+					float:right;
+					
+					
 			
 	}
 	#stateApply{
 					
 					text-align:center;
-					border:1px solid rgb(0,176,176);
+					border:none;
 					border-radius:10px;
 					width:90px;
 					height:35px;
@@ -359,13 +370,14 @@
 					font-size:16px;
 					font-weight:bold;
 					color:#fff;
-					float:left
+					float:left;
+					box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	
 	#stateCancel{
 					
 					text-align:center;
-					border:1px solid rgb(123,123,123);
+					border:none;
 					border-radius:10px;
 					width:90px;
 					height:35px;
@@ -375,9 +387,15 @@
 					color:rgb(123,123,123);
 					float:left;
 					margin-left:15px;
+					box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 					
 	}
-		input[type=checkbox]{
+	input[type=checkbox]{
 						display:none;
 	}	
+	.roomCheckDivLbl{
+					width:690px;
+					height:50px;
+					float:right;
 	
+	}
