@@ -77,17 +77,49 @@
 	<div id="national">
 		<span class="routeTitle">코스 후기</span><br/>
 		<div id="location">
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a><br/>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
-			<a href="#"><img src="<%=request.getContextPath() %>/img/img_main/empire.png"/></a>
+			<div class="review">
+				<a href="#">
+					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+				</a>
+			</div>
+			<div class="review">
+				<a href="#">
+					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+				</a>
+			</div>
+			<div class="review">
+				<a href="#">
+					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+				</a>
+			</div>
+			<div class="review">
+				<a href="#">
+					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+				</a>
+			</div><br/>
+			<div class="review">
+				<a href="#">
+					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+				</a>
+			</div>
+			<div class="review">
+				<a href="#">
+					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+				</a>
+			</div>
+			<div class="review">
+				<a href="#">
+					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+				</a>
+			</div>
+			<div class="review">
+				<a href="#">
+					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+				</a>
+			</div>
 		</div>
 	</div>
 	<div>
-		<a href="#" class="topIcon"><img src="<%=request.getContextPath() %>/img/img_main/top.png"/></a>
+		<a href="#" class="topIcon"><img src="<%=request.getContextPath() %>/img/img_main/top.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_main/top_over2.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_main/top.png'"></a>
 	</div>
 </div>
