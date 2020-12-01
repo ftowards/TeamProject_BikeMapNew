@@ -190,8 +190,10 @@ $(function(){
 			</div>
 	
 			<div id="roomCheckDiv">
-				<div></div>
-				<div><label>참여인원 확인하기></label></div>
+				
+					<div></div>
+		
+				<div class="roomCheckDivLbl"><label>참여인원 확인하기></label></div>
 			</div>
 	
 			<div id="tourStateDiv">
