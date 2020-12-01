@@ -93,6 +93,7 @@ public class TourController {
 	public String tourBoardWrite() {
 		return "/tour/tourWriteForm";
 	}
+	
 	// 글쓰기 등록 , produces="application/text;charset=UTF-8"
 	@RequestMapping(value="/tourWriteFormOk", method=RequestMethod.POST)
 	@ResponseBody

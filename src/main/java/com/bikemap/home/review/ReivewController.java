@@ -52,15 +52,13 @@ public class ReivewController {
 	
 	
 	//레코드 추가 글쓰기
-	@RequestMapping(value="/reviewWriteFormOk", method=RequestMethod.POST, produces="application/text;charset=UTF-8")
-	public String reviewWriteFormOk(ReviewVO vo, HttpSession ses, HttpServletRequest req) {
+	@RequestMapping(value="/reviewWriteFormOk", method=RequestMethod.POST)
+	@ResponseBody
+	public int reviewWriteFormOk(ReviewVO vo, HttpSession ses, HttpServletRequest req) {
 		vo.setIp(req.getRemoteAddr());
 		vo.setUserid((String)ses.getAttribute("logId"));
 		
-		vo.setIp(req.getRemoteAddr());
-		
 		System.out.println(111);
-		
 		System.out.println(vo.getUserid());
 		System.out.println(vo.getSubject());
 		System.out.println(vo.getContent());
@@ -73,11 +71,11 @@ public class ReivewController {
 		
 		try {
 			result = dao.reviewInsert(vo);
-			System.out.println(vo.getContent());
+			System.out.println(result);
 		}catch(Exception e) {
 			System.out.println("후기 글쓰기 에러 " + e.getMessage());
 		}
-		return "review/reviewList";
+		return result;
 	}
 
 	

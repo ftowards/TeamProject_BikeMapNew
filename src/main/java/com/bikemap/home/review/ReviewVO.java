@@ -20,6 +20,7 @@ public class ReviewVO {
 	public void setNoboard(int noboard) {
 		this.noboard = noboard;
 	}
+	
 	public String getSubject() {
 		return subject;
 	}

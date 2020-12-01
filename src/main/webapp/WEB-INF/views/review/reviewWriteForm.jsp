@@ -11,16 +11,49 @@ $(function(){
 		CKEDITOR.replace('content',{
 			height:600
 		});
+	
+	
+	$("#writeform").submit(function(){
+		CKEDITOR.instances.content.updateElement();
 		
+		if($("#subject").val()==""){
+			alert("제목을 입력하세요.");
+			return false;		
+		}
 		
+		if(CKEDITOR.instances.content.getData()==""){
+			alert("글내용을 입력하세요.");
+			return false;
+		}
 
+		var url = "/home/reviewWriteFormOk";
+		var params = $("#writeform").serialize();
+		
+		$.ajax({
+			type : 'POST',
+			url : url,
+			data : params,
+			success : function(result) {
+				console.log(result);
+				if(result>0){
+					alert("글이 등록되었습니다.")
+					location.href="/home/reviewView";
+				
+				}else{
+					alert("글등록이 실패하였습니다.");
+					}
+				},error:function(){
+					console.log("글쓰기 오류");
+				}
+			});
+			return false;	
+		});
 	});
-	
-	
 </script>
+
 <div class="container">
 	<div class="mainDiv">
-		<form id="writeform" action="/home/reviewWriteFormOk" method="POST">
+		<form id="writeform">
 			<input type="hidden" >
 			<div class = "toplayout">
 					<div class = "box-body">
@@ -28,7 +61,7 @@ $(function(){
 							<span class="title">후기 글쓰기 게시판</span>
 						</div>
 		<!-- 			제목					 -->
-						<input class="form-control" name="subject" placeholder="제목을 입력해주세요." style="width:99%">
+						<input class="form-control" id ="subject" name="subject" placeholder="제목을 입력해주세요." style="width:99%">
 					</div>
 		<!-- 			내용 					 -->
 					<div class = "form-group">
