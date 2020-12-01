@@ -277,8 +277,10 @@
 	
 	
 	/*==========================routeSearchView.jsp==============================*/
-	.routeSearchViewDiv{
-		height:1900px;
+	.routeSearchViewDiv2{
+		width:1200px;
+		height:2600px;
+		margin:0 auto;
 	}
 	#mapDiv{
 		width:100%;

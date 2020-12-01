@@ -67,8 +67,7 @@
 		아이디, 비밀번호를 잊어버리셨나요?&nbsp;
 		<input type="button" value="아이디/비밀번호 찾기" onclick="location.href='/home/registFindInfo'" class="white_Btn"/>
 		<span id="text1">|</span>
-			<span id="text2">아직 회원이 아니신가요?&nbsp;
-				<input type="button" value="회원가입" onclick="location.href='/home/registerForm'" class="white_Btn"/>
-			</span>
+		아직 회원이 아니신가요?&nbsp;
+		<input type="button" value="회원가입" onclick="location.href='/home/registerForm'" class="white_Btn"/>
 	</div>
 </div> 
