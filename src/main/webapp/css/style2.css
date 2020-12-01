@@ -24,7 +24,7 @@ body{
 	
 	#mainDivHome{
 		width:1200px;
-		height:2000px;
+		height:2100px;
 		margin:0 auto;
 	}
 	
@@ -142,9 +142,9 @@ body{
 		border-top-right-radius:10px;
 	}
 	.thumbnail{
-		width:290px;
-		height:290px;
-		margin-left:5px;
+		width:285px;
+		height:285px;
+		margin-left:10px;
 		border-top-right-radius: 10px;
 		border-top-left-radius: 10px;
 	}
@@ -207,16 +207,16 @@ body{
 	}
 	#location img{
 		border-radius: 10px / 10px;
-		margin: 5px 5px 5px 0px;
-		width:225px;
-		height:260px;
+		margin: 5px 15px 15px 0px;
+		width:280px;
+		height:340px;
 	}
 	.topIcon img{
-		width:75px;
-		height:90px;
+		width:90px;
+		height:110px;
 		position:relative;
-		left:1250px;
-		bottom:30px;
+		left:1300px;
+		bottom:-110px;
 	}
 	/*=========================소라 수정20/11/13===========================================*/	
 	
