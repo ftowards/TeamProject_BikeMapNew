@@ -38,7 +38,7 @@ public class AdminController {
 			int totalRecord = 0;
 			List<AdminRegistVO>list;
 			if(vo.getSearchType()!=null||vo.getSearchType()!="") {
-				totalRecord = dao.searchRecord(vo);
+				totalRecord = dao.searchRegistRecord(vo);
 				list = dao.selectRegistAll(vo);
 			}
 			else{
@@ -105,12 +105,33 @@ public class AdminController {
 	public String adminPartner() {
 		return "admin/adminPartnerTable";
 	}
+	
 	//리뷰패널
 	@RequestMapping("/adminReview")
-	public String adminReview() {
-		return "admin/adminReviewTable";
-	}
-
+	public ModelAndView adminReview(AdminSearchVO vo) {
+			ModelAndView mav = new ModelAndView();
+			AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
+			AdminPagingVO pagingVO = new AdminPagingVO();
+			try {	
+				int totalRecord = 0;
+				List<AdminReviewVO>list;
+				if(vo.getSearchType()!=null||vo.getSearchType()!="") {
+					totalRecord = dao.searchReviewRecord(vo);
+					list = dao.reviewAllRecord(vo);
+				}
+				else{
+					totalRecord = dao.reviewTotalRecord();
+					list = dao.reviewAllRecord(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
+				}
+				pagingVO.setTotalRecord(totalRecord);
+				mav.addObject("list", list);
+				mav.addObject("pagingVO", pagingVO);	
+			}catch(Exception e) {
+				System.out.println("회원 검색 화면 호출 에러111"+e.getMessage());
+			}	
+			mav.setViewName("admin/adminReviewTable");
+			return mav;
+		}
 	//1대1문의패널
 	@RequestMapping("/adminQna")
 	public ModelAndView adminQna() {
