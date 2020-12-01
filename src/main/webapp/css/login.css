@@ -58,30 +58,55 @@
 	}
 	#useridDiv{
 		margin:0 auto;
-		padding:60px 0 0 100px;
+		padding:60px 0 0 205px;
 	}
-	#userPwddDiv{
+	#userPwdDiv{
 		position:absolute;
 		margin:0 auto;
-		padding:20px 0 0 100px;
+		padding:20px 0 0 205px;
 	}
 	
+	#useridDiv input, #userPwdDiv input{
+		color:#747474;
+		width:300px;
+		height:40px;
+		padding-left:10px;
+		border-radius:5px;
+		border:0;
+	}
+	#useridDiv input{
+		font-size:19px;
+		margin-left:103px;
+	}
+	#userPwdDiv input{
+		font-size:41px;
+	}
+	
+	.loginLabel{
+		font-size:19px;
+		margin-right:20px;
+		letter-spacing:2px;
+	}
 	#loginBtnDiv{
 		position:absolute;
 		padding:0;
 		margin:-30px 0 0 550px;
 	}
 	.mint_Btn{
-		font-size:18px;
+		font-size:23px;
 		font-weight:bold;
 		border-radius: 10px;
 		text-decoration: none;
 		text-align : center;
-		padding:28px 40px;
+		padding:33px 41px;
 		margin:0 10px;
 		color : white;
 		border: 1px solid #00B0B0;
 		background-color: #00B0B0;
+		position:relative;
+		bottom:10px;
+		left:115px;
+		letter-spacing:1px;
 	}
 	
 	
@@ -98,12 +123,13 @@
 	.white_Btn{
 		color: #5D5D5D;
 		font-weight:bold;
-		border: 2px solid #8C8C8C;
+		border: 1px solid #8C8C8C;
 		border-radius: 5px;
 		text-decoration: none;
 		text-align : center;
 		background-color: white;
 		padding:3px 6px;
+		box-shadow:2px 2px 0px 1px rgb(216 216 216)
 	}
 	.white_Btn:hover{
 		color: white;
