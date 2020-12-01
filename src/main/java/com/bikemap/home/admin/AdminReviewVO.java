@@ -1,7 +1,6 @@
-package com.bikemap.home.review;
+package com.bikemap.home.admin;
 
-public class ReviewVO {
-
+public class AdminReviewVO {
 	private int noboard;
 	private String subject;
 	private String userid;
@@ -10,7 +9,6 @@ public class ReviewVO {
 	private int hit;
 	private String writedate;
 	private String ip;
-	
 	
 	public int getNoboard() {
 		return noboard;

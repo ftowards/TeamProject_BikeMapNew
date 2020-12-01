@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bikemap.home.admin.AdminDaoImp">
-	<!-- admin추가 -->
+	<!-- 관리자 사용자 페이지 -->
 	<select id="selectRegistAll" parameterType="com.bikemap.home.admin.AdminSearchVO" resultType="com.bikemap.home.admin.AdminRegistVO"><!-- VO하나만 합성으로 설정 -->
 	 	select rownum, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt, a.heart, (select to_char(s.endday,'YY-MM-DD')	
 		from suspend s <![CDATA[ where s.userid = a.userid and rownum=1 and s.endday>=sysdate]]>) endday from regist a <include refid="search"></include> order by rownum desc
@@ -22,7 +22,7 @@
 		select count(userid) from regist 
 	</select>
 	
-	<select id="searchRecord" parameterType="com.bikemap.home.admin.AdminSuspendVO" resultType="int">
+	<select id="searchRegistRecord" parameterType="com.bikemap.home.admin.AdminSuspendVO" resultType="int">
 		select count(userid) from regist <include refid="search"></include>
 	</select>
 	
@@ -31,10 +31,7 @@
  		insert into suspend(userid, endday, cause)
 		values(#{userid}, to_date(sysdate+#{endday}, 'YY-MM-DD'),#{cause})
 	</insert>
-	<!-- 
-		SELECT ENDDAY FROM SUSPEND WHERE ROWNUM <=1 ORDER BY ENDDAY
-		SELECT ENDDAY FROM SUSPEND WHERE USERID ='슈퍼맨' AND ROWNUM <=1 ORDER BY ENDDAY
-	 -->
+	
 	<update id="suspendUpdate" parameterType="com.bikemap.home.admin.AdminSuspendVO">
 		update suspend set endday=endday+#{endday}, cause=#{cause} 
 		where rownum=1 and userid=#{userid} and endday>=sysdate
@@ -46,8 +43,10 @@
 	 	select to_char(endday,'YY-MM-DD') enddayStr, userid from suspend where rownum=1 and userid=#{userid} and endday>=sysdate
 	</select>
 	
+	
+	<!-- 1대1 문의 게시판 -->
 	<select id="qnaTotalRecord" resultType="int">
-		select count(userid) from qna 
+		select count(noqna) from qna 
 	</select>
 	
 	<select id="selectQnaAll" parameterType="com.bikemap.home.admin.AdminQnaVO" resultType="com.bikemap.home.admin.AdminQnaVO">
@@ -60,5 +59,21 @@
 	<update id="qnaUpdate" parameterType="com.bikemap.home.admin.AdminQnaVO">
 		update qna set answercontent=#{answercontent}, answer='Y', answerdate=sysdate where noqna=#{noqna}
 	</update>
-
+	
+	<!-- 리뷰 -->
+	<select id = "reviewTotalRecord" resultType="int">
+		select count(noboard) from review
+	</select>
+	<select id = "reviewAllRecord" resultType="com.bikemap.home.admin.ReviewVO">
+		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit
+		from review order by noboard desc <include refid="search"></include>
+	</select>
+	<select id="searchReviewRecord" parameterType="com.bikemap.home.admin.AdminReviewVO" resultType="int">
+		select count(noboard) from regist <include refid="search"></include>
+	</select>
+	
+	
+	
+	
+	
 </mapper> 
