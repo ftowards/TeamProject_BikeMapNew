@@ -10,7 +10,7 @@
 	
 	<!-- Page Content -->
 	<div class="adminContent">
-		<form id="adminSearchUser" method="post" action="<%=request.getContextPath()%>/adminSearchUser">
+		<form id="adminSearchUser" method="post" action="<%=request.getContextPath()%>/adminUser">
 		   <!-- <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /> //검색조건 
    	 		<input type="hidden" name="searchValue" value="${pageVO.searchValue }" /> //검색어 -->
 		<select name="searchType" id="adminSelect">
@@ -182,8 +182,10 @@
 					    	</div>
 					    	</article>
 				    	</form>
+		
 			</div>
 			<!-- suspend POP -->
+</div><!--  adminBottom -->
 <!-- Page Content -->
 </body>
 </html>

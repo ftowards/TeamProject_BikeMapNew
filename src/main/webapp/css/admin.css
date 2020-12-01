@@ -1,6 +1,9 @@
 /* ================ 헤더 및 공통 =================*/
 body{
 	font-family: 'Nanum Myeongjo', serif;
+	width:1200px;
+	margin: 0 auto;
+	
 }
 textarea:focus {
 	outline: none;
@@ -12,16 +15,17 @@ input:focus {
 	outline: none;
 }
 #adminTop {
-	background-color: #333333;
-	width: 100%;
+	background-color: #343434;
+	width: 1200px;
 	height: 100px;
 }
-#adminTop>img {
+#adminTopimg {
 	width: 150px;
 	height: 50px;
 	margin-top: 20px;
 	margin-left: 80px
 }
+
 ul, li{
 	list-style-type: none;
 	margin : 0;
@@ -30,7 +34,9 @@ ul, li{
 a{
 	text-decoration: none;
 }
-
+#adminBottom{
+	width:1200px;
+}
 .wordCut {
 	white-space: nowrap;
 	overflow: hidden;
@@ -44,46 +50,48 @@ a{
 /* ================ 사이드바 ==============*/
 .navigation {
 	float: left;
-	width: 20%;
+	width: 200px;
 	height: 600px;
 	background-color: #ddd;
 } /*=== left꼭넣자....===*/
+
 .navigation>ul{
-	margin-top: 100px;
 	
+	width:150px;
+	height:400px;
+	margin :0 auto;
+	margin-top : 200px;
 }
 
 .navigation a {
 	display: block;
 	color: #000000;
-	margin: 15px;
-	padding: 15px;
 	text-decoration: none;
 }
-.icon {
-	font-weight: bold;
-	padding: 15px;
-}
 
-.navigation a:hover {
+.navigation a:hover, .navigation a:visited {
 	color: rgb(0, 176, 176);
 }
 
-.navigation a:not(:hover) {
-	color: rgb(ddd);
-}
 
+.icon {
+	font-weight: bold;
+	color: #000000;
+}
 .navigation li {
+	margin-bottom:50px;
 	border-bottom: solid 1px gray;
 }
-
-.navigationli:last-child {
+.navigation li:last-child {
 	border-bottom: none;
 }
-
+.navigation li>a {
+	margin-top:10px;
+	font-size:0.8em;
+}
 /*================= 컨텐츠 ================*/
 .adminContent {
-	width: 80%;
+	width: 1000px;
 	float: right;
 	height: 600px;
 	background-color: #F7F7F7;
@@ -100,7 +108,8 @@ a{
 	height: 30px;
 	overflow: auto;
 	margin: 0 auto;
-	width: 30%; <!-- 맞춰보자 -->
+	width: 30%; 
+	<!-- 맞춰보자 -->
 }
 
 #paging li {
@@ -122,6 +131,10 @@ a{
 /* ================ 회원관리 =================*/
 #userList>li:nth-child(-n+9) {
 	background-color:#ddd;
+	margin-bottom:4px;
+}
+#userList>li:nth-child(n+10):nth-child(-n+18){
+	border-top:1px solid gray;
 }
 #userList>li {
 	float: left;
@@ -157,6 +170,10 @@ element.style {
 /* ================ 동행모집 ==================*/
 #partnerList>li:nth-child(-n+7) {
 	background-color:#ddd;
+	margin-bottom:4px;
+}
+#partnerList>li:nth-child(n+8):nth-child(-n+14){
+	border-top: 1px solid gray;
 }
 #partnerList>li {
 	float: left;
@@ -177,6 +194,10 @@ element.style {
 /* ================ 리뷰테이블 ================*/
 #reviewList>li:nth-child(-n+7) {
 	background-color:#ddd;
+	margin-bottom:4px;
+}
+#reviewList>li:nth-child(n+8):nth-child(-n+14){
+	border-top: 1px solid gray;
 }
 #reviewList>li {
 	float: left;
@@ -199,12 +220,18 @@ element.style {
 /* =============== 문의 테이블 ==============*/
 #questionList>li:nth-child(-n+5) {
 	background-color:#ddd;
+	margin-bottom:4px;
+	
+}
+#questionList>li:nth-child(n+6):nth-child(-n+10){
+	border-top: 1px solid gray;
 }
 #questionList>li {
 	float: left;
 	width: 15%;
 	height: 40px;
 	line-height: 40px;
+	background-color:#fff;
 	border-bottom: 1px solid gray;
 }
 
@@ -343,6 +370,5 @@ element.style {
 .pop2Left{
 	float:left;
 	width:60px;
-	
 	font-weight:bold;
 }

@@ -52,7 +52,6 @@ public class TourController {
 	
 		mav.addObject("paging", pagingVO);
 		mav.addObject("viewAll",list);
-		
 		mav.setViewName("tour/tourList");
 		return mav;
 	}

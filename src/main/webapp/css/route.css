@@ -49,7 +49,7 @@
 	}
 	.regionSelect{
 		width:12%;
-		height:90%;
+		height:40px;
 		text-align:center;
 		font-size:17px;
 		font-weight:bold;
@@ -67,7 +67,7 @@
 	}
 	.schBar{
 		width:50%;
-		height:90%;
+		height:40px;
 		border:0px;
 		border-radius:5px;
 		padding-left:10px;
@@ -136,19 +136,21 @@
 		letter-spacing:2px;
 	}
 	
-	#routeSearch>input[type=radio]{
+	.orderRadio{
+		float:right;
+		margin : 0 30px;
+	}
+	.orderRadio>input[type=radio]{
 		display:none;
 	}
 	.subTxt{
 		color:#AEAAAA;
 	}
-	#routeSearch>input[type=radio]:checked+label{
-
+	.orderRadio>input[type=radio]:checked+label{
 		color:#353535;
 		font-size:16px;
 		font-weight:600;
 		margin-bottom:20px;
-		padding-left:20px;
 	}
 
 	#lBar{
@@ -275,8 +277,10 @@
 	
 	
 	/*==========================routeSearchView.jsp==============================*/
-	.routeSearchViewDiv{
-		height:1900px;
+	.routeSearchViewDiv2{
+		width:1200px;
+		height:2600px;
+		margin:0 auto;
 	}
 	#mapDiv{
 		width:100%;
