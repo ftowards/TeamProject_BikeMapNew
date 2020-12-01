@@ -50,14 +50,13 @@
 	
 	#naviIcon{
 		width : 80px;
-		height : 100%;
+		height : 99.5%;
 		background-color : #eee;
 	}
 	
 	#naviIcon img{
-		width : 40px;
-		margin:30px 0 0 15px;
-		
+		width : 45px;
+		margin:23px 0 0 15px;
 	}
 	#infoPannel{
 		width : 350px;
@@ -65,8 +64,7 @@
 	}
 	#map{
 		width :950px;
-		height : 100%;
-		background-color: lightblue;
+		height : 99.5%;
 	}
 	#infoPannel>input[type=radio]{
 		display:none;
