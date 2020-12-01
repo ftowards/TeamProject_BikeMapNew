@@ -14,7 +14,7 @@ $(function(){
 		
 		
 		
-		/*$("#inputBtn").submit(function(){
+		$("#inputBtn").submit(function(){
 			CKEDITOR.instances.content.updateElement();
 			console.log("서브밋 클릭함.");
 			var url ="/reviewWriteFormOk";
@@ -39,7 +39,7 @@ $(function(){
 				}
 			});
 			return false;
-		}); */
+		});
 	});
 	
 	
