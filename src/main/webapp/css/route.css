@@ -10,6 +10,10 @@
 		background-color:#ccc;
 		height:1px;
 	}
+	.borderHr{
+		background-color:white;
+		margin:0;
+	}
  	textarea:focus {
   		outline: none;
  	}
@@ -31,7 +35,7 @@
 		margin:0 auto;
 		margin-top:200px;
 	}
-	#mainDiv2{
+	.routeSearchViewDiv{
 		width:1200px;
 		height:1200px;
 		margin:0 auto;
@@ -45,7 +49,7 @@
 	}
 	.regionSelect{
 		width:12%;
-		height:90%;
+		height:40px;
 		text-align:center;
 		font-size:17px;
 		font-weight:bold;
@@ -63,7 +67,7 @@
 	}
 	.schBar{
 		width:50%;
-		height:90%;
+		height:40px;
 		border:0px;
 		border-radius:5px;
 		padding-left:10px;
@@ -104,15 +108,15 @@
 	
 	/*코스검색 컨텐츠 전체*/
 	.routeSearch{
-		width:100%;
-		height:80%;
+		width:1200px;
+		height:300px;
 		margin-left:5px;
 		padding-top:200px;
 		text-align:left;
 		background-color:white;
 	}
 	.title{
-		margin-top:150px;
+		margin-top:30px;
 		padding:0px 10px 10px 20px;
 	}
 	#starLbl{
@@ -122,20 +126,41 @@
 		position:relative;
 		bottom:7px;
 	}
-	#subTxt{
+
+	.course_Info{
+		padding-left:25px;
+		font-size:17px;
+		font-weight:bold;
+		color:#004554;
+		margin-top:45px;
+		letter-spacing:2px;
+	}
+	
+	.orderRadio{
+		float:right;
+		margin : 0 30px;
+	}
+	.orderRadio>input[type=radio]{
+		display:none;
+	}
+	.subTxt{
+		color:#AEAAAA;
+	}
+	.orderRadio>input[type=radio]:checked+label{
 		color:#353535;
 		font-size:16px;
 		font-weight:600;
 		margin-bottom:20px;
-		padding-left:20px;
 	}
+
 	#lBar{
 		color:#7F7F7F;
 		font-weight:400;
 	}
 	/*댓글창*/
 	#paging{
-		width:790px;
+		position:relative;
+		width:1200px;
 		height:50px;
 		color:#353535;
 		font-size:20px;
@@ -160,8 +185,8 @@
 	
 	/*컨텐츠*/
 	#content{
-		width:100%;
-		height:800px;
+		width:1200px;
+		height:700px;
 	}
 	.thumbnail2{
 		width:250px;
@@ -174,10 +199,61 @@
 	}
 	.contentDiv{
 		float:left;
-		width:33.3%;
-		height:50%;
+
+		width:25%;
+		text-align:center;
+		margin-bottom : 20px;
+	}
+	.map{
+		width : 250px;
+		height : 250px;
+		margin : 0 auto;
+	}
+	
+	.routeSubscript{
+		width : 250px;
+		margin : 0 auto;
+	}
+	
+	.routeSubscript>ul{
+		display:inline-block;
+	}
+	
+	.routeSubscript li{
+		float: left;
+		width : 50%;
+		height : 25px;
+		text-align:center;
+		
+		font-size:15px;
+		font-weight:bold;
+	    color : gray;
+		
+		margin-bottom : 3px;
+	}
+	
+	.routeSubscript li:first-child, .routeSubscript li:nth-of-type(2){
+		width : 250px;
+		text-align:left;
+	}
+	
+	.routeSubscript li:last-child{
+		width : 250px;
 		text-align:center;
 	}
+	
+	.star-rating{width : 125px;}
+	.star-rating, .star-rating span{display : inline-block; height: 39px; overflow:hidden;  
+		background : url(/home/img/img_route/starGray.png) no-repeat;
+	}
+		
+	.star-rating span{
+		background : url(/home/img/img_route/starColored.png) no-repeat;
+		float : left;
+		line-height:0; 
+		vertical-align : top;}
+	
+	
 	.star{
 		width:150px;
 		height:30px;
@@ -201,12 +277,13 @@
 	
 	
 	/*==========================routeSearchView.jsp==============================*/
-	#mainDiv2{
+	.routeSearchViewDiv{
 		height:1900px;
 	}
 	#mapDiv{
 		width:100%;
-		height:200px;
+		height:1210px;
+		padding-top:100px;
 
 	}
 	#mapDiv b{
@@ -220,10 +297,11 @@
 		white-space:nowrap;
 		overflow:hidden;
 		text-overflow:ellipsis;
-		font-size:1.6em;
+		font-size:28px;
 	}
 	.txtShadow{
-		margin-top:30px;
+		margin-top:45px;
+		font-size:18px;
 		color:#005766;
 		height:32px;
 		text-shadow: 2px 2px 6px #8EC7D0;	
@@ -232,8 +310,8 @@
 	
 	/*지도&고도정보*/
 	#map_Altitude{
-		width:600px;
-		height:700px;
+		width:73%;
+		height:81.5%;
 		float:left;
 		margin-bottom:30px;
 	}
@@ -244,14 +322,27 @@
 	
 	/*코스이름&별점*/
 	#routeInfoDiv{
-		width:200px;
+		width:25%;
+		height:80%;
 		float:left;
-		height:580px;
-		margin-bottom:30px;
+		margin:0 0 30px 20px;
+		background-color:orange;
 	}
 	#routeInfo{
 		height:auto;
 		padding-left:10px;
+	}
+	#routeInfo > ul > li > input{
+		width:98%;
+		height:45px;
+		margin:3px;
+		padding-left:15px;
+		font-size:16px;
+		font-weight:bold;
+		letter-spacing:1.5px;
+		border:2px inset #A6A6A6;
+		border-radius:5px;
+		background:#eee;
 	}
 	
 	#grade{
@@ -260,8 +351,8 @@
 		padding:13px;
 	}
 	#gradeSelect{
-		width:120px;
-		height:30px;
+		width:140%;
+		height:63%;
 		font-size:14px;
 		font-weight:bold;
 		color:#353535;
@@ -292,10 +383,13 @@
 		background-color: white;
  	}
  	#grayBtn{
- 		width:48px;
+ 		width:50%;
+ 		height:63%;
  		float:left;
  		position: relative;
-  		left:230px;
+  		left:203px;
+  		bottom:37px;
+  		font-size:15px;
  	}
  	.mint_Btn{
 		font-size:15px;
@@ -330,10 +424,10 @@
 		text-align:center;
 	}
 	#placeList >*{
-		color:#005766;
+		width:25%;
 		font-weight:bold;
 		float:left;
-		padding-left:50px;
+		margin-top:25px;
 	}
 	#placeList ul{
 		display:inline;
@@ -348,6 +442,18 @@
 	}
 	#placeList:nth-child(1),#placeList:nth-child(2),#placeList:nth-child(3){
 		marign:10px 12px 10px 0;
+	}
+	#foodList > li > a{
+		color:#a52502;
+	}
+	#sightsList > li > a{
+		color:#002060;
+	}
+	#accommodationList > li > a{
+		color:#700a9e;
+	}
+	#convenientList > li > a{
+		color:#134e84;
 	}
 
 	#restaurant, #tour, #accommodation, #facilities{
@@ -501,13 +607,45 @@
 	  -webkit-transition: .4s;
 	  transition: .4s;
 	}
+
 	
-	input:checked + .slider {
-	  background-color: #2196F3;
+	input:checked + .slider:before {
+	  -webkit-transform: translateX(26px);
+	  -ms-transform: translateX(26px);
+	  transform: translateX(26px);
 	}
 	
-	input:focus + .slider {
-	  box-shadow: 0 0 1px #2196F3;
+	
+	.foodCheck:checked + .slider {
+	  background-color: #fb7e4e;
+	}
+	
+	.foodCheck:focus + .slider {
+	  box-shadow: 0 0 1px #fb7e4e;
+	}
+	
+	.sightCheck:checked + .slider {
+	  background-color: #042e82;
+	}
+	
+	.sightCheck:focus + .slider {
+	  box-shadow: 0 0 1px #042e82;
+	}
+	
+	.accommodationCheck:checked + .slider {
+	  background-color: #631786;
+	}
+	
+	.accommodationCheck:focus + .slider {
+	  box-shadow: 0 0 1px #631786;
+	}
+	
+	.convenientCheck:checked + .slider {
+	  background-color: #519de2;
+	}
+	
+	.convenientCheck:focus + .slider {
+	  box-shadow: 0 0 1px #519de2;
 	}
 	
 	input:checked + .slider:before {

@@ -134,6 +134,9 @@ $(function(){
 	map.setBounds(bounds);
 	
 	
+	$("#routeCollect").on('click',function(){
+ 		window.open("/home/routeCollect","Bikemap","width=400px, height=200px, left =300px, top=300px");
+ 	});
 });
 /////////////////// event //////////////////////////
 
@@ -383,7 +386,7 @@ $("#grayBtn").on('click', function(){
 	    polyline = new kakao.maps.Polyline({
 						    path: linePath, // 선을 구성하는 좌표배열 입니다
 						    strokeWeight: 5, // 선의 두께 입니다
-						    strokeColor: '#00B0B0', // 선의 색깔입니다
+						    strokeColor: '#FF0162', // 선의 색깔입니다
 						    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 						    strokeStyle: 'solid' // 선의 스타일입니다
 		});

@@ -124,11 +124,14 @@ public class RouteController {
 		ModelAndView mav = new ModelAndView();
 		RouteDaoImp routeDao = sqlSession.getMapper(RouteDaoImp.class);
 		if(session.getAttribute("logId") != null) {
-			String userid  = (String)session.getAttribute("logId");
-			List<RouteCateVO> categoryList = routeDao.selectCategory(userid);
-			mav.addObject("category", categoryList);
+			try {
+				String userid  = (String)session.getAttribute("logId");
+				List<RouteCateVO> categoryList = routeDao.selectCategory(userid);
+				mav.addObject("category", categoryList);
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
-		
 		mav.setViewName("route/routeMap");
 		return mav;
 	}
@@ -151,6 +154,47 @@ public class RouteController {
 		String userid  = (String)session.getAttribute("logId");
 		
 		return routeDao.selectCategory(userid);
+	}
+	
+	// 루트 저장 팝업 열기
+	@RequestMapping("/routeCollect")
+	public ModelAndView routeCollectPopup(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		RouteDaoImp routeDao = sqlSession.getMapper(RouteDaoImp.class);
+		if(session.getAttribute("logId") != null) {
+			try {
+				String userid  = (String)session.getAttribute("logId");
+				List<RouteCateVO> categoryList = routeDao.selectCategory(userid);
+				mav.addObject("category", categoryList);
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		mav.setViewName("popup/routeCollect");
+		return mav;
+	}
+	
+	// 루트 저장하기
+	@RequestMapping("/insertRouteList")
+	@ResponseBody
+	public int insertRouteList(HttpSession session, RouteListVO vo) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		vo.setUserid((String)session.getAttribute("logId"));
+		
+		try {
+			// 중복 체크
+			result = dao.chkRouteList(vo);			
+			if(result >= 1) {
+				return 2;
+			}else {
+				// 신규 리스트 저장
+				result = dao.insertRouteList(vo);
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}		
+		return result;
 	}
 	
 	@RequestMapping(value="/insertRoute", method= {RequestMethod.POST,RequestMethod.GET})
@@ -211,6 +255,7 @@ public class RouteController {
 		return result;
 	}
 	
+	// 평점 재호출
 	@RequestMapping(value="/selectRouteRating", method=RequestMethod.POST)
 	@ResponseBody
 	public RouteVO selectRouteRating(RouteVO vo) {

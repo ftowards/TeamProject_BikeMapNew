@@ -3,32 +3,38 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- ========================댓글 달기====================================================== -->
-<div id="mainDiv">
-	<div id="replyDiv">
-		<div>댓글</div>
-		<div style="color:rgb(0,176,176)" id="totalRecord"></div>
+<hr class="replyHr" style="background-color:white;"/>
+<div class="replyMain">
+	<div class="replyTitle">
+		<div class="titleMain">
+			<span>댓글</span>&nbsp;
+			<span style="color:rgb(0,176,176)" id="totalRecord"></span>
+		</div>
+		<div class="orderRadio">
+			<input type="radio"  name="order" id="orderDesc" value="desc" checked/>
+			<label for="orderDesc" class="orderBtn">최신순</label>&ensp;|&ensp;<input type="radio" name="order" id="orderAsc" value="asc" /><label for="orderAsc" class="orderBtn">작성순</label>
+		</div>
 	</div>
 	
-	<input type="radio" name="order" value="desc" checked/>최신순
-	<input type="radio" name="order" value="asc" />작성순
 	<form method="post" id="replyForm">
 		<c:if test="${logId == null }">
 			<div id="replytWriteDiv">
-				<textarea maxlength="100" id="replyWrite" placeholder=" 로그인 후 작성 가능합니다." readonly style="resize:none"></textarea>
+				<textarea maxlength="200" id="replyWrite" placeholder=" 로그인 후 작성 가능합니다." readonly style="resize:none"></textarea>
 			</div>
 		</c:if>
 		<c:if test="${logId != null}">
 			<div id="replyUseridDiv">${logId}</div>
-			<div id="replytWriteDiv">
+			<div id="replyWriteBox">
 				<textarea name="reply" id="replyWrite" maxlength="100" placeholder=" 주제와 무관한 댓글, 악플은 삭제될 수 있습니다." style="resize:none"></textarea>
-				<div id="textCntDiv"><span id="cntSPAN" style="padding-right:10px;">0</span>&nbsp;/200</div>
-					<div><input type="submit" value="등 록" id="replySubmit"></div>
+				<div class="textCntDiv"><span id="cntSPAN" style="padding-right:10px;">0</span>&nbsp;/200</div>
 			</div>
+			<div><input type="submit" value="등 록" class="replySubmit"></div>
 		</c:if>
 	</form>
+	<hr class='replyHr' style="background-color:white;"/>
 	<div id="replyViewDiv">
 		<ul id="replyList"></ul>
-		<ul id="paging"></ul>
+		<div id="replyPaging"></div>		
 	</div>	
 </div>
 <script>
@@ -88,9 +94,14 @@
 	// 페이징 리스트 만들기
 	function setPaging(vo){
 		// 이전 페이징 삭제
-		$("#paging").children().remove();
+		$("#replyPaging").children().remove();
+		
+		if(vo.totalRecord == 0){
+			return false;
+		}
+		
 		nowPage = vo.nowPage;
-		var tag = "";
+		var tag = "<ul>";
 		
 		if(vo.nowPage != 1){
 			tag += "<li><a href='javascript:movePage("+(vo.nowPage -1)+");'>Prev</a></li>";
@@ -108,7 +119,9 @@
 		if(vo.nowPage != vo.totalPage){
 			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 		}
-		$("#paging").append(tag);
+		tag+="</ul>";
+		
+		$("#replyPaging").append(tag);
 		$("#totalRecord").text(vo.totalRecord);
 	}
 	
@@ -143,7 +156,7 @@
 					tag += "<ul id='replyEdit"+v.noreply+"' class = 'replyList' style='display:none;'>";
 					tag += "<li><textarea maxlength='100' placeholder=' 주제와 무관한 댓글, 악플은 삭제될 수 있습니다.' style='width : 100%; height : 80px; resize:none'>"+v.reply+"</textarea>";
 					tag += "<li>&nbsp<input type='button' class='replyDel' value='취소' onclick='editCancle("+v.noreply+")'style='float:right;'/>";
-					tag += "<input type='button' class='replyEdit' value='확인' onclick='editOk("+v.noreply+")'style='float:right;'/></li></ul><hr/>";
+					tag += "<input type='button' class='replyEdit' value='확인' onclick='editOk("+v.noreply+")'style='float:right;'/></li></ul><hr class='replyHr'/>";
 				});
 				$("#replyList").html(tag);
 			},error:function(){
@@ -176,7 +189,7 @@
 	
 	// 댓글 삭제하기
 	function delReply(noreply){		
-		var chk = confirm("삭제하시겠습니까?" + noreply);
+		var chk = confirm("삭제하시겠습니까?");
 		
 		if(chk){
 			var url = "/home/delReply";

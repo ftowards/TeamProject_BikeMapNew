@@ -39,7 +39,6 @@ public interface RouteDaoImp {
 	// 전체 루트 검색
 	public List<RouteVO> selectRouteAll(RoutePagingVO pagingVO);
 	
-
 	
 	//// 루트 평점 주기 ////
 	// 기존에 부여한 평점이 있는 지 확인
@@ -57,6 +56,9 @@ public interface RouteDaoImp {
 	/// 루트 리스트 ////////
 	// 루트 저장 후 리스트에 추가하기
 	public int insertRouteList(RouteListVO vo);
+	
+	// 리스트 중복 검사
+	public int chkRouteList(RouteListVO vo);
 	
 	
 	/// 루트 플레이스 ///////
