@@ -217,7 +217,6 @@
 		width:100%;
 		height:1210px;
 		padding-top:100px;
-		background-color:lightblue;
 
 	}
 	#mapDiv b{
@@ -247,7 +246,6 @@
 		width:73%;
 		height:81.5%;
 		float:left;
-		background-color:pink;
 		margin-bottom:30px;
 	}
 	#blueLine{
@@ -363,7 +361,6 @@
 		font-weight:bold;
 		float:left;
 		margin-top:25px;
-		background-color:yellow;
 	}
 	#placeList ul{
 		display:inline;
@@ -378,6 +375,18 @@
 	}
 	#placeList:nth-child(1),#placeList:nth-child(2),#placeList:nth-child(3){
 		marign:10px 12px 10px 0;
+	}
+	#foodList > li > a{
+		color:#a52502;
+	}
+	#sightsList > li > a{
+		color:#002060;
+	}
+	#accommodationList > li > a{
+		color:#700a9e;
+	}
+	#convenientList > li > a{
+		color:#134e84;
 	}
 
 	#restaurant, #tour, #accommodation, #facilities{
@@ -531,14 +540,7 @@
 	  -webkit-transition: .4s;
 	  transition: .4s;
 	}
-	
-	input:checked + .slider {
-	  background-color: #2196F3;
-	}
-	
-	input:focus + .slider {
-	  box-shadow: 0 0 1px #2196F3;
-	}
+
 	
 	input:checked + .slider:before {
 	  -webkit-transform: translateX(26px);
@@ -547,12 +549,36 @@
 	}
 	
 	
-	.foodCheck:checked + .slider, .foodCheck:checked + .slider {
+	.foodCheck:checked + .slider {
 	  background-color: #fb7e4e;
 	}
 	
 	.foodCheck:focus + .slider {
 	  box-shadow: 0 0 1px #fb7e4e;
+	}
+	
+	.sightCheck:checked + .slider {
+	  background-color: #042e82;
+	}
+	
+	.sightCheck:focus + .slider {
+	  box-shadow: 0 0 1px #042e82;
+	}
+	
+	.accommodationCheck:checked + .slider {
+	  background-color: #631786;
+	}
+	
+	.accommodationCheck:focus + .slider {
+	  box-shadow: 0 0 1px #631786;
+	}
+	
+	.convenientCheck:checked + .slider {
+	  background-color: #519de2;
+	}
+	
+	.convenientCheck:focus + .slider {
+	  box-shadow: 0 0 1px #519de2;
 	}
 	
 	input:checked + .slider:before {
