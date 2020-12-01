@@ -256,8 +256,8 @@
 	#whole,#whole2,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver{
 																						margin-left:20px;
 	}		
-	input[type=checkbox],input[type=radio]{
-											display:none;
+	input[type=checkbox]{
+						display:none;
 	}	
 	
 	.conditionDivBottom{
@@ -273,7 +273,7 @@
 			
 	}	
 	#tourWriteTitle{
-						width:220px;
+						width:500px;
 						height:35px;
 						margin-bottom:20px;
 						border-radius:10px;
@@ -281,11 +281,7 @@
 						border:none;
 	}
 
-	#tourWriteTitle{
-				width:500px;
-			
-				
-	}
+
 	#writebuttonDiv{
 					width:250px;
 					height:100px;

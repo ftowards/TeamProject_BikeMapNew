@@ -14,7 +14,7 @@
 	<form method="post" id="replyForm">
 		<c:if test="${logId == null }">
 			<div id="replytWriteDiv">
-				<textarea maxlength="100" placeholder=" 로그인 후 작성 가능합니다." readonly style="resize:none"></textarea>
+				<textarea maxlength="100" id="replyWrite" placeholder=" 로그인 후 작성 가능합니다." readonly style="resize:none"></textarea>
 			</div>
 		</c:if>
 		<c:if test="${logId != null}">

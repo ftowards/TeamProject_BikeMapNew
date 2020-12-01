@@ -76,13 +76,12 @@ $(function(){
 		
 		});
 		
-
-		CKEDITOR.replace('content',{
+	 	CKEDITOR.replace('content',{
 			height:600
 			,width:1200
 		
 		}); 
-	 
+	  
 		
 		$("#tourWriteForm").submit(function(){
 			CKEDITOR.instances.content.updateElement();		
@@ -123,6 +122,7 @@ $(function(){
 				url : url,
 				data : params,
 				success : function(result){
+					console.log(result);
 					if(result>0){
 						alert("글이 등록되었습니다.")
 						location.href="/home/tourList";
@@ -213,7 +213,7 @@ $(function(){
 				<div><input type="text" name="speed" id="speed" maxlength="4" class="conditionBox"/></div>
 					<label class="kmLbl2">km</label>
 					<div><label  class="labelClass2" style="margin:-25px 0 0 40px;">소요시간</label></div>
-				<div><input type="text" name="" class="conditionBox" maxlength="3" style="margin:-25px 0 0 20px;"/></div>
+				<div><input type="text" class="conditionBox" maxlength="3" style="margin:-25px 0 0 20px;"/></div>
 					<label class="tourTimeLbl">시간</label>
 			</div>	
 </div>
