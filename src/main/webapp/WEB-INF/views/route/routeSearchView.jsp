@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<div class="routeSearchViewDiv">
+<div class="routeSearchViewDiv2">
 	<div id="mapDiv" style='width:1200px;'>
 		<b>코스정보보기</b><br/><hr id="titleLine"/>
 		<div class="wordCut">${routeVO.title}</div>
