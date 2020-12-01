@@ -29,6 +29,7 @@ $(function(){
 		var url = "/home/reviewWriteFormOk";
 		var params = $("#writeform").serialize();
 		
+
 		$.ajax({
 			type : 'POST',
 			url : url,
@@ -41,12 +42,15 @@ $(function(){
 				
 				}else{
 					alert("글등록이 실패하였습니다.");
+
 					}
 				},error:function(){
 					console.log("글쓰기 오류");
 				}
 			});
+
 			return false;	
+
 		});
 	});
 </script>
