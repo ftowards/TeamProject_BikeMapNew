@@ -270,6 +270,21 @@ public class RouteController {
 		return vo;
 	}
 	
+	// 썸네일용 루트 검색
+	@RequestMapping("/selectRouteForThumbnail")
+	@ResponseBody
+	public RouteVO selectRouteForThumbnail(int noboard) {
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		RouteVO vo = new RouteVO();
+		try {
+			System.out.println(noboard);			
+			vo = dao.selectRoute2(noboard);
+		}catch(Exception e) {
+			System.out.println("썸네일용 데이터 호출 에러"+ e.getMessage());
+		}
+		return vo;
+	}
+	
 	
 	///// 루트 검색 -- 레퍼런스 용도
 	@RequestMapping(value="/searchReference")
@@ -280,8 +295,6 @@ public class RouteController {
 		
 		try {
 			list = dao.searchReference(searchWord);
-			
-			System.out.println(111);
 		}catch(Exception e) {
 			System.out.println("레퍼런스 검색 에러" + e.getMessage());
 		}

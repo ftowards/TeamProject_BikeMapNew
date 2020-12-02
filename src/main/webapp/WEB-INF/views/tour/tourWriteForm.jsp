@@ -13,11 +13,11 @@
 	
 	<div id="RouteSearchDiv">
 		<div>
-			<input type="text" id="referenceSearch" name="reference" placeholder="루트검색(제목/작성자/지역)" autocomplete="off"/>
+			<input type="text" id="referenceSearch" placeholder="루트검색(제목/작성자/지역)" autocomplete="off"/>
 			<hr style="opacity:0 ; height : 25px;"/>
 			<div id="searchResultList">
 			</div>
-			<input type="hidden" id="reference"/>
+			<input type="hidden" id="reference" name="reference"/>
 		</div>
 	</div>
 	
@@ -42,10 +42,11 @@
 				<div class="conditionDivTop">
 					<div class="labelClass"><label>일&nbsp;정</label></div>
 					<div>
-						<input type="text" name="departure" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"/>
+						<input type="text" name="departuredate" placeholder="출발날짜" id="departuredate" maxlength="10" autocomplete="off"/>
 					</div>
 					<div>
 						<select name="departureTime" id="departureTime">
+							<option >시간</option>
 							<c:forEach var="i" begin="0" end="23" step="1">
 								<option value="${i }">${i }시</option>
 							</c:forEach>
@@ -54,10 +55,11 @@
 				</div>
 				<div class="conditionDivTop">
 					<div>
-						<input type="text" name="arrive"	placeholder="도착날짜" id="arrive" maxlength="10" autocomplete="off"/>
+						<input type="text" name="arrivedate"	placeholder="도착날짜" id="arrivedate" maxlength="10" autocomplete="off"/>
 					</div>
 					<div>
 						<select name="arriveTime" id="arriveTime">
+							<option >시간</option>
 							<c:forEach var="i" begin="0" end="23" step="1">
 								<option value="${i }">${i }시</option>
 							</c:forEach>
@@ -72,9 +74,10 @@
 				</div>
 				<div class="conditionDivTop" style="margin-top:20px;">
 					<div><label  class="labelClass2">마감날짜</label></div>
-						<div><input type="text" name="deadline" placeholder="마감날짜" id="deadline" maxlength="10" autocomplete="off"/></div>
+						<div><input type="text" name="deadlinedate" placeholder="마감날짜" id="deadlinedate" maxlength="10" autocomplete="off"/></div>
 					<div>
 						<select name="deadlineTime" id="deadlineTime">
+							<option >시간</option>
 							<c:forEach var="i" begin="0" end="23" step="1">
 								<option value="${i }">${i }시</option>
 							</c:forEach>
@@ -97,7 +100,7 @@
 					<div><input type="number" name="speed" id="speed" maxlength="4" class="conditionBox"/></div>
 						<label class="kmLbl2">km</label>
 					<div><label  class="labelClass2" style="margin:-25px 0 0 40px;">비&nbsp;용</label></div>
-					<div><input type="text" name="budget" maxlength="6" style="margin:-25px 0 0 20px;" class="conditionBox"/></div>
+					<div><input type="text" name="budget" id="budget" maxlength="6" style="margin:-25px 0 0 20px;" class="conditionBox"/></div>
 					<label class="wonLbl">원</label>					
 				</div>	
 			</div>
@@ -320,65 +323,61 @@ $(function(){
 	// 날짜 데이터 변경 시
 	
 	// 1. 출발일자 선택 시 마감일자 변경
-	$("#departure").on('change',function(){
-		var departure = $("#departure").val();
-		console.log(departure);
+	$("#departuredate").on('change',function(){
+		var departuredate = $("#departuredate").val();
 		
-		var date = $("#departure").datepicker("getDate");
-		$("#deadline").datepicker("setDate",date);
-		$("#arrive").datepicker("setDate",date);
+		var date = $("#departuredate").datepicker("getDate");
+		$("#deadlinedate").datepicker("setDate",date);
+		$("#arrivedate").datepicker("setDate",date);
 		
 	});
 	
 	// 2. 출발시간 설정 시 마감시간 변경
 	$("#departureTime").on('change', function(){
-		if($("#departure").val()==""){
+		if($("#departuredate").val()==""){
 			alert("출발날짜를 먼저 입력하세요.");
-			$("#departureTime>option").eq(0).prop("selected", true);
+			$("#departureTime>option").eq(1).prop("selected", true);
 			return false;
 		}
 		
 		var dTime = $("#departureTime").val();
 		var deadTime = 0;
-		console.log(dTime);
 		if(dTime < 8){
-			deadTime = Number(dTime) + 24 -8;
+			deadTime = Number(dTime) + 25 - 8;
 			$("#deadlineTime>option").eq(deadTime).prop("selected",true);
 			
 			// 날짜 하루 빼기
-			var date = $("#departure").datepicker("getDate");
+			var date = $("#departuredate").datepicker("getDate");
 			date.setDate(date.getDate()-1);
-			$("#deadline").datepicker("setDate",date);			
+			$("#deadlinedate").datepicker("setDate",date);			
 		}else{
-			deadTime = dTime - 8; 
+			deadTime = dTime - 7; 
 			$("#deadlineTime>option").eq(deadTime).prop("selected",true);
 		}
 		
-		$("#arriveTime>option").eq(Number(dTime)+1).prop("selected",true);
+		$("#arriveTime>option").eq(Number(dTime)+2).prop("selected",true);
 	});
 	
 	// 3. 도착일자는 출발 일자보다 작을 수 없다.
 	
-	$("#arrive").on('change',function(){
-		var arrive = $("#arrive").val();
-		var departure = $("#departure").val();
-		if(arrive < departure){
+	$("#arrivedate").on('change',function(){
+		var arrivedate = $("#arrivedate").val();
+		var departuredate = $("#departuredate").val();
+		if(arrivedate < departuredate){
 			alert("도착 일자는 출발 일자보다 빠를 수 없습니다.");
-			$("#arrive").val(departure);
+			$("#arrivedate").val(departuredate);
 			return false;
-		}else if(arrive == $("#departure").val()){
+		}else if(arrivedate == $("#departuredate").val()){
 			if(Number($("#arriveTime").val()) <= Number($("#departureTime").val())){
-				alert("도착 시간을 출발 시간과 같거나 빠를 수 없습니다.");
-				$("#arriveTime>option").eq(Number($("#departureTime").val())+1).prop("selected", true);
-				$("#arriveTime").val(Number($("#departureTime").val())+1);
+				alert("도착 시간은 출발 시간과 같거나 빠를 수 없습니다.");
+				$("#arriveTime>option").eq(Number($("#departureTime").val())+2).prop("selected", true);
 				return false;
 			}
 		}else if(Number($("#arriveTime").val()) <= Number($("#departureTime").val())){
-			if(arrive <= departure){
-				var date = $("#departure").datepicker("getDate");
+			if(arrivedate <= departuredate){
+				var date = $("#departuredate").datepicker("getDate");
 				date.setDate(date.getDate()+1);
-				$("#arrive").val("");
-				$("#arrive").datepicker("setDate",date);
+				$("#arrivedate").datepicker("setDate",date);
 				return false;
 			}
 		}
@@ -386,47 +385,46 @@ $(function(){
 	
 	// 4. 도착일자와 출발 시간이 같을 때는 도착 시간이 출발 시간보다 작을 수 없다.
 	$("#arriveTime").on('change', function(){
-		var arrive = $("#arrive").val();
-		var departure = $("#departure").val();
-		if(departure == arrive){
+		var arrivedate = $("#arrivedate").val();
+		var departuredate = $("#departuredate").val();
+		if(departuredate == arrivedate){
 			if(Number($("#arriveTime").val()) <= Number($("#departureTime").val())){
-				alert("도착 시간을 출발 시간과 같거나 빠를 수 없습니다.");
-				$("#arriveTime>option").eq(Number($("#departureTime").val())+1).prop("selected", true);
-				$("#arriveTime").val(Number($("#departureTime").val())+1);
+				alert("도착 시간은 출발 시간과 같거나 빠를 수 없습니다.");
+				$("#arriveTime>option").eq(Number($("#departureTime").val())+2).prop("selected", true);
 				return false;
 			}
 		}
 	});
 	
 	// 5. 마감 일자 변경 시 출발 일자보다 빠를 수 없다.
-	$("#deadline").on('change', function(){
-		var dead = $("#deadline").val();
-		var departure = $("#departure").val();
+	$("#deadlinedate").on('change', function(){
+		var dead = $("#deadlinedate").val();
+		var departuredate = $("#departuredate").val();
 		
-		if(departure == ""){
+		if(departuredate == ""){
 			alert("출발 날짜를 먼저 선택하세요.");
-			$("#deadline").val("");
+			$("#deadlinedate").val("");
 			return false;
 		}
 		
 		if(Number($("#deadlineTime").val()) <= Number($("#departureTime").val())){
-			if(dead > departure){
+			if(dead > departuredate){
 				alert("마감 시간이 출발 시간보다 늦을 수 없습니다.");
 				
-				var date = $("#departure").datepicker("getDate");
+				var date = $("#departuredate").datepicker("getDate");
 				date.setDate(date.getDate());
-				$("#deadline").val("");
-				$("#deadline").datepicker("setDate",date);
+				$("#deadlinedate").val("");
+				$("#deadlinedate").datepicker("setDate",date);
 				
 			}
 		}else if(Number($("#deadlineTime").val()) > Number($("#departureTime").val())){
-			if(dead >= departure){
+			if(dead >= departuredate){
 				alert("마감 시간이 출발 시간보다 늦을 수 없습니다.");
 				
-				var date = $("#departure").datepicker("getDate");
+				var date = $("#departuredate").datepicker("getDate");
 				date.setDate(date.getDate()-1);
-				$("#deadline").val("");
-				$("#deadline").datepicker("setDate",date);
+				$("#deadlinedate").val("");
+				$("#deadlinedate").datepicker("setDate",date);
 				
 			}
 		}
@@ -434,9 +432,9 @@ $(function(){
 	
 	// 6. 마감 시간 변경 시
 	$("#deadlineTime").on('change', function(){
-		var dead = $("#deadline").val();
-		var departure = $("#departure").val();
-		if(departure == dead){
+		var dead = $("#deadlinedate").val();
+		var departuredate = $("#departuredate").val();
+		if(departuredate == dead){
 			if(Number($("#deadlineTime").val()) >= Number($("#departureTime").val())){
 				alert("마감시간은 출발 시간과 같거나 늦을 수 없습니다.");
 				$("#deadlineTime>option").eq(Number($("#departureTime").val())-1).prop("selected", true);
@@ -445,10 +443,6 @@ $(function(){
 			}
 		}
 	});
-	
-	
-	
-	
 });
 
 
@@ -594,13 +588,11 @@ function getTourTime(){
 	
 	 
 	 var timeTxt = time +":" + minuteTxt+ ":" + secondTxt;
-	 
 	 $("#tourtime").val(timeTxt);
-	
 }
 
 	$(function(){
-		$("#departure,#arrive,#deadline").datepicker({
+		$("#departuredate,#arrivedate,#deadlinedate").datepicker({
 			changeYear :true,
 			changeMonth: true,
 			constrainInput:true,
@@ -626,44 +618,112 @@ function getTourTime(){
 			
 			if($("#reference").val()==""){
 				alert("루트를 선택하세요.");
+				$("#referenceSearch").focus();
 				return false;
 			}
 			
-			if($("#departure").val()==""){
+			if($("#departuredate").val()==""){
 				alert("출발날짜를 입력하세요.");
+				$("#departuredate").focus();
+				return false;
+			}
+			
+			if($("#departureTime").val()==""){
+				alert("출발시간을 입력하세요.");
+				$("#departureTime").focus();
 				return false;
 			}
 
-			if($("#arrive").val()==""){
+			if($("#arrivedate").val()==""){
 				alert("도착날짜를 입력하세요.");
+				$("#arrivedate").focus();
+				return false;
+			}
+			
+			if($("#arriveTime").val()==""){
+				alert("도착시간을 입력하세요.");
+				$("#arriveTime").focus();
 				return false;
 			}
 
 			if($("#place").val()==""){
 				alert("출발장소를 입력하세요.");
+				$("#place").focus();
 				return false;
 			}
 			
-			if($("#deadline").val()==""){
+			if($("#deadlinedate").val()==""){
 				alert("마감날짜를 입력하세요.");
+				$("#deadlinedate").focus();
+				return false;
+			}
+			if($("#deadlineTime").val()==""){
+				alert("마감시간를 입력하세요.");
+				$("#deadlineTime").focus();
+				return false;
+			}
+			
+			/////////////////////
+			// 현재 시간과 비교 
+			var tourDate = $("#deadlinedate").datepicker("getDate");
+			var tourHour = $("#deadlineTime").val();			
+			tourDate.setHours(tourHour);
+
+			var nowDate = new Date();
+			if(nowDate >= tourDate){
+				alert("투어는 현재 시간 이전으로 설정할 수 없습니다.");
 				return false;
 			}
 
 			if($("#tourWriteTitle").val()==""){
 				alert("제목을 입력하세요.");
+				$("#tourWriteTitle").focus();
 				return false;		
 			}
 			
 		 	if(CKEDITOR.instances.content.getData()==""){
 				alert("글내용을 입력하세요.");
+				$("#content").focus();
 				return false;
 			}
-			 
+		 	
+		 	var genderCnt = 0;
+		 	$("input[name=reggender]").each(function(){
+		 		
+		 		if($(this).prop("checked")){
+		 			genderCnt++;
+		 		}
+		 	});
+		 	
+	 		if(genderCnt == 0){
+	 			alert("성별 조건을 하나 이상 선택하세요.");
+	 			return false;
+	 		}
+		 	
+	 		var ageCnt = 0;
+		 	$("input[name=regage]").each(function(){
+		 		if($(this).prop("checked")){
+		 			ageCnt++;
+		 		}
+		 	});
+		 	
+	 		if(ageCnt == 0){
+	 			alert("나이 조건을 하나 이상 선택하세요.");
+	 			return false;
+	 		}
+	 		
+	 		if($("#speed").val()==""){
+				$("#speed").val(0);
+			}
+	 		
+	 		if($("#budget").val()==""){
+				$("#budget").val(0);
+			}
+		 	
 			var url = "/home/tourWriteFormOk";
 			var params = $("#tourWriteForm").serialize();
 			
 			console.log(params);
-			return false;
 			
 			$.ajax({
 				type : 'POST',
@@ -836,6 +896,4 @@ function getTourTime(){
 		}
 		markerGroup =[];
 	}
-	
-
 </script>

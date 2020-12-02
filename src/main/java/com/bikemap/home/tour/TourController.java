@@ -43,8 +43,7 @@ public class TourController {
 		List<TourVO> list = dao.selectAllTour(pagingVO);
 	
 		try {
-			int totalRecord = dao.getTotalTourRecord();
-			pagingVO.setTotalRecord(totalRecord);
+			pagingVO.setTotalRecord(dao.getTotalTourRecord(vo));
 			
 		}catch(Exception e) {
 			System.out.println("동행찾기게시판 페이징 에러"+ e.getMessage());
@@ -56,18 +55,33 @@ public class TourController {
 		mav.setViewName("tour/tourList");
 		return mav;
 	}
-	//=============댓글보기==========================================
+
+	@RequestMapping("/tourPagingListAll")
+	@ResponseBody
+	public List<TourVO> tourAllSelectAll(PagingVO vo) {
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		List<TourVO> list = new ArrayList<TourVO>();
+		try {
+			vo.setTotalRecord(dao.getTotalTourRecord(vo));			
+			list = dao.selectAllTour(vo);
+		}catch(Exception e) {
+			System.out.println("페이징 에러 " + e.getMessage());
+		}
+		
+		return list;
+	}
+	
 	@RequestMapping("/tourPagingList")
 	@ResponseBody
 	public List<TourVO> tourAllSelect(PagingVO vo) {
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		List<TourVO> list = new ArrayList<TourVO>();
 		try {
-			int totalReply = dao.getTotalTourRecord();
-			vo.setTotalRecord(totalReply);
+			vo.setTotalRecord(dao.getTourRecord(vo));
+			System.out.println(vo.getOnePageRecord());
 			list = dao.selectAllTour(vo);
 		}catch(Exception e) {
-			System.out.println("댓글 페이징 에러 " + e.getMessage());
+			System.out.println("페이징 에러 " + e.getMessage());
 		}
 		
 		return list;
@@ -93,54 +107,54 @@ public class TourController {
 	public String tourBoardWrite() {
 		return "/tour/tourWriteForm";
 	}
+	
 	// 글쓰기 등록 , produces="application/text;charset=UTF-8"
-	@RequestMapping(value="/tourWriteFormOk", method=RequestMethod.POST)
+	@RequestMapping(value="/tourWriteFormOk", method= {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public int tourWriteFormOk(TourVO vo ,HttpServletRequest req, HttpSession ses) {
 		vo.setIp(req.getRemoteAddr());
 		vo.setUserid((String)ses.getAttribute("logId"));
-		System.out.println(11111);
 		
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
 		int result=0;
 		try {
-			result = dao.tourInsert(vo);
-		
+			result = dao.tourInsert(vo);		
 		}catch(Exception e) {
-			e.getStackTrace();
+			System.out.println("동행 모집 등록 에러" + e.getMessage());
 		}	
 
 		return result;
 	}
+	//페이징 전체
+	@RequestMapping(value="/searchTourPagingAll", method=RequestMethod.POST)
+	@ResponseBody
+	public PagingVO searchTourPagingAll(PagingVO vo) {	
+		try {
+			TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+			vo.setTotalRecord(dao.getTotalTourRecord(vo));
+		}catch(Exception e) {
+			System.out.println("페이징에러"+e.getMessage());
+			e.printStackTrace();
+		}
+		return vo;
+	}
+	
 	//페이징
 	@RequestMapping(value="/searchTourPaging", method=RequestMethod.POST)
 	@ResponseBody
-	public PagingVO searchTourPaging(PagingVO paging) {
-	
-		System.out.println("getnowPage===="+paging.getNowPage());
-		
-		
-		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+	public PagingVO searchTourPaging(PagingVO vo) {	
 		try {
-			int totalRecord = dao.getTotalTourRecord();
+			TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 			
-			System.out.println("totalRecord==="+totalRecord);
-			paging.setTotalRecord(totalRecord);
-			
+//			String sql = sqlSession.getConfiguration().getMappedStatement("getTotalTourRecord").getBoundSql(vo).getSql();
+//			System.out.println("sql->"+sql);
+			vo.setTotalRecord(dao.getTourRecord(vo));
 		}catch(Exception e) {
 			System.out.println("페이징에러"+e.getMessage());
+			e.printStackTrace();
 		}
-		return paging;
+		return vo;
 	}
 	
 }
-
-
-
-
-
-
-
-
-
