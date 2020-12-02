@@ -201,12 +201,10 @@ public class AdminController {
 	@ResponseBody
 	public PagingVO adminPaging(PagingVO paging) {
 		
-		System.out.println("getnowPage===="+paging.getNowPage());
 			
-			
-		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		try {
-			int totalRecord = dao.getTotalTourRecord();				
+			int totalRecord = dao.qnaTotalRecord();				
 			System.out.println("totalRecord==="+totalRecord);
 			paging.setTotalRecord(totalRecord);
 				
