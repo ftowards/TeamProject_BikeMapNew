@@ -10,6 +10,23 @@ public class AdminPagingVO {
 	private int startPageNum = 1; //시작할 페이지 숫자
 	private int lastPageRecordCount; // 마지막 페이지 레코드 숫자
 	
+	private String searchType;
+	private String searchWord;
+	
+	
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	
+	public String getSearchWord() {
+		return searchWord;
+	}
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
 	
 	public int getNowPage() {
 		return nowPage;
@@ -31,7 +48,7 @@ public class AdminPagingVO {
 		}else if(totalRecord%onePageRecord == 0) {
 			lastPageRecordCount = onePageRecord; //마지막 페이지의 레코드 수도 동일하다.
 		}else {
-			lastPageRecordCount = totalRecord%onePageRecord;
+			lastPageRecordCount = totalRecord%onePageRecord; //현재페이지가 마지막 페이지면 전체 레코드%한페이지 들어갈 레코드수
 		}
 	}
 	public int getTotalPage() {

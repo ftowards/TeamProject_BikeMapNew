@@ -11,7 +11,8 @@
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-		
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;500&display=swap" rel="stylesheet">		
 <title>Bike Map</title>
 <script>    
 	
@@ -31,6 +32,7 @@
     function change_suspendEditTime(time){
     	$('#suspendEditTime').val(time);
     }
+    
     function formSubmit() {
         var params = jQuery("#userSuspendEditFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
         jQuery.ajax({
@@ -45,7 +47,6 @@
             }
         });
     }
-    
     //페이징 리스트 만들기
     function setPaging(vo){
 		// 이전 페이징 삭제
@@ -72,41 +73,51 @@
 		$("#paging").append(tag);		
 	}
     
-    
-	function movePage(page){
+function movePage(page){
+		
 		// 페이징 먼저 변경
 		var url = "<%=request.getContextPath()%>/adminPaging";
-		var params = "nowPage="+page;
+		var data = $("#searchRoute").serialize();
+			data += "&nowPage="+page;
 		
-		
+		console.log(data);	
 		$.ajax({
 			type : 'POST',
 			url : url,
-			data : params,
+			data : data,
 			success : function(result){
 				setPaging(result);
+				nowPage = result.nowPage;
 			},error : function(){
 				console.log("페이징 오류");
 			}
 		});
 		
-		url = "<%=request.getContextPath()%>/adminTour";
- 
+		if(${type=='user'}){
+    		url = "<%=request.getContextPath()%>/adminUser";
+    	}else if(${type=='tour'}){
+    		url = "<%=request.getContextPath()%>/adminTour";
+    	}else if(${type=='review'}){
+    		url = "<%=request.getContextPath()%>/adminReview";			 
+    	}else if(${type=='qna'}){
+    		url = "<%=request.getContextPath()%>/adminQna";
+    	}
+
 		$.ajax({
 			type : 'POST',
 			url : url,
+			data : data,
 			success : function(result){
 				if( result.length <= 0 ){
 					alert("검색 결과가 없습니다.");
 				} else{ 
-					
+					makeThumbnail(result);
 				}
 			}, error : function(){
 				console.log("페이지 + 검색 결과 호출 에러");
 			}
 		});
 	}
-	
 	 var btn, userid;
      $(function(){    	
     	//관리자 정지 화면

@@ -1,6 +1,4 @@
 package com.bikemap.home.admin;
-
-
 import java.util.List;
 
 
@@ -17,7 +15,6 @@ import com.bikemap.home.tour.PagingVO;
 import com.bikemap.home.tour.TourDaoImp;
 import com.bikemap.home.tour.TourVO;
 
-
 @Controller
 public class AdminController {
 	@Autowired
@@ -32,25 +29,21 @@ public class AdminController {
 	}
 	//회원관리전체리스트
 	@RequestMapping("/adminUser")
-	public ModelAndView adminUser(AdminSearchVO vo) {
+	public ModelAndView adminUser(AdminPagingVO vo) {
 		ModelAndView mav = new ModelAndView();
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-		AdminPagingVO pagingVO = new AdminPagingVO();
 		try {	
 			int totalRecord = 0;
 			List<AdminRegistVO>list;
-			if(vo.getSearchType()!=null||vo.getSearchType()!="") {
-				totalRecord = dao.searchRegistRecord(vo);
-				list = dao.selectRegistAll(vo);
-			}
-			else{
-				totalRecord = dao.registTotalRecord();
-				list = dao.selectRegistAll(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
-			}
-			pagingVO.setTotalRecord(totalRecord);
+			//vo.setOnePageRecord(10);
+			totalRecord = dao.searchRegistRecord(vo);
+			vo.setTotalRecord(totalRecord);
+			//System.out.println("왜안되냐...->"+vo.getTotalRecord());
+			list = dao.selectRegistAll(vo);
+		
 			mav.addObject("type", "user");
 			mav.addObject("list", list);
-			mav.addObject("pagingVO", pagingVO);	
+			mav.addObject("pagingVO", vo);	
 		}catch(Exception e) {
 			System.out.println("회원 검색 화면 호출 에러111"+e.getMessage());
 		}	
@@ -85,7 +78,7 @@ public class AdminController {
 	
 	//동행찾기패널
 	@RequestMapping("/adminTour")
-	public ModelAndView adminTour(AdminSearchVO vo) {
+	public ModelAndView adminTour(AdminPagingVO vo) {
 		ModelAndView mav = new ModelAndView();
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		AdminPagingVO pagingVO = new AdminPagingVO();
@@ -93,7 +86,7 @@ public class AdminController {
 			int totalRecord = 0;
 			List<TourVO>list;
 			if(vo.getSearchType()!=null||vo.getSearchType()!="") {
-				System.out.println(vo.getSearchType()+"dddddd/"+vo.getSearchWord());
+				//System.out.println(vo.getSearchType()+"dddddd/"+vo.getSearchWord());
 				totalRecord = dao.searchTourRecord(vo);
 				list = dao.tourAllRecord(vo);
 			}
@@ -115,25 +108,31 @@ public class AdminController {
 	
 	//리뷰패널
 	@RequestMapping("/adminReview")
-	public ModelAndView adminReview(AdminSearchVO vo) {
+	public ModelAndView adminReview(AdminPagingVO vo) {
 			ModelAndView mav = new ModelAndView();
 			AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-			AdminPagingVO pagingVO = new AdminPagingVO();
+		
 			try {	
 				int totalRecord = 0;
 				List<ReviewVO>list;
 				if(vo.getSearchType()!=null||vo.getSearchType()!="") {
 					totalRecord = dao.searchReviewRecord(vo);
+					vo.setTotalRecord(totalRecord);
+					System.out.println("!!!!!    "+vo.getTotalRecord());
 					list = dao.reviewAllRecord(vo);
 				}
 				else{
+					
 					totalRecord = dao.reviewTotalRecord();
+					vo.setTotalRecord(totalRecord);
+					System.out.println("!!!!!    "+vo.getTotalRecord());
 					list = dao.reviewAllRecord(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
+					
 				}
-				pagingVO.setTotalRecord(totalRecord);
+			
 				mav.addObject("type", "review");
 				mav.addObject("list", list);
-				mav.addObject("pagingVO", pagingVO);	
+				mav.addObject("pagingVO", vo);	
 			}catch(Exception e) {
 				System.out.println("회원 검색 화면 호출 에러111"+e.getMessage());
 			}	
