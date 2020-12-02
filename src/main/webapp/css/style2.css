@@ -4,6 +4,9 @@ body{
 		overflow-x:hidden;
     	overflow-y:auto;
 	}
+	html{
+		scroll-behavior: smooth;
+	}
 	ul,li{
 		margin:0px;
 		padding:0px;
@@ -256,8 +259,7 @@ body{
 		width:90px;
 		height:110px;
 		position:relative;
-		left:1300px;
-		bottom:160px;
+		left:1300px; bottom:160px;
 	}
 	/*=========================소라 수정20/11/13===========================================*/	
 	
