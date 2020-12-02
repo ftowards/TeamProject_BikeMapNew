@@ -40,9 +40,9 @@
 	</select>
 	<select id="getTotalTourRecord" resultType="int" parameterType="com.bikemap.home.tour.PagingVO">
 	 	select count(noboard) from tour where state = '1'
-	 </select>
-	 <select id="getTourRecord" resultType="int" parameterType="com.bikemap.home.tour.PagingVO">
-	 	select count(noboard) from tour
+	</select>
+	<select id="getTourRecord" resultType="int" parameterType="com.bikemap.home.tour.PagingVO">
+		select count(noboard) from tour
 	 		where state = '1'
 		 	<if test='regage != null and regage neq ""'>
 		 		and regage like '%'||#{regage}||'%' and reggender like '%'||#{reggender}||'%' 
@@ -62,14 +62,20 @@
 		 	<if test="distance2 gt 0">
 		 		and distance <![CDATA[<= ]]> #{distance2}
 		 	</if>		 	
-	 </select>
-	 <insert id="tourInsert" parameterType="com.bikemap.home.tour.TourVO">
+	</select>
+	<insert id="tourInsert" parameterType="com.bikemap.home.tour.TourVO">
 		insert into tour(noboard, title, userid, reference, content, deadline, departure, arrive, place, distance, speed, budget, room, reggender, regage, ip)
 		values(a_sq.nextval, #{title}, #{userid}, #{reference}, #{content}, to_date(#{deadline}, 'YYYY/MM/DD HH24'), to_date(#{departure}, 'YYYY/MM/DD HH24'), to_date(#{arrive}, 'YYYY/MM/DD HH24'), #{place}, 
 		#{distance}, #{speed, jdbcType=VARCHAR}, #{budget, jdbcType=VARCHAR}, #{room}, #{reggender}, #{regage}, #{ip})
-	 </insert>
-	 <select id="tourSelect" parameterType="int" resultType="com.bikemap.home.tour.TourVO">
+	</insert>
+	<select id="tourSelect" parameterType="int" resultType="com.bikemap.home.tour.TourVO">
 		select noboard, title, userid, reference, content, to_char(deadline,'YY/MM/DD') deadline,to_char(departure,'YY/MM/DD') departure, to_char(arrive,'YY/MM/DD') arrive, place, distance, speed, budget, room, reggender, regage, writedate 
 	 	from tour where noboard=#{noboard}
-	 </select> 
+	</select>
+ 	<select id="lastTourNo" resultType="int">
+		select noboard from (select noboard from tour where userid = #{param1} order by 1 desc) where rownum = 1
+	</select>
+	<insert id="insertTourComplist" parameterType="com.bikemap.home.tour.ComplistVO">
+		insert into complist(noboard, userid, state) values(#{noboard}, #{userid}, #{state})
+	</insert>
  </mapper>
