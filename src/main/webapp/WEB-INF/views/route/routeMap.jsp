@@ -7,6 +7,8 @@
 <script src="https://www.google.com/jsapi"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <div id="mainDivMap">
 	<div id="info">
@@ -122,9 +124,9 @@
 			<div class="tab">
 				<c:if test="${logId == null }">
 						<img id="lockImg" src="<%=request.getContextPath() %>/img/img_register/lock.png"/>
-						<div style='line-height:10px; margin-bottom:55px;'>
-							<h3 style='padding-left:107px'>코스 저장하기</h3>
-							<h4 style='padding-left:79px; color:#005766'>로그인 후 이용 가능합니다.</h4>
+						<div style="line-height:10px; margin-bottom:55px; text-align:center; font-family:'Noto Sans KR', sans-serif">
+							<h3 style='display:inline-block;'>코스 저장하기</h3><br/>
+							<h4 style='display:inline-block; color:#005766'>로그인 후 이용 가능합니다.</h4>
 						</div>
 						<div id="logButtons">
 							<input type="button" id="login" name="login" value="로그인" class="mint_Btn" style='width:80px; height:35px; font-size:15px'/>

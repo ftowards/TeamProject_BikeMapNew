@@ -182,6 +182,7 @@
 		color:#004554;
 		margin-top:45px;
 		letter-spacing:2px;
+		font-family:'Noto Sans KR', sans-serif;
 	}
 	
 	.orderRadio{
@@ -277,6 +278,7 @@
 	    color : gray;
 		
 		margin-bottom : 3px;
+		font-family:'Noto Sans KR', sans-serif;
 	}
 	
 	.routeSubscript li:first-child, .routeSubscript li:nth-of-type(2){
@@ -326,7 +328,7 @@
 	/*==========================routeSearchView.jsp==============================*/
 	.routeSearchViewDiv2{
 		width:1200px;
-		height:2600px;
+		height:2880px;
 		margin:0 auto;
 	}
 	#mapDiv{
