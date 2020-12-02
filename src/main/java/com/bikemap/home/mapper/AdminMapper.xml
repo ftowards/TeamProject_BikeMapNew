@@ -4,9 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bikemap.home.admin.AdminDaoImp">
 	<!-- 관리자 사용자 페이지 -->
-	<select id="selectRegistAll" parameterType="com.bikemap.home.admin.AdminSearchVO" resultType="com.bikemap.home.admin.AdminRegistVO"><!-- VO하나만 합성으로 설정 -->
-	 	select rownum, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt, a.heart, (select to_char(s.endday,'YY-MM-DD')	
-		from suspend s <![CDATA[ where s.userid = a.userid and rownum=1 and s.endday>=sysdate]]>) endday from regist a <include refid="search"></include> order by rownum desc
+	<select id="selectRegistAll" parameterType="com.bikemap.home.admin.AdminPagingVO" resultType="com.bikemap.home.admin.AdminRegistVO"><!-- VO하나만 합성으로 설정 -->	
+		select * from(select * from(select a.regdate, rownum, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt, a.heart, (select to_char(s.endday,'YY-MM-DD')	
+		from suspend s  <![CDATA[where s.userid = a.userid and rownum=1 and s.endday>=sysdate]]>) endday from regist a <include refid="search"></include> order by regdate desc )
+		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by regdate asc) 
+		where rownum <= #{lastPageRecordCount} order by regdate  desc]]>
 	</select>
 	<!-- 페이지 검색시 사용 -->
 	<sql id="search">
@@ -22,9 +24,7 @@
 			<if test="searchType == 'title'.toString()">WHERE TITLE LIKE '%' || #{searchWord} || '%' </if>			
 		</if>
 	</sql>
-	<select id="registTotalRecord" resultType="int">
-		select count(userid) from regist 
-	</select>
+
 	
 	<select id="searchRegistRecord" parameterType="com.bikemap.home.admin.AdminSuspendVO" resultType="int">
 		select count(userid) from regist <include refid="search"></include>
@@ -52,7 +52,7 @@
 		select count(noqna) from qna 
 	</select>
 	
-	<select id="selectQnaAll" parameterType="com.bikemap.home.admin.AdminQnaVO" resultType="com.bikemap.home.admin.AdminQnaVO">
+	<select id="selectQnaAll" parameterType="com.bikemap.home.admin.AdminPagingVO" resultType="com.bikemap.home.admin.AdminQnaVO">
 		select noqna, userid, subject,  to_char(writedate,'YYYY-MM-DD') writedate, answer from qna
 		<include refid="search"></include> order by noqna desc
 	</select>

@@ -4,6 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />  
+<script type="text/javascript">
+	
+
+	
+</script>
 
 <!-- Page Content -->
 	<!-- /Page Sidebar -->
@@ -81,7 +86,7 @@
 					<ul>
 					<!-- 이전 페이지 -->
 						<c:if test="${pagingVO.nowPage != 1 }">
-							<li><a href="#">Prev</a></li>
+							<li><a href="javascript:movePage(${pagingVO.nowPage-1 })"> Prev </a></li>
 						</c:if>
 						<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
 							<c:if test="${pagingVO.totalPage >= page }">
@@ -95,7 +100,7 @@
 						</c:forEach>
 					<!-- 다음 페이지 -->
 						<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
-							<li><a href="#">Next</a></li>
+							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>
 					</ul>
 				</div><br/>
