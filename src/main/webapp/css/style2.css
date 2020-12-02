@@ -35,10 +35,9 @@ body{
 		font-family:"AMALFI COAST";
 		src:url("/font/AMALFI COAST.TTF");
 	}
-			 		
+ 
+ 	}
 
-			 				
-	}
  	#mainBxSliderFrontground{
  		background-color:black;
  		margin-top:-20px;
@@ -92,6 +91,7 @@ body{
 	 button:focus {
    		outline: none;
 	}
+	
 	/*================================================footer==================================================================*/
 	#footer{margin:0;padding:0;}
 	#topDiv{height:64px; background-color:rgb(52,52,52);}
@@ -185,6 +185,7 @@ body{
 	.routeTitle sub{
 		bottom:1px;
 		color:#005766;
+		font-family:'Noto Sans KR', sans-serif;
 	}
 	.route{
 		height:390px;

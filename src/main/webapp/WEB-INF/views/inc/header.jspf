@@ -44,7 +44,7 @@
                             </li>
                      </c:if>       
                          <c:if test="${logStatus!='Y'}">	
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> 로그인 / 회원가입 <span class="caret"></span></a>
+                            <li><a href="#" class="dropdown-toggle" id="userInfo" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> 로그인 / 회원가입 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="<%=request.getContextPath()%>/login">로그인</a></li>
                                     <li><a onclick="location.href='<%=request.getContextPath()%>/registerForm'">회원가입</a></li>

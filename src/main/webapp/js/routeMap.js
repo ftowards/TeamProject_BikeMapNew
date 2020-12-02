@@ -138,7 +138,7 @@
 		
 		var el = document.createElement('li');
 		var itemStr = '<span class="markerbg marker_'+(index+1)+'"></span>'+
-					  '<div class="info">' + '<b style="font-size:15px; font-weight:bold; color:#002060">'+places.place_name + '</b>';
+					  '<div class="info">' + '<b style="font-size:17px; font-weight:bold; color:#002060">'+places.place_name + '</b>';
 					  
 		if(places.road_address_name){
 			itemStr += '<span style="font-size:15px;">'+places.road_address_name + '</span>'+
