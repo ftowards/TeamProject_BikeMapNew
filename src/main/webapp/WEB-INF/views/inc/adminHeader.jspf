@@ -14,6 +14,7 @@
 		
 <title>Bike Map</title>
 <script>    
+	
 	function replyPopupOpen(){
 		$('.layerpop').css("position", "absolute");		
 	}
@@ -217,6 +218,17 @@
  		         $(this).val($(this).val().substring(0, 200));
  		   }
  		});
+    	
+    	if(${type=='user'}){
+    		$("#adminSearchFrm").attr("action", "<%=request.getContextPath()%>/adminUser");
+    	}else if(${type=='tour'}){
+    		$("#adminSearchFrm").attr("action", "<%=request.getContextPath()%>/adminTour");
+    	}else if(${type=='review'}){
+    		$("#adminSearchFrm").attr("action", "<%=request.getContextPath()%>/adminReview");			 
+    	}else if(${type=='qna'}){
+    		$("#adminSearchFrm").attr("action", "<%=request.getContextPath()%>/adminQna");
+    	}
+
     });
 </script>
 </head>
@@ -225,21 +237,33 @@
 	<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/img/img_logo/logo_footer.png" id="adminTopimg"></a>
 </div>
 <div class="adminSearchBar">
-	<form  method="post" action="<%=request.getContextPath()%>/adminUser">
-		
+	<form  id="adminSearchFrm" method="post" action="<%=request.getContextPath()%>/adminUser">
 		   <!-- <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /> //검색조건 
    	 		<input type="hidden" name="searchValue" value="${pageVO.searchValue }" /> //검색어 -->
 		<select name="searchType" id="adminSelect">
+			
+		<c:if test="${type=='user'}">		
 			<option value="userAll" selected>전체</option>
-		<c:if test="${type=='user'}">
 			<option value="userid">회원 아이디</option>
 			<option value="username" >회원 이름</option>
 		</c:if>
-		<c:if test="${type=='tour'||type=='review'}">
+		<c:if test="${type=='tour'}">	
+			<option value="tourAll" selected>전체</option>	
+			<option value="userid">작성자</option>
+			<option value="title" >제목</option>
+			<option value="content" >본문내용</option>
+		</c:if>	
+		<c:if test="${ type=='review'}">	
+			<option value="reviewAll" selected>전체</option>	
 			<option value="userid">작성자</option>
 			<option value="subject" >제목</option>
 			<option value="content" >본문내용</option>
-		</c:if>					 
+		</c:if>
+		<c:if test="${type=='qna'}">		
+			<option value="qnaAll" selected>전체</option>		
+			<option value="userid">작성자</option>
+			<option value="subject" >제목</option>
+		</c:if>
 		</select>
 			<input type="text" name="searchWord" id="userSearchWord"  class="searchText" maxlength="20" placeholder="검색어 입력"/>
 			<input type="submit" name="search" id="searchBtn" value="검색" class="gray_Btn" style="width:50px; height:30px"/>
@@ -260,6 +284,9 @@
 				</a>
 				<a href="/home/adminReview">
 					<span class="title">후기 게시판</span>
+				</a>
+				<a href="/home/adminRoute">
+					<span class="title">루트 게시판</span>
 				</a>
 			</li>
 			<li>

@@ -27,19 +27,18 @@
 									<c:if test="${vo.answer=='N'}">
 										답변대기
 									</c:if>
-								</li>
-								
+								</li>					
 							</c:forEach>						
 				</ul>			
 				</div>
 				
 				<!-- paging -->
 				<div id="paging">
-						<ul>
-						
+						<ul>					
 							<c:if test="${pagingVO.nowPage != 1 }">
-								<li><a href="#">Prev</a></li>
+								<li><a href="javascript:">◀</a></li>
 							</c:if>
+							
 							<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
 								<c:if test="${pagingVO.totalPage >= page }">
 									<c:if test="${pagingVO.nowPage == page }">
@@ -51,7 +50,7 @@
 								</c:if>
 							</c:forEach>				
 							<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
-								<li><a href="#">Next</a></li>
+								<li><a href="#">▶</a></li>
 							</c:if>
 						</ul>
 				</div><br/>
