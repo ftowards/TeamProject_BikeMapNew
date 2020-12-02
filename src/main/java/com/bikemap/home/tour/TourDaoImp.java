@@ -22,4 +22,9 @@ public interface TourDaoImp {
 	//게시판 글보기(레코드 하나 선택)
 	public TourVO tourSelect(int noboard);
 	
+	// 투어 마지막 번호 얻어오기
+	public int lastTourNo(String userid);
+	
+	// 투어 리스트 추가하기
+	public int insertTourComplist(ComplistVO vo);
 }

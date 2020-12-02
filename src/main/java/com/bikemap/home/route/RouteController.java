@@ -277,7 +277,6 @@ public class RouteController {
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		RouteVO vo = new RouteVO();
 		try {
-			System.out.println(noboard);			
 			vo = dao.selectRoute2(noboard);
 		}catch(Exception e) {
 			System.out.println("썸네일용 데이터 호출 에러"+ e.getMessage());

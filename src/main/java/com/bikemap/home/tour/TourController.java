@@ -119,9 +119,19 @@ public class TourController {
 		
 		int result=0;
 		try {
-			result = dao.tourInsert(vo);		
+			result = dao.tourInsert(vo);
+			if(result == 1) {
+				ComplistVO complist = new ComplistVO();
+				complist.setNoboard(dao.lastTourNo(vo.getUserid()));
+				complist.setUserid(vo.getUserid());
+				complist.setState("2");
+				
+				result = dao.insertTourComplist(complist);
+			}
+			
 		}catch(Exception e) {
 			System.out.println("동행 모집 등록 에러" + e.getMessage());
+			result = 0;
 		}	
 
 		return result;
