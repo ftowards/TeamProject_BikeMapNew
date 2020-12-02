@@ -12,10 +12,14 @@
 	<sql id="search">
 		<if test="searchType != null">					
 			<if test="searchType == 'userAll'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' OR  USERNAME LIKE '%' || #{searchWord} || '%'</if>
+			<if test="searchType == 'tourAll'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' OR  TITLE LIKE '%' || #{searchWord} || '%' OR CONTENT LIKE '%' || #{searchWord} || '%'</if>
+			<if test="searchType == 'reviewAll'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' OR  SUBJECT LIKE '%' || #{searchWord} || '%' OR CONTENT LIKE '%' || #{searchWord} || '%'</if>
+			<if test="searchType == 'qnaAll'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' OR  SUBJECT LIKE '%' || #{searchWord} || '%'</if>
 			<if test="searchType == 'userid'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' </if>
 			<if test="searchType == 'username'.toString()">WHERE USERNAME LIKE '%' || #{searchWord} || '%' </if>
-			<if test="searchType == 'id'.toString()">WHERE ID LIKE '%' || #{searchWord} || '%' </if>
-			<if test="searchType == 'qnaSubject'.toString()">WHERE SUBJECT </if>
+			<if test="searchType == 'content'.toString()">WHERE CONTENT LIKE '%' || #{searchWord} || '%' </if>
+			<if test="searchType == 'subject'.toString()">WHERE SUBJECT LIKE '%' || #{searchWord} || '%' </if>	
+			<if test="searchType == 'title'.toString()">WHERE TITLE LIKE '%' || #{searchWord} || '%' </if>			
 		</if>
 	</sql>
 	<select id="registTotalRecord" resultType="int">
@@ -25,7 +29,6 @@
 	<select id="searchRegistRecord" parameterType="com.bikemap.home.admin.AdminSuspendVO" resultType="int">
 		select count(userid) from regist <include refid="search"></include>
 	</select>
-	
 	<!-- 정지 추가하기	 -->
 	<insert id="suspendInsert" parameterType="com.bikemap.home.admin.AdminSuspendVO">
  		insert into suspend(userid, endday, cause)
@@ -66,7 +69,7 @@
 	</select>
 	<select id = "reviewAllRecord" resultType="com.bikemap.home.review.ReviewVO">
 		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit
-		from review order by noboard desc <include refid="search"></include>
+		from review <include refid="search"></include> order by noboard desc 
 	</select>
 	<select id="searchReviewRecord" parameterType="com.bikemap.home.review.ReviewVO" resultType="int">
 		select count(noboard) from review <include refid="search"></include>
@@ -78,7 +81,7 @@
 	</select>
 	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourVO">
 		select noboard, title, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate
-		from tour order by noboard desc <include refid="search"></include>
+		from tour <include refid="search"></include> order by noboard desc 
 	</select>
 	<select id="searchTourRecord" parameterType="com.bikemap.home.tour.TourVO" resultType="int">
 		select count(noboard) from tour <include refid="search"></include>

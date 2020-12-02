@@ -93,6 +93,7 @@ public class AdminController {
 			int totalRecord = 0;
 			List<TourVO>list;
 			if(vo.getSearchType()!=null||vo.getSearchType()!="") {
+				System.out.println(vo.getSearchType()+"dddddd/"+vo.getSearchWord());
 				totalRecord = dao.searchTourRecord(vo);
 				list = dao.tourAllRecord(vo);
 			}

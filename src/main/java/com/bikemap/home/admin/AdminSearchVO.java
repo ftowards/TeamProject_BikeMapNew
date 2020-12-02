@@ -19,7 +19,6 @@ public class AdminSearchVO extends AdminPagingVO {
 		this.searchWord = searchWord;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "SearchCriteria [searchType=" + searchType +", searchWord="+ searchWord + "]";
