@@ -27,6 +27,9 @@ public interface RouteDaoImp {
 	// 루트 한개 읽기
 	public RouteVO selectRoute(int noboard);
 	
+	// 루트 한개 읽기 (썸네일용)
+	public RouteVO selectRoute2(int noboard);
+
 	// 루트 검색하기
 	public List<RouteVO> selectRouteSearch(RoutePagingVO pagingVO);
 	

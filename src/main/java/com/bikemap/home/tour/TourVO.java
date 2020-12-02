@@ -7,8 +7,14 @@ public class TourVO {
 	private int reference;
 	private String content;
 	private String deadline;
+		private String deadlinedate;
+		private String deadlineTime;
 	private String departure;
+		private String departuredate;
+		private String departureTime;
 	private String arrive;
+		private String arrivedate;
+		private String arriveTime;
 	private String place;
 	private String distance;
 	private int speed;
@@ -51,18 +57,30 @@ public class TourVO {
 		this.content = content;
 	}
 	public String getDeadline() {
+		if(deadlineTime.length() == 1) {
+			deadlineTime = "0"+deadlineTime;
+		}
+		deadline = deadlinedate + " " + deadlineTime;
 		return deadline;
 	}
 	public void setDeadline(String deadline) {
 		this.deadline = deadline;
 	}
 	public String getDeparture() {
+		if(departureTime.length() == 1) {
+			departureTime = "0"+departureTime;
+		}
+		departure = departuredate + " "+ departureTime;
 		return departure;
 	}
 	public void setDeparture(String departure) {
 		this.departure = departure;
 	}
 	public String getArrive() {
+		if(arriveTime.length() == 1) {
+			arriveTime = "0"+arriveTime;
+		}
+		arrive = arrivedate + " " + arriveTime;
 		return arrive;
 	}
 	public void setArrive(String arrive) {
@@ -128,8 +146,40 @@ public class TourVO {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	
-	
-	
-	
+	public String getDeadlinedate() {
+		return deadlinedate;
+	}
+	public void setDeadlinedate(String deadlinedate) {
+		this.deadlinedate = deadlinedate;
+	}
+	public String getDeadlineTime() {
+		return deadlineTime;
+	}
+	public void setDeadlineTime(String deadlineTime) {
+		this.deadlineTime = deadlineTime;
+	}
+	public String getDeparturedate() {
+		return departuredate;
+	}
+	public void setDeparturedate(String departuredate) {
+		this.departuredate = departuredate;
+	}
+	public String getDepartureTime() {
+		return departureTime;
+	}
+	public void setDepartureTime(String departureTime) {
+		this.departureTime = departureTime;
+	}
+	public String getArrivedate() {
+		return arrivedate;
+	}
+	public void setArrivedate(String arrivedate) {
+		this.arrivedate = arrivedate;
+	}
+	public String getArriveTime() {
+		return arriveTime;
+	}
+	public void setArriveTime(String arriveTime) {
+		this.arriveTime = arriveTime;
+	}
 }

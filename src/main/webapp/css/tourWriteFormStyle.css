@@ -179,7 +179,7 @@
 		height:360px;
 		float:left;	
 	}
-	.labelClass,#departure,#arrive,.conditionBox,.labelClass2,#deadline,#place{	
+	.labelClass,#departuredate,#arrivedate,.conditionBox,.labelClass2,#deadlinedate,#place{	
 																				
 																				padding-top:6px;
 																				text-align:center;
@@ -223,7 +223,7 @@
 	}
 
 		
-	#departure,#arrive,#deadline,#place{	
+	#departuredate,#arrivedate,#deadlinedate,#place{	
 											padding-top:3px;	
 											width:150px;
 											background-color:#fff;
@@ -240,7 +240,7 @@
 				
 					
 	}	
-	#departure,#place,.conditionBox,#deadline,#room{
+	#departuredate,#place,.conditionBox,#deadlinedate,#room{
 												margin-left:20px;
 	}
 	
@@ -250,7 +250,7 @@
 			font-weight:bold;
 			font-size:15px;
 	}
-	#arrive{
+	#arrivedate{
 			margin-left:92px;
 				
 				}
