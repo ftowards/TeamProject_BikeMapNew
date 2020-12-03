@@ -40,11 +40,11 @@ public class RouteController {
 		ModelAndView mav = new ModelAndView();
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		RoutePagingVO pagingVO = new RoutePagingVO();
-		
+		List<RouteVO> list ;
 		try {
 			int totalRecord = dao.searchTotalRecord();
 			pagingVO.setTotalRecord(totalRecord);
-			List<RouteVO> list ;	
+			
 			list = dao.selectRouteAll(pagingVO);
 			mav.addObject("list", list);
 			mav.addObject("pagingVO", pagingVO);		

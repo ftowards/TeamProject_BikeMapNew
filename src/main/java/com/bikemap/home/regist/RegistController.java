@@ -181,7 +181,7 @@ public class RegistController {
 				}
 			}
 		}catch(Exception e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		return result;
 	}
