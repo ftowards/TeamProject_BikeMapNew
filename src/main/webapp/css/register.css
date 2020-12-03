@@ -158,27 +158,27 @@
 	/*================================registDelMessage================================*/
 
 	#contentLbl4{
-		font-size:1.8em;
+		font-size:32px;
 		font-weight:bold;
-		height : 50px;
+		margin-top:20px;
 	}
 	.contentBox_white b{
 		height : 180px;
 		line-height : 30px;
 	}	
 	.contentBox_white{
-		width:800px;
+		width:1000px;
 		margin: 0 auto;
 		height :400px;
 		background-color : white;
 		border-top : 3px solid #ccc;
-		margin-top:50px;
+		margin-top:160px;
 		margin-bottom:80px;
 		padding-top:35px;
 	}
 	#chk2Img{
-		width:80px;
-		height:80px;
+		width:85px;
+		height:85px;
 	}
 	.blueTxt{
 		color:#0070C0;
