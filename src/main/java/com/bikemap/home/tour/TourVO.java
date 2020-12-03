@@ -160,79 +160,107 @@ public class TourVO {
 		this.ip = ip;
 	}
 	public String getDeadlinedate() {
+		if(deadline == null) {return null;}
 		return deadline.substring(0, deadline.indexOf(" "));
 	}
-	public void setDeadlinedate(String deadlinedate) {
+	public void setDeadlinedate(String deadlinedate) {		
 		this.deadlinedate = deadlinedate;
 	}
 	public String getDeadlineTime() {
+		if(deadline == null) {return null;}
 		return deadline.substring(deadline.indexOf(" "));
 	}
 	public void setDeadlineTime(String deadlineTime) {
 		this.deadlineTime = deadlineTime;
 	}
 	public String getDeparturedate() {
-		return departure.substring(0, departure.indexOf(" "));
+		if(departure == null) {return null;}
+		try {
+			return departure.substring(0, departure.indexOf(" "));}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 	public void setDeparturedate(String departuredate) {
 		this.departuredate = departuredate;
 	}
 	public String getDepartureTime() {
-		return departure.substring(departure.indexOf(" "));
+		if(departure == null) {return null;}
+		try {
+			return departure.substring(departure.indexOf(" "));
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
 	public String getArrivedate() {
-		return arrive.substring(0, arrive.indexOf(" "));
+		if(arrive == null) {return null;}
+		
+		try {
+			return arrive.substring(0, arrive.indexOf(" "));
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 	public void setArrivedate(String arrivedate) {
 		this.arrivedate = arrivedate;
 	}
 	public String getArriveTime() {
-		return arrive.substring(arrive.indexOf(" "));
+		if(arrive == null) {return null;}
+		try {
+			return arrive.substring(arrive.indexOf(" "));
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+
 	}
 	public void setArriveTime(String arriveTime) {
 		this.arriveTime = arriveTime;
 	}
 	public boolean getGenderM() {
-		if(reggender.indexOf("1") >= 0) {
+		if(reggender != null  && reggender.indexOf("1") >= 0) {
 			genderM = true;
 			}
 		return genderM;
 	}
 	public boolean getGenderF() {
-		if(reggender.indexOf("2") > 0) {
+		if(reggender != null  && reggender.indexOf("2") > 0) {
 			genderF = true;
 		}
 		return genderF;
 	}
 	public boolean getAge10() {
-		if(regage.indexOf("1") >= 0) {
+		if(regage != null && regage.indexOf("1") >= 0) {
 			age10 = true;
 		}
 		return age10;
 	}
 	public boolean getAge20() {
-		if(regage.indexOf("2") > 0) {
+		if(regage != null &&regage.indexOf("2") > 0) {
 			age20 = true;
 		}
 		return age20;
 	}
 	public boolean getAge30() {
-		if(regage.indexOf("3") > 0) {
+		if(regage != null &&regage.indexOf("3") > 0) {
 			age30 = true;
 		}
 		return age30;
 	}
 	public boolean getAge40() {
-		if(regage.indexOf("4") > 0) {
+		if(regage != null &&regage.indexOf("4") > 0) {
 			age40 = true;
 		}
 		return age40;
 	}
 	public boolean getAge50() {
-		if(regage.indexOf("5") > 0) {
+		if(regage != null &&regage.indexOf("5") > 0) {
 			age50 = true;
 		}
 		return age50;

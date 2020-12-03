@@ -69,6 +69,7 @@
 				,success:function(result){
 					movePage(1);
 					$("#replyWrite").val("");
+					sendMsg();
 				},error:function(){
 					console.log("댓글쓰기 에러 발생..");
 				}
@@ -82,6 +83,32 @@
 
 	});
 	////////////////// 펑션 ///////////////////////
+	
+	// 메세지 저장하기 ++ 통신으로 메세지 보내기
+	function sendMsg(){
+		var receiver = $("#userid").text();
+		var sender = $("#logId").val();
+		
+		if(receiver == sender){
+			return false;
+		}
+
+		var noboard = $("#noboard").val();
+		var msg = "<a href='/home/routeSearchView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 루트에 댓글을 달았습니다.</a>";
+		var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
+		
+		$.ajax({
+			url : "/home/insertNotice",
+			data : data,
+			success : function(result){
+			},error : function(err){
+				console.log(err);
+			}
+		})
+		
+		var socketMsg = "routeReply,"+receiver+","+sender+","+noboard;
+		socket.send(socketMsg);		
+	}
 	
 	function getBytes(str){
 	    var cnt = 0;

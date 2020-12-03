@@ -175,7 +175,26 @@
 		    <version>0.4.13</version>
 		</dependency>
 		    
-        
+		<!-- 알람을 만들어보자 -->
+        <dependency>
+			<groupId>javax.websocket</groupId>	      
+			<artifactId>javax.websocket-api</artifactId>
+			<version>1.1</version>
+		</dependency>
+			
+        <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>5.0.2.RELEASE</version>
+		</dependency>
+  
+  		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.11.3</version>
+		</dependency>
+		
         
 	</dependencies>
     <build>
