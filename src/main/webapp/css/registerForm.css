@@ -1,4 +1,28 @@
+
+.registerMainDiv {
+
+
+    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 3s; /* Firefox < 16 */
+        -ms-animation: fadein 3s; /* Internet Explorer */
+         -o-animation: fadein 3s; /* Opera < 12.1 */
+            animation: fadein 3s;
+}
+
+		@keyframes fadein {
+		    from { opacity: 0; }
+		    to   { opacity: 1; }
+		}
+		
+
 /*==============================registerForm&registEditForm==============================*/
+	.registerMainDiv{
+		width:900px;
+		margin:0 auto;
+	}
+	body{
+		font-family:'Noto Sans KR', sans-serif;
+	}
 	textarea:focus {
 		outline: none;
 	}
@@ -8,56 +32,83 @@
 	input:focus {
 		outline: none;
 	}
-	hr{
-		border:0;
-		width:725px;
-		background-color:black;
-		height:2px;
-	}
 	#domainSelect{
 		font-size:14px;
 		height:30px;
 	}
-	.registerMainDiv{
-		overflow:hidden;
+	.registerWriteForm{
+					
+						float:left;
+						width:20%;
+						margin-left:160px;
 	}
-	#registerForm{
-		margin-top:50px;
+	.registerTitle{
+					height:80px;
+					margin:50px 0 0 150px;
 	}
-	#label{
-		width : 35%;
-		margin-right:20px;
+	.registerTitleLbl{
+						font-size:22px; 
+	 					color:rgb(64,64,64);
+	
 	}
-	#label li{
-		top-margin:15px;
-		text-align : right;
-		font-size : 1em;
-		font-weight: bold;
+	.registerFormLblDiv{
+						text-align:center;	
+	
 	}
-	.redTxt{
-		color:red;
+	.registerFormLblDiv li{
+							margin:30px 0 50px 0;
+							text-align : left;
+							font-size : 1em;
+							font-weight: bold;
+							color:rgb(64,64,64);
+						
 	}
+	
 	#input{
-		width : 62%;
-	}
-	form>div{
-		float:left;
-	}
-	form li{
-		height : 45px;
-		line-height : 50px;
+			float:left;
+			width:60%;
+			
 	}
 
-	#input input[type=text],input[type=password], select{
-		height : 25px;
-		font-size:.9em
+	#input input,#domainSelect{
+				margin-top:20px;
+				font-size:1em;
+				border-radius: 10px;
+				border:none;
+				box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+				height:30px;
 	}
-	#input li{
-		height : 45px;
-		font-size:1.1em;
+	#input input[type=radio]{
+			
+			box-shadow:none;
+	}
+	.gray_Btn{
+					font-size:12px;
+					width:70px;
+					height:30px;
+					color: #5D5D5D;
+					font-weight:bold;
+					border: none;
+					border-radius: 10px;
+					text-decoration: none;
+					text-align : center;
+					background-color: #eee;
+					box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+					margin-left:20px;
+	}
+
+	.tlbl{
+			font-size:0.9em;
+	}
+	.reg{
+		color:#00B0B0;
+		font-size :12px;
+
+	
 	}
 	.i1{
 		width:170px;
+		
 	}
 	.i2{
 		width:250px;
@@ -68,116 +119,55 @@
 	.i4{
 		width:200px;
 	}
-	.tlbl{
-		font-size:0.9em;
-	}
-	.gray_Btn{
-		font-size:12px;
-		width:70px;
-		height:30px;
-		color: #5D5D5D;
-		font-weight:bold;
-		border: 1px solid #8C8C8C;
-		border-radius: 5px;
-		text-decoration: none;
-		text-align : center;
-		background-color: #eee;
-		padding:2px 4px;
-	}
-	#bottons{
-		width : 1050px;
-		height : 80px;
-		overflow:auto;
-		line-height : 50px;
-		text-align : right;
-		margin-top : 25px;
-	}
-	#bottons2{
-		width : 100%;
-		height : 80px;
-		overflow:auto;
-		line-height : 50px;
-		text-align : center;
-		margin-top : 25px;
-	}
+	
+	
+	
 	.mint_Btn{
-		width:120px;
-		height:40px;
 		font-size:15px;
+		color:#fff;
 		font-weight:bold;
-		border-radius: 5px;
 		text-decoration: none;
 		text-align : center;
-		padding:3px 6px;
-		margin:0 10px;
-		color : white;
-		border: 1px solid #00B0B0;
-		background-color: #00B0B0;
-	}
-	.WMint_Btn{
-		width:120px;
-		height:40px;
-		font-size:15px;
-		font-weight:bold;
-		border-radius: 5px;
-		text-decoration: none;
-		text-align : center;
-		padding:3px 6px;
-		margin:0 10px;
-		color : #00B0B0;
-		border: 2px solid #00B0B0;
-		background-color: white;
+		background-color: rgb(0,176,176);	
+		margin:40px 0 0 20px;
 	}
 	.mint_Btn:hover{
-		color : #00B0B0;
-		background-color: white;
-		border: 2px solid #00B0B0;
-	}
-	.WMint_Btn:hover{
 		color : white;
-		background-color: #00B0B0;
+		font-weight:bold;
+		background-color: rgb(0 199 199);
+		border:2px solid #00B0B0;
 	}
 	
-	#idChk{
-		font-size : 12px;
-		padding : 6px 12px;
-	}
-	.reg{
-		color:#00B0B0;
-		font-size : 12px;
+	.WMint_Btn{
+		font-size:15px;
+		color:rgb(0,176,176);
 		font-weight:bold;
-	}
-	#hr3{
-		width:800px;
-		height:30px;
-		margin-top:50px;
-		background-color:white;
-		border-bottom:2px solid #ddd;
-		
-
-	}
-	.red_Btn{
-		border : #D20000 2px solid;
-		background-color : #D20000;
 		text-decoration: none;
 		text-align : center;
-		font-size : 15px;
-		padding : 6px 12px;
-		margin: 10px 5px;
-		color: white;
+		background-color:#fff;
+		margin-left:20px;
 	}
-	.red_Btn:hover{
-		color : #D20000;
+	.WMint_Btn:hover{
+		color : #00B0B0;
 		font-weight:bold;
-		background-color: white;
-	}
-	.gray_Btn:hover{
-		color : #353535;
+		background-color:#eaffff;
+		border:2px solid #00B0B0;
+	}	
+	
+	.red_Btn{
+		font-size:15px;
+		width:90px;
+		height:30px;
+		color:#fff;
 		font-weight:bold;
-		background-color: white;
+		border: none;
+		border-radius: 10px;
+		text-decoration: none;
+		text-align : center;
+		background-color: #FF6347;	
+		margin:40px 0 0 20px;
 	}
-
-
+	
 	/*==============================registFindInfo==============================*/
 	form{
 		margin : 20px 0;
@@ -197,27 +187,29 @@
 		margin-bottom:200px;
 	}
 	.find{
-		padding-left:52px;
+		padding-left:75px;
 		margin-top:60px;
-		width:50%;
-		text-align:center;
+		width:100%;
+		text-align:left;
 	}
 	#findId, #findPwd{
-		font-size:1.2em;
+		font-size:23px;
 	}
 	#findIdForm>input, #findPwdForm>input{
-		width : 630px;
-		height : 40px;
+		width : 700px;
+		height : 50px;
 		line-height : 40px;
 		margin : 0 0 10px 0;
-		font-size:15px;
+		font-size:20px;
 		padding-left:10px;
+		box-shadow:1px 2px 5px 1px rgb(230,230,230);
+		border:1px solid darkgrey;
 	}
 	#findIdForm>input::placeholder, #findPwdForm>input::placeholder{
-		font-size:15px;
+		font-size:18px;
 	}
 	#t1{
-		font-size:0.9em;
+		font-size:15.5px;
 		line-height:24px;
 		margin:30px 0 50px 0;
 	}
@@ -243,8 +235,8 @@
 	/*==============================registWelcome==============================*/
 	.registerMainDiv2 *{
 		margin : 0 auto;
-		width:800px;
-		text-align : center;
+		width:1200px;
+		text-align : cente;
 		margin-bottom:200px;
 	}
 	#welcome{

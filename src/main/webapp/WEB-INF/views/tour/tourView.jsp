@@ -98,11 +98,19 @@
 				</div>
 		</div>
 	</div>		
+
+  <div class="conditionDivTop4">
+      <div><label  class="labelUseridClass">작성자</label></div>
+        <div><input type="submit" class="useridBox" value="${vo.userid}" id="userInformation"></div>
+
+  </div>		
 	<div id="writeForm">		
 		<hr/>
 		<div id="content">${vo.content }</div>
 	</div>
 	
+			
+
 	<div id="roomCheckDiv">
 		<div></div>
 		<div id="checkComplist" class="roomCheckDivLbl" data-target="#dialog" data-toggle="modal"><label>참여인원 확인하기></label></div>
@@ -267,7 +275,7 @@ $(function(){
 	$("#checkComplist").on('click', function(){
 		var url = "/home/selectComplist";
 		var data = "noboard="+$("#noboard").val();
-		
+	
 		$.ajax({
 			url : url,
 			data : data,
@@ -353,6 +361,7 @@ function getTourTime(){
 		$("#tourtime").text("-");
 		return false;
 	}
+
 	
 	var time = Math.floor(distance/speed);	 
 	var minute = Math.floor((distance/speed - time)*60);

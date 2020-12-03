@@ -371,9 +371,32 @@ public class RegistController {
 		return result;
 	}
 	
+	
+	
 	// 로그인 팝업 띄우기
 	@RequestMapping("/loginPopup")
 	public String loginPopup() {
 		return "popup/login";
+			
 	}
+	
+	//작성자 클릭시 팝업 띄우기
+	@RequestMapping("/userInformation")
+	public ModelAndView userInfoPopup(HttpSession ses) {
+		ModelAndView mav = new ModelAndView();
+		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
+		if(ses.getAttribute("logId") != null) {
+			try {
+				String userid = (String)ses.getAttribute("logId");
+			}catch(Exception e) {
+				System.out.println("팝업창 에러..."+e.getMessage());
+			}
+		
+		}
+		mav.setViewName("popup/userInformation");
+		return mav;	
+	}
+
+	
+	
 }

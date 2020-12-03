@@ -3,13 +3,38 @@
 
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
 <script>
-	$(function(){
-		$("#reviewdel").click(function(){
-			if(confirm("삭제하시겠습니까?")){
-				location.href="/home/reviewDel?noboard=${vo.noboard}";		
+
+
+
+	$.ajax({
+		type : 'POST',
+		url : url,
+		data : params,
+		success : function(result){
+			console.log(result)
+			if(result>0){
+				alert("삭제가 되었습니다.")
+				location.href="/home/reviewView"
+			}else{
+				alert("삭제 실패하였습니다.")
+				
 			}
-		});
+		},error:function(){
+			console.log("글쓰기 오류")
+		}
 	});
+	return false;
+	
+	
+// 	$(function(){
+// 		$("#reviewdel").click(function(){
+// 			if(confirm("삭제하시겠습니까?")){
+// 				location.href="/home/reviewDel?noboard=${vo.noboard}";		
+// 			}
+// 		});
+// 	});
+	
+	
 </script>
 
 
