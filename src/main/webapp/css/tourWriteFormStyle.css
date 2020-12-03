@@ -82,33 +82,33 @@
 							float:left;	
 	}
 	#RouteSearchDiv input[type=text]{
-		width:500px;
-		padding:4px 0 0 10px;
-		border:1px solid rgb(221,221,221);
-		border-radius:10px;
-		height:35px;
-		background-color:rgb(221,221,221);
-		font-size:15px;
-		font-weight:bold;
-		color:rgb(64,64,64);
-		box-shadow: 3px 3px 5px 3px rgb(230,230,230);										
+										width:500px;
+										padding:4px 0 0 10px;
+										border:1px solid rgb(221,221,221);
+										border-radius:10px;
+										height:35px;
+										background-color:rgb(221,221,221);
+										font-size:15px;
+										font-weight:bold;
+										color:rgb(64,64,64);
+										box-shadow: 3px 3px 5px 3px rgb(230,230,230);										
 	}
 	
 	#searchResultList{
-		width:500px;
-		height : auto;
-		padding:4px 0 0 10px;
-		border:1px solid rgb(221,221,221);
-		border-radius:10px;
-		background-color:rgb(221,221,221);
-		font-size:15px;
-		font-weight:bold;
-		color:rgb(64,64,64);
-		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-		position : absolute;
-		opacity: 0.7;
-		display:none;
-		z-index : 50;
+						width:500px;
+						height : auto;
+						padding:4px 0 0 10px;
+						border:1px solid rgb(221,221,221);
+						border-radius:10px;
+						background-color:rgb(221,221,221);
+						font-size:15px;
+						font-weight:bold;
+						color:rgb(64,64,64);
+						box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+						position : absolute;
+						opacity: 0.7;
+						display:none;
+						z-index : 50;
 	}
 	
 	#searchResultList a:link, #searchResultList a:visited, #searchResultList a:hover{
