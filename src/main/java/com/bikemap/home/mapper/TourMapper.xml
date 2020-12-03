@@ -87,7 +87,7 @@
 	</delete>
 	<select id="selectTourComplist" resultType="com.bikemap.home.tour.ComplistVO">
 		select a.userid, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(b.birth, 'YYYY'))+1),-1) age,
-		b.tourcnt, b.heart, a.state from complist a join regist b on a.userid = b.userid where a.noboard = #{param1}
+		b.gender, b.tourcnt, b.heart, a.state from complist a join regist b on a.userid = b.userid where a.noboard = #{param1}
 		order by a.state desc, userid asc
 	</select>
 	<select id="getDeadline" resultType="String">
