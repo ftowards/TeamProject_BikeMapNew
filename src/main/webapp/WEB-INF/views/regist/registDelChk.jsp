@@ -30,6 +30,7 @@
 			return false;
 		});
 	});
+	
 </script>
 <div class="registerMainDiv">
 	<div class="contentBox2">

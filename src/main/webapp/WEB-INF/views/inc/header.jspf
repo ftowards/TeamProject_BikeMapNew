@@ -12,6 +12,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="/home/api/jquery.bxslider.css" type="text/css"/>
 <script src="/home/api/jquery.bxslider.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
+<script src="/home/js/index.js"></script>
 <title>BikeMap</title>
 </head>
 <body>
@@ -35,9 +37,12 @@
 					 <ul class="nav navbar-nav navbar-right">        
 					<c:if test="${logStatus!=null && logStatus=='Y'}">	
                             <li><a href="#" class="dropdown-toggle"  data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;${logName}님<span class="caret"></span></a>
+                            <input type="hidden" id="logId" value="${logId }"/>
 								<ul class="dropdown-menu">
                                     <li><a href="<%=request.getContextPath()%>/registEdit">마이페이지</a></li>
-                                    <li><a href="<%=request.getContextPath()%>/myRouteing">저장된 루트</a></li>
+                                    <li><a href="<%=request.getContextPath()%>/myRouteing">내모임</a></li>
+                                    <li><a href="<%=request.getContextPath()%>/myApplyTour">참여모임</a></li>
+                                      <li><a href="#">저장된 루트</a></li>
                                     <li><a href="#">1:1문의</a></li>
                                     <li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
                                 </ul>                            
@@ -57,4 +62,3 @@
             </div>
         </div>
     </div>
-

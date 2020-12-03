@@ -2,7 +2,6 @@ package com.bikemap.home.review;
 
 import java.util.List;
 
-import com.bikemap.home.review.ReviewVO;
 
 public interface ReviewDaoImp {
 

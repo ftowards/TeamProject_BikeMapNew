@@ -1,4 +1,5 @@
 package com.bikemap.home.admin;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,11 +45,28 @@ public class AdminController {
 			mav.addObject("type", "user");
 			mav.addObject("list", list);
 			mav.addObject("pagingVO", vo);	
+			
 		}catch(Exception e) {
 			System.out.println("회원 검색 화면 호출 에러111"+e.getMessage());
 		}	
 		mav.setViewName("admin/adminUserTable");
 		return mav;
+	}
+	@RequestMapping(value="/adminUserAjax", method=RequestMethod.POST)
+	@ResponseBody
+	public List<AdminRegistVO> adminUserAjax(AdminPagingVO vo) {
+		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
+		List<AdminRegistVO>list = new ArrayList<AdminRegistVO>();
+		try {	
+			int totalRecord = dao.searchRegistRecord(vo);
+			vo.setTotalRecord(totalRecord);
+			list = dao.selectRegistAll(vo);
+		
+			
+		}catch(Exception e) {
+			System.out.println("회원 검색 화면 호출 에러111"+e.getMessage());
+		}	
+		return list;
 	}
 	//정지추가
 	@RequestMapping(value="/userSuspendOk", method=RequestMethod.POST)
@@ -129,7 +147,6 @@ public class AdminController {
 					list = dao.reviewAllRecord(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
 					
 				}
-			
 				mav.addObject("type", "review");
 				mav.addObject("list", list);
 				mav.addObject("pagingVO", vo);	
@@ -141,19 +158,18 @@ public class AdminController {
 		}
 	//1대1문의패널
 	@RequestMapping("/adminQna")
-	public ModelAndView adminQna() {
+	public ModelAndView adminQna(AdminPagingVO vo) {
 		ModelAndView mav = new ModelAndView();
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-		AdminPagingVO pagingVO = new AdminPagingVO();
 		try {	
 			//전체 답변테이블 구하기
-			int totalRecord = dao.qnaTotalRecord();
-			pagingVO.setTotalRecord(totalRecord);
+			int totalRecord = dao.searchQnaRecord(vo);
+			vo.setTotalRecord(totalRecord);
 			//
 			List<AdminQnaVO>list = dao.selectQnaAll(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
 			mav.addObject("type", "qna");
 			mav.addObject("list", list);
-			mav.addObject("pagingVO", pagingVO);	
+			mav.addObject("pagingVO", vo);	
 		}catch(Exception e) {
 			System.out.println("회원 답변테이블 호출 에러111"+e.getMessage());
 		}	
@@ -195,16 +211,25 @@ public class AdminController {
 		}
 		return mav;
 	}
-	
 	//페이징
 	@RequestMapping(value="/adminPaging", method=RequestMethod.POST)
 	@ResponseBody
-	public PagingVO adminPaging(PagingVO paging) {
-		
-			
+	public AdminPagingVO adminPaging(AdminPagingVO paging) {
+	
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		try {
-			int totalRecord = dao.qnaTotalRecord();				
+			String type = paging.getType();
+			System.out.println(type+":"+paging.getNowPage());
+			int totalRecord = 0;
+			if(type.equals("user")) {
+				totalRecord = dao.searchRegistRecord(paging);				
+			}else if(type.equals("tour")) {
+				totalRecord = dao.searchTourRecord(paging);
+			}else if(type.equals("qna")) {
+				totalRecord = dao.searchQnaRecord(paging);
+			}else if(type.equals("review")) {
+				totalRecord = dao.searchReviewRecord(paging);
+			}
 			System.out.println("totalRecord==="+totalRecord);
 			paging.setTotalRecord(totalRecord);
 				
@@ -213,5 +238,4 @@ public class AdminController {
 		}
 		return paging;
 	}
-	
 }

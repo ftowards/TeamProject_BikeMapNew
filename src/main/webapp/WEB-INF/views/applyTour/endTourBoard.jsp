@@ -11,11 +11,11 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-     		<label>저장된 루트</label>   
+     		<label>참여모임</label>   
       </li>
-      <li><a href="<%=request.getContextPath()%>/myRouteing">진행여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/myRouteClose">마감된 여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/myRouteEnd">완료된 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/myApplyTour">신청여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/joinTourBoard">참여한 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/endTourBoard">완료된 여행</a></li>
 
     </ul>
   </div>
@@ -36,33 +36,35 @@
 		     			<th>종료일시</th>
 		     			<th>참&nbsp;가</th>
 		     			<th>잔&nbsp;여</th>
-		   
+		     			
 	     			</tr>
      			</thead>
      			<tbody>
-     			<!-- =====================db작업(반복문)======================== -->
+     			<!-- =====================db작업======================== -->
 	     			<tr>
 	     				<td>800</td>
 		     			<td><a href="#">세란이네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 13:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 21:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 13:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 21:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">3</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">2</a></td>
+		     			
 	     			</tr>
 	     		</tbody>
 	     		<tbody>
-     			<!-- ===================임시데이터(db작업 후 삭제)========================= -->
+     			<!-- =====================db작업======================== -->
 	     			<tr>
 	     				<td>900</td>
 		     			<td><a href="#">소라네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 13:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 21:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 13:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 21:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">3</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">2</a></td>
+		     		
 	     			</tr>
 	     		</tbody>
      		</table>
-     		<div id="viewAcodian" class="panel-collapse collapse">
+     		<div id="viewAcodianApplyTourBoard" class="panel-collapse collapse">
      		<table class="table">
      			<thead>
 	     			<tr>
@@ -75,7 +77,7 @@
 	     			</tr>
      			</thead>
   				<tbody>
-					<!-- =====================db작업(아코디언 반복문)======================== -->
+					<!-- =====================db작업(아코디언)======================== -->
 	     			<tr>
 	     				<td>권세란</td>
 		     			<td>20대</td>
@@ -86,7 +88,7 @@
 	     			</tr>
 				</tbody>
 				<tbody>
-					<!-- =====================임시데이터(db작업 후 삭제)======================== -->
+					<!-- =====================(임시 데이터)======================== -->
 	     			<tr>
 	     				<td>박소라</td>
 		     			<td>20대</td>

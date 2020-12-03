@@ -198,45 +198,59 @@ public class RouteVO {
 	}
 	////////////// 삽질의 시작 /////////////////////
 	public String getRoutepoint1name() {
+		if(routepoint1 == null) {return null;}
 		return routepoint1.substring(0,routepoint1.indexOf("[/]"));
 	}
 	public String getRoutepoint1point() {
+		if(routepoint1 == null) {return null;}
 		return routepoint1.substring(routepoint1.indexOf("[/]")+3);
 	}
 	public String getRoutepoint2name() {
+		if(routepoint2 == null) {return null;}
 		return routepoint2.substring(0,routepoint2.indexOf("[/]"));
 	}
 	public String getRoutepoint2point() {
+		if(routepoint2 == null) {return null;}
 		return routepoint2.substring(routepoint2.indexOf("[/]")+3);
 	}
 	public String getRoutepoint3name() {
+		if(routepoint3 == null) {return null;}
 		return routepoint3.substring(0,routepoint3.indexOf("[/]"));
 	}
 	public String getRoutepoint3point() {
+		if(routepoint3 == null) {return null;}
 		return routepoint3.substring(routepoint3.indexOf("[/]")+3);
 	}
 	public String getRoutepoint4name() {
+		if(routepoint4 == null) {return null;}
 		return routepoint4.substring(0,routepoint4.indexOf("[/]"));
 	}
 	public String getRoutepoint4point() {
+		if(routepoint4 == null) {return null;}
 		return routepoint4.substring(routepoint4.indexOf("[/]")+3);
 	}
 	public String getRoutepoint5name() {
+		if(routepoint5 == null) {return null;}
 		return routepoint5.substring(0,routepoint5.indexOf("[/]"));
 	}
 	public String getRoutepoint5point() {
+		if(routepoint5 == null) {return null;}
 		return routepoint5.substring(routepoint5.indexOf("[/]")+3);
 	}
 	public String getRoutepoint6name() {
+		if(routepoint6 == null) {return null;}
 		return routepoint6.substring(0,routepoint6.indexOf("[/]"));
 	}
 	public String getRoutepoint6point() {
+		if(routepoint6 == null) {return null;}
 		return routepoint6.substring(routepoint6.indexOf("[/]")+3);
 	}
 	public String getRoutepoint7name() {
+		if(routepoint7 == null) {return null;}
 		return routepoint7.substring(0,routepoint7.indexOf("[/]"));
 	}
 	public String getRoutepoint7point() {
+		if(routepoint7 == null) {return null;}
 		return routepoint7.substring(routepoint7.indexOf("[/]")+3);
 	}
 	

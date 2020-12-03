@@ -11,11 +11,11 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-     		<label>저장된 루트</label>   
+     		<label>참여모임</label>   
       </li>
-      <li><a href="<%=request.getContextPath()%>/myRouteing">진행여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/myRouteClose">마감된 여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/myRouteEnd">완료된 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/myApplyTour">신청여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/joinTourBoard">참여한 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/endTourBoard">완료된 여행</a></li>
 
     </ul>
   </div>
@@ -24,7 +24,7 @@
   <!-- 본문 -->
   <div class="myRouteMainDiv">
     <div class="container-fluid">
-      <div class="titleMyRouteDiv1"><label>완료된 여행</label></div>
+      <div class="titleMyRouteDiv1"><label>신청여행</label></div>
      <div class="myRouteBoardMainDiv">
      	<div>
      		<table class="table table-striped table-hover">
@@ -32,37 +32,36 @@
 	     			<tr>
 		     			<th>번&nbsp;호</th>
 		     			<th>제&nbsp;목</th>
-		     			<th>출발일시</th>
-		     			<th>종료일시</th>
+		     			<th>마감일시</th>
 		     			<th>참&nbsp;가</th>
 		     			<th>잔&nbsp;여</th>
-		   
+		     			<th>대&nbsp;기</th>
 	     			</tr>
      			</thead>
      			<tbody>
-     			<!-- =====================db작업(반복문)======================== -->
+     			<!-- =====================db작업======================== -->
 	     			<tr>
 	     				<td>800</td>
 		     			<td><a href="#">세란이네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 13:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 21:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-02 17:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">3</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">2</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">1</a></td>
 	     			</tr>
 	     		</tbody>
 	     		<tbody>
-     			<!-- ===================임시데이터(db작업 후 삭제)========================= -->
+     			<!-- =====================db작업======================== -->
 	     			<tr>
 	     				<td>900</td>
 		     			<td><a href="#">소라네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 13:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 21:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-02 17:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">3</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">2</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">1</a></td>
 	     			</tr>
 	     		</tbody>
      		</table>
-     		<div id="viewAcodian" class="panel-collapse collapse">
+     		<div id="viewAcodianApplyTourBoard" class="panel-collapse collapse">
      		<table class="table">
      			<thead>
 	     			<tr>
@@ -70,29 +69,29 @@
 		     			<th>나이대</th>
 		     			<th>모임횟수</th>
 		     			<th>좋아요</th>
-		     			<th>평가하기</th>
+		     			<th>참가상태</th>
 
 	     			</tr>
      			</thead>
   				<tbody>
-					<!-- =====================db작업(아코디언 반복문)======================== -->
+					<!-- =====================db작업(아코디언)======================== -->
 	     			<tr>
 	     				<td>권세란</td>
 		     			<td>20대</td>
 		     			<td>5회</td>
 		     			<td><img src="<%=request.getContextPath()%>/img/img_myRoute/like.png">5</td>
-		     			<td><img src="<%=request.getContextPath()%>/img/img_myRoute/heartColor.png"></td>
+		     			<td><button type="submit" class="tourIn">참가중</button></td>
 		     		
 	     			</tr>
 				</tbody>
 				<tbody>
-					<!-- =====================임시데이터(db작업 후 삭제)======================== -->
+					<!-- =====================(임시 데이터)======================== -->
 	     			<tr>
 	     				<td>박소라</td>
 		     			<td>20대</td>
 		     			<td>3회</td>
 		     			<td><img src="<%=request.getContextPath()%>/img/img_myRoute/like.png">20</td>
-		     			<td><img src="<%=request.getContextPath()%>/img/img_myRoute/heartGray.png" style="width:28px;margin-left:3px;"></td>
+		     				<td><button type="submit" class="tourNo">취소</button></td>
 		     		
 	     			</tr>
 				</tbody>		

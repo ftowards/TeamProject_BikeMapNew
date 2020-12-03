@@ -12,8 +12,15 @@ public class AdminPagingVO {
 	
 	private String searchType;
 	private String searchWord;
+	private String type;
 	
 	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getSearchType() {
 		return searchType;
 	}
@@ -56,6 +63,7 @@ public class AdminPagingVO {
 	}
 	public void setTotalPage() {
 		this.totalPage = (int)Math.ceil((double)totalRecord / onePageRecord);
+		System.out.println(totalPage);
 	}
 	
 	public int getOnePageRecord() {
