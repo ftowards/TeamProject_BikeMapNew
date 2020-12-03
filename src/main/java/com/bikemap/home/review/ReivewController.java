@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -114,7 +115,7 @@ public class ReivewController {
 	//글 수정 확인
 	@RequestMapping(value="/reviewEditOk", method=RequestMethod.POST)
 	public ModelAndView reviewEditOk(ReviewVO vo, HttpSession ses) {
-		vo.setUserid((String)ses.getAttribute("userid"));
+		vo.setUserid((String)ses.getAttribute("logid"));
 		
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 		int result = dao.reviewUpdate(vo);
@@ -131,23 +132,24 @@ public class ReivewController {
 			return mav;
 	}
 	
+	
+	
 	//글삭제 폼
 	@RequestMapping("/reviewDel")
-	@ResponseBody
 	public ModelAndView reviewDel(int noboard, HttpSession ses) {
+	
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-		int result = dao.reviewDelete(noboard,(String)ses.getAttribute("userid"));
-		System.out.println(noboard+",   "+(String)ses.getAttribute("userid"));
+		int result = dao.reviewDelete(noboard,(String)ses.getAttribute("logId"));
 		
 		ModelAndView mav = new ModelAndView();
-		if(result>0) {
-			mav.setViewName("redirect: ReviewView");
-			
-		}else {
-			mav.setViewName("review/reviewResult");
-			
-		}
-		return mav;
+			if(result>0) {
+				mav.setViewName("redirect: reviewView");
+				
+			}else {
+				mav.setViewName("review/reviewResult");
+				
+			}
+			return mav;
 		
 	}
 }
