@@ -1,4 +1,7 @@
 	/*===================================login===================================*/
+	body{
+		font-family:'Noto Sans KR', sans-serif;
+	}
 	textarea:focus {
 		outline: none;
 	}
@@ -42,13 +45,17 @@
 	
 	.contentText{
 		width:1000px;
-		letter-spacing:-2px;
+		letter-spacing:-1px;
 		line-height:32px;
 		margin:0 auto;
 		margin-bottom:45px;
+		color:#353535;
 		font-size:16px;
-		color:#353535
 	}
+	.contentText:last-child{
+		font-size:17px;
+	}
+	
 	#loginDiv2{
 		width:1000px;
 		margin:0 auto;
@@ -58,12 +65,12 @@
 	}
 	#useridDiv{
 		margin:0 auto;
-		padding:60px 0 0 205px;
+		padding:60px 0 0 195px;
 	}
 	#userPwdDiv{
 		position:absolute;
 		margin:0 auto;
-		padding:20px 0 0 205px;
+		padding:20px 0 0 195px;
 	}
 	
 	#useridDiv input, #userPwdDiv input{
@@ -116,14 +123,13 @@
 		background-color: white;
 	}
 	#find_Info{
-		font-size:16px;
+		font-size:17.5px;
 		font-weight:bold;
 		text-align : center;
 	}
 	.white_Btn{
 		color: #5D5D5D;
-		font-weight:bold;
-		border: 1px solid #8C8C8C;
+		border: 2px solid #8C8C8C;
 		border-radius: 5px;
 		text-decoration: none;
 		text-align : center;
@@ -133,7 +139,6 @@
 	}
 	.white_Btn:hover{
 		color: white;
-		font-weight:bold;
 		border: 2px solid #8C8C8C;
 		background-color: #5D5D5D;
 	}
