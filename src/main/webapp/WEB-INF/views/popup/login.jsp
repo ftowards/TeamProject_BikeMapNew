@@ -63,6 +63,9 @@
 			
 			return false;
 		});
+		
+
+		
 	});
 </script> 
 <div class="registerMainDiv">
