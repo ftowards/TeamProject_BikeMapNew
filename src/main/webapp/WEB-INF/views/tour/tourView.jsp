@@ -58,7 +58,10 @@ $(function(){
 			$("#regage"+type).css('color','rgb(123,123,123)').css('background-color','white');
 		}
 	});
+	   $("#userInformation").on('click',function(){
+	       window.open("/home/userInformation","Bikemap",'width=450px,height=550px, left =700px, top=300px');
 
+	    });
 });
 
 </script>
@@ -178,11 +181,13 @@ $(function(){
 		</div>
 		
 		</div>
+				
+		<div class="conditionDivTop4">
+				<div><label  class="labelUseridClass">작성자</label></div>
+					<div><input type="submit" class="useridBox" value="${vo.userid}" id="userInformation"></div>
+				
+		</div>		
 </div>		
-
-
-
-
 			<div id="writeForm">		
 						<div><label id="tourWriteTitle">${vo.title}</label></div>
 						<hr/>
@@ -205,4 +210,4 @@ $(function(){
 	<input type="hidden" id="noboard" value="${vo.noboard}">
 	<%@ include file="../inc/reply.jspf"%>
 </div>
-
+</script>

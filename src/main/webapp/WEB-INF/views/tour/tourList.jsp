@@ -250,7 +250,7 @@
 				var $result = $(result);
 				var tag="";
 				$result.each(function(i,v){
-				
+					
 					tag += "<div class='tourImgDivClass'>";
 					tag += "<div><img src='<%=request.getContextPath()%>/img/img_tour/map.png' class='tourImgClass'/></div>";
 					tag += "<div class='blackWrapDiv'>";	

@@ -55,24 +55,30 @@
 </script>
 <div class="registerMainDiv" style='margin-bottom:150px'>
 	<form id="registerForm" method="post" action="<%=request.getContextPath()%>/registerFormOk">
-	<h2 style='padding-left:320px'>마이페이지</h2><hr/><br/><br/>
-		<div id = "label">
-			<ul>
-				<li>아이디</li>
-				<li>비밀번호</li>
-				<li>비밀번호 확인</li>
-				<li>이  름</li>
-				<li>이메일</li>
-				<li>성  별</li>
-				<li>생년월일</li>
-			</ul>
-		</div>
+		<div class="registerTitle"><label class="registerTitleLbl">마이페이지</label><br/><br/></div>
+		<div class="registerWriteForm">	
+			<div class = "registerFormLblDiv">
+				<ul>
+					<li>아이디</li>
+					<li>비밀번호</li>
+					<li>비밀번호 확인</li>
+					<li>이  름</li>
+					<li>이메일</li>
+					<li>성  별</li>
+					<li>생년월일</li>
+				</ul>
+			</div>
+		</div>		
 		<div id="input">
 			<ul>
 				<li><input type="text" name="userid" id="userid" class="i4" maxlength="12" size="12" value="${user.userid }" disabled/>
+					<li><span class="reg">&ensp;</span></li>
 				<li><input type="password" name="userpwd" id="userpwd" class="i4" maxlength="12" size="20"/>
+					<li><span class="reg">&ensp;</span></li>
 				<li><input type="password" name="userpwdChk" id="userpwdChk" class="i4" maxlength="12" size="20"/></li>
+					<li><span class="reg">&ensp;</span></li>
 				<li><input type="text" name="username" id="username" class="i4" maxlength="5" size="20" value="${user.username }" disabled/>
+					<li><span class="reg">&ensp;</span></li>
 				<li><input type="text" name="email1" id="email1" class="i3" size="6" value="${user.email1 }"/><span class="tlbl"> @ </span><input type="text" id="email2" class="i3" name="email2" size="6" value="${user.email2 }"/>
 					<select id="domainSelect">
 						<option value="" selected>직접입력</option>
@@ -81,15 +87,18 @@
 						<option value="daum.net">daum.net</option>
 						<option value="hotmali.com">hotmail.com</option>
 					</select></li>
+					<li><span class="reg">&ensp;</span></li>
 				<li><input type="radio" name="gender" id="gender" value="1" disabled <c:if test="${user.gender == 1}">checked</c:if>/><span class="tlbl">남 자</span>
 					<input type="radio" name="gender" id="gender" value="2" disabled <c:if test="${user.gender == 2}">checked</c:if>/><span class="tlbl">여 자</span></li>
-				<li><input type="text" name="birth" id="datepicker" maxlength="10" value="${user.birth }" disabled/>			
+					<li><span class="reg">&ensp;</span></li>
+				<li><input type="text" name="birth" id="datepicker" maxlength="10" value="${user.birth }" disabled/>	
+					<li><span class="reg">&ensp;</span></li>		
 			</ul>
 		</div>
 		<hr id="hr3"/>
 		<div id="bottons">
-			<input type="submit" class="red_Btn" value="수정" style="width:90px"/>
-			<input type="button" id="gray_Btn" value="회원탈퇴" style="width:90px; height:35px; font-size:14px" onclick="location.href='/home/registDel'"/>
+			<input type="submit" class="mint_Btn" value="수정" style="width:90px"/>
+			<input type="button" class="red_Btn" value="회원탈퇴"  onclick="location.href='/home/registDel'"/>
 		</div>
 	</form>
 </div> 

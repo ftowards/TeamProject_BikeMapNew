@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 body{
 		margin:0; padding:0;      
@@ -28,14 +29,6 @@ body{
 		margin:0 auto;
 	}
 
-	@Font-FACE{				
-		font-family:"AMALFI COAST";
-		src:url("/font/AMALFI COAST.TTF");
-	}
-			 		
-
-			 				
-	}
  	#mainBxSliderFrontground{
  		background-color:black;
  		margin-top:-20px;
@@ -56,9 +49,11 @@ body{
 		position:absolute;
 		z-index:120;
 		color:white;
-		font-size:55px;
+		font-size:75px;
 		font-weight:lighter;
-		font-family:"AMALFI COAST";
+
+		font-family: 'Pinyon Script', cursive;
+
 		margin-left:400px;			
 	}
 	#mainLabel label:nth-child(2n){
