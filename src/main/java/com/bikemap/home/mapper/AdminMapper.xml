@@ -48,8 +48,8 @@
 	
 	
 	<!-- 1대1 문의 게시판 -->
-	<select id="qnaTotalRecord" resultType="int">
-		select count(noqna) from qna 
+	<select id="searchQnaRecord" parameterType="com.bikemap.home.admin.AdminSuspendVO" resultType="int">
+		select count(noqna) from qna <include refid="search"></include>
 	</select>
 	
 	<select id="selectQnaAll" parameterType="com.bikemap.home.admin.AdminPagingVO" resultType="com.bikemap.home.admin.AdminQnaVO">
@@ -68,7 +68,7 @@
 		select count(noboard) from review
 	</select>
 	<select id = "reviewAllRecord" resultType="com.bikemap.home.review.ReviewVO">
-		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit
+		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit, thumbUp, thumbDown, scrap
 		from review <include refid="search"></include> order by noboard desc 
 	</select>
 	<select id="searchReviewRecord" parameterType="com.bikemap.home.review.ReviewVO" resultType="int">

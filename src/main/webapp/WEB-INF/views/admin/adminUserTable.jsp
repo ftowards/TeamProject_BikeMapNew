@@ -2,12 +2,45 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="now" class="java.util.Date" />
-<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />  
-<script type="text/javascript">
-	
-
-	
+<script>
+	function makeUserTable(result){
+		$("#userList").children().remove();
+		var listTag = "";
+		for(var i = 0; i < result.length ; i++){
+			
+			//alert(result.length+" : 결과 줄");
+			if(i==0){
+				listTag +=  "<li>번호</li> <li>아이디</li> <li>이름</li> <li>성별</li> <li>나이</li> <li>모임횟수</li> <li>좋아요</li> <li>정지여부</li> <li>정지기간</li>"	;
+			}
+			//list안에 데이터 추가
+			listTag += "<li>"+result[i].rownum+"</li>";
+			listTag += "<li id='contents' ><a href='javascript:userPopupOpen();'>"+result[i].userid+" </a></li>";
+			listTag += "<li>"+result[i].username+"</li>";
+			listTag += "<li>";
+			if(result[i].gender=='1'){
+				listTag +="남";
+			}else if(result[i].gender=='2'){
+				listTag +="여";
+			}
+			listTag += "</li>";
+			
+			listTag += "<li>"+result[i].birth+"세</li>";
+			listTag += "<li>"+result[i].tourcnt+"회</li>";
+			listTag += "<li>"+result[i].heart+"회</li>";
+			
+			listTag += "<li style='color:red'>";
+				if(result[i].endday==null){
+					listTag +="<input type='button' title="+result[i].userid+" id='suspendBtn'/>";
+					listTag += "</li>";
+					listTag += "<li style='color:red'>-</li>";
+				}else{ 
+					listTag +="<input type='button' title="+result[i].userid+" id='suspendEditBtn'/>";
+					listTag += "</li>";
+					listTag += "<li style='color:red'>~"+result[i].endday+"</li>";
+				}		
+			}
+			$("#userList").append(listTag);
+		}
 </script>
 
 <!-- Page Content -->

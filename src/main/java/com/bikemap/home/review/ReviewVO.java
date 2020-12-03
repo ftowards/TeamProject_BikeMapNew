@@ -11,7 +11,32 @@ public class ReviewVO {
 	private String writedate;
 	private String ip;
 	
+	//1203 최병대 추가
+	private int thumbUp;
+	private int thumbDown;
+	private String scrap;
 	
+	
+	
+	
+	public int getThumbUp() {
+		return thumbUp;
+	}
+	public void setThumbUp(int thumbUp) {
+		this.thumbUp = thumbUp;
+	}
+	public int getThumbDown() {
+		return thumbDown;
+	}
+	public void setThumbDown(int thumbDown) {
+		this.thumbDown = thumbDown;
+	}
+	public String getScrap() {
+		return scrap;
+	}
+	public void setScrap(String scrap) {
+		this.scrap = scrap;
+	}
 	public int getNoboard() {
 		return noboard;
 	}

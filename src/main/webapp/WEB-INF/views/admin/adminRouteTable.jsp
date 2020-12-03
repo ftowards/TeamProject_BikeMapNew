@@ -3,33 +3,29 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- Page Content -->
-
-
-
-
-
 	<!-- /Page Sidebar -->
 	
 	<!-- Page Content -->
 	<div class="adminContent">	
 				<div id="adminTable">
 				<h1 class="adminListHead">리뷰</h1>
-				<ul id="reviewList">					
+				<ul id="routeList">					
 					<li><input type="checkbox" id="checkAll" />번호</li>
 					<li>제목</li>
 					<li>작성자</li>
-					<li>레퍼런스 번호</li>
+					<li>추천</li>
+					<li>비추천</li>
 					<li>조회수</li>
-					<li>추천/비추천</li>
+					<li>등록일</li>
 					<!-- DB작업완료 후 for문 생성 -->
 					<c:forEach items="${list}" var="vo" varStatus="status">
-							<input type="hidden" value="${vo.scrap }" />
 							<li> <input type="checkbox" />&nbsp&nbsp${vo.noboard}</li>
-							<li><a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
+							<li><a href = "<%=request.getContextPath()%>/routeList?noboard=${vo.noboard }">${vo.subject }</a></li>
 							<li>${vo.userid}</li>
-							<li>${vo.reference }</li>
+							<li>3회</li>
+							<li>3회</li>
 							<li>${vo.hit}회</li>
-							<li><span style='color:blue'>${vo.thumbUp} </span>/<span >${vo.thumbDown} </span></li>
+							<li>${vo.writedate}</li>
 					</c:forEach>
 				</ul>
 				</div>
@@ -49,6 +45,7 @@
 								<c:if test="${pagingVO.nowPage == page }">
 									<li style='color:#00B0B0; font-weight:600;'>${page }</li>
 								</c:if>
+								
 								<c:if test="${pagingVO.nowPage != page }">
 									<li><a href="javascript:movePage(${page })" style='color:black; font-weight:600;'>${page }</a></li>
 								</c:if>

@@ -17,15 +17,14 @@ public interface AdminDaoImp {
 		public int suspendInsert(AdminSuspendVO vo);
 		
 		//회원 정지수정하기
-		public int suspendUpdate(AdminSuspendVO vo);
-		
+		public int suspendUpdate(AdminSuspendVO vo);	
 		//회원 정지상태 파악하기
 		public int getStopState(String userid);
 		
 		public AdminSuspendVO getEndday(AdminSuspendVO vo);
 		
 		//항목 - QNA
-		public int qnaTotalRecord();
+		public int searchQnaRecord(AdminPagingVO vo);
 		
 		public List<AdminQnaVO>selectQnaAll(AdminQnaVO vo);
 		
