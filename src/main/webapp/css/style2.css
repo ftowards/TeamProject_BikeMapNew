@@ -16,7 +16,9 @@ body{
 	ul{
 		list-style-type:none;
 	}
-			
+	.navbar{
+			margin-bottom:0px;
+	}		
 	.container{
 		margin:0;
 		padding:0;
@@ -89,6 +91,10 @@ body{
 	}
 	
 	/*================================================footer==================================================================*/
+	body{
+		z-index:1000;
+	
+	}
 	#footer{margin:0;padding:0;}
 	#topDiv{height:64px; background-color:rgb(52,52,52);}
 	#bottomDiv{height:162px;background-color:rgb(34,34,34);}

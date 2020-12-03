@@ -20,10 +20,22 @@ public class SaveMyRouteController {
 		this.sqlSession = sqlSession;
 	}
 	
-	@RequestMapping("/myRoute")
-	public String myRoute() {
-		return "/saveMyRoute/myRoute";
+	//진행여행
+	@RequestMapping("/myRouteing")
+	public String myRouteing() {
+		return "/saveMyRoute/myRouteing";
+	}
+	//마감된 여행
+	@RequestMapping("/myRouteClose")
+	public String myRouteClose() {
+		return "/saveMyRoute/myRouteClose";
 	}
 	
+	@RequestMapping("/myRouteEnd")
+	public String myRouteEnd() {
+		return "/saveMyRoute/myRouteEnd";
 	
+	}
+
 }
+
