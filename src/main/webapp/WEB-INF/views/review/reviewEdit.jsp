@@ -6,9 +6,24 @@
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/home/api/ckeditor/ckeditor.js"></script>
 
-<!DOCTYPE html>
-<html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+$(function(){
+	CKEDITOR.replace('content',{
+		height:600
+	});
+	
+	
+	
+});
+
+
+
+</script>
+
+
+
 
 <body>
 
@@ -17,10 +32,10 @@
 	<form method="post" action="/home/reviewEditOk"> 
 		<input type="hidden" name="no" value="${vo.noboard}">
 		제목: <input type ="text" name="subject" value="${vo.subject}"><br/>
-		글내용 : <textarea name = "content" style ="width:70%;height:100px">${vo.content }</textarea><br/> 
+		글내용 : <textarea class="form-control" id ="content" name="content" style ="width:70%;height:100px">${vo.content }</textarea><br/> 
+	
 		<input type="submit" value="수정하기"/>
 	</form>
 
 	
 </body>
-</html>

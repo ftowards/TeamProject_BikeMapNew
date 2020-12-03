@@ -12,6 +12,7 @@ $(function(){
 			height:600
 		});
 	
+
 	
 	$("#writeform").submit(function(){
 		CKEDITOR.instances.content.updateElement();
