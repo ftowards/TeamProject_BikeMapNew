@@ -21,7 +21,14 @@ public class TourVO {
 	private int budget;
 	private int room;
 	private String reggender;
+		private boolean genderM ;
+		private boolean genderF ;
 	private String regage;
+		private boolean age10;
+		private boolean age20;
+		private boolean age30;
+		private boolean age40;
+		private boolean age50;
 	private String writedate;
 	private String state;
 	private String ip;
@@ -57,30 +64,36 @@ public class TourVO {
 		this.content = content;
 	}
 	public String getDeadline() {
-		if(deadlineTime.length() == 1) {
-			deadlineTime = "0"+deadlineTime;
+		if(deadlineTime != null && deadlinedate != null) {
+			if(deadlineTime.length() == 1) {
+				deadlineTime = "0"+deadlineTime;
+			}
+			deadline = deadlinedate + " " + deadlineTime;
 		}
-		deadline = deadlinedate + " " + deadlineTime;
 		return deadline;
 	}
 	public void setDeadline(String deadline) {
 		this.deadline = deadline;
 	}
 	public String getDeparture() {
-		if(departureTime.length() == 1) {
-			departureTime = "0"+departureTime;
+		if(departuredate != null && departureTime != null) {
+			if(departureTime.length() == 1) {
+				departureTime = "0"+departureTime;
+			}
+			departure = departuredate + " "+ departureTime;
 		}
-		departure = departuredate + " "+ departureTime;
 		return departure;
 	}
 	public void setDeparture(String departure) {
 		this.departure = departure;
 	}
 	public String getArrive() {
-		if(arriveTime.length() == 1) {
-			arriveTime = "0"+arriveTime;
+		if(arrivedate != null && arriveTime != null) {
+			if(arriveTime.length() == 1) {
+				arriveTime = "0"+arriveTime;
+			}
+			arrive = arrivedate + " " + arriveTime;
 		}
-		arrive = arrivedate + " " + arriveTime;
 		return arrive;
 	}
 	public void setArrive(String arrive) {
@@ -147,39 +160,81 @@ public class TourVO {
 		this.ip = ip;
 	}
 	public String getDeadlinedate() {
-		return deadlinedate;
+		return deadline.substring(0, deadline.indexOf(" "));
 	}
 	public void setDeadlinedate(String deadlinedate) {
 		this.deadlinedate = deadlinedate;
 	}
 	public String getDeadlineTime() {
-		return deadlineTime;
+		return deadline.substring(deadline.indexOf(" "));
 	}
 	public void setDeadlineTime(String deadlineTime) {
 		this.deadlineTime = deadlineTime;
 	}
 	public String getDeparturedate() {
-		return departuredate;
+		return departure.substring(0, departure.indexOf(" "));
 	}
 	public void setDeparturedate(String departuredate) {
 		this.departuredate = departuredate;
 	}
 	public String getDepartureTime() {
-		return departureTime;
+		return departure.substring(departure.indexOf(" "));
 	}
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
 	public String getArrivedate() {
-		return arrivedate;
+		return arrive.substring(0, arrive.indexOf(" "));
 	}
 	public void setArrivedate(String arrivedate) {
 		this.arrivedate = arrivedate;
 	}
 	public String getArriveTime() {
-		return arriveTime;
+		return arrive.substring(arrive.indexOf(" "));
 	}
 	public void setArriveTime(String arriveTime) {
 		this.arriveTime = arriveTime;
+	}
+	public boolean getGenderM() {
+		if(reggender.indexOf("1") >= 0) {
+			genderM = true;
+			}
+		return genderM;
+	}
+	public boolean getGenderF() {
+		if(reggender.indexOf("2") > 0) {
+			genderF = true;
+		}
+		return genderF;
+	}
+	public boolean getAge10() {
+		if(regage.indexOf("1") >= 0) {
+			age10 = true;
+		}
+		return age10;
+	}
+	public boolean getAge20() {
+		if(regage.indexOf("2") > 0) {
+			age20 = true;
+		}
+		return age20;
+	}
+	public boolean getAge30() {
+		if(regage.indexOf("3") > 0) {
+			age30 = true;
+		}
+		return age30;
+	}
+	public boolean getAge40() {
+		if(regage.indexOf("4") > 0) {
+			age40 = true;
+		}
+		return age40;
+	}
+	public boolean getAge50() {
+		if(regage.indexOf("5") > 0) {
+			age50 = true;
+		}
+		return age50;
 	}
 }

@@ -4,8 +4,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +34,9 @@ public class RegistController {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+
+	@Autowired
+	DataSourceTransactionManager transactionManager;
 	
 	// 회원 가입 폼으로 이동
 	@RequestMapping("/registerForm")
@@ -43,15 +49,29 @@ public class RegistController {
 	@ResponseBody
 	public int idDoubleChk(@RequestParam("userid") String userid) {
 		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
-		return dao.idDoubleChk(userid);
+		int result = 0;
+		try {
+			result = dao.idDoubleChk(userid);
+		}catch(Exception e) {
+			System.out.println("아이디 중복 확인 에러" + e.getMessage());
+		}
+		
+		return result;
 	}
 	
-	// 아이디 중복 체크
+	// 이메일 중복 체크
 	@RequestMapping("/emailDoubleChk")
 	@ResponseBody
 	public int emailDoubleChk(@RequestParam("email") String email) {
 		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
-		return dao.emailDoubleChk(email);
+		int result = 0;
+		try {
+			result = dao.emailDoubleChk(email);
+		}catch(Exception e) {
+			System.out.println("이메일 중복 확인 에러" + e.getMessage());
+		}
+		
+		return result;
 	}
 		
 	// 회원가입 확인
@@ -63,15 +83,20 @@ public class RegistController {
 		RouteDaoImp routeDao = sqlSession.getMapper(RouteDaoImp.class);
 		int result = 0;
 		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		
+		TransactionStatus status = transactionManager.getTransaction(def);
+		
 		// vo에 인증 코드 세팅
 		vo.setCode(new TempKey().getKey(48));
 		
 		try {
-		// 회원 가입
-		result =dao.insertUser(vo);
-		
-		// 회원 가입 오류 없을 시 기본 카테고리 생성
-		routeDao.insertBasicCategory(vo.getUserid());
+			// 회원 가입
+			result =dao.insertUser(vo);
+			
+			// 회원 가입 오류 없을 시 기본 카테고리 생성
+			routeDao.insertBasicCategory(vo.getUserid());
 		
 			// 회원 가입에 오류가 없을 시 인증 메일 발송
 			if(result == 1) {
@@ -88,8 +113,11 @@ public class RegistController {
 			        sendMail.setTo(vo.getEmail());
 		        sendMail.send();
 			}
+			
+			transactionManager.commit(status);
 		}catch(Exception e) {
-			e.getStackTrace();
+			System.out.println("회원 가입 오류 " + e.getStackTrace());
+			transactionManager.rollback(status);
 		}
 		return result;
 	}
@@ -100,18 +128,22 @@ public class RegistController {
 		ModelAndView mav = new ModelAndView();		
 		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
 		
-		vo = dao.checkAuth(vo);
-
-		if(vo.getActive().equals("Y")) {
-			mav.addObject("msg", "이미 인증이 완료된 아이디입니다.");
-		}else {
-			if(dao.authorizeUser(vo)==1) {
-				mav.addObject("msg", vo.getUsername()+"님 인증이 완료되었습니다. 로그인 후 이용해주십시오.");
+		try {
+			vo = dao.checkAuth(vo);
+	
+			if(vo.getActive().equals("Y")) {
+				mav.addObject("msg", "이미 인증이 완료된 아이디입니다.");
 			}else {
-				mav.addObject("msg", "인증에 실패했습니다. 다시 시도해주십시오.");
+				if(dao.authorizeUser(vo)==1) {
+					mav.addObject("msg", vo.getUsername()+"님 인증이 완료되었습니다. 로그인 후 이용해주십시오.");
+				}else {
+					mav.addObject("msg", "인증에 실패했습니다. 다시 시도해주십시오.");
+				}
 			}
+		}catch(Exception e) {
+			System.out.println("이메일 인증 에러 " + e.getMessage());
 		}
-
+		
 		mav.setViewName("regist/authorResult");	
 		return mav;
 	}
@@ -134,10 +166,10 @@ public class RegistController {
 	@ResponseBody
 	public int loginOk(RegistVO vo, HttpSession session) {
 		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
-		RegistVO resultVO = dao.login(vo);
-		
 		int result = 0;
 		try {
+			RegistVO resultVO = dao.login(vo);
+			
 			if(resultVO.getUsername() != null) {
 				if(resultVO.getActive().equals("Y")) {
 					session.setAttribute("logStatus", "Y");
@@ -191,15 +223,20 @@ public class RegistController {
 	public ModelAndView registEditForm(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
-		if( session.getAttribute("pwdChk") == null) {
-			mav.setViewName("redirect:/registEdit");
-			return mav;
+		try {
+			if( session.getAttribute("pwdChk") == null) {
+				mav.setViewName("redirect:/registEdit");
+				return mav;
+			}
+			
+			RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
+			RegistVO vo = dao.selectUser((String)session.getAttribute("logId"));
+			
+			mav.addObject("user", vo);
+		}catch(Exception e) {
+			System.out.println("회원 정보 읽기 에러" + e.getMessage());
 		}
-		
-		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
-		RegistVO vo = dao.selectUser((String)session.getAttribute("logId"));
-		
-		mav.addObject("user", vo);
+
 		mav.setViewName("/regist/registEditForm");
 		
 		return mav;
@@ -210,7 +247,13 @@ public class RegistController {
 	@ResponseBody
 	public int registEditFormOk(RegistVO vo) {		
 		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
-		return dao.updateUser(vo);
+		int result = 0;
+		try {
+			result = dao.updateUser(vo);
+		}catch(Exception e) {
+			System.out.println("회원 정보 수정 에러 "+ e.getMessage());
+		}
+		return result;
 	}
 	
 	// 회원 탈퇴 신청 페이지 이동
@@ -231,14 +274,14 @@ public class RegistController {
 	public int registDelPwdChk(RegistVO vo, HttpSession session) {
 		int result = 0;
 		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
-		RegistVO resultVO = dao.login(vo);
 		
 		try {
+			RegistVO resultVO = dao.login(vo);
 			if(resultVO.getUsername() != null) {
 				result = dao.delUser(vo);
 			}
 		}catch(Exception e) {
-			e.getMessage();
+			System.out.println("회원 탈퇴 오류 " + e.getMessage());
 		}
 		return result;
 	}
@@ -260,11 +303,11 @@ public class RegistController {
 	@ResponseBody
 	public String registFindId(RegistVO vo) {
 		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
-
-		RegistVO resultVO = dao.registFindId(vo);
 		String result = "입력한 정보와 일치하는 회원 정보가 없습니다." ;
 		
 		try {
+			RegistVO resultVO = dao.registFindId(vo);
+
 			if(resultVO.getUserid() != null) { 
 				String userid = resultVO.getUserid();
 				result = userid.substring(0,3);
@@ -273,7 +316,7 @@ public class RegistController {
 				}
 			}
 		}catch(Exception e) {
-			e.getMessage();
+			System.out.println("회원 아이디 찾기 에러" + e.getMessage());
 		}
 		return result;
 	}
@@ -284,6 +327,11 @@ public class RegistController {
 	public int registFindPwd(RegistVO vo) {
 		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
 		int result = 0;
+	
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		
+		TransactionStatus status = transactionManager.getTransaction(def);
 		
 		// 입력한 회원정보로 일치하는 회원 내역이 있는 지 확인
 		try {
@@ -312,8 +360,11 @@ public class RegistController {
 		        resultVO.setUserpwd(tempPwd);
 		        result = dao.updateUser(resultVO);
 			}
+			
+			transactionManager.commit(status);
 		}catch(Exception e) {
 			System.out.println("비밀번호 찾기 에러 " + e.getMessage());
+			transactionManager.rollback(status);
 			result = 0;
 		}
 		
