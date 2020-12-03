@@ -37,7 +37,17 @@
 					 	width:500px;
 					 	height:250px;
 					 	float:left;
+					 	margin-bottom:30px;
 						box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+	
+	
+	}
+	.timeConditionDiv4{
+						border-radius:15px;
+					 	background-color:#fff;
+					 	height:250px;
+						box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+						
 	
 	
 	}
@@ -90,6 +100,7 @@
 
 	#routeResultDiv{
 						width:600px;
+
 						height:840px;
 						float:left;	
 	
@@ -100,7 +111,7 @@
 					float:left;
 					
 	}
-	.labelClass,#departure,#arrive,.conditionBox,.labelClass2,#deadline,#place{	
+	.labelClass,#departure,#arrive,.conditionBox,.labelClass2,#deadline,#place,.labelUseridClass{	
 																				
 																				padding-top:6px;
 																				text-align:center;
@@ -157,7 +168,7 @@
 					
 					
 	}	
-	#departure,#place,.conditionBox,#deadline,#room{
+	#departure,#place,.conditionBox,#deadline,#room,.useridBox{
 														margin-left:20px;
 	}
 	
@@ -173,7 +184,7 @@
 				}
 
 		
-	#room{
+	#room,.useridBox{
 					padding-top:3px;
 					text-align:center;
 					border:none;
@@ -188,7 +199,14 @@
 					box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 				
 	}	
-
+	.useridBox{
+					width:100px;
+					
+	}
+	.useridBox,.labelUseridClass{
+							
+	
+	}
 	#whole,#whole2,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver,#genderboy,#gendergirl{
 																													padding-top:5px;
 																													text-align:center;

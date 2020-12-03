@@ -337,6 +337,7 @@ $(function(){
 			url:url
 			,data:params
 			,success:function(result){
+
 				if(result == null){
 					alert("검색 결과가 없습니다.");
 					return false;
