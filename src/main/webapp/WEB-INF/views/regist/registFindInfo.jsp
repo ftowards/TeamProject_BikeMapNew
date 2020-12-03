@@ -49,7 +49,7 @@
 </script>
 
 <div class="registerMainDiv" style='text-align:center'>
-	<h1 style='margin-top:120px'>아이디 비밀번호 찾기</h1>
+	<h1 style='margin:120px 0 35px 0'>아이디 비밀번호 찾기</h1>
 	<hr id="hr2"/>
 	<p id="t1">아이디 비밀번호를 잊어버리셨나요?<br/>
 	가입 시 등록한 이메일을 입력하시면 임시 비밀번호를 보내드립니다.</p>
