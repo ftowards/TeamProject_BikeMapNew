@@ -43,7 +43,7 @@
 	     			<tr>
 	     				<td>800</td>
 		     			<td><a href="#">세란이네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20/12/01</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 15:00</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">1</a></td>
@@ -54,7 +54,7 @@
 	     			<tr>
 	     				<td>900</td>
 		     			<td><a href="#">소라네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20/12/01</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 15:00</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">1</a></td>
