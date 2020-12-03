@@ -10,8 +10,19 @@ public class PagingVO {
 	private int startPageNum = 1;
 	private int lastPageRecordCount = 8; // 마지막 페이지 레코드 숫자
 	
-	private String searchKey;
-	private String searchWord;
+	/// 검색 단
+	private String departure;
+		private String departuredate;
+		private String departureTime;
+	private String arrive;
+		private String arrivedate;
+		private String arriveTime;
+	private String place;
+	private int distance1;
+	private int distance2;
+	private String reggender;
+	private String regage;
+
 	
 	public int getNowPage() {
 		return nowPage;
@@ -67,20 +78,96 @@ public class PagingVO {
 	public void setLastPageRecordCount(int lastPageRecordCount) {
 		this.lastPageRecordCount = lastPageRecordCount;
 	}
-	public String getSearchKey() {
-		return searchKey;
-	}
-	public void setSearchKey(String searchKey) {
-		this.searchKey = searchKey;
-	}
-	public String getSearchWord() {
-		return searchWord;
-	}
-	public void setSearchWord(String searchWord) {
-		this.searchWord = searchWord;
-	}
-	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
+	
+	
+	public String getDeparture() {
+		if(departuredate.equals("")) {
+			return "";
+		}else {
+			if(departureTime.length() == 1) {
+				departureTime = "0"+departureTime;
+			}
+			departure = departuredate+" "+ departureTime;
+		}
+		return departure;
 	}
 	
+	int cnt2 = 0;
+	public String getDeparturedate() {
+		System.out.println("11"+departuredate+cnt2++);
+		return departuredate;
+	}
+	public void setDeparturedate(String depaturedate) {
+		this.departuredate = depaturedate;
+	}
+	public String getDepartureTime() {
+		return departureTime;
+	}
+	public void setDepartureTime(String depatureTime) {
+		this.departureTime = depatureTime;
+	}
+	int cnt=0;
+	public String getArrive() {	
+		cnt++;
+		System.out.println(arrivedate+"-vo"+cnt);
+		System.out.println(arriveTime+"-vo"+cnt);
+		System.out.println(arrive+"-vo"+cnt);
+		if(arrivedate.equals("")) {
+			return "";
+		}else {
+			if(arriveTime.length() == 1) {
+				arriveTime = "0"+arriveTime;
+			}
+			arrive = arrivedate + " " + arriveTime;
+		}
+
+		return arrive;
+	}
+	public void setArrive(String arrive) {
+		this.arrive = arrive;
+	}
+	public String getArrivedate() {
+		return arrivedate;
+	}
+	public void setArrivedate(String arrivedate) {
+		this.arrivedate = arrivedate;
+	}
+	public String getArriveTime() {
+		return arriveTime;
+	}
+	public void setArriveTime(String arriveTime) {
+		this.arriveTime = arriveTime;
+	}
+	public String getPlace() {
+		return place;
+	}
+	public void setPlace(String place) {
+		this.place = place;
+	}
+	public int getDistance1() {
+		return distance1;
+	}
+	public void setDistance1(int distance1) {
+		this.distance1 = distance1;
+	}
+	public int getDistance2() {
+		return distance2;
+	}
+	public void setDistance2(int distance2) {
+		this.distance2 = distance2;
+	}
+	public String getReggender() {
+		reggender = reggender.replaceAll(",", "%");
+		return reggender;
+	}
+	public void setReggender(String regender) {
+		this.reggender = regender;
+	}
+	public String getRegage() {
+		regage = regage.replaceAll(",", "%");
+		return regage;
+	}
+	public void setRegage(String regage) {
+		this.regage = regage;
+	}
 }

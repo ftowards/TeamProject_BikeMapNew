@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
 
 <!-- 후기보기메인 -->
@@ -29,7 +28,6 @@
 		
 		<div class = content>
 			<div id= "contentlocation">
-
 					<div class = "contentlocationdiv">
 						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png" /></a>
 					</div>			
@@ -56,7 +54,7 @@
 		<div class= "reviewtitle">
 			<span class="title">후기 게시판</span><br><br>
 			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span>
-				<input type="button" style = "float : right"class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'">
+				<input type="button" style = "float : right; margin-right: 34px; "class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'">
 			</div>
 		</div><br/>
 		

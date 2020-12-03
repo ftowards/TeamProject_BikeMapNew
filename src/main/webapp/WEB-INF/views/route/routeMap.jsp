@@ -7,18 +7,18 @@
 <script src="https://www.google.com/jsapi"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <div id="mainDivMap">
 	<div id="info">
 		<!-- 탭 아이콘 패널 -->
 		<div id="naviIcon">
 			<ul>
-				
-					<li><label for="tab1"><img src="<%=request.getContextPath() %>/img/img_course/searchGray.png" id="searchGray"/></label></li>
-					<li><label for="tab2"><img src="<%=request.getContextPath() %>/img/img_course/mapGray.png" id="mapGray"/></label></li>
-					<li><label for="tab3"><img src="<%=request.getContextPath() %>/img/img_course/buildingGray.png"/></label></li>
-					<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png"/></label></li>	
-			
+				<li><label for="tab1"><img src="<%=request.getContextPath() %>/img/img_course/searchGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/searchColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/searchGray.png'"></label></li>
+				<li><label for="tab2"><img src="<%=request.getContextPath() %>/img/img_course/mapGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/mapColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/mapGray.png'"></label></li>
+				<li><label for="tab3"><img src="<%=request.getContextPath() %>/img/img_course/buildingGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/buildingColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/buildingGray.png'"></label></li>
+				<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/saveColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/saveGray.png'"></label></li>
 			</ul>
 		</div>
 		
@@ -34,11 +34,11 @@
 				<div id="searchPannel">
 					<input type="text" name="searchWord" id="searchWord" placeholder="장소·주소를 검색하세요"/><br/>
 					<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> <span class="grayTxt">자전거도로 정보 보기</span>
-					<hr>
+					<hr class="route_hr"/>
 					<div style="height:25px;"onclick="showCategory();">
 						<img id="listImg" src="<%=request.getContextPath() %>/img/img_route/star3.png"/>
 						<label id="searchLbl" class="grayTxt">카테고리 검색 ▼</label></div>
-						<hr/>
+						<hr class="route_hr"/>
 					<!-- 
 					category 분류
 					음식점 fd6 음식점 / ce7 카페
@@ -48,48 +48,48 @@
 				 	-->
 					<ul id="category" style="display:none;">
 						<li>
-							<button value="FD6" class="food_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">음식점</button>
-							<button value="CE7" class="food_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">카&nbsp;&nbsp;&nbsp;페</button>
+							<button value="FD6" class="food_Btn" onclick="searchPlaceCategory(value);">음식점</button>
+							<button value="CE7" class="food_Btn" onclick="searchPlaceCategory(value);">카&nbsp;&nbsp;&nbsp;페</button>
 						</li>
 						<li>
-							<button value="CT1" class="sights_Btn" style='width:24%; height:33px; font-size:12.5px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">문화시설</button>
-							<button value="AT4" class="sights_Btn" style='width:24%; height:33px; font-size:12.5px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">관광명소</button>
+							<button value="CT1" class="sights_Btn" onclick="searchPlaceCategory(value);">문화시설</button>
+							<button value="AT4" class="sights_Btn" onclick="searchPlaceCategory(value);">관광명소</button>
 						</li>
 						<li>
-							<button value="AD5" class="accomodation_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">숙&nbsp;&nbsp;&nbsp;박</button>
+							<button value="AD5" class="accomodation_Btn" onclick="searchPlaceCategory(value);">숙&nbsp;&nbsp;&nbsp;박</button>
 						</li>
 						<li>
-							<button value="CS2" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">편의점</button>
-							<button value="PM9" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">약&nbsp;&nbsp;&nbsp;국</button>
-							<button value="HP8" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">병&nbsp;&nbsp;&nbsp;원</button>
-							<button value="PK6" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">주차장</button>
-							<button value="SW8" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">지하철</button>
-							<button value="BK9" class="convenient_Btn" style='width:24%; height:33px; font-size:13px; margin:5px 5px 0px 15px;' onclick="searchPlaceCategory(value);">은&nbsp;&nbsp;&nbsp;행</button>
+							<button value="CS2" class="convenient_Btn" onclick="searchPlaceCategory(value);">편의점</button>
+							<button value="PM9" class="convenient_Btn" onclick="searchPlaceCategory(value);">약&nbsp;&nbsp;&nbsp;국</button>
+							<button value="HP8" class="convenient_Btn" onclick="searchPlaceCategory(value);">병&nbsp;&nbsp;&nbsp;원</button>
+							<button value="PK6" class="convenient_Btn" onclick="searchPlaceCategory(value);">주차장</button>
+							<button value="SW8" class="convenient_Btn" onclick="searchPlaceCategory(value);">지하철</button>
+							<button value="BK9" class="convenient_Btn" onclick="searchPlaceCategory(value);">은&nbsp;&nbsp;&nbsp;행</button>
 						</li>
-						<hr/>
+						<hr class="route_hr"/>
 					</ul>
 				</div>
 		        <ul id="placesList"></ul>
 		        <div id="pagination"></div>
 			</div>			
 			<!-- 길찾기 -->
-			<div class="tab">
+			<div class="tab"><br/><br/>
 				<ul id="routePoint">
 					<li class="tab_liTag"><input type="text" class="startBox" placeholder="출발지를 지정하세요" readonly/>
 						<input type="hidden" name="routePoint"/></li>
 					<li class="tab_liTag"><input type="text" class="arriveBox" placeholder="도착지를 지정하세요" readonly/>
 						<input type="hidden" name="routePoint"/></li>
 				</ul>
-				<div style='padding-left:33px; margin-top:10px'>
+				<div style='padding-left:65px; margin-top:10px'>
 					<select name="preference" class="selectBox" style='width:130px'>
 						<option value="recommended" selected>추천 경로</option>
 						<option value="shortest">최단 거리</option>
 					</select>
 					<input type="button" value="경로 탐색" onclick="searchRoute();" class="mint_Btn" style='font-size:14px; height:30px'/>
 				</div>
-				<div style='padding-left:50px'>
-					<input type="button" value="지점 전환" onclick="changeStartArrive();" class="blue_Btn" style='font-size:14px; width:85px; padding: 6px 12px'/>
-					<input type="button" value="초기화" onclick="clearRoute();" class="gray_Btn" style='font-size:13px; width:85px'/>
+				<div style='text-align:center'>
+					<input type="button" value="지점 전환" onclick="changeStartArrive();" class="blue_Btn" style='font-size:16px; width:105px; padding: 11px 12px'/>
+					<input type="button" value="초기화" onclick="clearRoute();" class="gray_Btn" style='font-size:16px; width:105px; padding: 11px 12px'/>
 				</div>
 				<div id="routeInfo">
 					총 거리 : <span id="distance"></span>km<br/>
@@ -124,9 +124,9 @@
 			<div class="tab">
 				<c:if test="${logId == null }">
 						<img id="lockImg" src="<%=request.getContextPath() %>/img/img_register/lock.png"/>
-						<div style='line-height:10px; margin-bottom:55px;'>
-							<h3 style='padding-left:83px'>코스 저장하기</h3>
-							<h4 style='padding-left:45px; color:#005766'>로그인 후 이용 가능합니다.</h4>
+						<div style="line-height:10px; margin-bottom:55px; text-align:center; font-family:'Noto Sans KR', sans-serif">
+							<h3 style='display:inline-block;'>코스 저장하기</h3><br/>
+							<h4 style='display:inline-block; color:#005766'>로그인 후 이용 가능합니다.</h4>
 						</div>
 						<div id="logButtons">
 							<input type="button" id="login" name="login" value="로그인" class="mint_Btn" style='width:80px; height:35px; font-size:15px'/>

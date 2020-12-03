@@ -182,7 +182,6 @@
 		} else {
 			url = "<%=request.getContextPath()%>/searchRouteOk";
 		}
-
 		$.ajax({
 			type : 'POST',
 			url : url,

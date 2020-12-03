@@ -15,6 +15,12 @@ public interface ReviewDaoImp {
 	
 	//레코드 1개 선택
 	public ReviewVO reviewSelect(int noboard);
+
+	//글수정
+	public int reviewUpdate(ReviewVO vo);
+
+	//글삭제
+	public int reviewDelete(int noboard, String userid);
 	
 	
 }

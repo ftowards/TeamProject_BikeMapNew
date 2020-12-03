@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -265,6 +266,51 @@ public class RouteController {
 			vo = dao.selectRouteRating(vo);
 		}catch(Exception e) {
 			System.out.println("평점 호출 에러" +e.getMessage());
+		}
+		return vo;
+	}
+	
+	// 썸네일용 루트 검색
+	@RequestMapping("/selectRouteForThumbnail")
+	@ResponseBody
+	public RouteVO selectRouteForThumbnail(int noboard) {
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		RouteVO vo = new RouteVO();
+		try {
+			vo = dao.selectRoute2(noboard);
+		}catch(Exception e) {
+			System.out.println("썸네일용 데이터 호출 에러"+ e.getMessage());
+		}
+		return vo;
+	}
+	
+	
+	///// 루트 검색 -- 레퍼런스 용도
+	@RequestMapping(value="/searchReference")
+	@ResponseBody
+	public List<RouteVO> searchReference(@RequestParam("searchWord") String searchWord){
+		List<RouteVO> list = new ArrayList<RouteVO>();
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			list = dao.searchReference(searchWord);
+		}catch(Exception e) {
+			System.out.println("레퍼런스 검색 에러" + e.getMessage());
+		}
+		return list;
+	}
+	
+	// 검색한 레퍼런스로 맵 세팅하기
+	@RequestMapping("/setMap")
+	@ResponseBody
+	public RouteVO setMap(int noboard) {
+		RouteVO vo = new RouteVO();
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			vo = dao.selectRoute(noboard);
+		}catch(Exception e) {
+			System.out.println("레퍼런스 맵 호출 에러" + e.getMessage());
 		}
 		return vo;
 	}

@@ -23,11 +23,59 @@
  	input:focus {
     	outline: none;
 	}
+	select:focus {
+		outline: none;
+	}
 	textarea#tourReplyWrite::placeholder{
 		font-size:16px;
 		font-weight:bold;
 		color:#AAAAAA;
 	}
+	
+	
+	/*-------화면 전환 페이드 효과-------*/
+	.routeSearchDiv, .routeSearchViewDiv2 {
+	    animation: fadein 2s;
+	    -moz-animation: fadein 2s; /* Firefox */
+	    -webkit-animation: fadein 2s; /* Safari and Chrome */
+	    -o-animation: fadein 2s; /* Opera */
+	}
+	@keyframes fadein {
+	    from {
+	        opacity:0;
+	    }
+	    to {
+	        opacity:1;
+	    }
+	}
+	@-moz-keyframes fadein { /* Firefox */
+	    from {
+	        opacity:0;
+	    }
+	    to {
+	        opacity:1;
+	    }
+	}
+	@-webkit-keyframes fadein { /* Safari and Chrome */
+	    from {
+	        opacity:0;
+	    }
+	    to {
+	        opacity:1;
+	    }
+	}
+	@-o-keyframes fadein { /* Opera */
+	    from {
+	        opacity:0;
+	    }
+	    to {
+	        opacity: 1;
+	    }
+	}
+
+	/*----------------------------*/
+
+
 	.routeSearchDiv{
 		text-align:center;
 		width:1200px;
@@ -120,11 +168,11 @@
 		padding:0px 10px 10px 20px;
 	}
 	#starLbl{
-		font-size:20px;
+		font-size:23px;
 		font-weight:bold;
-		padding-left:5px;
+		padding-right:6px;
 		position:relative;
-		bottom:7px;
+		top:4px;
 	}
 
 	.course_Info{
@@ -134,6 +182,7 @@
 		color:#004554;
 		margin-top:45px;
 		letter-spacing:2px;
+		font-family:'Noto Sans KR', sans-serif;
 	}
 	
 	.orderRadio{
@@ -199,10 +248,9 @@
 	}
 	.contentDiv{
 		float:left;
-
-		width:25%;
+		width:250px;
 		text-align:center;
-		margin-bottom : 20px;
+		margin : 0 25px 20px 25px;
 	}
 	.map{
 		width : 250px;
@@ -230,6 +278,7 @@
 	    color : gray;
 		
 		margin-bottom : 3px;
+		font-family:'Noto Sans KR', sans-serif;
 	}
 	
 	.routeSubscript li:first-child, .routeSubscript li:nth-of-type(2){
@@ -279,7 +328,7 @@
 	/*==========================routeSearchView.jsp==============================*/
 	.routeSearchViewDiv2{
 		width:1200px;
-		height:2600px;
+		height:2880px;
 		margin:0 auto;
 	}
 	#mapDiv{
@@ -317,6 +366,11 @@
 		float:left;
 		margin-bottom:30px;
 	}
+	#elevation_chart{
+		width:100%;
+		height:25%;
+	}
+
 	#blueLine{
 		border:3px inset #5AB1C0;
 		margin-bottom:5px;
@@ -328,7 +382,6 @@
 		height:80%;
 		float:left;
 		margin:0 0 30px 20px;
-		background-color:orange;
 	}
 	#routeInfo{
 		height:auto;
@@ -353,7 +406,7 @@
 		padding:13px;
 	}
 	#gradeSelect{
-		width:140%;
+		width:90%;
 		height:63%;
 		font-size:14px;
 		font-weight:bold;
@@ -361,12 +414,12 @@
 		border:0px;
 		border-radius:5px;
 		background-color:#eee;
-		background: url(../img/img_route/selectBox.png) no-repeat 94% 55%;
+		background: url(../img/img_route/selectBox.png) no-repeat 93% 55%;
 		-webkit-appearance: none; /* 네이티브 외형 감추기 */
     	-moz-appearance: none;
     	appearance: none;
-    	margin-right:5px;
-    	padding-left:10px;
+    	margin:0 -19px 0 20px;
+    	padding-left:20px;
 	}
 	
 	 .gray_Btn{
@@ -385,14 +438,20 @@
 		background-color: white;
  	}
  	#grayBtn{
- 		width:50%;
- 		height:63%;
+ 		width:33%;
+ 		height:60%;
  		float:left;
  		position: relative;
   		left:203px;
-  		bottom:37px;
+  		bottom:39px;
   		font-size:15px;
  	}
+ 	.saveBtns{
+ 		text-align:center;
+ 		margin-top:160px;
+ 		padding:23px;
+ 	}
+ 	
  	.mint_Btn{
 		font-size:15px;
 		font-weight:bold;
@@ -431,6 +490,28 @@
 		float:left;
 		margin-top:25px;
 	}
+	
+	#foodTxt, #sightsTxt, #accommodationTxt, #convenientTxt{
+		font-size:16px;
+	}
+	#foodTxt{
+		color:#d4350a;
+		text-shadow:1px 1px 10px #ff985b;
+	}
+	#sightsTxt{
+		color:#032b7b;
+		text-shadow:1px 1px 10px #9eaaff;
+	}
+	#accommodationTxt{
+		color:#4a0e65;
+		text-shadow:1px 1px 10px #ad92ff;
+	}
+	#convenientTxt{
+		color:#276cab;
+		text-shadow:1px 1px 10px #9cd1ff;
+	}
+	
+	
 	#placeList ul{
 		display:inline;
 		margin-top:45px;
@@ -663,4 +744,26 @@
 	
 	.slider.round:before {
 	  border-radius: 50%;
+	}
+	
+	
+	
+	.map {
+	    -webkit-transform:scale(1);
+	    -moz-transform:scale(1);
+	    -ms-transform:scale(1); 
+	    -o-transform:scale(1);  
+	    transform:scale(1);
+	    -webkit-transition:.3s;
+	    -moz-transition:.3s;
+	    -ms-transition:.3s;
+	    -o-transition:.3s;
+	    transition:.3s;
+	}
+	.map:hover {
+	    -webkit-transform:scale(1.1);
+	    -moz-transform:scale(1.1);
+	    -ms-transform:scale(1.1);   
+	    -o-transform:scale(1.1);
+	    transform:scale(1.1);
 	}
