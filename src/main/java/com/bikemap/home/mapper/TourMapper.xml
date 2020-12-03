@@ -69,8 +69,9 @@
 		#{distance}, #{speed, jdbcType=VARCHAR}, #{budget, jdbcType=VARCHAR}, #{room}, #{reggender}, #{regage}, #{ip})
 	</insert>
 	<select id="tourSelect" parameterType="int" resultType="com.bikemap.home.tour.TourVO">
-		select noboard, title, userid, reference, content, to_char(deadline,'YY/MM/DD') deadline,to_char(departure,'YY/MM/DD') departure, to_char(arrive,'YY/MM/DD') arrive, place, distance, speed, budget, room, reggender, regage, writedate 
-	 	from tour where noboard=#{noboard}
+		select noboard, title, userid, reference, content, to_char(deadline,'YY/MM/DD HH24') deadline,to_char(departure,'YY/MM/DD HH24') departure,
+		to_char(arrive,'YY/MM/DD HH24') arrive,	place, distance, speed, budget, room, reggender, regage 
+	 	from tour where noboard = #{noboard}
 	</select>
  	<select id="lastTourNo" resultType="int">
 		select noboard from (select noboard from tour where userid = #{param1} order by 1 desc) where rownum = 1
@@ -78,4 +79,18 @@
 	<insert id="insertTourComplist" parameterType="com.bikemap.home.tour.ComplistVO">
 		insert into complist(noboard, userid, state) values(#{noboard}, #{userid}, #{state})
 	</insert>
+	<select id="checkTourComplist" resultType="String" parameterType="com.bikemap.home.tour.ComplistVO">
+		select state from complist where noboard =#{noboard} and userid = #{userid}
+	</select>
+	<delete id="cancelTour" parameterType="com.bikemap.home.tour.ComplistVO">
+		delete from complist where noboard = #{noboard} and userid = #{userid}
+	</delete>
+	<select id="selectTourComplist" resultType="com.bikemap.home.tour.ComplistVO">
+		select a.userid, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(b.birth, 'YYYY'))+1),-1) age,
+		b.tourcnt, b.heart, a.state from complist a join regist b on a.userid = b.userid where a.noboard = #{param1}
+		order by a.state desc, userid asc
+	</select>
+	<select id="getDeadline" resultType="String">
+		select to_char(deadline, 'YYYY/MM/DD/HH24') deadline from tour where noboard =#{param1}
+	</select>
  </mapper>

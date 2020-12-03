@@ -355,13 +355,13 @@ $(function(){
 		var $result = $(result);
 		var tag="";
 		$result.each(function(i,v){
-			tag += "<div class='tourImgDivClass'>";
+			tag += "<div class='tourImgDivClass'><a href='/home/tourView?noboard="+v.noboard+"'>";
 			tag += "<div id='map"+i+"' class='tourImgClass'></div>";
 			tag += "<div class='blackWrapDiv'>";	
 			tag += "<p style='font-size:25px;' class='tourBoardTitle'><b>"+ v.title+"</b></p>";
 			tag += "<p style='font-size:20px;' class='tourBoardWrite'>"+v.departure+'~'+v.arrive+"</p>";
 			tag += "<hr style='width:200px;'/>";
-			tag += "<p style='font-size:40px;' class='tourBoardDay'><b>1Day</b></p></div></div>";
+			tag += "<p style='font-size:40px;' class='tourBoardDay'><b>1Day</b></p></div></a></div>";
 			
 			// 썸네일 만들기
 			$.ajax({

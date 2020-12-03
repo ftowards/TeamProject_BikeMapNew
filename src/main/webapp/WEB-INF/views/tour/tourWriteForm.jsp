@@ -494,11 +494,15 @@ function setMapData(){
 	
 }
 
-function getRoutePoint(point){
+function getRoutePoint(point, chk){
 	var points = point.replace("[/]","/").split("/");
 	var p = new kakao.maps.LatLng(points[2], points[1]);
 	routePosition.push(p);
 	bounds.extend(p);
+	
+	if(chk == 1){
+		$("#place").val(points[0]);
+	}
 }
 
 function setMap(result){
@@ -508,7 +512,6 @@ function setMap(result){
 	
 	var distance = result.distance;
 	$("#distance").val(distance);
-	
 	
 	routePosition = [];
 	bounds = new kakao.maps.LatLngBounds();
@@ -522,7 +525,7 @@ function setMap(result){
 	var routeData = result.noboard;
 	
 	// 경로 위치 저장
-	getRoutePoint(result.routepoint1);
+	getRoutePoint(result.routepoint1, 1);
 	getRoutePoint(result.routepoint2);
 	if(result.routepoint3 != null ) {getRoutePoint(result.routepoint3)}
 	if(result.routepoint4 != null ) {getRoutePoint(result.routepoint4)}

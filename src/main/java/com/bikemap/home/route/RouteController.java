@@ -7,7 +7,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +30,10 @@ public class RouteController {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+	
+	@Autowired
+	DataSourceTransactionManager transactionManager;
+	
 	//코스검색
 	@RequestMapping("/routeSearch")
 	public ModelAndView routeSearch() {
@@ -142,9 +149,14 @@ public class RouteController {
 	@ResponseBody
 	public int insertCategory(HttpSession session, RouteCateVO vo) {
 		RouteDaoImp routeDao = sqlSession.getMapper(RouteDaoImp.class);
-		
-		vo.setUserid((String)session.getAttribute("logId"));
-		return routeDao.insertCategory(vo);
+		int result = 0;
+		try {
+			vo.setUserid((String)session.getAttribute("logId"));
+			result = routeDao.insertCategory(vo);
+		}catch(Exception e) {
+			System.out.println("코스 카테고리 추가 에러 " + e.getMessage());
+		}
+		return result;
 	}
 	
 	// 카테고리 리스트 새로 불러오기
@@ -153,8 +165,14 @@ public class RouteController {
 	public List<RouteCateVO> selectCategory(HttpSession session){
 		RouteDaoImp routeDao = sqlSession.getMapper(RouteDaoImp.class);
 		String userid  = (String)session.getAttribute("logId");
+		List<RouteCateVO> list = new ArrayList<RouteCateVO>();
 		
-		return routeDao.selectCategory(userid);
+		try {
+			list = routeDao.selectCategory(userid);
+		}catch(Exception e) {
+			System.out.println("루트 카테고리 호출 에러 " +e.getMessage());
+		}
+		return list;
 	}
 	
 	// 루트 저장 팝업 열기
@@ -208,9 +226,14 @@ public class RouteController {
 		
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		
-		// 루트 저장
-		result = dao.insertRoute(routeVO);
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		
+		TransactionStatus status = transactionManager.getTransaction(def);
+		
 		try {
+			// 루트 저장
+			result = dao.insertRoute(routeVO);
 			// 루트 저장 성공 시
 			if(result == 1) {
 				// 루트 번호를 구하여
@@ -224,8 +247,11 @@ public class RouteController {
 				routePlaceVO.setNoboard(noBoard);
 				dao.insertRoutePlaceList(routePlaceVO);
 			}
+			
+			transactionManager.commit(status);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
+			transactionManager.rollback(status);
 			result = 0;
 		}
 		return result;
@@ -237,6 +263,11 @@ public class RouteController {
 	public int rateRoute(HttpSession session, RouteVO vo) {
 		int result = 0;
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		
+		TransactionStatus status = transactionManager.getTransaction(def);
 		
 		vo.setUserid((String)session.getAttribute("logId"));
 		try {			
@@ -250,8 +281,10 @@ public class RouteController {
 					result = dao.insertRouteRateList(vo);
 				}
 			}
+			transactionManager.commit(status);
 		}catch(Exception e) {
 			System.out.println("평점 주기 에러 " + e.getMessage());
+			transactionManager.rollback(status);
 		}
 		return result;
 	}

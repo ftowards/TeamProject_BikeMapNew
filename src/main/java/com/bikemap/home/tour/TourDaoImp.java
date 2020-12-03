@@ -27,4 +27,16 @@ public interface TourDaoImp {
 	
 	// 투어 리스트 추가하기
 	public int insertTourComplist(ComplistVO vo);
+	
+	// 투어 참가 여부 확인하기
+	public String checkTourComplist(ComplistVO vo);
+	
+	// 투어 참가 취소하기
+	public int cancelTour(ComplistVO vo);
+	
+	// 투어 참가자 리스트 가져오기
+	public List<ComplistVO> selectTourComplist(int noboard);
+	
+	// 데드라인 확인
+	public String getDeadline(int noboard);
 }

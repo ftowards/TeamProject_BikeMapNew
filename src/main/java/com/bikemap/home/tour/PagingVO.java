@@ -79,11 +79,12 @@ public class PagingVO {
 		this.lastPageRecordCount = lastPageRecordCount;
 	}
 	
+	public void setDeparture(String departure) {
+		this.departure = departure;
+	}
 	
 	public String getDeparture() {
-		if(departuredate.equals("")) {
-			return "";
-		}else {
+		if(departuredate != null && departureTime != null) {
 			if(departureTime.length() == 1) {
 				departureTime = "0"+departureTime;
 			}
@@ -92,9 +93,7 @@ public class PagingVO {
 		return departure;
 	}
 	
-	int cnt2 = 0;
 	public String getDeparturedate() {
-		System.out.println("11"+departuredate+cnt2++);
 		return departuredate;
 	}
 	public void setDeparturedate(String depaturedate) {
@@ -106,21 +105,14 @@ public class PagingVO {
 	public void setDepartureTime(String depatureTime) {
 		this.departureTime = depatureTime;
 	}
-	int cnt=0;
+
 	public String getArrive() {	
-		cnt++;
-		System.out.println(arrivedate+"-vo"+cnt);
-		System.out.println(arriveTime+"-vo"+cnt);
-		System.out.println(arrive+"-vo"+cnt);
-		if(arrivedate.equals("")) {
-			return "";
-		}else {
+		if(arrivedate != null && arriveTime != null) {
 			if(arriveTime.length() == 1) {
 				arriveTime = "0"+arriveTime;
 			}
 			arrive = arrivedate + " " + arriveTime;
 		}
-
 		return arrive;
 	}
 	public void setArrive(String arrive) {
