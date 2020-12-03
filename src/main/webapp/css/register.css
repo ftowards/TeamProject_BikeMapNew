@@ -102,14 +102,14 @@
 	
 	/*==================================registDelChk==================================*/
 	.contentBox2{
-		height : 350px;
+		height : 440px;
 		background-color : #eee;
 		border-top : 3px solid #ccc;
 		border-bottom : 3px solid #ccc;
-		width:800px;
+		width:1000px;
 		margin:0 auto;
 		padding-top:40px;
-		margin-top:50px;
+		margin-top:160px;
 		margin-bottom:100px;
 	}
 	.contentBox2 div:first-child{
@@ -117,21 +117,20 @@
 		height : 120px;
 	}
 	#LockImg{
-		width:57px;
-		height:55px;
+		width:65px;
+		height:63px;
 	}
 	#contentTxt1{
 		font-weight:bold;
-		font-size:1.7em;
+		font-size:30px;
+		margin-top:20px;
 		letter-spacing:1px;
 	}
 	#contentTxt2{
 		padding-top:20px;
 		letter-spacing:-1px;
 		line-height:25px;
-	}
-	#pwdChk{
-		padding-right:15px;
+		font-size:16px;
 	}
 	.mintTxt{
 		color:#00B0B0;
@@ -144,14 +143,14 @@
 		background-color : #353535;
 		text-decoration: none;
 		text-align : center;
-		font-size : 18px;
+		font-size : 20px;
 		margin-left: 15px;
 		color: white;
 	}
 	.gray_Btn:hover{
-		color : #353535;
-		font-weight:bold;
-		background-color: white;
+		color : white;
+		background-color: #565656;
+		border : #565656 2px solid;
 	}	
 	
 	
