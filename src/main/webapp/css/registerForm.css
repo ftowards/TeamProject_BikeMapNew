@@ -174,12 +174,12 @@
 	}
 	#hr2{
 		border:0;
-		width:50px;
+		width:60px;
 		background-color:#00B0B0;
-		height:2px;
+		height:3px;
 	}
 	.l{
-		font-size:1.1em;
+		font-size:24px;
 		color:#00B0B0;
 		font-weight:900;
 	}
@@ -235,16 +235,17 @@
 	/*==============================registWelcome==============================*/
 	.registerMainDiv2 *{
 		margin : 0 auto;
-		width:1200px;
+		width:1000px;
 		text-align : cente;
 		margin-bottom:200px;
 	}
 	#welcome{
-		font-size:2.7em;
+		font-size:55px;
 		font-weight:100;
 		letter-spacing:-1px;
-		margin-top:80px;
+		margin-top:140px;
 		margin-bottom:20px;
+		text-align:center;
 	}
 	#welcomeImg{
 		width:100px;
@@ -252,40 +253,42 @@
 		margin:50px 0 30px 0;
 	}
 	.contentText{
-		width:550px;
+		width:100%;
 		height:50px;
 		letter-spacing:-1px;
-		line-height : 23px;
-		padding-left:250px;
-		font-size:15px;
+		line-height : 28px;
+		font-size:18px;
 		color:#353535;
 		text-align:left;
 		position:relative;
-		bottom:135px;
+		bottom:100px;
+		display:inline;
 	}
 	.mintTxt{
 		color:#00B0B0;
 	}
 	#box{
-		height : 350px;
+		height : 420px;
 		background-color : #eee;
 		border-top : 3px solid #ccc;
 		border-bottom : 3px solid #ccc;
 		margin:0 auto;
-		width:800px;
+		width:1000px;
 	}
 	#box div:first-child{
 		border-bottom : 2px solid #ddd;
-		height : 255px;
+		height : 280px;
+		text-align:center;
 	}
 	#welcomtBtns{
-		height:50px;
+		height:auto;
 		padding-top:20px;
+		text-align:center;
 	}
 	.btn{
 		width:25%;
-		height:50px;
-		font-size:17px;
+		height:60px;
+		font-size:20px;
 		margin-left:10px;
 	}
 	#gray_Btn{
@@ -293,28 +296,24 @@
 		background-color : #353535;
 		text-decoration: none;
 		text-align : center;
-		padding : 6px 12px;
 		margin : 0 10px;
 		color: white;
 	}
 	#gray_Btn:hover{
-		color : #353535;
-		font-weight:bold;
-		background-color: white;
+		color : white;
+		background-color: #565656;
+		border:0;
 	}
 	#mint_Btn{
-		font-weight:bold;
 		text-decoration: none;
 		text-align : center;
-		padding:3px 6px;
 		margin:0 10px;
 		color : white;
 		border: 1px solid #00B0B0;
 		background-color: #00B0B0;
 	}
 	#mint_Btn:hover{
-		color : #00B0B0;
-		font-weight:bold;
-		background-color: white;
-		border:2px solid #00B0B0;
+		color : white;
+		background-color: rgb(0 199 199);
+		border:0;
 	}
