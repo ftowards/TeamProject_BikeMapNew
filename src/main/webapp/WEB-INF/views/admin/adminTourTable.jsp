@@ -14,10 +14,8 @@
 						<li><input type="checkbox" id="checkAll" />번호</li>
 						<li>제목</li>
 						<li>작성자</li>
-						<li>추천</li>
-						<li>비추천</li>
-						<li>조회수</li>
-						<li>등록일</li>
+						<li>완료여부</li>
+						
 					
 						<!-- DB작업완료 후 for문 생성 -->
 						
@@ -25,10 +23,14 @@
 							<li> <input type="checkbox" />&nbsp&nbsp${vo.noboard}</li>
 							<li><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
-							<li>3회 수정</li>
-							<li>3회 수정</li>
-							<li>3회 수정</li>
-							<li>${vo.writedate}</li>
+							<li>
+								<c:if test="${vo.state=='1'}">
+									미완료
+								</c:if>
+								<c:if test="${vo.state=='2'}">
+									완료
+								</c:if>
+							</li>
 					</c:forEach>
 					</ul>
 			</div>
