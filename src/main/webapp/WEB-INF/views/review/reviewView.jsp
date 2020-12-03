@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 
 <!-- 후기보기메인 -->
 <div class="container">
 <div class = "mainDiv">
 
 	<div class="reviewBody">	
-		<div class = "serch">
+		<div class = "search">
 			<select name="searchKeyword" id="searchKeyword">
 				<option value="1">키워드</option>
 				<option value="2">글제목</option>
@@ -22,29 +23,28 @@
 
 <!-- 도시 검색창 -->		
 		<div class= "reviewtitle">
-			<span class="title">도시검색</span><br><br>
+			<span class="title">도시검색</span><br/><br/>
 		</div>
-		
-		
+
 		<div class = content>
 			<div id= "contentlocation">
-					<div class = "contentlocationdiv">
-						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png" /></a>
-					</div>			
-					<div class = "contentlocationdiv">
-						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg" /></a>
-					</div>
-					<div class = "contentlocationdiv">
-						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>
-					</div>
-					<div class = "contentlocationdiv">
-						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a>
-					</div>
-					<div class = "contentlocationdiv">
-						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a>
-					</div>
-					<div class = "contentlocationdiv">
-						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a>
+				<div class = "contentlocationdiv">
+					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png" /></a>
+				</div>			
+				<div class = "contentlocationdiv">
+					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg" /></a>
+				</div>
+				<div class = "contentlocationdiv">
+					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>
+				</div>
+				<div class = "contentlocationdiv">
+					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a>
+				</div>
+				<div class = "contentlocationdiv">
+					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a>
+				</div>
+				<div class = "contentlocationdiv">
+					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a>
 				</div>
 			</div>
 		</div>
@@ -62,19 +62,23 @@
 <!-- 후기창 게시판-->
 
 		
-		
+		<hr style='border:1.5px solid black; background-color:black'/>
 		<c:forEach var="vo" items="${list}">
 				<div class ="boardlist">
 					<div class="reviewContents">
-			<!-- 후기창 왼쪽 면-->
+					
+						<!-- 후기창 왼쪽 면-->
 						<div class ="left">
-							<img src="<%=request.getContextPath() %>/img/img_main/banner5.jpg"style="width:100px; height:100px;"/>
+							<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
 						</div>
-				<!-- 후기창 오른쪽 면 -->
-		
+						
+						<!-- 후기창 오른쪽 면 -->
 						<div class="right">
+						
 							<div class= "subtitle">
-								<li>${vo.noboard }&emsp;<a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
+								<ul>
+									<li>${vo.noboard }&emsp;<a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
+								</ul>
 <!-- 								<a href="#"> -->
 <%-- 									<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/> --%>
 <!-- 								</a>  -->
@@ -82,13 +86,16 @@
 <%-- 									<img class="badge2" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/> --%>
 <!-- 								</a>  -->
 							</div>
-								<li id="reviewtext">${vo.content }</li>
-						</div>
-						<div class="writedate">
-							<ul>
-								<li class="userid" style="float:left; margin-left: 5px;">${vo.userid }</li>
-								<li style="margin-left: 595px;">${vo.writedate }</li>
-							</ul>
+								<ul>
+									<li id="reviewtext">${vo.content }</li>
+								</ul>
+								
+							<div class="writedate">
+								<ul>
+									<li class="userid" style="float:left; margin-left: 5px;">${vo.userid }</li>
+									<li style="margin-left: 595px;">${vo.writedate }</li>
+								</ul>
+							</div>
 						</div>
 						
 		 			</div>
