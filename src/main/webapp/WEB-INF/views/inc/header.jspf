@@ -37,7 +37,9 @@
                             <li><a href="#" class="dropdown-toggle"  data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;${logName}님<span class="caret"></span></a>
 								<ul class="dropdown-menu">
                                     <li><a href="<%=request.getContextPath()%>/registEdit">마이페이지</a></li>
-                                    <li><a href="<%=request.getContextPath()%>/myRouteing">저장된 루트</a></li>
+                                    <li><a href="<%=request.getContextPath()%>/myRouteing">내모임</a></li>
+                                    <li><a href="<%=request.getContextPath()%>/myApplyTour">참여모임</a></li>
+                                      <li><a href="#">저장된 루트</a></li>
                                     <li><a href="#">1:1문의</a></li>
                                     <li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
                                 </ul>                            
