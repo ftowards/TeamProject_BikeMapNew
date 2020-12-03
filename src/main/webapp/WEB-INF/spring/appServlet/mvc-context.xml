@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 
+		Intercepter 처리를 위해서는 beans시작태그에 context, mvc가 추가
+		
+		Intercepter할 매핑주소를 기록한다.
+		
+		DispacherServlet이 알아서 접속이 이루어지면 interceptor한다.
+		
+		web.xml에 mvc-context.xml파일을 등록한다.
+		
+	 -->
+	 <mvc:interceptors>
+	 	<mvc:interceptor>
+	 		<mvc:mapping path="/insertRouteList"/>
+	 		<mvc:mapping path="/insertRoute"/>
+	 		<mvc:mapping path="/rateRoute"/>	 
+	 		
+	 		<mvc:mapping path="/tourWriteForm"/>
+	 		<mvc:mapping path="/tourWriteFormOk"/>
+	 		<mvc:mapping path="/applyTour"/>
+	 		<mvc:mapping path="/checkCompllistIn"/>
+	 		<mvc:mapping path="/cancelTour"/>
+	 			 		
+	 		<bean class="com.bikemap.home.interceptor.LoginInterceptor"/>	
+	 	</mvc:interceptor>
+	 </mvc:interceptors>
+	 
+</beans>

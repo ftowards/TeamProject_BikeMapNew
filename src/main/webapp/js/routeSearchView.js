@@ -135,6 +135,13 @@ $(function(){
 	
 	
 	$("#routeCollect").on('click',function(){
+		// 로그인 상태가 아닐 때 로그인 팝업 띄우기
+		var logId = $("#replyUseridDiv").text();
+		if(logId == ""){
+			window.open("/home/loginPopup","Bikemap Login","width=600px, height=200px, left =200px, top=200px");
+			return false;
+		}
+	
  		window.open("/home/routeCollect","Bikemap","width=400px, height=200px, left =300px, top=300px");
  	});
 });
@@ -178,6 +185,14 @@ $("input[name=convenientMarker]").on("change",function(){
 
 ////// 평점 주기
 $("#grayBtn").on('click', function(){
+	
+	// 로그인 상태가 아닐 때 로그인 팝업 띄우기
+	var logId = $("#replyUseridDiv").text();
+	if(logId == ""){
+		window.open("/home/loginPopup","Bikemap Login","width=600px, height=200px, left =200px, top=200px");
+		return false;
+	}
+
   	var rating = $("#gradeSelect").val();
   	
   	if(rating == ""){

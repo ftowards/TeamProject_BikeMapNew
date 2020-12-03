@@ -138,11 +138,13 @@
 				<!-- body -->
 				<div class="modal-body">
 					<ul id="listTitle">
-						<li>회원 아이디</li>
+						<li>아이디</li>
 						<li>나이대</li>
-						<li>참가 모임 수</li>
-						<li>받은 좋아요</li>
-						<li>참가 상태</li>
+						<li>성별</li>
+						<li>여행횟수</li>
+						<li>좋아요</li>
+						<li>상태</li>
+						<li>쪽지</li>
 					</ul>
 					<ul id="complist"></ul>
 				</div>
@@ -297,13 +299,18 @@ function setComplist(result){
 	$result.each(function(i, v){
 		tag += "<li>"+v.userid+"</li>";
 		tag += "<li>"+v.age+"</li>";
+		
+		var gender = "남";
+		if(v.gender == '2'){
+			gender ="여";
+		}
+		
+		tag += "<li>"+gender+"</li>";
 		tag += "<li>"+v.tourcnt+"</li>";
 		tag += "<li>"+v.heart+"</li>";
 		
-		var state = "";
-		if(v.state == '1'){
-			state = '참가 신청';
-		}else{
+		var state = "승인 대기";
+		if(v.state == '2'){
 			state = '참가 중';
 		}
 		
@@ -312,6 +319,8 @@ function setComplist(result){
 		}else{
 			tag += "<li>"+state+"</li>";
 		}
+		
+		tag += "<li><button class='messageBtn' onclick='sendMessage();'>Send</button></li>";
 	});
 	
 	$("#complist").html(tag);
@@ -319,7 +328,7 @@ function setComplist(result){
 }
 
 function confirmComplist(){
-	var userid = $(this).attr("title");
+	var userid = this.attr("title");
 	console.log(userid);
 }
 
