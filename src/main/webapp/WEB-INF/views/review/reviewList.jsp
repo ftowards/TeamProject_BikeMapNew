@@ -4,39 +4,18 @@
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
 <script>
 
-
-
-	$.ajax({
-		type : 'POST',
-		url : url,
-		data : params,
-		success : function(result){
-			console.log(result)
-			if(result>0){
-				alert("삭제가 되었습니다.")
-				location.href="/home/reviewView"
-			}else{
-				alert("삭제 실패하였습니다.")
-				
+	$(function(){
+		$("#reviewdel").click(function(){
+			if(confirm("삭제하시겠습니까?")){
+				location.href="/home/reviewDel?noboard=${vo.noboard}";	
 			}
-		},error:function(){
-			console.log("글쓰기 오류")
-		}
+			
+		});
+		
 	});
-	return false;
-	
-	
-// 	$(function(){
-// 		$("#reviewdel").click(function(){
-// 			if(confirm("삭제하시겠습니까?")){
-// 				location.href="/home/reviewDel?noboard=${vo.noboard}";		
-// 			}
-// 		});
-// 	});
 	
 	
 </script>
-
 
 
 <!-- 후기게시판 제목 -->
@@ -58,13 +37,15 @@
 						<div style = "border-bottom: 1px solid #ebecef; padding-bottom: 20px;">
 							<div style = "float : left;">
 								<ul>
+									<li style = "font-size: small;">${vo.noboard }</li>
 									<li style = "font-size: small;">${vo.userid }</li>
 									<li style = "font-size: small;">${vo.writedate }&nbsp; 조회 : ${vo.hit }</li>
 								</ul>
 							</div>
 							<div  style ="margin-left: 518px;">
+								<a href="<%=request.getContextPath()%>/review"></a>
 								<input type="button" value="삭제" id="reviewdel" class="gray_Btn"/>
-								<a href="<%=request.getContextPath()%>/reviewEdit?noboard=${vo.noboard}"><input type="submit" value="수정" id="revsaveBtn" class="gray_Btn"/></a>
+								<a href="<%=request.getContextPath()%>/reviewEdit?noboard =${vo.noboard}"><input type="submit" value="수정" id="revsaveBtn" class="gray_Btn"/></a>
 								<a href="<%=request.getContextPath()%>/reviewView"><input type="submit" value="목록" id="revsaveBtn" class="mint_Btn"/></a>
 								
 							</div>

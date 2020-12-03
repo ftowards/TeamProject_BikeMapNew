@@ -26,13 +26,13 @@
  <!--  글쓰기 수정 -->
  	<update id="reviewUpdate" parameterType="com.bikemap.home.review.ReviewVO">
  		update review set subject=#{subject}, content=#{content}
- 			where noboard=#{noboard} and userid=#{userid} 
+ 			where noboard=#{param1, jdbcType=VARCHAR} and userid=#{param2, jdbcType=VARCHAR} 
  	</update>
  	
  	<!--글삭제 -->
  	
  	<delete id = "reviewDelete" >
- 		delete from review where noboard=#{noboard} and userid=#{userid}
+ 		delete from review where noboard=#{param1, jdbcType=VARCHAR} and userid=#{param2, jdbcType=VARCHAR}
  	</delete>
  
 </mapper>
