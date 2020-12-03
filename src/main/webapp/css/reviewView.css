@@ -1,9 +1,10 @@
 @charset "UTF-8";
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
 	body{
 		margin:0; padding:0;
+		font-family:'Noto Sans KR', sans-serif;
 	}
-	a {
+	a, a:hover {
 		text-decoration: none;
 	}
 	textarea:focus {
@@ -23,14 +24,14 @@
 	}
 			
 	.mainDiv{
-		width:1000px;
+		width:1200px;
 		height:auto;
 		overflow: hidden;
 		margin:0 auto;
 	}
 		
 	.reviewBody{
-		width:800px; 
+		width:1200px; 
 		margin : 0 auto;
 	}
 	
@@ -43,7 +44,7 @@
 	
 	/* 제목 */
 		.title{
-		  font-size: 20px;
+		  font-size: 23px;
 		  font-weight: 600;
 		  letter-spacing: -0.6px;
 		  text-align: left;
@@ -54,14 +55,15 @@
 		
 	/* 소제목 */
 		.subtitle { 
-	 	  font-size: 15px;
-		  font-weight: 600;
+	 	  font-size: 25px;
+		  font-weight: 300;
 		  letter-spacing: -0.6px;
 		  text-align: left;
 		  color: #212529;
 		  margin-bottom: 50px;
 	 		
-	 		} 
+	 }
+	 
 	 /* 버튼 */
 		.mint_Btn{
 			  font-size:15px;
@@ -76,6 +78,7 @@
 			  background-color: #00B0B0;
 			  width : 70px;
 			  height : 40px;
+			  box-shadow:3px 3px 3px #ccc;
 		}
 		.gray_Btn{
 		
@@ -104,65 +107,73 @@
 		
 	.content{
 		width : 100%;
-		height: 400px;
-		margin-top : 30px;
-		margin-bottom : 20px;
+		height: 655px;
+		text-align:center;
+		padding: 15px 0;
+		margin: 30px 0 130px 0;
 	}
 	
 
 	#contentlocation{
-		width: 100%;
+		width: 300px;
 	    margin-top: 50px;
 		margin : auto;
+		display:inline;
 	}
 	
 	#contentlocation img {
 		border-radius: 5px;
-		width:98%; 
-		height:200px;
+		width:95%; 
+		height:300px;
+		margin-bottom:20px;
 	
 	}
 	.contentlocationdiv {
-		width : 33%;
+		width : 33.3%;
 		float: left;
 	}
 	
-	.serch{
+	.search{
 		text-align: center; 
-		margin-bottom:10px;
+		margin:70px 0 120px 0;
 	}
 
 
 	
 
 	
-	#searchKeyword { 
-		position: relative; 
+	#searchKeyword {  
 		width: 140px; 
 		z-index: 1; 
 		height:40px;
 		text-align:center;
-		font-size:1em;
+		font-size:17px;
 		font-weight:bold;
-		color:#7F7F7F;
+		color:#5d5b5b;
 		border:0px;
 		border-radius:5px;
-		background-color:#F1F1F1;
+		background-color:#eee;
 		background: url(../img/img_route/selectBox.png) no-repeat 95% 50%;
 		-webkit-appearance: none; /* 네이티브 외형 감추기 */
     	-moz-appearance: none;
     	appearance: none;
-		padding-left:10px;
-    	margin-right:5px;	
+		padding-left:25px;
+    	margin-right:5px;
+    	box-shadow:3px 3px 3px #ccc;
     	
 	} 
 	#schBar{
-		 padding-left:10px;
-		 color:#7F7F7F; 
-		 font-size:1em; 
-		 font-weight:bolder;
-		 height: 30px;  
- 	     width: 300px;'/
+		width:50%;
+		height:40px;
+		border:0px;
+		border-radius:5px;
+		z-index: 1;
+		padding-left:20px;
+		color:#7F7F7F;
+		font-size:17px;
+		font-weight:bolder;
+		background-color:#F1F1F1;
+		box-shadow:3px 3px 3px #ccc;
 	}
 	
 	
@@ -206,12 +217,10 @@
 
 	
 	.boardlist{
-	    width: 95%;
-	   height : 142px;
-	    border: 1px solid black;
-	    padding: 14px;
-	    margin: 7px;
-	    border-radius: 10px 10px;
+	    width: 100%;
+	   	height : 370px;
+	    border-bottom: 1px solid gray;
+	    padding: 25px;
 	}
 	
 	#reviewtext{
@@ -224,6 +233,7 @@
 	    overflow: hidden;
 	    text-overflow: ellipsis;
 	    margin: -37px;
+	    font-size:16px;
 	    border-top: 1px solid #ebecef;
 	} 
 	
@@ -234,19 +244,32 @@
 	}
 	
 
-	.left{float: left; margin-right: 15px;}
+	.left{
+		width:28%;
+		float: left;
+		background-color:yellow;
+	}
 	.left img {
+		width:290px;
+		height:290px;
 		border-radius: 5px;
 	}
 
 
 	
-	.right{margin-right: 10px;}
+	.right{
+		width:72%;
+		float:right;
+		height:225px;
+		margin-top:40px;
+		padding-left:25px;
+		background-color:pink;
+	}
 	
 	
 	.writedate{
-	 clear: both;
-   	 float: left;
+		clear: both;
+   	 	float: left;
 		
 	}
 	
