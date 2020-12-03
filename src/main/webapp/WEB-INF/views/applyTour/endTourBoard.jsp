@@ -32,10 +32,11 @@
 	     			<tr>
 		     			<th>번&nbsp;호</th>
 		     			<th>제&nbsp;목</th>
-		     			<th>마감일시</th>
+		     			<th>출발일시</th>
+		     			<th>종료일시</th>
 		     			<th>참&nbsp;가</th>
 		     			<th>잔&nbsp;여</th>
-		     			<th>대&nbsp;기</th>
+		     			
 	     			</tr>
      			</thead>
      			<tbody>
@@ -43,10 +44,11 @@
 	     			<tr>
 	     				<td>800</td>
 		     			<td><a href="#">세란이네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20/12/01</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 13:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 21:00</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">3</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">2</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">1</a></td>
+		     			
 	     			</tr>
 	     		</tbody>
 	     		<tbody>
@@ -54,10 +56,11 @@
 	     			<tr>
 	     				<td>900</td>
 		     			<td><a href="#">소라네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20/12/01</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 13:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 21:00</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">3</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">2</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">1</a></td>
+		     		
 	     			</tr>
 	     		</tbody>
      		</table>
@@ -69,7 +72,7 @@
 		     			<th>나이대</th>
 		     			<th>모임횟수</th>
 		     			<th>좋아요</th>
-		     			<th>참가상태</th>
+		     			<th>평가하기</th>
 
 	     			</tr>
      			</thead>

@@ -32,7 +32,8 @@
 	     			<tr>
 		     			<th>번&nbsp;호</th>
 		     			<th>제&nbsp;목</th>
-		     			<th>마감일시</th>
+		     			<th>출발일시</th>
+		     			<th>종료일시</th>
 		     			<th>참&nbsp;가</th>
 		     			<th>잔&nbsp;여</th>
 		   
@@ -43,7 +44,8 @@
 	     			<tr>
 	     				<td>800</td>
 		     			<td><a href="#">세란이네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20/12/01</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 13:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 21:00</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
 	     			</tr>
@@ -53,7 +55,8 @@
 	     			<tr>
 	     				<td>900</td>
 		     			<td><a href="#">소라네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20/12/01</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 13:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 21:00</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
 	     			</tr>
