@@ -13,9 +13,9 @@
       <li class="sidebar-brand">
      		<label>참여모임</label>   
       </li>
-      <li><a href="<%=request.getContextPath()%>/myApplyTour">신청여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/joinTourBoard">참여한 여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/endTourBoard">완료된 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/tourApply">신청여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/tourIn">참여한 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/tourComplete">완료된 여행</a></li>
 
     </ul>
   </div>
@@ -24,7 +24,7 @@
   <!-- 본문 -->
   <div class="myRouteMainDiv">
     <div class="container-fluid">
-      <div class="titleMyRouteDiv1"><label>참여한 여행</label></div>
+      <div class="titleMyRouteDiv1"><label>신청여행</label></div>
      <div class="myRouteBoardMainDiv">
      	<div>
      		<table class="table table-striped table-hover">
@@ -32,12 +32,10 @@
 	     			<tr>
 		     			<th>번&nbsp;호</th>
 		     			<th>제&nbsp;목</th>
-		     			<th>출발일시</th>
-		     			<th>종료일시</th>
+		     			<th>마감일시</th>
 		     			<th>참&nbsp;가</th>
 		     			<th>잔&nbsp;여</th>
-		     			<th>참가상태</th>
-		     		
+		     			<th>대&nbsp;기</th>
 	     			</tr>
      			</thead>
      			<tbody>
@@ -45,12 +43,10 @@
 	     			<tr>
 	     				<td>800</td>
 		     			<td><a href="#">세란이네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 13:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 21:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-02 17:00</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">3</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">2</a></td>
-		     			<td><button type="submit" class="tourNo">취소</button></td>
-		     		
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">1</a></td>
 	     			</tr>
 	     		</tbody>
 	     		<tbody>
@@ -58,12 +54,10 @@
 	     			<tr>
 	     				<td>900</td>
 		     			<td><a href="#">소라네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 13:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 21:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-02 17:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">3</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">2</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">1</a></td>
-		     			<td><button type="submit" class="tourNo">취소</button></td>
-		     
 	     			</tr>
 	     		</tbody>
      		</table>
@@ -97,7 +91,7 @@
 		     			<td>20대</td>
 		     			<td>3회</td>
 		     			<td><img src="<%=request.getContextPath()%>/img/img_myRoute/like.png">20</td>
-		     				<td><button type="submit" class="tourIn">참가중</button></td>
+		     				<td><button type="submit" class="tourNo">취소</button></td>
 		     		
 	     			</tr>
 				</tbody>		

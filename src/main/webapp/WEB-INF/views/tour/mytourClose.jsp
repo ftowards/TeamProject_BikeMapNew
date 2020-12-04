@@ -13,9 +13,9 @@
       <li class="sidebar-brand">
      		<label>저장된 루트</label>   
       </li>
-      <li><a href="<%=request.getContextPath()%>/myRouteing">진행여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/myRouteClose">마감된 여행</a></li>
-       <li><a href="<%=request.getContextPath()%>/myRouteEnd">완료된 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/mytourOn">진행여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/mytourClose">마감된 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/mytourComplete">완료된 여행</a></li>
 
     </ul>
   </div>
@@ -24,7 +24,7 @@
   <!-- 본문 -->
   <div class="myRouteMainDiv">
     <div class="container-fluid">
-      <div class="titleMyRouteDiv1"><label>진행여행</label></div>
+      <div class="titleMyRouteDiv1"><label>마감된 여행</label></div>
      <div class="myRouteBoardMainDiv">
      	<div>
      		<table class="table table-striped table-hover">
@@ -32,10 +32,11 @@
 	     			<tr>
 		     			<th>번&nbsp;호</th>
 		     			<th>제&nbsp;목</th>
-		     			<th>마감일시</th>
+		     			<th>출발일시</th>
+		     			<th>종료일시</th>
 		     			<th>참&nbsp;가</th>
 		     			<th>잔&nbsp;여</th>
-		     			<th>대&nbsp;기</th>
+		     			<th>마감상태</th>
 	     			</tr>
      			</thead>
      			<tbody>
@@ -43,10 +44,11 @@
 	     			<tr>
 	     				<td>800</td>
 		     			<td><a href="#">세란이네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 15:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 13:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 21:00</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">1</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">&nbsp;</a></td>
 	     			</tr>
 	     		</tbody>
 	     		<tbody>
@@ -54,10 +56,11 @@
 	     			<tr>
 	     				<td>900</td>
 		     			<td><a href="#">소라네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 15:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 13:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 21:00</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
 		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">1</a></td>
+		     			<td><button type="submit" class="tourOk">완&nbsp;료</button></td>
 	     			</tr>
 	     		</tbody>
      		</table>
@@ -70,7 +73,7 @@
 		     			<th>모임횟수</th>
 		     			<th>좋아요</th>
 		     			<th>참가상태</th>
-		     			<th>관&nbsp;리</th>
+
 	     			</tr>
      			</thead>
   				<tbody>
@@ -81,7 +84,7 @@
 		     			<td>5회</td>
 		     			<td><img src="<%=request.getContextPath()%>/img/img_myRoute/like.png">5</td>
 		     			<td><button type="submit" class="tourIn">참가중</button></td>
-		     			<td><button type="submit" class="tourOut">추&nbsp;방</button></td>
+		     		
 	     			</tr>
 				</tbody>
 				<tbody>
@@ -91,8 +94,8 @@
 		     			<td>20대</td>
 		     			<td>3회</td>
 		     			<td><img src="<%=request.getContextPath()%>/img/img_myRoute/like.png">20</td>
-		     			<td><button type="submit" class="tourOk">승&nbsp;인</button></td>
-		     			<td><button type="submit" class="tourNo">거&nbsp;절</button></td>
+		     				<td><button type="submit" class="tourIn">참가중</button></td>
+		     		
 	     			</tr>
 				</tbody>		
      		</table>

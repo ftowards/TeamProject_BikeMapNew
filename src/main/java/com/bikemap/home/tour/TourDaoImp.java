@@ -25,8 +25,23 @@ public interface TourDaoImp {
 	// 투어 마지막 번호 얻어오기
 	public int lastTourNo(String userid);
 	
+	// 투어 참가 인원 확인하기
+	public int checkTourRoom(int noboard);
+	
 	// 투어 리스트 추가하기
 	public int insertTourComplist(ComplistVO vo);
+	
+//	// 투어 신청자 수 추가하기
+//	public int addQue(int noboard);
+//	
+//	// 투어 참가자 수 추가하기
+//	public int addParty(int noboard, int que);
+//	
+//	// 투어 신청자 수 빼기
+//	public int revertQue(int noboard);
+//	
+//	// 투어 참가자 수 빼기
+//	public int revertParty(int noboard);
 	
 	// 투어 참가 여부 확인하기
 	public String checkTourComplist(ComplistVO vo);
@@ -39,4 +54,11 @@ public interface TourDaoImp {
 	
 	// 데드라인 확인
 	public String getDeadline(int noboard);
+	
+	// 내가 주최하는 투어 레코드 수 확인
+	public int getMytourRecordCount(TourListPagingVO vo);
+	
+	// 내가 주최하는 투어 리스트
+	public List<TourlistVO> selectMytourList(TourListPagingVO vo);
+		
 }
