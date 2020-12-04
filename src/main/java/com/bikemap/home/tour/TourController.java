@@ -252,10 +252,11 @@ public class TourController {
 		TransactionStatus status = transactionManager.getTransaction(def);
 		
 		try {
+			vo.setUserid((String)session.getAttribute("logId"));
 			if(checkDeadline(vo.getNoboard())){
 				String state = dao.checkTourComplist(vo) == null ? "3" : dao.checkTourComplist(vo); 
 				if(state.equals("1") || state.equals("2")) {
-					vo.setUserid((String)session.getAttribute("logId"));
+					
 					result = dao.cancelTour(vo);
 				}
 			}else {
@@ -308,7 +309,6 @@ public class TourController {
 		
 		return chk;
 	}
-
 	
 	// 투어 참가 승인
 	@RequestMapping("/mytour/confirmComplist")
@@ -347,6 +347,99 @@ public class TourController {
 		return result; 
 	}
 	
+	// 투어 불참 처리 하기
+	@RequestMapping("/mytour/absentComplist")
+	@ResponseBody
+	public int absentComplist(ComplistVO vo) {
+		int result = 0;
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		try {
+			result = dao.absentTour(vo);
+		}catch(Exception e) {
+			System.out.println("투어 결석 처리 오류 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 투어 완료 처리하기
+	@RequestMapping("/mytour/completeTour")
+	@ResponseBody
+	public int completeTour(int noboard) {
+		int result = 0;
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status =  transactionManager.getTransaction(def);
+		
+		try {
+			if(dao.completeTour(noboard) == 1) {
+				List<String> list = dao.selectCompleteList(noboard);
+				if(list.size() >0) {
+					for(int i = 0 ; i <list.size(); i++) {
+						for(int j = 0 ; j < list.size(); j++) {
+							if(i != j) {
+								dao.insertEvalList(noboard, list.get(i), list.get(j));
+							}
+						}
+						/// 투어 완료 카운트 가산하기
+						dao.addTourcnt(list.get(i));
+					}
+				}
+			}
+			result = 1;
+			transactionManager.commit(status);
+		}catch(Exception e) {
+			System.out.println("투어 완료 처리 오류" + e.getMessage());
+			transactionManager.rollback(status);
+		}
+		return result;
+	}
+	
+	// 좋아요 평가 리스트 불러오기
+	@RequestMapping("/tour/selectEvallist")
+	@ResponseBody
+	public List<ComplistVO> selectEvallist(ComplistVO vo, HttpSession session){
+		List<ComplistVO> list = new ArrayList<ComplistVO>();
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		try {
+			vo.setUserid((String)session.getAttribute("logId"));
+			list = dao.selectEvallist(vo);
+		}catch(Exception e) {
+			System.out.println("좋아요 평가 리스트 불러오기 에러 " + e.getMessage());
+		}
+		return list;
+	}
+	
+	// 좋아요 처리
+	@RequestMapping("/mytour/addHeart")
+	@ResponseBody
+	public int addHeart(ComplistVO vo, HttpSession session) {
+		int result = 0;
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = transactionManager.getTransaction(def);
+		
+		try {
+			vo.setUserid((String)session.getAttribute("logId"));
+			// 라이크 리스트 갱신
+			if(dao.updateEvallist(vo) == 1) {
+				// 라이크 가산
+				result = dao.addHeart(vo.getObjid());
+			}
+			transactionManager.commit(status);
+		}catch(Exception e) {
+			System.out.println("좋아요 에러 " + e.getMessage());
+			transactionManager.rollback(status);
+		}
+		return result;
+	}
+	
+	
 	////////////// 내가 만든 투어 관리 ///////////////////
 	// 내가 주최하는 모임 페이지
 	@RequestMapping("/mytour")
@@ -365,7 +458,7 @@ public class TourController {
 		try {
 			vo.setTotalRecord(dao.getMytourRecordCount(vo));
 			
-			System.out.println(dao.getMytourRecordCount(vo));
+			System.out.println("총 레코드 수 " +dao.getMytourRecordCount(vo));
 		}catch(Exception e) {
 			System.out.println("내 투어 페이징 에러 " + e.getMessage());
 		}

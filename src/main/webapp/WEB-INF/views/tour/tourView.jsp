@@ -166,10 +166,11 @@
 </div>
 <script>
 function del(noboard){
-	var checkMSG = confirm("삭제된 글은 복구가 불가능합니다."+<br/>+"글을 삭제하시겠습니까?");
+	var checkMSG = confirm("삭제된 글은 복구가 불가능합니다.\n글을 삭제하시겠습니까?");
 	if(checkMSG){
 		location.href='/home/tourViewDelete';
 	}
+	return false;
 }
 
 </script>
@@ -307,15 +308,20 @@ function sendMsg(noboard, receiver, type){
 	var noboard = noboard;
 	var msg ="";
 	var socketMsg = "";
+	
 	if(type == 1){
 		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 승인하였습니다.</a>";
 		socketMsg = "confirmTour,"+receiver+","+sender+","+noboard;
 	}else if(type == 2){ // 참가 신청 메세지
 		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가 신청하였습니다.</a>";
 		socketMsg = "applyTour,"+receiver+","+sender+","+noboard;
+	}else if(type == 3){
+		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 취소였습니다.</a>";
+		socketMsg = "cancelTour,"+receiver+","+sender+","+noboard;
 	}
 	
 	var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
+	console.log(data);
 	
 	$.ajax({
 		url : "/home/insertNotice",
@@ -351,20 +357,17 @@ function setComplist(result){
 		tag += "<li>"+v.tourcnt+"</li>";
 		tag += "<li>"+heartImg+v.heart+"</li>";
 		
-		var state = "<div class='applyWait'><label>승인대기</label></div>";
+		
 		if(v.state == '2'){
-			state = "<div class='applying'><label>참가중</label></div>";
+			tag += "<li><div class='applying'><label>참가중</label></div></li>";
+		}else if(v.state == '1' && manageCondition != 'ok'){
+			tag += "<li><div class='applyWait'><label>승인대기</label></div></li>";	
+		}else if(manageCondition == 'ok' && v.state =='1'){
+			tag +="<li><div class='applyWait'><label onclick='confirmComplist(title)' title='"+$("#noboard").val()+"/"+v.userid+"'>승인</label></div></li>";
 		}
-		
-		if(manageCondition == 'ok' && v.state =='1'){
-			tag +="<li><a href='javascript:confirmComplist(title)' title='"+$("#noboard").val()+"/"+v.userid+"'>"+state+"</a></li>";
-		}else{
-			tag += "<li>"+state+"</li>";
-		}
-		
 
 		if($("#logId").val() != v.userid){
-			tag += "<li><img src='<%=request.getContextPath()%>/img/img_tour/messge.png' style='width:35px;' onclick='sendMessage();'>Send</button></li>";
+			tag += "<li><img src='<%=request.getContextPath()%>/img/img_tour/messge.png' style='width:35px;' onclick='sendMessage();'/></li>";
 		}else{
 			tag +="<li></li>";
 		}
@@ -403,6 +406,7 @@ function cancleTour(){
 		success : function(result){
 			if(result == 1){
 				alert("참가 내역이 취소되었습니다.");
+				sendMsg($("#noboard").val(), $("#userInformation").val(), 3);
 			}else if(result == 5){
 				alert("마감 시간이 지나 신청 취소가 불가능합니다.\n주최자에게 불참을 알려주세요.");
 			}else{

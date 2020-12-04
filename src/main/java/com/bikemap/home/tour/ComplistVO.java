@@ -12,6 +12,8 @@ public class ComplistVO {
 	private int tourcnt;
 	private int age ;
 	
+	private String eval;
+	private String objid;
 	
 	public int getNoboard() {
 		return noboard;
@@ -49,5 +51,17 @@ public class ComplistVO {
 	}
 	public void setAge(int age) {
 		this.age = age;
+	}
+	public String getEval() {
+		return eval;
+	}
+	public void setEval(String eval) {
+		this.eval = eval;
+	}
+	public String getObjid() {
+		return objid;
+	}
+	public void setObjid(String objid) {
+		this.objid = objid;
 	}
 }

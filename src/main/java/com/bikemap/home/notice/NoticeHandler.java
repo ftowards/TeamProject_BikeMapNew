@@ -57,6 +57,12 @@ public class NoticeHandler extends TextWebSocketHandler{
 					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 취소처리 하였습니다.</a>");
 				}else if(msgType.equals("applyTour")) {
 					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가 신청하였습니다.</a>");
+				}else if(msgType.equals("cancelTour")) {
+					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 취소하였습니다.</a>");
+				}else if(msgType.equals("absentTour")) {
+					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"'>"+ noboard + "번 투어가 불참 처리되었습니다.</a>");
+				}else if(msgType.equals("completeTour")) {
+					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"'>"+ noboard + "번 투어가 완료되었습니다.</a>");
 				}
 				
 				boardWriterSession.sendMessage(tmpMsg);
@@ -72,24 +78,5 @@ public class NoticeHandler extends TextWebSocketHandler{
 		userSessionsMap.remove(session.getId());
 		sessions.remove(session);
 	}
-	
-	//
 }
 
-
-/////////*
-
-//public class EchoHandler extends TextWebSocketHandler {
-//	//로그인 한 전체
-//	List<WebSocketSession> sessions = new ArrayList<WebSocketSession>();
-//	// 1대1
-//	Map<String, WebSocketSession> userSessionsMap = new HashMap<String, WebSocketSession>();
-//		
-//	//서버에 접속이 성공 했을때
-//	@Override
-//	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-//		sessions.add(session);
-//		
-//		String senderEmail = getEmail(session);
-//		userSessionsMap.put(senderEmail , session);
-//	}
