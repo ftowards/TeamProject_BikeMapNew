@@ -14,11 +14,43 @@ body{
 		list-style-type:none;
 	} 
 	ul{
+		font-size:18.5px;
 		list-style-type:none;
+		font-family:'Noto Sans KR', sans-serif;
+	}
+	
+	.logo_Header{
+		width:100%;
+		height:115px;
+		background:white;
+		text-align:center;
+	}
+	.logo_Header img{
+		width:240px;
+		height:80px;
+		margin-top:30px;
+		display:inline-block;
+	}
+	#navTxtBar{
+		text-align:center;
+		width:75%;
+		padding-left:580px;
+	}
+	#mobile_menu{
+		width:100%;
+		text-align:center;
 	}
 	.navbar{
+			padding-bottom:7px;
+			height:60px;
+			border: 2px solid #222;
 			margin-bottom:0px;
-	}		
+	}
+	.navTxt{
+		font-size:19px;
+		letter-spacing:1px;
+		margin-left:70px;
+	}
 	.container{
 		margin:0;
 		padding:0;
@@ -59,6 +91,7 @@ body{
 		top:3px; left:-35px;
 		position:relative;
 		text-shadow:1px 1px 2px #404040;
+		letter-spacing:3px;
 		
 		/*font-family: 'Pinyon Script', cursive;*/		
 	}
@@ -91,13 +124,26 @@ body{
 		text-shadow:2px 1px 3px #404040;
 		box-shadow:2px 1px 3px #404040;
 		letter-spacing:8px;
-		font-size:20px;
+		font-size:25px;
 		font-weight:bold;					
 	}
 	 button:focus {
    		outline: none;
 	}
 	
+	.userMenu{
+		padding-right:20px;
+		position:relative;
+		bottom:45px;
+	}
+	.userMenu a{
+		font-size:17px;
+		color:black;
+		text-decoration:none;
+	}
+	.userMenu a:hover{
+		color:black;
+	}
 	/*================================================footer==================================================================*/
 	body{
 		z-index:1000;
