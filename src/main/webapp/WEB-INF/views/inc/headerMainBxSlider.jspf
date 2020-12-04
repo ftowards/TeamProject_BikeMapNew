@@ -7,10 +7,12 @@
 <script src="/home/api/jquery.bxslider.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;900&display=swap" rel="stylesheet">
 <script>
 	$(function(){
 		$("#bxslider").bxSlider({
-			mode: 'horizontal'			//horizontal랑 fade중 고르기.
+			mode: 'horizontal'		//horizontal랑 fade중 고르기.
 			,auto: true				//자동 실행
 			,speed: 1000			//속도
 			,infiniteLoop: true		//무한루프
@@ -19,7 +21,7 @@
 		});
 	});
 </script>		
-	<div id="mainBxSliderFrontground"></div>
+	<div class="mainBxSliderFrontground"></div>
 	<div id="mainLabel">
 		<label>To Travel is to Live</label>
 		<label>나만의 소중한 여행을 직접 만들어보세요</label>
@@ -27,8 +29,8 @@
 	</div>
 	<div id="mainBxSliderDiv">
 		<ul id="bxslider">
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/sky.jpg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/sunset.jpg"/></a></li>
+			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/8.jpg"/></a></li>
+			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/10.jpg"/></a></li>
 			
 		</ul>
 	</div>
