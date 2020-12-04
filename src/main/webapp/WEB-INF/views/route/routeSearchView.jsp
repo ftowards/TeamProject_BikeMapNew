@@ -4,7 +4,7 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://www.google.com/jsapi"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
-<link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
+<link rel="stylesheet" href="/home/css/routeSearchView.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -199,13 +199,13 @@
 					<hr/>
 				<li>
 				<li class="prevTxt">
-					이전글<span class="prev_next">▲</span><a href="<%=request.getContextPath()%>/routeSearchView?noboard=${routeVO.noboard-1}">이전글 제목 들어갈 자리</a>
+					이전글<span class="prev_next">▲</span><a href="#">이전글 제목 들어갈 자리</a>
 				</li>
 				<li>
 					<hr>
 				</li>
 				<li class="prevTxt">
-					다음글<span class="prev_next">▼</span><a href="<%=request.getContextPath()%>/routeSearchView?noboard=${routeVO.noboard+1}">다음글 제목 들어갈 자리</a>
+					다음글<span class="prev_next">▼</span><a href="#">다음글 제목 들어갈 자리</a>
 				</li>
 				<li>
 					<hr/>

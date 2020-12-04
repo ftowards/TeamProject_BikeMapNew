@@ -82,9 +82,9 @@
 						<!-- 후기창 오른쪽 면 -->
 						<div class="right">
 						
-							<div class= "subtitle">
+							<div id="subtitle">
 								<ul>
-									<li>
+									<li  class="wordCut">
 										<a href="<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">
 											${vo.noboard }&emsp;<span>${vo.subject }</span>
 										</a>
@@ -98,7 +98,7 @@
 <!-- 								</a>  -->
 							</div>
 								<ul>
-									<li id="reviewtext">
+									<li class="wordCut" id="reviewtext">
 										<a href="<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">
 											${vo.content }
 										</a>

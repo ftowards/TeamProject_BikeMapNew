@@ -3,7 +3,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 
-<div style='width:1200px; height:1460px; margin:0 auto'>
+<div style='width:1200px; height:1510px; margin:0 auto'>
 	<div class="optionBar" >
 		<form id="searchRoute" method="post" action="#">
 			<select name="searchKey" class="regionSelect">
