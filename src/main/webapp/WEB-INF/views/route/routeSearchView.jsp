@@ -5,6 +5,7 @@
 <script src="https://www.google.com/jsapi"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <div class="routeSearchViewDiv2">
@@ -189,7 +190,32 @@
 				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='height:40px'/>
 			</div>
 		</div>
-	</div><br/><hr/><br/>
+	</div><br/>
+	
+			<!-- 이전글,다음글 & 목록보기 -->
+		<div style='width:1200px; padding-top:40px'>
+			<ul>
+				<li>
+					<hr/>
+				<li>
+				<li class="prevTxt">
+					이전글<span class="prev_next">▲</span><a href="<%=request.getContextPath()%>/routeSearchView?noboard=${routeVO.noboard-1}">이전글 제목 들어갈 자리</a>
+				</li>
+				<li>
+					<hr>
+				</li>
+				<li class="prevTxt">
+					다음글<span class="prev_next">▼</span><a href="<%=request.getContextPath()%>/routeSearchView?noboard=${routeVO.noboard+1}">다음글 제목 들어갈 자리</a>
+				</li>
+				<li>
+					<hr/>
+				</li>
+				<li class="listBtn">
+					<button onclick="history.back()">목록보기</button>
+				</li>
+			</ul>
+		</div>
+	
 	<input type='hidden' id="noboard" value="${routeVO.noboard }"/>
 	<%@ include file="../inc/reply.jspf"%>
 </div>

@@ -93,4 +93,47 @@
 	<select id="getDeadline" resultType="String">
 		select to_char(deadline, 'YYYY/MM/DD/HH24') deadline from tour where noboard =#{param1}
 	</select>
+	<select id="checkTourRoom" resultType="int">
+		select (room - b.party) margin from tour a 
+		join (select noboard, count(userid) party from complist where state ='2' group by noboard) b on a.noboard = b.noboard
+		where a.noboard = #{param1}
+	</select>
+	<select id="getMytourRecordCount" resultType="int" parameterType="com.bikemap.home.tour.TourListPagingVO">
+		select count(noboard) from tour where userid = #{userid} and 
+		<choose>
+			<when test='tourState neq null and tourState eq "1"'>
+				state = '1' and deadline <![CDATA[>]]> sysdate
+			</when>
+			<when test='tourState neq null and tourState eq "2"'>
+				deadline <![CDATA[<=]]> sysdate
+			</when>
+			<when test='tourState neq null and tourState eq "3"'>
+				state = '2'
+			</when>
+		</choose>
+	</select>
+	<select id="selectMytourList" resultType="com.bikemap.home.tour.TourlistVO" parameterType="com.bikemap.home.tour.TourListPagingVO">
+		select * from 
+			(select * from	
+		
+		(select a.noboard, title, to_char(departure, 'YY-MM-DD HH24') departure, to_char(arrive, 'YY-MM-DD HH24') arrive, to_char(deadline, 'YY-MM-DD HH24') deadline,
+			nvl(c.party, 0) party, (a.room - nvl(c.party,0)) margin, nvl(b.que,0) que from tour a
+		left join (select noboard, count(userid) que from complist  where state ='1'  group by noboard) b on a.noboard = b.noboard
+		left join (select noboard, count(userid) party from complist where state ='2' group by noboard) c on a.noboard = c.noboard
+		where userid =#{userid} and 
+		<choose>
+			<when test='tourState neq null and tourState eq "1"'>
+				state = '1' and deadline <![CDATA[>]]> sysdate
+			</when>
+			<when test='tourState neq null and tourState eq "2"'>
+				deadline <![CDATA[<=]]> sysdate
+			</when>
+			<when test='tourState neq null and tourState eq "3"'>
+				state = '2'
+			</when>
+		</choose>
+				order by noboard desc)
+ 			where rownum <![CDATA[<= ]]> (#{nowPage} * #{onePageRecord}) order by noboard asc)
+		where rownum <![CDATA[<= ]]> #{lastPageRecordCount} order by noboard desc 
+	</select>
  </mapper>

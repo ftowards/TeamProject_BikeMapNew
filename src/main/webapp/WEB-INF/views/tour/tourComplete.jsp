@@ -13,9 +13,9 @@
       <li class="sidebar-brand">
      		<label>참여모임</label>   
       </li>
-      <li><a href="<%=request.getContextPath()%>/myApplyTour">신청여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/joinTourBoard">참여한 여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/endTourBoard">완료된 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/tourApply">신청여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/tourIn">참여한 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/tourComplete">완료된 여행</a></li>
 
     </ul>
   </div>

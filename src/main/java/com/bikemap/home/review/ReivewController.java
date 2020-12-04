@@ -97,9 +97,10 @@ public class ReivewController {
 		return mav;
 	}
 
-	//글쓰기 폼 수정
+	//글쓰기 수정
 	@RequestMapping("/reviewEdit")
 	public ModelAndView reviewEdit(int noboard) {
+			System.out.println("noboardTest...."+noboard);
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 		ReviewVO vo = dao.reviewSelect(noboard);
 		
@@ -115,11 +116,10 @@ public class ReivewController {
 	//글 수정 확인
 	@RequestMapping(value="/reviewEditOk", method=RequestMethod.POST)
 	public ModelAndView reviewEditOk(ReviewVO vo, HttpSession ses) {
-		vo.setUserid((String)ses.getAttribute("logid"));
-		
+		vo.setUserid((String)ses.getAttribute("logId"));
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+
 		int result = dao.reviewUpdate(vo);
-		
 		ModelAndView mav = new ModelAndView();
 		if(result>0) {
 			mav.addObject("noboard", vo.getNoboard());
