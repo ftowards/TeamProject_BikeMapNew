@@ -49,15 +49,16 @@
 	}
 	
 	#info{
-		width:430px;
-		height:100%;
+		width:432px;
+		height:83%;
+		background:yellow;
 	}
 	#info>div{
 		float:left;
 	}
 	
 	#naviIcon{
-		width : 80px;
+		width : 82px;
 		height : 100%;
 		background-color : #eee;
 	}
@@ -71,8 +72,9 @@
 		height : 100%;
 	}
 	#map{
-		width :900px;
-		height : 100%;
+		width :400px;
+		height : 83%;
+		position:
 	}
 	#infoPannel>input[type=radio]{
 		display:none;
