@@ -57,7 +57,7 @@
 		}
 		
 	/* 소제목 */
-		.subtitle { 
+		#subtitle { 
 	 	  font-size: 29px;
 		  letter-spacing: -0.5px;
 		  text-align: left;
@@ -257,7 +257,12 @@
 	    font-weight:300;
 	    position:relative;
 	    bottom:30px;
-	} 
+	}
+	.wordCut{
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
 	
 
 	}
