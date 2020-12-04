@@ -309,6 +309,42 @@ public class TourController {
 		return chk;
 	}
 	
+	// 투어 참가 승인
+	@RequestMapping("/mytour/confirmComplist")
+	@ResponseBody
+	public int confirmComplist(ComplistVO vo) {
+		int result = 0;
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		try {
+			result = dao.confirmComplist(vo);
+		}catch(Exception e) {
+			System.out.println("투어 참가 승인 에러" + e.getMessage());
+		}		
+		return result;
+	}
+	
+	// 투어 참가자 강퇴
+	@RequestMapping("/mytour/revertComplist")
+	@ResponseBody
+	public int revertComplist(ComplistVO vo) {
+		int result = 0;
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		try {
+			if(checkDeadline(vo.getNoboard())){
+				String state = dao.checkTourComplist(vo) == null ? "3" : dao.checkTourComplist(vo); 
+				if(state.equals("1") || state.equals("2")) {
+					result = dao.cancelTour(vo);
+				}
+			}else {
+				return 5;
+			}
+		}catch(Exception e) {
+			System.out.println("투어 강퇴 처리 오류 " + e.getMessage());
+		}
+		return result; 
+	}
 	
 	////////////// 내가 만든 투어 관리 ///////////////////
 	// 내가 주최하는 모임 페이지

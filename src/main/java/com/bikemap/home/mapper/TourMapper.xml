@@ -136,4 +136,7 @@
  			where rownum <![CDATA[<= ]]> (#{nowPage} * #{onePageRecord}) order by noboard asc)
 		where rownum <![CDATA[<= ]]> #{lastPageRecordCount} order by noboard desc 
 	</select>
+	<update id="confirmComplist" parameterType="com.bikemap.home.tour.ComplistVO">
+		update complist set state='2' where userid =#{userid} and noboard =#{noboard} and state ='1'
+	</update>
  </mapper>

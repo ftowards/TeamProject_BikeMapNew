@@ -232,6 +232,7 @@ $(function(){
 			success : function(result){
 				if(result == 1){
 					alert("참가 신청이 완료되었습니다.");
+					sendMsg($("#noboard").val(), $("#userInformation").val(), 2);
 				}else if(result == 2){
 					alert("이미 참가 신청 중 입니다.");
 				}else if(result == 3){
@@ -289,6 +290,41 @@ $(function(){
 	
 });
 
+//메세지 저장하기 ++ 통신으로 메세지 보내기
+function sendMsg(noboard, receiver, type){
+	var receiver = receiver;
+	var sender = $("#logId").val();
+	
+	console.log(receiver);
+	console.log(sender);
+	console.log(type);
+	
+	var noboard = noboard;
+	var msg ="";
+	var socketMsg = "";
+	if(type == 1){
+		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 승인하였습니다.</a>";
+		socketMsg = "confirmTour,"+receiver+","+sender+","+noboard;
+	}else if(type == 2){ // 참가 신청 메세지
+		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가 신청하였습니다.</a>";
+		socketMsg = "applyTour,"+receiver+","+sender+","+noboard;
+	}
+	
+	var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
+	
+	$.ajax({
+		url : "/home/insertNotice",
+		data : data,
+		success : function(result){
+			if(result == 1){
+				socket.send(socketMsg);
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	})
+}
+
 function setComplist(result){
 	var tag = "";
 	var $result = $(result);
@@ -315,21 +351,40 @@ function setComplist(result){
 		}
 		
 		if(manageCondition == 'ok' && v.state =='1'){
-			tag +="<li><a href='javascript:confirmComplist()' title='"+v.userid+"'>"+state+"</a></li>";
+			tag +="<li><a href='javascript:confirmComplist(title)' title='"+$("#noboard").val()+"/"+v.userid+"'>"+state+"</a></li>";
 		}else{
 			tag += "<li>"+state+"</li>";
 		}
 		
-		tag += "<li><button class='messageBtn' onclick='sendMessage();'>Send</button></li>";
+		if($("#logId").val() != v.userid){
+			tag += "<li><button class='messageBtn' onclick='sendMessage();'>Send</button></li>";
+		}else{
+			tag +="<li></li>";
+		}
 	});
 	
 	$("#complist").html(tag);
 	
 }
 
-function confirmComplist(){
-	var userid = this.attr("title");
-	console.log(userid);
+function confirmComplist(title){
+	var strs = title.split("/");
+	var data = "noboard="+strs[0]+"&userid="+strs[1];
+	
+	$.ajax({
+		url : "/home/mytour/confirmComplist",
+		data : data,
+		success : function(result){
+			if(result == 1){
+				alert("참가 승인 완료되었습니다.");
+				sendMsg(strs[0], strs[1], 1);
+			}else{
+				alert("승인 오류 입니다.");
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	});	
 }
 
 function cancleTour(){
@@ -343,7 +398,7 @@ function cancleTour(){
 			if(result == 1){
 				alert("참가 내역이 취소되었습니다.");
 			}else if(result == 5){
-				alert("마감 시간이 지나 신청 취소가 불가능합니다.\n주최자에게 불참를 요청하세요.");
+				alert("마감 시간이 지나 신청 취소가 불가능합니다.\n주최자에게 불참을 알려주세요.");
 			}else{
 				alert("취소 신청 오류입니다. 다시 시도해주십시오.");
 			}
