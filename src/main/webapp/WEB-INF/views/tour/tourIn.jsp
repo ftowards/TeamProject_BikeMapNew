@@ -11,11 +11,11 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-     		<label>저장된 루트</label>   
+     		<label>참여모임</label>   
       </li>
-      <li><a href="<%=request.getContextPath()%>/myRouteing">진행여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/myRouteClose">마감된 여행</a></li>
-       <li><a href="<%=request.getContextPath()%>/myRouteEnd">완료된 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/tourApply">신청여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/tourIn">참여한 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/tourComplete">완료된 여행</a></li>
 
     </ul>
   </div>
@@ -24,7 +24,7 @@
   <!-- 본문 -->
   <div class="myRouteMainDiv">
     <div class="container-fluid">
-      <div class="titleMyRouteDiv1"><label>마감된 여행</label></div>
+      <div class="titleMyRouteDiv1"><label>참여한 여행</label></div>
      <div class="myRouteBoardMainDiv">
      	<div>
      		<table class="table table-striped table-hover">
@@ -36,7 +36,8 @@
 		     			<th>종료일시</th>
 		     			<th>참&nbsp;가</th>
 		     			<th>잔&nbsp;여</th>
-		     			<th>마감상태</th>
+		     			<th>참가상태</th>
+		     		
 	     			</tr>
      			</thead>
      			<tbody>
@@ -44,11 +45,12 @@
 	     			<tr>
 	     				<td>800</td>
 		     			<td><a href="#">세란이네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 13:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 21:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">&nbsp;</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 13:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 21:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">3</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">2</a></td>
+		     			<td><button type="submit" class="tourNo">취소</button></td>
+		     		
 	     			</tr>
 	     		</tbody>
 	     		<tbody>
@@ -56,15 +58,16 @@
 	     			<tr>
 	     				<td>900</td>
 		     			<td><a href="#">소라네 코스</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 13:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 21:00</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
-		     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
-		     			<td><button type="submit" class="tourOk">완&nbsp;료</button></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 13:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">20-12-01 21:00</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">2</a></td>
+		     			<td><a data-toggle="collapse" href="#viewAcodianApplyTourBoard">1</a></td>
+		     			<td><button type="submit" class="tourNo">취소</button></td>
+		     
 	     			</tr>
 	     		</tbody>
      		</table>
-     		<div id="viewAcodian" class="panel-collapse collapse">
+     		<div id="viewAcodianApplyTourBoard" class="panel-collapse collapse">
      		<table class="table">
      			<thead>
 	     			<tr>

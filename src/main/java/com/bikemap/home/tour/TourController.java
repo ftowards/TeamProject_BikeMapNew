@@ -15,6 +15,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -187,21 +188,30 @@ public class TourController {
 		int result = 0;
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		
+		TransactionStatus status = transactionManager.getTransaction(def);
+
 		try {
 			if(checkDeadline(vo.getNoboard())){
 				vo.setUserid((String)session.getAttribute("logId"));
 				String state = dao.checkTourComplist(vo) == null ? "3" : dao.checkTourComplist(vo); 
 				if(state.equals("1") || state.equals("2")) {
 					result = Integer.parseInt(state)+1;
+				}else if(dao.checkTourRoom(vo.getNoboard()) <= 0) {
+					return 4;
 				}else {
 					vo.setState("1");
 					result = dao.insertTourComplist(vo);
 				}
+				transactionManager.commit(status);
 			}else {
 				return 5;
 			}
 		}catch(Exception e) {
 			System.out.println("투어 참가 신청 오류 " + e.getMessage());
+			transactionManager.rollback(status);
 		}
 		return result; 
 	}
@@ -213,9 +223,15 @@ public class TourController {
 		String result = "";
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		
+		TransactionStatus status = transactionManager.getTransaction(def);
+
 		try {			
 			vo.setUserid((String)session.getAttribute("logId"));
 			result = dao.checkTourComplist(vo);
+			
 		}catch(Exception e) {
 			System.out.println("투어 참가 확인 오류 " + e.getMessage());
 		}
@@ -230,15 +246,25 @@ public class TourController {
 		int result = 0;
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		
+		TransactionStatus status = transactionManager.getTransaction(def);
+		
 		try {
 			if(checkDeadline(vo.getNoboard())){
-				vo.setUserid((String)session.getAttribute("logId"));
-				result = dao.cancelTour(vo);
+				String state = dao.checkTourComplist(vo) == null ? "3" : dao.checkTourComplist(vo); 
+				if(state.equals("1") || state.equals("2")) {
+					vo.setUserid((String)session.getAttribute("logId"));
+					result = dao.cancelTour(vo);
+				}
 			}else {
 				return 5;
 			}
+			transactionManager.commit(status);
 		}catch(Exception e) {
 			System.out.println("투어 취소 처리 오류 " + e.getMessage());
+			transactionManager.rollback(status);
 		}
 		return result; 
 	}
@@ -259,6 +285,7 @@ public class TourController {
 		return list;
 	}
 	
+	// 마감 시간 확인 펑션
 	public boolean checkDeadline(int noboard) {
 		boolean chk = true;
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
@@ -283,4 +310,83 @@ public class TourController {
 	}
 
 	
+	
+	////////////// 내가 만든 투어 관리 ///////////////////
+	// 내가 주최하는 모임 페이지
+	@RequestMapping("/mytour")
+	public String mytourOn() {
+		return "/tour/mytour";
+	}
+	
+	// 내 투어 페이징
+	@RequestMapping("/mytour/paging")
+	@ResponseBody
+	public TourListPagingVO mytourPaging(TourListPagingVO vo, HttpSession session) {
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		String userid = (String)session.getAttribute("logId");
+		vo.setUserid(userid);
+		
+		try {
+			vo.setTotalRecord(dao.getMytourRecordCount(vo));
+			
+			System.out.println(dao.getMytourRecordCount(vo));
+		}catch(Exception e) {
+			System.out.println("내 투어 페이징 에러 " + e.getMessage());
+		}
+		return vo;
+	}
+	
+	// 내 투어 리스트 가져오기
+	@RequestMapping("/mytour/selectTourlist")
+	@ResponseBody
+	public List<TourlistVO> selectTourlist(TourListPagingVO vo, HttpSession session) {
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		String userid = (String)session.getAttribute("logId");
+		vo.setUserid(userid);
+		
+		List<TourlistVO> list = new ArrayList<TourlistVO>();
+		
+		try {
+			vo.setTotalRecord(dao.getMytourRecordCount(vo));
+			list = dao.selectMytourList(vo);
+		}catch(Exception e) {
+			System.out.println("내 투어 리스트 호출 에러 " + e.getMessage());
+		}
+		return list;
+	}
+	
+	//마감된 여행
+	@RequestMapping("/mytourClose")
+	public String mytourClose() {
+		return "/tour/mytourClose";
+	}
+	
+	// 완료한 여행
+	@RequestMapping("/mytourComplete")
+	public String mytourComplete() {
+		return "/tour/mytourComplete";
+	
+	}
+
+	
+	
+	//////////// 참여한 투어 ////////////////
+	// 승인 대기 중
+	@RequestMapping("/tourApply")
+	public String applyTour() {
+		return "/tour/tourApply";
+	}
+	
+	// 참가 중
+	@RequestMapping("/tourIn")
+	public String tourIn() {
+		return "/tour/tourIn";
+		
+	}
+	
+	// 완료
+	@RequestMapping("/tourComplete")
+	public String tourComplete() {
+		return "/tour/tourComplete";
+	}
 }

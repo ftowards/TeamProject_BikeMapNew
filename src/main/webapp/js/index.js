@@ -1,7 +1,11 @@
 var socket = null;
 
 $(function(){
-
+	
+	if($("#logId").val() == null || $("#logId").val() ==""){
+		return false;
+	}
+	
 	if($("#logId").val() != null && $("#logId").val() !=""){
 		sock = new SockJS('/home/echo');
 		socket = sock;		

@@ -13,9 +13,9 @@
       <li class="sidebar-brand">
      		<label>저장된 루트</label>   
       </li>
-      <li><a href="<%=request.getContextPath()%>/myRouteing">진행여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/myRouteClose">마감된 여행</a></li>
-      <li><a href="<%=request.getContextPath()%>/myRouteEnd">완료된 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/mytourOn">진행여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/mytourClose">마감된 여행</a></li>
+      <li><a href="<%=request.getContextPath()%>/mytourComplete">완료된 여행</a></li>
 
     </ul>
   </div>
