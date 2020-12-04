@@ -349,8 +349,23 @@ public class RouteController {
 	}
 	//저장된 루트 List
 	@RequestMapping("/mySavedRoute")
-	public String myRouteBoardList() {
-		return "route/savedMyRoute";
+	public ModelAndView myRouteBoardList(HttpSession ses) {
+		ModelAndView mav = new ModelAndView();
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+	
+		List<SavedMyRouteVO> list ;
+		
+		try {
+			
+			list = dao.selectAllSavedMyRouteList((String)ses.getAttribute("logId"));
+			mav.addObject("list",list);
+			
+		}catch(Exception e) {
+			System.out.println("저장된 루트 list 호출 에러..."+e.getMessage());
+		}
+		mav.setViewName("route/savedMyRoute");
+		return mav;
 	}
 	
 }

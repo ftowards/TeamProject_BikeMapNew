@@ -89,4 +89,9 @@
 		select noboard, title, userid from route where title like '%'||#{param1}||'%' or userid like '%'||#{param1}||'%' or region like '%'||#{param1}||'%'
 		order by noboard desc
 	</select>
+	
+	<select id="selectAllSavedMyRouteList" resultType="com.bikemap.home.route.SavedMyRouteVO">
+		select a.noboard,b.title,b.userid,b.region,b.distance from routelist a left join route b 
+		on a.noboard = b.noboard where a.userid = #{userid}
+	</select>
 </mapper> 

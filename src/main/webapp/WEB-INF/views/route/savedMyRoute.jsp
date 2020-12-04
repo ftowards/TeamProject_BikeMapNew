@@ -37,16 +37,23 @@
     					<label>전체코스</label>
     				</div>
     				<div  id="paging">
+ 						<c:forEach var="list" items="${list }">
 						<div class='tourImgDivClass'><a href="#">
 							<div><img src="<%=request.getContextPath()%>/img/img_tour/map.png" class="tourImgClass"/></div>
 						<div class="blackWrapDiv">
-							<p style='font-size:25px;' class='tourBoardTitle'><b>제목제목</b></p>
-							<p style='font-size:20px;' class='tourBoardWrite'>20/11/31~20/12/01</p>
+							<p style='font-size:25px;' class='tourBoardTitle'><b>${list.title }</b></p>
+							<p style='font-size:20px;' class='tourBoardWrite'>${list.region }</p>
 							<hr style='width:200px;'/>
-							<p style='font-size:40px;' class='tourBoardDay'><b>총3.12km</b></p>
-							<p style='font-size:20px;' class='tourBoardUserid'>@작성자</p>
+							<p style='font-size:40px;' class='tourBoardDay'><b>총${list.distance}km</b></p>
+							<p style='font-size:20px;' class='tourBoardUserid'>${list.userid}</p>
 						</div>
 						<div class="startPlaceDiv">별위치</div></a>
+						</div>
+						</c:forEach>
+						<div class="myRoutePaging">
+							<ul>
+								<li>1</li>
+							</ul>
 						</div>
 					</div>
  				</div>
