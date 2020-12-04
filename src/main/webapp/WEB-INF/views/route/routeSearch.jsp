@@ -3,7 +3,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 
-<div style='width:1200px; height:1380px; margin:0 auto'>
+<div style='width:1200px; height:1460px; margin:0 auto'>
 	<div class="optionBar" >
 		<form id="searchRoute" method="post" action="#">
 			<select name="searchKey" class="regionSelect">
@@ -11,7 +11,7 @@
 			    <option value="userid">작성자</option>
 			    <option value="region">지역</option>
 			</select>
-			<input type="text" id="searchWord" name="searchWord" class="schBar" style='padding-left:10px; color:#7F7F7F; font-size:1em; font-weight:bolder;'/>
+			<input type="text" id="searchWord" name="searchWord" class="schBar" style='padding-left:20px; color:#7F7F7F; font-size:17px; font-weight:bolder;'/>
 			<input type="submit" class="mint_Btn" value="검 색" style='width:70px; height:40px'/>
 		</form>
 	</div>

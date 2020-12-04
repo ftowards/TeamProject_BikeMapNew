@@ -43,9 +43,8 @@
 								</ul>
 							</div>
 							<div  style ="margin-left: 518px;">
-								<a href="<%=request.getContextPath()%>/review"></a>
 								<input type="button" value="삭제" id="reviewdel" class="gray_Btn"/>
-								<a href="<%=request.getContextPath()%>/reviewEdit?noboard =${vo.noboard}"><input type="submit" value="수정" id="revsaveBtn" class="gray_Btn"/></a>
+								<a href="<%=request.getContextPath()%>/reviewEdit?noboard=${vo.noboard }"><input type="submit" value="수정" id="revsaveBtn" class="gray_Btn"/></a>
 								<a href="<%=request.getContextPath()%>/reviewView"><input type="submit" value="목록" id="revsaveBtn" class="mint_Btn"/></a>
 								
 							</div>

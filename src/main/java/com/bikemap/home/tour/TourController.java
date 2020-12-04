@@ -308,6 +308,7 @@ public class TourController {
 		
 		return chk;
 	}
+
 	
 	// 투어 참가 승인
 	@RequestMapping("/mytour/confirmComplist")
