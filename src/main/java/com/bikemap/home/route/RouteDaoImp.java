@@ -74,4 +74,11 @@ public interface RouteDaoImp {
 	
 	// 루트 한 개의 장소 리스트 읽기
 	public RoutePlaceVO selectRoutePlace(int noroute);
+	
+	//==============저장된 루트==================================//
+	
+	//내가 저장한 리스트 전체 리스트
+	public List<SavedMyRouteVO> selectAllSavedMyRouteList(String userid);
+	
+
 }
