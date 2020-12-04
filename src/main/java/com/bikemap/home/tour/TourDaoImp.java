@@ -31,18 +31,6 @@ public interface TourDaoImp {
 	// 투어 리스트 추가하기
 	public int insertTourComplist(ComplistVO vo);
 	
-//	// 투어 신청자 수 추가하기
-//	public int addQue(int noboard);
-//	
-//	// 투어 참가자 수 추가하기
-//	public int addParty(int noboard, int que);
-//	
-//	// 투어 신청자 수 빼기
-//	public int revertQue(int noboard);
-//	
-//	// 투어 참가자 수 빼기
-//	public int revertParty(int noboard);
-	
 	// 투어 참가 여부 확인하기
 	public String checkTourComplist(ComplistVO vo);
 	
@@ -51,6 +39,30 @@ public interface TourDaoImp {
 	
 	// 투어 참가 승인하기
 	public int confirmComplist(ComplistVO vo);
+	
+	// 투어 결석 처리하기
+	public int absentTour(ComplistVO vo);
+	
+	// 투어 완료 처리하기
+	public int completeTour(int noboard);
+	
+	// 투어 평가자 대상 리스트 가져오기
+	public List<String> selectCompleteList(int noboard);
+	
+	// 투어 좋아요 평가 리스트 만들기
+	public int insertEvalList(int noboard, String userid, String objId);
+	
+	// 투어 참가 횟수 늘리기
+	public int addTourcnt(String userid);
+	
+	// 투어 좋아요 평가 리스트 가져오기
+	public List<ComplistVO> selectEvallist(ComplistVO vo);
+	
+	// 투어 참가자 좋아요 평가 여부 반영하기
+	public int updateEvallist(ComplistVO vo);
+	
+	// 좋아요 평가하기
+	public int addHeart(String userid);
 	
 	// 투어 참가자 리스트 가져오기
 	public List<ComplistVO> selectTourComplist(int noboard);
