@@ -40,9 +40,13 @@
                             <input type="hidden" id="logId" value="${logId }"/>
 								<ul class="dropdown-menu">
                                     <li><a href="<%=request.getContextPath()%>/registEdit">마이페이지</a></li>
+
+                                    
+
                                     <li><a href="<%=request.getContextPath()%>/mytour">내모임</a></li>
                                     <li><a href="<%=request.getContextPath()%>/tourApply">참여모임</a></li>
-                                      <li><a href="#">저장된 루트</a></li>
+                                     <li><a href="<%=request.getContextPath()%>/mySavedRouteBoard">저장된 루트</a></li>
+
                                     <li><a href="#">1:1문의</a></li>
                                     <li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
                                 </ul>                            
