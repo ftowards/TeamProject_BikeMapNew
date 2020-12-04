@@ -554,7 +554,27 @@
 
 
 
-
+/*=============페이징===================*/
+	#paging{
+				height:60px; 
+			
+				
+	} 
+	#paging ul{
+				width:200px;
+				margin-left:1100px;
+	}
+	#paging li{
+				float:left; 
+				width:25px; 
+				height:40px; 
+				font-size:18px;
+			
+	} 	
+	#paging li a:link,#paging li a:visited{
+											text-decoration:none;
+											color:rgb(64,64,64);
+	}
 
 
 
