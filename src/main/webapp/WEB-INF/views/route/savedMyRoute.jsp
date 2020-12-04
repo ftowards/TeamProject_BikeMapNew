@@ -48,9 +48,7 @@
 						</div>
 						<div class="startPlaceDiv">별위치</div></a>
 						</div>
-					
 					</div>
-    				
  				</div>
    			</div>
    

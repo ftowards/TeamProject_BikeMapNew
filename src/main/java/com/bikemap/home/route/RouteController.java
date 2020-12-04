@@ -347,4 +347,10 @@ public class RouteController {
 		}
 		return vo;
 	}
+	//저장된 루트 List
+	@RequestMapping("/mySavedRoute")
+	public String myRouteBoardList() {
+		return "route/savedMyRoute";
+	}
+	
 }
