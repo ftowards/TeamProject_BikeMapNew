@@ -308,6 +308,7 @@ public class TourController {
 		
 		return chk;
 	}
+
 	
 	
 	////////////// 내가 만든 투어 관리 ///////////////////
