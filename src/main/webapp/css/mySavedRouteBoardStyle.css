@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+  
+  #page-wrapper {
+    padding-left: 250px;
+   
+  }
+  
+  #sidebar-wrapper {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    background: #000;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  #page-content-wrapper {
+ 
+    width: 100%;
+    padding: 20px;
+  }
+  /* 사이드바 스타일 */
+  
+  .sidebar-nav {
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .sidebar-nav li {
+
+    text-indent: 2em;
+    line-height: 2.8em;
+  }
+  
+  .sidebar-nav li label {
+    display: block;
+    text-decoration: none;
+    color: #999;
+  }
+  
+  .sidebar-nav li label:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .sidebar-nav img{
+  		width:200px;
+  		margin-top:60px;
+  
+  }
+  
+  .sidebar-nav > .sidebar-brand {
+    font-size: 1.3em;
+    line-height: 3em;
+     color: #999;
+     margin-top:20px;
+  }
+ 
+  /*=================================게시판==========================*/
+  
+  .tabCategory{
+  					width:1200px;
+  					margin:0 auto;
+  
+  }
+  .titleMyRouteDiv1{
+  					height:80px;
+					margin-top:50px;
+  
+  }
+  .titleMyRouteDiv1 label:first-child{
+  							font-size:22px; 
+	 						color:rgb(64,64,64);
+  
+  }
+  	
+	.tabCategory{
+			display:none;
+			border:0;
+		}
+	#tab1:checked~div:nth-of-type(1){
+			display:block;
+		}
+	#tab2:checked~div:nth-of-type(2){
+		display:block;
+		}
+	#paging{
+				height:60px; 
+			
+				
+	} 
+	#paging ul{
+				width:200px;
+				margin-left:1100px;
+	}
+	#paging li{
+				float:left; 
+				width:25px; 
+				height:40px; 
+				font-size:18px;
+			
+	} 	
+	
+	#paging li a:link,#paging li a:visited{
+											text-decoration:none;
+											color:rgb(64,64,64);
+	}
+	.tourImgDivClass{
+				
+				width:23%;
+				height:300px;
+				float:left;
+				margin:0 15px 60px 8px;
+				
+	}
+	.blackWrapDiv{
+					width:255px;
+					height:250px;
+					position:absolute;
+					background-color:black;
+					opacity:60%;
+					z-index:9;
+					float:left;
+					
+					
+	} 
+	.tourBoardTitle, .tourBoardWrite,.blackWrapDiv>hr, 
+	.tourBoardDay,.tourBoardUserid{
+								color:#fff;
+								text-align:center;
+							
+	}
+	.blackWrapDiv>p:first-child{
+								margin-top:40px;
+								line-height:20px
+	}
+	.blackWrapDiv>p:last-child{
+						margin-top:5px;
+					
+	}
+	.tourBoardTitle{
+		
+					white-space:nowrap;
+					text-overflow:ellipsis;
+			
+	
+	
+	}
+	.tourBoardTitle a:visited{
+								text-decoration:none;
+								color:#fff;
+	}
+	.startPlaceDiv{
+					background-color:orange;
+					height:50px;
+					width:255px;
+					float:left;
+	}
+	.tourImgClass{
+				
+				width:255px;
+				height:250px;
+				float:left;
+		
+				box-shadow: 3px 3px 5px 3px rgb(180,180,180);
+	
+	}
