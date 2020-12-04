@@ -29,21 +29,27 @@
 		<div class = content>
 			<div id= "contentlocation">
 				<div class = "contentlocationdiv">
+					<span class="locationTitle">서울</span>
 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png" /></a>
 				</div>			
 				<div class = "contentlocationdiv">
+					<span class="locationTitle">부산</span>
 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg" /></a>
 				</div>
 				<div class = "contentlocationdiv">
+					<span class="locationTitle">여수</span>
 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>
 				</div>
 				<div class = "contentlocationdiv">
+					<span class="locationTitle">제주</span>
 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a>
 				</div>
 				<div class = "contentlocationdiv">
+					<span class="locationTitle">서울</span>
 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a>
 				</div>
 				<div class = "contentlocationdiv">
+					<span class="locationTitle">서울</span>
 					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a>
 				</div>
 			</div>
@@ -53,9 +59,8 @@
 <!-- 	후기 제목 -->
 		<div class= "reviewtitle">
 			<span class="title">후기 게시판</span><br><br>
-			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span>
-				<input type="button" style = "float : right; margin-right: 34px; "class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'">
-			</div>
+			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
+			<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'" style='float:right; margin:0 25px 10px 0;'>
 		</div><br/>
 		
 
@@ -69,7 +74,9 @@
 					
 						<!-- 후기창 왼쪽 면-->
 						<div class ="left">
-							<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
+							<a href="<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">
+								<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
+							</a>
 						</div>
 						
 						<!-- 후기창 오른쪽 면 -->
@@ -77,7 +84,11 @@
 						
 							<div class= "subtitle">
 								<ul>
-									<li>${vo.noboard }&emsp;<a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
+									<li>
+										<a href="<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">
+											${vo.noboard }&emsp;<span>${vo.subject }</span>
+										</a>
+									</li>
 								</ul>
 <!-- 								<a href="#"> -->
 <%-- 									<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/> --%>
@@ -87,13 +98,20 @@
 <!-- 								</a>  -->
 							</div>
 								<ul>
-									<li id="reviewtext">${vo.content }</li>
+									<li id="reviewtext">
+										<a href="<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">
+											${vo.content }
+										</a>
+									</li>
 								</ul>
 								
 							<div class="writedate">
 								<ul>
-									<li class="userid" style="float:left; margin-left: 5px;">${vo.userid }</li>
-									<li style="margin-left: 595px;">${vo.writedate }</li>
+									<li class="userid">
+										<img src="<%=request.getContextPath() %>/img/img_Review/review.png"/>
+										${vo.userid }님의 생생한 후기
+									</li>
+									<li class="writedate">${vo.writedate } 작성</li>
 								</ul>
 							</div>
 						</div>
@@ -102,7 +120,7 @@
 				</div>
 			</c:forEach>
 		
-		<div id="paging2" style='text-align:center; margin: 20px;'>1&emsp;<span style='color:#00B0B0; font-weight:600; '>2</span>&emsp;3&emsp;4&emsp;5</div>
+		<div id="paging2" style='text-align:center; margin:80px; font-size:20px;'>1&emsp;<span style='color:#00B0B0; font-weight:600; '>2</span>&emsp;3&emsp;4&emsp;5</div>
 		</div>
 		<div id= "bottom"></div>
 		
