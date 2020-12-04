@@ -8,8 +8,14 @@
 <script src="https://www.google.com/jsapi"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <div class="mainDivTourView">
-
-	<div id="tourViewFormTitleDiv"><label id="tourWriteTitle"><b>${vo.title}</b></label><br/><hr/></div>
+	<div id="tourViewFormTitleDiv"><label id="tourWriteTitle"><b>${vo.title}</b></label></div>
+	<div class="tourViewEditAndDeleteDiv">
+	
+		
+			<div><label class="tourViewEdit"><a href="<%=request.getContextPath()%>/tourViewEdit">수정</a></label></div>
+			<div><input type="submit" value="삭제" class="tourViewDelete" onclick="del(${vo.noboard})"></div>
+		
+	</div>
 	<div id="routeResultDiv" class="routeResultDiv">
 		<input type='hidden' id='reference' value='${vo.reference }'/>
 		<div><label class="tourWriteConditionTitle">루&nbsp;트</label></div>
@@ -97,13 +103,7 @@
 					<div><label id="regagefiftyOver" class='regage' <c:if test='${vo.age50 }'>title="on"</c:if> style="width:100px">50대 이상</label></div>					
 				</div>
 		</div>
-	</div>		
-
-  <div class="conditionDivTop4">
-      <div><label  class="labelUseridClass">작성자</label></div>
-        <div><input type="submit" class="useridBox" value="${vo.userid}" id="userInformation"></div>
-
-  </div>		
+	</div>			
 	<div id="writeForm">		
 		<hr/>
 		<div id="content">${vo.content }</div>
@@ -125,19 +125,23 @@
 			<div><button id="cancelTour">참가취소</button></div>		 	
 		</div>
 	</c:if>
-	
+	 <div class="conditionDivTop4">
+    	<div><label  class="labelUseridClass">작성자</label></div>
+        <div><input type="submit" class="useridBox" value="${vo.userid}" id="userInformation"></div>
+ 	 </div>	
 	
 	<!-- 참가 인원 확인 창 : 모달 창 만들기 -->
 	<div class="modal" id="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<!-- header -->
-				<div class="modal-header">
-					<h4>참가 인원 확인</h4>
+				<div class="modal-header" style="border:none">
+					<label><img src="<%=request.getContextPath()%>/img/img_tour/people.png" style="width:30px">&ensp;참여 인원 확인</label>
+					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 				</div>
 				<!-- body -->
 				<div class="modal-body">
-					<ul id="listTitle">
+					<ul id="listTitle" >
 						<li>아이디</li>
 						<li>나이대</li>
 						<li>성별</li>
@@ -149,8 +153,8 @@
 					<ul id="complist"></ul>
 				</div>
 				<!-- footer -->
-				<div class="modal-footer">
-					<button data-dismiss="modal" class="btn btn-danger">닫기</button>
+				<div class="modal-footer" style="border:none">
+					
 				</div>
 			</div>
 		</div>
@@ -161,10 +165,18 @@
 	<%@ include file="../inc/reply.jspf"%>
 </div>
 <script>
+function del(noboard){
+	var checkMSG = confirm("삭제된 글은 복구가 불가능합니다."+<br/>+"글을 삭제하시겠습니까?");
+	if(checkMSG){
+		location.href='/home/tourViewDelete';
+	}
+}
 
+</script>
+
+<script>
 //////// 지도용 변수
 var routeMarker = [];
-
 var container = document.getElementById("routeMap");
 var options = {
 		center : new kakao.maps.LatLng(37.5510907243016, 126.937364458741),
@@ -173,25 +185,19 @@ var options = {
 };
 var routePosition = [];
 var bounds = new kakao.maps.LatLngBounds();
-
 // 루트 표시 마커 생성
 var markerStart ;
 var markerVia ;
 var markerArrive ;
-
 // 마커 이미지 미리 생성
 var markerSize = new kakao.maps.Size(46, 46); // 출발 마커이미지의 크기입니다
 var markerOption = {offset: new kakao.maps.Point(21, 50)}; // 출발 마커이미지에서 마커의 좌표에 일치시킬 좌표를 설정합니다 (기본값은 이미지의 가운데 아래입니다)  
-
 // 루트 마커 이미지를 생성합니다
 var startImage = new kakao.maps.MarkerImage('./img/img_route/markerStart.png', markerSize, markerOption);
 var arriveImage = new kakao.maps.MarkerImage('./img/img_route/markerArrive.png', markerSize, markerOption);
 var viaImage = new kakao.maps.MarkerImage('./img/img_route/markerVia.png', markerSize, markerOption);
-
 // 지도 추가
 var map = new kakao.maps.Map(container, options);
-
-
 $(function(){
 	
 	getTourTime();
@@ -206,7 +212,6 @@ $(function(){
 			$("#whole").css('color','white').css('background-color','rgb(0,176,176)');
 		}
 	});
-
 	var ageCnt = 0 ;
 	$(".regage").each(function(){
 		if($(this).attr('title') != null){
@@ -288,13 +293,12 @@ $(function(){
 	});
 	
 });
-
 function setComplist(result){
 	var tag = "";
 	var $result = $(result);
 	
 	var manageCondition = $("#manageConditon").val();
-	
+	var heartImg = "<img src='<%=request.getContextPath()%>/img/img_myRoute/like.png' style='width:25px;'>";
 	
 	$result.each(function(i, v){
 		tag += "<li>"+v.userid+"</li>";
@@ -307,11 +311,11 @@ function setComplist(result){
 		
 		tag += "<li>"+gender+"</li>";
 		tag += "<li>"+v.tourcnt+"</li>";
-		tag += "<li>"+v.heart+"</li>";
+		tag += "<li>"+heartImg+v.heart+"</li>";
 		
-		var state = "승인 대기";
+		var state = "<div class='applyWait'><label>승인대기</label></div>";
 		if(v.state == '2'){
-			state = '참가 중';
+			state = "<div class='applying'><label>참가중</label></div>";
 		}
 		
 		if(manageCondition == 'ok' && v.state =='1'){
@@ -320,18 +324,16 @@ function setComplist(result){
 			tag += "<li>"+state+"</li>";
 		}
 		
-		tag += "<li><button class='messageBtn' onclick='sendMessage();'>Send</button></li>";
+		tag += "<li><img src='<%=request.getContextPath()%>/img/img_tour/messge.png' style='width:35px;' onclick='sendMessage();'></li>";
 	});
 	
 	$("#complist").html(tag);
 	
 }
-
 function confirmComplist(){
 	var userid = this.attr("title");
 	console.log(userid);
 }
-
 function cancleTour(){
 	var url = "/home/cancelTour";
 	var data = "noboard="+$("#noboard").val();
@@ -352,7 +354,6 @@ function cancleTour(){
 		}
 	});
 }
-
 function getTourTime(){
 	var distance =$("#distance").text();
 	var speed = $("#speed").text();
@@ -361,7 +362,6 @@ function getTourTime(){
 		$("#tourtime").text("-");
 		return false;
 	}
-
 	
 	var time = Math.floor(distance/speed);	 
 	var minute = Math.floor((distance/speed - time)*60);
@@ -384,7 +384,6 @@ function getTourTime(){
 	console.log(timeTxt);
 	$("#tourtime").text(timeTxt);
 }
-
 //맵 세팅하기
 function setMapData(){
 	var data = "noboard="+$("#reference").val();
@@ -401,14 +400,12 @@ function setMapData(){
 	});
 	
 }
-
 function getRoutePoint(point){
 	var points = point.replace("[/]","/").split("/");
 	var p = new kakao.maps.LatLng(points[2], points[1]);
 	routePosition.push(p);
 	bounds.extend(p);
 }
-
 function setMap(result){
 	
 	var titleTag = "<a href='/home/routeSearchView?noboard="+result.noboard+"'>"+result.title+"</a>";
@@ -419,7 +416,6 @@ function setMap(result){
 	
 	// 기존 경로 마커 삭제
 	removeMarker(routeMarker);
-
 	
 	// 루트 마커 세팅하기 
 	// 마커 지정할 좌표 순서대로 입력
@@ -462,9 +458,7 @@ function setMap(result){
 	
 	map.setBounds(bounds);
 }
-
 ///////      길 찾기        ///////////////////////////////////////
-
 // geometry 해석하기
 	function decode(encodedPolyline, includeElevation){
 	    // array that holds the points
@@ -513,17 +507,13 @@ function setMap(result){
 	        console.log(e)
 	      }
 	    }
-	    return points
+	    return points;
 	}
-
-
 // 경로 객체 생성하기
 var polyline = "";
 // Load the Visualization API and the columnchart package.
 google.load("visualization", "1", { packages: ["columnchart"] });
-
 function setRouteLine(points){
-
 	// 기존에 경로 객체가 있을 경우, 맵 상에서 지우기
 	if(polyline != "") {
 		polyline.setMap(null);
@@ -605,15 +595,12 @@ function plotElevation(elevations, status) {
 	  titleY: "Elevation (m)",
 	});
 }
-
-
 //기존에 표시한 마커 제거
 function removeMarker(markerGroup){
 	for(var i = 0; i<markerGroup.length; i++){
 		markerGroup[i].setMap(null);
 	}
 	markerGroup =[];
+
 }
-
-
 </script>
