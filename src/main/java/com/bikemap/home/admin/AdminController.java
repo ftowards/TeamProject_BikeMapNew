@@ -42,7 +42,8 @@ public class AdminController {
 			vo.setTotalRecord(totalRecord);
 			//System.out.println("왜안되냐...->"+vo.getTotalRecord());
 			list = dao.selectRegistAll(vo);
-		
+			System.out.println(vo.getNowPage()+": 현재페이지");
+	
 			mav.addObject("type", "user");
 			mav.addObject("list", list);
 			mav.addObject("pagingVO", vo);	
@@ -103,10 +104,9 @@ public class AdminController {
 				List<RouteVO>list;
 				totalRecord = dao.searchRouteRecord(vo);
 				vo.setTotalRecord(totalRecord);
-				System.out.println("!!!!!    "+vo.getTotalRecord());
 				list = dao.routeAllRecord(vo);
 				
-				mav.addObject("type", "review");
+				mav.addObject("type", "route");
 				mav.addObject("list", list);
 				mav.addObject("pagingVO", vo);	
 			}catch(Exception e) {

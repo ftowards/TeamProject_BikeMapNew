@@ -76,8 +76,8 @@ function makeReviewTable(result){
 							</c:if>
 						</c:forEach>
 					
-						<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
-							<li><a href="#">Next</a></li>
+						<c:if test="${pagingVO.nowPage != pagingVO.totalPage }">
+							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>
 					</ul>
 			</div><br/> 
