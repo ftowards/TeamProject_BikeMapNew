@@ -4,8 +4,9 @@
 <div id="mainDivHome">
 	<div id="hitRoute">
 		<span class="routeTitle">
-			추천코스 여행&nbsp;
-			<sub>561개</sub>
+			추천여행 코스&nbsp;
+			<sub>561개</sub><br/>
+			<span class="routeTitle2">바이크맵 관리자가 엄선하여 추천하는 추천 코스입니다.</span>
 		</span><br/>
 		<div id="content1">
 			<div class="route">
