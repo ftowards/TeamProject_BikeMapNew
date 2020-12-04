@@ -131,7 +131,7 @@
 							</c:if>
 						</c:forEach>
 					<!-- 다음 페이지 -->
-						<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
+						<c:if test="${pagingVO.nowPage != pagingVO.totalPage}">
 							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>
 					</ul>
