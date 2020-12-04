@@ -9,6 +9,7 @@
 <div id="page-wrapper">
   <!-- 사이드바 -->
 	<div id="sidebar-wrapper">
+		<input type="hidden" id="logId" value="${logId }"/>
     	<ul class="sidebar-nav">
 			<li class="sidebar-brand"><label>여행 목록</label></li>
 			<li><label for="tourOn">진행여행</label></li>
@@ -30,65 +31,17 @@
 			<div class="titleMyTourDiv1 tab"><label>진행여행</label>
 				<div class="myTourBoardMainDiv">
 		     		<div>
-		     			<table id="tourOnList" class="table table-striped table-hover">
-		     				<thead>
-			     				<tr>
-					     			<th>번&nbsp;호</th>
-					     			<th>제&nbsp;목</th>
-					     			<th>마감일시</th>
-					     			<th>참&nbsp;가</th>
-					     			<th>잔&nbsp;여</th>
-					     			<th>대&nbsp;기</th>
-					     			<th>참가목록</th>
-				     			</tr>
-							</thead>
-				     		<tbody>
-		     				<!-- =====================db작업======================== -->
-			     				<tr>
-				     				<td>900</td>
-					     			<td><a href="#">소라네 코스</a></td>
-					     			<td><a data-toggle="collapse" href="#viewAcodian">20-12-01 15:00</a></td>
-					     			<td><a data-toggle="collapse" href="#viewAcodian">3</a></td>
-					     			<td><a data-toggle="collapse" href="#viewAcodian">2</a></td>
-					     			<td><a data-toggle="collapse" href="#viewAcodian">1</a></td>
-				     			</tr>
-			    	 		</tbody>
-						</table>
-			   	 		<div id="viewAcodian" class="panel-collapse collapse">
-			     			<table class="table">
-			     				<thead>
-				     				<tr>
-						     			<th>참가자</th>
-						     			<th>나이대</th>
-						     			<th>모임횟수</th>
-						     			<th>좋아요</th>
-						     			<th>참가상태</th>
-						     			<th>관&nbsp;리</th>
-					     			</tr>
-			    	 			</thead>
-			  					<tbody>
-								<!-- =====================db작업(아코디언)======================== -->
-					     			<tr>
-					     				<td>권세란</td>
-						     			<td>20대</td>
-						     			<td>5회</td>
-						     			<td><img src="<%=request.getContextPath()%>/img/img_myRoute/like.png">5</td>
-						     			<td><button type="submit" class="tourIn">참가중</button></td>
-						     			<td><button type="submit" class="tourOut">추&nbsp;방</button></td>
-					     			</tr>
-								</tbody>
-								<tbody>
-									<!-- =====================(임시 데이터)======================== -->
-				    	 			<tr>
-					     				<td>박소라</td>
-						     			<td>20대</td>
-						     			<td>3회</td>
-						     			<td><img src="<%=request.getContextPath()%>/img/img_myRoute/like.png">20</td>
-						     			<td><button type="submit" class="tourOk">승&nbsp;인</button></td>
-						     			<td><button type="submit" class="tourNo">거&nbsp;절</button></td>
-				     				</tr>
-								</tbody>
-			    	 		</table>
+		     			<div >
+		     				<ul id="tourOnListTitle">
+		     					<li>번&nbsp;호</li>
+				     			<li>제&nbsp;목</li>
+				     			<li>마감일시</li>
+				     			<li>참&nbsp;가</li>
+				     			<li>잔&nbsp;여</li>
+				     			<li>대&nbsp;기</li>
+				     			<li>참가목록</li>
+		     				</ul>
+		     				<ul id="tourOnList"></ul>
 						</div>
 						<div id="paging"></div>
 					</div>
@@ -175,24 +128,152 @@ function setList(result){
 	var $result = $(result);
 	
 	if(tourState == '1'){
-		// 표 타이틀
-		tag += "<thead><tr><th>번&nbsp;호</th><th>제&nbsp;목</th><th>마감일시</th><th>참&nbsp;가</th><th>잔&nbsp;여</th><th>대&nbsp;기</th><th>참가목록</th></tr></thead>";
-		
 		// 표 내용
 		$result.each(function(idx, val){			
-			tag += "<tbody><tr>";
-			tag += "<td>"+val.noboard+"</td>";
-			tag += "<td><a href='/home/tourView?noboard="+val.noboard+"'>"+val.title+"</a></td>";
-			tag += "<td>"+val.deadline+"</td>";
-			tag += "<td>"+val.party+"</td>";
-			tag += "<td>"+val.room+"</td>";
-			tag += "<td>"+val.que+"</td>";
-			tag += "<td><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"'>▼</a></td></tr></tbody>";
-			tag += "<tbody id='viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")' class='panel-collapse collapse'>ㅁㄹㅇㅁㄻㄻㅇㄹ</tbody>";
+			tag += "<li>"+val.noboard+"</li>";
+			tag += "<li><a href='/home/tourView?noboard="+val.noboard+"'>"+val.title+"</a></li>";
+			tag += "<li>"+val.deadline+"</li>";
+			tag += "<li>"+val.party+"</li>";
+			tag += "<li>"+val.room+"</li>";
+			tag += "<li>"+val.que+"</li>";
+			tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li></tr></tbody>";
+			
+			tag += "<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>";
 		});
 		$("#tourOnList").html(tag);
 	}
 	
 	console.log(result);
 }
+
+function getTourComplist(noboard){
+	if(tourState == '1'){
+		$.ajax({
+			url : "/home/selectComplist",
+			data : "noboard="+noboard,
+			success : function(result){
+				setAcodianList(result, noboard);
+			},error : function(err){
+				Console.log(err);
+			}
+		});
+	}
+}
+
+function setAcodianList(result, noboard){
+	console.log(result);
+	var $result = $(result);
+	
+	var tag =""
+	if(tourState == '1'){
+		tag += "<li>참가자</li><li>나이</li><li>모임횟수</li><li>좋아요</li><li>참가상태</li><li></li>";
+		
+		if(result == null){
+			$("#complist"+noboard).html(tag);
+			return false;
+		}
+		
+		$result.each(function(idx, val){
+			tag += "<li>"+val.userid+"</li>"
+			tag += "<li>"+val.age+"대</li>"
+			tag += "<li>"+val.tourcnt+"</li>";
+			tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
+			
+			if(val.state == '1'){
+				tag += "<li>승인 대기</li>";
+				tag += "<li><button class='tourIn' onclick='confirmComplist(title)' title='"+noboard+"/"+val.userid+"'>승&nbsp;인</button></li>";
+			}else if(val.state == '2'){
+				tag += "<li>참가 중</li>";
+				if(val.userid != $("#logId").val()){
+					tag += "<li><button class='tourOut' onclick='cancelComplist(title)' title='"+noboard+"/"+val.userid+"'>취&nbsp;소</button></li>";
+				}else{
+					tag +="<li></li>";
+				}
+			}			
+		});
+		
+		$("#complist"+noboard).html(tag);
+	}	
+}
+
+function confirmComplist(title){
+	var strs = title.split("/");
+	var data = "noboard="+strs[0]+"&userid="+strs[1];
+	
+	$.ajax({
+		url : "/home/mytour/confirmComplist",
+		data : data,
+		success : function(result){
+			if(result == 1){
+				alert("참가 승인 완료되었습니다.");
+				sendMsg(strs[0], strs[1], 1);
+			}else{
+				alert("승인 오류 입니다.");
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	});	
+	getTourComplist(strs[0]);
+}
+
+function cancelComplist(title){
+	var strs = title.split("/");
+	var data = "noboard="+strs[0]+"&userid="+strs[1];
+	
+	$.ajax({
+		url : "/home/mytour/revertComplist",
+		data : data,
+		success : function(result){
+			if(result == 5){
+				alert("마감 시간이 지나 참가 취소 처리가 불가합니다.");
+			}else if(result == 1){
+				alert("참가 취소 처리 되었습니다.");
+				sendMsg(strs[0], strs[1], 2);
+			}else{
+				alert("참가 취소 처리 오류입니다.");
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	});	
+	getTourComplist(strs[0]);
+}
+
+// 메세지 저장하기 ++ 통신으로 메세지 보내기
+function sendMsg(noboard, receiver, type){
+	var receiver = receiver;
+	var sender = $("#logId").val();
+	
+	console.log(receiver);
+	console.log(sender);
+	console.log(type);
+	
+	var noboard = noboard;
+	var msg ="";
+	var socketMsg = "";
+	if(type == 1){
+		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 승인하였습니다.</a>";
+		socketMsg = "confirmTour,"+receiver+","+sender+","+noboard;
+	}else if(type == 2){
+		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 취소처리 하였습니다.</a>";
+		socketMsg = "revertTour,"+receiver+","+sender+","+noboard;
+	}
+	
+	var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
+	
+	$.ajax({
+		url : "/home/insertNotice",
+		data : data,
+		success : function(result){
+			if(result == 1){
+				socket.send(socketMsg);
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	})
+}
+
+
 </script>

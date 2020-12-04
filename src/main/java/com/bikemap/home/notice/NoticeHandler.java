@@ -48,11 +48,19 @@ public class NoticeHandler extends TextWebSocketHandler{
 			
 			WebSocketSession boardWriterSession = userSessionsMap.get(receiver);
 			if(boardWriterSession != null) {
+				TextMessage tmpMsg = new TextMessage("");
 				if(msgType.equals("routeReply")) {
-					TextMessage tmpMsg = new TextMessage("<a href='/home/routeSearchView?noboard="+noboard+"'>"+sender + "님이 " + noboard + "번 루트에 댓글을 달았습니다.</a>");
-					boardWriterSession.sendMessage(tmpMsg);
-					System.out.println(tmpMsg);
+					tmpMsg = new TextMessage("<a href='/home/routeSearchView?noboard="+noboard+"'>"+sender + "님이 " + noboard + "번 루트에 댓글을 달았습니다.</a>");					
+				}else if(msgType.equals("confirmTour")) {
+					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"'>"+sender + "님이 " + noboard + "번 투어 참가를 승인하였습니다.</a>");
+				}else if(msgType.equals("revertTour")) {
+					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 취소처리 하였습니다.</a>");
+				}else if(msgType.equals("applyTour")) {
+					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가 신청하였습니다.</a>");
 				}
+				
+				boardWriterSession.sendMessage(tmpMsg);
+				System.out.println(tmpMsg);
 			}
 		}
 	}

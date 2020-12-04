@@ -49,6 +49,9 @@ public interface TourDaoImp {
 	// 투어 참가 취소하기
 	public int cancelTour(ComplistVO vo);
 	
+	// 투어 참가 승인하기
+	public int confirmComplist(ComplistVO vo);
+	
 	// 투어 참가자 리스트 가져오기
 	public List<ComplistVO> selectTourComplist(int noboard);
 	
