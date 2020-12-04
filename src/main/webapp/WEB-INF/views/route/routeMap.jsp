@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <div id="mainDivMap">
 	<div id="info">
 		<!-- 탭 아이콘 패널 -->
@@ -102,19 +102,19 @@
 			
 			<!-- 저장한 장소 목록 -->
 			<div class="tab" id="pannel3">
-				<div onclick="showPlaceList(title);" title="foodList" style='width:100%; background-color:#EB3807'>
+				<div onclick="showPlaceList(title);" title="foodList" style='background-color:#EB3807'>
 					<img id="likeImg" src="<%=request.getContextPath() %>/img/img_route/food.png"/>찜한 음식점
 				</div>
 					<ul id="foodList" style="display:none;"></ul>				
-				<div onclick="showPlaceList(title);" title="sightsList" style='width:100%; background-color:#002060'>
+				<div onclick="showPlaceList(title);" title="sightsList" style='background-color:#002060'>
 					<img id="likeImg" src="<%=request.getContextPath() %>/img/img_route/sights.png"/>찜한 관광지
 				</div>
 					<ul id="sightsList" style="display:none;"></ul>
-				<div onclick="showPlaceList(title);" title="accomodationList" style='width:100%; background-color:#5A147A'>
+				<div onclick="showPlaceList(title);" title="accomodationList"  style='background-color:#5A147A'>
 					<img id="likeImg" src="<%=request.getContextPath() %>/img/img_route/accomodation.png"/>찜한 숙박시설
 				</div>
 					<ul id="accomodationList" style="display:none;"></ul>
-				<div onclick="showPlaceList(title);" title="convenientList" style='width:100%; background-color:#2E75B6'>
+				<div onclick="showPlaceList(title);" title="convenientList"  style='background-color:#2E75B6'>
 					<img id="likeImg" src="<%=request.getContextPath() %>/img/img_route/convenient.png"/>찜한 편의시설
 				</div>
 					<ul id="convenientList" style="display:none;"></ul>

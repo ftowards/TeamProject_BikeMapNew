@@ -49,7 +49,7 @@
 	}
 	
 	#info{
-		width:22.5%;
+		width:430px;
 		height:100%;
 	}
 	#info>div{
@@ -71,7 +71,7 @@
 		height : 100%;
 	}
 	#map{
-		width :77.5%;
+		width :900px;
 		height : 100%;
 	}
 	#infoPannel>input[type=radio]{
@@ -339,7 +339,7 @@
 	}
 	
 	
-	/* 저장한 장소 목록 */
+	<!-- ���옣�븳 �옣�냼 紐⑸줉 -->
 	#pannel3{
 		width : 100%;
 		overflow: auto;
