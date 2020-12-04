@@ -100,6 +100,13 @@
 	#routeInfo{
 		height:auto;
 		padding-left:10px;
+		color:#002060;
+		font-size:17px;
+		font-weight:bold;
+		padding:50px 0 10px 0;
+		word-spacing:5px;
+		letter-spacing:1px;
+		font-family:'Noto Sans KR', sans-serif;
 	}
 	#routeInfo > ul > li > input{
 		width:98%;
@@ -162,7 +169,7 @@
  	}
  	.saveBtns{
  		text-align:center;
- 		margin-top:160px;
+ 		margin-top:140px;
  		padding:23px;
  	}
  	
@@ -232,7 +239,7 @@
 	}
 	#placeList ul > li{
 		line-height:25px;
-		font-size:12px;
+		font-size:14px;
 	}
 	#placeList a:link{
 		text-decoration: none;
@@ -483,10 +490,15 @@
 	}
 	
 	.title{
-		margin-top:50px;
+		color:#353535;
+		font-size:25px;
+		font-weight:600;
+		margin-top:35px;
 		padding:0px 10px 10px 20px;
 	}	
-	
+	.course_Info{
+		padding:38px 0 0 30px;
+	}
 	
 	
 	/*=========목록보기=========*/
