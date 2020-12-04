@@ -6,12 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device, initial-scale=1"/>
 <link rel="stylesheet" href="/home/css/admin.css" type="text/css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;500&display=swap" rel="stylesheet">		
 <title>Bike Map</title>
 <script>    
@@ -66,7 +65,7 @@
 				}
 			}
 		}
-		alert(vo.totalPage);
+		//alert(vo.totalPage);
 		if(vo.nowPage != vo.totalPage){
 			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 		}
@@ -96,21 +95,15 @@ function movePage(page){
 				console.log("페이징 오류");
 			}
 		});
-		var makeTable="";
 		if(${type=='user'}){
-    		url = "<%=request.getContextPath()%>/adminUserAjax";
-    		makeTable = function userTable(result){}
+    		url = "<%=request.getContextPath()%>/adminUserAjax";	
 		}else if(${type=='tour'}){
-    		url = "<%=request.getContextPath()%>/adminTour";
-    		makeTable = function tourTable(result){}
+    		url = "<%=request.getContextPath()%>/adminTourAjax";   		
 		}else if(${type=='review'}){
-    		url = "<%=request.getContextPath()%>/adminReview";			 
-    		makeTable = function reviewTable(result){}
+    		url = "<%=request.getContextPath()%>/adminReviewAjax";			 
 		}else if(${type=='qna'}){
-    		url = "<%=request.getContextPath()%>/adminQna";
-    		makeTable = function qnaTable(result){}
-		}
-		
+    		url = "<%=request.getContextPath()%>/adminQnaAjax";
+		}		
 		$.ajax({
 			type : 'POST',
 			url : url,
@@ -118,9 +111,18 @@ function movePage(page){
 			success : function(result){
 				if( result.length <= 0 ){
 					alert("검색 결과가 없습니다.");
-					history.back();//넣을지 말지 확인후
+					location.reload();
+					//history.back();//넣을지 말지 확인후
 				} else{ 
-					makeTable(result);
+					if(${type=='user'}){
+						makeUserTable(result)
+					}else if(${type=='tour'}){
+						makeTourTable(result)
+					}else if(${type=='review'}){
+						makeReviewTable(result)
+					}else if(${type=='qna'}){
+						makeQnaTable(result)
+					}		
 				}
 			}, error : function(){
 				console.log("페이지 + 검색 결과 호출 에러");
@@ -161,7 +163,7 @@ function movePage(page){
     	
     	$("#checkAll").click(function(){
 			 $('input:checkbox').not(this).prop('checked', this.checked);
-			 System.out.println("왜안되냐");
+			 //System.out.println("왜안되냐");
 		});	
     	// 라디오버튼 클릭시 이벤트 발생
 		$('input:radio[name=selSuspend]').click(function(){	
@@ -177,6 +179,44 @@ function movePage(page){
                   // radio 버튼의 value 값이 1이라면 활성화
             }
         });
+    	$('input:button[name=partnerHideBtn]').click(function(){
+    		var values = document.getElementsByName("tourCheck");
+    		var chkArray = new Array();
+    		$('input:checkbox[name=tourCheck]:checked').each(function(){
+    			chkArray.push(this.value);
+    		});
+    		alert(chkArray);
+    		
+    		/*for(var i=0; i<values.length; i++){
+    			if(values[i].checked){
+    				var params = values[i].value;
+    				jQuery.ajax({
+    		            url: 'tourHideOk',
+    		            type: 'POST',
+    		            data:params,
+    		            success: function (result) {
+    		                $('#userSuspend').hide();
+    		                
+    		                var chkArray = new Array(); // 배열 선언
+    		                
+    		                $('input:checkbox[name=SEQ_CHK]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+    		                    chkArray.push(this.value);
+    		                });
+    		                $('#hiddenValue').val(chkArray);
+
+
+    		      
+    		                btn.css("background","url('img/img_admin/edit_25_25.png') no-repeat");
+    		               	btn.attr("id","suspendEditBtn");
+    		               	btn.parent().next().text("~"+result.enddayStr);
+    		            },
+    			        error:function(e){
+    		            	console.log('정지연장', e.responseText);
+    		            }
+    		        });	
+    			}
+    		}*/
+    	});
     	
     	$("#userSuspendFrm").submit(function(){	
     		console.log('111111111111');
@@ -226,12 +266,11 @@ function movePage(page){
 		        return false;
 		 });
     	
-    	$("#adminSearchUser").submit(function(){
+    	$("#adminSearchFrm").submit(function(){
     		if($("#userSearchWord").val() == ""){
     			alert("검색어를 입력하세요.");
     			return false;
     		}
-    		//movePage(1);
     		return true;
     	});
     	$('#reportMsg').on('keyup', function() {
@@ -239,16 +278,7 @@ function movePage(page){
  		         $(this).val($(this).val().substring(0, 200));
  		   }
  		});
-    	
-    	if(${type=='user'}){
-    		$("#adminSearchFrm").attr("action", "javascript:movePage(1)");
-    	}else if(${type=='tour'}){
-    		$("#adminSearchFrm").attr("action", "<%=request.getContextPath()%>/adminTour");
-    	}else if(${type=='review'}){
-    		$("#adminSearchFrm").attr("action", "<%=request.getContextPath()%>/adminReview");			 
-    	}else if(${type=='qna'}){
-    		$("#adminSearchFrm").attr("action", "<%=request.getContextPath()%>/adminQna");
-    	}
+
     });
 </script>
 </head>
@@ -257,7 +287,7 @@ function movePage(page){
 	<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/img/img_logo/logo_footer.png" id="adminTopimg"></a>
 </div>
 <div class="adminSearchBar">
-	<form  id="adminSearchFrm" method="post" action="<%=request.getContextPath()%>/adminUser">
+	<form  id="adminSearchFrm" method="post" action="javascript:movePage(1)">
 		   <!-- <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /> //검색조건 
    	 		<input type="hidden" name="searchValue" value="${pageVO.searchValue }" /> //검색어 -->
 		<select name="searchType" id="adminSelect">
@@ -321,3 +351,14 @@ function movePage(page){
 			</li>
 		</ul>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	

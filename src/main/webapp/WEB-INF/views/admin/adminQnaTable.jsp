@@ -1,11 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script type="text/javascript">
-
+<script>	
+	function makeQnaTable(result){
+		$("#questionList").children().remove();
+		var listTag = "";
+		for(var i = 0; i < result.length ; i++){		
+			//alert(result.length+" : 결과 줄");
+			if(i==0){
+				listTag +=  "<li><input type='checkbox' id='checkAll' />번호</li> <li>아이디</li> <li>제목</li> <li>작성일자</li> <li>답변여부</li> "	;
+			}
+			//list안에 데이터 추가
+			listTag += "<li><input type='checkbox' />&nbsp&nbsp&nbsp"+result[i].noqna+"</li>";
+			listTag += "<li id='subject' class='wordCut' ><a href=''/home/adminQnaWrite?noqna="+result[i].noqna+">"+result[i].subject+"</a></li>";
+			listTag += "<li>"+result[i].writedate+"</li>";
+			listTag += "<li style='color:00B0B0'>";
+			if(result[i].answer=='Y'){
+				listTag +="답변완료";
+			}else if(result[i].gender=='N'){
+				listTag +="답변대기";
+			}
+			listTag += "</li>";
+		}$("#questionList").append(listTag);
+	}
 </script>
-
-
 <!-- Page Content -->
 	<!-- /Page Sidebar -->
 	<!-- Page Content -->
@@ -23,7 +41,7 @@
 					<c:forEach items="${list}" var="vo" varStatus="status">
 								<li><input type="checkbox" />&nbsp&nbsp&nbsp${vo.noqna}</li>
 								<li>${vo.userid}</li>
-								<li id="subject" ><a href="/home/adminQnaWrite?noqna=${vo.noqna}">${vo.subject}</a></li>
+								<li id="subject" class='wordCut' ><a href="/home/adminQnaWrite?noqna=${vo.noqna}">${vo.subject}</a></li>
 								<li>${vo.writedate}</li>
 								<li>
 									<c:if test="${vo.answer=='Y'}">
@@ -41,7 +59,7 @@
 				<div id="paging">
 						<ul>					
 							<c:if test="${pagingVO.nowPage != 1 }">
-								<li><a href="javascript:">◀</a></li>
+								<li><a href="javascript:">Prev</a></li>
 							</c:if>
 							
 							<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
@@ -55,7 +73,7 @@
 								</c:if>
 							</c:forEach>				
 							<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
-								<li><a href="#">▶</a></li>
+								<li><a href="#">Next</a></li>
 							</c:if>
 						</ul>
 				</div><br/>

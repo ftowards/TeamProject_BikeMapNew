@@ -112,8 +112,7 @@
 				        </article>
 				    </div>
 				    
-				    
-				</div>
+				   
 				<!-- Page Content -->
 				<div id="paging">
 					<ul>
@@ -141,16 +140,37 @@
 		
 			</div><!-- adminContent -->
 			
-			<!-- suspend popup -->
-			<div id="userSuspend" class="layerpop"
-				    	style="width:330px;height:300px;">
-				    	<form id="userSuspendFrm" >
-				    	<input type="hidden" name="userid" id="userid" value=""/><!-- DB쪽 보낼데이터 -->
-					    	<article class="layerpop_area">
-					    	<div class="title">회원 정지 설정</div>
-					    	<a href="javascript:suspendPopupClose();" class="layerpop_close"
-					    		id="suspendlayerbox_close"></a><br/>
-					    	<div id="supspendDiv">
+	
+		<!-- 모달 12/04 검사맡고 진행.. 
+		<section class="section-content py-5">
+
+		<button data-toggle="modal" data-target="#modal_simple" class="btn btn-primary" type="button">  Modal simple  </button>
+
+		<button data-toggle="modal" data-target="#modal_aside_right" class="btn btn-primary" type="button">  Modal aside right  </button>
+
+		<button data-toggle="modal" data-target="#modal_aside_left" class="btn btn-primary" type="button">  Modal aside left  </button>
+		
+		
+
+		</section>
+			<div id="modal_simple" class="modal fade" tabindex="-1" role="dialog">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				   	 <form id="userSuspendFrm" >
+				    	<input type="hidden" name="userid" id="userid" value=""/>
+				      <div class="modal-header">
+				        <h5 class="modal-title">회원 정지 설정</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+						    	<div class="title">회원 정지 설정</div>
+						    	<a href="javascript:suspendPopupClose();" class="layerpop_close"
+						    		id="suspendlayerbox_close"></a><br/>
+						    	<div id="supspendDiv">
+					    	
+					    	
 						    	<div class="pop2Row"> 
 						    		<span class="pop2Left">정지 기간</span> <input type="number" id="suspendTime" name="endday" min="0" max="90"/>일
 						    		<input type="button" name="30days" value="30" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
@@ -166,11 +186,17 @@
 						    			이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.
 						    		</textarea>
 								</div>
-						    	<input type="submit" value="등록" />
-					    	</div>
-					    	</article>
-				    	</form>
-			</div>
+							</div>
+						    	
+					  </div>
+				    <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <input type="submit" class="btn btn-primary" value="변경사항 저장">
+					</div>
+					</form>
+				    </div>
+				  </div> <!-- modal-bialog .// -->
+				</div> <!-- modal.// -->
 			<!-- suspend POP -->
 			
 			<!-- suspend Editpopup -->
@@ -212,7 +238,9 @@
 		
 			</div>
 			<!-- suspend POP -->
-</div><!--  adminBottom -->
+<!--  adminBottom -->
+</div>
+</div>
 <!-- Page Content -->
 </body>
 </html>
