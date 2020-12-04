@@ -6,11 +6,14 @@
 <mapper namespace="com.bikemap.home.review.ReviewDaoImp">
 	
 <!-- 	글보기 리스트 -->
-	<select id = "reviewAllRecord" resultType="com.bikemap.home.review.ReviewVO">
-		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD HH:MI') writedate
-			from review order by noboard desc
+	<select id = "reviewAllRecord" parameterType="com.bikemap.home.review.ReviewPagingVO" resultType="com.bikemap.home.review.ReviewVO">
+		select * from (select * from 
+		(select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD HH:MI') writedate
+		from review order by noboard desc)<![CDATA[ where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
+		where rownum <= #{lastPageRecordCount} order by noboard desc
+		]]> 
 	</select>
-	
+
 <!--  레코드 한 개 선택 - 글 보기 -->
 	<select id ="reviewSelect" parameterType= "int" resultType="com.bikemap.home.review.ReviewVO">
 		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD HH:MI') writedate
@@ -34,5 +37,14 @@
  	<delete id = "reviewDelete" >
  		delete from review where noboard=#{param1, jdbcType=VARCHAR} and userid=#{param2, jdbcType=VARCHAR}
  	</delete>
- 
+ 	
+ 	<!-- 페이징 전체 레코드 -->
+ 	<select id="searchTotalRecord" resultType="int">
+ 		select count(noboard) from review 
+ 	</select>
+ 	
+ 	<!-- 페이징 결과 레코드 -->
+ 	<select id="searchResultRecord"  resultType="int" parameterType="com.bikemap.home.review.ReviewPagingVO">
+ 		select count(noboard) from review where ${searchType} like '%'||#{searchWord}||'%' 
+ 	</select>
 </mapper>

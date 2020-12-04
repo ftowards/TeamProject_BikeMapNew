@@ -2,23 +2,149 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+<script>
 
+function makeThumbnail(result){
+		$("#reviewBoard").children().remove();		
+		var listTag = "";
+		for(var i = 0 ; i < result.length ; i++){
+			
+			listTag += "<div class ='boardlist'>";
+			listTag += "<div class='reviewContents'>";
+				
+			listTag += "<div class ='left'>";
+			listTag +=	"<a href='<%=request.getContextPath()%>/reviewList?noboard="+result[i].noboard+"'>";
+			listTag +=	"<img src='<%=request.getContextPath() %>/img/img_Review/임시.jpg'/>";
+			listTag +=	"</a>";
+			listTag +=	"</div>";
+					
+			listTag +=	"<div class='right'>";
+			listTag +=	"<div class= 'subtitle'>";
+					
+			listTag +=	"<ul>";
+			listTag +=	"<li>";
+			listTag +=	"<a href='<%=request.getContextPath()%>/reviewList?noboard="+result[i].noboard+"'>";
+			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
+			listTag +=	"</a>";
+			listTag +=	"</li>";
+			listTag +=	"</ul>";
+			listTag +=	"</div>";
+			listTag +=	"<ul>";
+			listTag +=	"<li id='reviewtext'>";
+			listTag +=	"<a href='<%=request.getContextPath()%>/reviewList?noboard="+result[i].noboard+"'>";
+			listTag +=	result[i].content;
+			listTag +=	"</a>";
+			listTag +=	"</li>";
+			listTag +=	"</ul>";
+							
+			listTag +="<div class='writedate'>";
+			listTag +="<ul>";
+			listTag +="<li class='userid'>";
+			listTag +="<img src='<%=request.getContextPath() %>/img/img_Review/review.png'/>";
+			listTag += result[i].userid+"님의 생생한 후기";
+			listTag +="</li>";
+			listTag +="<li class='writedate'>${vo.writedate } 작성</li>"
+			listTag +="</ul>";
+			listTag +="</div>";
+			listTag +="</div>";
+					
+			listTag +="</div>";
+			listTag +="</div>";
+		
+	
+		}$("#reviewBoard").append(listTag);
+	
+}
+
+// 페이징 리스트 만들기
+function setPaging(vo){
+	// 이전 페이징 삭제
+	$("#paging").children().remove();
+	var tag = "<ul>";
+	
+	if(vo.nowPage != 1){
+		tag += "<li><a href='javascript:movePage("+(vo.nowPage -1)+")'> Prev </a></li>";
+	}
+	
+	for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount -1 ; i++){
+		if(vo.totalPage >= i){
+			if(vo.nowPage == i){
+				tag += "<li style='color:#00B0B0; font-weight:600;'>"+i+"</li>";
+			}else{
+				tag += "<li><a href='javascript:movePage("+i+")' style='color:black; font-weight:600;'>"+i+"</a></li>";
+			}
+		}
+	}
+	
+	if(vo.nowPage != vo.totalPage){
+		tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
+	}
+
+	tag += "</ul>";
+	$("#paging").append(tag);
+				
+}
+
+// 페이지 이동
+function movePage(page){
+	
+	// 페이징 먼저 변경
+	var url = "<%=request.getContextPath()%>/searchReviewPaging";
+	var data = $("#searchReview").serialize();
+		data += "&nowPage="+page+"&order="+$("input[name=order]:checked").val();
+	
+	alert(data);
+	
+	$.ajax({
+		type : 'POST',
+		url : url,
+		data : data,
+		success : function(result){
+			setPaging(result);
+			nowPage = result.nowPage;
+		},error : function(){
+			console.log("페이징 오류");
+		}
+	});
+	
+	if($("#searchWordReview").val() ==""){
+		url = "<%=request.getContextPath()%>/searchReviewAll";
+	} else {
+		url = "<%=request.getContextPath()%>/searchReviewOk";
+	}
+	$.ajax({
+		type : 'POST',
+		url : url,
+		data : data,
+		success : function(result){
+			if( result.length <= 0 ){
+				alert("검색 결과가 없습니다.");
+			} else{ 
+				makeThumbnail(result);
+			}
+		}, error : function(){
+			console.log("페이지 + 검색 결과 호출 에러");
+		}
+	});
+}
+
+</script>
 <!-- 후기보기메인 -->
 <div class="container">
 <div class = "mainDiv">
 
 	<div class="reviewBody">	
-		<div class = "search">
-			<select name="searchKeyword" id="searchKeyword">
+		<form class = "search" id="searchReview">
+			<select name="searchType" id="searchKeyword">
 				<option value="1">키워드</option>
 				<option value="2">글제목</option>
 				<option value="3">코스이름</option>
 				<option value="4">작성자</option>				
 			</select>
 
-			<input type="text" id="schBar"> 
+			<input type="text" id="searchWordReview" name="searchWord"> 
 			<input type="submit" class="mint_Btn" value="검 색"/>
-		</div>
+		</form>
 		
 
 <!-- 도시 검색창 -->		
@@ -68,6 +194,7 @@
 
 		
 		<hr style='border:1.5px solid black; background-color:black'/>
+		<div id="reviewBoard">
 		<c:forEach var="vo" items="${list}">
 				<div class ="boardlist">
 					<div class="reviewContents">
@@ -119,10 +246,37 @@
 		 			</div>
 				</div>
 			</c:forEach>
+			</div>
+<!-- 		<div id="paging2" style='text-align:center; margin:80px; font-size:20px;'>1&emsp;<span style='color:#00B0B0; font-weight:600; '>2</span>&emsp;3&emsp;4&emsp;5</div> -->
+<!-- 		</div> -->
+<!-- 		=============================페이징============================= -->
+				<div id="paging">
+					<ul>
+					<!-- 이전 페이지 -->
+						<c:if test="${pagingVO.nowPage != 1 }">
+							<li><a href="javascript:movePage(${pagingVO.nowPage-1 })"> Prev </a></li>
+						</c:if>
+						<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
+							<c:if test="${pagingVO.totalPage >= page }">
+								<c:if test="${pagingVO.nowPage == page }">
+									<li style='color:#00B0B0; font-weight:600;'>${page }</li>
+								</c:if>
+								<c:if test="${pagingVO.nowPage != page }">
+									<li><a href="javascript:movePage(${page })" style='color:black; font-weight:600;'>${page }</a></li>
+								</c:if>
+							</c:if>
+						</c:forEach>
+					<!-- 다음 페이지 -->
+						<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
+							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
+						</c:if>
+					</ul>
+				</div><br/>
 		
-		<div id="paging2" style='text-align:center; margin:80px; font-size:20px;'>1&emsp;<span style='color:#00B0B0; font-weight:600; '>2</span>&emsp;3&emsp;4&emsp;5</div>
-		</div>
+		
+		
 		<div id= "bottom"></div>
 		
 	</div>
+</div>
 </div>
