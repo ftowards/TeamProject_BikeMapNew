@@ -141,6 +141,7 @@ a{
 	background-color:#ddd;
 	border-top:1px solid gray;
 	margin-bottom:4px;
+	
 }
 #userList>li:nth-child(n+10):nth-child(-n+18){
 	border-top:1px solid gray;
@@ -153,17 +154,15 @@ a{
 	font-size:0.8em;
 	border-bottom: 1px solid gray;
 }
-#userList>li:last-child{
-	font-size:0.5em;
-}
 #userList, #userList>li {
 	background-color: #fff;
 }
-#userList{margin:0px 15px 0px 5px;}
-
-
-element.style {
+#userList{
+	margin:0px 15px 0px 5px;
+	border-radius: 15px;
+	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 }
+
 .searchText {
     width: 300px;
     padding: 4px 0 0 10px;
@@ -177,49 +176,60 @@ element.style {
 }
 
 /* ================ 동행모집 ==================*/
-#partnerList>li:nth-child(-n+7) {
+#tourList>li:nth-child(-n+4) {
 	background-color:#ddd;
 	border-top:1px solid gray;
 	margin-bottom:4px;
 }
-#partnerList>li:nth-child(n+8):nth-child(-n+14){
+#tourList>li:nth-child(n+5):nth-child(-n+8){
 	border-top: 1px solid gray;
 }
-#partnerList>li {
+#tourList>li {
 	float: left;
-	width: 10%;
+	width: 20%;
 	height: 40px;
 	line-height: 40px;
 	border-bottom: 1px solid gray;
 }
-
-#partnerList>li:nth-child(7n+2) {
-	width: 40%
+#tourList, #tourList>li {
+	background-color: #fff;
+}
+#tourList>li:nth-child(4n+2) {
+	width: 40%;
+	text-align : left;
+}
+#tourList>li:nth-child(2) {
+	text-align : center;
 }
 
-#partnerList{margin:0px 15px 0px 5px;}
+#tourList{margin:0px 15px 0px 5px;}
 
 /* ================ 리뷰테이블 ================*/
-#reviewList>li:nth-child(-n+7) {
+#reviewList>li:nth-child(-n+6) {
 	background-color:#ddd;
 	border-top:1px solid gray;
 	margin-bottom:4px;
 }
-#reviewList>li:nth-child(n+8):nth-child(-n+14){
+#reviewList>li:nth-child(n+7):nth-child(-n+12){
 	border-top: 1px solid gray;
 }
 #reviewList>li {
 	float: left;
-	width: 10%;
+	width: 12%;
 	height: 40px;
 	line-height: 40px;
 	border-bottom: 1px solid gray;
 }
-
-#reviewList>li:nth-child(7n+2) {
+#reviewList, #reviewList>li {
+	background-color: #fff;
+}
+#reviewList>li:nth-child(6n+2) {
 	width: 40%;
-	text-align:none;
-	
+	text-align : left;
+}
+#reviewList>li:nth-child(2) {
+	text-align : center;
+	padding:0px;
 }
 #reviewList{margin:0px 15px 0px 5px;}
 
@@ -241,12 +251,51 @@ element.style {
 	background-color:#fff;
 	border-bottom: 1px solid gray;
 }
-
+#questionList, #questionList>li {
+	background-color: #fff;
+}
 #questionList>li:nth-child(5n+3) {
-	width: 40%
+	width: 40%;
+	text-align : left;
+}
+#questionList>li:nth-child(3) {
+	text-align : center;
 }
 
 #questionList{margin:0px 15px 0px 5px;}
+
+/* =============== 루트 테이블 ==============*/
+#routeList>li:nth-child(-n+7) {
+	background-color:#ddd;
+	border-top:1px solid gray;
+	margin-bottom:4px;
+}
+#routeList>li:nth-child(n+8):nth-child(-n+14){
+	border-top: 1px solid gray;
+}
+#routeList>li {
+	float: left;
+	width: 10%;
+	height: 40px;
+	line-height: 40px;
+	background-color:#fff;
+	border-bottom: 1px solid gray;
+}
+#routeList, #routeList>li {
+	background-color: #fff;
+}
+#routeList>li:nth-child(7n+2) {
+	width: 30%;
+	text-align : left;
+}
+#routeList>li:nth-child(7n+6){
+	width: 20%;
+}
+#routeList>li:nth-child(2) {
+	text-align : center;
+	padding:0px;
+}
+#routeList{margin:0px 15px 0px 5px;}
 
 .layerpop {
     display: none;

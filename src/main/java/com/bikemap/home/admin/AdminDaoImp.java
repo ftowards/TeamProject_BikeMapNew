@@ -2,6 +2,7 @@ package com.bikemap.home.admin;
 
 import java.util.List;
 import com.bikemap.home.review.ReviewVO;
+import com.bikemap.home.route.RouteVO;
 import com.bikemap.home.tour.TourVO;
 
 public interface AdminDaoImp {
@@ -23,14 +24,12 @@ public interface AdminDaoImp {
 		
 		public AdminSuspendVO getEndday(AdminSuspendVO vo);
 		
-		//항목 - QNA
-		public int searchQnaRecord(AdminPagingVO vo);
-		
-		public List<AdminQnaVO>selectQnaAll(AdminQnaVO vo);
-		
-		public AdminQnaVO selectQna(int qnano);
-		
-		public int qnaUpdate(AdminQnaVO vo);
+		//항목 - tour
+		public List<RouteVO>routeAllRecord(AdminPagingVO vo);
+				
+		public int searchRouteRecord(AdminPagingVO vo);
+				
+		public int routeTotalRecord();
 		
 		//항목 - review
 		public List<ReviewVO>reviewAllRecord(AdminPagingVO vo);
@@ -39,7 +38,7 @@ public interface AdminDaoImp {
 		
 		public int reviewTotalRecord();
 		
-		
+		//항목 - tour
 		public List<TourVO>tourAllRecord(AdminPagingVO vo);
 				
 		public int searchTourRecord(AdminPagingVO vo);
@@ -47,6 +46,13 @@ public interface AdminDaoImp {
 		public int tourTotalRecord();
 		
 		
+		//항목 - QNA
+		public int searchQnaRecord(AdminPagingVO vo);
 		
+		public List<AdminQnaVO>selectQnaAll(AdminPagingVO vo);
+		
+		public AdminQnaVO selectQna(int qnano);
+		
+		public int qnaUpdate(AdminQnaVO vo);
 		
 }

@@ -2,7 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- Page Content -->
-
+<script>
+function makeTourTable(result){
+	$("#tourList").children().remove();
+	var listTag = "";
+	for(var i = 0; i < result.length ; i++){
+		
+		if(i==0){
+			listTag +=  "<li><input type='checkbox' id='checkAll' />번호</li> <li>제목</li> <li>작성자</li> <li>완료여부</li>"	;
+		}			
+		//list안에 데이터 추가
+		listTag += "<li><input type='checkbox' />&nbsp&nbsp"+result[i].noboard+"</li>";
+		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/tourView?noboard="+result[i].noboard+"'>"+result[i].title+"</a></li>";
+		listTag += "<li>"+result[i].userid+"</li>";
+		listTag += "<li>";
+		if(result[i].state=='1'||result[i].state==null){
+			listTag +="미완료";
+		}else if(result[i].gender=='2'){
+			listTag +="완료";
+		}
+		listTag += "</li>";
+			
+		}$("#tourList").append(listTag);
+}
+</script>
 	<!-- /Page Sidebar -->
 	
 	<!-- Page Content -->
@@ -10,7 +33,7 @@
 			
 				<div id="adminTable">
 				<h1 class="adminListHead">동행모집게시판</h1>
-					<ul id="partnerList">
+					<ul id="tourList">
 						<li><input type="checkbox" id="checkAll" />번호</li>
 						<li>제목</li>
 						<li>작성자</li>
@@ -18,13 +41,12 @@
 						
 					
 						<!-- DB작업완료 후 for문 생성 -->
-						
 						<c:forEach items="${list}" var="vo" varStatus="status">
-							<li> <input type="checkbox" />&nbsp&nbsp${vo.noboard}</li>
-							<li><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
+							<li> <input type="checkbox" name="tourCheck" value="${vo.noboard }"/>&nbsp&nbsp${vo.noboard}</li>
+							<li class='wordCut'><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
 							<li>
-								<c:if test="${vo.state=='1'}">
+								<c:if test="${vo.state=='1'||vo.state==null}">
 									미완료
 								</c:if>
 								<c:if test="${vo.state=='2'}">
@@ -60,7 +82,8 @@
 			</div><br/> 
 			<!-- /paging -->
 			<div id="partnerBtn">
-					<input type="button" id="partnerBtn1" name="partnerDeleteBtn" value="삭제하기" class="mint_Btn"/><input type="button" id="partnerBtn2" name="partnerHideBtn" value="비공개"/>
+					<input type="button" id="partnerBtn1" name="partnerDeleteBtn" value="삭제하기" class="mint_Btn"/>
+					<input type="button" id="partnerBtn2" name="partnerHideBtn" value="비공개"/>
 			</div><!-- btn -->
 			</div><!-- adminContent -->
 <!-- Page Content -->

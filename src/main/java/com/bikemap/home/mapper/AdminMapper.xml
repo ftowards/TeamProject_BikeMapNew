@@ -53,8 +53,10 @@
 	</select>
 	
 	<select id="selectQnaAll" parameterType="com.bikemap.home.admin.AdminPagingVO" resultType="com.bikemap.home.admin.AdminQnaVO">
-		select noqna, userid, subject,  to_char(writedate,'YYYY-MM-DD') writedate, answer from qna
-		<include refid="search"></include> order by noqna desc
+		select * from(select * from(select noqna, userid, subject,  to_char(writedate,'YYYY-MM-DD') writedate, answer from qna
+		<include refid="search"></include> order by noqna desc)
+		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noqna asc) 
+		where rownum <= #{lastPageRecordCount} order by noqna  desc]]>
 	</select>
 	<select id="selectQna" parameterType="int" resultType="com.bikemap.home.admin.AdminQnaVO">
 		select q.userid, q.subject, a.typename, q.content from qna q, qnaType a where q.noQnaType=a.noQnaType and noqna=#{noqna}
@@ -64,12 +66,28 @@
 	</update>
 	
 	<!-- 리뷰 -->
+	<select id = "routeTotalRecord" resultType="int">
+		select count(noboard) from route
+	</select>
+	<select id = "routeAllRecord" resultType="com.bikemap.home.route.RouteVO">
+		select * from(select * from(select noboard, title, polyline, userid, region, distance, mapcenter, maplevel, TRUNC(nvl(rating,0), 1) rating from route 
+		<include refid="search"></include> order by noboard desc)
+		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
+		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
+	</select>
+	<select id="searchRouteRecord" parameterType="com.bikemap.home.route.RouteVO" resultType="int">
+		select count(noboard) from route <include refid="search"></include>
+	</select>
+	
+	<!-- 리뷰 -->
 	<select id = "reviewTotalRecord" resultType="int">
 		select count(noboard) from review
 	</select>
 	<select id = "reviewAllRecord" resultType="com.bikemap.home.review.ReviewVO">
-		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit, thumbUp, thumbDown, scrap
-		from review <include refid="search"></include> order by noboard desc 
+		select * from(select * from(select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit, thumbUp, thumbDown, scrap
+		from review <include refid="search"></include> order by noboard desc) 
+		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
+		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
 	</select>
 	<select id="searchReviewRecord" parameterType="com.bikemap.home.review.ReviewVO" resultType="int">
 		select count(noboard) from review <include refid="search"></include>
@@ -80,8 +98,10 @@
 		select count(noboard) from tour
 	</select>
 	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourVO">
-		select noboard, title, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate
-		from tour <include refid="search"></include> order by noboard desc 
+		select * from(select * from(select noboard, title, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate
+		from tour <include refid="search"></include> order by noboard desc)
+		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
+		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
 	</select>
 	<select id="searchTourRecord" parameterType="com.bikemap.home.tour.TourVO" resultType="int">
 		select count(noboard) from tour <include refid="search"></include>
