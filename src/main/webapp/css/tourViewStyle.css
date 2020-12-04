@@ -6,6 +6,8 @@
 				height:2000px;			
 	}
 	#tourViewFormTitleDiv{
+							width:50%;
+							float:left;
 							height:80px;
 							margin-top:50px;	
 	}
@@ -19,6 +21,32 @@
 						box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
 						
 	
+	}
+	.tourViewEdit,.tourViewDelete{
+					float:left;
+					width:50%;
+					border:none;
+					background-color:transparent;
+					font-weight:bold;
+				
+					
+	
+	}
+	.tourViewEditAndDeleteDiv a:hover,.tourViewEditAndDeleteDiv a:link,.tourViewEditAndDeleteDiv a:visited{
+							text-decoration:none;
+							color:rgb(156,156,156);
+	}
+	
+
+	.tourViewEditAndDeleteDiv{
+								width:45%;
+								padding-top:40px;
+								height:80px;
+								float:left;
+								padding-left:450px;
+								margin-top:50px;
+								
+								
 	}
 	.timeConditionDiv2{
 	
@@ -66,6 +94,10 @@
 								box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
 								margin:-15px 0 0 40px;
 								
+	}
+	.conditionDivTop4{
+						width:500px;
+						float:left;
 	}
 	hr{
 		margin-top:15px;
@@ -119,7 +151,7 @@
 																				border-radius:10px;
 																				width:70px;
 																				height:35px;
-																				background-color:rgb(0,176,176);
+																				background-color:rgb(64,64,64);
 																				font-size:15px;
 																				font-weight:bold;
 																				color:#fff;
@@ -283,9 +315,11 @@
 	}	
 	
 	#writeForm{
-					margin-top:30px;
+					margin:30px 0 0 200px;
+					widht:800px;
 					height:500px;
 					float:left;
+				
 			
 	}
 	#tourWriteTitle{
@@ -297,10 +331,9 @@
 	}
 
 	#content{
-				width:1200px;
+				width:800px;
 				height:400px;
 				float:left;
-		
 						
 	}
 
@@ -461,40 +494,111 @@
 		left : 400px;
 	}
 	
-	#listTitle>li, #complist>li{
+	#listTitle>li{
 		float : left;
 		text-align : center;
 		width : 14%;
 		height : 30px;
-		line-height : 30px;
+		line-height : 35px;
 		font-size:14px;
 		font-weight:bold;
 		color:rgb(123,123,123);
 		vertical-align: middle;
 	}
-	
+	 #complist>li{
+	 	float : left;
+		text-align : center;
+		width : 14%;
+		height : 30px;
+		line-height : 35px;
+		font-size:14px;
+		color:rgb(123,123,123);
+		vertical-align: middle;
+	 
+	 
+	 }
 	#listTitle>li:first, #complist>li:first{
 		width : 16%;
 	}
 	
 	#listTitle>li{
 		border-bottom : 1px solid lightgray;
+		color:rgb(64,64,64);
+		font-weight:bold;
+		margin-top:-8px;
 	}
 	
 	.modal-body{
 		overflow : auto;
+		padding:8px;
 	}
 	
-	.messageBtn{
-	    background-color: rgb(0,176,176);
-	    color: #fff;
-	    border-radius: 5px;
-	    border: none;
-	    width: 60%;
-	    margin-top : 2.5px;
-	    height: 25px;
-	    text-align: center;
-	    font-size : 12px;
-	    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-	    line-height : 25px;
+	.applying{
+						background-color:rgb(0,176,176);
+					    color:#fff;
+					    font-weight:bold;
+					    border-radius: 10px;
+					    border: none;
+					    width: 80%;
+					    margin-top : 2.5px;
+					    height: 25px;
+					    text-align: center;
+					    font-size : 12px;
+					    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+					    line-height : 25px;
+					    margin-left:5px;
+	}
+	.modal-header label{
+						color:rgb(64,64,64);
+						font-size:16px;
+
+	}
+	.applyTourCloseBtn{
+					    background-color:rgb(64,64,64);
+					    color:#fff;
+					    font-weight:bold;
+					    border-radius: 6px;
+					    border: none;
+					    width: 4%;
+					    margin-top : 2.5px;
+					    height: 25px;
+					    text-align: center;
+					    font-size : 12px;
+					    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+					    line-height : 25px;
+					    float:right;
+	}
+	.applyOk{
+				  		background-color:#FF6347;
+					    color:#fff;
+					    font-weight:bold;
+					    border-radius: 10px;
+					    border: none;
+					    width: 80%;
+					    margin-top : 2.5px;
+					    height: 25px;
+					    text-align: center;
+					    font-size : 12px;
+					    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+					    line-height : 25px;
+					    
+			
+	}
+	.applyWait{
+		
+				color:rgb(64,64,64);
+			    font-weight:bold;
+			    border-radius: 10px;
+			    border: none;
+			    width: 80%;
+			    margin-top : 2.5px;
+			    height: 25px;
+			    text-align: center;
+			    font-size : 12px;
+			    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+			    line-height : 25px;
+			    margin-left:5px;
+	
+	
+	
 	}

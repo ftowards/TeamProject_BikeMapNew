@@ -39,4 +39,6 @@ public interface TourDaoImp {
 	
 	// 데드라인 확인
 	public String getDeadline(int noboard);
+	
+
 }
