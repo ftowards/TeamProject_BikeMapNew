@@ -73,7 +73,13 @@ public interface TourDaoImp {
 	// 내가 주최하는 투어 레코드 수 확인
 	public int getMytourRecordCount(TourListPagingVO vo);
 	
+	// 내가 참가하는 투어 레코드 수 확인
+	public int getApplytourRecordCount(TourListPagingVO vo);
+	
 	// 내가 주최하는 투어 리스트
 	public List<TourlistVO> selectMytourList(TourListPagingVO vo);
+	
+	// 내가 참가하는 투어 리스트
+	public List<TourlistVO> selectApplytourList(TourListPagingVO vo);
 		
 }

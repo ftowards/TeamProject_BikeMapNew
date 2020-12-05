@@ -246,26 +246,18 @@ public class TourController {
 		int result = 0;
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
-		
-		TransactionStatus status = transactionManager.getTransaction(def);
-		
 		try {
 			vo.setUserid((String)session.getAttribute("logId"));
 			if(checkDeadline(vo.getNoboard())){
 				String state = dao.checkTourComplist(vo) == null ? "3" : dao.checkTourComplist(vo); 
 				if(state.equals("1") || state.equals("2")) {
-					
 					result = dao.cancelTour(vo);
 				}
 			}else {
 				return 5;
 			}
-			transactionManager.commit(status);
 		}catch(Exception e) {
 			System.out.println("투어 취소 처리 오류 " + e.getMessage());
-			transactionManager.rollback(status);
 		}
 		return result; 
 	}
@@ -456,11 +448,15 @@ public class TourController {
 		vo.setUserid(userid);
 		
 		try {
-			vo.setTotalRecord(dao.getMytourRecordCount(vo));
-			
-			System.out.println("총 레코드 수 " +dao.getMytourRecordCount(vo));
+			if(vo.getTourState() != null && vo.getApplyState() == null) {
+				vo.setTotalRecord(dao.getMytourRecordCount(vo));	
+//				System.out.println("총 레코드 수 " +dao.getMytourRecordCount(vo));
+			}else if(vo.getTourState() == null && vo.getApplyState() != null) {
+				vo.setTotalRecord(dao.getApplytourRecordCount(vo));
+				System.out.println("참가 신청한 투어 총 레코드 수 " +dao.getApplytourRecordCount(vo));
+			}
 		}catch(Exception e) {
-			System.out.println("내 투어 페이징 에러 " + e.getMessage());
+			System.out.println("투어 페이징 에러 " + e.getMessage());
 		}
 		return vo;
 	}
@@ -476,10 +472,15 @@ public class TourController {
 		List<TourlistVO> list = new ArrayList<TourlistVO>();
 		
 		try {
-			vo.setTotalRecord(dao.getMytourRecordCount(vo));
-			list = dao.selectMytourList(vo);
+			if(vo.getTourState() != null && vo.getApplyState() == null) {
+				vo.setTotalRecord(dao.getMytourRecordCount(vo));
+				list = dao.selectMytourList(vo);
+			}else if(vo.getTourState() == null && vo.getApplyState() != null) {
+				vo.setTotalRecord(dao.getApplytourRecordCount(vo));
+				list = dao.selectApplytourList(vo);
+			}
 		}catch(Exception e) {
-			System.out.println("내 투어 리스트 호출 에러 " + e.getMessage());
+			System.out.println("투어 리스트 호출 에러 " + e.getMessage());
 		}
 		return list;
 	}

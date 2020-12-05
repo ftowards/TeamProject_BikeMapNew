@@ -192,6 +192,11 @@ $("#grayBtn").on('click', function(){
 		window.open("/home/loginPopup","Bikemap Login","width=600px, height=200px, left =200px, top=200px");
 		return false;
 	}
+	
+	if($("#logId").val() == $("#userid").text()){
+		alert("회원님이 작성한 루트는 평가할 수 없습니다.");
+		return false;
+	}
 
   	var rating = $("#gradeSelect").val();
   	

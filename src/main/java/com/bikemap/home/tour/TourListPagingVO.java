@@ -13,6 +13,7 @@ public class TourListPagingVO {
 	// 검색 조건
 	private String userid;
 	private String tourState;
+	private String applyState ;
 	
 	public int getNowPage() {
 		return nowPage;
@@ -79,5 +80,11 @@ public class TourListPagingVO {
 	}
 	public void setTourState(String tourState) {
 		this.tourState = tourState;
+	}
+	public String getApplyState() {
+		return applyState;
+	}
+	public void setApplyState(String applyState) {
+		this.applyState = applyState;
 	}
 }

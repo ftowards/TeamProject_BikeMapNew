@@ -80,11 +80,6 @@
 			overflow-y : auto;		
 	}
 	
-	td a:hover,td a:link,td a:visited{
-				text-decoration:none;
-				color:rgb(64,64,64);
-				
-	}
 	.tourIn{
 				
 		padding-top:4px;
@@ -102,7 +97,7 @@
 	}
 	.tourOut{
 				
-		padding-top:4px;
+		padding: 5px 0;
 		text-align:center;
 		border:none;
 		border-radius:10px;
@@ -161,7 +156,7 @@
 		border:0;
 	}
 	
-	input[name=tourState]{
+	input[name=tourState], input[name=applyState]{
 		display : none;
 	}
 	
@@ -187,11 +182,11 @@
 	}
 	
 	<!-- ---------------- 진행 투어  --------------------- -->
-	.tourlistTitle{
+	.tourlistTitle, .tourlistTitle2{
 		height : 40px;
 		margin : 0;
 	}
-	.tourlistTitle>li, .tourlist>li{
+	.tourlistTitle>li, .tourlist>li, .tourlistTitle2>li, .tourlist2>li{
 		height : 40px;
 		line-height : 40px;
 		font-size:15x;
@@ -238,24 +233,22 @@
   	.acodianList img{
   		width:35px;
   	}
-  	
-  	<!-- 마감 여행 리스트 -->
-  	#tourCloseListTitle>li:nth-of-type(7n+2), #tourCloseList>li:nth-of-type(7n+2){
+  	 	
+  	.tourlistTitle2>li:nth-of-type(7n+2), .tourlist2>li:nth-of-type(7n+2){
   		width : 30%;
   	}
-  	#tourCloseListTitle>li:nth-of-type(7n+3), #tourCloseList>li:nth-of-type(7n+3){
-  		width : 14%;
+  	.tourlistTitle2>li:nth-of-type(7n+3), .tourlist2>li:nth-of-type(7n+3){
+  		width : 15%;
   	}
-  	#tourCloseListTitle>li:nth-of-type(7n+4), #tourCloseList>li:nth-of-type(7n+4){
-  		width : 14%;
+  	.tourlistTitle2>li:nth-of-type(7n+4), .tourlist2>li:nth-of-type(7n+4){
+  		width : 15%;
   	}
   	
-  	<!-- 완료 목록 - -->
-	#tourCompleteListTitle{
+	.tourlistTitle3{
 		height : 40px;
 		margin : 0;
 	}
-	#tourCompleteListTitle>li, #tourCompleteList>li{
+	.tourlistTitle3>li, .tourlist3>li{
 		height : 40px;
 		line-height : 40px;
 		font-size:15x;
@@ -265,14 +258,24 @@
 		border-bottom : 1px solid lightgray;
   	}
   	
-  	#tourCompleteListTitle>li:nth-of-type(6n+2){
+  	.tourlistTitle3>li:nth-of-type(6n+2){
   		width : 30%;
 	
   	}
-  	#tourCompleteList>li:nth-of-type(6n+2){
+  	.tourlist3>li:nth-of-type(6n+2){
 		width : 30%;
 		text-align : left;
 		text-indent: 5%;
   	}
   	
+  	<!---->
   	
+	#tourApply:checked~div:nth-of-type(1){
+		display:block;
+	}
+	#tourPartin:checked~div:nth-of-type(2){
+		display:block;
+	}
+	#tourEnd:checked~div:nth-of-type(3){
+		display:block;
+	}

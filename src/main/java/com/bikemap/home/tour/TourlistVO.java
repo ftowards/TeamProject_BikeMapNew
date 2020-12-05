@@ -11,6 +11,7 @@ public class TourlistVO {
 	private int room;
 	private int party;
 	private int que;
+	private int margin; // 잔여 인원
 	private String state;
 	
 	public int getNoboard() {
@@ -72,5 +73,11 @@ public class TourlistVO {
 	}
 	public void setState(String state) {
 		this.state = state;
+	}
+	public int getMargin() {
+		return margin;
+	}
+	public void setMargin(int margin) {
+		this.margin = margin;
 	}
 }
