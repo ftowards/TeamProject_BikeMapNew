@@ -12,6 +12,8 @@ public class ComplistVO {
 	private int tourcnt;
 	private int age ;
 	
+	private String gender;
+	
 	private String eval;
 	private String objid;
 	
@@ -63,5 +65,11 @@ public class ComplistVO {
 	}
 	public void setObjid(String objid) {
 		this.objid = objid;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 }

@@ -9,7 +9,6 @@
 <div id="page-wrapper">
   <!-- 사이드바 -->
 	<div id="sidebar-wrapper">
-		<input type="hidden" id="logId" value="${logId }"/>
     	<ul class="sidebar-nav">
 			<li class="sidebar-brand"><label>여행 목록</label></li>
 			<li><label for="tourOn">진행여행</label></li>
@@ -52,7 +51,7 @@
 				<div class="myTourBoardMainDiv">
 		     		<div>
 		     			<div >
-		     				<ul id="tourCloseListTitle" class="tourlistTitle">
+		     				<ul id="tourCloseListTitle" class="tourlistTitle2">
 		     					<li>번&nbsp;호</li>
 				     			<li>제&nbsp;목</li>
 				     			<li>출발일시</li>
@@ -61,7 +60,7 @@
 				     			<li>참가목록</li>
 				     			<li>완료</li>
 		     				</ul>
-		     				<ul id="tourCloseList" class="tourlist"></ul>
+		     				<ul id="tourCloseList" class="tourlist2"></ul>
 						</div>
 						<div id="paging2" class="paging"></div>
 					</div>
@@ -73,7 +72,7 @@
 				<div class="myTourBoardMainDiv">
 		     		<div>
 		     			<div >
-		     				<ul id="tourCompleteListTitle">
+		     				<ul id="tourCompleteListTitle" class="tourlistTitle3">
 		     					<li>번&nbsp;호</li>
 				     			<li>제&nbsp;목</li>
 				     			<li>출발일시</li>
@@ -81,7 +80,7 @@
 				     			<li>참&nbsp;가</li>
 				     			<li>참가목록</li>
 		     				</ul>
-		     				<ul id="tourCompleteList"></ul>
+		     				<ul id="tourCompleteList" class="tourlist3"></ul>
 						</div>
 						<div id="paging3" class="paging"></div>
 					</div>
@@ -113,7 +112,7 @@ function movePage(page){
 		success : function(result){
 			setPaging(result);
 		},error : function(err){
-			
+			console.log(err);
 		}			
 	});
 }
@@ -151,8 +150,6 @@ function setPaging(result){
 	}else if(tourState == '3'){
 		$("#paging3").html(tag);
 	}
-	
-	
 }
 
 function getList(page){
@@ -180,9 +177,9 @@ function setList(result){
 			tag += "<li><a href='/home/tourView?noboard="+val.noboard+"'>"+val.title+"</a></li>";
 			tag += "<li>"+val.deadline+":00</li>";
 			tag += "<li>"+val.party+"</li>";
-			tag += "<li>"+val.room+"</li>";
+			tag += "<li>"+val.margin+"</li>";
 			tag += "<li>"+val.que+"</li>";
-			tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li></tr></tbody>";
+			tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li>";
 			
 			tag += "<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>";
 		});
@@ -195,7 +192,7 @@ function setList(result){
 			tag += "<li>"+val.departure+":00</li>";
 			tag += "<li>"+val.arrive+":00</li>";
 			tag += "<li>"+val.party+"</li>";
-			tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li></tr></tbody>";
+			tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li>";
 			
 			
 			if(chkArriveTime(val.arrive)){
@@ -214,7 +211,7 @@ function setList(result){
 			tag += "<li>"+val.departure+":00</li>";
 			tag += "<li>"+val.arrive+":00</li>";
 			tag += "<li>"+val.party+"</li>";
-			tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li></tr></tbody>";
+			tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li>";
 			
 			tag += "<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>";
 		});
@@ -314,7 +311,7 @@ function setAcodianList(result, noboard){
 			tag += "<li>"+val.userid+"</li>"
 			tag += "<li>"+val.age+"대</li>"
 			
-			if(val.age == '1'){
+			if(val.gender == '1'){
 				tag += "<li>남</li>";
 			}else{ 
 				tag += "<li>여</li>";
@@ -345,7 +342,7 @@ function setAcodianList(result, noboard){
 				tag += "<li>"+val.userid+"</li>"
 				tag += "<li>"+val.age+"대</li>"
 				
-				if(val.age == '1'){
+				if(val.gender == '1'){
 					tag += "<li>남</li>";
 				}else{ 
 					tag += "<li>여</li>";
@@ -370,13 +367,13 @@ function setAcodianList(result, noboard){
 		
 		$("#complist"+noboard).html(tag);
 	}else if(tourState == '3'){
-		tag += "<li>참가자</li><li>나이</li><li>성별</li><li>모임횟수</li><li>좋아요</li><li>참가상태</li><li></li>";
+		tag += "<li>참가자</li><li>나이</li><li>성별</li><li>모임횟수</li><li>좋아요</li><li>평가 여부</li><li></li>";
 		
 		$result.each(function(idx, val){			
 			tag += "<li>"+val.objid+"</li>"
 			tag += "<li>"+val.age+"대</li>"
 			
-			if(val.age == '1'){
+			if(val.gender == '1'){
 				tag += "<li>남</li>";
 			}else{ 
 				tag += "<li>여</li>";
@@ -529,6 +526,4 @@ function sendMsg(noboard, receiver, type){
 		}
 	})
 }
-
-
 </script>
