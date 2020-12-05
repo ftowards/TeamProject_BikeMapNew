@@ -1,7 +1,5 @@
 package com.bikemap.home.route;
 
-import java.util.Arrays;
-
 public class RouteVO {
 	
 	private int noboard;

@@ -90,8 +90,28 @@
 		order by noboard desc
 	</select>
 	
-	<select id="selectAllSavedMyRouteList" resultType="com.bikemap.home.route.SavedMyRouteVO">
-		select a.noboard,b.title,b.userid,b.region,b.distance from routelist a left join route b 
-		on a.noboard = b.noboard where a.userid = #{userid}
+	<select id="selectMycategory" resultType="com.bikemap.home.route.RouteCateVO">
+		select a.noroutecate, catename, b.recordcnt from routecategory a
+		join (select noroutecate, count(noboard) recordcnt from routelist where userid = #{param1} group by noroutecate) b 
+		on a.noroutecate = b.noroutecate
+		where userid = #{param1} order by noroutecate asc 	
+	</select>
+	<select id="getMyrouteCategoryRecord" resultType="int" parameterType="com.bikemap.home.route.MyRoutePagingVO">
+		select count(noboard) from routelist where userid=#{userid}
+		<if test='noroutecate != null and noroutecate != 0'>
+			and noroutecate = #{noroutecate}
+		</if>
+	</select>
+	<select id="selectMyroute" resultType="com.bikemap.home.route.RouteVO" parameterType="com.bikemap.home.route.MyRoutePagingVO">
+		select * from 
+			(select * from 
+				(select noboard, title, polyline, userid, region, distance, mapcenter, maplevel, nvl(rating,0) rating from route 
+				 where noboard in (select noboard from routelist where userid=#{userid} 
+				<if test='noroutecate != null and noroutecate != 0'>
+					and noroutecate = #{noroutecate}
+				</if>
+				 )
+		 order by ${order} desc) where rownum <![CDATA[<=]]> (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
+		where rownum <![CDATA[<=]]> #{lastPageRecordCount} order by ${order} desc
 	</select>
 </mapper> 

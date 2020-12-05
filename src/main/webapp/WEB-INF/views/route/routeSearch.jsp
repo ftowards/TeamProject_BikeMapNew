@@ -90,7 +90,7 @@
 			// 루트 설명 작성부
 			listTag += "<div class='routeSubscript'><ul ><li class='wordCut'>"+result[i].title+"</li><li class='wordCut'>"+result[i].region+"</li><li>"+result[i].distance.toFixed(2)+"km</li>";
 			var rateWidth =  (result[i].rating/5 *125);
-			listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></a></ul></div></li>";
+			listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></a></li>";
 			
 			if(i == result.length - 1){
 				listTag +="</ul>";
@@ -164,7 +164,6 @@
 		var data = $("#searchRoute").serialize();
 			data += "&nowPage="+page+"&order="+$("input[name=order]:checked").val();
 		
-		console.log(data);	
 		$.ajax({
 			type : 'POST',
 			url : url,
@@ -197,4 +196,6 @@
 			}
 		});
 	}
+	
+
 </script>

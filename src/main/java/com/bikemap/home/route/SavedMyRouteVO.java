@@ -9,9 +9,7 @@ public class SavedMyRouteVO {
 	private double distance;
 	private String region;
 	
-	
 	private int noroutecate;
-
 
 	public int getNoboard() {
 		return noboard;
