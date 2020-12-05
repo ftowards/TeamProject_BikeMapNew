@@ -77,8 +77,13 @@ public interface RouteDaoImp {
 	
 	//==============저장된 루트==================================//
 	
-	//내가 저장한 리스트 전체 리스트
-	public List<SavedMyRouteVO> selectAllSavedMyRouteList(String userid);
+	// 저장한 카테고리 리스트
+	public List<RouteCateVO> selectMycategory(String userid);
 	
+	// 저장한 카테고리 페이징
+	public int getMyrouteCategoryRecord(MyRoutePagingVO vo);
+	
+	// 저장한 리스트 가져오기
+	public List<RouteVO> selectMyroute(MyRoutePagingVO vo);
 
 }

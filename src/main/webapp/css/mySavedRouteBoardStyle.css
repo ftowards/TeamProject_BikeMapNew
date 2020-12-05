@@ -31,7 +31,6 @@
   }
   
   .sidebar-nav li {
-
     text-indent: 2em;
     line-height: 2.8em;
   }
@@ -67,9 +66,9 @@
   
   }
   .titleMyRouteDiv1{
-  					height:80px;
-					margin-top:50px;
-  
+				width : 100%;
+				height:80px;
+				margin-top:50px;  
   }
   .titleMyRouteDiv1 label:first-child{
   							font-size:22px; 
@@ -78,33 +77,49 @@
   }
   	
 	.tabCategory{
-			display:none;
-			border:0;
-		}
+		display:none;
+		border:0;
+	}
 	#tab1:checked~div:nth-of-type(1){
-			display:block;
-		}
+		display:block;
+	}
 	#tab2:checked~div:nth-of-type(2){
 		display:block;
-		}
-	#paging{
-				height:60px; 
-			
-				
-	} 
-	#paging ul{
-				width:200px;
-				margin-left:1100px;
 	}
-	#paging li{
-				float:left; 
-				width:25px; 
-				height:40px; 
-				font-size:18px;
-			
-	} 	
+	#tab3:checked~div:nth-of-type(3){
+		display:block;
+	}
+	#tab4:checked~div:nth-of-type(4){
+		display:block;
+	}	
+	#tab5:checked~div:nth-of-type(5){
+		display:block;
+	}
+	#tab6:checked~div:nth-of-type(6){
+		display:block;
+	}	
 	
-	#paging li a:link,#paging li a:visited{
+
+	.paging{
+		height:50px;
+		line-height: 50px;
+		color:#353535;
+		font-size:20px;
+		margin : 20px auto 0;
+		text-align : center;
+	}
+
+	.paging>ul{
+		display: inline-block;		
+	}
+	.paging li{
+		float: left;
+		margin-left:30px;
+		font-weight:600;
+		color:#7F7F7F;		
+	}
+	
+	.paging li a:link,.paging li a:visited{
 											text-decoration:none;
 											color:rgb(64,64,64);
 	}
@@ -167,4 +182,91 @@
 		
 				box-shadow: 3px 3px 5px 3px rgb(180,180,180);
 	
+	}
+	
+	/* 추가한 스타일*/
+	.contentDiv{
+		float:left;
+		width:250px;
+		text-align:center;
+		margin : 0 25px 20px 25px;
+	}
+	
+	.map{
+		width : 250px;
+		height : 250px;
+		margin : 0 auto;
+	}
+	
+	.routeSubscript{
+		width : 250px;
+		margin : 0 auto;
+	}
+	
+	.routeSubscript>ul{
+		display:inline-block;
+	}
+	
+	.routeSubscript li{
+		float: left;
+		width : 50%;
+		height : 25px;
+		text-align:center;
+		
+		font-size:15px;
+		font-weight:bold;
+	    color : gray;
+		
+		margin-bottom : 3px;
+		font-family:'Noto Sans KR', sans-serif;
+	}
+	
+	.routeSubscript li:first-child, .routeSubscript li:nth-of-type(2){
+		width : 250px;
+		text-align:left;
+	}
+	
+	.routeSubscript li:last-child{
+		width : 250px;
+		text-align:center;
+	}
+	
+	.star-rating{width : 125px;}
+	.star-rating, .star-rating span{display : inline-block; height: 39px; overflow:hidden;  
+		background : url(/home/img/img_route/starGray.png) no-repeat;
+	}
+	
+	.star-rating span{
+	background : url(/home/img/img_route/starColored.png) no-repeat;
+	float : left;
+	line-height:0; 
+	vertical-align : top;
+	}
+	
+	.contentBlock{
+		width : 100%;
+		margin : 50px auto 20px;
+		overflow-y : auto;	
+	}
+	
+	.orderRadio{
+		float:right;
+		margin : 0 30px;
+	}
+	.orderRadio>input[type=radio]{
+		display:none;
+	}
+	.subTxt{
+		color:#AEAAAA;
+	}
+	.orderRadio>input[type=radio]:checked+label{
+		color:#353535;
+		font-size:16px;
+		font-weight:600;
+		margin-bottom:20px;
+	}
+	
+	.lBar{
+		color:#7F7F7F;
+		font-weight:400;
 	}
