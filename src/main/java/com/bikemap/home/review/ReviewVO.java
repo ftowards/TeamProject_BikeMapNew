@@ -16,7 +16,7 @@ public class ReviewVO {
 	private int thumbDown;
 	private String scrap;
 	
-	
+	private String thumbnailImg ; 
 	
 	
 	public int getThumbUp() {
@@ -86,6 +86,11 @@ public class ReviewVO {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	
-	
+	public String getThumbnailImg() {
+		if(content != null) {
+			thumbnailImg = content.substring(content.indexOf(" src=")+6, content.indexOf(" srcset=")-1);
+		}
+		System.out.println(thumbnailImg);
+		return thumbnailImg;
+	}
 }

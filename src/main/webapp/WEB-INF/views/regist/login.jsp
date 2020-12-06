@@ -6,11 +6,11 @@
 	$(function(){
 		$("#loginForm").submit(function(){
 			if($("#userid").val()==""){
-				alert("아이디를 입력하세요.");
+				toast("아이디를 입력하세요.", 1500);
 				return false;
 			}
 			if($("#userpwd").val()==""){
-				alert("비밀번호를 입력하세요.");
+				toast("비밀번호를 입력하세요.", 1500);
 				return false;
 			}
 			
@@ -21,12 +21,12 @@
 				data : data,
 				success : function(result){
 					if(result == 1){
-						alert("로그인 되었습니다.");
+						toast("로그인 되었습니다.", 1500);
 						location.href="/home";
 					}else if(result == 2){
-						alert("메일 인증이 되지 않은 아이디 입니다.\n가입 시 입력한 이메일에서 인증 절차를 진행해주십시오.");					
+						toast("메일 인증이 되지 않은 아이디 입니다.\n가입 시 입력한 이메일에서 인증 절차를 진행해주십시오.");					
 					}else{
-						alert("로그인 실패하였습니다.\n로그인 정보를 확인해주세요.");
+						toast("로그인 실패하였습니다.\n로그인 정보를 확인해주세요.");
 					}
 				},error : function(){
 					console.log("로그인 에러");
@@ -51,7 +51,7 @@
 	<div id="loginDiv2">
 		<div id="useridDiv">
 			<span class="loginLabel">ID</span>
-			<input type="text" name="userid"/></div>
+			<input type="text" name="userid" id="userid"/></div>
 
 				<div id="loginBtnDiv">
 					<input type="submit" class="mint_Btn" value="Login"/>

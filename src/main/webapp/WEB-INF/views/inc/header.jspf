@@ -74,3 +74,12 @@
             </div>
         </div>
     </div>
+<!-- 알림 창 -->
+<div id="toast" class="toast">
+	<div id="toastMsg" class="toastMsg"></div>
+</div>
+<div id="toastConfirm" class="toast">
+	<div id="toastConfirmMsg" class="toastMsg"></div>
+	<input type="button" class="mintBtn" value="닫기" onclick="$('#toastConfirm').removeClass('reveal');"/>
+	<input type="button" class="btn" value="확인" />
+</div>

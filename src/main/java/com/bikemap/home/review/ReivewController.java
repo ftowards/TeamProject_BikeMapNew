@@ -57,6 +57,8 @@ public class ReivewController {
 				mav.addObject("list", list);
 				mav.addObject("pagingVO", pagingVO);
 				mav.setViewName("review/reviewView");
+				
+				System.out.println(list.get(0).getThumbnailImg());
 	
 			}catch(Exception e) {
 				System.out.println("리뷰 문제있음"+e.getMessage());
