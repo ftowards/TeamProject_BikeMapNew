@@ -339,3 +339,59 @@ body{
 	#mainDivHeaderSub{
 		margin:-28px -5px 0 -5px;
 	}
+	
+	/* 알림창 */
+	
+.toast {
+    position: fixed;
+    top: 250px;
+    width :fit-content;
+    height : fit-content;
+    left: 50%;
+    padding: 15px 20px;
+    transform: translate(-50%, 10px);
+    border-radius: 20px;
+    font-size: 18px;
+    opacity: 0.3;
+    visibility: hidden;
+    transition: opacity .5s, visibility .5s, transform .5s;
+    background: rgba(0, 0, 0, .35);
+    color: #fff;
+    z-index: 10000;
+}
+
+.toast.reveal {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0)
+}
+
+.toastMsg{
+	margin : 10px;
+}
+
+.toast .mintBtn{	
+	font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    padding: 3px 6px;
+    margin-right: 8px;
+    color: white;
+    border: 1px solid #00B0B0;
+    background-color: #00B0B0;
+    float: right;
+}
+
+.toast .btn{	
+	font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    padding: 3px 6px;
+    margin-right: 8px;
+    color: #00B0B0;
+    border: 1px solid #00B0B0;
+    background-color: white;
+    float: right;
+}
