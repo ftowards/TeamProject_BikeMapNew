@@ -12,7 +12,7 @@
 	};
 </script>
 <div class="registerMainDiv">
-	<div class="contentBox" style='height:270px; margin-top:100px; padding-top:40px;'>
+	<div class="registerDelContentBox" style='height:270px; margin-top:100px; padding-top:40px;'>
 		<div>
 			<img id="chkImg" src="<%=request.getContextPath()%>/img/img_register/check.png"/>
 			<p id="contentLbl1">회원탈퇴 신청 전에 반드시 <span class="orangeTxt">확인</span>해주세요.</p>
