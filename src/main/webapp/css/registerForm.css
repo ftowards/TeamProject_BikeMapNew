@@ -84,7 +84,7 @@
 	}
 	.gray_Btn{
 					font-size:12px;
-					width:70px;
+					width:80px;
 					height:30px;
 					color: #5D5D5D;
 					font-weight:bold;
@@ -124,40 +124,61 @@
 	
 	.mint_Btn{
 		font-size:15px;
+		width:80px;
+		height:30px;
 		color:#fff;
 		font-weight:bold;
 		text-decoration: none;
 		text-align : center;
 		background-color: rgb(0,176,176);	
 		margin:40px 0 0 20px;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+		border:none;
+		border-radius: 10px;
 	}
 	.mint_Btn:hover{
 		color : white;
+		border-radius: 10px;
 		font-weight:bold;
 		background-color: rgb(0 199 199);
 		border:2px solid #00B0B0;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+		border:none;
+		width:80px;
+		height:30px;
 	}
 	
 	.WMint_Btn{
 		font-size:15px;
+		border-radius: 10px;
 		color:rgb(0,176,176);
 		font-weight:bold;
 		text-decoration: none;
 		text-align : center;
 		background-color:#fff;
 		margin-left:20px;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+		border:none;
+		width:80px;
+		height:30px;
 	}
 	.WMint_Btn:hover{
 		color : #00B0B0;
 		font-weight:bold;
 		background-color:#eaffff;
-		border:2px solid #00B0B0;
+		border:none;
+		border-radius: 10px;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+		border:none;
+		width:80px;
+		height:30px;
 	}	
 	
 	.red_Btn{
 		font-size:15px;
 		width:90px;
 		height:30px;
+		border-radius: 10px;
 		color:#fff;
 		font-weight:bold;
 		border: none;
@@ -166,6 +187,8 @@
 		text-align : center;
 		background-color: #FF6347;	
 		margin:40px 0 0 20px;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+		
 	}
 	
 	/*==============================registFindInfo==============================*/
@@ -203,8 +226,11 @@
 		font-size:20px;
 		padding-left:10px;
 		box-shadow:1px 2px 5px 1px rgb(230,230,230);
-		border:1px solid darkgrey;
+		border-radius:10x;
+		border:none;
+		
 	}
+
 	#findIdForm>input::placeholder, #findPwdForm>input::placeholder{
 		font-size:18px;
 	}
