@@ -15,8 +15,6 @@ $(function(){
 		    cloudServices_uploadUrl: 'https://76760.cke-cs.com/easyimage/upload/'
 		});
 	
-
-	
 	$("#writeform").submit(function(){
 		CKEDITOR.instances.content.updateElement();
 		
@@ -88,7 +86,3 @@ $(function(){
 		</form>
 	</div>
 </div>
-
-
-
-

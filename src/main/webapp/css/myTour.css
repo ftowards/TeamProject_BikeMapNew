@@ -3,11 +3,15 @@
   
 	#page-wrapper {
 	  padding-left: 250px;
+	  background-color:black;
 	 
 	}
 	
+	.myTour{
+		background-color:white;
+	}
 	#sidebar-wrapper {
-	  position: fixed;
+	  position: sticky;
 	  width: 250px;
 	  height: 100%;
 	  margin-left: -250px;
@@ -54,7 +58,10 @@
 	}
 	
 	/*=================================게시판==========================*/
+	.container-fluid{
+		height : auto;
 	
+	}
 	.myTourMainDiv{
 						width:1200px;
 						margin:0 auto;
@@ -154,6 +161,7 @@
 	.tab{
 		display:none;
 		border:0;
+		height : auto;
 	}
 	
 	input[name=tourState], input[name=applyState]{

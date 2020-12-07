@@ -8,13 +8,15 @@
 
 <div id="page-wrapper">
   <!-- 사이드바 -->
-	<div id="sidebar-wrapper">
-    	<ul class="sidebar-nav">
-			<li class="sidebar-brand"><label>참여 목록</label></li>
-			<li><label for="tourApply">승인 대기</label></li>
-			<li><label for="tourPartin">참여 중</label></li>
-			<li><label for="tourEnd">완&nbsp;료</label></li>
-	    </ul>
+	<div style="position: absolute;background-color:black;">
+		<div id="sidebar-wrapper">
+		   	<ul class="sidebar-nav">
+				<li class="sidebar-brand"><label>참여 목록</label></li>
+				<li><label for="tourApply">승인 대기</label></li>
+				<li><label for="tourPartin">참여 중</label></li>
+				<li><label for="tourEnd">완&nbsp;료</label></li>
+		    </ul>
+		</div>
 	</div>
   <!-- /사이드바 -->
 
@@ -361,12 +363,12 @@ function cancelApply(title){
 			data : data,
 			success : function(result){
 				if(result == 1){
-					alert(strs[0] +"번 투어 "+msg+ "취소하였습니다.");
+					toast(strs[0] +"번 투어 "+msg+ "취소하였습니다.",1500);
 					sendMsg(strs[0], strs[1], 1);
 				}else if(result == 5){
-					alert("마감시간이 지났습니다.\n주최자에게 불참을 알려주세요.");
+					toast("마감시간이 지났습니다.\n주최자에게 불참을 알려주세요.");
 				}else{
-					alert("처리 오류입니다.");
+					toast("처리 오류입니다.",1500);
 				}
 			},error : function(err){
 				console.log(err);
@@ -387,9 +389,9 @@ function addLike(title){
 			data : data,
 			success : function(result){
 				if(result == 1){
-					alert("좋아요 하셨습니다..");
+					toast("좋아요",1500);
 				}else{
-					alert("좋아요 처리 처리 오류입니다.");
+					toast("좋아요 처리 처리 오류입니다.");
 				}
 			},error : function(err){
 				console.log(err);

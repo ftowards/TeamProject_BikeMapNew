@@ -8,13 +8,15 @@
 
 <div id="page-wrapper">
   <!-- 사이드바 -->
-	<div id="sidebar-wrapper">
-    	<ul class="sidebar-nav">
-			<li class="sidebar-brand"><label>여행 목록</label></li>
-			<li><label for="tourOn">진행여행</label></li>
-			<li><label for="tourClose">마감된 여행</label></li>
-			<li><label for="tourComplete">완료된 여행</label></li>
-	    </ul>
+	<div style="position: absolute;background-color:black;">
+		<div id="sidebar-wrapper">
+	    	<ul class="sidebar-nav">
+				<li class="sidebar-brand"><label>여행 목록</label></li>
+				<li><label for="tourOn">진행여행</label></li>
+				<li><label for="tourClose">마감된 여행</label></li>
+				<li><label for="tourComplete">완료된 여행</label></li>
+		    </ul>
+		</div>
 	</div>
   <!-- /사이드바 -->
 
@@ -90,7 +92,6 @@
 		</div>
 	</div>
 </div>
-
 <script>
 var tourState = 1;
 
@@ -406,9 +407,9 @@ function addLike(title){
 			data : data,
 			success : function(result){
 				if(result == 1){
-					alert("좋아요 하셨습니다..");
+					toast("좋아요", 1500);
 				}else{
-					alert("좋아요 처리 처리 오류입니다.");
+					toast("좋아요 처리 처리 오류입니다.");
 				}
 			},error : function(err){
 				console.log(err);
@@ -429,10 +430,10 @@ function absentComplist(title){
 			data : data,
 			success : function(result){
 				if(result == 1){
-					alert("불참 처리 완료되었습니다.");
+					toast("불참 처리 완료되었습니다.",1500);
 					sendMsg(strs[0], strs[1], 3);
 				}else{
-					alert("처리 오류입니다.");
+					toast("처리 오류입니다.");
 				}
 			},error : function(err){
 				console.log(err);
@@ -451,10 +452,10 @@ function confirmComplist(title){
 		data : data,
 		success : function(result){
 			if(result == 1){
-				alert("참가 승인 완료되었습니다.");
+				toast("참가 승인 완료되었습니다.",1500);
 				sendMsg(strs[0], strs[1], 1);
 			}else{
-				alert("승인 오류 입니다.");
+				toast("승인 오류 입니다.");
 			}
 		},error : function(err){
 			console.log(err);
@@ -472,12 +473,12 @@ function cancelComplist(title){
 		data : data,
 		success : function(result){
 			if(result == 5){
-				alert("마감 시간이 지나 참가 취소 처리가 불가합니다.");
+				toast("마감 시간이 지나 참가 취소 처리가 불가합니다.");
 			}else if(result == 1){
-				alert("참가 취소 처리 되었습니다.");
+				toast("참가 취소 처리 되었습니다.",1500);
 				sendMsg(strs[0], strs[1], 2);
 			}else{
-				alert("참가 취소 처리 오류입니다.");
+				toast("참가 취소 처리 오류입니다.");
 			}
 		},error : function(err){
 			console.log(err);

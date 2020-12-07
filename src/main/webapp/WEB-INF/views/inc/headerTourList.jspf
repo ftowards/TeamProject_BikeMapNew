@@ -23,8 +23,8 @@
 		<ul id="bxsliderTour">
 			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxslider5.jpg" class="bxsliderTourImg"/></a></li>
 			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp10.jpg"class="bxsliderTourImg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp1.jpg"class="bxsliderTourImg"/></a></li>
 			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp11.jpg"class="bxsliderTourImg"/></a></li>
+			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp1.jpg"class="bxsliderTourImg"/></a></li>
 			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp9.jpg"class="bxsliderTourImg"/></a></li>
 		</ul>
 	</div>

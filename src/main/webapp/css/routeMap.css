@@ -22,6 +22,9 @@
 			margin:0px; padding:0px;list-style-type:none;
 	}
 	#mainDivMap{
+		width : 100%;
+		display : flex;
+		flex-direction:row;
 		margin-top:-25px;
 		height:886px;
 	}
@@ -51,7 +54,6 @@
 	#info{
 		width:432px;
 		height:83%;
-		background:yellow;
 	}
 	#info>div{
 		float:left;
@@ -72,9 +74,8 @@
 		height : 100%;
 	}
 	#map{
-		width :400px;
+		flex : 1;
 		height : 83%;
-		position:
 	}
 	#infoPannel>input[type=radio]{
 		display:none;
@@ -296,36 +297,40 @@
 		background-color: white;
 	}
 	.food_Btn{
-		border : 2px solid #EB3807;
-		color : #EB3807;
+		background-color : #EB3807;
+		border: 0;
+		color:white;
 	}
 	.food_Btn:hover, .sights_Btn:hover, .accomodation_Btn:hover, .convenient_Btn:hover{
 		color : white;
 		font-weight:bold;	
 	}
 	.food_Btn:hover{
-		background-color: #EB3807;
+		background-color: #f76f4a;
 	}
 	.sights_Btn{
-		border : 2px solid #002060;
-		color: #002060;
+		background-color : #002060;
+		border: 0;
+		color:white;
 	}
 	.sights_Btn:hover{
-		background-color: #002060;
+		background-color: #304e8a;
 	}
 	.accomodation_Btn{
-		border : 2px solid #5A147A;
-		color: #5A147A;
+		background-color : #5A147A;
+		border: 0;
+		color:white;
 	}
 	.accomodation_Btn:hover{
-		background-color: #5A147A;
+		background-color: #784490;
 	}
 	.convenient_Btn{
-		border : 2px solid #2E75B6;
-		color: #2E75B6;
+		background-color : #2E75B6;
+		border: 0;
+		color:white;
 	}
 	.convenient_Btn:hover{
-		background-color: #2E75B6;
+		background-color: #6198ca;
 	}
 	
 	#routeInfo{
@@ -380,14 +385,12 @@
 		padding:3px 6px;
 		margin-right: 8px;
 		color : white;
-		border: 1px solid #00B0B0;
 		background-color: #00B0B0;
+		border: 0;
 	}
 	.mint_Btn:hover{
-		color : #00B0B0;
-		font-weight:bold;
-		background-color: white;
-		border:2px solid #00B0B0;
+		color : white;
+		background-color: #3cc1c1;
 	}
 	.WMint_Btn{
 		width:80px;
@@ -463,7 +466,6 @@
 	}
 	
 	.gray_Btn{
-		border : #353535 2px solid;
 		border-radius:10px;
 		background-color : #353535;
 		text-decoration: none;
@@ -473,11 +475,11 @@
 		padding : 6px 12px;
 		margin : 10px 0 0 6px;
 		color: white;
+		border:0;
 	}
 	.gray_Btn:hover{
-		color : #353535;
-		font-weight:bold;
-		background-color: white;
+		color : white;
+		background-color: #616060;
 	} 
 
 
@@ -564,14 +566,12 @@
 		text-align : center;
 		padding:3px 6px;
 		color : white;
-		border: 1px solid #040434;
-		background-color: #040434;
+		background-color: #040434;		
+		border: 0;
 	}
 	.blue_Btn:hover{
-		color : #040434;
-		font-weight:bold;
-		background-color: white;
-		border:2px solid #040434;
+		color : white;
+		background-color: #36366d;
 	}
 	#saveBtn{
 		width:222px;
@@ -658,42 +658,43 @@
 		font-weight:bold;
 		position:relative;
 		right:6px;
+		background-color: white;
 	}
 	.food_Btn2{
-		border : 2px solid #EB3807;
-		color : white;
-		background-color: #EB3807;
+		background-color : #EB3807;
+		border: 0;
+		color:white;
 	}
 	.food_Btn2:hover, .sights_Btn2:hover, .accomodation_Btn2:hover, .convenient_Btn2:hover{
 		font-weight:bold;
 		background-color: white;
 	}
 	.food_Btn2:hover{
-		color : #EB3807;
+		background-color: #f76f4a;
 	}
 	.sights_Btn2{
-		border : 2px solid #002060;
-		color : white;
-		background-color: #002060;
+		background-color : #002060;
+		border: 0;
+		color:white;
 	}
 	.sights_Btn2:hover{
-		color : #002060;
+		background-color: #304e8a;
 	}
 	.accomodation_Btn2{
-		border : 2px solid #5A147A;
-		color : white;
-		background-color: #5A147A;
+		background-color : #5A147A;
+		border: 0;
+		color:white;
 	}
 	.accomodation_Btn2:hover{
-		color : #5A147A;
+		background-color: #784490;
 	}
 	.convenient_Btn2{
-		border : 2px solid #2E75B6;
-		color : white;
-		background-color: #2E75B6;
+		background-color : #2E75B6;
+		border: 0;
+		color:white;
 	}
 	.convenient_Btn2:hover{
-		color : #2E75B6;
+		background-color:#6198ca;
 	}
 	
 	.listDel_Btn{

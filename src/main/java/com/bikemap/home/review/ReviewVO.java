@@ -87,10 +87,9 @@ public class ReviewVO {
 		this.ip = ip;
 	}
 	public String getThumbnailImg() {
-		if(content != null) {
+		if(content != null && content.indexOf(" src=") > 0 && content.indexOf(" srcset=") > content.indexOf(" src=") ) {
 			thumbnailImg = content.substring(content.indexOf(" src=")+6, content.indexOf(" srcset=")-1);
 		}
-		System.out.println(thumbnailImg);
 		return thumbnailImg;
 	}
 	

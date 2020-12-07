@@ -18,68 +18,70 @@
 <title>BikeMap</title>
 </head>
 <body>
-<div class="logo_Header">
-	<a href="<%=request.getContextPath()%>/">
-		<img src="<%=request.getContextPath() %>/img/img_logo/logo_main.png"/>
-	</a>
-</div><br/>
-<div class="navbar navbar-inverse" style="z-index:800; margin-bottom:0;	border-radius:0">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="navbar-header">
-                        <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                        
-                    </div>
-
-                    <div class="navbar-collapse collapse" id="mobile_menu">
-                        <ul class="nav navbar-nav" id="navTxtBar">
-                            <li class="active"><a href="<%=request.getContextPath()%>/"><span style='font-size:19px'>홈</span></a></li>
-                            <li><a href="<%=request.getContextPath()%>/courseMap" class="dropdown-toggle"><span class="navTxt">루트짜기</span></a></li>
-                            <li><a href="<%=request.getContextPath()%>/routeSearch"><span class="navTxt">루트검색</span></a></li>
-                            <li><a href="<%=request.getContextPath()%>/tourList"><span class="navTxt">동행검색</span></a></li>
-                            <li><a href="<%=request.getContextPath()%>/reviewView"><span class="navTxt">후기</span></a></li>
-                        </ul>
-					 <ul class="nav navbar-nav navbar-right">        
-					<c:if test="${logStatus!=null && logStatus=='Y'}">	
-                            <li><a href="#" class="dropdown-toggle"  data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;${logName}님<span class="caret"></span></a>
-                            <input type="hidden" id="logId" value="${logId }"/>
-								<ul class="dropdown-menu">
-                                    <li><a href="<%=request.getContextPath()%>/registEdit">마이페이지</a></li>
-
-                                    
-
-                                    <li><a href="<%=request.getContextPath()%>/mytour">내모임</a></li>
-                                    <li><a href="<%=request.getContextPath()%>/tourApply">참여모임</a></li>
-                                     <li><a href="<%=request.getContextPath()%>/mySavedRoute">저장된 루트</a></li>
-
-                                    <li><a href="#">1:1문의</a></li>
-                                    <li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
-                                </ul>                            
-                            </li>
-                     </c:if>       
-                         <c:if test="${logStatus!='Y'}">
-                         	<div class="userMenu">
-	                            <li><a href="#" class="dropdown-toggle" id="userInfo" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> 로그인 / 회원가입 <span class="caret"></span></a>
-	                                <ul class="dropdown-menu">
-	                                    <li><a href="<%=request.getContextPath()%>/login">로그인</a></li>
-	                                    <li><a onclick="location.href='<%=request.getContextPath()%>/registerForm'">회원가입</a></li>
-	                                </ul>
-	                            </li>
-	                        </div>
-                          </c:if>  
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- 알림 창 -->
-<div id="toast" class="toast">
-	<div id="toastMsg" class="toastMsg"></div>
-</div>
-<div id="toastConfirm" class="toast">
-	<div id="toastConfirmMsg" class="toastMsg"></div>
-	<input type="button" class="mintBtn" value="닫기" onclick="$('#toastConfirm').removeClass('reveal');"/>
-	<input type="button" class="btn" value="확인" />
-</div>
+	<div>
+		<div class="logo_Header">
+			<a href="<%=request.getContextPath()%>/">
+				<img src="<%=request.getContextPath() %>/img/img_logo/logo_main.png"/>
+			</a>
+		</div>
+		<div class="navbar navbar-inverse" style="z-index:800; margin-bottom:0;	border-radius:0">
+		        <div class="container-fluid">
+		            <div class="row">
+		                <div class="col-lg-12">
+		                    <div class="navbar-header">
+		                        <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+		                        
+		                    </div>
+		
+		                    <div class="navbar-collapse collapse" id="mobile_menu">
+		                        <ul class="nav navbar-nav" id="navTxtBar">
+		                            <li class="active"><a href="<%=request.getContextPath()%>/"><span style='font-size:19px'>홈</span></a></li>
+		                            <li><a href="<%=request.getContextPath()%>/courseMap" class="dropdown-toggle"><span class="navTxt">루트짜기</span></a></li>
+		                            <li><a href="<%=request.getContextPath()%>/routeSearch"><span class="navTxt">루트검색</span></a></li>
+		                            <li><a href="<%=request.getContextPath()%>/tourList"><span class="navTxt">동행검색</span></a></li>
+		                            <li><a href="<%=request.getContextPath()%>/reviewList"><span class="navTxt">후기</span></a></li>
+		                        </ul>
+							 <ul class="nav navbar-nav navbar-right">        
+							<c:if test="${logStatus!=null && logStatus=='Y'}">	
+		                            <li><a href="#" class="dropdown-toggle"  data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>&nbsp;${logName}님<span class="caret"></span></a>
+		                            <input type="hidden" id="logId" value="${logId }"/>
+										<ul class="dropdown-menu">
+		                                    <li><a href="<%=request.getContextPath()%>/registEdit">마이페이지</a></li>
+		
+		                                    
+		
+		                                    <li><a href="<%=request.getContextPath()%>/mytour">내모임</a></li>
+		                                    <li><a href="<%=request.getContextPath()%>/tourApply">참여모임</a></li>
+		                                     <li><a href="<%=request.getContextPath()%>/mySavedRoute">저장된 루트</a></li>
+		
+		                                    <li><a href="#">1:1문의</a></li>
+		                                    <li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
+		                                </ul>                            
+		                            </li>
+		                     </c:if>       
+		                         <c:if test="${logStatus!='Y'}">
+		                         	<div class="userMenu">
+			                            <li><a href="#" class="dropdown-toggle" id="userInfo" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> 로그인 / 회원가입 <span class="caret"></span></a>
+			                                <ul class="dropdown-menu">
+			                                    <li><a href="<%=request.getContextPath()%>/login">로그인</a></li>
+			                                    <li><a onclick="location.href='<%=request.getContextPath()%>/registerForm'">회원가입</a></li>
+			                                </ul>
+			                            </li>
+			                        </div>
+		                         </c:if>  
+		                    </ul>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	<!-- 알림 창 -->
+	<div id="toast" class="toast">
+		<div id="toastMsg" class="toastMsg"></div>
+	</div>
+	<div id="toastConfirm" class="toast">
+		<div id="toastConfirmMsg" class="toastMsg"></div>
+		<input type="button" class="mintBtn" value="닫기" onclick="$('#toastConfirm').removeClass('reveal');"/>
+		<input type="button" class="btn" value="확인" />
+	</div>
