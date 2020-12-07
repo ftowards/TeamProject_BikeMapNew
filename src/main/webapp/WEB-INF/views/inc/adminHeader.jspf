@@ -6,9 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device, initial-scale=1"/>
 <link rel="stylesheet" href="/home/css/admin.css" type="text/css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;500&display=swap" rel="stylesheet">		
@@ -128,8 +130,8 @@ function movePage(page){
 						makeRouteTable(result)
 					}		
 				}
-			}, error : function(){
-				console.log("페이지 + 검색 결과 호출 에러");
+			}, error : function(error){
+				console.log("페이지 + 검색 결과 호출 에러"+error);
 			}
 		});
 	}
@@ -140,27 +142,30 @@ function movePage(page){
     	
     	//팝업
     	$(document).on('click','#suspendBtn',function(){
-	    	btn = $(this);
+	    	btn = $(this);   	
 	    	userid = $(this).attr("title");
-	        $('.layerpop').css("position", "absolute");
+	 		alert(userid);
+	    	//$('.layerpop').css("position", "absolute");
 	        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
-	        $('#userSuspend').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
-	        $('#userSuspend').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
-	        $('#userSuspend').draggable();
-	        $('#userSuspend').show();
+	        //$('#userSuspend').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
+	        //$('#userSuspend').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
+	        //$('#userSuspend').draggable();
+	        //$('#userSuspend').show();
 	        $('#userid').val(userid);
+	        
 	        $('#spUserid').text(userid);
+	        
     	});
 		
     	$(document).on('click','#suspendEditBtn',function(){
     		btn = $(this);
 	    	userid = $(this).attr("title");
-	        $('.layerpop').css("position", "absolute");
-	        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
-	        $('#userSuspendEdit').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
-	        $('#userSuspendEdit').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
-	        $('#userSuspendEdit').draggable();
-	        $('#userSuspendEdit').show();
+// 	        $('.layerpop').css("position", "absolute");
+// 	        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+// 	        $('#userSuspendEdit').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
+// 	        $('#userSuspendEdit').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
+// 	        $('#userSuspendEdit').draggable();
+// 	        $('#userSuspendEdit').show();
 	        $('#suspendEditUserid').val(userid);
 	        $('#spEditUserid').text(userid);
    		 });
@@ -237,6 +242,7 @@ function movePage(page){
     	$("#userSuspendFrm").submit(function(){	
     		console.log('111111111111');
 		        var params = jQuery("#userSuspendFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+		        alert(params);
 		        jQuery.ajax({
 		            url: 'userSuspendOk',
 		            type: 'POST',
@@ -244,9 +250,10 @@ function movePage(page){
 		            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
 		            success: function (result) {
 		            	console.log(result.endday+": 결과");
-		                $('#userSuspend').hide();	                
+		                //$('#modal').modal("hide");		
 		                btn.css("background","url('img/img_admin/edit_25_25.png') no-repeat");
 		               	btn.attr("id","suspendEditBtn");
+		               	btn.attr("data-target", "#modal_suspendEdit");
 		               	btn.parent().next().text("~"+result.enddayStr);
 		            },
 			        error:function(e){
@@ -268,8 +275,9 @@ function movePage(page){
 		            	if(result.enddayStr==null){
 			            	console.log(result); 	
 			                btn.css("background","url('img/img_admin/stop_25_25.png')no-repeat");
-			                btn.attr("onclick", "javascript:suspendPopupOpen('${vo.userid}',this);");
+			                //btn.attr("onclick", "javascript:suspendPopupOpen('${vo.userid}',this);");
 			               	btn.attr("id","suspendBtn");
+			               	btn.attr("data-target", "#modal_simple");
 			               	btn.parent().next().text("~");
 		            	}
 		            	$('#userSuspendEdit').hide();
@@ -334,6 +342,12 @@ function movePage(page){
 			<option value="subject" >제목</option>
 			<input type="hidden" name="type" value="qna" />
 		</c:if>
+		<c:if test="${type=='route'}">		
+			<option value="routeAll" selected>전체</option>		
+			<option value="userid">작성자</option>
+			<option value="subject" >제목</option>
+			<input type="hidden" name="type" value="route" />
+		</c:if>
 		</select>
 			<input type="text" name="searchWord" id="userSearchWord"  class="searchText" maxlength="20" placeholder="검색어 입력"/>
 			<input type="submit" name="search" id="searchBtn" value="검색" class="gray_Btn" style="width:50px; height:30px"/>
@@ -351,15 +365,16 @@ function movePage(page){
 			</li>
 			<li>
 				<span class ="icon">게시판 관리</span>
+				<a href="/home/adminRoute">
+					<span class="title" <c:if test="${type=='route'}">style='color:#00B0B0'</c:if>>루트 게시판</span>
+				</a>
 				<a href="/home/adminTour">
 					<span class="title" <c:if test="${type=='tour'}">style='color:#00B0B0'</c:if>>동행모집 게시판</span>
 				</a>
 				<a href="/home/adminReview">
 					<span class="title" <c:if test="${type=='review'}">style='color:#00B0B0'</c:if>>후기 게시판</span>
 				</a>
-				<a href="/home/adminRoute">
-					<span class="title" <c:if test="${type=='route'}">style='color:#00B0B0'</c:if>>루트 게시판</span>
-				</a>
+				
 			</li>
 			<li>
 				<span class="icon">1대1 문의사항</span>

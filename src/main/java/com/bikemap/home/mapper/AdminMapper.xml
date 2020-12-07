@@ -59,7 +59,7 @@
 		where rownum <= #{lastPageRecordCount} order by noqna  desc]]>
 	</select>
 	<select id="selectQna" parameterType="int" resultType="com.bikemap.home.admin.AdminQnaVO">
-		select q.userid, q.subject, a.typename, q.content, q.answer, a.answercontent from qna q, qnaType a where q.noQnaType=a.noQnaType and noqna=#{noqna}
+		select q.userid, q.subject, a.typename, q.content, q.answer, q.answercontent from qna q, qnaType a where q.noQnaType=a.noQnaType and noqna=#{noqna}
 	</select>
 	<update id="qnaUpdate" parameterType="com.bikemap.home.admin.AdminQnaVO">
 		update qna set answercontent=#{answercontent}, answer='Y', answerdate=sysdate where noqna=#{noqna}
@@ -106,9 +106,4 @@
 	<select id="searchTourRecord" parameterType="com.bikemap.home.tour.TourVO" resultType="int">
 		select count(noboard) from tour <include refid="search"></include>
 	</select>
-	
-	
-	
-	
-	
 </mapper> 
