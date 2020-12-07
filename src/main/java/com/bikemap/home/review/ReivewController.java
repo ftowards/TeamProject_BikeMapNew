@@ -42,7 +42,7 @@ public class ReivewController {
 	}
 	
 	//글쓰기 전체 레코드 선택
-	@RequestMapping("/reviewView")
+	@RequestMapping("/reviewList")
 	public ModelAndView reviewAllRecord() {
 			ModelAndView mav = new ModelAndView();
 			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
@@ -56,10 +56,8 @@ public class ReivewController {
 				list = dao.reviewAllRecord(pagingVO);
 				mav.addObject("list", list);
 				mav.addObject("pagingVO", pagingVO);
-				mav.setViewName("review/reviewView");
-				
-				System.out.println(list.get(0).getThumbnailImg());
-	
+				mav.setViewName("review/reviewList");
+					
 			}catch(Exception e) {
 				System.out.println("리뷰 문제있음"+e.getMessage());
 			}
@@ -140,7 +138,7 @@ public class ReivewController {
 	
 	
 	//레코드 한개 선택 - 글 보기
-	@RequestMapping("/reviewList")
+	@RequestMapping("/reviewView")
 	public ModelAndView reviewSelect(int noboard) {
 		ReviewDaoImp dao =  sqlSession.getMapper(ReviewDaoImp.class);
 		
@@ -150,7 +148,7 @@ public class ReivewController {
 			
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("vo",vo);
-		mav.setViewName("review/reviewList");
+		mav.setViewName("review/reviewView");
 		
 		return mav;
 	}
@@ -201,7 +199,7 @@ public class ReivewController {
 		
 		ModelAndView mav = new ModelAndView();
 			if(result>0) {
-				mav.setViewName("redirect: reviewView");
+				mav.setViewName("redirect: reviewList");
 				
 			}else {
 				mav.setViewName("review/reviewResult");
