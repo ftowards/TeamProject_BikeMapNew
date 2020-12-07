@@ -7,13 +7,72 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://www.google.com/jsapi"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
+<script>
+//////////////////게시글 삭제
+$(function(vo){
+	$(".tourViewDelete").click(function(){
+	
+		var url ="/home/tourViewDeleteChk";
+		var data = "noboard="+${vo.noboard};
+		
+		$.ajax({
+			url: url,
+			data : data,
+			success: function(result){
+				if(result == 1){
+					toast("완료된 여행은 삭제가 불가능합니다.");
+				}else if(result == 2){
+					toastConfirm("참여인원이 있습니다.\n그래도 삭제하시겠습니까?",function(){
+						deleteTourView(result);
+					});
+				}else if(result == 3){
+					toastConfirm("삭제된 글은 복구가 불가능합니다.\n그래도 삭제하시겠습니까?",function(){
+						deleteTourView(result);
+					});
+					
+			}else{
+			
+					toast("글삭제에 실패하였습니다.");
+					}
+				},error:function(){
+					console.log("글삭제 조건 에러");
+				}
+
+		});
+		return false;
+	});
+	function deleteTourView(result){
+		
+		var url = "/home/deleteTourView";
+		var data = "noboard="+${vo.noboard};
+		
+		$.ajax({
+			url:url
+			,data:data
+			,success:function(result){
+				if(result == 1){
+					toast("게시글이 삭제되었습니다.");
+					location.href="/home/tourList";
+				}else{
+					toast("글삭제에 실패하였습니다.");
+				}
+			},error:function(){
+				console.log("글삭제 에러");
+			}
+		});
+		
+	}
+});
+
+</script>
 <div class="mainDivTourView">
 	<div id="tourViewFormTitleDiv"><label id="tourWriteTitle"><b>${vo.title}</b></label></div>
 	<div class="tourViewEditAndDeleteDiv">
 	
-		
+			
 			<div><label class="tourViewEdit"><a href="<%=request.getContextPath()%>/tourViewEdit">수정</a></label></div>
-			<div><input type="submit" value="삭제" class="tourViewDelete" onclick="del(${vo.noboard})"></div>
+			<div><label class="tourViewDelete">삭제</label></div>
+		
 		
 	</div>
 	<div id="routeResultDiv" class="routeResultDiv">
@@ -164,17 +223,6 @@
 	<input type="hidden" id="noboard" value="${vo.noboard}">
 	<%@ include file="../inc/reply.jspf"%>
 </div>
-<script>
-function del(noboard){
-	var checkMSG = confirm("삭제된 글은 복구가 불가능합니다.\n글을 삭제하시겠습니까?");
-	if(checkMSG){
-		location.href='/home/tourViewDelete';
-	}
-	return false;
-}
-
-</script>
-
 <script>
 //////// 지도용 변수
 var routeMarker = [];
@@ -664,6 +712,5 @@ function removeMarker(markerGroup){
 		markerGroup[i].setMap(null);
 	}
 	markerGroup =[];
-
 }
 </script>
