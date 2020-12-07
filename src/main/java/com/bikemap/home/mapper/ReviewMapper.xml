@@ -23,7 +23,7 @@
 <!-- 	글쓰기 등록 -->
 	<insert id = "reviewInsert" parameterType="com.bikemap.home.review.ReviewVO">
 		insert into review(noboard, subject, userid, content, reference, ip)
-		values(a_sq.nextval, #{subject}, #{userid}, #{content}, #{reference, jdbcType=INTEGER}, #{ip})
+		values(a_sq.nextval, #{subject }, #{userid }, #{content }, #{reference, jdbcType=INTEGER}, #{ip})
 	</insert>
  
  <!--  글쓰기 수정 -->

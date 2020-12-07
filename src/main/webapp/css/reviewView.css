@@ -561,8 +561,9 @@
 
 /*=============페이징===================*/
 	#paging{
-				height:60px; 
-			
+		height:60px; 
+		text-align: center;
+	    margin-left: -540px;
 				
 	} 
 	#paging ul{
