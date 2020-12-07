@@ -36,13 +36,23 @@
 	.contentBox{
 		width:1000px;
 		margin:0 auto;
-		background-color : #eee;
-		border-top : 3px solid #ccc;
-		border-bottom : 3px solid #ccc;
+		background-color :#eee;
+		
 	}
-	.contentBox div:first-child{
-		border-bottom : 2px solid #ddd;
-		height : 150px;
+	.registerDelContentBox{
+					width:1000px;
+					margin:0 auto;
+					background-color :#eee;
+					box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+					border-radius: 10px;
+				
+	
+	}
+	.registerDelContentBox div:first-child{
+				
+					background-color :#eee;
+					height : 150px;
+				
 	}
 	.contentBox p{
 		height : 50px;
@@ -78,26 +88,32 @@
 		border:0;
 		width:800px;
 		background-color:#ccc;
-		height:3px;
+		height:1px;
 	}
 	#btnBox{
 		margin-top:15px;
 		width:1000px;
 		text-align:right;
+		border-radius:10px;
 	}
 	.red_Btn{
-		border : #D20000 2px solid;
-		background-color : #D20000;
+		border :none;
+		background-color :#FF6347;
 		text-decoration: none;
 		text-align : center;
 		font-size : 18px;
 		color: white;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+		border-radius:10px;
+		
 		
 			}
 	.red_Btn:hover{
 		color : white;
 		background-color: #ef5f5f;
 		border : #D20000 2px solid;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+		border-radius:10px;
 	}
 	
 	/*==================================registDelChk==================================*/
@@ -111,9 +127,11 @@
 		padding-top:40px;
 		margin-top:160px;
 		margin-bottom:100px;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+		border-radius: 10px;
 	}
 	.contentBox2 div:first-child{
-		border-bottom : 2px solid #ddd;
+		
 		height : 120px;
 	}
 	#LockImg{
@@ -139,18 +157,43 @@
 		color:#353535;
 	}
 	.gray_Btn{
-		border : #353535 2px solid;
+		border :none;
 		background-color : #353535;
 		text-decoration: none;
 		text-align : center;
 		font-size : 19px;
 		margin-left: 15px;
 		color: white;
+		border-radius: 10px;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+		
+	}
+	.registerEditGray_Btn{
+						border :none;
+						background-color : #353535;
+						text-align : center;
+						font-size : 19px;
+						margin-left: 15px;
+						color: white;
+						box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+						border-radius: 10px;
+		
+	
+	}
+	#userpwd{
+				height:40px; 
+				width:240px; 
+				margin-top:20px;	
+				box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+				border-radius:10px;
+				border:none;
 	}
 	.gray_Btn:hover{
 		color : white;
 		background-color: #565656;
-		border : #565656 2px solid;
+		border : none;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+		border-radius: 10px;
 	}	
 	
 	

@@ -1,5 +1,6 @@
 package com.bikemap.home.review;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.bikemap.home.route.RouteVO;
 
 
 @Controller
@@ -41,15 +44,70 @@ public class ReivewController {
 	//글쓰기 전체 레코드 선택
 	@RequestMapping("/reviewView")
 	public ModelAndView reviewAllRecord() {
-			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-			List<ReviewVO> list = dao.reviewAllRecord();
-			
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("list", list);
-			mav.setViewName("review/reviewView");
-		
+			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+			List<ReviewVO> list;
+			ReviewPagingVO pagingVO = new ReviewPagingVO();
+			try {
+				
+				int totalRecord = dao.searchTotalRecord();
+				pagingVO.setTotalRecord(totalRecord);
+				
+				list = dao.reviewAllRecord(pagingVO);
+				mav.addObject("list", list);
+				mav.addObject("pagingVO", pagingVO);
+				mav.setViewName("review/reviewView");
+				
+				System.out.println(list.get(0).getThumbnailImg());
+	
+			}catch(Exception e) {
+				System.out.println("리뷰 문제있음"+e.getMessage());
+			}
+			
 		return mav;
 	}
+	//페이징 전체 선택 레코드 가져오기
+	@RequestMapping(value="/searchReviewAll", method= {RequestMethod.POST})
+	@ResponseBody
+	public List<ReviewVO> searchReviewAll(ReviewPagingVO pagingVO) {
+			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+			List<ReviewVO> list = new ArrayList<ReviewVO>();
+			
+			try {
+				int totalRecord = dao.searchTotalRecord();
+				pagingVO.setTotalRecord(totalRecord);
+				
+				list = dao.reviewAllRecord(pagingVO);
+				System.out.println(list);
+			}catch(Exception e) {
+				System.out.println("에러 " + e.getMessage());
+			}
+			return list;
+	}
+	
+//	//페이징 전체 선택 레코드 가져오기
+//		@RequestMapping("/searchReviewOk")
+//		public ModelAndView reviewAllRecord() {
+//				ModelAndView mav = new ModelAndView();
+//				ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+//				List<ReviewVO> list;
+//				ReviewPagingVO pagingVO = new ReviewPagingVO();
+//				try {
+//					
+//					int totalRecord = dao.searchTotalRecord();
+//					pagingVO.setTotalRecord(totalRecord);
+//					
+//					list = dao.reviewAllRecord(pagingVO);
+//					mav.addObject("list", list);
+//					mav.addObject("pagingVO", pagingVO);
+//					mav.setViewName("review/reviewView");
+//		
+//				}catch(Exception e) {
+//					System.out.println("리뷰 문제있음"+e.getMessage());
+//				}
+//				
+//			return mav;
+//		}
 	
 	
 	//레코드 추가 글쓰기
@@ -152,6 +210,41 @@ public class ReivewController {
 			return mav;
 		
 	}
+	
+	// 루트 검색 페이지 페이징 처리
+		@RequestMapping(value="/searchReviewPaging", method= {RequestMethod.POST})
+		@ResponseBody
+		public ReviewPagingVO searchReviewPageing(ReviewPagingVO pagingVO) {		
+			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+			try {
+				int totalRecord = dao.searchResultRecord(pagingVO);
+				pagingVO.setTotalRecord(totalRecord);
+				
+			}catch(Exception e) {
+				System.out.println("에러 " + e.getMessage());
+			}
+			return pagingVO;
+		}
+		
+//		//코스검색(글보기)
+//		@RequestMapping("/ReviewSearchView")
+//		public ModelAndView ReviewSearchView(int noboard) {
+//			ModelAndView mav = new ModelAndView();
+//			
+//			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+//			
+//			try {
+//				ReviewVO vo = dao.selectReview(noboard);
+//				ReviewPlaceVO placeVO = dao.selectReviewPlace(noboard);
+//				
+//				mav.addObject("ReviewVO", vo);
+//				mav.addObject("placeVO", placeVO);
+//			}catch(Exception e) {
+//				System.out.println(e.getMessage());
+//			}
+//			mav.setViewName("Review/ReviewSearchView");
+//			return mav;
+//		}
 }
 	
 	

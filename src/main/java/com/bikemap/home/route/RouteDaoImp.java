@@ -74,4 +74,16 @@ public interface RouteDaoImp {
 	
 	// 루트 한 개의 장소 리스트 읽기
 	public RoutePlaceVO selectRoutePlace(int noroute);
+	
+	//==============저장된 루트==================================//
+	
+	// 저장한 카테고리 리스트
+	public List<RouteCateVO> selectMycategory(String userid);
+	
+	// 저장한 카테고리 페이징
+	public int getMyrouteCategoryRecord(MyRoutePagingVO vo);
+	
+	// 저장한 리스트 가져오기
+	public List<RouteVO> selectMyroute(MyRoutePagingVO vo);
+
 }

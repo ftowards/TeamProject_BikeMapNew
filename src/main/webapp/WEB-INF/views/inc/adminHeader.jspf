@@ -103,6 +103,8 @@ function movePage(page){
     		url = "<%=request.getContextPath()%>/adminReviewAjax";			 
 		}else if(${type=='qna'}){
     		url = "<%=request.getContextPath()%>/adminQnaAjax";
+		}else if(${type=='route'}){
+			url = "<%=request.getContextPath()%>/adminRouteAjax";
 		}		
 		$.ajax({
 			type : 'POST',
@@ -115,13 +117,15 @@ function movePage(page){
 					//history.back();//넣을지 말지 확인후
 				} else{ 
 					if(${type=='user'}){
-						makeUserTable(result)
+						makeUserTable(result);						
 					}else if(${type=='tour'}){
 						makeTourTable(result)
 					}else if(${type=='review'}){
 						makeReviewTable(result)
 					}else if(${type=='qna'}){
 						makeQnaTable(result)
+					}else if(${type=='route'}){
+						makeRouteTable(result)
 					}		
 				}
 			}, error : function(){
@@ -329,24 +333,26 @@ function movePage(page){
 		<ul id="sidebar" >
 			<li>
 				<span class ="icon">회원 관리</span>
-				<a href="/home/adminUser" >회원목록/검색</a>
+				<a href="/home/adminUser" >
+					<span class="title" <c:if test="${type=='user'}">style='color:#00B0B0'</c:if> >회원목록/검색</span>
+				</a>
 			</li>
 			<li>
 				<span class ="icon">게시판 관리</span>
 				<a href="/home/adminTour">
-					<span class="title">동행모집 게시판</span>
+					<span class="title" <c:if test="${type=='tour'}">style='color:#00B0B0'</c:if>>동행모집 게시판</span>
 				</a>
 				<a href="/home/adminReview">
-					<span class="title">후기 게시판</span>
+					<span class="title" <c:if test="${type=='review'}">style='color:#00B0B0'</c:if>>후기 게시판</span>
 				</a>
 				<a href="/home/adminRoute">
-					<span class="title">루트 게시판</span>
+					<span class="title" <c:if test="${type=='route'}">style='color:#00B0B0'</c:if>>루트 게시판</span>
 				</a>
 			</li>
 			<li>
 				<span class="icon">1대1 문의사항</span>
 				<a href="/home/adminQna">
-					<span class ="title">문의사항</span>
+					<span class ="title" <c:if test="${type=='qna'}">style='color:#00B0B0'</c:if>>문의사항</span>
 				</a>
 			</li>
 		</ul>

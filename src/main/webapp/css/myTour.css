@@ -80,11 +80,6 @@
 			overflow-y : auto;		
 	}
 	
-	td a:hover,td a:link,td a:visited{
-				text-decoration:none;
-				color:rgb(64,64,64);
-				
-	}
 	.tourIn{
 				
 		padding-top:4px;
@@ -102,7 +97,7 @@
 	}
 	.tourOut{
 				
-		padding-top:4px;
+		padding: 5px 0;
 		text-align:center;
 		border:none;
 		border-radius:10px;
@@ -161,11 +156,11 @@
 		border:0;
 	}
 	
-	input[name=tourState]{
+	input[name=tourState], input[name=applyState]{
 		display : none;
 	}
 	
-	#paging{
+	.paging{
 		display : inline-block;
 		width:100%;
 		height:50px;
@@ -174,10 +169,10 @@
 		margin : 20px auto 0;
 		text-align: center;
 	}
-	#paging ul{
+	.paging ul{
 		display:inline-block;
 	}
-	#paging ul li{
+	.paging ul li{
 		list-style-type: none;
 		float: left;
 		margin-left:30px;
@@ -186,11 +181,12 @@
 		font-weight:bold;
 	}
 	
-	#tourOnListTitle{
+	<!-- ---------------- 진행 투어  --------------------- -->
+	.tourlistTitle, .tourlistTitle2{
 		height : 40px;
 		margin : 0;
 	}
-	#tourOnListTitle>li, #tourOnList>li{
+	.tourlistTitle>li, .tourlist>li, .tourlistTitle2>li, .tourlist2>li{
 		height : 40px;
 		line-height : 40px;
 		font-size:15x;
@@ -200,11 +196,17 @@
 		border-bottom : 1px solid lightgray;
   	}
   	
-  	#tourOnListTitle>li:nth-of-type(7n+2), #tourOnList>li:nth-of-type(7n+2){
+  	.tourlistTitle>li:nth-of-type(7n+2){
+  		width : 32%;
+	
+  	}
+  	.tourlist>li:nth-of-type(7n+2){
 		width : 32%;
+		text-align : left;
+		text-indent: 5%;
   	}
   	
-  	#tourOnListTitle>li:nth-of-type(7n+3), #tourOnList>li:nth-of-type(7n+3){
+  	.tourlistTitle>li:nth-of-type(7n+3), .tourlist>li:nth-of-type(7n+3){
 		width : 18%;
   	}
   	
@@ -217,18 +219,63 @@
   	}
   	
   	.acodianList>li{
-  		width : 17%;
+  		width : 14%;
   		height : 45px;
   		line-height : 45px;
   		text-align : center;
   		float: left;
   	}
   	
-  	 .acodianList>li:nth-of-type(6n+6){
-  		width : 15%;
+  	 .acodianList>li:nth-of-type(7n+7){
+  		width : 16%;
   	}
   	
   	.acodianList img{
   		width:35px;
-  	
   	}
+  	 	
+  	.tourlistTitle2>li:nth-of-type(7n+2), .tourlist2>li:nth-of-type(7n+2){
+  		width : 30%;
+  	}
+  	.tourlistTitle2>li:nth-of-type(7n+3), .tourlist2>li:nth-of-type(7n+3){
+  		width : 15%;
+  	}
+  	.tourlistTitle2>li:nth-of-type(7n+4), .tourlist2>li:nth-of-type(7n+4){
+  		width : 15%;
+  	}
+  	
+	.tourlistTitle3{
+		height : 40px;
+		margin : 0;
+	}
+	.tourlistTitle3>li, .tourlist3>li{
+		height : 40px;
+		line-height : 40px;
+		font-size:15x;
+		text-align : center;
+		width : 14%;
+		float:left; 
+		border-bottom : 1px solid lightgray;
+  	}
+  	
+  	.tourlistTitle3>li:nth-of-type(6n+2){
+  		width : 30%;
+	
+  	}
+  	.tourlist3>li:nth-of-type(6n+2){
+		width : 30%;
+		text-align : left;
+		text-indent: 5%;
+  	}
+  	
+  	<!---->
+  	
+	#tourApply:checked~div:nth-of-type(1){
+		display:block;
+	}
+	#tourPartin:checked~div:nth-of-type(2){
+		display:block;
+	}
+	#tourEnd:checked~div:nth-of-type(3){
+		display:block;
+	}

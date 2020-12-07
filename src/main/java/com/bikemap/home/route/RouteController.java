@@ -67,7 +67,7 @@ public class RouteController {
 			
 			list = dao.selectRouteAll(pagingVO);
 		}catch(Exception e) {
-			System.out.println("에러 " + e.getMessage());
+			System.out.println("전체 루트 검색 에러 " + e.getMessage());
 		}
 		return list;
 	}
@@ -85,7 +85,7 @@ public class RouteController {
 			
 			list = dao.selectRouteSearch(pagingVO);
 		}catch(Exception e) {
-			System.out.println("에러 " + e.getMessage());
+			System.out.println("루트 리스트 검색 에러 " + e.getMessage());
 		}
 		return list;
 	}
@@ -100,7 +100,7 @@ public class RouteController {
 			pagingVO.setTotalRecord(totalRecord);
 			
 		}catch(Exception e) {
-			System.out.println("에러 " + e.getMessage());
+			System.out.println("루트 검색 페이징 에러 " + e.getMessage());
 		}
 		return pagingVO;
 	}
@@ -347,10 +347,53 @@ public class RouteController {
 		}
 		return vo;
 	}
+	
 	//저장된 루트 List
 	@RequestMapping("/mySavedRoute")
-	public String myRouteBoardList() {
-		return "route/savedMyRoute";
+	public ModelAndView myRouteBoardList(HttpSession ses) {
+		ModelAndView mav = new ModelAndView();
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		try {
+			List<RouteCateVO> list = dao.selectMycategory((String)ses.getAttribute("logId"));
+			mav.addObject("list",list);
+		}catch(Exception e) {
+			System.out.println("저장한 루트 카테고리 호출 에러..."+e.getMessage());
+		}
+		mav.setViewName("route/savedMyRoute");
+		return mav;
 	}
+	
+	// 저장한 루트 리스트 페이징
+	@RequestMapping("/myroute/paging")
+	@ResponseBody
+	public MyRoutePagingVO myroutePaging(MyRoutePagingVO vo, HttpSession ses) {
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		try {
+			vo.setUserid((String)ses.getAttribute("logId"));
+			vo.setTotalRecord(dao.getMyrouteCategoryRecord(vo));
+		}catch(Exception e) {
+			System.out.println("저장한 루트 페이징 에러 " + e.getMessage());
+		}
+		return vo;
+	}
+	
+	// 저장한 루트 리스트 가져오기
+	@RequestMapping(value="/myroute/selectMyroute")
+	@ResponseBody
+	public List<RouteVO> selectMyroute(MyRoutePagingVO vo, HttpSession ses){
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		List<RouteVO> list = new ArrayList<RouteVO>();
+		
+		try {
+			vo.setUserid((String)ses.getAttribute("logId"));
+			vo.setTotalRecord(dao.getMyrouteCategoryRecord(vo));
+			
+			list = dao.selectMyroute(vo);
+		}catch(Exception e) {
+			System.out.println("저장한 루트 리스트 가져오기 에러 " + e.getMessage());
+		}
+		return list;
+	}
+	
 	
 }

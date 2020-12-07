@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="/home/css/routeSearchView.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <div class="routeSearchViewDiv2">
 	<div id="mapDiv" style='width:1200px;'>
 		<b>코스정보보기</b><br/><hr id="titleLine"/>

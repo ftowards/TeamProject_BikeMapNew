@@ -42,7 +42,7 @@
 		<form id="pwdChk">
 			<input type="hidden" name="userid" value="${logId}"/>
 			<b class="grayTxt" style='font-size:17px; margin-right:12px; letter-spacing:3px'>> 비밀번호</b>&ensp;<input type="password" name="userpwd" id="userpwd" style='height:40px; width:240px; margin-top:20px;'/><br/>
-			<input type="submit" value="회원탈퇴" class="gray_Btn" style='width:130px; height:47px; margin-top:24px'/>
+			<input type="submit" value="회원탈퇴" class="gray_Btn" style='width:130px; height:47px; margin-top:24px;'/>
 		</form>
 	</div>
 </div> 

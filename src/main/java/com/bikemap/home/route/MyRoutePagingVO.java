@@ -1,19 +1,18 @@
-package com.bikemap.home.tour;
+package com.bikemap.home.route;
 
-public class TourListPagingVO {
-
+public class MyRoutePagingVO {
+	
 	private int nowPage = 1;
 	private int totalRecord ;
 	private int totalPage ;
-	private int onePageRecord = 10; // 한 페이지에 표시할 레코드 숫자
+	private int onePageRecord = 8; // 한 페이지에 표시할 레코드 숫자
 	private int onePageNumCount = 5; // 한 번에 표시할 페이지 숫자
 	private int startPageNum = 1;
-	private int lastPageRecordCount = 10; // 마지막 페이지 레코드 숫자
+	private int lastPageRecordCount = 8; // 마지막 페이지 레코드 숫자
 	
-	// 검색 조건
+	private int noroutecate =0;
 	private String userid;
-	private String tourState;
-	private String applyState ;
+	private String order = "noboard" ; // 아니면 "rating"
 	
 	public int getNowPage() {
 		return nowPage;
@@ -69,22 +68,22 @@ public class TourListPagingVO {
 	public void setLastPageRecordCount(int lastPageRecordCount) {
 		this.lastPageRecordCount = lastPageRecordCount;
 	}
+	public int getNoroutecate() {
+		return noroutecate;
+	}
+	public void setNoroutecate(int noroutecate) {
+		this.noroutecate = noroutecate;
+	}
+	public String getOrder() {
+		return order;
+	}
+	public void setOrder(String order) {
+		this.order = order;
+	}
 	public String getUserid() {
 		return userid;
 	}
-	public String getTourState() {
-		return tourState;
-	}
 	public void setUserid(String userid) {
 		this.userid = userid;
-	}
-	public void setTourState(String tourState) {
-		this.tourState = tourState;
-	}
-	public String getApplyState() {
-		return applyState;
-	}
-	public void setApplyState(String applyState) {
-		this.applyState = applyState;
 	}
 }

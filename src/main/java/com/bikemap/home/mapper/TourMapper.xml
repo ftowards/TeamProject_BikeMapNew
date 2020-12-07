@@ -105,17 +105,32 @@
 				state = '1' and deadline <![CDATA[>]]> sysdate
 			</when>
 			<when test='tourState neq null and tourState eq "2"'>
-				deadline <![CDATA[<=]]> sysdate
+				state = '1' and deadline <![CDATA[<=]]> sysdate
 			</when>
 			<when test='tourState neq null and tourState eq "3"'>
 				state = '2'
 			</when>
 		</choose>
 	</select>
+	<select id="getApplytourRecordCount" resultType="int" parameterType="com.bikemap.home.tour.TourListPagingVO">
+		select count(a.noboard) from tour a join complist b on a.noboard = b.noboard
+		where a.userid <![CDATA[<>]]> #{userid} and b.userid = #{userid} and 
+		<choose>
+			<when test='applyState neq null and applyState eq "1"'>
+				a.state = '1' and b.state = '1'
+			</when>
+			<when test='applyState neq null and applyState eq "2"'>
+				a.state = '1' and b.state = '2'
+			</when>
+			<when test='applyState neq null and applyState eq "3"'>
+				a.state = '2' and b.state = '2'
+			</when>
+		</choose>		
+	</select>	
 	<select id="selectMytourList" resultType="com.bikemap.home.tour.TourlistVO" parameterType="com.bikemap.home.tour.TourListPagingVO">
 		select * from 
 			(select * from	
-		
+			
 		(select a.noboard, title, to_char(departure, 'YY-MM-DD HH24') departure, to_char(arrive, 'YY-MM-DD HH24') arrive, to_char(deadline, 'YY-MM-DD HH24') deadline,
 			nvl(c.party, 0) party, (a.room - nvl(c.party,0)) margin, nvl(b.que,0) que from tour a
 		left join (select noboard, count(userid) que from complist  where state ='1'  group by noboard) b on a.noboard = b.noboard
@@ -126,7 +141,7 @@
 				state = '1' and deadline <![CDATA[>]]> sysdate
 			</when>
 			<when test='tourState neq null and tourState eq "2"'>
-				deadline <![CDATA[<=]]> sysdate
+				state = '1' and deadline <![CDATA[<=]]> sysdate
 			</when>
 			<when test='tourState neq null and tourState eq "3"'>
 				state = '2'
@@ -136,7 +151,60 @@
  			where rownum <![CDATA[<= ]]> (#{nowPage} * #{onePageRecord}) order by noboard asc)
 		where rownum <![CDATA[<= ]]> #{lastPageRecordCount} order by noboard desc 
 	</select>
+	<select id="selectApplytourList" resultType="com.bikemap.home.tour.TourlistVO" parameterType="com.bikemap.home.tour.TourListPagingVO">
+		select * from 
+			(select * from	
+		
+		(select c.noboard, c.userid, c.title, to_char(c.departure, 'YY-MM-DD HH24') departure, to_char(c.arrive, 'YY-MM-DD HH24') arrive, to_char(c.deadline, 'YY-MM-DD HH24') deadline,
+		 nvl(e.party, 0) party, (c.room - nvl(e.party,0)) margin, nvl(d.que,0) que 
+			from (select a.noboard, a.userid, title, departure, arrive, deadline, room from tour a join complist b on a.noboard = b.noboard
+			where a.userid <![CDATA[<>]]> #{userid} and b.userid = #{userid} and
+				<choose>
+					<when test='applyState neq null and applyState eq "1"'>
+						a.state = '1' and b.state = '1'
+					</when>
+					<when test='applyState neq null and applyState eq "2"'>
+						a.state = '1' and b.state = '2'
+					</when>
+					<when test='applyState neq null and applyState eq "3"'>
+						a.state = '2' and b.state = '2'
+					</when>
+				</choose>
+			) c
+			 left join (select noboard, count(userid) que from complist  where state ='1'  group by noboard) d on c.noboard = d.noboard
+			 left join (select noboard, count(userid) party from complist where state ='2' group by noboard) e on c.noboard = e.noboard
+		 
+		 		order by noboard desc)
+ 			where rownum <![CDATA[<= ]]> (#{nowPage} * #{onePageRecord}) order by noboard asc)
+		where rownum <![CDATA[<= ]]> #{lastPageRecordCount} order by noboard desc 
+	</select>
 	<update id="confirmComplist" parameterType="com.bikemap.home.tour.ComplistVO">
 		update complist set state='2' where userid =#{userid} and noboard =#{noboard} and state ='1'
+	</update>
+	<update id="absentTour" parameterType="com.bikemap.home.tour.ComplistVO">
+		update complist set state='3' where userid =#{userid} and noboard =#{noboard} and state ='2'
+	</update>
+	<update id="completeTour" >
+		update tour set state = '2' where noboard = #{noboard}
+	</update>
+	<select id="selectCompleteList" resultType="String">
+		select userid from complist where noboard =#{param1} and state ='2'
+	</select>
+	<update id="addTourcnt">
+		update regist set tourcnt = tourcnt +1 where userid = #{param1}
+	</update>
+	<insert id="insertEvalList">
+		insert into comprate(noboard, userid, object) values(#{param1}, #{param2}, #{param3})
+	</insert>
+	<select id="selectEvallist" resultType="com.bikemap.home.tour.ComplistVO" parameterType="com.bikemap.home.tour.ComplistVO">
+		select a.object objid, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(b.birth, 'YYYY'))+1),-1) age,
+			   b.gender, b.tourcnt, b.heart, a.eval from comprate a 
+			join regist b on a.object = b.userid where a.noboard = #{noboard} and a.userid = #{userid} order by objid asc	
+	</select>
+	<update id="updateEvallist" parameterType="com.bikemap.home.tour.ComplistVO">
+		update comprate set eval = 'Y' where noboard =#{noboard} and userid = #{userid} and object = #{objid}
+	</update>
+	<update id="addHeart">
+		update regist set heart = heart + 1 where userid = #{param1}
 	</update>
  </mapper>

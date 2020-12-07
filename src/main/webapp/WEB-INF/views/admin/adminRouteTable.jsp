@@ -14,16 +14,19 @@ function makeRouteTable(result){
 		}			
 		//list안에 데이터 추가
 		listTag += "<li><input type='checkbox' />&nbsp&nbsp"+result[i].noboard+"</li>";
-		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/tourView?noboard="+result[i].noboard+"'>"+result[i].title+"</a></li>";
+		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/routeSearchView?noboard="+result[i].noboard+"'>"+result[i].title+"</a></li>";
 		listTag += "<li>"+result[i].userid+"</li>";
+		listTag += "<li>"+result[i].rating+"</li>";
+		listTag += "<li>"+result[i].ratecnt+"</li>";
+		listTag += "<li>"+result[i].region+"</li>";
 		listTag += "<li>";
-		if(result[i].state=='1'||result[i].state==null){
-			listTag +="미완료";
-		}else if(result[i].gender=='2'){
-			listTag +="완료";
+		if(result[i].closed=='F'||result[i].closed==null){
+			listTag +="공개";
+		}else if(result[i].gender=='T'){
+			listTag +="비공개";
 		}
 		listTag += "</li>";
-			
+
 		}$("#routeList").append(listTag);
 }
 </script>	
@@ -67,7 +70,7 @@ function makeRouteTable(result){
 					<ul>
 					
 						<c:if test="${pagingVO.nowPage != 1 }">
-							<li><a href="#">Prev</a></li>
+							<li><a href="javascript:movePage(${pagingVO.nowPage-1 })"> Prev </a></li>
 						</c:if>
 						<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
 							<c:if test="${pagingVO.totalPage >= page }">
@@ -81,8 +84,8 @@ function makeRouteTable(result){
 							</c:if>
 						</c:forEach>
 					
-						<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
-							<li><a href="#">Next</a></li>
+						<c:if test="${pagingVO.nowPage != pagingVO.totalPage }">
+							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>
 					</ul>
 			</div><br/> 

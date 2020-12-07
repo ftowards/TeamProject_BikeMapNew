@@ -5,6 +5,7 @@ public class RouteCateVO {
 	private int noroutecate;
 	private String catename;
 	private String userid;
+	private int recordcnt;
 	
 	public int getNoroutecate() {
 		return noroutecate;
@@ -23,5 +24,11 @@ public class RouteCateVO {
 	}
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+	public int getRecordcnt() {
+		return recordcnt;
+	}
+	public void setRecordcnt(int recordcnt) {
+		this.recordcnt = recordcnt;
 	}	
 }

@@ -72,7 +72,7 @@
 			<input type="text" name="username" placeholder="  이름을 입력해주세요"/><br/>
 			<input type="text" name="userid" placeholder="  아이디를 입력해주세요"/><br/>
 			<input type="text" name="email" placeholder="  가입 시 등록한 이메일을 입력해주세요"/><br/>
-			<input type="submit" class="WMint_Btn" value= "비밀번호 찾기" style='width:700px; height:60px; font-size:22px; letter-spacing:1px; border-radius:7px; border:2px solid #00B0B0'/><br/>
+			<input type="submit" class="WMint_Btn" value= "비밀번호 찾기" style='width:700px; height:60px; font-size:22px; letter-spacing:1px; border-radius:7px; border:1px solid #00B0B0'/><br/>
 			<input type="button" class="mint_Btn" value="로그인" onclick="location.href='/home/login'" style='width:700px; height:60px; font-size:22px; letter-spacing:1px; border-radius:7px'/>
 		</form>
 	</div>
