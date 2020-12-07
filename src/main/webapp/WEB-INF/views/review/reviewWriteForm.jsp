@@ -41,6 +41,7 @@ $(function(){
 				if(result>0){
 					alert("글이 등록되었습니다.")
 					location.href="/home/reviewView";
+// 					$('#writeform').submit();
 				
 				}else{
 					alert("글등록이 실패하였습니다.");

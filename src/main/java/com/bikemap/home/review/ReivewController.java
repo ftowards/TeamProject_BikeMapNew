@@ -77,6 +77,7 @@ public class ReivewController {
 				
 				list = dao.reviewAllRecord(pagingVO);
 				System.out.println(list);
+				
 			}catch(Exception e) {
 				System.out.println("에러 " + e.getMessage());
 			}

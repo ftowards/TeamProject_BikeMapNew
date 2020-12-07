@@ -5,7 +5,8 @@
 <script>
 
 function makeThumbnail(result){
-		$("#reviewBoard").children().remove();		
+		//$("#reviewBoard").children().remove();	
+		$("#reviewBoard").html("");
 		var listTag = "";
 		for(var i = 0 ; i < result.length ; i++){
 			
@@ -20,17 +21,18 @@ function makeThumbnail(result){
 					
 			listTag +=	"<div class='right'>";
 			listTag +=	"<div class= 'subtitle'>";
-					
+				
 			listTag +=	"<ul>";
-			listTag +=	"<li>";
+			listTag +=	"<li class='wordCut'>";
 			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
 			listTag +=	"</a>";
 			listTag +=	"</li>";
 			listTag +=	"</ul>";
 			listTag +=	"</div>";
+			listTag += "<br/><br/><br/>"
 			listTag +=	"<ul>";
-			listTag +=	"<li id='reviewtext'>";
+			listTag +=	"<li class='wordCut' id='reviewtext'>";
 			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].content;
 			listTag +=	"</a>";
@@ -43,7 +45,7 @@ function makeThumbnail(result){
 			listTag +="<img src='<%=request.getContextPath() %>/img/img_Review/review.png'/>";
 			listTag += result[i].userid+"님의 생생한 후기";
 			listTag +="</li>";
-			listTag +="<li class='writedate'>${vo.writedate } 작성</li>"
+			listTag +="<li class='writedate'>"+result[i].writedate+"작성</li>"
 			listTag +="</ul>";
 			listTag +="</div>";
 			listTag +="</div>";
@@ -51,8 +53,11 @@ function makeThumbnail(result){
 			listTag +="</div>";
 			listTag +="</div>";
 		
-	
-		}$("#reviewBoard").append(listTag);
+			console.log(listTag); 
+			console.log('----------------------------------');
+		}
+		$("#reviewBoard").html(listTag);
+		console.log(listTag); 
 	
 }
 
