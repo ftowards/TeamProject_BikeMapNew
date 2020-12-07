@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -8,7 +7,6 @@ function makeReviewTable(result){
 	$("#reviewList").children().remove();
 	var listTag = "";
 	for(var i = 0; i < result.length ; i++){
-		
 		if(i==0){
 			listTag +=  "<li><input type='checkbox' id='checkAll' />번호</li> <li>제목</li> <li>작성자</li> <li>레퍼런스번호</li><li>조회수</li><li>추천/비추천</li>"	;
 		}			
@@ -35,8 +33,9 @@ function makeReviewTable(result){
 	<div class="adminContent">	
 				<div id="adminTable">
 				<h1 class="adminListHead">리뷰</h1>
-				<ul id="reviewList">					
-					<li><input type="checkbox" id="checkAll" />번호</li>
+				<ul id="reviewList">				
+					<li><input type="checkbox" id="checkAll" /></li>	
+					<li>번호</li>
 					<li>제목</li>
 					<li>작성자</li>
 					<li>레퍼런스 번호</li>
@@ -83,7 +82,7 @@ function makeReviewTable(result){
 			</div><br/> 
 			<!-- /paging -->
 				<div id="reviewBtnDiv">
-						<input type="button" id="partnerBtn1" name="deleteReview" value="삭제하기" class="mint_Btn"/>
+						
 						<input type="button" id="reviewHideBtn2" name="hideReview" value="비공개"/>
 						<input type="button" id="reviewRecommentBtn" name="recomReview" value="추천하기" />
 				</div><!-- btn -->
