@@ -40,7 +40,7 @@ $(function(){
     	
     	var click = '$("#toast").removeClass("reveal")';
     	if(time == null || time == 'undefined'){
-    		var tag = "<input type='button' class='mintBtn' value='닫기' onclick='"+click+"'/>";
+    		var tag = "<br><input type='button' class='mintBtn' value='닫기' onclick='"+click+"'/>";
     		toast.append(tag);
 		}else {
 			setTimeout(function(){
