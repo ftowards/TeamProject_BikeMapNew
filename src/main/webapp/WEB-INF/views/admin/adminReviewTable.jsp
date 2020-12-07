@@ -22,7 +22,7 @@ function makeReviewTable(result){
 		
 		listTag += "<li><span style='color:blue'>"+result[i].thumbUp+" </span>/ <span >"+result[i].thumbDown+" </span></li>";
 		
-		}$("#tourList").append(listTag);
+		}$("#reviewList").append(listTag);
 }
 </script>
 
@@ -82,9 +82,10 @@ function makeReviewTable(result){
 					</ul>
 			</div><br/> 
 			<!-- /paging -->
-				<div id="partnerBtn">
-						<input type="button" id="partnerBtn1" name="partnerDeleteBtn" value="삭제하기" class="mint_Btn"/>
-						<input type="button" id="partnerBtn2" name="partnerHideBtn" value="비공개"/>
+				<div id="reviewBtnDiv">
+						<input type="button" id="partnerBtn1" name="deleteReview" value="삭제하기" class="mint_Btn"/>
+						<input type="button" id="reviewHideBtn2" name="hideReview" value="비공개"/>
+						<input type="button" id="reviewRecommentBtn" name="recomReview" value="추천하기" />
 				</div><!-- btn -->
 			</div><!-- adminContent -->
 <!-- Page Content -->

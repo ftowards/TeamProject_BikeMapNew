@@ -255,6 +255,8 @@ public class AdminController {
 	}	
 	
 	//1대1 문의 답변 패널
+	//1대1 문의 답변완료인 경우 답변 수정페이지로 이동한다.
+	//-> 헤더 글자바꾸기, 원래 답변 보여주기정도로.
 	@RequestMapping("/adminQnaWrite")
 	public ModelAndView adminQnaWrite(int noqna) {
 		ModelAndView mav = new ModelAndView();
@@ -287,6 +289,9 @@ public class AdminController {
 		}
 		return mav;
 	}
+//	@RequestMapping(value="/hideBtn", method=RequestMethod.POST)
+//	@ResponseBody
+//	public 
 	//페이징
 	@RequestMapping(value="/adminPaging", method=RequestMethod.POST)
 	@ResponseBody
@@ -305,6 +310,8 @@ public class AdminController {
 				totalRecord = dao.searchQnaRecord(paging);
 			}else if(type.equals("review")) {
 				totalRecord = dao.searchReviewRecord(paging);
+			}else if(type.equals("route")) {
+				totalRecord = dao.searchRouteRecord(paging);
 			}
 			System.out.println("totalRecord==="+totalRecord);
 			paging.setTotalRecord(totalRecord);
