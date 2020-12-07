@@ -202,7 +202,7 @@ function movePage(page){
 						<!-- 후기창 왼쪽 면-->
 						<div class ="left">
 							<a href="<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">
-								<img src="${vo.thumbnailImg }"/>
+							<img src="${vo.thumbnailImg }"/>
 							</a>
 						</div>
 						

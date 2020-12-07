@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <%@ include file="/WEB-INF/views/inc/headerMainBxSlider.jspf"%>
+<%@ include file="/WEB-INF/views/inc/headerMainBxSlider.jspf"%>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap" rel="stylesheet">
+<div class="bg_bikemap">
+	<img class="star" src="<%=request.getContextPath() %>/img/img_main/bg_bikemap.png"/>
+</div>
 <div id="mainDivHome">
 	<div id="hitRoute">
-		<span class="routeTitle">
+		<span class="routeTitle" style="width:100%; font-size:35px; font-weight:bold;">
 			추천여행 코스&nbsp;
 			<sub>561개</sub><br/>
 			<span class="routeTitle2">바이크맵 관리자가 엄선하여 추천하는 추천 코스입니다.</span>
@@ -76,46 +81,46 @@
 	</div>
 	
 	<div id="national">
-		<span class="routeTitle">코스 후기</span><br/>
+		<span class="courseReview">코스 후기</span><br/>
 		<div id="location">
 			<div class="review">
 				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
 				</a>
 			</div>
 			<div class="review">
 				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
 				</a>
 			</div>
 			<div class="review">
 				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
 				</a>
 			</div>
 			<div class="review">
 				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
 				</a>
 			</div><br/>
 			<div class="review">
 				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
 				</a>
 			</div>
 			<div class="review">
 				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
 				</a>
 			</div>
 			<div class="review">
 				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
 				</a>
 			</div>
 			<div class="review">
 				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_main/empire.png"/>
+					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
 				</a>
 			</div>
 		</div>
