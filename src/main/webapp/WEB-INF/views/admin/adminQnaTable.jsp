@@ -17,7 +17,7 @@
 			listTag += "<li style='color:00B0B0'>";
 			if(result[i].answer=='Y'){
 				listTag +="답변완료";
-			}else if(result[i].gender=='N'){
+			}else if(result[i].answer=='N'||result[i].answer==null){
 				listTag +="답변대기";
 			}
 			listTag += "</li>";
@@ -28,7 +28,6 @@
 	<!-- /Page Sidebar -->
 	<!-- Page Content -->
 	<div class="adminContent">
-		
 				<div id="adminTable">
 				<h1 class=adminListHead>1:1 문의</h1>
 				<ul id="questionList">
@@ -41,7 +40,7 @@
 					<c:forEach items="${list}" var="vo" varStatus="status">
 								<li><input type="checkbox" />&nbsp&nbsp&nbsp${vo.noqna}</li>
 								<li>${vo.userid}</li>
-								<li id="subject" class='wordCut' ><a href="/home/adminQnaWrite?noqna=${vo.noqna}">${vo.subject}</a></li>
+								<li id="subject" class='wordCut' ><a href="/home/adminQnaWrite?noqna=${vo.noqna}&answer=${vo.answer}">${vo.subject}</a></li>
 								<li>${vo.writedate}</li>
 								<li>
 									<c:if test="${vo.answer=='Y'}">

@@ -182,46 +182,58 @@ function movePage(page){
                   $('#aa').show();
                   // radio 버튼의 value 값이 1이라면 활성화
             }
-        });
-    	$('input:button[name=partnerHideBtn]').click(function(){
-    		var values = document.getElementsByName("tourCheck");
+        }); 
+        // 동행모집, 리뷰, 루트 비공개 버튼/    배열로 넘겨준다.
+    	$('input:button[name=hideBtn]').click(function(){
     		var chkArray = new Array();
-    		$('input:checkbox[name=tourCheck]:checked').each(function(){
-    			chkArray.push(this.value);
-    		});
+    		if(${type=='tour'}){
+    			$('input:checkbox[name=tourCheck]:checked').each(function(){
+        			chkArray.push(this.value);
+        		});
+			}else if(${type=='review'}){
+				$('input:checkbox[name=reviewCheck]:checked').each(function(){
+	    			chkArray.push(this.value);
+	    		});
+			}else if(${type=='route'}){
+				$('input:checkbox[name=routeCheck]:checked').each(function(){
+	    			chkArray.push(this.value);
+	    		});
+			}	
+			
+    		if(chkArray.length==0){
+				alert("선택한 항목이 없습니다. 다시 확인해주세요.");
+				return false;
+            }
     		alert(chkArray);
-    		
-    		/*for(var i=0; i<values.length; i++){
-    			if(values[i].checked){
-    				var params = values[i].value;
-    				jQuery.ajax({
-    		            url: 'tourHideOk',
-    		            type: 'POST',
-    		            data:params,
-    		            success: function (result) {
-    		                $('#userSuspend').hide();
-    		                
-    		                var chkArray = new Array(); // 배열 선언
-    		                
-    		                $('input:checkbox[name=SEQ_CHK]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
-    		                    chkArray.push(this.value);
-    		                });
-    		                $('#hiddenValue').val(chkArray);
-
-
-    		      
-    		                btn.css("background","url('img/img_admin/edit_25_25.png') no-repeat");
-    		               	btn.attr("id","suspendEditBtn");
-    		               	btn.parent().next().text("~"+result.enddayStr);
-    		            },
-    			        error:function(e){
-    		            	console.log('정지연장', e.responseText);
-    		            }
-    		        });	
-    			}
-    		}*/
+    		//배열을 ajax로 넘겨준 후리스트 다시받는다.
+    		jQuery.ajax({
+    		   url: 'hideOk',
+    		   type: 'POST',
+    		   traditional:true,         
+    		   data : {
+			   	hideNo:chkArray,
+           	   },
+    		   success: function (result) {   
+    			if( result.length <= 0 ){
+   					alert("검색 결과가 없습니다.");
+   					location.reload();
+   					//history.back();//넣을지 말지 확인후
+   				} else{ 
+   					if(${type=='tour'}){
+   						makeTourTable(result)
+   					}else if(${type=='review'}){
+   						makeReviewTable(result)
+   					}else if(${type=='route'}){
+   						makeRouteTable(result)
+   					}		
+   				}
+	           },
+		       error:function(e){
+	            	console.log('비공개 선택중 에러가 발생했습니다. 에러코드:', e.responseText);
+	           }
+    		 });	
+   		 	 return false;
     	});
-    	
     	$("#userSuspendFrm").submit(function(){	
     		console.log('111111111111');
 		        var params = jQuery("#userSuspendFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
