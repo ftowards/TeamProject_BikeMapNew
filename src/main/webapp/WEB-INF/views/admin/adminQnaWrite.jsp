@@ -38,11 +38,14 @@ $(function(){
 			padding-left:50px;
 			float:left;
 		}
-
 </style>
 <div id="questionReplyDiv">
-
-	<h2>1대1 문의내역</h2>
+	<c:if test="${vo.answer==null||vo.answer=='N'}">
+		<h2>1대1 문의내역</h2>	
+	</c:if>
+	<c:if test="${vo.answer=='Y'}">
+		<h2>1대1 문의내역 수정</h2>	
+	</c:if>
 	<form method="post" id="replyFrm" action="adminQnaWriteOk">
         <input type="hidden" name="noqna" value="${vo.noqna}"/>
         <table  style="align=center; width=60%; border=0; cellpadding=2;" >
@@ -76,11 +79,18 @@ $(function(){
                         </tr>
                         <tr>
                         <td>관리자 답변</td>
-                        <td><textarea name="answercontent" id="questionReplyTxt" cols=70 rows=10 style="resize: none;overflow:hidden;">안녕하세요 홈페이지 네임입니다.
-												현재 동행찾기 게시판 점검중으로 2020-11-01 02:00이후 정상운영됩니다.
-												이용에 불편을 드려서 죄송합니다.
+                        <td><textarea name="answercontent" id="questionReplyTxt" cols=70 rows=10 style="resize: none;overflow:hidden;">
+                        <c:if test="${vo.answer==null||vo.answer=='N'}">
+							안녕하세요 바이크맵 입니다.<br>
+							현재 <span>${vo.typename}</span> 게시판 점검중으로 2020-11-01 02:00이후 정상운영됩니다.<br>
+							이용에 불편을 드려서 죄송합니다.<br>
 												
-												홈페이지 네임드림.</textarea><br/></td>
+							홈페이지 네임드림.
+						</c:if>					
+						<c:if test="${vo.answer=='Y'}">
+							<span>${vo.answercontent}</span>
+						</c:if>
+                        </textarea><br/></td>
                         </tr>
                         </table>    
                         <input type="submit" value="답변달기" id="replySubmit" class="mint_Btn"/>
