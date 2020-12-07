@@ -3,17 +3,22 @@
   
   #page-wrapper {
     padding-left: 250px;
-   
+    background-color: black;
+    
   }
   
   #sidebar-wrapper {
-    position: fixed;
+    position: sticky;
     width: 250px;
     height: 100%;
     margin-left: -250px;
     background: #000;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+  
+  #routeCateRadio{
+  	background-color : white;
   }
   
   #page-content-wrapper {

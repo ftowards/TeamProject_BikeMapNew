@@ -10,21 +10,23 @@
 
 <div id="page-wrapper">
 	<!-- 사이드바 -->
-	<div id="sidebar-wrapper">
-  		<ul class="sidebar-nav">
-    		<li><img src="<%=request.getContextPath()%>/img/img_myRoute/bike.png"/></li>
-     	 	<!-- 탭 카테고리 패널 -->
-     		<li class="sidebar-brand">
-     			<label>저장된 루트</label>   
-    		</li>
-    		<li><label for="tab1">전체 루트(<span id="totalRecord">5</span>)</label></li>
-    		
-		</ul>
-   		<ul id="routeCateLbl" class="sidebar-nav">
-   			<c:forEach var='cate' items="${list }" begin="0" step="1" varStatus="status">
-   				<li><label for="tab${status.index+2 }">${cate.catename }(${cate.recordcnt})</label> 
-	        </c:forEach>
-        </ul>
+	<div style="position: absolute;background-color:black;">
+		<div id="sidebar-wrapper">
+	  		<ul class="sidebar-nav">
+	    		<li><img src="<%=request.getContextPath()%>/img/img_myRoute/bike.png"/></li>
+	     	 	<!-- 탭 카테고리 패널 -->
+	     		<li class="sidebar-brand">
+	     			<label>저장된 루트</label>   
+	    		</li>
+	    		<li><label for="tab1">전체 루트(<span id="totalRecord">5</span>)</label></li>
+	    		
+			</ul>
+	   		<ul id="routeCateLbl" class="sidebar-nav">
+	   			<c:forEach var='cate' items="${list }" begin="0" step="1" varStatus="status">
+	   				<li><label for="tab${status.index+2 }">${cate.catename }(${cate.recordcnt})</label> 
+		        </c:forEach>
+	        </ul>
+		</div>
 	</div>
 	<!-- 탭 조작 패널 -->
 	<div id="routeCateRadio">
@@ -83,7 +85,27 @@ $(function(){
 		$("#orderNoboard"+noroutecate).prop("checked", true);
 		movePage(1);
 	});
+	
+	$(document).on('contextmenu', function() {
+		  return false;
+		});
+	
+	$(document).on('mousedown',function(){
+		if(event.button == 0){
+			
+			
+			return false;
+		}
+		
+		if(event.button == 2){
+			if($(event.target).hasClass("contentBlock")){
+				console.log(111);
+			}
+			console.log(event.target);
+		}
+	});
 });
+
 
 // 페이지 이동
 function movePage(page){
@@ -153,26 +175,25 @@ function getList(page){
 // 지도 썸네일 만들기
 function makeThumbnail(result){
 	
-	$("#contentDiv"+noroutecate).children().remove();
-	
+	var listTag = "";
 	for(var i = 0 ; i < result.length ; i++){
-		var listTag = "";
+		
 		if(i== 0){
 			listTag += "<ul>";
 		}
 		// 썸네일 작성부
-		listTag += "<li class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"'><div id='map"+noroutecate+"_"+i+"' class='map'></div>";
+		listTag += "<li class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"' onclick='return false;' onmousedown='clickTumbnail(href);'><div id='map"+noroutecate+"_"+i+"' class='map'></div>";
 		// 루트 설명 작성부
 		listTag += "<div class='routeSubscript'><ul ><li class='wordCut'>"+result[i].title+"</li><li class='wordCut'>"+result[i].region+"</li><li>"+result[i].distance.toFixed(2)+"km</li>";
 		var rateWidth =  (result[i].rating/5 *125);
 		listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></a></li>";
-		
-		if(i == result.length - 1){
-			listTag +="</ul>";
-		}
-				
-		$("#contentDiv"+noroutecate).append(listTag);
-		
+	}
+	
+	listTag += "</ul>";
+	
+	$("#contentDiv"+noroutecate).html(listTag);
+	
+	for(var i = 0 ; i < result.length ; i++){
 		var array = result[i].mapcenter.replace("(","").replace(")","").split(",");
 		
 		var container = document.getElementById("map"+noroutecate+"_"+i);
@@ -200,5 +221,16 @@ function makeThumbnail(result){
 		});
     	polyline.setMap(map);
 	}
+}
+
+function clickTumbnail(href){
+	var btn = event.button;
+	console.log(event.button);
+	if(btn == 0){
+		location.href = href;
+	}else if(btn == 2){
+		
+	}
+	return false;
 }
 </script>
