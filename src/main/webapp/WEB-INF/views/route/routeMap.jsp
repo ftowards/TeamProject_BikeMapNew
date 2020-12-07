@@ -163,7 +163,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="map" style='width:none'>
+	<div id="map">
 	
 	</div>
 </div>

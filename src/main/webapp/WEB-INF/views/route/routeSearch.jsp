@@ -78,9 +78,10 @@
 	
 	// 지도 썸네일 만들기
  	function makeThumbnail(result){
-		$("#content").children().remove();		
+	
+		var listTag = "";
 		for(var i = 0 ; i < result.length ; i++){
-			var listTag = "";
+		
 
 			if(i== 0){
 				listTag += "<ul>";
@@ -91,13 +92,12 @@
 			listTag += "<div class='routeSubscript'><ul ><li class='wordCut'>"+result[i].title+"</li><li class='wordCut'>"+result[i].region+"</li><li>"+result[i].distance.toFixed(2)+"km</li>";
 			var rateWidth =  (result[i].rating/5 *125);
 			listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></a></li>";
+		}
+		listTag +="</ul>";
 			
-			if(i == result.length - 1){
-				listTag +="</ul>";
-			}
+		$("#content").html(listTag);
 			
-			$("#content").append(listTag);
-			
+		for(var i = 0 ; i < result.length ; i++){
 			var array = result[i].mapcenter.replace("(","").replace(")","").split(",");
 			
 			var container = document.getElementById("map"+i);

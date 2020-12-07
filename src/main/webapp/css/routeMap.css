@@ -22,6 +22,9 @@
 			margin:0px; padding:0px;list-style-type:none;
 	}
 	#mainDivMap{
+		width : 100%;
+		display : flex;
+		flex-direction:row;
 		margin-top:-25px;
 		height:886px;
 	}
@@ -51,7 +54,6 @@
 	#info{
 		width:432px;
 		height:83%;
-		background:yellow;
 	}
 	#info>div{
 		float:left;
@@ -72,7 +74,7 @@
 		height : 100%;
 	}
 	#map{
-		width :1000px;
+		flex : 1;
 		height : 83%;
 	}
 	#infoPannel>input[type=radio]{
