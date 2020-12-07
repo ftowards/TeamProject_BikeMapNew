@@ -366,17 +366,13 @@ body{
     transform: translate(-50%, 0)
 }
 
-.toastMsg{
-	margin : 10px;
-}
-
 .toast .mintBtn{	
 	font-weight: bold;
     border-radius: 5px;
     text-decoration: none;
     text-align: center;
     padding: 3px 6px;
-    margin-right: 8px;
+    margin : 10px 8px 0 0;
     color: white;
     border: 1px solid #00B0B0;
     background-color: #00B0B0;

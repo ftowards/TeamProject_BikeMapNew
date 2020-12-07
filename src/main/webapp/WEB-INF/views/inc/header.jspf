@@ -38,7 +38,7 @@
                             <li><a href="<%=request.getContextPath()%>/courseMap" class="dropdown-toggle"><span class="navTxt">루트짜기</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/routeSearch"><span class="navTxt">루트검색</span></a></li>
                             <li><a href="<%=request.getContextPath()%>/tourList"><span class="navTxt">동행검색</span></a></li>
-                            <li><a href="<%=request.getContextPath()%>/reviewView"><span class="navTxt">후기</span></a></li>
+                            <li><a href="<%=request.getContextPath()%>/reviewList"><span class="navTxt">후기</span></a></li>
                         </ul>
 					 <ul class="nav navbar-nav navbar-right">        
 					<c:if test="${logStatus!=null && logStatus=='Y'}">	
