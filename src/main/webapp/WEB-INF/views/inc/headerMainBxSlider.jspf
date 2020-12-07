@@ -29,9 +29,10 @@
 	</div>
 	<div id="mainBxSliderDiv">
 		<ul id="bxslider">
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/8.jpg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/10.jpg"/></a></li>
-			
+			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/bx_background1.png"/></a></li>
+			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/bx_background4.png"/></a></li>
+			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/bx_background2.png"/></a></li>
+			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_main/bx_background3.png"/></a></li>
 		</ul>
 	</div>
 	
