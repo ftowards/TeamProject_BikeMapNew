@@ -17,6 +17,9 @@ public interface ReviewDaoImp {
 	
 	//레코드 1개 선택
 	public ReviewVO reviewSelect(int noboard);
+	
+	//조회수 증가
+	public int hitCount(int noboard);
 
 	//글수정
 	public int reviewUpdate(ReviewVO vo);
@@ -27,6 +30,8 @@ public interface ReviewDaoImp {
 	// 검색 결과 레코드 수 구하기
 	public int searchResultRecord(ReviewPagingVO pagingVO);
 	
+	
+	// 검색 결과 전체 레코드 구하기
 	public int searchTotalRecord();
 	
 	// 전체 루트 검색

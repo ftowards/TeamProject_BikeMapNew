@@ -15,6 +15,10 @@ public class RoutePagingVO {
 	
 	private String order = "noboard" ; // 아니면 "rating"
 	
+	// 이전글 다음 글
+	private int idx ;
+	private int noboard ; 
+	
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -87,4 +91,17 @@ public class RoutePagingVO {
 	public void setOrder(String order) {
 		this.order = order;
 	}
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+	public int getNoboard() {
+		return noboard;
+	}
+	public void setNoboard(int noboard) {
+		this.noboard = noboard;
+	}
+	
 }

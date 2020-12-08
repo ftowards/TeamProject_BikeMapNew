@@ -27,6 +27,12 @@ public interface RouteDaoImp {
 	// 루트 한개 읽기
 	public RouteVO selectRoute(int noboard);
 	
+	// 루트 인덱스 구하기
+	public int getPrevNext(RoutePagingVO pagingVO);
+		
+	// 루트 이전 이후 구하기 ( 1: 이전 , 2: 이후)
+	public RouteVO selectPrevNext(RoutePagingVO pagingVO);
+	
 	// 루트 한개 읽기 (썸네일용)
 	public RouteVO selectRoute2(int noboard);
 
@@ -36,12 +42,6 @@ public interface RouteDaoImp {
 	// 검색 결과 레코드 수 구하기
 	public int searchResultRecord(RoutePagingVO pagingVO);
 	
-	// 전체 루트 숫자 검색하기
-	public int searchTotalRecord();
-	
-	// 전체 루트 검색
-	public List<RouteVO> selectRouteAll(RoutePagingVO pagingVO);
-
 	// 레퍼런스 검색
 	public List<RouteVO> searchReference(String searchWord);
 	

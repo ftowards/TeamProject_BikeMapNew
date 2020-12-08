@@ -5,38 +5,43 @@
   
 <mapper namespace="com.bikemap.home.review.ReviewDaoImp">
 	
-<!-- 	글보기 리스트 -->
+<!--글보기 리스트 -->
 	<select id = "reviewAllRecord" parameterType="com.bikemap.home.review.ReviewPagingVO" resultType="com.bikemap.home.review.ReviewVO">
 		select * from (select * from 
-		(select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD HH:MI') writedate
+		(select noboard, subject, userid, content, reference, hit, to_char(writedate, 'YYYY-MM-DD HH:MI') writedate
 		from review order by noboard desc)<![CDATA[ where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
 		where rownum <= #{lastPageRecordCount} order by noboard desc
 		]]> 
 	</select>
 
-<!--  레코드 한 개 선택 - 글 보기 -->
+<!--레코드 한 개 선택 - 글 보기 -->
 	<select id ="reviewSelect" parameterType= "int" resultType="com.bikemap.home.review.ReviewVO">
-		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD HH:MI') writedate
-		from review where noboard=#{noboard}
+		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD HH:MI') writedate, hit 
+			from review where noboard=#{noboard}
 	</select>
 	
-<!-- 	글쓰기 등록 -->
+<!--글쓰기 등록 -->
 	<insert id = "reviewInsert" parameterType="com.bikemap.home.review.ReviewVO">
 		insert into review(noboard, subject, userid, content, reference, ip)
 		values(a_sq.nextval, #{subject }, #{userid }, #{content }, #{reference, jdbcType=INTEGER}, #{ip})
 	</insert>
  
- <!--  글쓰기 수정 -->
+ <!--글쓰기 수정 -->
  	<update id="reviewUpdate" parameterType="com.bikemap.home.review.ReviewVO">
  		update review set subject=#{subject}, content=#{content}
- 			where noboard=#{noboard} and userid=#{userid} 
+ 			where noboard=#{noboard} and userid=#{userid } 
  	</update>
  	
- 	<!--글삭제 -->
- 	
+ <!--글삭제 -->
  	<delete id = "reviewDelete" >
  		delete from review where noboard=#{param1} and userid=#{param2}
  	</delete>
+ 	
+ <!-- 조회수 -->
+	<update id="hitCount" parameterType="int">
+		update review set hit = hit+1 where noboard=#{param1}
+	</update>
+ 	
  	
  	<!-- 페이징 전체 레코드 -->
  	<select id="searchTotalRecord" resultType="int">

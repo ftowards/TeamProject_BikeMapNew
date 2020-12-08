@@ -32,6 +32,8 @@ public class RouteVO {
 	private double rating;
 	private int ratecnt;
 	
+	
+	
 	public int getNoboard() {
 		return noboard;
 	}

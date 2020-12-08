@@ -7,6 +7,25 @@
 <link rel="stylesheet" href="/home/css/routeSearchView.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+//뷰페이지 이동
+function goViewPage(noboard){
+	
+	$("input[name=noboard]").val(noboard)
+	var data = $("#pagingVO").serialize();
+	
+	$("#pagingVO").attr("action","/home/routeSearchView" );
+	$("#pagingVO").submit();
+}
+
+// 리스트 이동
+function goList(){
+	var data = $("#pagingVO").serialize();
+	
+	$("#pagingVO").attr("action","/home/routeSearch" );
+	$("#pagingVO").submit();
+}
+</script>
 <div class="routeSearchViewDiv2">
 	<div id="mapDiv" style='width:1200px;'>
 		<b>코스정보보기</b><br/><hr id="titleLine"/>
@@ -25,7 +44,7 @@
 					<li><input type="button" value="삭제" class="WMint_Btn" onclick="setCloseRoute1('del')"/></li>
 					<li>
 						<c:if test="${routeVO.closed == 'F'}"><input type="button" class="WMint_Btn" value="비공개" onclick="setCloseRoute1('close');"/></c:if>
-						<c:if test="${routeVO.closed == 'T'}"><input type="button" class="WMint_Btn" value="공개" onclick="setOpenRoute();"/></c:if>
+						<c:if test="${routeVO.closed == 'T'}"><input type="button" class="WMint_Btn" value="공&nbsp;개" onclick="setOpenRoute();"/></c:if>
 					</li>
 				</c:if>
 			</ul>
@@ -200,32 +219,43 @@
 				<input type="button" value="확&nbsp;인" class="gray_Btn" id="grayBtn"/>
 			</div>
 			<div class="saveBtns">
-				<input type="submit" id="routeCollect" name="save" value="저&nbsp;장" class="blue_Btn" style='border-radius: 5px; width:80px; height:40px'/>
-				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='height:40px'/>
+				<input type="submit" id="routeCollect" name="save" value="저    장" class="blue_Btn" style='border-radius: 5px; width:95px; height:45px'/>
+				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='width:95px; height:45px; letter-spacing:2px'/>
 			</div>
 		</div>
 	</div><br/>
 	
 			<!-- 이전글,다음글 & 목록보기 -->
 		<div style='width:1200px; padding-top:40px'>
+			<form id="pagingVO" method="post" action="/home/routeSearchView" style="diplay:none">
+				<input type="hidden" name="nowPage" value="${pagingVO.nowPage }"/>
+				<input type="hidden" name="searchKey" value="${pagingVO.searchKey }"/>
+				<input type="hidden" name="searchWord" value="${pagingVO.searchWord }"/>
+				<input type="hidden" name="order" value="${pagingVO.order }"/>
+				<input type="hidden" name="noboard" value="0"/>
+			</form>
 			<ul>
 				<li>
 					<hr/>
-				<li>
-				<li class="prevTxt">
-					이전글<span class="prev_next">▲</span><a href="#">이전글 제목 들어갈 자리</a>
 				</li>
-				<li>
-					<hr>
-				</li>
-				<li class="prevTxt">
-					다음글<span class="prev_next">▼</span><a href="#">다음글 제목 들어갈 자리</a>
-				</li>
-				<li>
-					<hr/>
-				</li>
+				<c:if test="${next != null }">
+					<li class="prevTxt">
+						다음글<span class="prev_next">▲</span><a href="javascript:goViewPage(${next.noboard})">${next.title }</a>
+					</li>
+					<li>
+						<hr>
+					</li>
+				</c:if>
+				<c:if test="${prev != null }">
+					<li class="prevTxt">
+						이전글<span class="prev_next">▼</span><a href="javascript:goViewPage(${prev.noboard})">${prev.title }</a>
+					</li>
+					<li>
+						<hr/>
+					</li>
+				</c:if>
 				<li class="listBtn">
-					<button onclick="location.href='/routeSearch'">목록보기</button>
+					<button onclick="javascript:goList()">목록보기</button>
 				</li>
 			</ul>
 		</div>

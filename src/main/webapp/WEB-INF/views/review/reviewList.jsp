@@ -4,6 +4,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <script>
 
+//리뷰 리스트 만들기
 function makeThumbnail(result){
 		//$("#reviewBoard").children().remove();	
 		$("#reviewBoard").html("");
@@ -15,7 +16,7 @@ function makeThumbnail(result){
 				
 			listTag += "<div class ='left'>";
 			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
-			listTag +=	"<img src='<%=request.getContextPath() %>/img/img_Review/임시.jpg'/>";
+			listTag +=	"<img src="+result[i].thumbnailImg+"/>";
 			listTag +=	"</a>";
 			listTag +=	"</div>";
 					
@@ -27,6 +28,9 @@ function makeThumbnail(result){
 			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
 			listTag +=	"</a>";
+			listTag +=	"<li>";
+			listTag +=	"조회수 :"+result[i].hit;
+			listTag +=	"</li>";
 			listTag +=	"</li>";
 			listTag +=	"</ul>";
 			listTag +=	"</div>";
@@ -90,6 +94,7 @@ function setPaging(vo){
 				
 }
 
+
 // 페이지 이동
 function movePage(page){
 	
@@ -98,7 +103,6 @@ function movePage(page){
 	var data = $("#searchReview").serialize();
 		data += "&nowPage="+page+"&order="+$("input[name=order]:checked").val();
 	
-	alert(data);
 	
 	$.ajax({
 		type : 'POST',
@@ -150,36 +154,35 @@ function movePage(page){
 			<input type="text" id="searchWordReview" name="searchWord"> 
 			<input type="submit" class="mint_Btn" value="검 색"/>
 		</form>
-		
 
 
 
-
-<!-- 	후기 제목 -->
+<!--후기 제목 -->
 		<div class= "reviewtitle">
-			<span class="title">후기 게시판</span><br><br>
-			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
-			<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'" style='float:right; margin:0 25px 10px 0;'>
+			<div class="title">후기 게시판</div><br><br>
+			<div class="orderRadio">
+				<input type ="radio" name="order" id="orderNobard" value="noboard" checked/><label for="orderNobard" class="subTxt">최신순</label><span id="lBar">&ensp;|&ensp;</span>
+				<input type ="radio" name="order" id="orderHit" value="hit"/><label for="orderRating" class="subTxt">추천순</label>
+				<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'" style='float:right; margin:0 25px 10px 0;'>
+			</div>
 		</div><br/>
 		
 
-<!-- 후기창 게시판-->
-
-		
+<!-- 후기창 게시판 -->
 		<hr style='border:1.5px solid black; background-color:black'/>
 		<div id="reviewBoard">
-		<c:forEach var="vo" items="${list}">
+		<c:forEach var="vo" items="${list }">
 				<div class ="boardlist">
 					<div class="reviewContents">
 					
-						<!-- 후기창 왼쪽 면-->
+<!-- 						후기창 왼쪽 면 -->
 						<div class ="left">
 							<a href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
 								<img src="${vo.thumbnailImg }"/>
 							</a>
 						</div>
 						
-						<!-- 후기창 오른쪽 면 -->
+<!-- 						후기창 오른쪽 면 -->
 						<div class="right">
 						
 							<div id="subtitle">
@@ -188,15 +191,11 @@ function movePage(page){
 										<a href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
 											${vo.noboard }&emsp;<span>${vo.subject }</span>
 										</a>
+										<li>조회수 :${vo.hit}</li>
 									</li>
 								</ul>
-<!-- 								<a href="#"> -->
-<%-- 									<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/> --%>
-<!-- 								</a>  -->
-<!-- 								<a href="#"> -->
-<%-- 									<img class="badge2" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/> --%>
-<!-- 								</a>  -->
 							</div>
+							
 								<ul>
 									<li class="wordCut" id="reviewtext">
 										<a href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
@@ -212,6 +211,7 @@ function movePage(page){
 										${vo.userid }님의 생생한 후기
 									</li>
 									<li class="writedate">${vo.writedate } 작성</li>
+									
 								</ul>
 							</div>
 						</div>
@@ -220,8 +220,7 @@ function movePage(page){
 				</div>
 			</c:forEach>
 			</div>
-<!-- 		<div id="paging2" style='text-align:center; margin:80px; font-size:20px;'>1&emsp;<span style='color:#00B0B0; font-weight:600; '>2</span>&emsp;3&emsp;4&emsp;5</div> -->
-<!-- 		</div> -->
+			
 <!-- 		=============================페이징============================= -->
 				<div id="paging">
 					<ul>

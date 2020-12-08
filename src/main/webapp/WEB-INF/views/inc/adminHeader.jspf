@@ -5,18 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device, initial-scale=1"/>
-<link rel="stylesheet" href="/home/css/admin.css" type="text/css"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;500&display=swap" rel="stylesheet">		
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+<link rel="stylesheet" href="/home/css/admin.css" type="text/css"/>
 <title>Bike Map</title>
 <script>    
-	
 	function replyPopupOpen(){
 		$('.layerpop').css("position", "absolute");		
 	}
@@ -80,8 +78,6 @@ function movePage(page){
 		
 		if(data.searchWord==null||data.searchWord==""){
 			data += "&nowPage="+page;
-		}else{
-			data += "&nowPage="+1;
 		}
 				
 		console.log(data);	
@@ -128,18 +124,19 @@ function movePage(page){
 						makeQnaTable(result)
 					}else if(${type=='route'}){
 						makeRouteTable(result)
-					}		
+					}
 				}
 			}, error : function(error){
 				console.log("페이지 + 검색 결과 호출 에러"+error);
 			}
+			
 		});
+		
 	}
 
 	 var btn, userid;
      $(function(){    	
     	//관리자 정지 화면
-    	
     	//팝업
     	$(document).on('click','#suspendBtn',function(){
 	    	btn = $(this);   	
@@ -156,7 +153,6 @@ function movePage(page){
 	        $('#spUserid').text(userid);
 	        
     	});
-		
     	$(document).on('click','#suspendEditBtn',function(){
     		btn = $(this);
 	    	userid = $(this).attr("title");
@@ -170,10 +166,7 @@ function movePage(page){
 	        $('#spEditUserid').text(userid);
    		 });
     	
-    	$("#checkAll").click(function(){
-			 $('input:checkbox').not(this).prop('checked', this.checked);
-			 //System.out.println("왜안되냐");
-		});	
+    	
     	// 라디오버튼 클릭시 이벤트 발생
 		$('input:radio[name=selSuspend]').click(function(){	
             if($('input[name=selSuspend]:checked').val() == "0"){
@@ -188,6 +181,7 @@ function movePage(page){
                   // radio 버튼의 value 값이 1이라면 활성화
             }
         }); 
+    	
         // 동행모집, 리뷰, 루트 비공개 버튼/    배열로 넘겨준다.
     	$('input:button[name=hideBtn]').click(function(){
     		var chkArray = new Array();
@@ -239,7 +233,7 @@ function movePage(page){
     		 });	
    		 	 return false;
     	});
-    	$("#userSuspendFrm").submit(function(){	
+    	$(document).on('submit',"#userSuspendFrm", function(){	
     		console.log('111111111111');
 		        var params = jQuery("#userSuspendFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
 		        alert(params);
@@ -293,6 +287,7 @@ function movePage(page){
     	$("#adminSearchFrm").submit(function(){
     		if($("#userSearchWord").val() == ""){
     			alert("검색어를 입력하세요.");
+    			location.reload();
     			return false;
     		}
     		return true;
@@ -303,6 +298,103 @@ function movePage(page){
  		   }
  		});
 
+    	/* 체크박스버튼관련 메소드 */
+    	$(document).on('click','#checkAll', function(){
+			 $('input:checkbox[name=listChk]').not(this).prop('checked', this.checked);
+			 //System.out.println("왜안되냐");
+		});	
+    	// 체크된 개별 버튼  클릭시 
+    	$(document).on('change','input:checkbox[name=adminScrapBtn]', function(){	
+    		var noboard = $(this).val();
+    		var dataSingle = {"noboard":noboard};
+    		//추천하는경우
+    		if($(this).is(":checked") == true) {  
+    			$.ajax({
+		            url: 'scrapRoute',
+		            data:dataSingle,
+		            success: function (result) {
+		            	if(result>0){
+			            	console.log("스크랩완료~");         
+		            	}else{
+		            		console.log("스크랩 실패;;")
+		            	}	    
+		            },
+		            error:function(e){
+		            	console.log('관리자 추천', e.responseText);
+		            	return false;
+		            }
+		        });
+    		//추천 해제
+    		}else if($(this).is(":checked")==false){
+    			$.ajax({
+		            url: 'releaseRoute',
+		            data:dataSingle,
+		            success: function (result) {
+		            	if(result>0){
+			            	console.log("스크랩 해제완료");         
+		            	}else{
+		            		console.log("스크랩 해제 실패;;")
+		            	}	    
+		            },
+		            error:function(e){
+		            	console.log('관리자 추천', e.responseText);
+		            	return false;
+		            }
+		        });
+    		}
+    	});
+    	// 관리자 추천 한꺼번에 여러개
+    	$(document).on('click','input:button[name=adminScrapAllBtn]', function(){	    		
+    		var chkArray = new Array();
+			$('input:checkbox[name=listChk]:checked').each(function(){
+				chkArray.push(this.value);
+				$(this).parent().children('')
+    		});
+    		//추천하는경우
+    		if(chkArray.length>0) {  			
+    			for(var i=0; i<chkArray.length; i++){
+    				var dataSingle = {"noboard":chkArray[i]};
+    				$.ajax({
+		            url: 'scrapRoute',
+		            data:dataSingle,
+		            success: function (result) {
+		            	if(result>0){
+			            	console.log("스크랩완료~");         
+		            	}else{
+		            		console.log("스크랩 실패;;")
+		            	}	    
+		            },
+		            error:function(e){
+		            	console.log('관리자 추천', e.responseText);
+		            	return false;
+		            }
+		        });
+    			}
+    			
+    		//추천 해제
+    		}
+    		
+    	});
+    		
+    		
+//     		}else if($(this).is(":checked")==false){
+//     			$.ajax({
+// 		            url: 'releaseRoute',
+// 		            data:dataSingle,
+// 		            success: function (result) {
+// 		            	if(result>0){
+// 			            	console.log("스크랩 해제완료");         
+// 		            	}else{
+// 		            		console.log("스크랩 해제 실패;;")
+// 		            	}	    
+// 		            },
+// 		            error:function(e){
+// 		            	console.log('관리자 추천', e.responseText);
+// 		            	return false;
+// 		            }
+// 		        });
+//     		}
+    	
     });
 </script>
 </head>
@@ -345,7 +437,7 @@ function movePage(page){
 		<c:if test="${type=='route'}">		
 			<option value="routeAll" selected>전체</option>		
 			<option value="userid">작성자</option>
-			<option value="subject" >제목</option>
+			<option value="title" >제목</option>
 			<input type="hidden" name="type" value="route" />
 		</c:if>
 		</select>
@@ -384,14 +476,4 @@ function movePage(page){
 			</li>
 		</ul>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
 	
