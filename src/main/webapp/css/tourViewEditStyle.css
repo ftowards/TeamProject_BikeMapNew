@@ -1,9 +1,9 @@
 @charset "UTF-8";
-	.mainDivTourView{
+.mainDivTourView{
 				width:1200px; 
 				margin:0 auto;
 				padding:0;
-							
+				height:2000px;			
 	}
 	#tourViewFormTitleDiv{
 							width:50%;
@@ -96,9 +96,13 @@
 								margin:-15px 0 0 40px;
 								
 	}
-
-
-	
+	.conditionDivTop4{
+						width:500px;
+						float:left;
+	}
+	hr{
+		margin-top:15px;
+	}
 	#tourViewFormTitleLbl{
 							font-size:22px; 
 	 						color:rgb(64,64,64);
@@ -320,63 +324,17 @@
 	}
 	
 	#writeForm{
-					
-					margin:0 auto;	
-					height:300px;
-					width:1000px;
-				
-					
-								
+					margin-top:30px;
+					height:500px;
+					float:left;
 			
 	}	
-	#writeForm li:nth-child(1n),#writeForm li:nth-child(3n){
-						width:10%;
-						height:50px;
-						float:left;
-						padding:50px 0 50px 0;
-	}
-	
-	#writeForm li:nth-child(2n){
-						width:90%;
-						float:left;
-					
-	}
-	.tourViewWriteFormClass{
-					width:1000px;
-					float:left;				
-	}
-	
-	.tourViewLabelClass{
-						background-color:rgb(64,64,64);
-					    color:#fff;
-					    font-weight:bold;
-					    border-radius: 10px;
-					    border: none;
-					    width: 80%;
-					    height:35px;
-					    padding-top:6px;
-					    text-align: center;
-					    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-						font-size:15px;
-	}
-	
 	#tourWriteTitle{
 						width:500px;
 						height:35px;
 						margin-bottom:20px;
 						font-size:35px;
 					
-	}
-	#content{
-			  padding-left:15px;
-			  border:none;
-			  line-height:35px;
-			  border-radius: 10px;
-			  box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-			  font-size:15px;
-			  width:840px;
-			  
-	
 	}
 	#writebuttonDiv{
 					width:250px;
@@ -411,11 +369,15 @@
 															
 	}	
 
-
+	#content{
+				width:800px;
+				height:400px;
+				float:left;
+						
+	}
 	#tourWriteFormTitleDiv{
 							height:80px;
 							margin-top:50px;	
-							float:left;
 	}
 
 	#tourWriteFormTitleLbl{
@@ -457,7 +419,7 @@
 		
 
 	#roomCheckDiv{
-					float:left;
+				
 					height:40px;
 					width:1200px;
 					
@@ -485,11 +447,10 @@
 										font-weight:bold;
 										color:rgb(64,64,64);
 										margin-left:10px;
-										float:left;
 	}		
 
 	#tourStateDiv{
-					height:70px;
+					height:150px;
 					width:700px;
 					float:right;
 					
@@ -574,117 +535,4 @@
 		height : 50px;
 	}
 	
-	.modal{
-		width : 1000px;
-		height : 800px;
-		top : 300px;
-		left : 400px;
-	}
 	
-	#listTitle>li{
-		float : left;
-		text-align : center;
-		width : 14%;
-		height : 30px;
-		line-height : 35px;
-		font-size:14px;
-		font-weight:bold;
-		color:rgb(123,123,123);
-		vertical-align: middle;
-	}
-	 #complist>li{
-	 	float : left;
-		text-align : center;
-		width : 14%;
-		height : 30px;
-		line-height : 35px;
-		font-size:14px;
-		color:rgb(123,123,123);
-		vertical-align: middle;
-	 
-	 
-	 }
-	#listTitle>li:first, #complist>li:first{
-		width : 16%;
-	}
-	
-	#listTitle>li{
-		border-bottom : 1px solid lightgray;
-		color:rgb(64,64,64);
-		font-weight:bold;
-		margin-top:-8px;
-	}
-	
-	.modal-body{
-		overflow : auto;
-		padding:8px;
-	}
-	
-	.applying{
-						background-color:rgb(0,176,176);
-					    color:#fff;
-					    font-weight:bold;
-					    border-radius: 10px;
-					    border: none;
-					    width: 80%;
-					    margin-top : 2.5px;
-					    height: 25px;
-					    text-align: center;
-					    font-size : 12px;
-					    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-					    line-height : 25px;
-					    margin-left:5px;
-	}
-	.modal-header label{
-						color:rgb(64,64,64);
-						font-size:16px;
-
-	}
-	.applyTourCloseBtn{
-					    background-color:rgb(64,64,64);
-					    color:#fff;
-					    font-weight:bold;
-					    border-radius: 6px;
-					    border: none;
-					    width: 4%;
-					    margin-top : 2.5px;
-					    height: 25px;
-					    text-align: center;
-					    font-size : 12px;
-					    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-					    line-height : 25px;
-					    float:right;
-	}
-	.applyOk{
-				  		background-color:#FF6347;
-					    color:#fff;
-					    font-weight:bold;
-					    border-radius: 10px;
-					    border: none;
-					    width: 80%;
-					    margin-top : 2.5px;
-					    height: 25px;
-					    text-align: center;
-					    font-size : 12px;
-					    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-					    line-height : 25px;
-					    
-			
-	}
-	.applyWait{
-		
-				color:rgb(64,64,64);
-			    font-weight:bold;
-			    border-radius: 10px;
-			    border: none;
-			    width: 80%;
-			    margin-top : 2.5px;
-			    height: 25px;
-			    text-align: center;
-			    font-size : 12px;
-			    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-			    line-height : 25px;
-			    margin-left:5px;
-	
-	}
-

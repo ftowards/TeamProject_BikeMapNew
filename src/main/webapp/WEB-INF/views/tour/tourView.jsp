@@ -69,11 +69,14 @@ $(function(vo){
 	<div id="tourViewFormTitleDiv"><label id="tourWriteTitle"><b>${vo.title}</b></label></div>
 	<div class="tourViewEditAndDeleteDiv">
 	
-			<c:if test="${logStatus != null && logStatus != '' && logId == vo.userid}">
-				<div><label class="tourViewEdit"><a href="<%=request.getContextPath()%>/tourViewEdit?noboard=${vo.noboard}">수정</a></label></div>
+			<c:choose>
+			<c:when test="${logStatus != null && logStatus != '' && logId == vo.userid}">
+				<c:if test="${vo.state != '2'}">
+					<div><label class="tourViewEdit"><a href="<%=request.getContextPath()%>/tourViewEdit?noboard=${vo.noboard}">수정</a></label></div>
+				</c:if>
 				<div><label class="tourViewDelete">삭제</label></div>
-			</c:if>
-		
+			</c:when>
+			</c:choose>	
 	</div>
 	<div id="routeResultDiv" class="routeResultDiv">
 		<input type='hidden' id='reference' value='${vo.reference }'/>
@@ -163,12 +166,14 @@ $(function(vo){
 				</div>
 		</div>
 	</div>			
-	<div id="writeForm">		
-		<hr/>
-		<div id="content">${vo.content }</div>
-	</div>
-	
-			
+	<div id="writeForm">
+		<ul class="tourViewWriteFormClass">
+    		<li><label class="tourViewLabelClass" >작성자</label></li>
+        	<li><input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox" style="margin-left:0"></li>
+			<li><label class="tourViewLabelClass">모집내용</label></li>
+			<li><div id="content">${vo.content }</div></li>
+		</ul>
+	</div>		
 
 	<div id="roomCheckDiv">
 		<div></div>
@@ -184,10 +189,7 @@ $(function(vo){
 			<div><button id="cancelTour">참가취소</button></div>		 	
 		</div>
 	</c:if>
-	 <div class="conditionDivTop4">
-    	<div><label  class="labelUseridClass">작성자</label></div>
-        <div><input type="submit" class="useridBox" value="${vo.userid}" id="userInformation"></div>
- 	 </div>	
+
 	
 	<!-- 참가 인원 확인 창 : 모달 창 만들기 -->
 	<div class="modal" id="dialog">
@@ -223,6 +225,9 @@ $(function(vo){
 	<input type="hidden" id="noboard" value="${vo.noboard}">
 	<%@ include file="../inc/reply.jspf"%>
 </div>
+
+
+
 <script>
 //////// 지도용 변수
 var routeMarker = [];

@@ -70,7 +70,7 @@
 	</insert>
 	<select id="tourSelect" parameterType="int" resultType="com.bikemap.home.tour.TourVO">
 		select noboard, title, userid, reference, content, to_char(deadline,'YY/MM/DD HH24') deadline,to_char(departure,'YY/MM/DD HH24') departure,
-		to_char(arrive,'YY/MM/DD HH24') arrive,	place, distance, speed, budget, room, reggender, regage 
+		to_char(arrive,'YY/MM/DD HH24') arrive,	place, distance, speed, budget, room, reggender, regage ,state
 	 	from tour where noboard = #{noboard}
 	</select>
  	<select id="lastTourNo" resultType="int">
