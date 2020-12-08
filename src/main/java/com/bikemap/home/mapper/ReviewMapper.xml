@@ -23,19 +23,19 @@
 <!-- 	글쓰기 등록 -->
 	<insert id = "reviewInsert" parameterType="com.bikemap.home.review.ReviewVO">
 		insert into review(noboard, subject, userid, content, reference, ip)
-		values(a_sq.nextval, #{subject}, #{userid}, #{content}, #{reference, jdbcType=INTEGER}, #{ip})
+		values(a_sq.nextval, #{subject }, #{userid }, #{content }, #{reference, jdbcType=INTEGER}, #{ip})
 	</insert>
  
  <!--  글쓰기 수정 -->
  	<update id="reviewUpdate" parameterType="com.bikemap.home.review.ReviewVO">
  		update review set subject=#{subject}, content=#{content}
- 			where noboard=#{noboard , jdbcType=VARCHAR} and userid=#{userid , jdbcType=VARCHAR} 
+ 			where noboard=#{noboard} and userid=#{userid} 
  	</update>
  	
  	<!--글삭제 -->
  	
  	<delete id = "reviewDelete" >
- 		delete from review where noboard=#{param1, jdbcType=VARCHAR} and userid=#{param2, jdbcType=VARCHAR}
+ 		delete from review where noboard=#{param1} and userid=#{param2}
  	</delete>
  	
  	<!-- 페이징 전체 레코드 -->

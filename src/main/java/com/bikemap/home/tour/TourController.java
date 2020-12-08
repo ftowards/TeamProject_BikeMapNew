@@ -519,4 +519,65 @@ public class TourController {
 	public String tourComplete() {
 		return "/tour/tourComplete";
 	}
+	
+	//글삭제 조건
+	@RequestMapping("/tourViewDeleteChk")
+	@ResponseBody
+	public int tourViewDeleteChk(int noboard,HttpSession ses) {
+		
+		int result = 0;
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+			
+		try {
+				if(1 <= dao.selectTourCompState(noboard)) {
+					result = 1;
+				
+				}else if(2 <= dao.selectComplistChk(noboard)){
+					result = 2;
+				
+				}else{
+					result = 3;
+				}
+		}catch(Exception e) {
+			System.out.println("투어 게시글 확인 실패"+e.getMessage());
+		}
+		return result;
+		
+	}
+	//글 삭제완료
+	@RequestMapping("/deleteTourView")
+	@ResponseBody
+	public int tourViewDelete(int noboard,HttpSession ses) {
+		
+		int result = 0;
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		try {
+			result = dao.deleteTourView(noboard,(String)ses.getAttribute("logId"));
+			
+		}catch(Exception e) {
+			System.out.println("투어 게시글 삭제 실패"+e.getMessage());
+		}
+		return result;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

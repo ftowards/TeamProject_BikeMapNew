@@ -207,4 +207,13 @@
 	<update id="addHeart">
 		update regist set heart = heart + 1 where userid = #{param1}
 	</update>
+	<select id="selectTourCompState" resultType="int" parameterType="int">
+		select count(noboard) from tour where state = '2' and noboard=#{noboard}
+	</select>
+	<select id="selectComplistChk" resultType="int" parameterType="int">
+		select count(userid) from complist where noboard=#{noboard}
+	</select>
+	<delete id="deleteTourView">
+		delete from tour where noboard=#{param1} and userid=#{param2}
+	</delete>
  </mapper>

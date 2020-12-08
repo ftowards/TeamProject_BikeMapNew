@@ -81,5 +81,16 @@ public interface TourDaoImp {
 	
 	// 내가 참가하는 투어 리스트
 	public List<TourlistVO> selectApplytourList(TourListPagingVO vo);
-		
+	
+	//동행찾기 여행 상태 확인(게시글 삭제)
+	public int selectTourCompState(int noboard);
+	
+	//참여동행 인원 확인
+	public int selectComplistChk(int board);
+	
+	// 게시글 삭제
+	public int deleteTourView(int noboard,String userid);
+	
+	
+
 }
