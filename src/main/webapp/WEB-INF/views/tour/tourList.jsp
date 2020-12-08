@@ -78,6 +78,13 @@
 	
 
 	<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label></div>
+	<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
+	
+	
+	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
+	<div id="tourBoardListDivTop">	
+			
+	</div>
 	<div  id="paging">
 		<ul>
 			<!-- 이전 페이지 -->
@@ -100,14 +107,7 @@
 			</c:if>
 		</ul>
 	</div>
-	
-	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
-	<div id="tourBoardListDivTop">	
-			
-	</div>
-	
-	
-		<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
+
 </div>
 </div>
 <script>

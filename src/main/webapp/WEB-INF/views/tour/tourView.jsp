@@ -127,7 +127,7 @@ $(function(vo){
 			<div><label class="tourWriteConditionTitle">여&nbsp;행</label></div>		
 				<div class="conditionDivTop2">
 					<div><label class="labelClass">거&nbsp;리</label></div>
-					<div><label class="conditionBox" id="distance">${vo.distance}</label></div>
+					<div><label class="conditionBox" id="distance">${vo.distance}&nbsp;&nbsp;</label></div>
 						<label class="kmLbl1">km</label>
 					<div><label class="labelClass2" style="margin:-25px 0 0 40px;">소요시간</label></div>
 					<div><label style="margin:-25px 0 0 20px;" id="tourtime" class="conditionBox"></label></div>
@@ -169,7 +169,7 @@ $(function(vo){
 	<div id="writeForm">
 		<ul class="tourViewWriteFormClass">
     		<li><label class="tourViewLabelClass" >작성자</label></li>
-        	<li><input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox" style="margin-left:0"></li>
+        	<li><input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox" style="margin-left:0; padding-top:0px;"></li>
 			<li><label class="tourViewLabelClass">모집내용</label></li>
 			<li><div id="content">${vo.content }</div></li>
 		</ul>
