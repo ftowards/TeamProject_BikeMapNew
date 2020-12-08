@@ -30,6 +30,15 @@ public class RouteVO {
 	private double rating;
 	private int ratecnt;
 	
+	private String scrap;
+	
+	
+	public String getScrap() {
+		return scrap;
+	}
+	public void setScrap(String scrap) {
+		this.scrap = scrap;
+	}
 	public int getNoboard() {
 		return noboard;
 	}

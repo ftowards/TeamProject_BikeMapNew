@@ -8,10 +8,11 @@
 		for(var i = 0; i < result.length ; i++){		
 			//alert(result.length+" : 결과 줄");
 			if(i==0){
-				listTag +=  "<li><input type='checkbox' id='checkAll' />번호</li> <li>아이디</li> <li>제목</li> <li>작성일자</li> <li>답변여부</li> "	;
+				listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번호</li> <li>아이디</li> <li>제목</li> <li>작성일자</li> <li>답변여부</li> "	;
 			}
 			//list안에 데이터 추가
-			listTag += "<li><input type='checkbox' />&nbsp&nbsp&nbsp"+result[i].noqna+"</li>";
+			listTag += "<li><input type='checkbox' /></li>";
+			listTag += "<li>"+result[i].noqna+"</li>";
 			listTag += "<li id='subject' class='wordCut' ><a href=''/home/adminQnaWrite?noqna="+result[i].noqna+">"+result[i].subject+"</a></li>";
 			listTag += "<li>"+result[i].writedate+"</li>";
 			listTag += "<li style='color:00B0B0'>";
@@ -31,14 +32,16 @@
 				<div id="adminTable">
 				<h1 class=adminListHead>1:1 문의</h1>
 				<ul id="questionList">
-					<li><input type="checkbox" id="checkAll" />번호</li>
+					<li><input type="checkbox" id="checkAll" /></li>
+					<li>번호</li>
 					<li>아이디</li>
 					<li>제목</li>
 					<li>작성일자</li>
 					<li>답변여부</li>				
 					
 					<c:forEach items="${list}" var="vo" varStatus="status">
-								<li><input type="checkbox" />&nbsp&nbsp&nbsp${vo.noqna}</li>
+								<li><input type="checkbox"/></li>
+								<li>${vo.noqna}</li>
 								<li>${vo.userid}</li>
 								<li id="subject" class='wordCut' ><a href="/home/adminQnaWrite?noqna=${vo.noqna}&answer=${vo.answer}">${vo.subject}</a></li>
 								<li>${vo.writedate}</li>
@@ -85,4 +88,3 @@
 </div><!--  adminBottom -->
 </body>
 </html>
-

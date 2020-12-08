@@ -9,10 +9,11 @@ function makeTourTable(result){
 	for(var i = 0; i < result.length ; i++){
 		
 		if(i==0){
-			listTag +=  "<li><input type='checkbox' id='checkAll' />번호</li> <li>제목</li> <li>작성자</li> <li>완료여부</li>"	;
+			listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번호</li> <li>제목</li> <li>작성자</li> <li>완료여부</li>"	;
 		}			
 		//list안에 데이터 추가
-		listTag += "<li><input type='checkbox' />&nbsp&nbsp"+result[i].noboard+"</li>";
+		listTag += "<li><input type='checkbox' name='tourCheck' value='"+result[i].noboard+"'/>";
+		listTag += "<li>"+result[i].noboard+"</li>";
 		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/tourView?noboard="+result[i].noboard+"'>"+result[i].title+"</a></li>";
 		listTag += "<li>"+result[i].userid+"</li>";
 		listTag += "<li>";
@@ -34,7 +35,8 @@ function makeTourTable(result){
 				<div id="adminTable">
 				<h1 class="adminListHead">동행모집게시판</h1>
 					<ul id="tourList">
-						<li><input type="checkbox" id="checkAll" />번호</li>
+						<li><input type="checkbox" id="checkAll" /></li>
+						<li>번호</li>
 						<li>제목</li>
 						<li>작성자</li>
 						<li>완료여부</li>
@@ -42,7 +44,8 @@ function makeTourTable(result){
 					
 						<!-- DB작업완료 후 for문 생성 -->
 						<c:forEach items="${list}" var="vo" varStatus="status">
-							<li> <input type="checkbox" name="tourCheck" value="${vo.noboard }"/>&nbsp&nbsp${vo.noboard}</li>
+							<li><input type="checkbox" name="tourCheck" value="${vo.noboard}"/></li>
+							<li>${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
 							<li>

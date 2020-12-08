@@ -5,15 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device, initial-scale=1"/>
-<link rel="stylesheet" href="/home/css/admin.css" type="text/css"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;500&display=swap" rel="stylesheet">		
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+<link rel="stylesheet" href="/home/css/admin.css" type="text/css"/>
 <title>Bike Map</title>
 <script>    
 	
@@ -384,14 +383,4 @@ function movePage(page){
 			</li>
 		</ul>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
 	
