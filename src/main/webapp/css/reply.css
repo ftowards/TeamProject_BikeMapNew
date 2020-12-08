@@ -32,10 +32,12 @@
 		font-weight:bold;
 		color:rgb(64,64,64);
 		line-height:42px;
+		margin-right:5px;
 	}
 	
 	.orderRadio{
 		float:right;
+		font-size:16.5px;
 	
 	}
 	
@@ -52,31 +54,40 @@
 		border : 1px solid gray;
 	}
 	#replyWrite{
-				width:795px;
-				height:100px;
-				border-radius:10px 10px 0 0px;
-			
-						
-	
+		width:795px;
+		height:100px;
+		font-size:20px;
+		padding:5px;
+		border:1px solid #bbbbbb;
+		border-radius:5px 5px 0 0px;
 	}
+	#replyWrite::placeholder{
+		color:#a7a7a7;
+		font-size:20px;
+	}
+	
 	.textCntDiv{
-			border:1px solid gray;
-			border-top:1px solid #ccc;
+			border:1px solid #bbbbbb;
+			border-top:1px solid #bbbbbb;
 			width:795px;
 			height:30px;
 			text-align:right;
 			position:relative;
-			top : -6px;		
-			border-radius:0px 0 10px 10px;
+			font-size:16.5px;
+			padding-right:10px;
+			top : -5px;		
+			color:#a9a9a9;
+			border-radius:0px 0 5px 5px;
 		
 	}
 	.replySubmit{
 			background-color:rgb(0,176,176);
 			color:#fff;
-			border-radius:10px;
+			border-radius:5px;
 			border:none;
-			width:50px;
-			height:30px;
+			width:70px;
+			height:35px;
+			font-size:16px;
 			text-align:center;
 			margin : 5px;
 			float:right;
@@ -107,11 +118,11 @@
 	.replyEdit,.replyDel{
 							text-align:center;
 							border:none;
-							border-radius:10px;
+							border-radius:6px;
 							width:40px;
 							height: 25px;
 							background-color:#fff;
-							font-size:12px;
+							font-size:13px;
 							color:rgb(123,123,123);
 							float: right;
 							margin-right : 15px;

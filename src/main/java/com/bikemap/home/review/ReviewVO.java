@@ -18,7 +18,7 @@ public class ReviewVO {
 	
 	private String thumbnailImg ; 
 	
-	
+
 	public int getThumbUp() {
 		return thumbUp;
 	}
@@ -91,5 +91,10 @@ public class ReviewVO {
 			thumbnailImg = content.substring(content.indexOf(" src=")+6, content.indexOf(" srcset=")-1);
 		}
 		return thumbnailImg;
+	}
+	
+	
+	public void setThumbnailImg(String thumbnailImg) {
+		this.thumbnailImg = thumbnailImg;
 	}
 }
