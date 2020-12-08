@@ -19,12 +19,12 @@ $(function(){
 		CKEDITOR.instances.content.updateElement();
 		
 		if($("#subject").val()==""){
-			alert("제목을 입력하세요.");
+			toast("제목을 입력하세요.",1500);
 			return false;		
 		}
 		
 		if(CKEDITOR.instances.content.getData()==""){
-			alert("글내용을 입력하세요.");
+			toast("글내용을 입력하세요.",1500);
 			return false;
 		}
 
@@ -39,20 +39,16 @@ $(function(){
 			success : function(result) {
 				console.log(result);
 				if(result>0){
-					alert("글이 등록되었습니다.")
-					location.href="/home/reviewView";
-				
+					toast("글이 등록되었습니다.",1500)
+					setTimeout(function(){location.href="/home/reviewList";},1500);
 				}else{
-					alert("글등록이 실패하였습니다.");
-
+					toast("글등록이 실패하였습니다.");
 					}
 				},error:function(){
 					console.log("글쓰기 오류");
 				}
 			});
-
 			return false;	
-
 		});
 	});
 </script>
