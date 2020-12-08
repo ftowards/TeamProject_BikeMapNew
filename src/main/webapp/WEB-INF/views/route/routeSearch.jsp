@@ -187,7 +187,7 @@
 			data : data,
 			success : function(result){
 				if( result.length <= 0 ){
-					alert("검색 결과가 없습니다.");
+					toast("검색 결과가 없습니다.", 1500);
 				} else{ 
 					makeThumbnail(result);
 				}

@@ -84,30 +84,6 @@ public class ReivewController {
 			return list;
 	}
 	
-//	//페이징 전체 선택 레코드 가져오기
-//		@RequestMapping("/searchReviewOk")
-//		public ModelAndView reviewAllRecord() {
-//				ModelAndView mav = new ModelAndView();
-//				ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-//				List<ReviewVO> list;
-//				ReviewPagingVO pagingVO = new ReviewPagingVO();
-//				try {
-//					
-//					int totalRecord = dao.searchTotalRecord();
-//					pagingVO.setTotalRecord(totalRecord);
-//					
-//					list = dao.reviewAllRecord(pagingVO);
-//					mav.addObject("list", list);
-//					mav.addObject("pagingVO", pagingVO);
-//					mav.setViewName("review/reviewView");
-//		
-//				}catch(Exception e) {
-//					System.out.println("리뷰 문제있음"+e.getMessage());
-//				}
-//				
-//			return mav;
-//		}
-	
 	
 	//레코드 추가 글쓰기
 	@RequestMapping(value="/reviewWriteFormOk", method=RequestMethod.POST)
@@ -141,12 +117,12 @@ public class ReivewController {
 	//레코드 한개 선택 - 글 보기
 	@RequestMapping("/reviewView")
 	public ModelAndView reviewSelect(int noboard) {
-		ReviewDaoImp dao =  sqlSession.getMapper(ReviewDaoImp.class);
-		
-//		dao.hitCount(no);
+				
+		ReviewDaoImp dao =  sqlSession.getMapper(ReviewDaoImp.class);		
+		//값을 못 받음......
+		int cnt = dao.hitCount(noboard);
 		ReviewVO vo = dao.reviewSelect(noboard);
-		
-			
+				
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("vo",vo);
 		mav.setViewName("review/reviewView");
@@ -154,6 +130,7 @@ public class ReivewController {
 		return mav;
 	}
 
+	
 	//글쓰기 수정
 	@RequestMapping("/reviewEdit")
 	public ModelAndView reviewEdit(int noboard) {
@@ -188,8 +165,7 @@ public class ReivewController {
 		}
 			return mav;
 	}
-	
-	
+
 	
 	//글삭제 폼
 	@RequestMapping("/reviewDel")
@@ -210,6 +186,7 @@ public class ReivewController {
 		
 	}
 	
+	
 	// 루트 검색 페이지 페이징 처리
 		@RequestMapping(value="/searchReviewPaging", method= {RequestMethod.POST})
 		@ResponseBody
@@ -224,26 +201,7 @@ public class ReivewController {
 			}
 			return pagingVO;
 		}
-		
-//		//코스검색(글보기)
-//		@RequestMapping("/ReviewSearchView")
-//		public ModelAndView ReviewSearchView(int noboard) {
-//			ModelAndView mav = new ModelAndView();
-//			
-//			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-//			
-//			try {
-//				ReviewVO vo = dao.selectReview(noboard);
-//				ReviewPlaceVO placeVO = dao.selectReviewPlace(noboard);
-//				
-//				mav.addObject("ReviewVO", vo);
-//				mav.addObject("placeVO", placeVO);
-//			}catch(Exception e) {
-//				System.out.println(e.getMessage());
-//			}
-//			mav.setViewName("Review/ReviewSearchView");
-//			return mav;
-//		}
+
 }
 	
 	
