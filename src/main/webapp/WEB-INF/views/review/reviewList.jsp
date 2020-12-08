@@ -152,39 +152,7 @@ function movePage(page){
 		</form>
 		
 
-<!-- 도시 검색창 -->		
-		<div class= "reviewtitle">
-			<span class="title">도시검색</span><br/><br/>
-		</div>
 
-		<div class = content>
-			<div id= "contentlocation">
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">서울</span>
-					<a href="https://korean.visitseoul.net/index"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png" /></a>
-				</div>			
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">부산</span>
-					<a href="https://www.visitbusan.net/kr/index.do"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg" /></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">여수</span>
-					<a href="https://www.yeosu.go.kr/tour"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">제주</span>
-					<a href="https://ijto.or.kr/korean/"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">대구</span>
-					<a href="https://tour.daegu.go.kr/"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">순천</span>
-					<a href="https://www.suncheon.go.kr/tour/"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a>
-				</div>
-			</div>
-		</div>
 
 
 <!-- 	후기 제목 -->
