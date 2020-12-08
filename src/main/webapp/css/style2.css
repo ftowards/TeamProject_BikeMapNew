@@ -22,11 +22,42 @@ body{
 	.locationSearchDiv{
 		background-color:#273137;
 		width : 100%;
-		height: 655px;
+		height: 1070px;
 		text-align:center;
-		padding: 15px 0;
-		margin: 30px 0 130px 0;
+		padding: 80px 0 0 15px;
 	}
+	.location1 img, .location2 img{
+		width:100%;
+		height:100%;
+		border-radius:10px;
+		box-shadow:4px 4px 10px black;
+	}
+	.locationSearchTitle{
+		display:inline-block;
+		font-size:30px;
+		color:white;
+		width:1165px;
+		height:120px;
+		margin-bottom:30px;
+	}
+	.location1, .location2{
+		height:705px;
+		display:inline-block;
+	}
+	.location1{
+		width:370px;
+		margin-right:20px;
+	}
+	.location2{
+		width:770px;		
+	}
+	.locationTitle{
+		font-size:80px;
+		position:absolute;
+		color:white;
+		font-family:'Noto Sans KR', sans-serif;
+		text-shadow:2px 3px 2px #484848;
+	}	
 
 	.contentlocationdiv {
 		width : 33.3%;
@@ -95,15 +126,16 @@ body{
 	}
 	
 	#mainDivHome{
-		width:1200px;
+		width:100%;
 		height:1000px;
 		margin:0 auto;
+		background-color:#F0F3F5;
 	}
 	#mainDivHome2{
 		width:100%;
-		height:800px;
 		margin:0 auto;
-		background-color:#F0F3F5;
+		text-align:center;
+		background-color:white;
 	}
 
  	#mainBxSliderFrontground{
@@ -239,7 +271,9 @@ body{
 	#hitRoute{
 		width:1200px;
 		height:950px;
+		margin-left:350px;
 		text-align:center;
+		padding-top:60px;
 	}
 	#content1{
 		height:800px;
@@ -297,7 +331,7 @@ body{
 		margin-bottom:6px;
 		padding-left:5px;
 		position:relative;
-		top:100px;
+		top:90px;
 		left:10px;
 	}
 	.routeTitle2{
@@ -343,16 +377,22 @@ body{
 	
 	#national{
 		width:1200px;
-		height:315px;
+		height:auto;
 		text-align:center;
-		margin-top:40px;
+		display:inline-block;
 	}
 	#location{
 		width:1200px;
 		height:auto;
-		margin-top:130px;
+		margin-top:110px;
 		text-align:center;
 		float:left;
+		border:1px solid gray;
+		position: absolute;
+		overflow: hidden;
+	}
+	#locaition img{
+		position: absolute;
 	}
 	.review{
 		display: inline-block;
@@ -381,10 +421,10 @@ body{
 		height:340px;
 	}
 	.topIcon img{
-		width:90px;
-		height:110px;
+		width:80px;
+		height:100px;
 		position:relative;
-		left:1300px; bottom:160px;
+		left:750px; bottom:80px;
 	}
 	/*=========================소라 수정20/11/13===========================================*/	
 	
@@ -469,3 +509,58 @@ body{
     background-color: #fff;
     box-shadow: 3px 3px 3px rgb(84,84,84);
 }
+
+.slider_Review{
+	padding:15px 20px 0px 15px;
+	border-radius:10px / 10px;
+	width:300px;
+	height:340px;		
+	margin:5px 30px 30px 0px;	
+	background:#eee;
+	box-shadow:2px 2px 2px gray;
+	text-align:center;
+}
+.slider_img{
+	width:265px;
+	height:250px;
+	display:inline-block;
+
+	
+		display: inline-block;
+	    -webkit-transform:scale(1);
+	    -moz-transform:scale(1);
+	    -ms-transform:scale(1); 
+	    -o-transform:scale(1);  
+	    transform:scale(1);
+	    -webkit-transition:.3s;
+	    -moz-transition:.3s;
+	    -ms-transition:.3s;
+	    -o-transition:.3s;
+	    transition:.3s;
+	}
+	.slider_img:hover{
+	    -webkit-transform:scale(1.03);
+	    -moz-transform:scale(1.03);
+	    -ms-transform:scale(1.03);   
+	    -o-transform:scale(1.03);
+	    transform:scale(1.03);
+	}
+	.slider_subject{
+		width:265px;
+		font-size:19px;
+		font-family:'Noto Sans KR', sans-serif;
+		
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
+	.slider_txt{
+		font-size:15px;
+		font-family:'Noto Sans KR', sans-serif;
+	}
+	.slider_username{
+		color:#00B0B0;
+		font-size:17px;
+		font-family:'Noto Sans KR', sans-serif;
+	}
+
