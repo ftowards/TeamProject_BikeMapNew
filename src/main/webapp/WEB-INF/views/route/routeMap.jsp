@@ -80,12 +80,12 @@
 					<li class="tab_liTag"><input type="text" class="arriveBox" placeholder="도착지를 지정하세요" readonly/>
 						<input type="hidden" name="routePoint"/></li>
 				</ul>
-				<div style='padding-left:65px; margin-top:10px'>
-					<select name="preference" class="selectBox" style='width:130px'>
+				<div style='padding-left:37px; margin-top:10px'>
+					<select name="preference" class="selectBox" style='width:180px'>
 						<option value="recommended" selected>추천 경로</option>
 						<option value="shortest">최단 거리</option>
 					</select>
-					<input type="button" value="경로 탐색" onclick="searchRoute();" class="mint_Btn" style='font-size:14px; height:30px'/>
+					<input type="button" value="경로 탐색" onclick="searchRoute();" class="mint_Btn" style='font-size:14px; height:35px'/>
 				</div>
 				<div style='text-align:center'>
 					<input type="button" value="지점 전환" onclick="changeStartArrive();" class="blue_Btn" style='font-size:16px; width:105px; padding: 11px 12px'/>
