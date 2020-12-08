@@ -34,12 +34,21 @@ body{
 	}
 	.locationSearchTitle{
 		display:inline-block;
-		font-size:30px;
 		color:white;
 		width:1165px;
 		height:120px;
 		margin-bottom:30px;
+		font-family: 'Nanum Myeongjo', serif;
+
 	}
+	.locationTitle1{
+		font-size:50px;	
+	}
+	.locationTitle2{
+		font-size:29px;
+		letter-spacing:2px;
+		line-height:60px;
+	}	
 	.location1, .location2{
 		height:705px;
 		display:inline-block;
@@ -424,7 +433,7 @@ body{
 		width:80px;
 		height:100px;
 		position:relative;
-		left:750px; bottom:80px;
+		left:750px; bottom:70px;
 	}
 	/*=========================소라 수정20/11/13===========================================*/	
 	
