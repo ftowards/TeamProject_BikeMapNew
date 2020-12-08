@@ -29,13 +29,13 @@
  <!--  글쓰기 수정 -->
  	<update id="reviewUpdate" parameterType="com.bikemap.home.review.ReviewVO">
  		update review set subject=#{subject}, content=#{content}
- 			where noboard=#{noboard , jdbcType=VARCHAR} and userid=#{userid , jdbcType=VARCHAR} 
+ 			where noboard=#{noboard} and userid=#{userid} 
  	</update>
  	
  	<!--글삭제 -->
  	
  	<delete id = "reviewDelete" >
- 		delete from review where noboard=#{param1, jdbcType=VARCHAR} and userid=#{param2, jdbcType=VARCHAR}
+ 		delete from review where noboard=#{param1} and userid=#{param2}
  	</delete>
  	
  	<!-- 페이징 전체 레코드 -->
