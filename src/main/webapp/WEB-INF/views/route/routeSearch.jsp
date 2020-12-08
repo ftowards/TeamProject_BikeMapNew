@@ -207,6 +207,8 @@
 		
 		$("input[name=noboard]").val(noboard)
 		var data = $("#pagingVO").serialize();
+		data += "&order="+$("input[name=order]:checked").val();
+		
 		$("#pagingVO").submit();
 	}
 </script>

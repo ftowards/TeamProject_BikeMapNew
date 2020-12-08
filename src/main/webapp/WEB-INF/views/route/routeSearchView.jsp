@@ -20,7 +20,6 @@ function goViewPage(noboard){
 
 // 리스트 이동
 function goList(){
-	$("input[name=noboard]").val(0);
 	var data = $("#pagingVO").serialize();
 	
 	$("#pagingVO").attr("action","/home/routeSearch" );
@@ -232,7 +231,8 @@ function goList(){
 				<input type="hidden" name="nowPage" value="${pagingVO.nowPage }"/>
 				<input type="hidden" name="searchKey" value="${pagingVO.searchKey }"/>
 				<input type="hidden" name="searchWord" value="${pagingVO.searchWord }"/>
-				<input type="hidden" name="noboard" value=""/>
+				<input type="hidden" name="order" value="${pagingVO.order }"/>
+				<input type="hidden" name="noboard" value="0"/>
 			</form>
 			<ul>
 				<li>
