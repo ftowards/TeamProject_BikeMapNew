@@ -8,17 +8,25 @@ function makeReviewTable(result){
 	var listTag = "";
 	for(var i = 0; i < result.length ; i++){
 		if(i==0){
-			listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번호</li> <li>제목</li> <li>작성자</li> <li>레퍼런스번호</li><li>조회수</li><li>추천/비추천</li>"	;
+			listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번호</li> <li>제목</li> <li>작성자</li> <li>레퍼런스번호</li><li>조회수</li><li>추천/비추천</li> <li>관리자 추천</li>"	;
 		}			
 		//list안에 데이터 추가
-		listTag += "<li><input type='checkbox' /></li>"
+		listTag += "<li><input type='checkbox'  name='tourCheck' value='"+result[i].noboard+"'/></li>"
 		listTag += "<li>"+result[i].noboard+"</li>";
 		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/reviewList?noboard="+result[i].noboard+"'>"+result[i].subject+"</a></li>";
 		listTag += "<li>"+result[i].userid+"</li>";
 		listTag += "<li>"+result[i].reference+"</li>";
 		listTag += "<li><input type='hidden' value='"+result[i].scrap+"' />"+result[i].hit+"회</li>";
 		listTag += "<li><span style='color:blue'>"+result[i].thumbUp+" </span>/ <span >"+result[i].thumbDown+" </span></li>";
-		
+		listTag += "<li>";
+		listTag += "<label class='switch'>";
+		listTag += "<input type='checkbox' name='adminScrapBtn' value='"+result[i].noboard+"'";
+		if(result[i].scrap=='T'){
+			listTag += "checked='checked'";
+		}
+		listTag += "><span class='slider round'></span>";
+		listTag += "</label>";
+		listTag += "</li>";
 		}$("#reviewList").append(listTag);
 }
 </script>
@@ -32,7 +40,8 @@ function makeReviewTable(result){
 	<div class="adminContent">	
 				<div id="adminTable">
 				<h1 class="adminListHead">리뷰</h1>
-				<ul id="reviewList">				
+				<ul id="reviewList">	
+					
 					<li><input type="checkbox" id="checkAll" /></li>	
 					<li>번호</li>
 					<li>제목</li>
@@ -40,15 +49,31 @@ function makeReviewTable(result){
 					<li>레퍼런스 번호</li>
 					<li>조회수</li>
 					<li>추천/비추천</li>
+					<li>관리자 추천</li>
 					<!-- DB작업완료 후 for문 생성 -->
 					<c:forEach items="${list}" var="vo" varStatus="status">
-							<li><input type="checkbox"/></li>
+			
+							<li><input type="checkbox" name="listChk"/></li>
 							<li> ${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
 							<li>${vo.userid}</li>
 							<li>${vo.reference }</li>
 							<li><input type="hidden" value="${vo.scrap }" />${vo.hit}회</li>
 							<li><span style='color:blue'>${vo.thumbUp} </span>/ <span >${vo.thumbDown} </span></li>
+							<li>
+								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
+									<label class="switch">
+									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">
+									  <span class="slider round"></span>
+									</label>							
+								</c:if>
+								<c:if test="${vo.scrap=='T'}">
+									<label class="switch">
+									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >
+									  <span class="slider round"></span>
+									</label>
+								</c:if>
+							</li>
 					</c:forEach>
 				</ul>
 				</div>

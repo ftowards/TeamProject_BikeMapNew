@@ -10,10 +10,10 @@ function makeRouteTable(result){
 	for(var i = 0; i < result.length ; i++){
 		
 		if(i==0){
-			listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번호</li> <li>제목</li> <li>작성자</li> <li>평점</li><li>평가횟수</li><li>지역</li><li>비공개 여부</li>"	;
+			listTag +=  "<li><input type='checkbox' id='checkAll'/></li><li>번호</li> <li>제목</li> <li>작성자</li> <li>평점</li><li>평가횟수</li><li>지역</li><li>비공개 여부</li><li>관리자 추천</li>"	;
 		}			
 		//list안에 데이터 추가
-		listTag += "<li><input type='checkbox' /></li>"
+		listTag += "<li><input type='checkbox' name='listChk' value='"+result[i].noboard+"'/></li>";
 		listTag += "<li>"+result[i].noboard+"</li>";
 		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/routeSearchView?noboard="+result[i].noboard+"'>"+result[i].title+"</a></li>";
 		listTag += "<li>"+result[i].userid+"</li>";
@@ -28,14 +28,17 @@ function makeRouteTable(result){
 		}
 		listTag += "</li>";
 		listTag += "<li>";
-		if(result[i].scrap=='F'||result[i].scrap==null){
-			listTag +="<input type='checkbox' checked/>";
-		}else if(result[i].scrap=='T'){
-			listTag += "<input type='checkbox'/>";
+		listTag += "<label class='switch'>";
+		listTag += "<input type='checkbox' name='adminScrapBtn' value='"+result[i].noboard+"'";
+		if(result[i].scrap=='T'){
+			listTag += "checked='checked'";
 		}
+		listTag += "><span class='slider round'></span>";
+		listTag += "</label>";
 		listTag += "</li>";
 			
 		}$("#routeList").append(listTag);
+		
 }
 
 </script>	
@@ -43,6 +46,10 @@ function makeRouteTable(result){
 	<div class="adminContent">	
 				<div id="adminTable">
 				<h1 class="adminListHead">루트</h1>
+				<div class="orderRadio">
+					<input type="radio" name="order" id="orderNoboard" value="noboard" checked="checked"><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar"> | </span>
+					<input type="radio" name="order" id="orderRating" value="rating"><label for="orderRating" class="subTxt">평점순</label>
+				</div>
 				<ul id="routeList">			
 					<li><input type="checkbox" id="checkAll" /></li>		
 					<li>번호</li>
@@ -55,7 +62,7 @@ function makeRouteTable(result){
 					<li>관리자 추천</li>
 					<!-- DB작업완료 후 for문 생성 -->
 					<c:forEach items="${list}" var="vo" varStatus="status">
-							<li><input type="checkbox" /></li>
+							<li><input type="checkbox" name="listChk" value="${vo.noboard}" /></li>
 							<li>${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/routeSearchView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
@@ -73,18 +80,15 @@ function makeRouteTable(result){
 							<li>
 								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
 									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn">
+									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">
 									  <span class="slider round"></span>
-									</label>
-
-									
+									</label>							
 								</c:if>
 								<c:if test="${vo.scrap=='T'}">
 									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn">
+									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >
 									  <span class="slider round"></span>
 									</label>
-
 								</c:if>
 							</li>
 					</c:forEach>
@@ -118,8 +122,8 @@ function makeRouteTable(result){
 			</div><br/> 
 			<!-- /paging -->
 				<div id="partnerBtn">
-						<input type="button" id="partnerBtn1" name="partnerDeleteBtn" value="삭제하기" class="mint_Btn"/>
-						<input type="button" id="partnerBtn2" name="partnerHideBtn" value="비공개"/>
+						<input type="button" id="partnerBtn1" name="adminScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
+						<input type="button" id="partnerBtn2" name="adminReleaseAllBtn" value="관리자 추천 해제"/>
 				</div><!-- btn -->
 			</div><!-- adminContent -->
 <!-- Page Content -->

@@ -40,7 +40,7 @@
 					<li>답변여부</li>				
 					
 					<c:forEach items="${list}" var="vo" varStatus="status">
-								<li><input type="checkbox"/></li>
+								<li><input type="checkbox" name="listChk"/></li>
 								<li>${vo.noqna}</li>
 								<li>${vo.userid}</li>
 								<li id="subject" class='wordCut' ><a href="/home/adminQnaWrite?noqna=${vo.noqna}&answer=${vo.answer}">${vo.subject}</a></li>
