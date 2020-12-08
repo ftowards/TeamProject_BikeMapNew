@@ -29,7 +29,7 @@
  <!--글쓰기 수정 -->
  	<update id="reviewUpdate" parameterType="com.bikemap.home.review.ReviewVO">
  		update review set subject=#{subject}, content=#{content}
- 			where noboard=#{noboard, jdbcType=VARCHAR } and userid=#{userid, jdbcType=VARCHAR } 
+ 			where noboard=#{noboard} and userid=#{userid } 
  	</update>
  	
  <!--글삭제 -->
