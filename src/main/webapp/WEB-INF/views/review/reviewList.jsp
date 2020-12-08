@@ -4,6 +4,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <script>
 
+//리뷰 리스트 만들기
 function makeThumbnail(result){
 		//$("#reviewBoard").children().remove();	
 		$("#reviewBoard").html("");
@@ -15,7 +16,7 @@ function makeThumbnail(result){
 				
 			listTag += "<div class ='left'>";
 			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
-			listTag +=	"<img src='<%=request.getContextPath() %>/img/img_Review/임시.jpg'/>";
+			listTag +=	"<img src="+result[i].thumbnailImg+"/>";
 			listTag +=	"</a>";
 			listTag +=	"</div>";
 					
@@ -27,6 +28,9 @@ function makeThumbnail(result){
 			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
 			listTag +=	"</a>";
+			listTag +=	"<li>";
+			listTag +=	"조회수 :"+result[i].hit;
+			listTag +=	"</li>";
 			listTag +=	"</li>";
 			listTag +=	"</ul>";
 			listTag +=	"</div>";
@@ -152,7 +156,8 @@ function movePage(page){
 		</form>
 
 
-<!-- 	후기 제목 -->
+
+<!--후기 제목 -->
 		<div class= "reviewtitle">
 			<div class="title">후기 게시판</div><br><br>
 			<div class="orderRadio">
@@ -163,21 +168,21 @@ function movePage(page){
 		</div><br/>
 		
 
-<!-- 후기창 게시판-->
+<!-- 후기창 게시판 -->
 		<hr style='border:1.5px solid black; background-color:black'/>
 		<div id="reviewBoard">
 		<c:forEach var="vo" items="${list }">
 				<div class ="boardlist">
 					<div class="reviewContents">
 					
-						<!-- 후기창 왼쪽 면-->
+<!-- 						후기창 왼쪽 면 -->
 						<div class ="left">
 							<a href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
 								<img src="${vo.thumbnailImg }"/>
 							</a>
 						</div>
 						
-						<!-- 후기창 오른쪽 면 -->
+<!-- 						후기창 오른쪽 면 -->
 						<div class="right">
 						
 							<div id="subtitle">
