@@ -39,8 +39,8 @@
 	<select id="selectRoute" resultType="com.bikemap.home.route.RouteVO">
 		select noboard, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint5, routepoint6, routepoint7,
 		geocode, polyline, userid, distance, ascent, descent, region, to_char(writedate, 'YY-MM-DD HH24:MI') writedate,
-		round(rating, 1) rating, ratecnt from route
-		where noboard = #{param1} and closed = 'F'
+		round(rating, 1) rating, ratecnt, closed, scrap from route
+		where noboard = #{param1}
 	</select>
 	<select id="selectRoute2" resultType="com.bikemap.home.route.RouteVO">
 		select noboard, polyline, mapcenter, maplevel from route where noboard = #{param1}
@@ -92,7 +92,7 @@
 	
 	<select id="selectMycategory" resultType="com.bikemap.home.route.RouteCateVO">
 		select a.noroutecate, catename, b.recordcnt from routecategory a
-		join (select noroutecate, count(noboard) recordcnt from routelist where userid = #{param1} group by noroutecate) b 
+		left join (select noroutecate, count(noboard) recordcnt from routelist where userid = #{param1} group by noroutecate) b 
 		on a.noroutecate = b.noroutecate
 		where userid = #{param1} order by noroutecate asc 	
 	</select>
@@ -114,4 +114,40 @@
 		 order by ${order} desc) where rownum <![CDATA[<=]]> (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
 		where rownum <![CDATA[<=]]> #{lastPageRecordCount} order by ${order} desc
 	</select>
+	<delete id="excludeList" parameterType="com.bikemap.home.route.RouteListVO">
+		delete from routelist where userid=#{userid} and noboard =#{noboard}
+	</delete>
+	<update id="transferCategory" parameterType="com.bikemap.home.route.RouteListVO">
+		update routelist set noroutecate=#{noroutecate} where noboard=#{noboard} and userid=#{userid}
+	</update>
+	<select id="chkRouteScraped" resultType="String">
+		select scrap from route where noboard= #{param1}
+	</select> 
+	<select id="selectWhoSavedRoute" resultType="String">
+		select userid from routelist where noboard=#{param1} and userid <![CDATA[<>]]> #{param2}
+	</select>
+	<update id="updateRouteClosed">
+		update route set closed ='T' where noboard=#{param1} and userid = #{param2}
+	</update>
+	<update id="updateRouteOpen">
+		update route set closed ='F' where noboard=#{param1} and userid = #{param2}
+	</update>
+	<delete id="revertRoutelist" parameterType = "com.bikemap.home.route.RouteListVO">
+		delete from routelist where userid =#{userid} and noboard = #{noboard}
+	</delete>
+	<delete id="deleteRoute">
+		delete from route where noboard = #{param1} and userid = #{param2}
+	</delete>
+	<select id="chkReference" resultType="int">
+		select (nvl(b.tourRef,0) + nvl(c.reviewRef,0)) refCount from route a
+			left join (select reference, count(noboard) tourRef from tour group by reference having reference = #{param1}) b on a.noboard = b.reference
+			left join (select reference, count(noboard) reviewRef from review group by reference having reference = #{param1}) c on a.noboard = c.reference
+		where noboard = #{param1}
+	</select>
+	<update id="scrapRoute">
+		update route set scrap='T' where noboard = #{param1}
+	</update>
+	<update id="releaseRoute">
+		update route set scrap='F' where noboard = #{param1}
+	</update>
 </mapper> 

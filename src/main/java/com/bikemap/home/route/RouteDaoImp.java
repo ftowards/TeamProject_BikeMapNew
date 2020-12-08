@@ -85,5 +85,38 @@ public interface RouteDaoImp {
 	
 	// 저장한 리스트 가져오기
 	public List<RouteVO> selectMyroute(MyRoutePagingVO vo);
+	
+	// 루트 리스트 제외하기
+	public int excludeList(RouteListVO vo);
+	
+	// 루트 카테고리 옮기기
+	public int transferCategory(RouteListVO vo);
 
+	// ---------- 루트 비공개 처리 ---------------- //
+	// 스크랩 여부 확인
+	public String chkRouteScraped(int noboard);
+	
+	// 루트 저장한 사람(본인 제외) 명단 가져오기
+	public List<String> selectWhoSavedRoute(int noboard, String userid);
+	
+	// 루트 비공개 처리
+	public int updateRouteClosed(int noboard, String userid);
+	
+	// 루트 공개 처리
+	public int updateRouteOpen(int noboard, String userid);
+	
+	// 루트 저장 처리 취소
+	public int revertRoutelist(RouteListVO vo);
+	
+	// 루트 삭제
+	public int deleteRoute(int noboard, String userid);
+	
+	// 레퍼런스 체크
+	public int chkReference(int noboard);
+	
+	// 루트 스크랩
+	public int scrapRoute(int noboard);
+	
+	// 루트 스크랩 해제
+	public int releaseRoute(int noboard);
 }

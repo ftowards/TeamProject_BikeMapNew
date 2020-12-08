@@ -5,7 +5,9 @@
 <script>
 
 function makeThumbnail(result){
-		$("#reviewBoard").children().remove();		
+
+		//$("#reviewBoard").children().remove();	
+		$("#reviewBoard").html("");
 		var listTag = "";
 		for(var i = 0 ; i < result.length ; i++){
 			
@@ -20,17 +22,19 @@ function makeThumbnail(result){
 					
 			listTag +=	"<div class='right'>";
 			listTag +=	"<div class= 'subtitle'>";
-					
+
+				
 			listTag +=	"<ul>";
-			listTag +=	"<li>";
+			listTag +=	"<li class='wordCut'>";
 			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
 			listTag +=	"</a>";
 			listTag +=	"</li>";
 			listTag +=	"</ul>";
 			listTag +=	"</div>";
+			listTag += "<br/><br/><br/>"
 			listTag +=	"<ul>";
-			listTag +=	"<li id='reviewtext'>";
+			listTag +=	"<li class='wordCut' id='reviewtext'>";
 			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].content;
 			listTag +=	"</a>";
@@ -43,16 +47,20 @@ function makeThumbnail(result){
 			listTag +="<img src='<%=request.getContextPath() %>/img/img_Review/review.png'/>";
 			listTag += result[i].userid+"님의 생생한 후기";
 			listTag +="</li>";
-			listTag +="<li class='writedate'>${vo.writedate } 작성</li>"
+			listTag +="<li class='writedate'>"+result[i].writedate+"작성</li>"
 			listTag +="</ul>";
 			listTag +="</div>";
 			listTag +="</div>";
 					
 			listTag +="</div>";
 			listTag +="</div>";
-		
+
 	
-		}$("#reviewBoard").append(listTag);
+			console.log(listTag); 
+			console.log('----------------------------------');
+		}
+		$("#reviewBoard").html(listTag);
+		console.log(listTag); 
 	
 }
 
@@ -61,7 +69,7 @@ function setPaging(vo){
 	// 이전 페이징 삭제
 	$("#paging").children().remove();
 	var tag = "<ul>";
-	
+
 	if(vo.nowPage != 1){
 		tag += "<li><a href='javascript:movePage("+(vo.nowPage -1)+")'> Prev </a></li>";
 	}
@@ -146,40 +154,6 @@ function movePage(page){
 			<input type="submit" class="mint_Btn" value="검 색"/>
 		</form>
 		
-
-<!-- 도시 검색창 -->		
-		<div class= "reviewtitle">
-			<span class="title">도시검색</span><br/><br/>
-		</div>
-
-		<div class = content>
-			<div id= "contentlocation">
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">서울</span>
-					<a href="https://korean.visitseoul.net/index"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png" /></a>
-				</div>			
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">부산</span>
-					<a href="https://www.visitbusan.net/kr/index.do"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg" /></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">여수</span>
-					<a href="https://www.yeosu.go.kr/tour"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">제주</span>
-					<a href="https://ijto.or.kr/korean/"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">대구</span>
-					<a href="https://tour.daegu.go.kr/"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">순천</span>
-					<a href="https://www.suncheon.go.kr/tour/"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a>
-				</div>
-			</div>
-		</div>
 
 
 <!-- 	후기 제목 -->
