@@ -1,5 +1,6 @@
 package com.bikemap.home.admin;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -206,11 +207,12 @@ public class AdminController {
 	@ResponseBody
 	public List<ReviewVO> adminReviewAjax(AdminPagingVO vo) {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-		List<ReviewVO>list = new ArrayList<ReviewVO>();
+		List<ReviewVO>list = new LinkedList<ReviewVO>();
 		try {	
 			int totalRecord = dao.searchReviewRecord(vo);
 			vo.setTotalRecord(totalRecord);
 			list = dao.reviewAllRecord(vo);		
+			//System.out.println(list.get(2)+"dksdlkldklkdsls");
 		}catch(Exception e) {
 			System.out.println("리뷰 검색 aJax 화면 호출 에러111"+e.getMessage());
 		}	
