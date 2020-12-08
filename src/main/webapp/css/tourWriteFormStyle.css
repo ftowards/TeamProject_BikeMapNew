@@ -368,34 +368,36 @@
 					width:250px;
 					height:100px;
 					margin:0 auto;
+					padding:20px 0 20px 0;
 				
 					
 	}	
 	
 	#writebuttonDiv input{
-				position:relative;
-				padding-top:-2px;
-				text-align:center;
-				border:1px solid black;
-				border-radius:10px;
-				width:70px;
-				height:40px;
-				background-color:black;
-				font-size:15px;
-				font-weight:bold;
-				color:#fff;
-				float:left;
-				margin-left:30px;
-				box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+							position:relative;
+							padding-top:-2px;
+							text-align:center;
+							border:none;
+							border-radius:10px;
+							width:70px;
+							height:40px;
+							background-color:black;
+							font-size:15px;
+							font-weight:bold;
+							color:#fff;
+							float:left;
+							margin-left:30px;
+							box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
 							
 	
 	}	
 	#writebuttonDiv input:last-child{	
-										width:100px;
+										
 										background-color:#fff;
 										color:rgb(69,69,79);	
 															
 	}	
+	
 		
 	#departureTime,#departureMinutes,#deadlineTime,#arriveTime,#arriveMinutes{
 														padding-top:3px;

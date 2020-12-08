@@ -23,6 +23,8 @@ public class RouteVO {
 	private double descent;
 	private String region;
 	private String closed;
+	private String scrap;
+	
 	private String description;
 	
 	private String writedate;
@@ -168,6 +170,12 @@ public class RouteVO {
 	}
 	public void setClosed(String closed) {
 		this.closed = closed;
+	}
+	public String getScrap() {
+		return scrap;
+	}
+	public void setScrap(String scrap) {
+		this.scrap = scrap;
 	}
 	public String getDescription() {
 		return description;

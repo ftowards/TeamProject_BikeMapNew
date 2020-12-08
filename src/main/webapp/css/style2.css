@@ -454,8 +454,18 @@ body{
 }
 
 .toast .btn{	
-	color: #00B0B0;
-    border: 1px solid #00B0B0;
-    background-color: white;
+
+	font-weight: bold;
+	width:70px;
+	height:30px;
+	font-size:15px;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    padding: 3px 6px;
+    margin : 10px 8px 0 0;
+    color: #00B0B0;
+    border: none;
+    background-color: #fff;
     box-shadow: 3px 3px 3px rgb(84,84,84);
 }

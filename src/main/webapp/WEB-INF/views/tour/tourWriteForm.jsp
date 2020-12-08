@@ -55,7 +55,7 @@
 				</div>
 				<div class="conditionDivTop">
 					<div>
-						<input type="text" name="arrivedate"	placeholder="도착날짜" id="arrivedate" maxlength="10" autocomplete="off"/>
+						<input type="text" name="arrivedate" placeholder="도착날짜" id="arrivedate" maxlength="10" autocomplete="off"/>
 					</div>
 					<div>
 						<select name="arriveTime" id="arriveTime">
@@ -335,7 +335,7 @@ $(function(){
 	// 2. 출발시간 설정 시 마감시간 변경
 	$("#departureTime").on('change', function(){
 		if($("#departuredate").val()==""){
-			alert("출발날짜를 먼저 입력하세요.");
+			toast("출발날짜를 먼저 입력하세요.");
 			$("#departureTime>option").eq(1).prop("selected", true);
 			return false;
 		}
@@ -364,12 +364,12 @@ $(function(){
 		var arrivedate = $("#arrivedate").val();
 		var departuredate = $("#departuredate").val();
 		if(arrivedate < departuredate){
-			alert("도착 일자는 출발 일자보다 빠를 수 없습니다.");
+			toast("도착 일자는 출발 일자보다 빠를 수 없습니다.");
 			$("#arrivedate").val(departuredate);
 			return false;
 		}else if(arrivedate == $("#departuredate").val()){
 			if(Number($("#arriveTime").val()) <= Number($("#departureTime").val())){
-				alert("도착 시간은 출발 시간과 같거나 빠를 수 없습니다.");
+				toast("도착 시간은 출발 시간과 같거나 빠를 수 없습니다.");
 				$("#arriveTime>option").eq(Number($("#departureTime").val())+2).prop("selected", true);
 				return false;
 			}
@@ -389,7 +389,7 @@ $(function(){
 		var departuredate = $("#departuredate").val();
 		if(departuredate == arrivedate){
 			if(Number($("#arriveTime").val()) <= Number($("#departureTime").val())){
-				alert("도착 시간은 출발 시간과 같거나 빠를 수 없습니다.");
+				toast("도착 시간은 출발 시간과 같거나 빠를 수 없습니다.");
 				$("#arriveTime>option").eq(Number($("#departureTime").val())+2).prop("selected", true);
 				return false;
 			}
@@ -402,14 +402,14 @@ $(function(){
 		var departuredate = $("#departuredate").val();
 		
 		if(departuredate == ""){
-			alert("출발 날짜를 먼저 선택하세요.");
+			toast("출발 날짜를 먼저 선택하세요.");
 			$("#deadlinedate").val("");
 			return false;
 		}
 		
 		if(Number($("#deadlineTime").val()) <= Number($("#departureTime").val())){
 			if(dead > departuredate){
-				alert("마감 시간이 출발 시간보다 늦을 수 없습니다.");
+				toast("마감 시간이 출발 시간보다 늦을 수 없습니다.");
 				
 				var date = $("#departuredate").datepicker("getDate");
 				date.setDate(date.getDate());
@@ -419,7 +419,7 @@ $(function(){
 			}
 		}else if(Number($("#deadlineTime").val()) > Number($("#departureTime").val())){
 			if(dead >= departuredate){
-				alert("마감 시간이 출발 시간보다 늦을 수 없습니다.");
+				toast("마감 시간이 출발 시간보다 늦을 수 없습니다.");
 				
 				var date = $("#departuredate").datepicker("getDate");
 				date.setDate(date.getDate()-1);
@@ -436,7 +436,7 @@ $(function(){
 		var departuredate = $("#departuredate").val();
 		if(departuredate == dead){
 			if(Number($("#deadlineTime").val()) >= Number($("#departureTime").val())){
-				alert("마감시간은 출발 시간과 같거나 늦을 수 없습니다.");
+				toast("마감시간은 출발 시간과 같거나 늦을 수 없습니다.");
 				$("#deadlineTime>option").eq(Number($("#departureTime").val())-1).prop("selected", true);
 				$("#deadlineTime").val(Number($("#departureTime").val())-1);
 				return false;
@@ -565,7 +565,7 @@ function setMap(result){
 function getTourTime(){
 	var distance =$("#distance").val();
 	if(distance == ""){
-		alert("코스를 지정하세요.");
+		toast("코스를 지정하세요.");
 		$("#speed").val("");
 		return false;
 	}
@@ -619,48 +619,48 @@ function getTourTime(){
 			CKEDITOR.instances.content.updateElement();		
 			
 			if($("#reference").val()==""){
-				alert("루트를 선택하세요.");
+				toast("루트를 선택하세요.");
 				$("#referenceSearch").focus();
 				return false;
 			}
 			
 			if($("#departuredate").val()==""){
-				alert("출발날짜를 입력하세요.");
+				toast("출발날짜를 입력하세요.");
 				$("#departuredate").focus();
 				return false;
 			}
 			
 			if($("#departureTime").val()==""){
-				alert("출발시간을 입력하세요.");
+				toast("출발시간을 입력하세요.");
 				$("#departureTime").focus();
 				return false;
 			}
 
 			if($("#arrivedate").val()==""){
-				alert("도착날짜를 입력하세요.");
+				toast("도착날짜를 입력하세요.");
 				$("#arrivedate").focus();
 				return false;
 			}
 			
 			if($("#arriveTime").val()==""){
-				alert("도착시간을 입력하세요.");
+				toast("도착시간을 입력하세요.");
 				$("#arriveTime").focus();
 				return false;
 			}
 
 			if($("#place").val()==""){
-				alert("출발장소를 입력하세요.");
+				toast("출발장소를 입력하세요.");
 				$("#place").focus();
 				return false;
 			}
 			
 			if($("#deadlinedate").val()==""){
-				alert("마감날짜를 입력하세요.");
+				toast("마감날짜를 입력하세요.");
 				$("#deadlinedate").focus();
 				return false;
 			}
 			if($("#deadlineTime").val()==""){
-				alert("마감시간를 입력하세요.");
+				toast("마감시간를 입력하세요.");
 				$("#deadlineTime").focus();
 				return false;
 			}
@@ -673,18 +673,18 @@ function getTourTime(){
 
 			var nowDate = new Date();
 			if(nowDate >= tourDate){
-				alert("투어는 현재 시간 이전으로 설정할 수 없습니다.");
+				toast("투어는 현재 시간 이전으로 설정할 수 없습니다.");
 				return false;
 			}
 
 			if($("#tourWriteTitle").val()==""){
-				alert("제목을 입력하세요.");
+				toast("제목을 입력하세요.");
 				$("#tourWriteTitle").focus();
 				return false;		
 			}
 			
 		 	if(CKEDITOR.instances.content.getData()==""){
-				alert("글내용을 입력하세요.");
+				toast("글내용을 입력하세요.");
 				$("#content").focus();
 				return false;
 			}
@@ -698,7 +698,7 @@ function getTourTime(){
 		 	});
 		 	
 	 		if(genderCnt == 0){
-	 			alert("성별 조건을 하나 이상 선택하세요.");
+	 			toast("성별 조건을 하나 이상 선택하세요.");
 	 			return false;
 	 		}
 		 	
@@ -710,7 +710,7 @@ function getTourTime(){
 		 	});
 		 	
 	 		if(ageCnt == 0){
-	 			alert("나이 조건을 하나 이상 선택하세요.");
+	 			toast("나이 조건을 하나 이상 선택하세요.");
 	 			return false;
 	 		}
 	 		
@@ -734,10 +734,10 @@ function getTourTime(){
 				success : function(result){
 					console.log(result);
 					if(result>0){
-						alert("글이 등록되었습니다.")
+						toast("글이 등록되었습니다.")
 						location.href="/home/tourList";
 					}else{
-						alert("글등록이 실패하였습니다.");
+						toast("글등록이 실패하였습니다.");
 					}
 				},error:function(){
 					console.log("글쓰기 오류");
@@ -798,7 +798,7 @@ function getTourTime(){
 	        console.log(e)
 	      }
 	    }
-	    return points
+	    return points;
   	}
     
     
