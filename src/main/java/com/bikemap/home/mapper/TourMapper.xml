@@ -216,4 +216,15 @@
 	<delete id="deleteTourView">
 		delete from tour where noboard=#{param1} and userid=#{param2}
 	</delete>
+	<select id="selectComplistExceptLogId" resultType="com.bikemap.home.tour.ComplistVO">
+		select userid from complist where noboard=#{param1} and userid  <![CDATA[ <> ]]> logId
+	</select>
+	<select id="tourEditSelect" resultType="com.bikemap.home.tour.TourVO">
+		select noboard, title, userid, reference, content, to_char(deadline,'YY/MM/DD HH24') deadline,to_char(departure,'YY/MM/DD HH24') departure,
+		to_char(arrive,'YY/MM/DD HH24') arrive,	place, distance, speed, budget, room, reggender, regage 
+	 	from tour where noboard = #{param1} and userid = #{param2}
+	</select>
+	<update id="updateTourView" parameterType="com.bikemap.home.tour.TourVO">
+		update tour set title=#{title},content=#{content} where noboard=#{noboard} and userid=#{userid}
+	</update>
  </mapper>

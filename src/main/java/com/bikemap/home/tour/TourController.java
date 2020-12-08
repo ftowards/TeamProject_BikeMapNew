@@ -561,7 +561,46 @@ public class TourController {
 		return result;
 	}
 	
+	//글 수정 이동
+	@RequestMapping("/tourViewEdit")
+	public ModelAndView tourViewEdit(@RequestParam("noboard") int noboard,HttpSession ses) {
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			TourDaoImp dao  = sqlSession.getMapper(TourDaoImp.class);
+		
+			TourVO vo = dao.tourEditSelect(noboard,(String)ses.getAttribute("logId"));
+		
+			
+			mav.addObject("vo",vo);
+			
+		}catch(Exception e) {
+			System.out.println("동행찾기 게시판 글수정 정보 읽기 에러..."+e.getMessage());
+		}
+		mav.setViewName("/tour/tourViewEdit");	
+	
+		return mav;
+	}
+	
+	
+	//글 수정하기
+	@RequestMapping(value="/tourEditFormOk", method= RequestMethod.POST)
+	@ResponseBody
+	public int tourEditFormOk(TourVO vo,HttpSession ses) {
+		
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		int result = 0;
+		try {
+			result = dao.updateTourView(vo);
+			System.out.println("동행찾기 수정 result==="+result);
+
+		}catch(Exception e) {
+			System.out.println("글 수정하기 에러===="+e.getMessage());
+		}
+		return result;
+	}
 }
+
 
 
 

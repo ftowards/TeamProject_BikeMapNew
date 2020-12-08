@@ -28,6 +28,7 @@
 					border:none;
 					background-color:transparent;
 					font-weight:bold;
+					color:rgb(156,156,156);
 				
 					
 	
@@ -313,15 +314,21 @@
 					
 						
 	}	
+	#tourWriteTitleEdit{
+						width:500px;
+						height:35px;
+						margin-bottom:20px;
+						border-radius:10px;
+						box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+						border:none;
+	}
 	
 	#writeForm{
-					margin:30px 0 0 200px;
-					widht:800px;
+					margin-top:30px;
 					height:500px;
 					float:left;
-				
 			
-	}
+	}	
 	#tourWriteTitle{
 						width:500px;
 						height:35px;
@@ -329,6 +336,38 @@
 						font-size:35px;
 					
 	}
+	#writebuttonDiv{
+					width:250px;
+					height:100px;
+					margin:0 auto;
+					padding:20px 0 20px 0;
+				
+					
+	}
+	#writebuttonDiv input{
+							position:relative;
+							padding-top:-2px;
+							text-align:center;
+							border:none;
+							border-radius:10px;
+							width:70px;
+							height:40px;
+							background-color:black;
+							font-size:15px;
+							font-weight:bold;
+							color:#fff;
+							float:left;
+							margin-left:30px;
+							box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+							
+	
+	}	
+	#writebuttonDiv input:last-child{	
+										
+										background-color:#fff;
+										color:rgb(69,69,79);	
+															
+	}	
 
 	#content{
 				width:800px;
@@ -336,7 +375,16 @@
 				float:left;
 						
 	}
+	#tourWriteFormTitleDiv{
+							height:80px;
+							margin-top:50px;	
+	}
 
+	#tourWriteFormTitleLbl{
+							font-size:22px; 
+	 						color:rgb(64,64,64);
+	 					
+	}
 	#departureTime,#departureMinutes,#deadlineTime,#arriveTime,#arriveMinutes{
 														padding-top:3px;
 														text-align:center;
