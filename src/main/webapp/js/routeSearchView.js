@@ -194,14 +194,14 @@ $("#grayBtn").on('click', function(){
 	}
 	
 	if($("#logId").val() == $("#userid").text()){
-		alert("회원님이 작성한 루트는 평가할 수 없습니다.");
+		toast("회원님이 작성한 루트는 평가할 수 없습니다.",1500);
 		return false;
 	}
 
   	var rating = $("#gradeSelect").val();
   	
   	if(rating == ""){
-  		alert("평점을 선택해주세요.");
+  		toast("평점을 선택해주세요.",1500);
   		return false;
   	}
   	
@@ -215,9 +215,9 @@ $("#grayBtn").on('click', function(){
   		data : data,
   		success : function(result){
   			if(result == 2){
-  				alert("이미 평점을 등록한 루트입니다.");
+  				toast("이미 평점을 등록한 루트입니다.",1500);
   			}else {
-  				alert("평점이 등록되었습니다.");
+  				toast("평점이 등록되었습니다.",1500);
   				setRating();
   			}
   		},error : function(){
@@ -270,7 +270,7 @@ $("#grayBtn").on('click', function(){
 				var names = $(this).attr("title");
 				console.log(names);
 				if(names == catename){
-					alert("이미 등록된 이름입니다.");
+					toast("이미 등록된 이름입니다.",1500);
 					overlap++;
 					return false;
 				}
@@ -286,10 +286,10 @@ $("#grayBtn").on('click', function(){
 					data : data,
 					success : function(result){
 						if(result == 1){
-							alert("새로운 카테고리가 추가되었습니다.");
+							toast("새로운 카테고리가 추가되었습니다.",1500);
 							selectCategory();
 						}else{
-							alert("카테고리 추가 에러");
+							toast("카테고리 추가 에러",1500);
 						}
 					}, error : function(){
 						console.log("카테고리 새로 추가 에러");
@@ -323,7 +323,7 @@ $("#grayBtn").on('click', function(){
 				
 				$("#catename").html(tag);
 			},error : function(){
-				alert("카테고리 호출 에러");
+				console.log("카테고리 호출 에러");
 			}
 		});
 	}
@@ -490,3 +490,195 @@ $("#grayBtn").on('click', function(){
   		}
   	});
   }
+  	
+  // 비공개 전환
+  function setCloseRoute1(type){
+  	// 1. 스크랩 여부 >> 진행 시 스크랩 취소 됨
+  	var noboard = $("#noboard").val();
+  	
+  	var msg = "삭제";
+  	if(type == 'close'){
+  		msg = "비공개";
+  	}
+  	
+  	$.ajax({
+  		url :"/home/route/setCloseRoute1",
+  		data : "noboard="+noboard,
+  		success : function(result){
+  			if(result == 1){
+  				toastConfirm("현재 추천 루트로 게시 중입니다. "+ msg +" 시 추천 루트 게시가 취소됩니다.<br/>진행 하시겠습니까?", function(){
+  					setCloseRoute2(noboard, type);
+  					// 스크랩 취소하는 펑션 필요
+  				});
+  			}else {
+  				setCloseRoute2(noboard, type);
+  			}
+  		}, error : function(err){
+  			console.log(err);
+  		}
+  	});
+  }
+  
+  // 2. 현재 해당 루트를 가지고 있는 사람 수 체크 + 명단 가져오기
+  function setCloseRoute2(noboard, type){
+  	
+  	var msg = "삭제";
+  	if(type == 'close'){
+  		msg = "비공개";
+  	}
+  	
+	$.ajax({
+  	  	url : "/home/route/setCloseRoute2",
+  	  	data : "noboard="+noboard,
+  	  	success : function(result){
+  	  		console.log(result.length);
+  	  		
+  			if(result.length > 0){
+  				toastConfirm("현재 "+result.length+"명이 해당 루트를 저장하고 있습니다.<br/>"+msg+" 시 루트 저장이 취소됩니다.<br/>진행 하시겠습니까?", function(){
+  					// 저장 취소 , 안내 메세지 발송
+  					cancelRouteSave(noboard, result, type);
+  					
+  					if(type == 'close'){
+  						setCloseRoute3(noboard);
+					}else if(type == 'del'){
+						deleteRoute(noboard);
+					}
+  				});
+  			}else {
+  				if(type == 'close'){
+  					setCloseRoute3(noboard);
+				}else if(type == 'del'){
+					deleteRoute(noboard);
+				}
+  			}
+  		}, error : function(err){
+  			console.log(err);
+  		}
+	});
+  	
+  }
+ 
+ // 3. 비공개로 인한 루트 저장 취소 처리
+ // 4. 루트 저장해서 가지고 있던 사람들에게 메세지 발송
+  function cancelRouteSave(noboard, result, type){
+  	var $result = $(result);
+  	
+  	var msgType = 1; // 1 : 비공개  , 2 : 삭제
+  	if(type == 'del'){
+  		msgType = 2;
+  	}
+  	
+  	var cnt = 0 ;
+  	$result.each(function(i,val){  	
+  		$.ajax({
+  			url : "/home/route/revertRoutelist",
+  			data : "noboard="+noboard+"&userid="+val,
+  			success : function(result){
+  				if(result == 1){
+  					sendMsg(noboard, val, msgType);
+  				}else{
+			  		toast("루트 저장 취소 오류<br/>관리자에 문의하십시오.");
+  				}
+  			}, error : function(err){
+  				console.log(err);
+  			}
+  		});
+  	});
+  	
+  }
+  
+  // 5-2. 삭제
+  function deleteRoute(noboard){
+   	toastConfirm(noboard+"번 루트를 삭제 하시겠습니까?", function(){
+	  	$.ajax({
+	  		url : "/home/route/deleteRoute",
+	  		data : "noboard="+noboard,
+	  		success : function(result){
+	  			if(result >0){
+	  				toast(noboard+"번 루트를 삭제하였습니다.",1500);
+	  				setTimeout(function(){location.href='/home/routeSearch';},1500);
+	  			}else{
+	  				toast("루트 삭제 오류입니다.<br/>관리자에게 문의하세요.");
+	  			}
+	  		},erro : function(err){
+	  			console.log(err);
+	  		}
+	  	});
+	  });
+  }
+  
+  // 5-1. 비공개 처리
+  function setCloseRoute3(noboard){
+  	toastConfirm(noboard+"번 루트를 비공개 하시겠습니까?", function(){
+	  	$.ajax({
+	  		url : "/home/route/setCloseRoute3",
+	  		data : "noboard="+noboard,
+	  		success : function(result){
+	  			if(result >0 ){
+	  				toast(noboard+"번 루트를 비공개 처리하였습니다.",1500);
+					setTimeout(function(){location.reload(true)}, 1500);
+	  			}else{
+	  				toast("루트 비공개 처리 오류입니다.");
+	  			}
+	  		},error : function(err){
+	  			console.log(err);
+	  		}
+	  	});
+  	});
+  }
+  
+  // 공개 처리
+  function setOpenRoute(){
+  	var noboard = $("#noboard").val();
+  	
+  	toastConfirm("루트를 공개 처리하면 검색 및 다른 회원들의 리스트에 저장이 가능합니다.<br/>진행하시겠습니까?", function(){
+  		$.ajax({
+			url : "/home/route/setOpenRoute",
+			data : "noboard="+noboard,
+			success : function(result){
+				if(result == 1){
+					toast(noboard + "번 루트가 공개처리 되었습니다.",1500);
+					setTimeout(function(){location.reload(true)}, 1500);
+					
+				}else{
+					toast("루트 공개 처리 오류입니다.");
+				}
+			},error : function(err){
+				console.log(err);
+			}
+  		});
+  	});
+  }	
+  
+  //메세지 저장하기 ++ 통신으로 메세지 보내기
+function sendMsg(noboard, receiver, type){
+	var receiver = receiver;
+	var sender = $("#logId").val();
+	
+	var noboard = noboard;
+	var msg ="";
+	var socketMsg = "";
+	
+	if(type == 1){
+		msg = sender + "님이 " + noboard + "번 루트를 비공개 처리하였습니다.";
+		socketMsg = "closeRoute,"+receiver+","+sender+","+noboard;
+	}else if(type == 2){
+		msg = sender + "님이 " + noboard + "번 루트를 삭제하였습니다.";
+		socketMsg = "deleteRoute,"+receiver+","+sender+","+noboard;
+	}
+	
+	var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
+	console.log(data);
+	
+	$.ajax({
+		url : "/home/insertNotice",
+		data : data,
+		success : function(result){
+			if(result == 1){
+				socket.send(socketMsg);
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	})
+}

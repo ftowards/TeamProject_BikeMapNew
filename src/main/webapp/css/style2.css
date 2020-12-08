@@ -410,11 +410,12 @@ body{
 	
 	/* 알림창 */
 	
-.toast {
+.toast{
     position: fixed;
     top: 250px;
-    width :fit-content;
+    width : fit-content;
     height : fit-content;
+    line-height : 30px;
     left: 50%;
     padding: 15px 20px;
     transform: translate(-50%, 10px);
@@ -435,7 +436,7 @@ body{
     transform: translate(-50%, 0)
 }
 
-.toast .mintBtn{	
+.toast .mintBtn,.toast .btn{	
 	font-weight: bold;
     border-radius: 10px;
     text-decoration: none;
@@ -444,27 +445,17 @@ body{
 	height:30px;
     text-align: center;
     padding: 3px 6px;
-    margin : 10px 8px 0 0;
+    margin : 5px 8px 0 0;
     color: white;
     border:none;
     background-color: #00B0B0;
     float: right;
-    box-shadow: 3px 3px 3px rgb(84,84,84);
+    line-height :20px;
 }
 
 .toast .btn{	
-	font-weight: bold;
-	width:70px;
-	height:30px;
-	font-size:15px;
-    border-radius: 10px;
-    text-decoration: none;
-    text-align: center;
-    padding: 3px 6px;
-    margin-right: 8px;
-    color: #00B0B0;
-    border: none;
+	color: #00B0B0;
+    border: 1px solid #00B0B0;
     background-color: white;
-    float: right;
     box-shadow: 3px 3px 3px rgb(84,84,84);
 }

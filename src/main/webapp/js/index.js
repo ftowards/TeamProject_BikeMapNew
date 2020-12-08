@@ -36,7 +36,7 @@ $(function(){
 	function toast(msg, time) {
 		var toast = $("#toast");
     	toast.addClass("reveal");
-    	toast.text(msg);
+    	toast.html(msg);
     	
     	var click = '$("#toast").removeClass("reveal")';
     	if(time == null || time == 'undefined'){
@@ -52,7 +52,7 @@ $(function(){
 	function toastConfirm(msg, callback) {
 		var toast = $("#toastConfirm");
     	toast.addClass("reveal");
-    	$("#toastConfirmMsg").text(msg);
+    	$("#toastConfirmMsg").html(msg);
     	
     	$("#toastConfirm").children(".btn").click(function(){
     		$("#toastConfirm").removeClass("reveal");
