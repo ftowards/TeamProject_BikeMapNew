@@ -500,6 +500,7 @@ body{
     background-color: #00B0B0;
     float: right;
     line-height :20px;
+     box-shadow: 3px 3px 3px rgb(84,84,84);
 }
 
 .toast .btn{	
@@ -529,6 +530,7 @@ body{
     text-decoration: none;
     text-align: center;
     padding: 3px 6px;
+
     margin : -11px 8px 0 0;
     color: white;
     border: 1px solid #00B0B0;
@@ -592,3 +594,4 @@ body{
 		font-size:17px;
 		font-family:'Noto Sans KR', sans-serif;
 	}
+

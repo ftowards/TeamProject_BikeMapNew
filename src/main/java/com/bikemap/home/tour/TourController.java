@@ -563,12 +563,14 @@ public class TourController {
 	
 	//글 수정 이동
 	@RequestMapping("/tourViewEdit")
+	@ResponseBody
 	public ModelAndView tourViewEdit(@RequestParam("noboard") int noboard,HttpSession ses) {
 		
+
 		ModelAndView mav = new ModelAndView();
 		try {
+			
 			TourDaoImp dao  = sqlSession.getMapper(TourDaoImp.class);
-		
 			TourVO vo = dao.tourEditSelect(noboard,(String)ses.getAttribute("logId"));
 		
 			
