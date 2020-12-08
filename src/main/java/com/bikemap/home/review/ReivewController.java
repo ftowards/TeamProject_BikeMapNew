@@ -119,7 +119,7 @@ public class ReivewController {
 	public ModelAndView reviewSelect(int noboard) {
 				
 		ReviewDaoImp dao =  sqlSession.getMapper(ReviewDaoImp.class);		
-		//값을 못 받음......
+
 		int cnt = dao.hitCount(noboard);
 		ReviewVO vo = dao.reviewSelect(noboard);
 				
@@ -134,11 +134,14 @@ public class ReivewController {
 	//글쓰기 수정
 	@RequestMapping("/reviewEdit")
 	public ModelAndView reviewEdit(int noboard) {
-			System.out.println("noboardTest...."+noboard);
+			System.out.println("NOBOARD======>"+noboard);
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+			System.out.println("DAO======>"+dao);
 		ReviewVO vo = dao.reviewSelect(noboard);
-		
+			System.out.println("VO======>"+vo);
 		ModelAndView mav = new ModelAndView();
+			System.out.println("MAV======>"+mav);
+		
 		mav.addObject("vo", vo);
 		mav.setViewName("review/reviewEdit");
 		
