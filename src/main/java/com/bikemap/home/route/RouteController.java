@@ -36,40 +36,21 @@ public class RouteController {
 	
 	//코스검색
 	@RequestMapping("/routeSearch")
-	public ModelAndView routeSearch() {
+	public ModelAndView routeSearch(RoutePagingVO pagingVO) {
 		ModelAndView mav = new ModelAndView();
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
-		RoutePagingVO pagingVO = new RoutePagingVO();
-		List<RouteVO> list ;
+
+		System.out.println(pagingVO.getNowPage());
+		
 		try {
-			int totalRecord = dao.searchTotalRecord();
-			pagingVO.setTotalRecord(totalRecord);
-			
-			list = dao.selectRouteAll(pagingVO);
-			mav.addObject("list", list);
+			int totalRecord = dao.searchResultRecord(pagingVO);
+			pagingVO.setTotalRecord(totalRecord);			
 			mav.addObject("pagingVO", pagingVO);		
 		}catch(Exception e) {
 			System.out.println("루트 검색 화면 호출 에러 " + e.getMessage());
 		}		
 		mav.setViewName("route/routeSearch");
 		return mav;
-	}
-	
-	@RequestMapping(value="/searchRouteAll", method= {RequestMethod.POST})
-	@ResponseBody
-	public List<RouteVO> routeSearchAll(RoutePagingVO pagingVO){
-		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
-		List<RouteVO> list = new ArrayList<RouteVO>();
-		
-		try {
-			int totalRecord = dao.searchResultRecord(pagingVO);
-			pagingVO.setTotalRecord(totalRecord);
-			
-			list = dao.selectRouteAll(pagingVO);
-		}catch(Exception e) {
-			System.out.println("전체 루트 검색 에러 " + e.getMessage());
-		}
-		return list;
 	}
 	
 	// 루트 리스트 검색
@@ -106,10 +87,9 @@ public class RouteController {
 	}
 
 	//코스검색(글보기)
-	@RequestMapping("/routeSearchView")
-	public ModelAndView routeSearchView(int noboard, HttpSession session) {
+	@RequestMapping(value="/routeSearchView", method=RequestMethod.POST)
+	public ModelAndView routeSearchView(int noboard, RoutePagingVO pagingVO, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		
 		String logId = (String)session.getAttribute("logId");
@@ -120,6 +100,7 @@ public class RouteController {
 				
 				mav.addObject("routeVO", vo);
 				mav.addObject("placeVO", placeVO);
+				
 			}else {
 				if(vo.getUserid().equals(logId)) {
 					RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
@@ -128,6 +109,24 @@ public class RouteController {
 					mav.addObject("placeVO", placeVO);
 				}
 			}
+			
+			pagingVO.setTotalRecord(dao.searchResultRecord(pagingVO));
+			// 이전 글 다음 글 검색하기
+			int idx = dao.getPrevNext(pagingVO);
+			
+			if(idx < pagingVO.getTotalRecord()) {
+				pagingVO.setIdx(idx+1);
+				RouteVO prev = dao.selectPrevNext(pagingVO);
+				mav.addObject("prev", prev);
+			}
+			
+			if(idx > 1 ) {
+				pagingVO.setIdx(idx-1);
+				RouteVO next = dao.selectPrevNext(pagingVO);
+				mav.addObject("next", next);
+			}
+			
+			mav.addObject("pagingVO", pagingVO);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

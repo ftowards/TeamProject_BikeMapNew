@@ -6,13 +6,19 @@
 <div style='width:1200px; height:1510px; margin:0 auto'>
 	<div class="optionBar" >
 		<form id="searchRoute" method="post" action="#">
-			<select name="searchKey" class="regionSelect">
+			<select id="searchBarKey" name="searchBarKey" class="regionSelect">
 	   		    <option value="title">코스이름</option>
 			    <option value="userid">작성자</option>
 			    <option value="region">지역</option>
 			</select>
-			<input type="text" id="searchWord" name="searchWord" class="schBar" style='padding-left:20px; color:#7F7F7F; font-size:17px; font-weight:bolder;'/>
+			<input type="text" id="searchBarWord" name="searchBarWord" class="schBar" style='padding-left:20px; color:#7F7F7F; font-size:17px; font-weight:bolder;'/>
 			<input type="submit" class="mint_Btn" value="검 색" style='width:70px; height:40px'/>
+		</form>
+		<form id="pagingVO" method="post" action="/home/routeSearchView" style="diplay:none">
+			<input type="hidden" name="nowPage" value="${pagingVO.nowPage }"/>
+			<input type="hidden" name="searchKey" value="${pagingVO.searchKey }"/>
+			<input type="hidden" name="searchWord" value="${pagingVO.searchKey }"/>
+			<input type="hidden" name="noboard" value=""/>
 		</form>
 	</div>
 	<div id="hitDiv">
@@ -54,16 +60,17 @@
 </div>
 <script>
 	$(function(){
-		var nowPage = 1;
+		var nowPage = $("input[name=nowPage]").val();
 		// 페이지 로딩 시 전체 리스트 불러오기
-		movePage(1);
+		movePage(nowPage);
 			
 		// 검색
 		$("#searchRoute").submit(function(){
-			if($("#searchWord").val() == ""){
+			if($("#searchBarWord").val() == ""){
 				alert("검색어를 입력하세요.");
 				return false;
 			};
+			
 			movePage(1);
 			return false;
 		});
@@ -79,19 +86,15 @@
 	// 지도 썸네일 만들기
  	function makeThumbnail(result){
 	
-		var listTag = "";
+		var listTag = "<ul id='contentDivs'>";
 		for(var i = 0 ; i < result.length ; i++){
-		
 
-			if(i== 0){
-				listTag += "<ul>";
-			}
 			// 썸네일 작성부
-			listTag += "<li class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"'><div id='map"+i+"' class='map'></div>";
+			listTag += "<li class='contentDiv' onclick='goViewPage("+result[i].noboard+")'><div id='map"+i+"' class='map'></div>";
 			// 루트 설명 작성부
 			listTag += "<div class='routeSubscript'><ul ><li class='wordCut'>"+result[i].title+"</li><li class='wordCut'>"+result[i].region+"</li><li>"+result[i].distance.toFixed(2)+"km</li>";
 			var rateWidth =  (result[i].rating/5 *125);
-			listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></a></li>";
+			listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
 		}
 		listTag +="</ul>";
 			
@@ -161,41 +164,49 @@
 		
 		// 페이징 먼저 변경
 		var url = "<%=request.getContextPath()%>/searchRoutePaging";
-		var data = $("#searchRoute").serialize();
-			data += "&nowPage="+page+"&order="+$("input[name=order]:checked").val();
+		var data = "nowPage="+page+"&searchKey="+$("#searchBarKey").val()+"&searchWord="+$("#searchBarWord").val();
+			data += "&order="+$("input[name=order]:checked").val();
 		
 		$.ajax({
 			type : 'POST',
 			url : url,
 			data : data,
 			success : function(result){
-				setPaging(result);
-				nowPage = result.nowPage;
+				if(result.totalRecord <= 0){
+					toast("검색 결과가 없습니다.",1500);
+					return false;
+				}else{
+					$("input[name=searchKey]").val($("#searchBarKey").val())
+					$("input[name=searchWord]").val($("#searchBarWord").val())
+					
+					setPaging(result);
+					nowPage = result.nowPage;
+					$("input[name=nowPage]").val(nowPage);
+				}
 			},error : function(){
 				console.log("페이징 오류");
 			}
 		});
 		
-		if($("#searchWord").val() ==""){
-			url = "<%=request.getContextPath()%>/searchRouteAll";
-		} else {
-			url = "<%=request.getContextPath()%>/searchRouteOk";
-		}
+		// 리스트 데이터 검색
+		url = "<%=request.getContextPath()%>/searchRouteOk";
 		$.ajax({
 			type : 'POST',
 			url : url,
 			data : data,
 			success : function(result){
-				if( result.length <= 0 ){
-					alert("검색 결과가 없습니다.");
-				} else{ 
-					makeThumbnail(result);
-				}
+				makeThumbnail(result);
 			}, error : function(){
 				console.log("페이지 + 검색 결과 호출 에러");
 			}
 		});
 	}
-	
 
+	// 뷰페이지 이동
+	function goViewPage(noboard){
+		
+		$("input[name=noboard]").val(noboard)
+		var data = $("#pagingVO").serialize();
+		$("#pagingVO").submit();
+	}
 </script>

@@ -7,6 +7,26 @@
 <link rel="stylesheet" href="/home/css/routeSearchView.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+//뷰페이지 이동
+function goViewPage(noboard){
+	
+	$("input[name=noboard]").val(noboard)
+	var data = $("#pagingVO").serialize();
+	
+	$("#pagingVO").attr("action","/home/routeSearchView" );
+	$("#pagingVO").submit();
+}
+
+// 리스트 이동
+function goList(){
+	$("input[name=noboard]").val(0);
+	var data = $("#pagingVO").serialize();
+	
+	$("#pagingVO").attr("action","/home/routeSearch" );
+	$("#pagingVO").submit();
+}
+</script>
 <div class="routeSearchViewDiv2">
 	<div id="mapDiv" style='width:1200px;'>
 		<b>코스정보보기</b><br/><hr id="titleLine"/>
@@ -208,24 +228,34 @@
 	
 			<!-- 이전글,다음글 & 목록보기 -->
 		<div style='width:1200px; padding-top:40px'>
+			<form id="pagingVO" method="post" action="/home/routeSearchView" style="diplay:none">
+				<input type="hidden" name="nowPage" value="${pagingVO.nowPage }"/>
+				<input type="hidden" name="searchKey" value="${pagingVO.searchKey }"/>
+				<input type="hidden" name="searchWord" value="${pagingVO.searchWord }"/>
+				<input type="hidden" name="noboard" value=""/>
+			</form>
 			<ul>
 				<li>
 					<hr/>
-				<li>
-				<li class="prevTxt">
-					이전글<span class="prev_next">▲</span><a href="#">이전글 제목 들어갈 자리</a>
 				</li>
-				<li>
-					<hr>
-				</li>
-				<li class="prevTxt">
-					다음글<span class="prev_next">▼</span><a href="#">다음글 제목 들어갈 자리</a>
-				</li>
-				<li>
-					<hr/>
-				</li>
+				<c:if test="${next != null }">
+					<li class="prevTxt">
+						다음글<span class="prev_next">▲</span><a href="javascript:goViewPage(${next.noboard})">${next.title }</a>
+					</li>
+					<li>
+						<hr>
+					</li>
+				</c:if>
+				<c:if test="${prev != null }">
+					<li class="prevTxt">
+						이전글<span class="prev_next">▼</span><a href="javascript:goViewPage(${prev.noboard})">${prev.title }</a>
+					</li>
+					<li>
+						<hr/>
+					</li>
+				</c:if>
 				<li class="listBtn">
-					<button onclick="location.href='/routeSearch'">목록보기</button>
+					<button onclick="javascript:goList()">목록보기</button>
 				</li>
 			</ul>
 		</div>

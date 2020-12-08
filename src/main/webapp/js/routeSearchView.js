@@ -105,7 +105,6 @@ $(function(){
 			var array = $(this).val().split("/");
 			var p = new kakao.maps.LatLng(array[1], array[0]);
 			
-			console.log(p);
 			bounds.extend(p);
 			routePosition.push(p);
 		});
@@ -737,3 +736,4 @@ function sendMsg(noboard, receiver, type){
 		}
 	})
 }
+
