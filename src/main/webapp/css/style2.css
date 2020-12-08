@@ -494,20 +494,40 @@ body{
 }
 
 .toast .btn{	
+	color: #00B0B0;
+    border: 1px solid #00B0B0;
+    background-color: white;
+}
 
+.textCntDiv{
+		border:1px solid gray;
+		border-top:1px solid #ccc;
+		margin : 0 auto;
+		width:361px;
+		height:30px;
+		text-align:right;
+		position:relative;
+		top : -6px;		
+		border-radius:0px 0 8px 8px;
+		font-size : 15px;
+		line-height : 30px;
+		padding-right : 10px;
+}
+
+#msgContainer .mintBtn{	
 	font-weight: bold;
-	width:70px;
-	height:30px;
-	font-size:15px;
-    border-radius: 10px;
+    border-radius: 5px;
     text-decoration: none;
     text-align: center;
     padding: 3px 6px;
-    margin : 10px 8px 0 0;
-    color: #00B0B0;
-    border: none;
-    background-color: #fff;
-    box-shadow: 3px 3px 3px rgb(84,84,84);
+    margin : -11px 8px 0 0;
+    color: white;
+    border: 1px solid #00B0B0;
+    background-color: #00B0B0;
+    float: right;
+    height : 30px;
+    line-height :20px;
+    font-size : 14px;
 }
 
 .slider_Review{
@@ -563,4 +583,3 @@ body{
 		font-size:17px;
 		font-family:'Noto Sans KR', sans-serif;
 	}
-

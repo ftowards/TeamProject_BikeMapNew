@@ -6,6 +6,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class NoticeController {
@@ -36,5 +37,13 @@ public SqlSession sqlSession ;
 			System.out.println("메세지 입력 에러 " + e.getMessage());
 		}
 		return result;
+	}
+	
+	@RequestMapping("/sendMsg")
+	public ModelAndView sendMsg(){
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("popup/sendMsg");
+		return mav;
 	}
 }
