@@ -44,7 +44,7 @@ function goList(){
 					<li><input type="button" value="삭제" class="WMint_Btn" onclick="setCloseRoute1('del')"/></li>
 					<li>
 						<c:if test="${routeVO.closed == 'F'}"><input type="button" class="WMint_Btn" value="비공개" onclick="setCloseRoute1('close');"/></c:if>
-						<c:if test="${routeVO.closed == 'T'}"><input type="button" class="WMint_Btn" value="공&nbsp;개" onclick="setOpenRoute();"/></c:if>
+						<c:if test="${routeVO.closed == 'T'}"><input type="button" class="WMint_Btn" value="공개" onclick="setOpenRoute();"/></c:if>
 					</li>
 				</c:if>
 			</ul>

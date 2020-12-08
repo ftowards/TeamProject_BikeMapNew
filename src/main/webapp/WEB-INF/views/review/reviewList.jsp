@@ -187,11 +187,11 @@ function movePage(page){
 						
 							<div id="subtitle">
 								<ul>
-									<li  class="wordCut">
-										<a href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
+									<li class="subject_Hitcount">조회수 ${vo.hit}</li>
+									<li class="wordCut">
+										<a class="subject_title" href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
 											${vo.noboard }&emsp;<span>${vo.subject }</span>
 										</a>
-										<li>조회수 :${vo.hit}</li>
 									</li>
 								</ul>
 							</div>
