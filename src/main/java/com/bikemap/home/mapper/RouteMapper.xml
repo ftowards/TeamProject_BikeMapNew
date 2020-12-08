@@ -39,7 +39,7 @@
 	<select id="selectRoute" resultType="com.bikemap.home.route.RouteVO">
 		select noboard, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint5, routepoint6, routepoint7,
 		geocode, polyline, userid, distance, ascent, descent, region, to_char(writedate, 'YY-MM-DD HH24:MI') writedate,
-		round(rating, 1) rating, ratecnt, closed from route
+		round(rating, 1) rating, ratecnt, closed, scrap from route
 		where noboard = #{param1}
 	</select>
 	<select id="selectRoute2" resultType="com.bikemap.home.route.RouteVO">
@@ -138,4 +138,16 @@
 	<delete id="deleteRoute">
 		delete from route where noboard = #{param1} and userid = #{param2}
 	</delete>
+	<select id="chkReference" resultType="int">
+		select (nvl(b.tourRef,0) + nvl(c.reviewRef,0)) refCount from route a
+			left join (select reference, count(noboard) tourRef from tour group by reference having reference = #{param1}) b on a.noboard = b.reference
+			left join (select reference, count(noboard) reviewRef from review group by reference having reference = #{param1}) c on a.noboard = c.reference
+		where noboard = #{param1}
+	</select>
+	<update id="scrapRoute">
+		update route set scrap='T' where noboard = #{param1}
+	</update>
+	<update id="releaseRoute">
+		update route set scrap='F' where noboard = #{param1}
+	</update>
 </mapper> 

@@ -537,4 +537,49 @@ public class RouteController {
 		
 		return result;
 	}
+	
+	// 루트 레퍼런스 체크
+	@RequestMapping("/route/chkReference")
+	@ResponseBody
+	public int chkReference(int noboard) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			result = dao.chkReference(noboard);
+		}catch(Exception e) {
+			System.out.println("루트 레퍼런스 체크 에러 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 루트 스크랩
+	@RequestMapping("/scrapRoute")
+	@ResponseBody
+	public int scrapRoute(int noboard) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			result = dao.scrapRoute(noboard);
+		}catch(Exception e) {
+			System.out.println("루트 스크랩 에러 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 루트 스크랩 해제
+	@RequestMapping("/releaseRoute")
+	@ResponseBody
+	public int releaseRoute(int noboard) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			result = dao.releaseRoute(noboard);
+		}catch(Exception e) {
+			System.out.println("루트 스크랩 해제 에러 " + e.getMessage());
+		}
+		return result;
+	}
 }

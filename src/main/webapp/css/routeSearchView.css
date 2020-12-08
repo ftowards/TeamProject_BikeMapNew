@@ -550,7 +550,7 @@
 		float : right;
 	}
 	
-	#routeWriterMenu .WMint_Btn{
+	#routeWriterMenu .WMint_Btn,#routeWriterMenu .mint_Btn{
 		font-size: 15px;
 	    font-weight: bold;
 	    border-radius: 5px;
@@ -563,5 +563,11 @@
 	    background-color: white;
 	    height: 30px;
 	    line-height: 20px;
-	}	
+	}
+	
+	
+	#routeWriterMenu .mint_Btn{
+		color : white;
+		background-color: #00B0B0;
+	}
 	

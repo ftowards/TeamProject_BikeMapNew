@@ -15,8 +15,11 @@
 		<div id="routeWriterMenu">
 			<ul>
 				<li id="userid" class="txtShadow">${routeVO.userid }</li>
-				<c:if test="${logId == 'admid' }">
+				<c:if test="${logId == 'admin' && routeVO.scrap !='T'}">
 					<li><input type="button" value="스크랩" class="WMint_Btn" onclick="scrapRoute()"/></li>
+				</c:if>
+				<c:if test="${logId == 'admin' && routeVO.scrap =='T'}">
+					<li><input type="button" value="스크랩 해제" class="mint_Btn" onclick="releaseRoute()"/></li>
 				</c:if>
 				<c:if test="${routeVO.userid == logId }">
 					<li><input type="button" value="삭제" class="WMint_Btn" onclick="setCloseRoute1('del')"/></li>
