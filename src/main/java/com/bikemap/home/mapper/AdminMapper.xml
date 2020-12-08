@@ -22,6 +22,7 @@
 			<if test="searchType == 'content'.toString()">WHERE CONTENT LIKE '%' || #{searchWord} || '%' </if>
 			<if test="searchType == 'subject'.toString()">WHERE SUBJECT LIKE '%' || #{searchWord} || '%' </if>	
 			<if test="searchType == 'title'.toString()">WHERE TITLE LIKE '%' || #{searchWord} || '%' </if>			
+			<if test="searchType == 'routeAll'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' OR  TITLE LIKE '%' || #{searchWord} || '%'</if>
 		</if>
 	</sql>
 
@@ -70,7 +71,7 @@
 		select count(noboard) from route
 	</select>
 	<select id = "routeAllRecord" resultType="com.bikemap.home.route.RouteVO">
-		select * from(select * from(select noboard, title, polyline, userid, region, distance, mapcenter, maplevel, TRUNC(nvl(rating,0), 1) rating from route 
+		select * from(select * from(select noboard, title, polyline, userid, region, distance, mapcenter, maplevel, TRUNC(nvl(rating,0), 1) rating, scrap from route 
 		<include refid="search"></include> order by noboard desc)
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
 		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
@@ -98,7 +99,7 @@
 		select count(noboard) from tour
 	</select>
 	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourVO">
-		select * from(select * from(select noboard, title, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate
+		select * from(select * from(select noboard, title, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, scrap
 		from tour <include refid="search"></include> order by noboard desc)
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
 		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>

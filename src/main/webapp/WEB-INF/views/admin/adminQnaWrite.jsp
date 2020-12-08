@@ -64,7 +64,7 @@ $(function(){
                     
                         <tr>
                         <td>내용</td>
-                        <td><textarea readonly cols=70 rows=10 style="resize: none;overflow:hidden;">${vo.content }</textarea></td>
+                        <td>${vo.content }</td>
                         </tr>
  
                         <tr>
