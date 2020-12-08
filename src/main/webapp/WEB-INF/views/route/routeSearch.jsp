@@ -195,7 +195,9 @@
 			url : url,
 			data : data,
 			success : function(result){
+
 				makeThumbnail(result);
+
 			}, error : function(){
 				console.log("페이지 + 검색 결과 호출 에러");
 			}

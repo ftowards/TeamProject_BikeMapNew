@@ -5,7 +5,8 @@
 <script>
 
 function makeThumbnail(result){
-		$("#reviewBoard").children().remove();		
+		//$("#reviewBoard").children().remove();	
+		$("#reviewBoard").html("");
 		var listTag = "";
 		for(var i = 0 ; i < result.length ; i++){
 			
@@ -20,17 +21,18 @@ function makeThumbnail(result){
 					
 			listTag +=	"<div class='right'>";
 			listTag +=	"<div class= 'subtitle'>";
-					
+				
 			listTag +=	"<ul>";
-			listTag +=	"<li>";
+			listTag +=	"<li class='wordCut'>";
 			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
 			listTag +=	"</a>";
 			listTag +=	"</li>";
 			listTag +=	"</ul>";
 			listTag +=	"</div>";
+			listTag += "<br/><br/><br/>"
 			listTag +=	"<ul>";
-			listTag +=	"<li id='reviewtext'>";
+			listTag +=	"<li class='wordCut' id='reviewtext'>";
 			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].content;
 			listTag +=	"</a>";
@@ -43,7 +45,7 @@ function makeThumbnail(result){
 			listTag +="<img src='<%=request.getContextPath() %>/img/img_Review/review.png'/>";
 			listTag += result[i].userid+"님의 생생한 후기";
 			listTag +="</li>";
-			listTag +="<li class='writedate'>${vo.writedate } 작성</li>"
+			listTag +="<li class='writedate'>"+result[i].writedate+"작성</li>"
 			listTag +="</ul>";
 			listTag +="</div>";
 			listTag +="</div>";
@@ -51,8 +53,11 @@ function makeThumbnail(result){
 			listTag +="</div>";
 			listTag +="</div>";
 		
-	
-		}$("#reviewBoard").append(listTag);
+			console.log(listTag); 
+			console.log('----------------------------------');
+		}
+		$("#reviewBoard").html(listTag);
+		console.log(listTag); 
 	
 }
 
@@ -85,6 +90,7 @@ function setPaging(vo){
 				
 }
 
+
 // 페이지 이동
 function movePage(page){
 	
@@ -93,7 +99,6 @@ function movePage(page){
 	var data = $("#searchReview").serialize();
 		data += "&nowPage="+page+"&order="+$("input[name=order]:checked").val();
 	
-	alert(data);
 	
 	$.ajax({
 		type : 'POST',
@@ -145,57 +150,23 @@ function movePage(page){
 			<input type="text" id="searchWordReview" name="searchWord"> 
 			<input type="submit" class="mint_Btn" value="검 색"/>
 		</form>
-		
-
-<!-- 도시 검색창 -->		
-		<div class= "reviewtitle">
-			<span class="title">도시검색</span><br/><br/>
-		</div>
-
-		<div class = content>
-			<div id= "contentlocation">
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">서울</span>
-					<a href="https://korean.visitseoul.net/index"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png" /></a>
-				</div>			
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">부산</span>
-					<a href="https://www.visitbusan.net/kr/index.do"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg" /></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">여수</span>
-					<a href="https://www.yeosu.go.kr/tour"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">제주</span>
-					<a href="https://ijto.or.kr/korean/"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">대구</span>
-					<a href="https://tour.daegu.go.kr/"><img src="<%=request.getContextPath() %>/img/img_Review/review_img5.png"/></a>
-				</div>
-				<div class = "contentlocationdiv">
-					<span class="locationTitle">순천</span>
-					<a href="https://www.suncheon.go.kr/tour/"><img src="<%=request.getContextPath() %>/img/img_Review/review_img6.png"/></a>
-				</div>
-			</div>
-		</div>
 
 
 <!-- 	후기 제목 -->
 		<div class= "reviewtitle">
-			<span class="title">후기 게시판</span><br><br>
-			<div id="subTxt">추천순<span id="lBar">&ensp;|&ensp;</span><span style='color:#AEAAAA;'>최신순</span></div>
-			<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'" style='float:right; margin:0 25px 10px 0;'>
+			<div class="title">후기 게시판</div><br><br>
+			<div class="orderRadio">
+				<input type ="radio" name="order" id="orderNobard" value="noboard" checked/><label for="orderNobard" class="subTxt">최신순</label><span id="lBar">&ensp;|&ensp;</span>
+				<input type ="radio" name="order" id="orderHit" value="hit"/><label for="orderRating" class="subTxt">추천순</label>
+				<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'" style='float:right; margin:0 25px 10px 0;'>
+			</div>
 		</div><br/>
 		
 
 <!-- 후기창 게시판-->
-
-		
 		<hr style='border:1.5px solid black; background-color:black'/>
 		<div id="reviewBoard">
-		<c:forEach var="vo" items="${list}">
+		<c:forEach var="vo" items="${list }">
 				<div class ="boardlist">
 					<div class="reviewContents">
 					
@@ -215,15 +186,11 @@ function movePage(page){
 										<a href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
 											${vo.noboard }&emsp;<span>${vo.subject }</span>
 										</a>
+										<li>조회수 :${vo.hit}</li>
 									</li>
 								</ul>
-<!-- 								<a href="#"> -->
-<%-- 									<img class="badge1" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/> --%>
-<!-- 								</a>  -->
-<!-- 								<a href="#"> -->
-<%-- 									<img class="badge2" src="<%=request.getContextPath() %>/img/img_main/alarm_icon.png"/> --%>
-<!-- 								</a>  -->
 							</div>
+							
 								<ul>
 									<li class="wordCut" id="reviewtext">
 										<a href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
@@ -239,6 +206,7 @@ function movePage(page){
 										${vo.userid }님의 생생한 후기
 									</li>
 									<li class="writedate">${vo.writedate } 작성</li>
+									
 								</ul>
 							</div>
 						</div>
@@ -247,8 +215,7 @@ function movePage(page){
 				</div>
 			</c:forEach>
 			</div>
-<!-- 		<div id="paging2" style='text-align:center; margin:80px; font-size:20px;'>1&emsp;<span style='color:#00B0B0; font-weight:600; '>2</span>&emsp;3&emsp;4&emsp;5</div> -->
-<!-- 		</div> -->
+			
 <!-- 		=============================페이징============================= -->
 				<div id="paging">
 					<ul>

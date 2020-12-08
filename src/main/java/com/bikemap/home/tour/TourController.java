@@ -519,4 +519,104 @@ public class TourController {
 	public String tourComplete() {
 		return "/tour/tourComplete";
 	}
+	
+	//글삭제 조건
+	@RequestMapping("/tourViewDeleteChk")
+	@ResponseBody
+	public int tourViewDeleteChk(int noboard,HttpSession ses) {
+		
+		int result = 0;
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+			
+		try {
+				if(1 <= dao.selectTourCompState(noboard)) {
+					result = 1;
+				
+				}else if(2 <= dao.selectComplistChk(noboard)){
+					result = 2;
+				
+				}else{
+					result = 3;
+				}
+		}catch(Exception e) {
+			System.out.println("투어 게시글 확인 실패"+e.getMessage());
+		}
+		return result;
+		
+	}
+	//글 삭제완료
+	@RequestMapping("/deleteTourView")
+	@ResponseBody
+	public int tourViewDelete(int noboard,HttpSession ses) {
+		
+		int result = 0;
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		try {
+			result = dao.deleteTourView(noboard,(String)ses.getAttribute("logId"));
+			
+		}catch(Exception e) {
+			System.out.println("투어 게시글 삭제 실패"+e.getMessage());
+		}
+		return result;
+	}
+	
+	//글 수정 이동
+	@RequestMapping("/tourViewEdit")
+	public ModelAndView tourViewEdit(@RequestParam("noboard") int noboard,HttpSession ses) {
+		
+		ModelAndView mav = new ModelAndView();
+		try {
+			TourDaoImp dao  = sqlSession.getMapper(TourDaoImp.class);
+		
+			TourVO vo = dao.tourEditSelect(noboard,(String)ses.getAttribute("logId"));
+		
+			
+			mav.addObject("vo",vo);
+			
+		}catch(Exception e) {
+			System.out.println("동행찾기 게시판 글수정 정보 읽기 에러..."+e.getMessage());
+		}
+		mav.setViewName("/tour/tourViewEdit");	
+	
+		return mav;
+	}
+	
+	
+	//글 수정하기
+	@RequestMapping(value="/tourEditFormOk", method= RequestMethod.POST)
+	@ResponseBody
+	public int tourEditFormOk(TourVO vo,HttpSession ses) {
+		
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		int result = 0;
+		try {
+			result = dao.updateTourView(vo);
+			System.out.println("동행찾기 수정 result==="+result);
+
+		}catch(Exception e) {
+			System.out.println("글 수정하기 에러===="+e.getMessage());
+		}
+		return result;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

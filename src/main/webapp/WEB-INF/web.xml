@@ -105,6 +105,10 @@
 			<include-prelude>/WEB-INF/views/inc/headerReviewView.jspf</include-prelude>
 		</jsp-property-group>
 		<jsp-property-group>
+			<url-pattern>/WEB-INF/views/review/reviewList.jsp</url-pattern>
+			<include-prelude>/WEB-INF/views/inc/headerReviewView.jspf</include-prelude>
+		</jsp-property-group>
+		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/saveMyRoute/*</url-pattern>
 			<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
 			<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>

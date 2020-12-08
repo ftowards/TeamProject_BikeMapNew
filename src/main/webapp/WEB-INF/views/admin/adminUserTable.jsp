@@ -26,15 +26,14 @@
 			
 			listTag += "<li>"+result[i].birth+"세</li>";
 			listTag += "<li>"+result[i].tourcnt+"회</li>";
-			listTag += "<li>"+result[i].heart+"회</li>";
-			
+			listTag += "<li>"+result[i].heart+"회</li>";			
 			listTag += "<li style='color:red'>";
 				if(result[i].endday==null){
-					listTag +="<input type='button' title="+result[i].userid+" id='suspendBtn'/>";
+					listTag +="<input type='button' title="+result[i].userid+" id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/>";
 					listTag += "</li>";
 					listTag += "<li style='color:red'>-</li>";
 				}else{ 
-					listTag +="<input type='button' title="+result[i].userid+" id='suspendEditBtn'/>";
+					listTag +="<input type='button' title="+result[i].userid+" id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/>";
 					listTag += "</li>";
 					listTag += "<li style='color:red'>~"+result[i].endday+"</li>";
 				}		
@@ -79,10 +78,10 @@
 								<li>${vo.heart}회</li>
 								<li style="color:red">
 									<c:if test="${vo.endday==null}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
-										<input type="button" title="${vo.userid}" id="suspendBtn"/>
+										<input type="button" title="${vo.userid}" id="suspendBtn" data-toggle="modal" data-target="#modal_simple"/>
 									</c:if>
 									<c:if test="${vo.endday!=null}">
-										<input type="button"  title="${vo.userid}" id="suspendEditBtn"/>
+										<input type="button"  title="${vo.userid}" id="suspendEditBtn" data-toggle="modal" data-target="#modal_suspendEdit"/>
 									</c:if>
 							
 								</li>
@@ -141,18 +140,44 @@
 			</div><!-- adminContent -->
 			
 	
-		<!-- 모달 12/04 검사맡고 진행.. 
-		<section class="section-content py-5">
+<!-- 		모달 안된다... <section class="section-content py-5"> -->
+<!-- 		<button data-toggle="modal" data-target="#modal_simple" class="btn btn-primary" type="button">  Modal simple  </button> -->
+<!-- 		</section> -->
 
-		<button data-toggle="modal" data-target="#modal_simple" class="btn btn-primary" type="button">  Modal simple  </button>
-
-		<button data-toggle="modal" data-target="#modal_aside_right" class="btn btn-primary" type="button">  Modal aside right  </button>
-
-		<button data-toggle="modal" data-target="#modal_aside_left" class="btn btn-primary" type="button">  Modal aside left  </button>
-		
-		
-
-		</section>
+<!-- 			<div class="modal-container" id="modal_simple"> -->
+<!-- 			    <div class="modal show-modal"> -->
+<!-- 			      <button class="close-btn" id="close"> -->
+<!-- 			        <i class="fa fa-times"></i> -->
+<!-- 			      </button> -->
+<!-- 			      <div class="modal-header"> -->
+<!-- 			        <h3>Sign Up</h3> -->
+<!-- 			      </div> -->
+<!-- 			      <div class="modal-content"> -->
+<!-- 			        <p>Register with us to get offers, support and more</p> -->
+<!-- 			        <form class="modal-form"> -->
+<!-- 			          <div> -->
+<!-- 			            <label for="name">Name</label> -->
+<!-- 			            <input type="text" id="name" placeholder="Enter Name" class="form-input"> -->
+<!-- 			          </div> -->
+<!-- 			          <div> -->
+<!-- 			            <label for="email">Email</label> -->
+<!-- 			            <input type="email" id="email" placeholder="Enter email" class="form-input"> -->
+<!-- 			          </div> -->
+<!-- 			          <div> -->
+<!-- 			            <label for="password">Password</label> -->
+<!-- 			            <input type="password" id="password" placeholder="Enter password" class="form-input"> -->
+<!-- 			          </div> -->
+<!-- 			          <div> -->
+<!-- 			            <label for="password2">Confirm Password</label> -->
+<!-- 			            <input type="password" id="password2" placeholder="Confirm password" class="form-input"> -->
+<!-- 			          </div> -->
+			
+<!-- 			          <input type="submit" value="submit" class="submit-btn"> -->
+<!-- 			        </form> -->
+<!-- 			      </div> -->
+<!-- 			    </div> -->
+<!-- 			  </div> -->
+			  
 			<div id="modal_simple" class="modal fade" tabindex="-1" role="dialog">
 				  <div class="modal-dialog modal-dialog-centered" role="document">
 				    <div class="modal-content">
@@ -170,14 +195,13 @@
 						    		id="suspendlayerbox_close"></a><br/>
 						    	<div id="supspendDiv">
 					    	
-					    	
 						    	<div class="pop2Row"> 
 						    		<span class="pop2Left">정지 기간</span> <input type="number" id="suspendTime" name="endday" min="0" max="90"/>일
 						    		<input type="button" name="30days" value="30" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
 						    		<input type="button" name="60days" value="60" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
 						    		<input type="button" name="90days" value="90" class="mint_Btn" onclick="change_suspendTime(this.value)"/>
 						    	</div>
-						    	<div class="pop2Row"><span class="pop2Left">사유</span><span id="spUserid">홍길동</span>회원님은 <span id="spReportNum">10회</span>
+						    	<div class="pop2Row"><span class="pop2Left">사유</span><span id="spUserid"></span>회원님은 <span id="spReportNum">10회</span>
 						    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.
 						    	</div>
 						    	<div>
@@ -197,19 +221,22 @@
 				    </div>
 				  </div> <!-- modal-bialog .// -->
 				</div> <!-- modal.// -->
+				
 			<!-- suspend POP -->
 			
 			<!-- suspend Editpopup -->
-			<div id="userSuspendEdit" class="layerpop"
-				    	style="width:330px;height:300px;">
-				    	
+			<div id="modal_suspendEdit" class="modal fade" tabindex="-1" role="dialog">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
 				    	<form id="userSuspendEditFrm">
 				    	<input type="hidden" name="userid" id="suspendEditUserid" value=""/><!-- DB쪽 보낼데이터 -->
-					    
-					    	<article class="layerpop_area">
-					    	<div class="title">회원 정지 수정</div>
-					    	<a href="javascript:suspendEditPopupClose();" class="layerpop_close"
-					    		id="suspendlayerbox_close"></a><br/>
+					    	<div class="modal-header">
+				        		<h5 class="modal-title">회원 정지 수정 및 설정</h5>
+					        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          		<span aria-hidden="true">&times;</span>
+					        		</button>
+					      	</div>
+					      	<div class="modal-body">
 					    	<div id="supspendDiv">
 					    		<div class="pop2Row">
 					    			<input type="radio" name="selSuspend" value="0" >정지해제
@@ -233,10 +260,16 @@
 								</div>
 						    	<input type="submit" value="등록" />
 					    	</div>
-					    	</article>
+					    	</div>
+					    	 <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <input type="submit" class="btn btn-primary" value="변경사항 저장">
+							</div>
+
 				    	</form>
-		
 			</div>
+		</div>
+	</div>
 			<!-- suspend POP -->
 <!--  adminBottom -->
 </div>
