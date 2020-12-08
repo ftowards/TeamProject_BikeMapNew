@@ -110,4 +110,13 @@ public interface RouteDaoImp {
 	
 	// 루트 삭제
 	public int deleteRoute(int noboard, String userid);
+	
+	// 레퍼런스 체크
+	public int chkReference(int noboard);
+	
+	// 루트 스크랩
+	public int scrapRoute(int noboard);
+	
+	// 루트 스크랩 해제
+	public int releaseRoute(int noboard);
 }

@@ -493,27 +493,42 @@ $("#grayBtn").on('click', function(){
   	
   // 비공개 전환
   function setCloseRoute1(type){
-  	// 1. 스크랩 여부 >> 진행 시 스크랩 취소 됨
+  	// ++ 레퍼런스 사용 여부
   	var noboard = $("#noboard").val();
-  	
   	var msg = "삭제";
-  	if(type == 'close'){
-  		msg = "비공개";
-  	}
+
+	if(type == 'close'){
+		msg = "비공개 처리";
+	}
+
   	
   	$.ajax({
-  		url :"/home/route/setCloseRoute1",
+  		url : "/home/route/chkReference",
   		data : "noboard="+noboard,
   		success : function(result){
-  			if(result == 1){
-  				toastConfirm("현재 추천 루트로 게시 중입니다. "+ msg +" 시 추천 루트 게시가 취소됩니다.<br/>진행 하시겠습니까?", function(){
-  					setCloseRoute2(noboard, type);
-  					// 스크랩 취소하는 펑션 필요
-  				});
-  			}else {
-  				setCloseRoute2(noboard, type);
-  			}
-  		}, error : function(err){
+  			if(result > 0){
+  				toast("현재 투어나 후기에 사용 중으로 "+msg+"가 불가합니다");
+			}else{
+			  	// 1. 스크랩 여부 >> 진행 시 스크랩 취소 됨
+			  	
+			  	$.ajax({
+			  		url :"/home/route/setCloseRoute1",
+			  		data : "noboard="+noboard,
+			  		success : function(result){
+			  			if(result == 1){
+			  				toastConfirm("현재 추천 루트로 게시 중입니다. "+ msg +" 시 추천 루트 게시가 취소됩니다.<br/>진행 하시겠습니까?", function(){
+			  					setCloseRoute2(noboard, type);
+			  					// 스크랩 취소하는 펑션 필요
+			  				});
+			  			}else {
+			  				setCloseRoute2(noboard, type);
+			  			}
+			  		}, error : function(err){
+			  			console.log(err);
+			  		}
+			  	});
+			}
+  		},error : function(err){
   			console.log(err);
   		}
   	});
@@ -649,6 +664,46 @@ $("#grayBtn").on('click', function(){
   		});
   	});
   }	
+  
+// 스크랩 하고 댓글 / 메세지 남기기
+function scrapRoute(noboard){
+	var noboard = $("#noboard").val();
+
+	$.ajax({
+		url : "/home/scrapRoute",
+		data : "noboard="+noboard,
+		success : function(result){
+			if(result > 0){
+				toast("스크랩 완료",1500);
+				setTimeout(function(){location.reload(true)},1500);
+			}else{
+				toast("스크랩 오류",1500);
+			}
+		}, error : function(err){
+			console.log(err);
+		}
+	});
+}
+  
+// 스크랩 해제
+function releaseRoute(noboard){
+	var noboard = $("#noboard").val();
+
+	$.ajax({
+		url : "/home/releaseRoute",
+		data : "noboard="+noboard,
+		success : function(result){
+			if(result > 0){
+				toast("스크랩 해제",1500);
+				setTimeout(function(){location.reload(true)},1500);
+			}else{
+				toast("스크랩 해제 오류",1500);
+			}
+		}, error : function(err){
+			console.log(err);
+		}
+	});
+}
   
   //메세지 저장하기 ++ 통신으로 메세지 보내기
 function sendMsg(noboard, receiver, type){
