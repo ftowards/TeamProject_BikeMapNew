@@ -107,17 +107,27 @@ public class RouteController {
 
 	//코스검색(글보기)
 	@RequestMapping("/routeSearchView")
-	public ModelAndView routeSearchView(int noboard) {
+	public ModelAndView routeSearchView(int noboard, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		
+		String logId = (String)session.getAttribute("logId");
 		try {
 			RouteVO vo = dao.selectRoute(noboard);
-			RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
-			
-			mav.addObject("routeVO", vo);
-			mav.addObject("placeVO", placeVO);
+			if(vo.getClosed().equals("F")) {
+				RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
+				
+				mav.addObject("routeVO", vo);
+				mav.addObject("placeVO", placeVO);
+			}else {
+				if(vo.getUserid().equals(logId)) {
+					RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
+					
+					mav.addObject("routeVO", vo);
+					mav.addObject("placeVO", placeVO);
+				}
+			}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -395,5 +405,181 @@ public class RouteController {
 		return list;
 	}
 	
+	// 저장한 루트 지우기
+	@RequestMapping("/myroute/excludeList")
+	@ResponseBody
+	public int excludeList(RouteListVO vo, HttpSession ses) {
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		int result = 0;
+		
+		try {
+			vo.setUserid((String)ses.getAttribute("logId"));
+			result = dao.excludeList(vo);
+		}catch(Exception e) {
+			System.out.println("저장한 루트 리스트 삭제 에러" + e.getMessage());
+		}
+		return result;
+	}
 	
+	// 저장한 루트 카테고리 이동
+	@RequestMapping("/myroute/transferCategory")
+	@ResponseBody
+	public int transferCategory(RouteListVO vo, HttpSession ses) {
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		int result = 0;
+		
+		try {
+			vo.setUserid((String)ses.getAttribute("logId"));
+			result = dao.transferCategory(vo);
+		}catch(Exception e) {
+			System.out.println("저장한 루트 카테고리 이동 삭제 에러" + e.getMessage());
+		}
+		return result;
+	}
+	
+	///////////////
+	// 루트 비공개 처리 1. 스크랩 여부 체크 
+	@RequestMapping("/route/setCloseRoute1")
+	@ResponseBody
+	public int setCloseRoute1(int noboard, HttpSession ses) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			if(dao.chkRouteScraped(noboard).equals("T")){
+				result = 1;
+			}	
+		}catch(Exception e) {
+			System.out.println("루트 스크랩 체크 에러" + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 명단 체크 >
+	@RequestMapping("/route/setCloseRoute2")
+	@ResponseBody
+	public List<String> setCloseRoute2(int noboard, HttpSession ses) {
+		List<String> result = new ArrayList<String>();
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		String logId = (String)ses.getAttribute("logId");
+		try {
+			//2. 본인을 제외하고 리스트에 해당 루트를 가지고 있는 사람 명단 가져오기 
+			result = dao.selectWhoSavedRoute(noboard, logId);
+		}catch(Exception e) {
+			System.out.println("루트 비공개 체크 사항 처리 2 에러" + e.getMessage());
+			return null;
+		}
+		return result;
+	}
+	
+	// 루트 비공개 처리
+	@RequestMapping("/route/setCloseRoute3")
+	@ResponseBody
+	public int setCloseRoute3(int noboard, HttpSession ses) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		String logId = (String)ses.getAttribute("logId");
+		try {
+			// route 비공개 처리
+			result = dao.updateRouteClosed(noboard, logId);
+		}catch(Exception e) {
+			System.out.println("루트 비공개 처리 에러" + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 루트 공개 처리
+	@RequestMapping("/route/setOpenRoute")
+	@ResponseBody
+	public int setOpenRoute(int noboard, HttpSession ses) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		String logId = (String)ses.getAttribute("logId");
+		try {
+			// route 비공개 처리
+			result = dao.updateRouteOpen(noboard, logId);
+		}catch(Exception e) {
+			System.out.println("루트 공개 처리 에러" + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 루트 리스트 저장 취소
+	@RequestMapping("/route/revertRoutelist")
+	@ResponseBody
+	public int revertRoutelist(RouteListVO vo) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			 result = dao.revertRoutelist(vo);
+		}catch(Exception e) {
+			System.out.println("루트 저장 취소 처리 오류" + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 루트 삭제
+	@RequestMapping("/route/deleteRoute")
+	@ResponseBody
+	public int deleteRoute(int noboard, HttpSession ses) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try{
+			result = dao.deleteRoute(noboard, (String)ses.getAttribute("logId"));
+		}catch(Exception e) {
+			System.out.println("루트 삭제 에러" + e.getMessage());
+		}
+		
+		return result;
+	}
+	
+	// 루트 레퍼런스 체크
+	@RequestMapping("/route/chkReference")
+	@ResponseBody
+	public int chkReference(int noboard) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			result = dao.chkReference(noboard);
+		}catch(Exception e) {
+			System.out.println("루트 레퍼런스 체크 에러 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 루트 스크랩
+	@RequestMapping("/scrapRoute")
+	@ResponseBody
+	public int scrapRoute(int noboard) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			result = dao.scrapRoute(noboard);
+		}catch(Exception e) {
+			System.out.println("루트 스크랩 에러 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 루트 스크랩 해제
+	@RequestMapping("/releaseRoute")
+	@ResponseBody
+	public int releaseRoute(int noboard) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		
+		try {
+			result = dao.releaseRoute(noboard);
+		}catch(Exception e) {
+			System.out.println("루트 스크랩 해제 에러 " + e.getMessage());
+		}
+		return result;
+	}
 }

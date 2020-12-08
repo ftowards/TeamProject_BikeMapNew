@@ -73,36 +73,30 @@
 		</div>
 	</div><br/>
 	
-	<div id="routeSearch">
+	<!-- <div id="routeSearch">
 		<a href="<%=request.getContextPath()%>/routeSearch">
 			<img style='width:3%' src="<%=request.getContextPath() %>/img/img_main/search.png"/>
 			최근 다녀온 200개 루트 검색
 		</a>
+	</div> -->
+</div>
+
+
+<!-- 도시 검색창 -->		
+	<div class = "locationSearchDiv">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
 	</div>
-	
+
+<div id="mianDivHome2">
 	<div id="national">
 		<span class="courseReview">코스 후기</span><br/>
 		<div id="location">
-			<div class="review">
-				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
-				</a>
-			</div>
-			<div class="review">
-				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
-				</a>
-			</div>
-			<div class="review">
-				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
-				</a>
-			</div>
-			<div class="review">
-				<a href="#">
-					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
-				</a>
-			</div><br/>
 			<div class="review">
 				<a href="#">
 					<img src="<%=request.getContextPath() %>/img/img_Review/임시.jpg"/>
