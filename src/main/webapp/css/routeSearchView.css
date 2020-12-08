@@ -65,10 +65,10 @@
 		font-size:28px;
 	}
 	.txtShadow{
-		margin-top:45px;
 		font-size:18px;
 		color:#005766;
-		height:32px;
+		height:40px;
+		line-height: 40px;
 		text-shadow: 2px 2px 6px #8EC7D0;	
 	}
 	
@@ -533,3 +533,35 @@
 		color:#717171;
 		font-size:16px;
 	}
+	
+	/* 비공개 스크랩 삭제 기능*/
+	#routeWriterMenu>ul{
+		height : 40px;
+		line-height : 40px;
+		display: inline-block;
+		width : 100%;
+	}
+	
+	#routeWriterMenu>ul>li{
+		float : left;
+	}
+	
+	#routeWriterMenu>ul>li:nth-of-type(2),#routeWriterMenu>ul>li:nth-of-type(3){
+		float : right;
+	}
+	
+	#routeWriterMenu .WMint_Btn{
+		font-size: 15px;
+	    font-weight: bold;
+	    border-radius: 5px;
+	    text-decoration: none;
+	    text-align: center;
+	    padding: 3px 6px;
+	    margin: 5px 10px;
+	    color: #00B0B0;
+	    border: 2px solid #00B0B0;
+	    background-color: white;
+	    height: 30px;
+	    line-height: 20px;
+	}	
+	

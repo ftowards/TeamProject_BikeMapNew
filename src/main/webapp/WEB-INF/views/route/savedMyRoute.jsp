@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -9,6 +10,29 @@
 
 
 <div id="page-wrapper">
+	<!-- 첫번째 우클릭 div -->
+	<div id="rightContext" class="rightContext" >
+		<ul>
+			<li onclick="excludeList();">리스트 제외</li>
+			<li onclick="transferDialog();">카테고리 이동</li>
+		</ul>
+		<input type="button" class="btn" value="X" onclick="$('#rightContext').css('display','none');"/>
+	</div>
+	
+	<!-- 2번째 추가 div -->
+	<div id="rightContext2" class="rightContext" >
+		<ul>
+			<li><input type="button" class="btn" value="X" onclick="$('#rightContext2').css('display','none');"/></li>
+			<li>
+				<select id="cateMoveTO">
+					<c:forEach var='cate' items="${list }">
+	   					<option value="${cate.noroutecate }">${cate.catename }(${cate.recordcnt})</option>
+		    		</c:forEach>		
+	    		</select>
+    		</li>
+	    	<li><input type="button" class="btn move" value="옮기기" onclick="transferCategory();"/></li>
+	    </ul>
+	</div>
 	<!-- 사이드바 -->
 	<div style="position: absolute;background-color:black;">
 		<div id="sidebar-wrapper">
@@ -23,7 +47,7 @@
 			</ul>
 	   		<ul id="routeCateLbl" class="sidebar-nav">
 	   			<c:forEach var='cate' items="${list }" begin="0" step="1" varStatus="status">
-	   				<li><label for="tab${status.index+2 }">${cate.catename }(${cate.recordcnt})</label> 
+	   				<li><label for="tab${status.index+2 }">${cate.catename }(${cate.recordcnt})</label></li> 
 		        </c:forEach>
 	        </ul>
 		</div>
@@ -68,6 +92,8 @@
    		</div>
 	</div> <!-- 탭 조작패널 -->
 </div><!-- page-wrapper -->
+
+
 <script>
 var noroutecate = 0;
 var nowPage = 1;
@@ -86,28 +112,13 @@ $(function(){
 		movePage(1);
 	});
 	
-	$(document).on('contextmenu', function() {
+	$(document).on('contextmenu', function(){
 		  return false;
-		});
-	
-	$(document).on('mousedown',function(){
-		if(event.button == 0){
-			
-			
-			return false;
-		}
-		
-		if(event.button == 2){
-			if($(event.target).hasClass("contentBlock")){
-				console.log(111);
-			}
-			console.log(event.target);
-		}
 	});
+	
 });
 
-
-// 페이지 이동
+//페이지 이동
 function movePage(page){
 	// 페이징 먼저 변경
 	var url = "/home/myroute/paging";
@@ -182,7 +193,7 @@ function makeThumbnail(result){
 			listTag += "<ul>";
 		}
 		// 썸네일 작성부
-		listTag += "<li class='contentDiv'><a href='routeSearchView?noboard="+result[i].noboard+"' onclick='return false;' onmousedown='clickTumbnail(href);'><div id='map"+noroutecate+"_"+i+"' class='map'></div>";
+		listTag += "<li class='contentDiv'><a class='targetArea' href='routeSearchView?noboard="+result[i].noboard+"' onclick='return false;' onmousedown='clickTumbnail(href);'><div id='map"+noroutecate+"_"+i+"' class='map'></div>";
 		// 루트 설명 작성부
 		listTag += "<div class='routeSubscript'><ul ><li class='wordCut'>"+result[i].title+"</li><li class='wordCut'>"+result[i].region+"</li><li>"+result[i].distance.toFixed(2)+"km</li>";
 		var rateWidth =  (result[i].rating/5 *125);
@@ -223,14 +234,78 @@ function makeThumbnail(result){
 	}
 }
 
+var contextNoboard = "";
 function clickTumbnail(href){
 	var btn = event.button;
-	console.log(event.button);
+	contextNoboard =href.substring(href.indexOf("noboard=")+8); 
+	console.log(href);
+	console.log(contextNoboard);
+	
 	if(btn == 0){
 		location.href = href;
 	}else if(btn == 2){
+		var x = event.pageX + 'px';
+		var y = event.pageY + 'px';
 		
+		$("#rightContext").css("display", "block");
+		$("#rightContext").css("top", y);
+		$("#rightContext").css("left",x);
 	}
 	return false;
+}
+
+function excludeList(){
+	$.ajax({
+		url : "/home/myroute/excludeList",
+		data : "noboard="+contextNoboard,
+		success : function(result){
+			if(result > 0){
+				toast(contextNoboard +" 번 루트를 리스트에서 삭제하였습니다.", 1500);
+				movePage(nowPage);
+			}else{
+				toast("루트 리스트 삭제 오류 입니다.", 1500);
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	});
+}
+
+function transferDialog(){
+	var x = event.pageX + 'px';
+	var y = event.pageY + 'px';
+	
+	$("#rightContext").css("display","none");
+	$("#rightContext2").css("display","block");
+	$("#rightContext2").css("top", y);
+	$("#rightContext2").css("left",x);
+
+}
+
+function transferCategory(){
+	var routecateTo = $("#cateMoveTO").val();
+		
+	if(noroutecate == routecateTo){
+		toast("현재 위치한 카테고리입니다.",1500);
+		return false;
+	}
+	
+	var data = "noboard="+contextNoboard+"&noroutecate="+$("#cateMoveTO").val();
+	console.log(data);
+	
+	$.ajax({
+		url : "/home/myroute/transferCategory",
+		data : data,
+		success : function(result){
+			if(result > 0){
+				toast(contextNoboard +" 번 루트를 이동하였습니다.", 1500);
+				setTimeout(function(){location.reload(true)},1500);
+			}else{
+				toast("카테고리 이동 오류 입니다.", 1500);
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	});
 }
 </script>
