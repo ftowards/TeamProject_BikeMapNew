@@ -5,9 +5,9 @@
 <script>
 
 //리뷰 리스트 만들기
-function makeThumbnail(result){
-		//$("#reviewBoard").children().remove();	
+function makeReviewlist(result){
 		$("#reviewBoard").html("");
+		
 		var listTag = "";
 		for(var i = 0 ; i < result.length ; i++){
 			
@@ -15,20 +15,20 @@ function makeThumbnail(result){
 			listTag += "<div class='reviewContents'>";
 				
 			listTag += "<div class ='left'>";
-			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
+			listTag +=	"<a href='/home/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	"<img src="+result[i].thumbnailImg+"/>";
 			listTag +=	"</a>";
 			listTag +=	"</div>";
 					
 			listTag +=	"<div class='right'>";
 			listTag +=	"<div class= 'subtitle'>";
-				
+			
 			listTag +=	"<ul>";
 			listTag +=	"<li class='wordCut'>";
-			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
+			listTag +=	"<a href='/home/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
 			listTag +=	"</a>";
-			listTag +=	"<li>";
+			listTag +=	"<li class='subject_Hitcount'>";
 			listTag +=	"조회수 :"+result[i].hit;
 			listTag +=	"</li>";
 			listTag +=	"</li>";
@@ -37,32 +37,32 @@ function makeThumbnail(result){
 			listTag += "<br/><br/><br/>"
 			listTag +=	"<ul>";
 			listTag +=	"<li class='wordCut' id='reviewtext'>";
-			listTag +=	"<a href='<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>";
+			listTag +=	"<a href='/home/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].content;
 			listTag +=	"</a>";
 			listTag +=	"</li>";
 			listTag +=	"</ul>";
-							
+			
 			listTag +="<div class='writedate'>";
 			listTag +="<ul>";
 			listTag +="<li class='userid'>";
-			listTag +="<img src='<%=request.getContextPath() %>/img/img_Review/review.png'/>";
+			listTag +="<img src='/home/img/img_Review/review.png'/>";
 			listTag += result[i].userid+"님의 생생한 후기";
 			listTag +="</li>";
 			listTag +="<li class='writedate'>"+result[i].writedate+"작성</li>"
 			listTag +="</ul>";
 			listTag +="</div>";
 			listTag +="</div>";
-					
+			
 			listTag +="</div>";
 			listTag +="</div>";
 		
-			console.log(listTag); 
-			console.log('----------------------------------');
+			//console.log(listTag); 
+			//console.log('----------------------------------');
 		}
+		console.log(listTag);
 		$("#reviewBoard").html(listTag);
-		console.log(listTag); 
-	
+		return false;
 }
 
 // 페이징 리스트 만들기
@@ -102,10 +102,8 @@ function movePage(page){
 	var url = "<%=request.getContextPath()%>/searchReviewPaging";
 	var data = $("#searchReview").serialize();
 		data += "&nowPage="+page+"&order="+$("input[name=order]:checked").val();
-	
-	
+		
 	$.ajax({
-		type : 'POST',
 		url : url,
 		data : data,
 		success : function(result){
@@ -116,20 +114,16 @@ function movePage(page){
 		}
 	});
 	
-	if($("#searchWordReview").val() ==""){
-		url = "<%=request.getContextPath()%>/searchReviewAll";
-	} else {
-		url = "<%=request.getContextPath()%>/searchReviewOk";
-	}
+	url = "<%=request.getContextPath()%>/searchReview";
 	$.ajax({
-		type : 'POST',
 		url : url,
 		data : data,
 		success : function(result){
+			console.log(result);
 			if( result.length <= 0 ){
 				alert("검색 결과가 없습니다.");
 			} else{ 
-				makeThumbnail(result);
+				makeReviewlist(result);
 			}
 		}, error : function(){
 			console.log("페이지 + 검색 결과 호출 에러");
@@ -145,13 +139,13 @@ function movePage(page){
 	<div class="reviewBody">	
 		<form class = "search" id="searchReview">
 			<select name="searchType" id="searchKeyword">
-				<option value="1">키워드</option>
-				<option value="2">글제목</option>
-				<option value="3">코스이름</option>
-				<option value="4">작성자</option>				
+				<option >키워드</option>
+				<option value="subject">글제목</option>
+				<option value="userid">작성자</option>
+				<option value="content">내용</option>				
 			</select>
 
-			<input type="text" id="searchWordReview" name="searchWord"> 
+			<input type="text" id="searchWordReview" name="searchWord"/>
 			<input type="submit" class="mint_Btn" value="검 색"/>
 		</form>
 

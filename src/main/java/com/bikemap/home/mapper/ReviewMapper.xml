@@ -7,11 +7,17 @@
 	
 <!--글보기 리스트 -->
 	<select id = "reviewAllRecord" parameterType="com.bikemap.home.review.ReviewPagingVO" resultType="com.bikemap.home.review.ReviewVO">
-		select * from (select * from 
-		(select noboard, subject, userid, content, reference, hit, to_char(writedate, 'YYYY-MM-DD HH:MI') writedate
-		from review order by noboard desc)<![CDATA[ where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
-		where rownum <= #{lastPageRecordCount} order by noboard desc
-		]]> 
+		select * from 
+			(select * from 
+				(select noboard, subject, userid, content, reference, hit, to_char(writedate, 'YYYY-MM-DD HH24:MI') writedate
+				 from review 
+				<if test='searchWord neq null and searchWord neq ""'> 
+ 					where ${searchType} like '%'||#{searchWord}||'%'
+				</if>
+					 order by ${order} desc)
+			 <![CDATA[ where rownum <= (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
+		where rownum <= #{lastPageRecordCount} order by ${order} desc
+				]]> 
 	</select>
 
 <!--레코드 한 개 선택 - 글 보기 -->
@@ -44,12 +50,10 @@
  	
  	
  	<!-- 페이징 전체 레코드 -->
- 	<select id="searchTotalRecord" resultType="int">
+ 	<select id="searchTotalRecord" resultType="int" parameterType="com.bikemap.home.review.ReviewPagingVO">
  		select count(noboard) from review 
- 	</select>
- 	
- 	<!-- 페이징 결과 레코드 -->
- 	<select id="searchResultRecord"  resultType="int" parameterType="com.bikemap.home.review.ReviewPagingVO">
- 		select count(noboard) from review where ${searchType} like '%'||#{searchWord}||'%' 
+ 		<if test='searchWord neq null and searchWord neq ""'> 
+ 			where ${searchType} like '%'||#{searchWord}||'%'
+ 		</if>
  	</select>
 </mapper>
