@@ -674,7 +674,7 @@ function scrapRoute(noboard){
 		success : function(result){
 			if(result > 0){
 				toast("스크랩 완료",1500);
-				setTimeout(function(){location.reload(true)},1500);
+				leaveMessage(noboard);			
 			}else{
 				toast("스크랩 오류",1500);
 			}
@@ -703,6 +703,27 @@ function releaseRoute(noboard){
 		}
 	});
 }
+
+function leaveMessage(noboard){
+	
+	sendMsg(noboard, $("#userid").val(), 3);
+	
+	//데이터 구하기
+	var data = "reply="+"해당 루트가 추천 루트로 게시됩니다. 게시를 원치 않으실 경우 관리자 문의 부탁드립니다.";
+		data += "&noboard="+noboard;
+		
+	$.ajax({
+		url:"/home/replyWriteOk"
+		,data: data
+		,success:function(result){
+			if(result == 1){
+				setTimeout(function(){location.reload(true)},1500);
+			}
+		},error:function(){
+			console.log("댓글쓰기 에러 발생..");
+		}
+	});
+}
   
   //메세지 저장하기 ++ 통신으로 메세지 보내기
 function sendMsg(noboard, receiver, type){
@@ -719,6 +740,9 @@ function sendMsg(noboard, receiver, type){
 	}else if(type == 2){
 		msg = sender + "님이 " + noboard + "번 루트를 삭제하였습니다.";
 		socketMsg = "deleteRoute,"+receiver+","+sender+","+noboard;
+	}else if(type == 3){
+		msg = "<a href='/home/routeSearchView?noboard="+noboard+"'>"+noboard+ "번 루트가 추천 루트로 등록되었습니다.</a>";
+		socketMsg = "scrapRoute,"+receiver+","+sender+","+noboard;
 	}
 	
 	var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;

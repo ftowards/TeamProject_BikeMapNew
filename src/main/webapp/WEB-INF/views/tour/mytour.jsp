@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/home/css/myTour.css" type="text/css"/>
 
 <div id="page-wrapper">
@@ -500,16 +497,16 @@ function sendMsg(noboard, receiver, type){
 	var msg ="";
 	var socketMsg = "";
 	if(type == 1){
-		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 승인하였습니다.</a>";
+		msg = "<a href='/home/tourView?noboard="+noboard+"' target='_blank'>"+ sender + "님이 " + noboard + "번 투어 참가를 승인하였습니다.</a>";
 		socketMsg = "confirmTour,"+receiver+","+sender+","+noboard;
 	}else if(type == 2){
-		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 취소처리 하였습니다.</a>";
+		msg = "<a href='/home/tourView?noboard="+noboard+"' target='_blank'>"+ sender + "님이 " + noboard + "번 투어 참가를 취소처리 하였습니다.</a>";
 		socketMsg = "revertTour,"+receiver+","+sender+","+noboard;
 	}else if(type == 3){
-		msg = "<a href='/home/tourView?noboard="+noboard+"'>" + noboard + "번 투어가 불참 처리되었습니다.</a>";
+		msg = "<a href='/home/tourView?noboard="+noboard+"' target='_blank'>" + noboard + "번 투어가 불참 처리되었습니다.</a>";
 		socketMsg = "absentTour,"+receiver+","+sender+","+noboard;
 	}else if(type == 4){
-		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ noboard + "번 투어가 완료되었습니다.</a>";
+		msg = "<a href='/home/tourView?noboard="+noboard+"' target='_blank'>"+ noboard + "번 투어가 완료되었습니다.</a>";
 		socketMsg = "completeTour,"+receiver+","+sender+","+noboard;
 	}
 	

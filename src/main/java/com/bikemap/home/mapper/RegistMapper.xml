@@ -37,5 +37,7 @@
 	<select id="emailDoubleChk" resultType="int">
 		select count(email) from regist where email = #{param1}
 	</select>	
-	
+	<select id="searchId" resultType="String" parameterType="String">
+		select userid from regist where userid like '%'||#{param1}||'%'
+	</select>
 </mapper> 

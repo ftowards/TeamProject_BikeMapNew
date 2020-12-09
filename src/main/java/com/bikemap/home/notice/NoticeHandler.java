@@ -63,6 +63,10 @@ public class NoticeHandler extends TextWebSocketHandler{
 					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"'>"+ noboard + "번 투어가 불참 처리되었습니다.</a>");
 				}else if(msgType.equals("completeTour")) {
 					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"'>"+ noboard + "번 투어가 완료되었습니다.</a>");
+				}else if(msgType.equals("sendMsg")) {
+					tmpMsg = new TextMessage(sender + " : " +noboard);
+				}else if(msgType.equals("scrapRoute")) {
+					tmpMsg = new TextMessage("<a href='/home/routeSearchView?noboard="+noboard+"'>"+ noboard + "번 루트가 추천 루트로 등록되었습니다.</a>");
 				}
 				
 				boardWriterSession.sendMessage(tmpMsg);

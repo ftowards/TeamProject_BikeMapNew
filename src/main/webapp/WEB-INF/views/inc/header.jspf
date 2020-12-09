@@ -6,9 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device, initial-scale=1"/>
 <link rel="stylesheet" href="/home/css/style2.css" type="text/css"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="/home/api/jquery.bxslider.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
@@ -47,14 +49,13 @@
 		                            <input type="hidden" id="logId" value="${logId }"/>
 										<ul class="dropdown-menu">
 		                                    <li><a href="<%=request.getContextPath()%>/registEdit">마이페이지</a></li>
-		
-		                                    
-		
+		                                    <li><a href="<%=request.getContextPath()%>/messageBox">쪽지함</a></li>
+		                                    <li><hr/></li>
 		                                    <li><a href="<%=request.getContextPath()%>/mytour">내모임</a></li>
 		                                    <li><a href="<%=request.getContextPath()%>/tourApply">참여모임</a></li>
-		                                     <li><a href="<%=request.getContextPath()%>/mySavedRoute">저장된 루트</a></li>
-		
-		                                    <li><a href="javascript:window.open('/home/sendMsg', 'msg', 'width=400px, height=310px, left =200px, top=200px')">1:1문의</a></li>
+		                                    <li><a href="<%=request.getContextPath()%>/mySavedRoute">저장된 루트</a></li>
+											<li><hr/></li>
+		                                    <li><a href="javascript:window.open('/home/sendMsg', 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0')">1:1문의</a></li>
 		                                    <li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
 		                                </ul>                            
 		                            </li>

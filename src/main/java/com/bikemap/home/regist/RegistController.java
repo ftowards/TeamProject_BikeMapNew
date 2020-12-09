@@ -1,5 +1,8 @@
 package com.bikemap.home.regist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -397,6 +400,19 @@ public class RegistController {
 		return mav;	
 	}
 
-	
+	// 쪽지 보내기 아이디 검색
+	@RequestMapping("/searchId")
+	@ResponseBody
+	public List<String> searchId(@RequestParam("keyword")String keyword){
+		List<String> list = new ArrayList<String>();
+		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
+
+		try {
+			list = dao.searchId(keyword);
+		}catch(Exception e) {
+			System.out.println("아이디 검색 에러" + e.getMessage());
+		}
+		return list;
+	}
 	
 }

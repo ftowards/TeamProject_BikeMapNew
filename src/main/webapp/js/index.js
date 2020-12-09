@@ -18,8 +18,7 @@ $(function(){
 	sock.onmessage = function(event){
 		var data = event.data;
 		console.log("받은 데이터 : " + data + "\n");
-		/////////////// 팝업창 추가하기
-		alert(data);
+		toast(data, 1500);
 	}
 	
 	sock.onclose = function(){
