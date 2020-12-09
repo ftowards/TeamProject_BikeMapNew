@@ -46,6 +46,7 @@ function makeRouteTable(result){
 	<div class="adminContent">	
 				<div id="adminTable">
 				<h1 class="adminListHead">루트</h1>
+				
 				<div class="orderRadio">
 					<input type="radio" name="order" id="orderNoboard" value="noboard" checked="checked"><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar"> | </span>
 					<input type="radio" name="order" id="orderRating" value="rating"><label for="orderRating" class="subTxt">평점순</label>

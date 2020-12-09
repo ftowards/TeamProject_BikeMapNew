@@ -97,6 +97,55 @@ a{
 .navigation li>a:last-child {
 	margin-bottom:30px;
 }
+
+.toast{
+    position: fixed;
+    top: 250px;
+    width : fit-content;
+    height : fit-content;
+    line-height : 30px;
+    left: 50%;
+    padding: 15px 20px;
+    transform: translate(-50%, 10px);
+    border-radius: 20px;
+    font-size: 18px;
+    opacity: 0.3;
+    visibility: hidden;
+    transition: opacity .5s, visibility .5s, transform .5s;
+    background: rgba(0, 0, 0, .35);
+    color: #fff;
+    z-index: 10000;
+    box-shadow: 3px 3px 3px rgb(130,130,130);
+}
+
+.toast.reveal {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0)
+}
+
+.toast .mintBtn,.toast .btn{	
+	font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size:15px;
+    width:70px;
+	height:30px;
+    text-align: center;
+    padding: 3px 6px;
+    margin : 5px 8px 0 0;
+    color: white;
+    border:none;
+    background-color: #00B0B0;
+    float: right;
+    line-height :20px;
+}
+
+.toast .btn{	
+	color: #00B0B0;
+    border: 1px solid #00B0B0;
+    background-color: white;
+}
 /*================= 컨텐츠 ================*/
 .adminContent {
 	width: 1000px;
