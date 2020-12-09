@@ -3,7 +3,7 @@ body{
 	font-family: 'Noto Sans KR', sans-serif;
 	width:100%;
 	margin: 0 auto;
-	/*overflow-y: hidden; overflow-x: hidden;*/
+	overflow-y: hidden; overflow-x: hidden;
 }
 textarea:focus {
 	outline: none;
@@ -29,7 +29,7 @@ input:focus {
 	height:63px;
 	text-align:center;
 	padding-top:15px;
-	background-color: #00b0b0;
+	background-color: #717070;
 }
 
 ul, li{
@@ -216,13 +216,14 @@ a{
 }
 .orderRadio>input[type=radio]:checked+label{
 	color:#353535;
-	font-size:18px;
+	font-size:16px;
 	font-weight:600;
 	margin-bottom:20px;
 }
 /* ================ �쉶�썝愿�由� =================*/
 #userList>li:nth-child(-n+9) {
-	font-size:18px;
+	color:#1f1f63;
+	font-size:16.5px;
 	background:linear-gradient(#eee, lightgray);
 	border-top:1px solid #8a8a8a;
 	border-bottom:1px solid #8a8a8a;
@@ -241,6 +242,7 @@ a{
 	border-bottom: 1px solid #afafaf;
 }
 #userList, #userList>li {
+	font-size:16px;
 	height:50px;
 	background-color: #fff;
 }
@@ -261,23 +263,32 @@ a{
 }
 
 /* ================ �룞�뻾紐⑥쭛 ==================*/
+#tourList{
+	width:88%;
+	margin:0px 0 0px 82px;
+}
 #tourList>li:nth-child(-n+6) {
-	
-	background-color:#ddd;
+	font-size:16px;
+	color:#1f1f63;
+	background:linear-gradient(#eee, lightgray);
+	border-top: 1px solid #8a8a8a;
+	border-bottom: 1px solid #8a8a8a;
 	border-top:1px solid gray;
+	letter-spacing:2px;
 	margin-bottom:4px;
 }
 #tourList>li:nth-child(n+7):nth-child(-n+12){
-	border-top: 1px solid gray;
+	border-top: 1px solid #afafaf;
 }
 #tourList>li{
 	float: left;
 	width: 15%;
-	height: 40px;
+	height: 50px;
 	line-height: 40px;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #afafaf;
 }
 #tourList, #tourList>li {
+	font-size:16px;
 	background-color: #fff;
 }
 #tourList>li:nth-child(6n+3) {
@@ -299,6 +310,9 @@ a{
 	margin:0px 0 0px 82px;
 }
 #reviewList>li:nth-child(-n+8) {
+	color:#1f1f63;
+	font-size:16px;
+	letter-spacing:2px;
 	background:linear-gradient(#eee, lightgray);
 	margin-bottom:4px;
 	border-top: 1px solid #8a8a8a;
@@ -316,6 +330,7 @@ a{
 }
 #reviewList, #reviewList>li {
 	height:50px;
+	font-size:16px;
 	background-color: #fff;
 }
 #reviewList>li:nth-child(8n+3) {
@@ -330,12 +345,31 @@ a{
 	padding:0px;
 }
 
+.orderRadio_review{
+	float: right;
+    position:relative;
+    bottom:40px;
+    right:150px;
+}
+.orderRadio_review>input[type=radio]{
+	display:none;
+}
+.orderRadio_review>input[type=radio]:checked+label{
+	color:#353535;
+	font-size:16px;
+	font-weight:600;
+	margin-bottom:20px;
+}
+
 /* =============== 臾몄쓽 �뀒�씠釉� ==============*/
 #questionList{
 	width:88%;
 	margin:0px 0 0px 82px;
 }
 #questionList>li:nth-child(-n+6) {
+	color:#1f1f63;
+	font-size:16px;
+	letter-spacing:2px;
 	background:linear-gradient(#eee, lightgray);
 	border-top:1px solid #8a8a8a;
 	border-bottom:1px solid #8a8a8a;
@@ -355,6 +389,7 @@ a{
 	border-bottom: 1px solid gray;
 }
 #questionList, #questionList>li {
+	font-size:16px;
 	height:50px;
 	border-bottom:1px solid #afafaf;
 	background-color: #fff;
@@ -373,7 +408,7 @@ a{
 
 /* =============== 猷⑦듃 �뀒�씠釉� ==============*/
 #routeList>li:nth-child(-n+9) {
-	color:#010171;
+	color:#1f1f63;
 	font-size:16px;
 	letter-spacing:2px;
 	background:linear-gradient(#eee, lightgray);
@@ -393,6 +428,7 @@ a{
 	border-bottom: 1px solid #afafaf;
 }
 #routeList, #routeList>li {
+	font-size:16px;
 	height:50px;
 	background-color: #fff;
 }
@@ -604,4 +640,28 @@ input:checked + .slider:before {
 	float:left;
 	width:60px;
 	font-weight:bold;
+}
+
+
+/*1:1문의내역 수정 페이지*/
+.table2{
+	font-size:20px;
+	letter-spacing:1px;
+}
+#questionReplyDiv{
+	width:1600px;
+	height:800px;
+	background-color:pink;
+}
+
+.question_title{
+	
+}
+
+.question_td{
+	width:1500px;
+	height:600px;
+	background-color:white;
+	
+	
 }

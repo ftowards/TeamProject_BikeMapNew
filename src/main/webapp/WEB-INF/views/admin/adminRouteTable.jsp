@@ -12,7 +12,7 @@ function makeRouteTable(result){
 	for(var i = 0; i < result.length ; i++){
 		
 		if(i==0){
-			listTag +=  "<li><input type='checkbox' id='checkAll'/></li><li>번호</li> <li>제목</li> <li>작성자</li> <li>평점</li><li>평가횟수</li><li>지역</li><li>비공개 여부</li><li>관리자 추천</li>"	;
+			listTag +=  "<li><input type='checkbox' id='checkAll'/></li><li>번&nbsp;&nbsp;호</li> <li>제&nbsp;&nbsp;목</li> <li>작성자</li> <li>평&nbsp;&nbsp;점</li><li>평가횟수</li><li>지&nbsp;&nbsp;역</li><li>비공개여부</li><li>관리자추천</li>"	;
 		}			
 		//list안에 데이터 추가
 		listTag += "<li><input type='checkbox' name='listChk' value='"+result[i].noboard+"'/></li>";

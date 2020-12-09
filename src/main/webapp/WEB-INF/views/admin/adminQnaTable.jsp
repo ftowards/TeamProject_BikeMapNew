@@ -32,7 +32,7 @@
 	<!-- Page Content -->
 	<div class="adminContent">
 				<div id="adminTable">
-				<h1 class=adminListHead>1:1 문의</h1>
+				<h1 class=adminListHead>1:1 문의사항</h1>
 				<ul id="questionList">
 					<li><input type="checkbox" id="checkAll" /></li>
 					<li>번&nbsp;&nbsp;호</li>
@@ -82,10 +82,10 @@
 						</ul>
 				</div><br/>
 				<!-- /paging -->
-				<div id="partnerBtn">
-				<input type="button" id="partnerBtn1" name="partnerDeleteBtn" value="삭제하기" class="mint_Btn"/><input type="button" id="partnerBtn2" name="partnerHideBtn" value="비공개"/>
-				</div><!-- btn -->
 			</div><!-- adminContent -->
+			<div id="partnerBtn">
+				<input type="button" id="partnerBtn1" name="partnerDeleteBtn" value="삭제하기" class="mint_Btn"/><input type="button" id="partnerBtn2" name="partnerHideBtn" value="비공개"/>
+			</div><!-- btn -->
 <!-- Page Content -->
 </div><!--  adminBottom -->
 </body>
