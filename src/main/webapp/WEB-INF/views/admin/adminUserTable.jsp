@@ -76,7 +76,7 @@
 								<li>${vo.birth}세</li>
 								<li>${vo.tourcnt}회</li>
 								<li>${vo.heart}회</li>
-								<li style="color:red">
+								<li style="padding-left:50px; color:red">
 									<c:if test="${vo.endday==null}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
 										<input type="button" title="${vo.userid}" id="suspendBtn" data-toggle="modal" data-target="#modal_simple"/>
 									</c:if>
