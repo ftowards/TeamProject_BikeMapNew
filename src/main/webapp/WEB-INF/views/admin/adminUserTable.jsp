@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <script>
 	function makeUserTable(result){
 		$("#userList").children().remove();
@@ -76,7 +78,7 @@
 								<li>${vo.birth}세</li>
 								<li>${vo.tourcnt}회</li>
 								<li>${vo.heart}회</li>
-								<li style="color:red">
+								<li style="padding-left:50px; color:red">
 									<c:if test="${vo.endday==null}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
 										<input type="button" title="${vo.userid}" id="suspendBtn" data-toggle="modal" data-target="#modal_simple"/>
 									</c:if>

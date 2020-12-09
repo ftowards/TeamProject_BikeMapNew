@@ -1,3 +1,5 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -41,10 +43,10 @@ $(function(){
 </style>
 <div id="questionReplyDiv">
 	<c:if test="${vo.answer==null||vo.answer=='N'}">
-		<h2>1대1 문의내역</h2>	
+		<h2>1:1 문의내역</h2>	
 	</c:if>
 	<c:if test="${vo.answer=='Y'}">
-		<h2>1대1 문의내역 수정</h2>	
+		<h2>1:1 문의내역 수정</h2>	
 	</c:if>
 	<form method="post" id="replyFrm" action="adminQnaWriteOk">
         <input type="hidden" name="noqna" value="${vo.noqna}"/>
