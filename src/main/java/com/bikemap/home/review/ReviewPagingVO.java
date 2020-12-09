@@ -10,8 +10,8 @@ public class ReviewPagingVO {
 	private int startPageNum = 1;
 	private int lastPageRecordCount = 10; // 마지막 페이지 레코드 숫자
 	
-	private String searchType;
-	private String searchWord;
+	private String searchType; //키워드
+	private String searchWord; //글
 	private String order="noboard"; // thumbup
 
 

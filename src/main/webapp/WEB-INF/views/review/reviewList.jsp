@@ -100,20 +100,34 @@ function movePage(page){
 	
 	// 페이징 먼저 변경
 	var url = "<%=request.getContextPath()%>/searchReviewPaging";
-	var data = $("#searchReview").serialize();
-		data += "&nowPage="+page+"&order="+$("input[name=order]:checked").val();
+	var 
+		data = $("#searchReview").serialize();
+		data = "nowPage="+page+"&searchType="+$("#searchTypeReview").val()+"&searchWord="+$("#searchBarReview").val();
+		data += "&order="+$("input[name=order]:checked").val();
 		
 	$.ajax({
 		url : url,
 		data : data,
 		success : function(result){
-			setPaging(result);
-			nowPage = result.nowPage;
+			if(result.totalRecord <= 0){
+				toast("검색 결과가 없습니다.",1500);
+				return false;
+			}else{
+				$("input[name=searchType]").var($("#searchTypeReview").val())
+				$("input[name=searchWord]").var($("#searchBarReview").val())
+				
+				setPaging(result);
+				nowPage = result.nowPage;
+				$("input[name=nowPage]").val(nowPage);	
+			}
+		
 		},error : function(){
 			console.log("페이징 오류");
 		}
 	});
 	
+	
+	//리스트 데이터 검색
 	url = "<%=request.getContextPath()%>/searchReview";
 	$.ajax({
 		url : url,
@@ -122,7 +136,9 @@ function movePage(page){
 			console.log(result);
 			if( result.length <= 0 ){
 				alert("검색 결과가 없습니다.");
+				
 			} else{ 
+				
 				makeReviewlist(result);
 			}
 		}, error : function(){
@@ -131,22 +147,55 @@ function movePage(page){
 	});
 }
 
+// 검색 기능
+$(function(){
+	var nowPage = $("input[name=nowpage]").val();
+	// 페이지 로딩 시 전체 리스트 불러오기
+	movePage(nowPage);
+	
+	// 검색
+	$("#searchReview").submit(function(){
+		if($("#searchBarReview").val() == ""){
+			alert("검색어를 입력하세요...");
+			return false;
+		};
+		
+		movePage(1);
+		return false;
+	});
+	
+	$("input[name=order]").on('change',function(){
+		movePage(nowPage);
+		
+	});
+});
+
+
+
+
+
+
 </script>
 <!-- 후기보기메인 -->
 <div class="container">
 <div class = "mainDiv">
 
 	<div class="reviewBody">	
-		<form class = "search" id="searchReview">
-			<select name="searchType" id="searchKeyword">
+		<form class = "search" id="searchReview" name="searchReview">
+			<select name="searchTypeReview" id="searchTypeReview">
 				<option >키워드</option>
 				<option value="subject">글제목</option>
 				<option value="userid">작성자</option>
 				<option value="content">내용</option>				
 			</select>
-
-			<input type="text" id="searchWordReview" name="searchWord"/>
+			<input type="text" id="searchBarReview" name="searchWordReview"/>
 			<input type="submit" class="mint_Btn" value="검 색"/>
+		</form>
+		<form id="pagingVO" method="post" action="/home/searchReview" style="diplay:none">
+			<input type="hidden" name="nowPage" value="${pagingVO.nowPage }"/>
+<%-- 			<input type="hidden" name="searchKey" value="${pagingVO.searchKey }"/> --%>
+<%-- 			<input type="hidden" name="searchWord" value="${pagingVO.searchKey }"/> --%>
+			<input type="hidden" name="noboard" value=""/>
 		</form>
 
 
