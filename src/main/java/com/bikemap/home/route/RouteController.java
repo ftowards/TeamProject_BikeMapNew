@@ -87,7 +87,7 @@ public class RouteController {
 	}
 
 	//코스검색(글보기)
-	@RequestMapping(value="/routeSearchView", method=RequestMethod.POST)
+	@RequestMapping(value="/routeSearchView", method= {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView routeSearchView(int noboard, RoutePagingVO pagingVO, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);

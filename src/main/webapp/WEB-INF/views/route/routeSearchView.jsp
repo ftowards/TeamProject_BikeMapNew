@@ -25,6 +25,7 @@ function goList(){
 	$("#pagingVO").attr("action","/home/routeSearch" );
 	$("#pagingVO").submit();
 }
+
 </script>
 <div class="routeSearchViewDiv2">
 	<div id="mapDiv" style='width:1200px;'>

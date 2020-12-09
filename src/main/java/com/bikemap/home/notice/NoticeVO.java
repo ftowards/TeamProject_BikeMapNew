@@ -8,6 +8,7 @@ public class NoticeVO {
 	private String msg;
 	private String writedate;
 	private String read;
+	private String type="A";
 	
 	public int getNonotice() {
 		return nonotice;
@@ -44,5 +45,11 @@ public class NoticeVO {
 	}
 	public void setRead(String read) {
 		this.read = read;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 }

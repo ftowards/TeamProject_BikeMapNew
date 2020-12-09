@@ -94,7 +94,7 @@ public interface TourDaoImp {
 	public int deleteTourView(int noboard,String userid);
 	
 	//참여리스트 가져오기(본인제외)
-	public List<ComplistVO> selectComplistExceptLogId(int noboard,String logId);
+	public List<String> selectComplistExceptLogId(int noboard,String userid);
 	
 	
 	//게시글 수정(정보 불러오기)

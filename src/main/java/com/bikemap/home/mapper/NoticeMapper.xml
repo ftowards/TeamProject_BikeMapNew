@@ -4,7 +4,54 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bikemap.home.notice.NoticeDaoImp">
 	<insert id="insertNotice" parameterType="com.bikemap.home.notice.NoticeVO">
-  		insert into notice(nonotice, userid, idsend, msg)
-  		values(a_sq.nextval, #{userid}, #{idsend}, #{msg})
+  		insert into notice(nonotice, userid, idsend, msg, type)
+  		values(a_sq.nextval, #{userid}, #{idsend}, #{msg}, #{type})
 	</insert>
+	<select id="selectMessageRecord" resultType="int" parameterType="com.bikemap.home.notice.NoticePagingVO">
+		select count(nonotice) from notice where
+		<choose>
+			<when test='messageBox neq null and messageBox == 1'>
+				userid = #{id} and type='M'
+			</when>
+			<when test='messageBox neq null and messageBox == 2'>
+				idsend = #{id} and type='M'
+			</when>
+			<when test='messageBox neq null and messageBox == 3'>
+				userid = #{id} and type='A'
+			</when>
+		</choose>
+		<if test='read neq null and read neq ""'>
+			and read = #{read}
+		</if>
+	</select>
+	<select id="selectMsgList" resultType="com.bikemap.home.notice.NoticeVO" parameterType="com.bikemap.home.notice.NoticePagingVO">
+		select * from(
+			select * from (
+				select nonotice, userid, idsend, msg, to_char(writedate, 'YY-MM-DD HH24:MM') writedate, read 
+				from notice where 
+				<choose>
+					<when test='messageBox neq null and messageBox == 1'>
+						userid = #{id} and type='M'
+					</when>
+					<when test='messageBox neq null and messageBox == 2'>
+						idsend = #{id} and type='M'
+					</when>
+					<when test='messageBox neq null and messageBox == 3'>
+						userid = #{id} and type='A'
+					</when>
+				</choose>
+				<if test='read neq null and read neq ""'>
+					and read = #{read}
+				</if>
+					order by nonotice desc
+				) where rownum <![CDATA[<=]]> #{onePageRecord} * #{nowPage} order by nonotice asc
+			) where rownum <![CDATA[<=]]> #{lastPageRecordCount} order by nonotice desc
+	</select>
+
+	<update id="readMessage">
+		update notice set read ='T' where nonotice= #{param1}
+	</update>
+	<delete id="deleteMessage">
+		delete from notice where nonotice = #{param1}
+	</delete>
 </mapper>
