@@ -12,7 +12,7 @@
 			
 			//alert(result.length+" : 결과 줄");
 			if(i==0){
-				listTag +=  "<li>번호</li> <li>아이디</li> <li>이름</li> <li>성별</li> <li>나이</li> <li>모임횟수</li> <li>좋아요</li> <li>정지여부</li> <li>정지기간</li>"	;
+				listTag +=  "<li>번호</li> <li>아이디</li> <li>이름</li> <li>성별</li> <li>나이</li> <li>모임횟수</li> <li>좋아요</li> <li>상태</li> <li>정지기간</li>"	;
 			}
 			//list안에 데이터 추가
 			listTag += "<li>"+result[i].rownum+"</li>";
@@ -60,14 +60,14 @@
 							<li>나이</li>
 							<li>모임횟수</li>
 							<li>좋아요</li>
-							<li>정지여부</li>
+							<li>상태</li>
 							<li>정지기간</li>
 							<!-- DB작업완료 후 for문 생성 -->
 							<c:forEach items="${list}" var="vo" varStatus="status">
 								<li>${vo.rownum}</li>
 								<li id="contents" ><a href="#" data-toggle="modal" data-target="#modal_registView">${vo.userid }</a></li>
 								<li>${vo.username}</li>
-								<li>
+								<li class="fa fa-square fa-stack-2x">
 									<c:if test="${vo.gender=='1'}">
 										남
 									</c:if>
@@ -100,9 +100,10 @@
 				        <a href="javascript:userPopupClose();" class="layerpop_close"
 				            id="userlayerbox_close"></a> <br/>
 				        <div class="content">
-				       	hong1234<br/>
-				       	가입 : 2020.07.24<br/>
-				        신고횟수 : 10회<br/>
+				        <span id="modal_username">홍길동</span>
+				       	<span id="modal_userid">hong1234</span><br/>
+				       	가입 : <span id="modal_regdate">2020.07.24</span><br/>
+		
 				        <div id="pop1_IsStop">정지여부 : <span style="font-color:red">정지중</span></div>
 				        <div id="pop1_StopTime">정지지간 : <span style="font-color:red">2020.11.14</span><br/></div>
 				        <div style="border-bottom:2px solid #00B0B0; padding-bottom:10px">
@@ -142,42 +143,42 @@
 			</div><!-- adminContent -->
 			
 				
-<!-- 			<div class="modal-container" > -->
-<!-- 			    <div class="modal show-modal" id="modal_registView"> -->
-<!-- 			      <button class="close-btn" id="close"> -->
-<!-- 			        <i class="fa fa-times"></i> -->
-<!-- 			      </button> -->
-<!-- 			      <div class="modal-header"> -->
-<!-- 			        <h3>Sign Up</h3> -->
-<!-- 			      </div> -->
-<!-- 			      <div class="modal-content"> -->
-<!-- 			        <p>Register with us to get offers, support and more</p> -->
-<!-- 			        <form class="modal-form"> -->
-<!-- 			          <div> -->
-<!-- 			            <label for="name">Name</label> -->
-<!-- 			            <input type="text" id="name" placeholder="Enter Name" class="form-input"> -->
-<!-- 			          </div> -->
-<!-- 			          <div> -->
-<!-- 			            <label for="email">Email</label> -->
-<!-- 			            <input type="email" id="email" placeholder="Enter email" class="form-input"> -->
-<!-- 			          </div> -->
-<!-- 			          <div> -->
-<!-- 			            <label for="password">Password</label> -->
-<!-- 			            <input type="password" id="password" placeholder="Enter password" class="form-input"> -->
-<!-- 			          </div> -->
-<!-- 			          <div> -->
-<!-- 			            <label for="password2">Confirm Password</label> -->
-<!-- 			            <input type="password" id="password2" placeholder="Confirm password" class="form-input"> -->
-<!-- 			          </div> -->
+			<div class="modal-container" >
+			    <div class="modal modal-dialog-centered modal-sm" id="modal_registView">
+			      <button class="close-btn" id="close">
+			        <i class="fa fa-times"></i>
+			      </button>
+			      <div class="modal-header">
+			        <h3>Sign Up</h3>
+			      </div>
+			      <div class="modal-content">
+			        <p>Register with us to get offers, support and more</p>
+			        <form class="modal-form">
+			          <div>
+			            <label for="name">Name</label>
+			            <input type="text" id="name" placeholder="Enter Name" class="form-input">
+			          </div>
+			          <div>
+			            <label for="email">Email</label>
+			            <input type="email" id="email" placeholder="Enter email" class="form-input">
+			          </div>
+			          <div>
+			            <label for="password">Password</label>
+			            <input type="password" id="password" placeholder="Enter password" class="form-input">
+			          </div>
+			          <div>
+			            <label for="password2">Confirm Password</label>
+			            <input type="password" id="password2" placeholder="Confirm password" class="form-input">
+			          </div>
 			
-<!-- 			          <input type="submit" value="submit" class="submit-btn"> -->
-<!-- 			        </form> -->
-<!-- 			      </div> -->
-<!-- 			    </div> -->
-<!-- 			  </div> -->
+			          <input type="submit" value="submit" class="submit-btn">
+			        </form>
+			      </div>
+			    </div>
+			  </div>
 			  
 			<div id="modal_simple" class="modal fade" tabindex="-1" role="dialog">
-				  <div class="modal-dialog modal-dialog-centered" role="document">
+				  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:100%; width:auto; display:table;">
 				    <div class="modal-content">
 				   	 <form id="userSuspendFrm" >
 				    	<input type="hidden" name="userid" id="userid" value=""/>
