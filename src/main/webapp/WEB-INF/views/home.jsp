@@ -4,37 +4,47 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 
 <!-- 도시 검색창 -->		
 	<div class = "locationSearchDiv">
 		<div class="locationSearchTitle">
 			<span class="locationTitle1">어디로 떠날까요?</span><br/>
-			<span class="locationTitle2">The journey not the arrival matters.</span>
+			<span class="locationTitle2">To travel is to take a journey into yourself.</span>
 		</div>
 		<ul style='margin-top:25px'>
 			<li class="location1">
-				<span class="locationTitle">서울</span>
-				<div style="height:340px;">
-					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img1.png"/></a>
-				</div>
-				<span class="locationTitle">부산</span>
-				<div style="height:340px; margin-top:25px;">
-					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img2.jpg"/></a>
-				</div>
+				<a href="#">
+					<div class="locationDiv" id="seoul">
+						<span class="locationTitle">서울</span>
+					</div>
+				</a>
+				<a href="#">
+					<div class="locationDiv" id="busan">
+						<span class="locationTitle">부산</span>
+					</div>
+				</a>
 			</li>
 			<li class="location2">
-				<span class="locationTitle">여수</span>
-				<div style="height:340px">
-					<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img3.png"/></a>
-				</div>
-				<div style="background:gray; height:340px; margin-top:25px;">
-					<span class="locationTitle">제주</span>
-					<div style="width:350px; height:100%;">
-						<a href="#"><img src="<%=request.getContextPath() %>/img/img_Review/review_img4.jpg"/></a>
+				<a href="#">
+					<div class="locationDiv" id="yeosu">
+						<span class="locationTitle">여수</span>
 					</div>
+				</a>
+				<div class="locationDiv" style='margin-top:25px'>
+				<a href="#">
+					<div id="jeju">
+						<span class="locationTitle">제주</span>
+					</div>
+				</a>
 				</div>
+				<a href="#">
+					<div id="jeonju">
+						<span class="locationTitle">전주</span>
+					</div>
+				</a>
 			</li>
 		</ul>
 	</div>
