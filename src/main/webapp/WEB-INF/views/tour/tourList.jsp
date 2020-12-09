@@ -78,6 +78,13 @@
 	
 
 	<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label></div>
+	<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
+	
+	
+	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
+	<div id="tourBoardListDivTop">	
+			
+	</div>
 	<div  id="paging">
 		<ul>
 			<!-- 이전 페이지 -->
@@ -100,14 +107,7 @@
 			</c:if>
 		</ul>
 	</div>
-	
-	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
-	<div id="tourBoardListDivTop">	
-			
-	</div>
-	
-	
-		<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
+
 </div>
 </div>
 <script>
@@ -362,7 +362,7 @@ $(function(){
 			tag += "<p style='font-size:25px;' class='tourBoardTitle'><b>"+ v.title+"</b></p>";
 			tag += "<p style='font-size:20px;' class='tourBoardWrite'>"+v.departure+'~'+v.arrive+"</p>";
 			tag += "<hr style='width:200px;'/>";
-			tag += "<p style='font-size:40px;' class='tourBoardDay'><b>1Day</b></p></div></a></div>";
+			tag += "<p style='font-size:36px;' class='tourBoardDay'><b>"+'총'+v.distance+'km'+"</b></p></div></a></div>";
 			
 			// 썸네일 만들기
 			$.ajax({

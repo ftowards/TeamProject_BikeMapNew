@@ -53,7 +53,7 @@
 	
 	#info{
 		width:432px;
-		height:83%;
+		height:100%;
 	}
 	#info>div{
 		float:left;
@@ -75,7 +75,7 @@
 	}
 	#map{
 		flex : 1;
-		height : 83%;
+		height : 100%;
 	}
 	#infoPannel>input[type=radio]{
 		display:none;
@@ -91,11 +91,12 @@
 		padding:0 0 5px 48px;
 	}
 	.tab_liTag input[type=text]{
-		width:200px;
-		height:30.5px;
+		width:275px;
+		height:40px;
+		font-size:16px;
 		border-radius:5px;
 		padding-left:10px;
-		margin-left:17px;
+		margin-left:-10px;
 		font-weight:bold;
 		letter-spacing:1px;
 	}
@@ -508,6 +509,12 @@
 		border: rgba(75,112,253,0.3) solid;
 		border-width: 0 0 6px 0;
 	}
+	#start_Btn, #via_Btn, #arrive_Btn{
+		width:105px;
+		height:30px;
+		font-size:16px;
+		letter-spacing:1px;
+	}
 	#start_Btn{
 		text-decoration: none;
 		text-align : center;
@@ -645,19 +652,27 @@
 		background-color:#eee;
 		position:relative;
 		bottom:120px;
-		left:36px;
+		left:30px;
 		z-index:20;
 	}
 	
-	
+	.food_Btn2, .sights_Btn2{
+		right:20px;	
+	}
+	 .accomodation_Btn2, .convenient_Btn2{
+		right:12px;	 
+	 }
 	.food_Btn2, .sights_Btn2, .accomodation_Btn2, .convenient_Btn2{
+		width:105px;
+		height:30px;
+		font-size:16px;
+	
 		float : left;
 		border-radius: 5px;
 		text-decoration: none;
 		text-align : center;
 		font-weight:bold;
 		position:relative;
-		right:6px;
 		background-color: white;
 	}
 	.food_Btn2{

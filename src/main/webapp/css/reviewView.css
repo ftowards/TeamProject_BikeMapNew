@@ -25,8 +25,7 @@
 			
 	.mainDiv{
 		width:1200px;
-		height:auto;
-		overflow: hidden;
+		height:2300px;
 		margin:0 auto;
 	}
 		
@@ -69,7 +68,6 @@
 	 /* 버튼 */
 		.mint_Btn{
 			  font-size:15px;
-			  font-weight:bold;
 			  border-radius: 5px;
 			  text-decoration: none;
 			  text-align : center;
@@ -90,6 +88,8 @@
 			  background-color: rgb(69,69,79);
 			  width : 100px;
 			  height : 45px;
+			  border:0;
+			  letter-spacing:1px;
 		}
 		.gray_Btn:hover{
 			background-color: rgb(107 107 107);
@@ -163,10 +163,6 @@
 		text-align: center; 
 		margin:70px 0 120px 0;
 	}
-
-
-	
-
 	
 	#searchKeyword {  
 		width: 140px; 
@@ -240,32 +236,56 @@
 	}
 		
 
+	#searchWordReview{
+		background-color:#F1F1F1;
+		border:0;
+		box-shadow:3px 3px 3px #ccc;
+		border-radius:5px;
+		width:540px;
+		height:40px;
+	}
 
+	.orderRadio{
+		font-size:18px;
+	}
+
+	#orderNobard, #orderHit{
+		width:16px; height:16px;
+		margin-right:5px;
+	}
 	
 	.boardlist{
 	    width: 100%;
 	   	height : 370px;
 	    border-bottom: 1px solid gray;
-	    padding: 25px;
+	    padding: 10px 25px 25px 25px;
+	}
+	
+	.wordCut{
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
+	.subject_title{
+		font-size:28px;
+	}
+	.subject_Hitcount{
+		text-align:right;
+		width:100%; height:20px;
+		font-size:15px;
+		color:#22539c;
 	}
 	
 	#reviewtext{
 	    width: 100%;
 	    height: 127px;
 	    overflow: hidden;
-	    font-size:17.5px;
+	    font-size:16.5px;
 	    font-weight:300;
 	    position:relative;
 	    bottom:30px;
 	}
-	.wordCut{
-		white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis;
-	}
-	
 
-	}
 	.content img {
 		border-radius: 5px;
 	}
@@ -561,8 +581,9 @@
 
 /*=============페이징===================*/
 	#paging{
-				height:60px; 
-			
+		height:60px; 
+		text-align: center;
+	    margin-left: -540px;
 				
 	} 
 	#paging ul{

@@ -6,7 +6,7 @@
  	<select id="selectAllTour" resultType="com.bikemap.home.tour.TourVO" parameterType="com.bikemap.home.tour.PagingVO">
 		select * from 
 			(select * from 
-				(select noboard, title, to_char(departure,'YY/MM/DD') departure, to_char(arrive,'YY/MM/DD') arrive, reference from tour
+				(select noboard, title, to_char(departure,'YY/MM/DD') departure, to_char(arrive,'YY/MM/DD') arrive,distance,reference from tour
 				where state = '1'	order by noboard desc)
  			where rownum <![CDATA[<= ]]> (#{nowPage} * #{onePageRecord}) order by noboard asc)
 		where rownum <![CDATA[<= ]]> #{lastPageRecordCount} order by noboard desc 
@@ -70,7 +70,7 @@
 	</insert>
 	<select id="tourSelect" parameterType="int" resultType="com.bikemap.home.tour.TourVO">
 		select noboard, title, userid, reference, content, to_char(deadline,'YY/MM/DD HH24') deadline,to_char(departure,'YY/MM/DD HH24') departure,
-		to_char(arrive,'YY/MM/DD HH24') arrive,	place, distance, speed, budget, room, reggender, regage 
+		to_char(arrive,'YY/MM/DD HH24') arrive,	place, distance, speed, budget, room, reggender, regage ,state
 	 	from tour where noboard = #{noboard}
 	</select>
  	<select id="lastTourNo" resultType="int">
@@ -206,5 +206,25 @@
 	</update>
 	<update id="addHeart">
 		update regist set heart = heart + 1 where userid = #{param1}
+	</update>
+	<select id="selectTourCompState" resultType="int" parameterType="int">
+		select count(noboard) from tour where state = '2' and noboard=#{noboard}
+	</select>
+	<select id="selectComplistChk" resultType="int" parameterType="int">
+		select count(userid) from complist where noboard=#{noboard}
+	</select>
+	<delete id="deleteTourView">
+		delete from tour where noboard=#{param1} and userid=#{param2}
+	</delete>
+	<select id="selectComplistExceptLogId" resultType="String">
+		select userid from complist where noboard=#{param1} and userid  <![CDATA[ <> ]]> #{param2}
+	</select>
+	<select id="tourEditSelect" resultType="com.bikemap.home.tour.TourVO">
+		select noboard, title, userid, reference, content, to_char(deadline,'YY/MM/DD HH24') deadline,to_char(departure,'YY/MM/DD HH24') departure,
+		to_char(arrive,'YY/MM/DD HH24') arrive,	place, distance, speed, budget, room, reggender, regage 
+	 	from tour where noboard = #{param1} and userid = #{param2}
+	</select>
+	<update id="updateTourView" parameterType="com.bikemap.home.tour.TourVO">
+		update tour set title=#{title},content=#{content} where noboard=#{noboard} and userid=#{userid}
 	</update>
  </mapper>

@@ -3,7 +3,7 @@
 				width:1200px; 
 				margin:0 auto;
 				padding:0;
-				height:2000px;			
+							
 	}
 	#tourViewFormTitleDiv{
 							width:50%;
@@ -28,6 +28,7 @@
 					border:none;
 					background-color:transparent;
 					font-weight:bold;
+					color:rgb(156,156,156);
 				
 					
 	
@@ -95,13 +96,9 @@
 								margin:-15px 0 0 40px;
 								
 	}
-	.conditionDivTop4{
-						width:500px;
-						float:left;
-	}
-	hr{
-		margin-top:15px;
-	}
+
+
+	
 	#tourViewFormTitleLbl{
 							font-size:22px; 
 	 						color:rgb(64,64,64);
@@ -145,7 +142,7 @@
 	}
 	.labelClass,#departure,#arrive,.conditionBox,.labelClass2,#deadline,#place,.labelUseridClass{	
 																				
-																				padding-top:6px;
+																				padding-top:7px;
 																				text-align:center;
 																				border:none;
 																				border-radius:10px;
@@ -186,14 +183,14 @@
 
 				
 	#departure,#arrive,#deadline,#place{	
-										padding-top:3px;	
+										padding-top:7px;	
 											width:150px;
 											background-color:#fff;
 											color:rgb(123,123,123);
 		}
 
 	.conditionBox{
-					padding-top:3px;	
+					padding-top:7px;	
 					width:100px;
 					background-color:#fff;
 					color:rgb(123,123,123);
@@ -217,7 +214,7 @@
 
 		
 	#room,.useridBox{
-					padding-top:3px;
+					padding-top:7px;
 					text-align:center;
 					border:none;
 					border-radius:8px;
@@ -240,7 +237,7 @@
 	
 	}
 	#whole,#whole2,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver,#genderboy,#gendergirl{
-																													padding-top:5px;
+																													padding-top:7px;
 																													text-align:center;
 																												
 																													border-radius:10px;
@@ -313,15 +310,56 @@
 					
 						
 	}	
+	#tourWriteTitleEdit{
+						width:500px;
+						height:35px;
+						margin-bottom:20px;
+						border-radius:10px;
+						box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+						border:none;
+	}
 	
 	#writeForm{
-					margin:30px 0 0 200px;
-					widht:800px;
-					height:500px;
-					float:left;
+					
+					margin:0 auto;	
+					height:300px;
+					width:1000px;
 				
+					
+								
 			
+	}	
+	#writeForm li:nth-child(1n),#writeForm li:nth-child(3n){
+						width:10%;
+						height:50px;
+						float:left;
+						padding:50px 0 50px 0;
 	}
+	
+	#writeForm li:nth-child(2n){
+						width:90%;
+						float:left;
+					
+	}
+	.tourViewWriteFormClass{
+					width:1000px;
+					float:left;				
+	}
+	
+	.tourViewLabelClass{
+						background-color:rgb(64,64,64);
+					    color:#fff;
+					    font-weight:bold;
+					    border-radius: 10px;
+					    border: none;
+					    width: 80%;
+					    height:35px;
+					    padding-top:6px;
+					    text-align: center;
+					    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+						font-size:15px;
+	}
+	
 	#tourWriteTitle{
 						width:500px;
 						height:35px;
@@ -329,16 +367,64 @@
 						font-size:35px;
 					
 	}
-
 	#content{
-				width:800px;
-				height:400px;
-				float:left;
-						
+			  padding-left:15px;
+			  border:none;
+			  line-height:35px;
+			  border-radius: 10px;
+			  box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+			  font-size:15px;
+			  width:840px;
+			  
+	
+	}
+	#writebuttonDiv{
+					width:250px;
+					height:100px;
+					margin:0 auto;
+					padding:20px 0 20px 0;
+				
+					
+	}
+	#writebuttonDiv input{
+							position:relative;
+							padding-top:-2px;
+							text-align:center;
+							border:none;
+							border-radius:10px;
+							width:70px;
+							height:40px;
+							background-color:black;
+							font-size:15px;
+							font-weight:bold;
+							color:#fff;
+							float:left;
+							margin-left:30px;
+							box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+							
+	
+	}	
+	#writebuttonDiv input:last-child{	
+										
+										background-color:#fff;
+										color:rgb(69,69,79);	
+															
+	}	
+
+
+	#tourWriteFormTitleDiv{
+							height:80px;
+							margin-top:50px;	
+							float:left;
 	}
 
+	#tourWriteFormTitleLbl{
+							font-size:22px; 
+	 						color:rgb(64,64,64);
+	 					
+	}
 	#departureTime,#departureMinutes,#deadlineTime,#arriveTime,#arriveMinutes{
-														padding-top:3px;
+														padding-top:7px;
 														text-align:center;
 														border:none;
 														border-radius:10px;
@@ -349,7 +435,7 @@
 														font-weight:bold;
 														color:rgb(123,123,123);
 														float:left;
-														margin:0 15px 0 10px;
+														margin:0 10px 0 10px;
 														height:26px; 
 														text-align-last:center;
 														
@@ -371,7 +457,7 @@
 		
 
 	#roomCheckDiv{
-				
+					float:left;
 					height:40px;
 					width:1200px;
 					
@@ -399,10 +485,11 @@
 										font-weight:bold;
 										color:rgb(64,64,64);
 										margin-left:10px;
+										float:left;
 	}		
 
 	#tourStateDiv{
-					height:150px;
+					height:70px;
 					width:700px;
 					float:right;
 					
@@ -599,6 +686,5 @@
 			    line-height : 25px;
 			    margin-left:5px;
 	
-	
-	
 	}
+

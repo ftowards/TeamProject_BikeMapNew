@@ -11,10 +11,11 @@
 
 $(function(){
 	CKEDITOR.replace('content',{
-		height:600,
+		height:600 ,
 		extraPlugins: 'easyimage',
 	    cloudServices_tokenUrl: 'https://76760.cke-cs.com/token/dev/fb98221c99f6d4fccf45b51c839a7d022ad90ab2f9dfbc25f02ecdc03d98',
 	    cloudServices_uploadUrl: 'https://76760.cke-cs.com/easyimage/upload/'
+		
 	});
 });
 

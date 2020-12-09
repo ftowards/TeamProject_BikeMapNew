@@ -220,8 +220,8 @@ function goList(){
 				<input type="button" value="확&nbsp;인" class="gray_Btn" id="grayBtn"/>
 			</div>
 			<div class="saveBtns">
-				<input type="submit" id="routeCollect" name="save" value="저&nbsp;장" class="blue_Btn" style='border-radius: 5px; width:80px; height:40px'/>
-				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='height:40px'/>
+				<input type="submit" id="routeCollect" name="save" value="저    장" class="blue_Btn" style='border-radius: 5px; width:95px; height:45px'/>
+				<input type="submit" name="recruitment" value="인원모집" class="WBlue_Btn" style='width:95px; height:45px; letter-spacing:2px'/>
 			</div>
 		</div>
 	</div><br/>

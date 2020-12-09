@@ -1,157 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/home/css/tourViewStyle.css" type="text/css"/>
+<link rel="stylesheet" href="/home/css/tourViewEditStyle.css" type="text/css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/home/api/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://www.google.com/jsapi"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <script>
-//////////////////게시글 삭제
-$(function(vo){
-	//result==1 : 완료상태 , 2: 참여인원 있는 상태 , 3: 삭제가능상태
-	$(".tourViewDelete").click(function(){
+
+$(function(){
+ 	CKEDITOR.replace('content',{
+		height:600
+		,width:1200
 	
-		var url ="/home/tourViewDeleteChk";
-		var data = "noboard="+${vo.noboard};
+	}); 
+  
+	
+	$("#tourEditForm").submit(function(){
+		CKEDITOR.instances.content.updateElement();		
+		
+		
+		
+		
+		if($("#tourWriteTitleEdit").val()==""){
+			toast("제목을 입력하세요.");
+			$("#tourWriteTitleEdit").focus();
+			return false;		
+		}
+		
+	 	if(CKEDITOR.instances.content.getData()==""){
+			toast("글내용을 입력하세요.");
+			$("#content").focus();
+			return false;
+		}
+	 	
+		var url = "/home/tourEditFormOk";
+		var params = "noboard="+${vo.noboard}+"&userid=${vo.userid}&title="+$("#tourWriteTitleEdit").val()+"&content="+CKEDITOR.instances.content.getData();
+		
+		 	
+		console.log(params);
 		
 		$.ajax({
-			url: url,
-			data : data,
-			success: function(result){
-				if(result == 1){
-					toast("완료된 여행은 삭제가 불가능합니다.");
-				}else if(result == 2){
-						selectTourCompList(result);
-				
-				}else if(result == 3){
-					toastConfirm("삭제된 글은 복구가 불가능합니다.\n그래도 삭제하시겠습니까?",function(){
-						deleteTourView(result);
-					});
-					
-			}else{
-					toast("글삭제에 실패하였습니다.");
-					}
-				},error:function(){
-					console.log("글삭제 조건 에러");
+			type : 'POST',
+			url : url,
+			data : params,
+			success : function(result){
+				if(result>0){
+					console.log("동행찾기 글쓰기 확인창====="+result);
+					toast("글이 수정되었습니다.");
+					location.href="/home/tourView?noboard="+${vo.noboard};
+				}else{
+					toast("글수정이 실패하였습니다.");
 				}
-
+			},error:function(){
+				console.log("글쓰기 오류");
+			}
 		});
 		return false;
 	});
-	
-	// 참여인원 리스트 구하기
-	function selectTourCompList(result){
-		var url = "/home/selectTourCompList";
-		var data ="noboard="+${vo.noboard};
-		
-		$.ajax({
-			url:url
-			,data:data
-			,success : function(result){
-				if(result.length>0){
-					toastConfirm("현재"+result.length+"명의 참여인원이 있습니다.\n그래도 삭제하시겠습니까?",function(){
-						selectTourCompReceiver(result);
-						
-					});	
-				}else{
-					toast("참여인원 리스트불러오기에 실패하였습니다.");	
-				}
-			
-			},error:function(){
-				console.log("동행찾기 참여리스트 불러오기 에러");
-			}
-			
-			
-		});
-	
-	}
-	// 참여인원
-	function selectTourCompReceiver(result){
-		var $result = $(result);
-		
-		$result.each(function(i,val){
-			sendTourDeleteMsg(val);
-		});
-		
-	}	
-	// 게시글 삭제 메세지 보내기
-	function sendTourDeleteMsg(receiver){
-		var receiver = receiver;
-		var sender = $("#logId").val();
-		
-
-		console.log("동행찾기 게시글 삭제 msg receiver=="+receiver);
-		console.log("동행찾기 게시글 삭제 msg sender=="+sender);
-		console.log("동행찾기 게시글 삭제 msg noboard=="+noboard);
-		
-		
-		var noboard = ${vo.noboard};
-		var msg = "";
-		var socketMsg = ""; 
-		
-		msg = sender + "님이 " + noboard + "번 동행찾기 게시글을 삭제하였습니다.";
-		var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
-		
-		$.ajax({
-			url: "/home/insertNotice",
-			data: data,
-			success : function(result){
-				if(result == 1){
-					socket.send(socketMsg);
-					deleteTourView(result);
-				}
-			},error:function(err){
-				console.log(err);
-			}
-			
-			
-		});
-		
-		
-	}
-	
-	
-	//글삭제하기
-	function deleteTourView(result){
-		
-		var url = "/home/deleteTourView";
-		var data = "noboard="+${vo.noboard};
-		
-		$.ajax({
-			url:url
-			,data:data
-			,success:function(result){
-				if(result == 1){
-					toast("게시글이 삭제되었습니다.");
-					location.href="/home/tourList";
-				}else{
-					toast("글삭제에 실패하였습니다.");
-				}
-			},error:function(){
-				console.log("글삭제 에러");
-			}
-		});
-		
-	}
-
 });
 
 </script>
 <div class="mainDivTourView">
-	<div id="tourViewFormTitleDiv"><label id="tourWriteTitle"><b>${vo.title}</b></label></div>
-	<div class="tourViewEditAndDeleteDiv">
+	<form id="tourEditForm">
 	
-			<c:choose>
-			<c:when test="${logStatus != null && logStatus != '' && logId == vo.userid}">
-				<c:if test="${vo.state != '2'}">
-					<div><label class="tourViewEdit"><a href="<%=request.getContextPath()%>/tourViewEdit?noboard=${vo.noboard}">수정</a></label></div>
-				</c:if>
-				<div><label class="tourViewDelete">삭제</label></div>
-			</c:when>
-			</c:choose>	
-	</div>
+		<div id="tourWriteFormTitleDiv"><label id="tourWriteFormTitleLbl"><b>동행찾기 게시판 글수정</b></label><br/><hr/></div>
+
 	<div id="routeResultDiv" class="routeResultDiv">
 		<input type='hidden' id='reference' value='${vo.reference }'/>
 		<div><label class="tourWriteConditionTitle">루&nbsp;트</label></div>
@@ -201,7 +117,7 @@ $(function(vo){
 			<div><label class="tourWriteConditionTitle">여&nbsp;행</label></div>		
 				<div class="conditionDivTop2">
 					<div><label class="labelClass">거&nbsp;리</label></div>
-					<div><label class="conditionBox" id="distance">${vo.distance}&nbsp;&nbsp;</label></div>
+					<div><label class="conditionBox" id="distance">${vo.distance}</label></div>
 						<label class="kmLbl1">km</label>
 					<div><label class="labelClass2" style="margin:-25px 0 0 40px;">소요시간</label></div>
 					<div><label style="margin:-25px 0 0 20px;" id="tourtime" class="conditionBox"></label></div>
@@ -240,68 +156,20 @@ $(function(vo){
 				</div>
 		</div>
 	</div>			
-	<div id="writeForm">
-		<ul class="tourViewWriteFormClass">
-    		<li><label class="tourViewLabelClass" >작성자</label></li>
-        	<li><input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox" style="margin-left:0; padding-top:0px;"></li>
-			<li><label class="tourViewLabelClass">모집내용</label></li>
-			<li><div id="content">${vo.content }</div></li>
-		</ul>
-	</div>		
-
-	<div id="roomCheckDiv">
-		<div></div>
-		<div id="checkComplist" class="roomCheckDivLbl" data-target="#dialog" data-toggle="modal"><label>참여인원 확인하기></label></div>
-		<c:if test="${logId == vo.userid}">
-			<input type="hidden" id="manageConditon" value="ok"/>
-		</c:if>
-	</div>
+	<div id="writeForm">	
 	
-	<c:if test="${logId != vo.userid && logId != null}">
-		<div id="tourStateDiv">
-			<div><button id="applyTour">참가신청</button></div>
-			<div><button id="cancelTour">참가취소</button></div>		 	
-		</div>
-	</c:if>
-
-	
-	<!-- 참가 인원 확인 창 : 모달 창 만들기 -->
-	<div class="modal" id="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<!-- header -->
-				<div class="modal-header" style="border:none">
-					<label><img src="<%=request.getContextPath()%>/img/img_tour/people.png" style="width:30px">&ensp;참여 인원 확인</label>
-					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
-				</div>
-				<!-- body -->
-				<div class="modal-body">
-					<ul id="listTitle" >
-						<li>아이디</li>
-						<li>나이대</li>
-						<li>성별</li>
-						<li>여행횟수</li>
-						<li>좋아요</li>
-						<li>상태</li>
-						<li>쪽지</li>
+					<ul>
+						<li><input type="text" name="title" id="tourWriteTitleEdit" value="${vo.title }" maxlength="25"/></li>
+						<li><textarea name="content" id="content">${vo.content }</textarea></li>
+						<li><div id="writebuttonDiv">
+							<input type="submit" value="등&nbsp;&nbsp;록"/>
+							<input type="reset" value="다시쓰기"/>
+						</div></li>
 					</ul>
-					<ul id="complist"></ul>
-				</div>
-				<!-- footer -->
-				<div class="modal-footer" style="border:none">
-					
-				</div>
 			</div>
-		</div>
-	</div>
-	
-	
-	<input type="hidden" id="noboard" value="${vo.noboard}">
-	<%@ include file="../inc/reply.jspf"%>
+
+	</form>
 </div>
-
-
-
 <script>
 //////// 지도용 변수
 var routeMarker = [];

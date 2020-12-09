@@ -32,7 +32,7 @@ body{margin:0; padding:0;
 	}	
 	.labelClass,#distanceLbl {	
 									position:relative;
-									padding-top:9px;
+									padding-top:7px;
 									text-align:center;
 									border:none;
 									border-radius:10px;
@@ -150,7 +150,7 @@ body{margin:0; padding:0;
 	}
 	#whole,#whole2,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver{
 																						position:relative;
-																						padding-top:9px;
+																						padding-top:7px;
 																						text-align:center;
 																						border:none;
 																						border-radius:10px;
@@ -166,7 +166,7 @@ body{margin:0; padding:0;
 	
 	#genderboy,#gendergirl{
 								position:relative;
-								padding-top:9px;
+								padding-top:7px;
 								text-align:center;
 								border:none;
 								border-radius:10px;
@@ -204,7 +204,7 @@ body{margin:0; padding:0;
 	}
 	#search{
 				position:relative;
-				padding-top:4px;
+				padding-top:3px;
 				text-align:center;
 				border:1px solid black;
 				border-radius:10px;
@@ -221,7 +221,7 @@ body{margin:0; padding:0;
 	
 	#reset{
 				position:relative;
-				padding-top:4px;
+				padding-top:3px;
 				text-align:center;
 				border:none;
 				border-radius:10px;
@@ -255,14 +255,18 @@ body{margin:0; padding:0;
 				
 	} 
 	#paging ul{
-				width:200px;
-				margin-left:1100px;
+				text-align:center;
+				margin:0 auto;
+				width:300px;
+				height:26px;
 	}
 	#paging li{
 				float:left; 
 				width:25px; 
 				height:40px; 
 				font-size:18px;
+				margin-left:20px;
+				
 			
 	} 	
 	
@@ -278,7 +282,7 @@ body{margin:0; padding:0;
 	#tourBoardListDivTop,#tourBoardListDivBottom{
 											
 													width:1200px;
-													height:440px;
+													height:600px;
 													
 													
 	}	
@@ -347,12 +351,13 @@ body{margin:0; padding:0;
 	#tourWriteDiv input{
 								border:none;
 								border-radius:10px;
-								width:60px;
-								height:30px;
+								width:70px;
+								font-weight:bold;
+								height:35px;
 								background-color:#fff;
 								color:black;
-								font-size:12px;
-								margin:20px 0 200px 1130px;
+								font-size:15px;
+								margin:0px 0 20px 1125px;
 								box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 				
 	}

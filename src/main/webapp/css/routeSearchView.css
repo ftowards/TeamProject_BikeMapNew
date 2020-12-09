@@ -129,13 +129,13 @@
 	#gradeSelect{
 		width:90%;
 		height:63%;
-		font-size:14px;
+		font-size:14.5px;
 		font-weight:bold;
 		color:#353535;
 		border:0px;
 		border-radius:5px;
 		background-color:#eee;
-		background: url(../img/img_route/selectBox.png) no-repeat 93% 55%;
+		background: url(../img/img_route/selectBox.png) no-repeat 92% 55%;
 		-webkit-appearance: none; /* 네이티브 외형 감추기 */
     	-moz-appearance: none;
     	appearance: none;
@@ -144,7 +144,6 @@
 	}
 	
 	 .gray_Btn{
-		border : #353535 2px solid;
 		border-radius: 5px;
 		background-color : #353535;
 		text-decoration: none;
@@ -152,11 +151,11 @@
 		font-size : 12px;
 		padding : 4px 8px;
 		color: white;
+		border : 0;
  	}
  	.gray_Btn:hover{
-		color : #353535;
-		font-weight:bold;
-		background-color: white;
+		color : white;
+		background-color: #777777;
  	}
  	#grayBtn{
  		width:33%;
@@ -200,8 +199,7 @@
 		color : #00B0B0;
 		border: 2px solid #00B0B0;
 		background-color: white;
-	}	
-
+	}
 	#placeList{
 		text-align:center;
 	}
@@ -334,8 +332,7 @@
 	
 
 	.blue_Btn{
-		  font-size:15px;
-		  font-weight:bold;
+		  font-size:17px;
 		  border-radius: 5px;
 		  text-decoration: none;
 		  text-align : center;
@@ -343,18 +340,15 @@
 		  margin:0 10px;
 		  float:left;
 		  color : white;
-		  border: 2px solid #247B8A;
 		  background-color: #247B8A;
+		  border:0;
 	}
 	.blue_Btn:hover{
-		color : #247B8A;
-		font-weight:bold;
-		background-color: white;
-		border:2px solid #247B8A;
+		color : white;
+		background-color: #49a2b1;
 	}
 	.WBlue_Btn{
-		  font-size:15px;
-		  font-weight:bold;
+		  font-size:17px;
 		  border-radius: 5px;
 		  text-decoration: none;
 		  text-align : center;
@@ -365,10 +359,9 @@
 		  background-color: white;
 	}
 	.WBlue_Btn:hover{
-		color : white;
-		font-weight:bold;
-		background-color: #247B8A;
-		border:2px solid #247B8A;
+		color : #1ba5bd;
+		border:2px solid #76d9ea;
+		background-color: #d6f9ff;
 	}
 	
 	/* 스위치 만들기 */	
@@ -551,16 +544,18 @@
 	}
 	
 	#routeWriterMenu .WMint_Btn,#routeWriterMenu .mint_Btn{
-		font-size: 15px;
+		font-size: 17px;
 	    font-weight: bold;
 	    border-radius: 5px;
 	    text-decoration: none;
 	    text-align: center;
 	    padding: 3px 6px;
 	    margin: 5px 10px;
-	    color: #00B0B0;
+   	    color: #00B0B0;
+	    width:85px; height:35px;
 	    border: 2px solid #00B0B0;
 	    background-color: white;
+	    letter-spacing:2px;
 	    height: 30px;
 	    line-height: 20px;
 	}

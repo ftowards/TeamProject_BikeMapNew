@@ -2,6 +2,8 @@ package com.bikemap.home.tour;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 public interface TourDaoImp {
 	
 	//게시판 목록보기(전체레코드선택)
@@ -81,5 +83,24 @@ public interface TourDaoImp {
 	
 	// 내가 참가하는 투어 리스트
 	public List<TourlistVO> selectApplytourList(TourListPagingVO vo);
-		
+	
+	//동행찾기 여행 상태 확인(게시글 삭제)
+	public int selectTourCompState(int noboard);
+	
+	//참여동행 인원 확인
+	public int selectComplistChk(int board);
+	
+	// 게시글 삭제
+	public int deleteTourView(int noboard,String userid);
+	
+	//참여리스트 가져오기(본인제외)
+	public List<String> selectComplistExceptLogId(int noboard,String userid);
+	
+	
+	//게시글 수정(정보 불러오기)
+	public TourVO tourEditSelect(int noboard,String userid);
+	
+	// 게시글 수정하기
+	public int updateTourView(TourVO vo);
+
 }

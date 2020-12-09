@@ -9,10 +9,11 @@ function makeTourTable(result){
 	for(var i = 0; i < result.length ; i++){
 		
 		if(i==0){
-			listTag +=  "<li><input type='checkbox' id='checkAll' />번호</li> <li>제목</li> <li>작성자</li> <li>완료여부</li>"	;
+			listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번호</li> <li>제목</li> <li>작성자</li> <li>완료여부</li> <li>관리자 추천</li>"	;
 		}			
 		//list안에 데이터 추가
-		listTag += "<li><input type='checkbox' />&nbsp&nbsp"+result[i].noboard+"</li>";
+		listTag += "<li><input type='checkbox' name='listChk' value='"+result[i].noboard+"'/>";
+		listTag += "<li>"+result[i].noboard+"</li>";
 		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/tourView?noboard="+result[i].noboard+"'>"+result[i].title+"</a></li>";
 		listTag += "<li>"+result[i].userid+"</li>";
 		listTag += "<li>";
@@ -22,7 +23,15 @@ function makeTourTable(result){
 			listTag +="완료";
 		}
 		listTag += "</li>";
-			
+		listTag += "<li>";
+		listTag += "<label class='switch'>";
+		listTag += "<input type='checkbox' name='adminScrapBtn' value='"+result[i].noboard+"'";
+		if(result[i].scrap=='T'){
+			listTag += "checked='checked'";
+		}
+		listTag += "><span class='slider round'></span>";
+		listTag += "</label>";
+		listTag += "</li>";	
 		}$("#tourList").append(listTag);
 }
 </script>
@@ -34,15 +43,17 @@ function makeTourTable(result){
 				<div id="adminTable">
 				<h1 class="adminListHead">동행모집게시판</h1>
 					<ul id="tourList">
-						<li><input type="checkbox" id="checkAll" />번호</li>
+						<li><input type="checkbox" id="checkAll" /></li>
+						<li>번호</li>
 						<li>제목</li>
 						<li>작성자</li>
 						<li>완료여부</li>
-						
+						<li>관리자 추천</li>
 					
 						<!-- DB작업완료 후 for문 생성 -->
 						<c:forEach items="${list}" var="vo" varStatus="status">
-							<li> <input type="checkbox" name="tourCheck" value="${vo.noboard }"/>&nbsp&nbsp${vo.noboard}</li>
+							<li><input type="checkbox" name="listChk" value="${vo.noboard}"/></li>
+							<li>${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
 							<li>
@@ -51,6 +62,20 @@ function makeTourTable(result){
 								</c:if>
 								<c:if test="${vo.state=='2'}">
 									완료
+								</c:if>
+							</li>
+							<li>
+								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
+									<label class="switch">
+									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">
+									  <span class="slider round"></span>
+									</label>							
+								</c:if>
+								<c:if test="${vo.scrap=='T'}">
+									<label class="switch">
+									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >
+									  <span class="slider round"></span>
+									</label>
 								</c:if>
 							</li>
 					</c:forEach>

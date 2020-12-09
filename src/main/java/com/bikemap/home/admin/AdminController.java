@@ -1,5 +1,6 @@
 package com.bikemap.home.admin;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bikemap.home.review.ReviewVO;
+import com.bikemap.home.route.RouteDaoImp;
 import com.bikemap.home.route.RouteVO;
 import com.bikemap.home.tour.PagingVO;
 import com.bikemap.home.tour.TourDaoImp;
@@ -40,9 +42,7 @@ public class AdminController {
 			//vo.setOnePageRecord(10);
 			totalRecord = dao.searchRegistRecord(vo);
 			vo.setTotalRecord(totalRecord);
-			//System.out.println("왜안되냐...->"+vo.getTotalRecord());
 			list = dao.selectRegistAll(vo);
-			System.out.println(vo.getNowPage()+": 현재페이지");
 	
 			mav.addObject("type", "user");
 			mav.addObject("list", list);
@@ -206,7 +206,7 @@ public class AdminController {
 	@ResponseBody
 	public List<ReviewVO> adminReviewAjax(AdminPagingVO vo) {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-		List<ReviewVO>list = new ArrayList<ReviewVO>();
+		List<ReviewVO>list = new LinkedList<ReviewVO>();
 		try {	
 			int totalRecord = dao.searchReviewRecord(vo);
 			vo.setTotalRecord(totalRecord);
@@ -227,8 +227,7 @@ public class AdminController {
 			int totalRecord = dao.searchQnaRecord(vo);
 			
 			vo.setTotalRecord(totalRecord);
-			//
-			System.out.println(totalRecord+"이건또 왜안되냔......");//5나온다..
+
 			List<AdminQnaVO>list = dao.selectQnaAll(vo);//처음에는 검색어 없으므로 그냥 널값넣어준다.
 			mav.addObject("type", "qna");
 			mav.addObject("list", list);
@@ -279,7 +278,6 @@ public class AdminController {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		
 		try {
-			System.out.println(vo.getNoqna()+"dddddd");
 			dao.qnaUpdate(vo);
 			mav.setViewName("redirect:adminQna");
 //				mav.addObject("msg", "1대1문의 답변 제출 오류");
@@ -300,7 +298,6 @@ public class AdminController {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		try {
 			String type = paging.getType();
-			System.out.println(type+":"+paging.getNowPage());
 			int totalRecord = 0;
 			if(type.equals("user")) {
 				totalRecord = dao.searchRegistRecord(paging);				
@@ -313,7 +310,6 @@ public class AdminController {
 			}else if(type.equals("route")) {
 				totalRecord = dao.searchRouteRecord(paging);
 			}
-			System.out.println("totalRecord==="+totalRecord);
 			paging.setTotalRecord(totalRecord);
 				
 		}catch(Exception e) {
@@ -321,4 +317,6 @@ public class AdminController {
 		}
 		return paging;
 	}
+	
+
 }
