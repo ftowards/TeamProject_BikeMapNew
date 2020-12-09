@@ -49,13 +49,13 @@ function makeReviewTable(result){
 				<ul id="reviewList">	
 					
 					<li><input type="checkbox" id="checkAll" /></li>	
-					<li>번호</li>
-					<li>제목</li>
+					<li>번&nbsp;&nbsp;호</li>
+					<li>제&nbsp;&nbsp;목</li>
 					<li>작성자</li>
 					<li>레퍼런스 번호</li>
 					<li>조회수</li>
 					<li>추천/비추천</li>
-					<li>관리자 추천</li>
+					<li>관리자추천</li>
 					<!-- DB작업완료 후 for문 생성 -->
 					<c:forEach items="${list}" var="vo" varStatus="status">
 			
@@ -111,12 +111,12 @@ function makeReviewTable(result){
 					</ul>
 			</div><br/> 
 			<!-- /paging -->
+			</div><!-- adminContent -->
 				<div id="reviewBtnDiv">
 						
 						<input type="button" id="reviewHideBtn2" name="hideReview" value="비공개"/>
 						<input type="button" id="reviewRecommentBtn" name="recomReview" value="추천하기" />
 				</div><!-- btn -->
-			</div><!-- adminContent -->
 <!-- Page Content -->
 </body>
 </html>

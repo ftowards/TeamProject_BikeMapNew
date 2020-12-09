@@ -55,14 +55,14 @@ function makeRouteTable(result){
 				</div>
 				<ul id="routeList">			
 					<li><input type="checkbox" id="checkAll" /></li>		
-					<li>번호</li>
-					<li>제목</li>
+					<li>번&nbsp;&nbsp;호</li>
+					<li>제&nbsp;&nbsp;목</li>
 					<li>작성자</li>
-					<li>평점</li>
+					<li>평&nbsp;&nbsp;점</li>
 					<li>평가횟수</li>
-					<li>지역</li>
-					<li>비공개 여부</li>
-					<li>관리자 추천</li>
+					<li>지&nbsp;&nbsp;역</li>
+					<li>비공개여부</li>
+					<li>관리자추천</li>
 					<!-- DB작업완료 후 for문 생성 -->
 					<c:forEach items="${list}" var="vo" varStatus="status">
 							<li><input type="checkbox" name="listChk" value="${vo.noboard}" /></li>

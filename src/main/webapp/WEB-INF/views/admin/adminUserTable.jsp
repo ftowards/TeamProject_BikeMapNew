@@ -53,11 +53,11 @@
 		<div class="adminTable">
 				<h1 class="adminListHead">회원관리</h1>
 				<ul id="userList">
-							<li>번호</li>
+							<li>번&nbsp;&nbsp;호</li>
 							<li>아이디</li>
-							<li>이름</li>
-							<li>성별</li>
-							<li>나이</li>
+							<li>이&nbsp;&nbsp;름</li>
+							<li>성&nbsp;&nbsp;별</li>
+							<li>나&nbsp;&nbsp;이</li>
 							<li>모임횟수</li>
 							<li>좋아요</li>
 							<li>상태</li>

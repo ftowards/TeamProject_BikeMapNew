@@ -84,10 +84,10 @@ $(function(){
                         <td><textarea name="answercontent" id="questionReplyTxt" cols=70 rows=10 style="resize: none;overflow:hidden;">
                         <c:if test="${vo.answer==null||vo.answer=='N'}">
 							안녕하세요 바이크맵 입니다.<br>
-							현재 <span>${vo.typename}</span> 게시판 점검중으로 2020-11-01 02:00이후 정상운영됩니다.<br>
+							현재 <span>${vo.typename}</span> 게시판 점검중으로 2020-11-01 02:00 이후 정상 운영됩니다.<br>
 							이용에 불편을 드려서 죄송합니다.<br>
 												
-							홈페이지 네임드림.
+							바이크맵 드림.
 						</c:if>					
 						<c:if test="${vo.answer=='Y'}">
 							<span>${vo.answercontent}</span>

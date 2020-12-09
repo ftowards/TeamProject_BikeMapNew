@@ -181,11 +181,10 @@ a{
 
 /*�럹�씠吏� 留ㅺ린湲�*/
 #paging>ul {
-	height: 30px;
 	overflow: auto;
 	margin: 0 auto;
 	width: 15%;
-	padding-left:20px;
+	padding:15px 0 0 20px;
 	<!-- 留욎떠蹂댁옄 -->
 }
 
@@ -225,38 +224,39 @@ a{
 #userList>li:nth-child(-n+9) {
 	font-size:18px;
 	background:linear-gradient(#eee, lightgray);
-	border-top:1px solid gray;
+	border-top:1px solid #8a8a8a;
+	border-bottom:1px solid #8a8a8a;
 	margin-bottom:4px;
 	letter-spacing:2px;
 	
 }
 #userList>li:nth-child(n+10):nth-child(-n+18){
-	border-top:1px solid gray;
+	border-top:1px solid #afafaf;
 }
 #userList>li {
 	float: left;
 	width: 11%;
 	height: 40px;
 	line-height: 40px;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #afafaf;
 }
 #userList, #userList>li {
 	height:50px;
 	background-color: #fff;
 }
 #userList{
-	
+	width:88%;
+	margin:0px 0 0px 82px;	
 }
 
 .searchText {
     width: 500px;
-    padding: 4px 0 0 10px;
+    padding-left:15px;
     border: 1px solid rgb(221,221,221);
-    border-radius: 8px;
-    height: 25px;
+    border-radius: 5px;
+    height: 35px;
     background-color: rgb(221,221,221);
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 17.5px;
     color: rgb(64,64,64);
 }
 
@@ -294,31 +294,36 @@ a{
 
 
 /* ================ 由щ럭�뀒�씠釉� ================*/
+#reviewList{
+	width:89%;
+	margin:0px 0 0px 82px;
+}
 #reviewList>li:nth-child(-n+8) {
 	background:linear-gradient(#eee, lightgray);
-	border-top:1px solid gray;
 	margin-bottom:4px;
+	border-top: 1px solid #8a8a8a;
+	border-bottom: 1px solid #8a8a8a;
 }
 #reviewList>li:nth-child(n+9):nth-child(-n+16){
-	border-top: 1px solid gray;
+	border-top:1px solid #afafaf;
 }
 #reviewList>li {
 	float: left;
 	width: 10%; 
 	height: 40px;
 	line-height: 40px;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #afafaf;
 }
 #reviewList, #reviewList>li {
 	height:50px;
 	background-color: #fff;
 }
 #reviewList>li:nth-child(8n+3) {
-	width: 37%;
+	width: 30%;
 	text-align : left;
 }
 #reviewList>li:nth-child(8n+1) {
-	width: 3%;
+	width: 6%;
 }
 #reviewList>li:nth-child(3) {
 	text-align : center;
@@ -326,13 +331,19 @@ a{
 }
 
 /* =============== 臾몄쓽 �뀒�씠釉� ==============*/
+#questionList{
+	width:88%;
+	margin:0px 0 0px 82px;
+}
 #questionList>li:nth-child(-n+6) {
 	background:linear-gradient(#eee, lightgray);
-	border-top:1px solid gray;
+	border-top:1px solid #8a8a8a;
+	border-bottom:1px solid #8a8a8a;
 	margin-bottom:4px;
 }
 #questionList>li:nth-child(n+7):nth-child(-n+12){
-	border-top: 1px solid gray;
+	border-top: 1px solid #afafaf;
+	border-bottom: 1px solid #afafaf;
 }
 
 #questionList>li {
@@ -345,6 +356,7 @@ a{
 }
 #questionList, #questionList>li {
 	height:50px;
+	border-bottom:1px solid #afafaf;
 	background-color: #fff;
 }
 #questionList>li:nth-child(6n+4) {
@@ -361,12 +373,16 @@ a{
 
 /* =============== 猷⑦듃 �뀒�씠釉� ==============*/
 #routeList>li:nth-child(-n+9) {
+	color:#010171;
+	font-size:16px;
+	letter-spacing:2px;
 	background:linear-gradient(#eee, lightgray);
-	border-top:1px solid gray;
+	border-top:1px solid #8a8a8a;
+	border-bottom:1px solid #8a8a8a;
 	margin-bottom:4px;
 }
 #routeList>li:nth-child(n+10):nth-child(-n+18){
-	border-top: 1px solid gray;
+	border-top: 1px solid #afafaf;
 }
 #routeList>li { /*== 8*9=72, 8*3=24 +28 = 52  */
 	float: left;
@@ -374,7 +390,7 @@ a{
 	height: 40px;
 	line-height: 40px;
 	background-color:#fff;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #afafaf;
 }
 #routeList, #routeList>li {
 	height:50px;
@@ -508,11 +524,10 @@ input:checked + .slider:before {
 /* ============= ���젆�듃 =========*/
 
 #adminSelect, #bigCate, #smallCate{
-		width:150px;
-		height:40px;
+		width:130px;
+		height:35px;
 		text-align:center;
 		font-size:17.5px;
-		font-weight:bold;
 		color:#7F7F7F;
 		border:0px;
 		border-radius:5px;
@@ -522,14 +537,13 @@ input:checked + .slider:before {
     	-moz-appearance: none;
     	appearance: none;
     	margin-right:5px;
-    	padding-left:10px;
+    	padding-left:15px;
  }
 #bigCate{
 	width:200px;
 }
 .mint_Btn, .gray_Btn, .red_Btn{
 		  font-size:15px;
-		  font-weight:bold;
 		  border-radius: 5px;
 		  text-decoration: none;
 		  text-align : center;
