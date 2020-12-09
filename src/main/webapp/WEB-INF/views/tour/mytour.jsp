@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/home/css/myTour.css" type="text/css"/>
-
 <div id="page-wrapper">
   <!-- 사이드바 -->
 	<div style="position: absolute;background-color:black;">

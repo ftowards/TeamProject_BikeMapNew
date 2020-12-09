@@ -4,6 +4,7 @@
   #page-wrapper {
     padding-left: 250px;
     background-color: black;
+    smin-height : calc(100vh - 170px);
     
   }
   
@@ -19,6 +20,7 @@
   
   #routeCateRadio{
   	background-color : white;
+  	min-height : calc(100vh - 170px);
   }
   
   #page-content-wrapper {
