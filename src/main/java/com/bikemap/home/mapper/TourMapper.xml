@@ -6,7 +6,7 @@
  	<select id="selectAllTour" resultType="com.bikemap.home.tour.TourVO" parameterType="com.bikemap.home.tour.PagingVO">
 		select * from 
 			(select * from 
-				(select noboard, title, to_char(departure,'YY/MM/DD') departure, to_char(arrive,'YY/MM/DD') arrive, reference from tour
+				(select noboard, title, to_char(departure,'YY/MM/DD') departure, to_char(arrive,'YY/MM/DD') arrive,distance,reference from tour
 				where state = '1'	order by noboard desc)
  			where rownum <![CDATA[<= ]]> (#{nowPage} * #{onePageRecord}) order by noboard asc)
 		where rownum <![CDATA[<= ]]> #{lastPageRecordCount} order by noboard desc 
@@ -216,8 +216,8 @@
 	<delete id="deleteTourView">
 		delete from tour where noboard=#{param1} and userid=#{param2}
 	</delete>
-	<select id="selectComplistExceptLogId" resultType="com.bikemap.home.tour.ComplistVO">
-		select userid from complist where noboard=#{param1} and userid  <![CDATA[ <> ]]> logId
+	<select id="selectComplistExceptLogId" resultType="String">
+		select userid from complist where noboard=#{param1} and userid  <![CDATA[ <> ]]> #{param2}
 	</select>
 	<select id="tourEditSelect" resultType="com.bikemap.home.tour.TourVO">
 		select noboard, title, userid, reference, content, to_char(deadline,'YY/MM/DD HH24') deadline,to_char(departure,'YY/MM/DD HH24') departure,

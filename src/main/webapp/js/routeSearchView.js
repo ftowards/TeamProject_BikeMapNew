@@ -713,6 +713,8 @@ function sendMsg(noboard, receiver, type){
 	var msg ="";
 	var socketMsg = "";
 	
+	
+	
 	if(type == 1){
 		msg = sender + "님이 " + noboard + "번 루트를 비공개 처리하였습니다.";
 		socketMsg = "closeRoute,"+receiver+","+sender+","+noboard;

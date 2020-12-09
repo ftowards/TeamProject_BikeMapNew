@@ -10,6 +10,7 @@
 <script>
 //////////////////게시글 삭제
 $(function(vo){
+	//result==1 : 완료상태 , 2: 참여인원 있는 상태 , 3: 삭제가능상태
 	$(".tourViewDelete").click(function(){
 	
 		var url ="/home/tourViewDeleteChk";
@@ -22,16 +23,14 @@ $(function(vo){
 				if(result == 1){
 					toast("완료된 여행은 삭제가 불가능합니다.");
 				}else if(result == 2){
-					toastConfirm("참여인원이 있습니다.\n그래도 삭제하시겠습니까?",function(){
-						deleteTourView(result);
-					});
+						selectTourCompList(result);
+				
 				}else if(result == 3){
 					toastConfirm("삭제된 글은 복구가 불가능합니다.\n그래도 삭제하시겠습니까?",function(){
 						deleteTourView(result);
 					});
 					
 			}else{
-			
 					toast("글삭제에 실패하였습니다.");
 					}
 				},error:function(){
@@ -41,6 +40,80 @@ $(function(vo){
 		});
 		return false;
 	});
+	
+	// 참여인원 리스트 구하기
+	function selectTourCompList(result){
+		var url = "/home/selectTourCompList";
+		var data ="noboard="+${vo.noboard};
+		
+		$.ajax({
+			url:url
+			,data:data
+			,success : function(result){
+				if(result.length>0){
+					toastConfirm("현재"+result.length+"명의 참여인원이 있습니다.\n그래도 삭제하시겠습니까?",function(){
+						selectTourCompReceiver(result);
+						
+					});	
+				}else{
+					toast("참여인원 리스트불러오기에 실패하였습니다.");	
+				}
+			
+			},error:function(){
+				console.log("동행찾기 참여리스트 불러오기 에러");
+			}
+			
+			
+		});
+	
+	}
+	// 참여인원
+	function selectTourCompReceiver(result){
+		var $result = $(result);
+		
+		$result.each(function(i,val){
+			sendTourDeleteMsg(val);
+		});
+		
+	}	
+	// 게시글 삭제 메세지 보내기
+	function sendTourDeleteMsg(receiver){
+		var receiver = receiver;
+		var sender = $("#logId").val();
+		
+
+		console.log("동행찾기 게시글 삭제 msg receiver=="+receiver);
+		console.log("동행찾기 게시글 삭제 msg sender=="+sender);
+		console.log("동행찾기 게시글 삭제 msg noboard=="+noboard);
+		
+		
+		var noboard = ${vo.noboard};
+		var msg = "";
+		var socketMsg = ""; 
+		
+		msg = sender + "님이 " + noboard + "번 동행찾기 게시글을 삭제하였습니다.";
+		var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
+		
+		$.ajax({
+			url: "/home/insertNotice",
+			data: data,
+			success : function(result){
+				if(result == 1){
+					socket.send(socketMsg);
+					deleteTourView(result);
+				}
+			},error:function(err){
+				console.log(err);
+			}
+			
+			
+		});
+		
+		
+	}
+	
+	
+	//글삭제하기
 	function deleteTourView(result){
 		
 		var url = "/home/deleteTourView";
@@ -62,6 +135,7 @@ $(function(vo){
 		});
 		
 	}
+
 });
 
 </script>

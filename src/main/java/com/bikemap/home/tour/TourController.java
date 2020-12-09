@@ -544,6 +544,27 @@ public class TourController {
 		return result;
 		
 	}
+	//동행 참여인원 리스트 구하기
+	@RequestMapping("/selectTourCompList")
+	@ResponseBody
+	public List<String> selectTourCompList(int noboard,HttpSession ses){
+		
+		List<String> result = new ArrayList<String>();
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
+		
+		String logId = (String)ses.getAttribute("logId");
+		try {
+			//2. 본인을 제외한 참여리스트 명단 가져오기
+			result = dao.selectComplistExceptLogId(noboard,logId);
+			
+		}catch(Exception e) {
+			System.out.println("참여인원 리스트 에러(동행찾기)==="+e.getMessage());
+		}
+		return result;
+	
+	}
+
+
 	//글 삭제완료
 	@RequestMapping("/deleteTourView")
 	@ResponseBody

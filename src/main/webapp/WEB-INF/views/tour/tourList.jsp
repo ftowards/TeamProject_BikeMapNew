@@ -362,7 +362,7 @@ $(function(){
 			tag += "<p style='font-size:25px;' class='tourBoardTitle'><b>"+ v.title+"</b></p>";
 			tag += "<p style='font-size:20px;' class='tourBoardWrite'>"+v.departure+'~'+v.arrive+"</p>";
 			tag += "<hr style='width:200px;'/>";
-			tag += "<p style='font-size:40px;' class='tourBoardDay'><b>1Day</b></p></div></a></div>";
+			tag += "<p style='font-size:36px;' class='tourBoardDay'><b>"+'총'+v.distance+'km'+"</b></p></div></a></div>";
 			
 			// 썸네일 만들기
 			$.ajax({
