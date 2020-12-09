@@ -581,22 +581,25 @@
 
 /*=============페이징===================*/
 	#paging{
-		height:60px; 
+		height:40px; 
 		text-align: center;
-	    margin-left: -540px;
+	    margin : 0 auto;
 				
 	} 
 	#paging ul{
-				width:200px;
-				margin-left:1100px;
+		display:inline-block;
 	}
 	#paging li{
 				float:left; 
-				width:25px; 
-				height:40px; 
+				width:40px; 
+				height:40px;
+				line-height: 40px; 
 				font-size:18px;
-			
+				margin-right : 5px;
+				text-align:center;			
 	} 	
+	
+	
 	#paging li a:link,#paging li a:visited{
 											text-decoration:none;
 											color:rgb(64,64,64);

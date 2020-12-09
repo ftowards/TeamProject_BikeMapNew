@@ -8,11 +8,11 @@ public class ReviewPagingVO {
 	private int onePageRecord = 5; // 한 페이지에 표시할 레코드 숫자
 	private int onePageNumCount = 5; // 한 번에 표시할 페이지 숫자
 	private int startPageNum = 1;
-	private int lastPageRecordCount = 8; // 마지막 페이지 레코드 숫자
+	private int lastPageRecordCount = 10; // 마지막 페이지 레코드 숫자
 	
 	private String searchType;
 	private String searchWord;
-	private String Type ; 
+	private String order="noboard"; // thumbup
 
 
 	public String getSearchType() {
@@ -21,17 +21,7 @@ public class ReviewPagingVO {
 
 	public void setSearchType(String searchType) {
 		this.searchType = searchType;
-	}
-
-	public String getType() {
-		return Type;
-	}
-
-	public void setType(String type) {
-		Type = type;
-	}
-	
-	public void setTotalPage(int totalPage) {
+	}	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
 	
@@ -95,5 +85,10 @@ public class ReviewPagingVO {
 	public void setLastPageRecordCount(int lastPageRecordCount) {
 		this.lastPageRecordCount = lastPageRecordCount;
 	}
-
+	public String getOrder() {
+		return order;
+	}
+	public void setOrder(String order) {
+		this.order = order;
+	}
 }
