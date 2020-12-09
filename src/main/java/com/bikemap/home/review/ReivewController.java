@@ -43,14 +43,12 @@ public class ReivewController {
 	
 	//글쓰기 전체 레코드 선택
 	@RequestMapping("/reviewList")
-	public ModelAndView reviewAllRecord() {
+	public ModelAndView reviewAllRecord(ReviewPagingVO pagingVO) {
 			ModelAndView mav = new ModelAndView();
 			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 			List<ReviewVO> list;
-			ReviewPagingVO pagingVO = new ReviewPagingVO();
 			try {
-				
-				int totalRecord = dao.searchTotalRecord();
+				int totalRecord = dao.searchTotalRecord(pagingVO);
 				pagingVO.setTotalRecord(totalRecord);
 				
 				list = dao.reviewAllRecord(pagingVO);
@@ -65,23 +63,23 @@ public class ReivewController {
 		return mav;
 	}
 	//페이징 전체 선택 레코드 가져오기
-	@RequestMapping(value="/searchReviewAll", method= {RequestMethod.POST})
+	@RequestMapping(value="/searchReview")
 	@ResponseBody
-	public List<ReviewVO> searchReviewAll(ReviewPagingVO pagingVO) {
-			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-			List<ReviewVO> list = new ArrayList<ReviewVO>();
+	public List<ReviewVO> searchReview(ReviewPagingVO pagingVO) {
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		
+		System.out.println("searchReview");
+		try {
+			int totalRecord = dao.searchTotalRecord(pagingVO);
+			pagingVO.setTotalRecord(totalRecord);
 			
-			try {
-				int totalRecord = dao.searchTotalRecord();
-				pagingVO.setTotalRecord(totalRecord);
-				
-				list = dao.reviewAllRecord(pagingVO);
-				System.out.println(list);
-				
-			}catch(Exception e) {
-				System.out.println("에러 " + e.getMessage());
-			}
-			return list;
+			list = dao.reviewAllRecord(pagingVO);
+			System.out.println(list);
+		}catch(Exception e) {
+			System.out.println("리뷰 리스트 호출 에러 " + e.getMessage());
+		}
+		return list;
 	}
 	
 	
@@ -91,12 +89,6 @@ public class ReivewController {
 	public int reviewWriteFormOk(ReviewVO vo, HttpSession ses, HttpServletRequest req) {
 		vo.setIp(req.getRemoteAddr());
 		vo.setUserid((String)ses.getAttribute("logId"));
-		
-		System.out.println(111);
-		System.out.println(vo.getUserid());
-		System.out.println(vo.getSubject());
-		System.out.println(vo.getContent());
-		System.out.println(vo.getIp());
 		
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 		int result = 0;
@@ -191,20 +183,19 @@ public class ReivewController {
 	
 	
 	// 루트 검색 페이지 페이징 처리
-		@RequestMapping(value="/searchReviewPaging", method= {RequestMethod.POST})
+		@RequestMapping(value="/searchReviewPaging")
 		@ResponseBody
 		public ReviewPagingVO searchReviewPageing(ReviewPagingVO pagingVO) {		
 			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 			try {
-				int totalRecord = dao.searchResultRecord(pagingVO);
+				int totalRecord = dao.searchTotalRecord(pagingVO);
 				pagingVO.setTotalRecord(totalRecord);
 				
 			}catch(Exception e) {
-				System.out.println("에러 " + e.getMessage());
+				System.out.println("리뷰 페이징 에러 " + e.getMessage());
 			}
 			return pagingVO;
 		}
-		
 		
 	// 추천 리뷰 가져오기
 	@RequestMapping("/reivew/getRecReview")

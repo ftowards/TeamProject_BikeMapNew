@@ -5,7 +5,7 @@
 <mapper namespace="com.bikemap.home.admin.AdminDaoImp">
 	<!-- 관리자 사용자 페이지 -->
 	<select id="selectRegistAll" parameterType="com.bikemap.home.admin.AdminPagingVO" resultType="com.bikemap.home.admin.AdminRegistVO"><!-- VO하나만 합성으로 설정 -->	
-		select * from(select * from(select a.regdate, rownum, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt, a.heart, (select to_char(s.endday,'YY-MM-DD')	
+		select * from(select * from(select to_char(a.regdate, 'YYYY.MM.DD') regdate, rownum, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt,  a.heart, (select to_char(s.endday,'YY-MM-DD')	
 		from suspend s  <![CDATA[where s.userid = a.userid and rownum=1 and s.endday>=sysdate]]>) endday from regist a <include refid="search"></include> order by regdate desc )
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by regdate asc) 
 		where rownum <= #{lastPageRecordCount} order by regdate  desc]]>
@@ -99,7 +99,7 @@
 		select count(noboard) from tour
 	</select>
 	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourVO">
-		select * from(select * from(select noboard, title, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, scrap
+		select * from(select * from(select noboard, title, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate
 		from tour <include refid="search"></include> order by noboard desc)
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
 		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>

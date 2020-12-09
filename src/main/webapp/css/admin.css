@@ -1,8 +1,9 @@
-/* ================ 헤더 및 공통 =================*/
+/* ================ �뿤�뜑 諛� 怨듯넻 =================*/
 body{
 	font-family: 'Noto Sans KR', sans-serif;
-	width:1200px;
+	width:100%;
 	margin: 0 auto;
+	/*overflow-y: hidden; overflow-x: hidden;*/
 }
 textarea:focus {
 	outline: none;
@@ -15,21 +16,20 @@ input:focus {
 }
 #adminTop {
 	background-color: #343434;
-	width: 1200px;
+	width: 100%;
 	height: 100px;
 }
 #adminTop img {
-	width: 150px;
-	height: 50px;
-	margin-top: 20px;
-	margin-left: 80px
+	width: 200px;
+	height: 70px;
+	margin:15px 0 15px 50px;
 }
 .adminSearchBar{
-	width:1200px;
-	height:50px;
+	width:100%;
+	height:63px;
 	text-align:center;
 	padding-top:15px;
-	background-color: rgb(0, 176, 176);
+	background-color: #00b0b0;
 }
 
 ul, li{
@@ -41,7 +41,7 @@ a{
 	text-decoration: none;
 }
 #adminBottom{
-	width:1200px;
+	width:100%;
 }
 .wordCut {
 	white-space: nowrap;
@@ -49,26 +49,23 @@ a{
 	text-overflow: ellipsis;
 }
 .adminTable{
-	backgound-color:#fff;
 	padding:5px;
 }
 .adminTable>ul{
 	margin:30px 15px 0px 5px;
 	border-radius: 15px;
-	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 }
-/* ================ 사이드바 ==============*/
+/* ================ �궗�씠�뱶諛� ==============*/
 .navigation {
 	float: left;
-	width: 200px;
-	height: 600px;
-	background-color: #ddd;
-} /*=== left꼭넣자....===*/
+	width: 300px;
+	height: 800px;
+	background-color: #F2F2F2;
+} /*=== left瑗��꽔�옄....===*/
 
 .navigation>ul{
-	
-	width:150px;
-	height:400px;
+	width:240px;
+	height:100%;
 	margin :0 auto;
 	margin-top : 100px;
 }
@@ -80,23 +77,27 @@ a{
 }
 
 .navigation a:hover{
-	color: rgb(0, 176, 176);
+	color: #00b0b0;
 }
 .icon {
-	font-weight: bold;
+	font-size:27.5px;
 	color: #000000;
 }
 .navigation li {
-	padding-left:10px;
+	line-height:26px;
+	padding:0 0 50px 10px;
 	margin-bottom:50px;
-	border-bottom: solid 1px gray;
+	border-bottom: solid 2px #c5c5c5;
 }
 .navigation li:last-child {
 	border-bottom: none;
 }
 .navigation li>a {
 	margin-top:10px;
-	font-size:0.8em;
+	font-size:17px;
+	color:#636363;
+	letter-spacing:2px;
+	font-weight:400;
 }
 .navigation li>a:last-child {
 	margin-bottom:30px;
@@ -150,12 +151,12 @@ a{
     border: 1px solid #00B0B0;
     background-color: white;
 }
-/*================= 컨텐츠 ================*/
+/*================= 而⑦뀗痢� ================*/
 .adminContent {
-	width: 1000px;
+	width: 1600px;
 	float: right;
-	height: 600px;
-	background-color: #F7F7F7;
+	height: 730px;
+	background-color: white;
 	margin: 0 auto; 
 	text-align: center;
 }
@@ -169,42 +170,44 @@ a{
 }
 
 #paging{
-		width:1200px;
+		width:100%;
 		height:50px;
 		color:#353535;
-		font-size:20px;
+		font-size:17px;
 		margin : 0 auto;
 		text-align: center;
 }
 
 
-/*페이지 매기기*/
+/*�럹�씠吏� 留ㅺ린湲�*/
 #paging>ul {
 	height: 30px;
 	overflow: auto;
 	margin: 0 auto;
-	width: 30%; 
-	<!-- 맞춰보자 -->
+	width: 15%;
+	padding-left:20px;
+	<!-- 留욎떠蹂댁옄 -->
 }
 
 #paging li {
 	float: Left;
-	width: 30px;
+	width: 35px;
 	height: 30px;
 	text-align: center;
-	font-size: 1.0em;
+	font-size: 17px;
 	list-style-type:none;
 }
 
 
 .adminListHead{
-	margin:30px 400px 0px 0px;
+	margin:60px 0 35px 0;
+	letter-spacing:8px;
 }
 .orderRadio{
-    margin-left: 500px;
-    width: 50%;
     float: right;
     position:relative;
+    bottom:40px;
+    right:110px;
 }
 .orderRadio>input[type=radio]{
 	display:none;
@@ -214,16 +217,17 @@ a{
 }
 .orderRadio>input[type=radio]:checked+label{
 	color:#353535;
-	font-size:16px;
+	font-size:18px;
 	font-weight:600;
 	margin-bottom:20px;
 }
-/* ================ 회원관리 =================*/
+/* ================ �쉶�썝愿�由� =================*/
 #userList>li:nth-child(-n+9) {
-	
-	background-color:#ddd;
+	font-size:18px;
+	background:linear-gradient(#eee, lightgray);
 	border-top:1px solid gray;
 	margin-bottom:4px;
+	letter-spacing:2px;
 	
 }
 #userList>li:nth-child(n+10):nth-child(-n+18){
@@ -237,6 +241,7 @@ a{
 	border-bottom: 1px solid gray;
 }
 #userList, #userList>li {
+	height:50px;
 	background-color: #fff;
 }
 #userList{
@@ -244,7 +249,7 @@ a{
 }
 
 .searchText {
-    width: 300px;
+    width: 500px;
     padding: 4px 0 0 10px;
     border: 1px solid rgb(221,221,221);
     border-radius: 8px;
@@ -255,7 +260,7 @@ a{
     color: rgb(64,64,64);
 }
 
-/* ================ 동행모집 ==================*/
+/* ================ �룞�뻾紐⑥쭛 ==================*/
 #tourList>li:nth-child(-n+6) {
 	
 	background-color:#ddd;
@@ -288,9 +293,9 @@ a{
 
 
 
-/* ================ 리뷰테이블 ================*/
+/* ================ 由щ럭�뀒�씠釉� ================*/
 #reviewList>li:nth-child(-n+8) {
-	background-color:#ddd;
+	background:linear-gradient(#eee, lightgray);
 	border-top:1px solid gray;
 	margin-bottom:4px;
 }
@@ -305,6 +310,7 @@ a{
 	border-bottom: 1px solid gray;
 }
 #reviewList, #reviewList>li {
+	height:50px;
 	background-color: #fff;
 }
 #reviewList>li:nth-child(8n+3) {
@@ -319,9 +325,9 @@ a{
 	padding:0px;
 }
 
-/* =============== 문의 테이블 ==============*/
+/* =============== 臾몄쓽 �뀒�씠釉� ==============*/
 #questionList>li:nth-child(-n+6) {
-	background-color:#ddd;
+	background:linear-gradient(#eee, lightgray);
 	border-top:1px solid gray;
 	margin-bottom:4px;
 }
@@ -338,6 +344,7 @@ a{
 	border-bottom: 1px solid gray;
 }
 #questionList, #questionList>li {
+	height:50px;
 	background-color: #fff;
 }
 #questionList>li:nth-child(6n+4) {
@@ -352,9 +359,9 @@ a{
 }
 
 
-/* =============== 루트 테이블 ==============*/
+/* =============== 猷⑦듃 �뀒�씠釉� ==============*/
 #routeList>li:nth-child(-n+9) {
-	background-color:#ddd;
+	background:linear-gradient(#eee, lightgray);
 	border-top:1px solid gray;
 	margin-bottom:4px;
 }
@@ -370,6 +377,7 @@ a{
 	border-bottom: 1px solid gray;
 }
 #routeList, #routeList>li {
+	height:50px;
 	background-color: #fff;
 }
 #routeList>li:nth-child(9n+3) {
@@ -386,9 +394,12 @@ a{
 	text-align : center;
 	padding:0px;
 }
-#routeList{margin:0px 15px 0px 5px;}
+#routeList{
+	margin:0px 0 0px 82px;
+	width:88%;
+}
 
-/*=== 슬라이드 버튼 =====*/
+/*=== �뒳�씪�씠�뱶 踰꾪듉 =====*/
 
 .switch {
   position: relative;
@@ -428,11 +439,11 @@ a{
 }
 
 input:checked + .slider {
-  background-color: rgb(0, 176, 176);
+  background-color: #00b0b0;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px rgb(0, 176, 176);
+  box-shadow: 0 0 1px #00b0b0;
   
 }
 
@@ -466,7 +477,7 @@ input:checked + .slider:before {
     border: 0px solid #aaaaaa;
     background: #f1f1f1;
     color: #3eb0ce;
-    font-size: 1.3em;
+    font-size: 15px;
     font-weight: bold;
     line-height: 24px;
     height:0px;
@@ -494,20 +505,20 @@ input:checked + .slider:before {
 }
     
 
-/* ============= 셀렉트 =========*/
+/* ============= ���젆�듃 =========*/
 
 #adminSelect, #bigCate, #smallCate{
 		width:150px;
-		height:25px;
+		height:40px;
 		text-align:center;
-		font-size:1em;
+		font-size:17.5px;
 		font-weight:bold;
 		color:#7F7F7F;
 		border:0px;
 		border-radius:5px;
 		background-color:#dcdcdc;
 		background: url(../img/img_admin/selectBox.png) no-repeat 95% 50%;
-		-webkit-appearance: none; /* 네이티브 외형 감추기 */
+		-webkit-appearance: none; /* �꽕�씠�떚釉� �쇅�삎 媛먯텛湲� */
     	-moz-appearance: none;
     	appearance: none;
     	margin-right:5px;
@@ -564,10 +575,10 @@ input:checked + .slider:before {
 	text-align:center;
 }
 #partnerBtn{
-	width:100px;
-	height:10px;
-	border: 2px solid #ccc;
-	float:right;
+	width:100%;
+	height:35px;
+	text-align:right;
+	padding-right:100px;
 }
 #replySubmit{
 	float:right;

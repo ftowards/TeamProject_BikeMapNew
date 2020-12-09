@@ -140,10 +140,9 @@ function movePage(page){
     	$(document).on('click','#suspendBtn',function(){
 	    	btn = $(this);   	
 	    	userid = $(this).attr("title");
-	        $('#userid').val(userid);
-	        
+	        $('#userid').val(userid);        
 	        $('#spUserid').text(userid);
-	        
+	        alert(userid);
     	});
     	
     	$(document).on('click','#suspendEditBtn',function(){
@@ -154,7 +153,7 @@ function movePage(page){
    		 });
     	
     	$(document).on('submit',"#userSuspendFrm", function(){	
-	        var params = jQuery("#userSuspendFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+	        var params = $("#userSuspendFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
 	        alert(params);
 	        jQuery.ajax({
 	            url: 'userSuspendOk',
