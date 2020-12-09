@@ -72,9 +72,9 @@
 	</select>
 	<select id = "routeAllRecord" resultType="com.bikemap.home.route.RouteVO">
 		select * from(select * from(select noboard, title, polyline, userid, region, distance, mapcenter, maplevel, TRUNC(nvl(rating,0), 1) rating, scrap from route 
-		<include refid="search"></include> order by noboard desc)
-		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
-		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
+		<include refid="search"></include> order by ${order} desc)
+		<![CDATA[where rownum <= ]]> (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
+		<![CDATA[where rownum <= ]]> #{lastPageRecordCount} order by ${order}  desc
 	</select>
 	<select id="searchRouteRecord" parameterType="com.bikemap.home.route.RouteVO" resultType="int">
 		select count(noboard) from route <include refid="search"></include>
@@ -86,9 +86,9 @@
 	</select>
 	<select id = "reviewAllRecord" resultType="com.bikemap.home.review.ReviewVO">
 		select * from(select * from(select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit, thumbUp, thumbDown, scrap
-		from review <include refid="search"></include> order by noboard desc) 
-		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
-		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
+		from review <include refid="search"></include> order by ${order} desc) 
+		<![CDATA[where rownum <=]]> (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
+		<![CDATA[where rownum <=]]> #{lastPageRecordCount} order by ${order} desc
 	</select>
 	<select id="searchReviewRecord" parameterType="com.bikemap.home.review.ReviewVO" resultType="int">
 		select count(noboard) from review <include refid="search"></include>

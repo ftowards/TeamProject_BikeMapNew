@@ -75,10 +75,9 @@ function movePage(page){
 		// 페이징 먼저 변경
 		var url = "<%=request.getContextPath()%>/adminPaging";
 		var data = $("#adminSearchFrm").serialize();
-		
-		if(data.searchWord==null||data.searchWord==""){
-			data += "&nowPage="+page;
-		}
+		data += "&order="+$("input[name=order]:checked").val();
+	
+		data += "&nowPage="+page;
 				
 		console.log(data);	
 		
@@ -141,31 +140,69 @@ function movePage(page){
     	$(document).on('click','#suspendBtn',function(){
 	    	btn = $(this);   	
 	    	userid = $(this).attr("title");
-	 		alert(userid);
-	    	//$('.layerpop').css("position", "absolute");
-	        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
-	        //$('#userSuspend').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
-	        //$('#userSuspend').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
-	        //$('#userSuspend').draggable();
-	        //$('#userSuspend').show();
 	        $('#userid').val(userid);
 	        
 	        $('#spUserid').text(userid);
 	        
     	});
+    	
     	$(document).on('click','#suspendEditBtn',function(){
     		btn = $(this);
 	    	userid = $(this).attr("title");
-// 	        $('.layerpop').css("position", "absolute");
-// 	        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
-// 	        $('#userSuspendEdit').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
-// 	        $('#userSuspendEdit').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
-// 	        $('#userSuspendEdit').draggable();
-// 	        $('#userSuspendEdit').show();
 	        $('#suspendEditUserid').val(userid);
 	        $('#spEditUserid').text(userid);
    		 });
     	
+    	$(document).on('submit',"#userSuspendFrm", function(){	
+	        var params = jQuery("#userSuspendFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+	        alert(params);
+	        jQuery.ajax({
+	            url: 'userSuspendOk',
+	            type: 'POST',
+	            data:params,
+	            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+	            success: function (result) {
+	            	console.log(result.endday+": 결과");
+	                $('#modal_simple').modal('toggle');		
+	                btn.css("background","url('img/img_admin/edit_25_25.png') no-repeat");
+	               	btn.attr("id","suspendEditBtn");
+	               	btn.attr("data-target", "#modal_suspendEdit");
+	               	btn.parent().next().text("~"+result.enddayStr);
+	            },
+		        error:function(e){
+	            	console.log('정지연장', e.responseText);
+	            }
+	        });	
+	        return false;
+	});
+	
+    $(document).on('submit',"#userSuspendEditFrm", function(){	
+		console.log('222222222222');
+		var params = jQuery("#userSuspendEditFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+	        jQuery.ajax({
+	            url: 'userSuspendUpdateOk',
+	            type: 'POST',
+	            data:params,
+	            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+	            success: function (result) {
+	            	if(result.enddayStr==null){
+		            	console.log(result); 	
+		            	$('#modal_suspendEdit').modal('toggle');		
+		            	btn.css("background","url('img/img_admin/stop_25_25.png')no-repeat");
+		                //btn.attr("onclick", "javascript:suspendPopupOpen('${vo.userid}',this);");
+		               	btn.attr("id","suspendBtn");
+		               	btn.attr("data-target", "#modal_simple");
+		               	btn.parent().next().text("~");
+	            	}
+	            	$('#userSuspendEdit').hide();
+	            	btn.parent().next().text(result.enddayStr);	
+	            },
+	            error:function(e){
+	            	console.log('정지연장', e.responseText);
+	            }
+	        });
+	        return false;
+	 });
     	
     	// 라디오버튼 클릭시 이벤트 발생
 		$('input:radio[name=selSuspend]').click(function(){	
@@ -233,56 +270,7 @@ function movePage(page){
     		 });	
    		 	 return false;
     	});
-    	$(document).on('submit',"#userSuspendFrm", function(){	
-    		console.log('111111111111');
-		        var params = jQuery("#userSuspendFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
-		        alert(params);
-		        jQuery.ajax({
-		            url: 'userSuspendOk',
-		            type: 'POST',
-		            data:params,
-		            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
-		            success: function (result) {
-		            	console.log(result.endday+": 결과");
-		                //$('#modal').modal("hide");		
-		                btn.css("background","url('img/img_admin/edit_25_25.png') no-repeat");
-		               	btn.attr("id","suspendEditBtn");
-		               	btn.attr("data-target", "#modal_suspendEdit");
-		               	btn.parent().next().text("~"+result.enddayStr);
-		            },
-			        error:function(e){
-		            	console.log('정지연장', e.responseText);
-		            }
-		        });	
-		        return false;
-    	});
     	
-    	$("#userSuspendEditFrm").submit(function() {
-    		console.log('222222222222');
-    		var params = jQuery("#userSuspendEditFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
-		        jQuery.ajax({
-		            url: 'userSuspendUpdateOk',
-		            type: 'POST',
-		            data:params,
-		            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-		            success: function (result) {
-		            	if(result.enddayStr==null){
-			            	console.log(result); 	
-			                btn.css("background","url('img/img_admin/stop_25_25.png')no-repeat");
-			                //btn.attr("onclick", "javascript:suspendPopupOpen('${vo.userid}',this);");
-			               	btn.attr("id","suspendBtn");
-			               	btn.attr("data-target", "#modal_simple");
-			               	btn.parent().next().text("~");
-		            	}
-		            	$('#userSuspendEdit').hide();
-		            	btn.parent().next().text(result.enddayStr);	
-		            },
-		            error:function(e){
-		            	console.log('정지연장', e.responseText);
-		            }
-		        });
-		        return false;
-		 });
     	
     	$("#adminSearchFrm").submit(function(){
     		if($("#userSearchWord").val() == ""){
@@ -346,11 +334,18 @@ function movePage(page){
     	// 관리자 추천 한꺼번에 여러개
     	$(document).on('click','input:button[name=adminScrapAllBtn]', function(){	    		
     		var chkArray = new Array();
-			$('input:checkbox[name=listChk]:checked').each(function(){
-				chkArray.push(this.value);
-				$(this).parent().children('')
+    		var alreadyChk = new Array();
+			$('input:checkbox[name=listChk]:checked').each(function(){	
+				chkArray.push(this.value);	
     		});
-    		//추천하는경우
+			//현재 체크표시한 데이터가 이미 추천되어있는지 확인 벨류가 눌러져있는지 확인.
+    		$('input:checkbox[name=adminScrapBtn]:checked').each(function(){
+				var index = chkArray.indexOf(this.value);
+    			if(index>-1){
+    				chkArray.splice(index, 1);
+    			}
+			});
+			//추천하는경우
     		if(chkArray.length>0) {  			
     			for(var i=0; i<chkArray.length; i++){
     				var dataSingle = {"noboard":chkArray[i]};
@@ -359,7 +354,8 @@ function movePage(page){
 		            data:dataSingle,
 		            success: function (result) {
 		            	if(result>0){
-			            	console.log("스크랩완료~");         
+			            	console.log("스크랩완료~");   
+			            	
 		            	}else{
 		            		console.log("스크랩 실패;;")
 		            	}	    
@@ -370,30 +366,133 @@ function movePage(page){
 		            }
 		        });
     			}
-    			
-    		//추천 해제
+    			alert(chkArray+"번호 글이 관리자 추천되었습니다.");
+    			location.reload();
     		}
-    		
     	});
-    		
-    		
-//     		}else if($(this).is(":checked")==false){
-//     			$.ajax({
-// 		            url: 'releaseRoute',
-// 		            data:dataSingle,
-// 		            success: function (result) {
-// 		            	if(result>0){
-// 			            	console.log("스크랩 해제완료");         
-// 		            	}else{
-// 		            		console.log("스크랩 해제 실패;;")
-// 		            	}	    
-// 		            },
-// 		            error:function(e){
-// 		            	console.log('관리자 추천', e.responseText);
-// 		            	return false;
-// 		            }
-// 		        });
-//     		}
+    	//추천해제 여러개
+    	$(document).on('click','input:button[name=adminReleaseAllBtn]', function(){	    		
+    		var chkArray = new Array();
+    		var alreadyChk = new Array();
+			$('input:checkbox[name=listChk]:checked').each(function(){	
+				chkArray.push(this.value);	
+    		});
+			//현재 체크표시한 데이터가 이미 해제되어있는지 확인한다. 벨류가 눌러져있는지 확인.
+    		$(!($('input:checkbox[name=adminScrapBtn]:checked'))).each(function(){
+				var index = chkArray.indexOf(this.value);
+    			
+				if(index>-1){
+    				chkArray.splice(index, 1);
+    			}
+			});
+    		if(chkArray.length>0) {  			
+    			for(var i=0; i<chkArray.length; i++){
+    				var dataSingle = {"noboard":chkArray[i]};
+    				$.ajax({
+		            url: 'releaseRoute',
+		            data:dataSingle,
+		            success: function (result) {
+		            	if(result>0){
+			            	console.log("스크랩 해제 완료");         
+		            	}else{
+		            		console.log("스크랩 실패")
+		            	}	    
+		            },
+		            error:function(e){
+		            	console.log('관리자 추천', e.responseText);
+		            	return false;
+		            }
+		        });
+    			}
+    			alert(chkArray+"번호 글이 관리자 추천 해제 되었습니다.");
+    			location.reload();
+    		}
+    	});
+    	
+    	// 관리자 공개 처리 여러개
+    	$(document).on('click','input:button[name=adminScrapAllBtn]', function(){	    		
+    		var chkArray = new Array();
+    		var alreadyChk = new Array();
+			$('input:checkbox[name=listChk]:checked').each(function(){	
+				chkArray.push(this.value);	
+    		});
+			//현재 체크표시한 데이터가 이미 추천되어있는지 확인 벨류가 눌러져있는지 확인.
+    		$('input:checkbox[name=adminScrapBtn]:checked').each(function(){
+				var index = chkArray.indexOf(this.value);
+    			if(index>-1){
+    				chkArray.splice(index, 1);
+    			}
+			});
+			//추천하는경우
+    		if(chkArray.length>0) {  			
+    			for(var i=0; i<chkArray.length; i++){
+    				var dataSingle = {"noboard":chkArray[i]};
+    				$.ajax({
+		            url: 'scrapRoute',
+		            data:dataSingle,
+		            success: function (result) {
+		            	if(result>0){
+			            	console.log("스크랩완료~");   
+			            	
+		            	}else{
+		            		console.log("스크랩 실패;;")
+		            	}	    
+		            },
+		            error:function(e){
+		            	console.log('관리자 추천', e.responseText);
+		            	return false;
+		            }
+		        });
+    			}
+    			alert(chkArray+"번호 글이 관리자 추천되었습니다.");
+    			location.reload();
+    		}
+    	});
+    	// 관리자 비공개 처리
+    	$(document).on('click','input:button[name=adminCloseAllBtn]', function(){	    		
+    		var chkArray = new Array();
+    		var alreadyChk = new Array();
+			$('input:checkbox[name=listChk]:checked').each(function(){	
+				chkArray.push(this.value);	
+    		});
+			//현재 체크표시한 데이터가 이미 해제되어있는지 확인한다. 벨류가 눌러져있는지 확인.
+    		$(!($('input:checkbox[name=adminScrapBtn]:checked'))).each(function(){
+				var index = chkArray.indexOf(this.value);
+    			
+				if(index>-1){
+    				chkArray.splice(index, 1);
+    			}
+			});
+    		if(chkArray.length>0) {  			
+    			for(var i=0; i<chkArray.length; i++){
+    				var dataSingle = {"noboard":chkArray[i]};
+    				$.ajax({
+		            url: 'releaseRoute',
+		            data:dataSingle,
+		            success: function (result) {
+		            	if(result>0){
+			            	console.log("스크랩 해제 완료");         
+		            	}else{
+		            		console.log("스크랩 실패")
+		            	}	    
+		            },
+		            error:function(e){
+		            	console.log('관리자 추천', e.responseText);
+		            	return false;
+		            }
+		        });
+    			}
+    			alert(chkArray+"번호 글이 관리자 추천 해제 되었습니다.");
+    			location.reload();
+    		}
+    	});
+    	
+    	$(document).on('change','input:radio[name=order]', function(){	
+    		var order = $("input[name=order]:checked").val();
+    		//추천하는경우
+    		console.log(order);
+    		movePage(1);
+    	});
     	
     });
 </script>
@@ -476,11 +575,11 @@ function movePage(page){
 			</li>
 		</ul>
 	</div>
-	<div id="toast" class="toast">
-		<div id="toastMsg" class="toastMsg"></div>
-	</div>
-	<div id="toastConfirm" class="toast">
-		<div id="toastConfirmMsg" class="toastMsg"></div>
-		<input type="button" class="mintBtn" value="닫기" onclick="$('#toastConfirm').removeClass('reveal');"/>
-		<input type="button" class="btn" value="확인" />
-	</div>
+<!-- 	<div id="toast" class="toast"> -->
+<!-- 		<div id="toastMsg" class="toastMsg"></div> -->
+<!-- 	</div> -->
+<!-- 	<div id="toastConfirm" class="toast"> -->
+<!-- 		<div id="toastConfirmMsg" class="toastMsg"></div> -->
+<!-- 		<input type="button" class="mintBtn" value="닫기" onclick="$('#toastConfirm').removeClass('reveal');"/> -->
+<!-- 		<input type="button" class="btn" value="확인" /> -->
+<!-- 	</div> -->

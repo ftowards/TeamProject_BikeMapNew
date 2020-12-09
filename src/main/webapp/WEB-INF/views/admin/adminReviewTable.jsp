@@ -40,6 +40,10 @@ function makeReviewTable(result){
 	<div class="adminContent">	
 				<div id="adminTable">
 				<h1 class="adminListHead">리뷰</h1>
+				<div class="orderRadio">
+					<input type="radio" name="order" id="orderNoboard" value="noboard" checked="checked"><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar"> | </span>
+					<input type="radio" name="order" id="orderHit" value="hit"><label for="orderHit" class="subTxt">조회수</label>
+				</div>
 				<ul id="reviewList">	
 					
 					<li><input type="checkbox" id="checkAll" /></li>	
