@@ -164,9 +164,8 @@
 	/*코스검색 컨텐츠 전체*/
 	.routeSearch{
 		width:1200px;
-		height:300px;
+		height:50px;
 		margin-left:5px;
-		padding-top:200px;
 		text-align:left;
 		background-color:white;
 	}
@@ -329,3 +328,20 @@
 		  background-color: #00B0B0;
 		  box-shadow:3px 3px 3px #ccc;
 	}
+#frame{
+	overflow : hidden;
+	width : 1150px;
+	height : 400px;
+	margin : 20px auto 0;
+}
+
+#poster{
+	width : 3000px;;
+	height : 400px;
+	position : relative;
+	overflow : hidden; 
+}
+
+#poster ul li{
+	float:left;
+}

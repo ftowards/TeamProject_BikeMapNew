@@ -204,9 +204,24 @@ public class ReivewController {
 			}
 			return pagingVO;
 		}
-
+		
+		
+	// 추천 리뷰 가져오기
+	@RequestMapping("/reivew/getRecReview")
+	@ResponseBody
+	public List<ReviewVO> getRecReview(){
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		
+		try {
+			list = dao.selectRecommendReview();
+			
+		}catch(Exception e) {
+			System.out.println("추천 리뷰 호출 에러" + e.getMessage());
+		}
+		return list;
+	}
 }
-	
 	
 	
 	

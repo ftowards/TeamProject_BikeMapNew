@@ -2,8 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
-
-<div style='width:1200px; height:1510px; margin:0 auto'>
+<div style='width:1200px; height:auto; margin:0 auto'>
 	<div class="optionBar" >
 		<form id="searchRoute" method="post" action="#">
 			<select id="searchBarKey" name="searchBarKey" class="regionSelect">
@@ -22,7 +21,11 @@
 		</form>
 	</div>
 	<div id="hitDiv">
-		<b>추천코스</b>
+		<div class="title">추천 루트</div>
+		<div id="frame">
+			<div id="poster" >
+			</div>
+		</div>
 	</div>
 	<div class="routeSearch">
 		<div class="title">코스검색</div>
@@ -60,6 +63,25 @@
 </div>
 <script>
 	$(function(){
+		
+		$.ajax({
+			url : "/home/route/getRecRoute",
+			success : function(result){
+				console.log(result);
+				makeThumbnail(result, 1);
+			}, error : function(err){
+				console.log(err);
+			}
+		});
+				
+		$("#poster").on('mouseover',function(){
+			step = 0;
+		});
+		
+		$("#poster").on('mouseout', function(){
+			step = 0.5;
+		});
+		
 		var nowPage = $("input[name=nowPage]").val();
 		// 페이지 로딩 시 전체 리스트 불러오기
 		movePage(nowPage);
@@ -70,7 +92,6 @@
 				alert("검색어를 입력하세요.");
 				return false;
 			};
-			
 			movePage(1);
 			return false;
 		});
@@ -80,30 +101,48 @@
 		});
 	});
 	
+	var	timer = setInterval('postMove()',2.5);
+	var left = 0;
+	var step = 0.5;
+	
+	// 추천 루트 무한 루프
+	function postMove(){
+		left = left - step ;
+		document.getElementById("poster").style.left = left +"px";
+		
+		var length = $("#poster>ul>li").length-1;
+		if(left <= -300){
+			left = 0;
+			$("#poster>ul>li").eq(0).insertAfter($("#poster>ul>li").eq(length));
+		}
+	}
 	
 	//////////////////// function ///////////////////
 	
 	// 지도 썸네일 만들기
- 	function makeThumbnail(result){
+ 	function makeThumbnail(result, type){
 	
+ 		var mapId = 'map';
+		if(type == 1){	mapId = 'recMap'; 	}
+		
 		var listTag = "<ul id='contentDivs'>";
 		for(var i = 0 ; i < result.length ; i++){
-
 			// 썸네일 작성부
-			listTag += "<li class='contentDiv' onclick='goViewPage("+result[i].noboard+")'><div id='map"+i+"' class='map'></div>";
+			listTag += "<li class='contentDiv' onclick='goViewPage("+result[i].noboard+")'><div id='"+mapId+i+"' class='map'></div>";
 			// 루트 설명 작성부
 			listTag += "<div class='routeSubscript'><ul ><li class='wordCut'>"+result[i].title+"</li><li class='wordCut'>"+result[i].region+"</li><li>"+result[i].distance.toFixed(2)+"km</li>";
 			var rateWidth =  (result[i].rating/5 *125);
 			listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
 		}
 		listTag +="</ul>";
-			
-		$("#content").html(listTag);
+		
+		if(type == 1){	$("#poster").html(listTag);	}
+		else{	$("#content").html(listTag);	}
 			
 		for(var i = 0 ; i < result.length ; i++){
 			var array = result[i].mapcenter.replace("(","").replace(")","").split(",");
 			
-			var container = document.getElementById("map"+i);
+			var container = document.getElementById(mapId+i);
 			var options = {
 					center : new kakao.maps.LatLng(array[0], array[1]),
 					draggable: false,

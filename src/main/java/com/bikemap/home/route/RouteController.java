@@ -581,4 +581,25 @@ public class RouteController {
 		}
 		return result;
 	}
+	
+	// 추천 루트 주소
+	@RequestMapping("/recommendRoute")
+	public String recommednRoute() {
+		return "/inc/recRoute";
+	}
+	
+	// 추천 루트 가져오기
+	@RequestMapping("/route/getRecRoute")
+	@ResponseBody
+	public List<RouteVO> getRecRoute(){
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		List<RouteVO> list = new ArrayList<RouteVO>();
+		
+		try {
+			list = dao.selectRecRoute();
+		}catch(Exception e) {
+			System.out.println("추천 루트 리스트 가져오기 에러 " + e.getMessage());
+		}
+		return list;
+	}
 }

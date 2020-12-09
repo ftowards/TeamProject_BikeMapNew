@@ -52,4 +52,8 @@
  	<select id="searchResultRecord"  resultType="int" parameterType="com.bikemap.home.review.ReviewPagingVO">
  		select count(noboard) from review where ${searchType} like '%'||#{searchWord}||'%' 
  	</select>
+ 	
+ 	<select id="selectRecommendReview" resultType="com.bikemap.home.review.ReviewVO">
+ 		select noboard, subject, content, userid, thumbup from review where scrap='T' order by noboard desc
+ 	</select>
 </mapper>

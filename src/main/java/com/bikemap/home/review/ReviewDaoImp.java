@@ -36,4 +36,7 @@ public interface ReviewDaoImp {
 	
 	// 전체 루트 검색
 	//public List<ReviewVO> selectReviewAll(ReviewPagingVO pagingVO);
+	
+	// 추천 리뷰 호출하기
+	public List<ReviewVO> selectRecommendReview();
 }
