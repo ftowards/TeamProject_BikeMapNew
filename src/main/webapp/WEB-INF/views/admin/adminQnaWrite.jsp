@@ -43,16 +43,16 @@ $(function(){
 </style>
 <div id="questionReplyDiv">
 	<c:if test="${vo.answer==null||vo.answer=='N'}">
-		<h2>1:1 문의내역</h2>	
+		<h2 class="question_title" style='margin-bottom:30px;'>1:1 문의내역</h2>	
 	</c:if>
 	<c:if test="${vo.answer=='Y'}">
-		<h2>1:1 문의내역 수정</h2>	
+		<h2 class="question_title" style='margin-bottom:30px;'>1:1 문의내역 수정</h2>	
 	</c:if>
 	<form method="post" id="replyFrm" action="adminQnaWriteOk">
         <input type="hidden" name="noqna" value="${vo.noqna}"/>
-        <table  style="align=center; width=60%; border=0; cellpadding=2;" >
-                <tr>
-                <td bgcolor=white>
+        <table style="align=center; width=60%; border=0; cellpadding=2;" >
+                <tr style='height:515px'>
+                <td class="question_td">
                 <table class = "table2">
                         <tr>
                         <td>작성자</td>

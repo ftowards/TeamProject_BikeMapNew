@@ -46,11 +46,11 @@ function makeTourTable(result){
 				<h1 class="adminListHead">동행모집게시판</h1>
 					<ul id="tourList">
 						<li><input type="checkbox" id="checkAll" /></li>
-						<li>번호</li>
-						<li>제목</li>
+						<li>번&nbsp;&nbsp;호</li>
+						<li>제&nbsp;&nbsp;목</li>
 						<li>작성자</li>
 						<li>완료여부</li>
-						<li>관리자 추천</li>
+						<li>관리자추천</li>
 					
 						<!-- DB작업완료 후 for문 생성 -->
 						<c:forEach items="${list}" var="vo" varStatus="status">
@@ -108,11 +108,11 @@ function makeTourTable(result){
 					</ul>
 			</div><br/> 
 			<!-- /paging -->
+			</div><!-- adminContent -->
 			<div id="partnerBtn">
 					<input type="button" id="partnerBtn1" name="partnerDeleteBtn" value="삭제하기" class="mint_Btn"/>
 					<input type="button" id="partnerBtn2" name="partnerHideBtn" value="비공개"/>
 			</div><!-- btn -->
-			</div><!-- adminContent -->
 <!-- Page Content -->
 </body>
 </html>
