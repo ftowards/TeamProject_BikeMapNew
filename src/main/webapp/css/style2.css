@@ -189,12 +189,6 @@ body{
 		margin:0 auto;
 		background-color:#F0F3F5;
 	}
-	#mainDivHome2{
-		width:100%;
-		margin:0 auto;
-		text-align:center;
-		background-color:white;
-	}
 
  	#mainBxSliderFrontground{
  		background-color:black;
@@ -312,6 +306,7 @@ body{
 	.bg_bikemap{
 		width:100%;
 		height:400px;
+		padding-top:18px;
 		/*background: url(../img/img_main/8.png) no-repeat;*/
 	}
 	.bg_bikemap span{
@@ -382,15 +377,9 @@ body{
 		line-height:nomal;
 	}	
 	.courseReview{
-		float:left;
 		font-size:26px;
 		font-weight:bold;
 		word-spacing:-3px;
-		margin-bottom:6px;
-		padding-left:5px;
-		position:relative;
-		top:90px;
-		left:10px;
 	}
 	.routeTitle2{
 		font-size:16px;
