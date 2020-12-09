@@ -670,3 +670,75 @@ body{
 		font-size:17px;
 		font-family:'Noto Sans KR', sans-serif;
 	}
+	
+.reviewFrame{
+	width: 1200px;
+    height: 480px;
+    margin : 0 auto;
+    padding-top: 60px;
+    overflow: hidden;
+}
+	
+/* 추천 후기 스타일 */
+#reviewTop{
+	width : 3000px;;
+	height : 350px;
+	position : relative;
+	overflow : hidden; 
+}
+
+#reviewTop>ul>li{
+	float:left;
+	
+}
+.recommendReview{
+	padding:15px 20px 0px 15px;
+	border-radius:10px / 10px;
+	width:300px;
+	height:320px;		
+	margin:5px 30px 30px 0px;	
+	background:#eee;
+	box-shadow:2px 2px 2px gray;
+	text-align:center;	
+}
+/* 리뷰 썸네일 div 스타일*/
+.recommendReview .thumbnailImage{
+	width : 270px;
+	height : 200px;
+	background-size : contain;
+	background-color : white;
+	background-repeat : no-repeat;
+	border : 1px solid #777;
+}
+.reviewSubscription li{
+	float : left;
+	width : 100%;
+	height : 40px;
+	line-height : 40px;
+}
+
+/* 후기 타이틀*/
+.reviewSubscription li:nth-of-type(1){
+	margin-top : 10px;
+	text-align : left;
+	font-size:19px;
+	font-family:'Noto Sans KR', sans-serif;
+	
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+
+/* 유저 스타일*/
+.reviewSubscription li:nth-of-type(2){
+	width : 70%;
+	color:#00B0B0;
+	font-size:17px;
+	font-family:'Noto Sans KR', sans-serif;
+}
+
+/* 추천 수 스타일*/
+.reviewSubscription li:nth-of-type(3){
+	width : 30%;
+}

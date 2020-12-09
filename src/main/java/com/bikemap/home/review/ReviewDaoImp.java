@@ -30,4 +30,6 @@ public interface ReviewDaoImp {
 	// 페이징할 레코드  숫자 구하기
 	public int searchTotalRecord(ReviewPagingVO vo);
 	
+	// 추천 리뷰 호출하기
+	public List<ReviewVO> selectRecommendReview();
 }

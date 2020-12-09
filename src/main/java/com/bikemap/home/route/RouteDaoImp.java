@@ -119,4 +119,7 @@ public interface RouteDaoImp {
 	
 	// 루트 스크랩 해제
 	public int releaseRoute(int noboard);
+	
+	// 추천 루트 리스트 가져오기
+	public List<RouteVO> selectRecRoute();
 }

@@ -131,9 +131,8 @@
 		delete from route where noboard = #{param1} and userid = #{param2}
 	</delete>
 	<select id="chkReference" resultType="int">
-		select (nvl(b.tourRef,0) + nvl(c.reviewRef,0)) refCount from route a
+		select nvl(b.tourRef,0) refCount from route a
 			left join (select reference, count(noboard) tourRef from tour group by reference having reference = #{param1}) b on a.noboard = b.reference
-			left join (select reference, count(noboard) reviewRef from review group by reference having reference = #{param1}) c on a.noboard = c.reference
 		where noboard = #{param1}
 	</select>
 	<update id="scrapRoute">
@@ -159,5 +158,11 @@
 				</if>
 			order by ${order} desc) 
 		where idx = #{idx}
+	</select>
+	<select id="selectRecRoute" resultType="com.bikemap.home.route.RouteVO">
+		select * from 
+			(select noboard, title, polyline, userid, region, distance, mapcenter, maplevel, nvl(rating,0) rating from route where scrap = 'T'
+				order by noboard desc) 
+		where rownum <![CDATA[<=]]> 10
 	</select>
 </mapper> 

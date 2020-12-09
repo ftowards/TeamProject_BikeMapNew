@@ -56,4 +56,8 @@
  			where ${searchType} like '%'||#{searchWord}||'%'
  		</if>
  	</select>
+ 	
+ 	<select id="selectRecommendReview" resultType="com.bikemap.home.review.ReviewVO">
+ 		select noboard, subject, content, userid, thumbup from review where scrap='T' order by noboard desc
+ 	</select>
 </mapper>

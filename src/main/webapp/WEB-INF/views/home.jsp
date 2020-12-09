@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
+<link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 
 <!-- 도시 검색창 -->		
 	<div class = "locationSearchDiv">
@@ -50,200 +52,141 @@
 	</div>
 
 
-<div class="banner_wrap2">
-
-<script language="javascript" type="text/javascript">
-	// 스크롤러 가로크기
-	var sliderwidth=1160
-	// 스크롤러 높이
-	var sliderheight=380
-	// 스크롤 속도 (클수록 빨라짐 1-10)
-	var slidespeed=1
-	// 배경색
-	slidebgcolor="#"
-
-	// 이미지 설정
-	var leftrightslide=new Array()
-	var finalslide=''
-	leftrightslide[1]="<a href='#'><div class='slider_Review'><img class='slider_img' src='<%=request.getContextPath() %>/img/img_main/seoul.png'/></a><br/><div class='slider_subject'>후기 제목이 들어갈 자리입니다 글자 넘어가면 워드컷</div><br/><p class='slider_txt'><span class='slider_username'>홍길동</span>님의 생생한 후기</p></div>"
-	leftrightslide[2]="<a href='#'><div class='slider_Review'><img class='slider_img' src='<%=request.getContextPath() %>/img/img_main/busan.png'/></a><br/><div class='slider_subject'>후기 제목이 들어갈 자리입니다 글자 넘어가면 워드컷</div><br/><p class='slider_txt'><span class='slider_username'>홍길동</span>님의 생생한 후기</p></div>"
-	leftrightslide[3]="<a href='#'><div class='slider_Review'><img class='slider_img' src='<%=request.getContextPath() %>/img/img_main/jeju.png'/></a><br/><div class='slider_subject'>후기 제목이 들어갈 자리입니다 글자 넘어가면 워드컷</div><br/><p class='slider_txt'><span class='slider_username'>홍길동</span>님의 생생한 후기</p></div>"
-	leftrightslide[4]="<a href='#'><div class='slider_Review'><img class='slider_img' src='<%=request.getContextPath() %>/img/img_main/seoul2'/></a><br/><div class='slider_subject'>후기 제목이 들어갈 자리입니다 글자 넘어가면 워드컷</div><br/><p class='slider_txt'><span class='slider_username'>홍길동</span>님의 생생한 후기</p></div>"	
-	
-	var copyspeed=slidespeed
-	leftrightslide='<nobr>'+leftrightslide.join(" ")+'</nobr>'
-	var iedom=document.all||document.getElementById
-	
-	if (iedom)
-	    document.write('<span id="temp" style="visibility:hidden;position:absolute;top:-100;left:-4000px">'+leftrightslide+'</span>')
-	
-	var actualwidth=''
-	var cross_slide, ns_slide
-	
-	function fillup(){
-	    if (iedom){
-	        cross_slide=document.getElementById? document.getElementById("test2") : document.all.test2
-	        cross_slide2=document.getElementById? document.getElementById("test3") : document.all.test3
-	    	
-	        cross_slide4=document.getElementById? document.getElementById("test4") : document.all.test4
-	        
-	        cross_slide.innerHTML=cross_slide2.innerHTML=leftrightslide
-	        actualwidth=document.all? cross_slide.offsetWidth : document.getElementById("temp").offsetWidth
-	        cross_slide2.style.left=actualwidth+5 +"px"
-	    }
-	    else if (document.layers){
-	        ns_slide=document.ns_slidemenu.document.ns_slidemenu2
-	        ns_slide2=document.ns_slidemenu.document.ns_slidemenu3
-	        ns_slide.document.write(leftrightslide)
-	        ns_slide.document.close()
-	        actualwidth=ns_slide.document.width
-	        ns_slide2.left=actualwidth+5 +"px"
-	        ns_slide2.document.write(leftrightslide)
-	        ns_slide2.document.close()
-	    }
-	    lefttime=setInterval("slideleft()",30)
-	}
-	
-	function slideleft(){
-	    if (iedom){
-	        if (parseInt(cross_slide.style.left)>(actualwidth*(-1)+5))
-	            cross_slide.style.left=parseInt(cross_slide.style.left)-copyspeed +"px"
-	        else
-	            cross_slide.style.left=parseInt(cross_slide2.style.left)+actualwidth+5 +"px"
-	
-	        if (parseInt(cross_slide2.style.left)>(actualwidth*(-1)+5))
-	            cross_slide2.style.left=parseInt(cross_slide2.style.left)-copyspeed +"px"
-	        else
-	            cross_slide2.style.left=parseInt(cross_slide.style.left)+actualwidth+5 +"px"
-	
-	    }
-	    else if (document.layers){
-	        if (ns_slide.left>(actualwidth*(-1)+5))
-	            ns_slide.left-=copyspeed +"px"
-	        else
-	            ns_slide.left=ns_slide2.left+actualwidth+5 +"px"
-	
-	        if (ns_slide2.left>(actualwidth*(-1)+5))
-	            ns_slide2.left-=copyspeed +"px"
-	        else
-	            ns_slide2.left=ns_slide.left+actualwidth+5 +"px"
-	    }
-	}
-	
-	
-		if (iedom||document.layers){
-	 		with (document){
-	  			document.write('<div style="padding:85px 0 0 365px; background:white;">')
-	  		if (iedom){
-	  			write('<span class="courseReview">코스 후기</span>')
-	   			write('<div style="position:relative;width:'+sliderwidth+'px;height:'+sliderheight+'px;overflow:hidden">')
-	   			write('<div style="margin-top:15px; position:absolute;width:'+sliderwidth+'px;height:'+sliderheight+'px;background-color:'+slidebgcolor+'" onfocus="copyspeed=0" onblur="copyspeed=slidespeed" onMouseover="copyspeed=0" onMouseout="copyspeed=slidespeed">')
-	   			write('<div id="test2" style="position:absolute;left:0px;top:0px"></div>')
-	   			write('<div id="test3" style="position:absolute;left:-1000px;top:0px"></div>')
-	   			write('</div></div>')
-	 	}
-			else if (document.layers){
-	   			write('<ilayer width='+sliderwidth+' height='+sliderheight+' name="ns_slidemenu" bgColor='+slidebgcolor+'>')
-	   			write('<layer name="ns_slidemenu2" left="0px" top="0px" onfocus="copyspeed=0" onblur="copyspeed=slidespeed" onMouseover="copyspeed=0" onMouseout="copyspeed=slidespeed"></layer>')
-	   			write('<layer name="ns_slidemenu3" left="0px" top="0px" onfocus="copyspeed=0" onblur="copyspeed=slidespeed" onMouseover="copyspeed=0" onMouseout="copyspeed=slidespeed"></layer>')
-	   			write('</ilayer>')
-				}
-			}
-		}
-</script>
-<noscript></noscript>
-<script type="text/javascript">fillup();</script><noscript></noscript>
-</div>
-
-
-
-
+<div class="banner_wrap2"></div>
 <div class="bg_bikemap">
 	<img src="<%=request.getContextPath() %>/img/img_main/bg_bikemap.png"/>
 </div>
-
-
-
-
+<div class="reviewFrame">
+	<span class="routeTitle" style="width:100%; font-size:35px; font-weight:bold;">
+			추천 후기&nbsp;
+	</span><br/>
+	<div id="reviewTop"></div> <!--  후기 -->
+</div>
 <div id="mainDivHome">
 	<div id="hitRoute">
 		<span class="routeTitle" style="width:100%; font-size:35px; font-weight:bold;">
-			추천여행 코스&nbsp;
-			<sub>561개</sub><br/>
-			<span class="routeTitle2">바이크맵 관리자가 엄선하여 추천하는 추천 코스입니다.</span>
+			추천 루트&nbsp;
 		</span><br/>
-		<div id="content1">
-			<div class="route">
-				<a href="#">
-					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
-				</a><br/>
-				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
-			</div>
-			<div class="route">
-				<a href="#">
-					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
-				</a><br/>
-				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
-			</div>
-			<div class="route">
-				<a href="#">
-					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
-				</a><br/>
-				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
-			</div>
-			<div class="route">
-				<a href="#">
-					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
-				</a><br/>
-				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
-			</div><br/>
-			<div class="route">
-				<a href="#">
-					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
-				</a><br/>
-				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
-			</div>
-			<div class="route">
-				<a href="#">
-					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
-				</a><br/>
-				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
-			</div>
-			<div class="route">
-				<a href="#">
-					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
-				</a><br/>
-				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
-			</div>
-			<div class="route">
-				<a href="#">
-					<img class="hitIcon" src="<%=request.getContextPath() %>/img/img_main/hit_icon.gif"/>
-					<img class="thumbnail" src="<%=request.getContextPath() %>/img/img_main/임시.PNG"/>
-				</a><br/>
-				<img class="star" src="<%=request.getContextPath() %>/img/img_main/star.png"/>
-			</div>
-		</div>
-	</div><br/>
-	
-	<!-- <div id="routeSearch">
-		<a href="<%=request.getContextPath()%>/routeSearch">
-			<img style='width:3%' src="<%=request.getContextPath() %>/img/img_main/search.png"/>
-			최근 다녀온 200개 루트 검색
-		</a>
-	</div> -->
+		<div id="content1"></div> <!-- 추천 루트 들어가는 위치 -->
+	</div><br/>	
 </div>
+<script type="text/javascript">
+	$(function(){
 
+		// 추천 루트 썸네일 집어넣기
+		// 1. 추천 루트 데이터 호출
+		$.ajax({
+			url : "/home/route/getRecRoute",
+			success : function(result){
+				makeThumbnail(result);
+			}, error : function(err){
+				console.log(err);
+			}
+		});
+		
+		// 추천 후기 만들기
+		// 1. 추천 후기 리스트 가져오기
+		$.ajax({
+			url : "/home/reivew/getRecReview",
+			success : function(result){
+				makeThumbnail2(result);
+			}, error : function(err){
+				console.log(err);
+			}
+		});
+		
+		$("#reviewTop").on('mouseover',function(){
+			step = 0;
+		});
+		
+		$("#reviewTop").on('mouseout', function(){
+			step = 0.5;
+		});
+	})
+	
+	var	timer = setInterval('postMove()',2.5);
+	var left = 0;
+	var step = 0.5;
+	
+	// 추천 루트 무한 루프
+	function postMove(){
+		left = left - step ;
+		document.getElementById("reviewTop").style.left = left +"px";
+		
+		var length = $("#reviewTop>ul>li").length-1;
+		if(left <= -330){
+			left = 0;
+			$("#reviewTop>ul>li").eq(0).insertAfter($("#reviewTop>ul>li").eq(length));
+		}
+	}
+	
+	
+	
+	// 추천 루트 썸네일 집어넣기
+	// 2. 지도 썸네일 만들기
+ 	function makeThumbnail(result){
+	
+ 		var listTag = "<ul id='contentDivs'>";
+		for(var i = 0 ; i < 4 ; i++){
+			// 썸네일 작성부
+			listTag += "<li class='contentDiv' onclick='goViewPage("+result[i].noboard+")'><div id='map"+i+"' class='map'></div>";
+			// 루트 설명 작성부
+			listTag += "<div class='routeSubscript'><ul ><li class='wordCut'>"+result[i].title+"</li><li class='wordCut'>"+result[i].region+"</li><li>"+result[i].distance.toFixed(2)+"km</li>";
+			var rateWidth =  (result[i].rating/5 *125);
+			listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
+		}
+		listTag +="</ul>";
+		
+		$("#content1").html(listTag);
 
-
-
-
-
-
-
+		for(var i = 0 ; i < 4 ; i++){
+			var array = result[i].mapcenter.replace("(","").replace(")","").split(",");
+			
+			var container = document.getElementById("map"+i);
+			var options = {
+					center : new kakao.maps.LatLng(array[0], array[1]),
+					draggable: false,
+					level : result[i].maplevel+2
+			};
+			
+			var readyArray = result[i].polyline.replaceAll("),(","||").replace("(","").replace(")","").replaceAll("||",",").split(",");
+			
+			var linePath = [];
+			for(var j = 0 ; j < readyArray.length ; j += 2) {
+				var p = new kakao.maps.LatLng(readyArray[j], readyArray[j+1]);
+				linePath.push(p);
+			}
+			
+			var map = new kakao.maps.Map(container, options);
+		    var polyline = new kakao.maps.Polyline({
+			    path: linePath, // 선을 구성하는 좌표배열 입니다
+			    strokeWeight: 5, // 선의 두께 입니다
+			    strokeColor: '#FF0162', // 선의 색깔입니다
+			    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+			    strokeStyle: 'solid' // 선의 스타일입니다
+			});
+	    	polyline.setMap(map);
+		}
+	}
+	
+	// 추천 후기 만들기
+	// 2. 추천 후기 리스트 만들기
+	function makeThumbnail2(result){
+		var listTag = "<ul>";
+		var $result = $(result);
+		
+		console.log(result);
+		$result.each(function(i, val){
+			
+			listTag +="<li class='recommendReview'>";
+			listTag +="<div class='thumbnailImage' style='background-image:url("+val.thumbnailImg+")'/></div>";
+			listTag +="<ul class='reviewSubscription'><li>"+val.subject+"</li><li>"+val.userid+"</li><li>추천 수:"+val.thumbUp+"</li></ul></li>"
+			
+		});
+		
+		$("#reviewTop").html(listTag);
+		
+	}
+	
+	
+</script>
