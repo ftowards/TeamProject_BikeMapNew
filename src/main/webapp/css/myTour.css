@@ -4,11 +4,12 @@
 	#page-wrapper {
 	  padding-left: 250px;
 	  background-color:black;
-	 
+	 min-height : calc(100vh - 170px);
 	}
 	
 	.myTour{
 		background-color:white;
+		min-height : calc(100vh - 170px);
 	}
 	#sidebar-wrapper {
 	  position: sticky;
