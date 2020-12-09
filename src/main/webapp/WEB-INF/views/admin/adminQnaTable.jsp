@@ -35,10 +35,10 @@
 				<h1 class=adminListHead>1:1 문의</h1>
 				<ul id="questionList">
 					<li><input type="checkbox" id="checkAll" /></li>
-					<li>번호</li>
+					<li>번&nbsp;&nbsp;호</li>
 					<li>아이디</li>
-					<li>제목</li>
-					<li>작성일자</li>
+					<li>제&nbsp;&nbsp;목</li>
+					<li>작성 일자</li>
 					<li>답변여부</li>				
 					
 					<c:forEach items="${list}" var="vo" varStatus="status">
