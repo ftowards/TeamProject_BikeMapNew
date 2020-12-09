@@ -41,10 +41,10 @@ $(function(){
 </style>
 <div id="questionReplyDiv">
 	<c:if test="${vo.answer==null||vo.answer=='N'}">
-		<h2>1대1 문의내역</h2>	
+		<h2>1:1 문의내역</h2>	
 	</c:if>
 	<c:if test="${vo.answer=='Y'}">
-		<h2>1대1 문의내역 수정</h2>	
+		<h2>1:1 문의내역 수정</h2>	
 	</c:if>
 	<form method="post" id="replyFrm" action="adminQnaWriteOk">
         <input type="hidden" name="noqna" value="${vo.noqna}"/>
