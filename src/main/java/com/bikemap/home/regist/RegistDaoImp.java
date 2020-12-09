@@ -37,10 +37,8 @@ public interface RegistDaoImp {
 	// 이메일 중복 확인
 	public int emailDoubleChk(String email);
 	
-	
-	
-	
-	
+	// 아이디 찾기
+	public List<String> searchId(String word);
 	
 	
 

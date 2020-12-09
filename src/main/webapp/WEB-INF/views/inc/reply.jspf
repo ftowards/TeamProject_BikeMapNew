@@ -69,7 +69,7 @@
 				,success:function(result){
 					movePage(1);
 					$("#replyWrite").val("");
-					sendMsg();
+					sendMsgReply();
 				},error:function(){
 					console.log("댓글쓰기 에러 발생..");
 				}
@@ -85,7 +85,7 @@
 	////////////////// 펑션 ///////////////////////
 	
 	// 메세지 저장하기 ++ 통신으로 메세지 보내기
-	function sendMsg(){
+	function sendMsgReply(){
 		var receiver = $("#userid").text();
 		var sender = $("#logId").val();
 		
@@ -94,9 +94,10 @@
 		}
 
 		var noboard = $("#noboard").val();
-		var msg = "<a href='/home/routeSearchView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 루트에 댓글을 달았습니다.</a>";
+		var msg = "<a href='/home/routeSearchView?noboard="+noboard+"' target='_blank'>"+ sender + "님이 " + noboard + "번 루트에 댓글을 달았습니다.</a>";
 		var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
 		
+		console.log(data);
 		$.ajax({
 			url : "/home/insertNotice",
 			data : data,

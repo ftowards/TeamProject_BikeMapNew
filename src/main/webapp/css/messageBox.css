@@ -1,0 +1,253 @@
+@charset "UTF-8";
+
+  
+	#page-wrapper {
+	  padding-left: 250px;
+	  background-color:black;
+	 
+	}
+	
+	.my{
+		background-color:white;
+	}
+	#sidebar-wrapper {
+	  position: sticky;
+	  width: 250px;
+	  height: 100%;
+	  margin-left: -250px;
+	  background: #000;
+	  overflow-x: hidden;
+	  overflow-y: auto;
+	}
+	
+	#page-content-wrapper {
+	
+	  width: 100%;
+	  padding: 20px;
+	}
+	/* 사이드바 스타일 */
+	
+	.sidebar-nav {
+	  width: 250px;
+	  margin: 0;
+	  padding: 0;
+	  list-style: none;
+	}
+	
+	.sidebar-nav li {
+	
+	  text-indent: 2em;
+	  line-height: 2.8em;
+	}
+	
+	.sidebar-nav li a {
+	  display: block;
+	  text-decoration: none;
+	  color: #999;
+	}
+	
+	.sidebar-nav li a:hover {
+	  color: #fff;
+	  background: rgba(255, 255, 255, 0.2);
+	}
+	
+	.sidebar-nav > .sidebar-brand {
+	  font-size: 1.3em;
+	  line-height: 3em;
+	   color: #999;
+	}
+	
+	/*=================================게시판==========================*/
+	.container-fluid{
+		height : auto;
+	
+	}
+	.myMainDiv{
+						width:1200px;
+						margin:0 auto;
+	
+	}
+	.titleMyDiv1{
+		width : 85%;
+		height:80px;
+		margin : 50px auto ;
+	
+	}
+	.titleMyDiv1 label:first-child{
+								font-size:22px; 
+							color:rgb(64,64,64);
+	
+	}
+	.myBoardMainDiv{
+			width:100%;
+			
+			border-radius:10px;
+			border:none;
+			box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+			overflow-y : auto;		
+	}
+	
+	.In{
+				
+		padding-top:4px;
+		text-align:center;
+		border:none;
+		border-radius:10px;
+		width:70px;
+		height:30px;
+		line-height:30px;
+		font-size:15px;
+		font-weight:bold;
+		color:rgb(64,64,64);
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+	
+	}
+	.Out{
+				
+		padding: 5px 0;
+		text-align:center;
+		border:none;
+		border-radius:10px;
+		width:70px;
+		height:30px;
+		line-height:30px;
+		font-size:15px;
+		font-weight:bold;
+		color:#fff;
+		background-color:#FF6347;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	
+	}
+	.Ok{
+				padding-top:3px;
+		text-align:center;
+		border:none;
+		border-radius:10px;
+		width:70px;
+		height:30px;
+		font-size:15px;
+		font-weight:bold;
+		color:#fff;
+		background-color:rgb(0,176,176);
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	
+	
+	}
+	.No{
+		padding-top:3px;
+		text-align:center;
+		border:none;
+		border-radius:10px;
+		width:70px;
+		height:30px;
+		font-size:15px;
+		font-weight:bold;
+		color:#fff;
+		background-color:rgb(64,64,64);
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	
+	}
+	
+	#receiveBox:checked~div:nth-of-type(1){
+		display:block;
+	}
+	#sendBox:checked~div:nth-of-type(2){
+		display:block;
+	}
+	#noticeBox:checked~div:nth-of-type(3){
+		display:block;
+	}
+	.tab{
+		display:none;
+		border:0;
+		height : auto;
+	}
+	
+	input[name=messageBox], input[name=messageBox]{
+		display : none;
+	}
+	
+	.paging{
+		display : inline-block;
+		width:100%;
+		height:50px;
+		color:#353535;
+		font-size:16px;
+		margin : 20px auto 0;
+		text-align: center;
+	}
+	.paging ul{
+		display:inline-block;
+	}
+	.paging ul li{
+		list-style-type: none;
+		float: left;
+		margin-left:30px;
+		font-weight:600;
+		color:#7F7F7F;
+		font-weight:bold;
+	}
+	
+	.listTitle, .listTitle2{
+		height : 40px;
+		margin : 0;
+	}
+	.listTitle>li, .list>li{
+		height : 40px;
+		line-height : 40px;
+		font-size:14x;
+		text-align : center;
+		width : 15%;
+		float:left; 
+		border-bottom : 1px solid lightgray;
+  	}
+  	
+  	.listTitle>li:nth-of-type(4n+3){
+  		width : 65%;
+	
+  	}
+  	.list>li:nth-of-type(4n+3){
+		width : 65%;
+		text-align : left;
+		text-indent: 5%;
+  	}
+  	
+  	.listTitle>li:nth-of-type(4n+1), .list>li:nth-of-type(4n+1){
+		width : 5%;
+  	}
+  	
+  	.list input[type=check]{
+  		width : 15px;
+  		height : 15px;
+  	}
+  	
+  	.wordcut{
+  		white-space: nowrap;
+  		over-flow: hidden;
+  		text-overflow: ellipsis;
+  	}
+  	
+  	.readYet{
+  		font-weight : bold;
+  	}
+  	
+  	.btn{
+  		font-weight: bold;
+	    border-radius: 5px;
+	    text-decoration: none;
+	    text-align: center;
+	    padding: 3px 6px;
+	    margin : -11px 8px 0 0;
+	    color: white;
+	    border: 1px solid #00B0B0;
+	    background-color: #00B0B0;
+	    float: right;
+	    height : 30px;
+	    line-height :20px;
+	    font-size : 14px;
+  	}
+  	.readYetChk{
+  		margin-left : 5px;
+  		line-height : 20px;
+  		height : 20px;
+  	}
