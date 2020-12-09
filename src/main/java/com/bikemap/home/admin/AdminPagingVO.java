@@ -14,7 +14,16 @@ public class AdminPagingVO {
 	private String searchWord;
 	private String type;
 	
+	private String order = "noboard" ; // 아니면 "rating"
 	
+	
+	
+	public String getOrder() {
+		return order;
+	}
+	public void setOrder(String order) {
+		this.order = order;
+	}
 	public String getType() {
 		return type;
 	}

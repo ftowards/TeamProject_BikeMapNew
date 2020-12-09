@@ -124,7 +124,9 @@ function makeRouteTable(result){
 			<!-- /paging -->
 				<div id="partnerBtn">
 						<input type="button" id="partnerBtn1" name="adminScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
-						<input type="button" id="partnerBtn2" name="adminReleaseAllBtn" value="관리자 추천 해제"/>
+						<input type="button" id="partnerBtn2" name="adminReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
+						<input type="button" name="adminCloseAllBtn" value="비공개" class="mint_Btn"/>
+						<input type="button" name="adminReleaseCloseAllBtn" value="비공개 해제" class="red_Btn"/>
 				</div><!-- btn -->
 			</div><!-- adminContent -->
 <!-- Page Content -->

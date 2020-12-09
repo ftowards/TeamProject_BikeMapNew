@@ -52,7 +52,11 @@ a{
 	backgound-color:#fff;
 	padding:5px;
 }
-
+.adminTable>ul{
+	margin:30px 15px 0px 5px;
+	border-radius: 15px;
+	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+}
 /* ================ 사이드바 ==============*/
 .navigation {
 	float: left;
@@ -164,6 +168,16 @@ a{
 	width: 80px;
 }
 
+#paging{
+		width:1200px;
+		height:50px;
+		color:#353535;
+		font-size:20px;
+		margin : 0 auto;
+		text-align: center;
+}
+
+
 /*페이지 매기기*/
 #paging>ul {
 	height: 30px;
@@ -184,7 +198,7 @@ a{
 
 
 .adminListHead{
-	margin:30px 400px 25px 0px;
+	margin:30px 400px 0px 0px;
 }
 .orderRadio{
     margin-left: 500px;
@@ -220,16 +234,13 @@ a{
 	width: 11%;
 	height: 40px;
 	line-height: 40px;
-	font-size:0.8em;
 	border-bottom: 1px solid gray;
 }
 #userList, #userList>li {
 	background-color: #fff;
 }
 #userList{
-	margin:0px 15px 0px 5px;
-	border-radius: 15px;
-	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	
 }
 
 .searchText {
@@ -275,7 +286,7 @@ a{
 	text-align : center;
 }
 
-#tourList{margin:0px 15px 0px 5px;}
+
 
 /* ================ 리뷰테이블 ================*/
 #reviewList>li:nth-child(-n+8) {
@@ -307,7 +318,6 @@ a{
 	text-align : center;
 	padding:0px;
 }
-#reviewList{margin:0px 15px 0px 5px;}
 
 /* =============== 문의 테이블 ==============*/
 #questionList>li:nth-child(-n+6) {
@@ -341,7 +351,6 @@ a{
 	text-align : center;
 }
 
-#questionList{margin:0px 15px 0px 5px;}
 
 /* =============== 루트 테이블 ==============*/
 #routeList>li:nth-child(-n+9) {

@@ -63,7 +63,7 @@
 							<!-- DB작업완료 후 for문 생성 -->
 							<c:forEach items="${list}" var="vo" varStatus="status">
 								<li>${vo.rownum}</li>
-								<li id="contents" ><a href="#" data-toggle="modal" data-target="#modal">${vo.userid }</a></li>
+								<li id="contents" ><a href="#" data-toggle="modal" data-target="#modal_registView">${vo.userid }</a></li>
 								<li>${vo.username}</li>
 								<li>
 									<c:if test="${vo.gender=='1'}">
@@ -110,32 +110,7 @@
 				        </div>
 				        </article>
 				    </div>
-				<!-- 유저 정보 팝업 -->
-<!-- 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal"> -->
-<!--   Launch demo modal -->
-<!-- </button> -->
 
-<!-- <!-- Modal --> 
-<!-- <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" -->
-<!--   aria-hidden="true"> -->
-<!--   <div class="modal-dialog" role="document"> -->
-<!--     <div class="modal-content"> -->
-<!--       <div class="modal-header"> -->
-<!--         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
-<!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-<!--           <span aria-hidden="true">&times;</span> -->
-<!--         </button> -->
-<!--       </div> -->
-<!--       <div class="modal-body"> -->
-<!--         ... -->
-<!--       </div> -->
-<!--       <div class="modal-footer"> -->
-<!--         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div> -->
 				   
 				<!-- Page Content -->
 				<div id="paging">
@@ -164,13 +139,9 @@
 		
 			</div><!-- adminContent -->
 			
-	
-<!-- 		모달 안된다... <section class="section-content py-5"> -->
-<!-- 		<button data-toggle="modal" data-target="#modal_simple" class="btn btn-primary" type="button">  Modal simple  </button> -->
-<!-- 		</section> -->
-
-<!-- 			<div class="modal-container" id="modal_simple"> -->
-<!-- 			    <div class="modal show-modal"> -->
+				
+<!-- 			<div class="modal-container" > -->
+<!-- 			    <div class="modal show-modal" id="modal_registView"> -->
 <!-- 			      <button class="close-btn" id="close"> -->
 <!-- 			        <i class="fa fa-times"></i> -->
 <!-- 			      </button> -->
@@ -283,7 +254,6 @@
 						    			이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.
 						    		</textarea>
 								</div>
-						    	<input type="submit" value="등록" />
 					    	</div>
 					    	</div>
 					    	 <div class="modal-footer">
