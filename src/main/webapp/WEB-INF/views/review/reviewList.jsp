@@ -113,8 +113,8 @@ function movePage(page){
 				toast("검색 결과가 없습니다.",1500);
 				return false;
 			}else{
-				$("input[name=searchType]").var($("#searchTypeReview").val())
-				$("input[name=searchWord]").var($("#searchBarReview").val())
+				$("input[name=searchType]").val($("#searchTypeReview").val())
+				$("input[name=searchWord]").val($("#searchBarReview").val())
 				
 				setPaging(result);
 				nowPage = result.nowPage;
@@ -135,7 +135,7 @@ function movePage(page){
 		success : function(result){
 			console.log(result);
 			if( result.length <= 0 ){
-				alert("검색 결과가 없습니다.");
+				toast("검색 결과가 없습니다.",1500);
 				
 			} else{ 
 				
@@ -156,7 +156,7 @@ $(function(){
 	// 검색
 	$("#searchReview").submit(function(){
 		if($("#searchBarReview").val() == ""){
-			alert("검색어를 입력하세요...");
+			toast("검색어를 입력하세요.", 1500);
 			return false;
 		};
 		
