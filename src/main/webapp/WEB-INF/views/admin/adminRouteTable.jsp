@@ -47,7 +47,7 @@ function makeRouteTable(result){
 	<!-- Page Content -->
 	<div class="adminContent">	
 				<div id="adminTable">
-				<h1 class="adminListHead">루트</h1>
+				<h1 class="adminListHead">루트게시판</h1>
 				
 				<div class="orderRadio">
 					<input type="radio" name="order" id="orderNoboard" value="noboard" checked="checked"><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar"> | </span>
@@ -122,15 +122,15 @@ function makeRouteTable(result){
 							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>
 					</ul>
-			</div><br/> 
+			</div><br/>
 			<!-- /paging -->
+			</div><!-- adminContent -->
 				<div id="partnerBtn">
 						<input type="button" id="partnerBtn1" name="adminScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
 						<input type="button" id="partnerBtn2" name="adminReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
 						<input type="button" name="adminCloseAllBtn" value="비공개" class="mint_Btn"/>
 						<input type="button" name="adminReleaseCloseAllBtn" value="비공개 해제" class="red_Btn"/>
 				</div><!-- btn -->
-			</div><!-- adminContent -->
 <!-- Page Content -->
 </body>
 </html>
