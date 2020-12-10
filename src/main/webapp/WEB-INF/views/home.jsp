@@ -5,6 +5,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 
@@ -56,7 +57,7 @@
 
 
 <div id="mainDivHome">
-	<img class="hit_route" src="<%=request.getContextPath() %>/img/img_main/hit_route.gif"/>
+	<img class="hit_route" src="<%=request.getContextPath() %>/img/img_main/hit_route2.gif"/>
 	<div id="hitRoute">
 	<!-- 	<span class="routeTitle" style="width:100%; font-size:35px;">
 			추천 루트&nbsp;
@@ -142,7 +143,7 @@
 			// 루트 설명 작성부
 			listTag += "<div class='mainSubscript'><ul ><li class='wordCut' id='routeTitle'>"+result[i].title+"</li><li class='wordCut' style='font-size:16px; font-weight:bold;'>"+result[i].region+"</li><li style='font-weight:bold;'>총 거리 "+result[i].distance.toFixed(2)+"km</li>";
 			var rateWidth =  (result[i].rating/5 *125);
-			listTag += "<li style='text-align:right; font-weight:bold'>"+result[i].userid+"</li><li style='width:100%; text-align:center; margin-top:11px;'><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
+			listTag += "<li style='color: #d20091; text-align:right; font-weight:bold'>"+result[i].userid+"</li><li style='width:100%; text-align:center; margin-top:11px;'><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
 		}
 		listTag +="</ul>";
 		

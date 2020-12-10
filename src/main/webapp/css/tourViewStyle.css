@@ -1,9 +1,15 @@
 @charset "UTF-8";
+	body{
+		background: url(../img/img_route/bike_pattern2.png);
+		no-repeat:repeat;
+		
+		font-family: 'Nanum Gothic', sans-serif;
+	}
 	.mainDivTourView{
 				width:1200px; 
 				margin:0 auto;
 				padding:0;
-							
+				background-color:white;			
 	}
 	#tourViewFormTitleDiv{
 							width:50%;
