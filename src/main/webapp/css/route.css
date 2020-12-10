@@ -139,7 +139,7 @@
 
 	.hitDiv > b, .title, #mapDiv b{
 		color:#353535;
-		font-size:23px;
+		font-size:27px;
 		font-weight:600;
 	}
 	.hitDiv > b{
@@ -193,7 +193,7 @@
 	
 	.orderRadio{
 		float:right;
-		margin : 0 30px;
+		margin : 0 15px;
 	}
 	.orderRadio>input[type=radio]{
 		display:none;
@@ -239,9 +239,9 @@
 	}
 	
 	/*컨텐츠*/
-	#content{
+	#content2{
 		width:1200px;
-		height:830px;
+		height:820px;
 	}
 	.thumbnail2{
 		width:250px;
@@ -256,12 +256,13 @@
 		float:left;
 		width:250px;
 		text-align:center;
-		margin : 0 25px 20px 25px;
+		margin : 0 25px 50px 25px;
 	}
 	.map{
-		width : 250px;
+		width : 265px;
 		height : 250px;
 		margin : 0 auto;
+		border-radius:5px;
 	}
 	
 	.routeSubscript{
@@ -277,23 +278,23 @@
 		float: left;
 		width : 50%;
 		height : 25px;
-		text-align:center;
+		text-align:left;
 		
-		font-size:15px;
-		font-weight:bold;
-	    color : gray;
+		font-size:13.5px;
+	    color : #17076d;
 		
-		margin-bottom : 3px;
+		margin-top:2px;
 		font-family:'Noto Sans KR', sans-serif;
 	}
 	
 	.routeSubscript li:first-child, .routeSubscript li:nth-of-type(2){
-		width : 250px;
+		width : 265px;
 		text-align:left;
 	}
 	
 	.routeSubscript li:last-child{
-		width : 250px;
+		width : 265px;
+		margin-top:10px;
 		text-align:center;
 	}
 	

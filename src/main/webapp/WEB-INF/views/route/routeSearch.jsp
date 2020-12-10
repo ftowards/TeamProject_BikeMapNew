@@ -35,10 +35,10 @@
 		</div>
 	</div>
 	<hr class='borderHr'/>
-	<div id="content"></div>
+	<div id="content2"></div>
 	<hr class='borderHr'/>
 	<!-- ================댓글창============= -->
-		<div id="paging">
+		<div id="paging" style='margin-bottom:115px'>
 			<ul>
 			<!-- 이전 페이지 -->
 				<c:if test="${pagingVO.nowPage != 1 }">
@@ -130,14 +130,14 @@
 			// 썸네일 작성부
 			listTag += "<li class='contentDiv' onclick='goViewPage("+result[i].noboard+")'><div id='"+mapId+i+"' class='map'></div>";
 			// 루트 설명 작성부
-			listTag += "<div class='routeSubscript'><ul ><li class='wordCut'>"+result[i].title+"</li><li class='wordCut'>"+result[i].region+"</li><li>"+result[i].distance.toFixed(2)+"km</li>";
+			listTag += "<div class='routeSubscript'><ul ><li class='wordCut' style='font-size:18px; color:#0f6767; font-weight:bold; margin:4px 0 2px 0'>"+result[i].title+"</li><li class='wordCut' style='font-size:15px; font-weight:bold'>"+result[i].region+"</li><li>총 거리 "+result[i].distance.toFixed(2)+"km</li>";
 			var rateWidth =  (result[i].rating/5 *125);
-			listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
+			listTag += "<li style='text-align:right'>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
 		}
 		listTag +="</ul>";
 		
 		if(type == 1){	$("#poster").html(listTag);	}
-		else{	$("#content").html(listTag);	}
+		else{	$("#content2").html(listTag);	}
 			
 		for(var i = 0 ; i < result.length ; i++){
 			var array = result[i].mapcenter.replace("(","").replace(")","").split(",");
