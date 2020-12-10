@@ -109,9 +109,15 @@ public class TourController {
 	
 	
 	// 글쓰기 폼 이동
-	@RequestMapping("/tourWriteForm")
-	public String tourBoardWrite() {
-		return "/tour/tourWriteForm";
+	@RequestMapping(value="/tourWriteForm", method= {RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView tourBoardWrite(int reference) {
+		ModelAndView mav = new ModelAndView();
+		
+		if(reference > 0) {
+			mav.addObject("reference", reference);
+		}
+		mav.setViewName("tour/tourWriteForm");
+		return mav;
 	}
 	
 	// 글쓰기 등록 , produces="application/text;charset=UTF-8"

@@ -12,6 +12,7 @@
 				<li><label for="receiveBox">받은 쪽지</label></li>
 				<li><label for="sendBox">보낸 쪽지</label></li>
 				<li><label for="noticeBox">알림</label></li>
+				<li><label for="sendMessage">쪽지 보내기</label></li>
 		    </ul>
 		</div>
 	</div>
@@ -23,7 +24,8 @@
     		<!-- 탭 전환용 라디오 버튼 : 숨김 처리 -->
 	    	<input type="radio" name="messageBox" id="receiveBox" value="1" checked/> 
 	    	<input type="radio" name="messageBox" id="sendBox" value="2" />
-	    	<input type="radio" name="messageBox" id="noticeBox" value="3" />			
+	    	<input type="radio" name="messageBox" id="noticeBox" value="3" />
+	    	<input type="radio" name="messageBox" id="sendMessage" value="4" />
 			<!-- On 시작 -->	
 			<div class="titleMyDiv1 tab"><label>받은 쪽지함</label>
 				<span class="readYetChk">
@@ -92,7 +94,10 @@
 					</div>
 				</div>
 			</div>
-	
+			<div class="titleMyDiv1 tab"><label>쪽지 보내기</label>
+				<br/>
+				<iframe src="/home/sendMsg" ></iframe>
+			</div>
 		</div>
 	</div>
 </div>
@@ -107,7 +112,10 @@ $(function(){
 	$("input[name=messageBox]").on('change', function(){
 		$("#read"+messageBox).prop("checked", false);
 		messageBox = $("input[name=messageBox]:checked").val();
-		movePage(1);
+		
+		if(messageBox != 4){
+			movePage(1);
+		}
 	});
 	
 	$("input[name=read]").on('change', function(){
@@ -223,22 +231,26 @@ function setList(result){
 	$result.each(function(idx, val){			
 		tag += "<li><input type='checkbox' value='"+val.nonotice+"'/></li>";
 		
-		if(val.read == 'T'){
-			if(messageBox == 1 || messageBox == 3){
-				tag += "<li>"+val.idsend+"</a></li>";
-			}else{
+		if(messageBox == 2){
+			if(val.read == 'T' ){
 				tag += "<li>"+val.userid+"</a></li>";
+				tag += "<li class='workcut'>"+val.msg+"</li>";
+				tag += "<li>"+val.writedate+"</li>";
+			}else if(val.read =='F'){
+				tag += "<li class='readYet'>"+val.userid+"</a></li>";
+				tag += "<li class='workcut readYet'>"+val.msg+"</li>";
+				tag += "<li class='readYet'>"+val.writedate+"</li>";
 			}
-			tag += "<li class='workcut'>"+val.msg+"</li>";
-			tag += "<li>"+val.writedate+"</li>";
-		}else if(val.read =='F'){
-			if(messageBox == 1 || messageBox == 3){
+		}else{
+			if(val.read == 'T' ){
+				tag += "<li>"+val.idsend+"</a></li>";
+				tag += "<li class='workcut'>"+val.msg+"</li>";
+				tag += "<li>"+val.writedate+"</li>";
+			}else if(val.read =='F'){
 				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.idsend+"</a></li>";
-			}else{
-				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.userid+"</a></li>";
+				tag += "<li onclick='readMsg(title);' class='workcut readYet' title='"+val.nonotice+"'>"+val.msg+"</li>";
+				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.writedate+"</li>";
 			}
-			tag += "<li onclick='readMsg(title);' class='workcut readYet' title='"+val.nonotice+"'>"+val.msg+"</li>";
-			tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.writedate+"</li>";
 		}
 	});
 	$("#messageList"+messageBox).html(tag);
