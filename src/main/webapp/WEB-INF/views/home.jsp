@@ -120,14 +120,14 @@
 	// 2. 지도 썸네일 만들기
  	function makeThumbnail(result){
 	
- 		var listTag = "<span class='mainRouteTitle'>한 눈에 보는 인기 코스</span><ul id='contentDivs'>";
+ 		var listTag = "<p class='mainRouteTitle'>한 눈에 보는 <span class='blinking'>인기 코스</span></p><ul id='contentDivs'>";
 		for(var i = 0 ; i < 4 ; i++){
 			// 썸네일 작성부
 			listTag += "<li class='contentDivMain' onclick='goViewPage("+result[i].noboard+")'><div id='map"+i+"' class='mainMap'></div>";
 			// 루트 설명 작성부
-			listTag += "<div class='mainSubscript'><ul ><li class='wordCut' id='routeTitle'>"+result[i].title+"</li><li class='wordCut' style='font-size:16px; font-weight:bold;'>"+result[i].region+"</li><li>총 거리"+result[i].distance.toFixed(2)+"km</li>";
+			listTag += "<div class='mainSubscript'><ul ><li class='wordCut' id='routeTitle'>"+result[i].title+"</li><li class='wordCut' style='font-size:16px; font-weight:bold;'>"+result[i].region+"</li><li>총 거리 "+result[i].distance.toFixed(2)+"km</li>";
 			var rateWidth =  (result[i].rating/5 *125);
-			listTag += "<li>"+result[i].userid+"</li><li style='width:100%; text-align:center; margin-top:25px;'><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
+			listTag += "<li style='text-align:right'>"+result[i].userid+"</li><li style='width:100%; text-align:center; margin-top:11px;'><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
 		}
 		listTag +="</ul>";
 		
