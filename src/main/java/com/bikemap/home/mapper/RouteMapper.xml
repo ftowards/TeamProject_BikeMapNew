@@ -136,10 +136,10 @@
 		where noboard = #{param1}
 	</select>
 	<update id="scrapRoute">
-		update route set scrap='T' where noboard = #{param1}
+		update route set scrap='T' where noboard = #{param1} and scrap ='F'
 	</update>
 	<update id="releaseRoute">
-		update route set scrap='F' where noboard = #{param1}
+		update route set scrap='F' where noboard = #{param1} and scrap ='T'
 	</update>
 	<select id="getPrevNext" resultType="int" parameterType="com.bikemap.home.route.RoutePagingVO">
 		select idx from 
