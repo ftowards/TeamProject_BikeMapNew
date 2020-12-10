@@ -9,10 +9,11 @@
 		<div id="sidebar-wrapper">
 		   	<ul class="sidebar-nav">
 		   	  <li><img src="<%=request.getContextPath()%>/img/img_myRoute/bike5.png"/></li>
-				<li class="sidebar-brand"><label>참여 목록</label></li>
+				<li class="sidebar-brand"><label style="color:rgb(0,176,176)">참여 목록</label></li>
+				<hr/>
 				<li><label for="tourApply">승인 대기</label></li>
 				<li><label for="tourPartin">참여 중</label></li>
-				<li><label for="tourEnd">완&nbsp;료</label></li>
+				<li  style="margin-bottom:30px"><label for="tourEnd">완&nbsp;료</label></li>
 		    </ul>
 		</div>
 	</div>
@@ -32,7 +33,7 @@
 				<div class="myTourBoardMainDiv">
 		     		<div>
 		     			<div>
-		     				<ul id="tourApplyListTitle" class="tourlistTitle">
+		     				<ul id="tourApplyListTitle" class="tourlistTitle" style="font-weight:bold;">
 		     					<li>번&nbsp;호</li>
 				     			<li>제&nbsp;목</li>
 				     			<li>마감일시</li>
@@ -41,7 +42,7 @@
 				     			<li>대&nbsp;기</li>
 				     			<li>참가목록</li>
 		     				</ul>
-		     				<ul id="tourApplyList" class="tourlist"></ul>
+		     				<ul id="tourApplyList" class="tourlist"  style="font-weight:bold;"></ul>
 						</div>
 						<div id="paging1" class="paging"></div>
 					</div>
@@ -53,7 +54,7 @@
 				<div class="myTourBoardMainDiv">
 		     		<div>
 		     			<div >
-		     				<ul id="tourPartinListTitle" class="tourlistTitle2">
+		     				<ul id="tourPartinListTitle" class="tourlistTitle2"  style="font-weight:bold;">
 		     					<li>번&nbsp;호</li>
 				     			<li>제&nbsp;목</li>
 				     			<li>출발일시</li>
@@ -62,7 +63,7 @@
 				     			<li>참가목록</li>
 				     			<li>마&nbsp;감</li>
 		     				</ul>
-		     				<ul id="tourPartinList" class="tourlist2"></ul>
+		     				<ul id="tourPartinList" class="tourlist2" ></ul>
 						</div>
 						<div id="paging2" class="paging"></div>
 					</div>
@@ -74,7 +75,7 @@
 				<div class="myTourBoardMainDiv">
 		     		<div>
 		     			<div >
-		     				<ul id="tourEndListTitle" class="tourlistTitle3">
+		     				<ul id="tourEndListTitle" class="tourlistTitle3"  style="font-weight:bold;">
 		     					<li>번&nbsp;호</li>
 				     			<li>제&nbsp;목</li>
 				     			<li>출발일시</li>
@@ -194,7 +195,7 @@ function setList(result){
 			tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist(title)' title='"+val.noboard+"/"+val.userid+"'>▼</a></li>";
 			
 			if(chkDeadline(val.deadline)){
-				tag += "<li>마감 표시</li>"
+				tag += "<li><div class='tourClose'>마감</div></li>"
 			}else{
 				tag += "<li></li>";
 			}
@@ -274,7 +275,7 @@ function setAcodianList(result, noboard, userid){
 		
 		$("#complist"+noboard).html(tag);
 	}else if(applyState == '2'){
-		tag += "<li>참가자</li><li>나이</li><li>성별</li><li>모임횟수</li><li>좋아요</li><li>참가상태</li><li></li>";
+		tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>참가상태</b></li><li></li>";
 		
 		$result.each(function(idx, val){
 			tag += "<li>"+val.userid+"</li>"
@@ -292,7 +293,7 @@ function setAcodianList(result, noboard, userid){
 			if(val.state == '3'){
 				tag += "<li>불참</li>";
 			}else if(val.state == '2'){
-				tag += "<li>참가 중</li>";
+				tag += "<li><button class='tourOk'>참가 중</button></li>";
 			}
 			
 			if(val.userid == $("#logId").val()){
