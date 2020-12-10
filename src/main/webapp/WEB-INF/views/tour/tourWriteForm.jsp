@@ -18,7 +18,7 @@
 			<div id="searchResultList">
 			</div>
 			<input type="hidden" id="reference" name="reference" 
-				<c:if test="${reference != null && reference > 0 }">value='${reference }'</c:if>/>
+				<c:if test="${vo.reference != null && vo.reference > 0 }">value='${vo.reference }'</c:if>/>
 		</div>
 	</div>
 	

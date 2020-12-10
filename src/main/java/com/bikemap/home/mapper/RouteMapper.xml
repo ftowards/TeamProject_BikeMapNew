@@ -39,7 +39,7 @@
 	<select id="selectRoute" resultType="com.bikemap.home.route.RouteVO">
 		select noboard, title, routepoint1, routepoint2, routepoint3, routepoint4, routepoint5, routepoint6, routepoint7,
 		geocode, polyline, userid, distance, ascent, descent, region, to_char(writedate, 'YY-MM-DD HH24:MI') writedate,
-		round(rating, 1) rating, ratecnt, closed, scrap from route
+		round(rating, 1) rating, ratecnt, closed, scrap, description from route
 		where noboard = #{param1}
 	</select>
 	<select id="selectRoute2" resultType="com.bikemap.home.route.RouteVO">

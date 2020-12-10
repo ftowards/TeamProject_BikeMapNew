@@ -34,6 +34,7 @@ function goList(){
 
 		<div id="routeWriterMenu">
 			<ul>
+				<li class="labelClass">작성자</li>
 				<li id="userid" class="txtShadow">${routeVO.userid }</li>
 				<c:if test="${logId == 'admin' && routeVO.scrap !='T'}">
 					<li><input type="button" value="스크랩" class="WMint_Btn" onclick="scrapRoute()"/></li>
@@ -48,6 +49,9 @@ function goList(){
 						<c:if test="${routeVO.closed == 'T'}"><input type="button" class="WMint_Btn" value="공개" onclick="setOpenRoute();"/></c:if>
 					</li>
 				</c:if>
+			</ul>
+			<ul>
+				<li class="labelClass">한줄 설명</li><li id="description">${routeVO.description }</li>
 			</ul>
 		</div>
 		<div id="map_Altitude">

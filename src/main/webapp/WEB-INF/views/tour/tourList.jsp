@@ -6,109 +6,118 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 
 <div id="mainDivTour">
-<div class="tourSearchListDiv">
-<form id="searchTour" method="post">	
-	<input type="hidden" name="nowPage" value="${paging.nowPage }"/>
-	<input type="hidden" name="noboard" value="0"/>
-	<div id="dateDiv">
-		<div class="labelClass"><label>일&nbsp;정</label></div>
-		<div><input type="text" name="departuredate" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"></div>
-		<select name="departureTime" id="departureTime" class="departureTime">
-			<option value="">시간</option>
-			<c:forEach var="i" begin="0" end="24" step="1">
-				<option value="${i }">${i }시</option>
-			</c:forEach>
-		</select>
-		<div><label class="label1">~</label></div>
-		<div><input type="text" name="arrivedate"	placeholder="도착날짜" id="arrive" maxlength="10" autocomplete="off"></div>
-		<select name="arriveTime" id="arriveTime" class="arriveTime"  style="margin-top:-29px">
-			<option value="">시간</option>
-			<c:forEach var="i" begin="0" end="24" step="1">
-				<option value="${i }">${i }시</option>
-			</c:forEach>
-		</select>
-	</div>
-	
-	<div id="placeDiv">
-		<div><label class="labelClass">장&nbsp;소</label></div>
-		<div><input type="text" name="place" placeholder="출발장소" id="place" autocomplete="off"></div>
+	<div class="tourSearchListDiv">
+		<form id="searchTour" method="post">	
+			<input type="hidden" name="nowPage" value="${paging.nowPage }"/>
+			<input type="hidden" name="noboard" value="0"/>
+			<ul class="searchBoardUl">
+				<li>
+					<div class="labelClass"><label>일&nbsp;정</label></div>
+				</li>
+				<li>
+					<input type="text" name="departuredate" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"/>
+					<select name="departureTime" id="departureTime" class="departureTime">
+						<option value="">시간</option>
+						<c:forEach var="i" begin="0" end="24" step="1">
+							<option value="${i }">${i }시</option>
+						</c:forEach>
+					</select>
+					<label class="label1">~</label>
+					<input type="text" name="arrivedate"	placeholder="도착날짜" id="arrive" maxlength="10" autocomplete="off">
+					<select name="arriveTime" id="arriveTime" class="arriveTime">
+						<option value="">시간</option>
+						<c:forEach var="i" begin="0" end="24" step="1">
+							<option value="${i }">${i }시</option>
+						</c:forEach>
+					</select>
+				</li>
 		
-		<div id="placeAndDistanceDiv">
-			<div><label id="distanceLbl">이동거리</label></div>
-			<div><input type="number" name="distance1" class="distance" maxlength="4" autocomplete="off" value="0"></div>
-			<label class="kmLbl1">km</label>
-			<div style="margin-top:-10px;"><label class="label2">~</label></div>
-			<div><input type="number" name="distance2" class="distance" maxlength="4" autocomplete="off" value="0" style="margin:-34px 0 0 230px"></div>
-			<div class="kmLbl2">km</div>
-		</div>	
+				<li>
+					<div><label class="labelClass">장&nbsp;소</label></div>
+				</li>
+				<li>
+					<input type="text" name="place" placeholder="출발장소" id="place" autocomplete="off">
+					<label class="labelClass distanceLbl">이동거리</label>
+					<div class="distanceGroup"><input type="number" name="distance1" class="distance" maxlength="4" autocomplete="off" value="0">
+						<label class="kmLbl">km</label></div>
+					<label class="label1">~</label>
+					<div class="distanceGroup"><input type="number" name="distance2" class="distance" maxlength="4" autocomplete="off" value="0">
+						<label class="kmLbl">km</label></div>
+				</li>
+		
+				<li>
+					<div><label class="labelClass">성&nbsp;별</label></div>
+				</li>
+				<li class="genderGroup">
+					<label id="whole" for="reggender">전&nbsp;체</label>
+					<label id="genderboy" for="boy">남</label>
+					<label id="gendergirl" for="girl">여</label>
+					
+					<input type="checkbox" id="reggender"/>
+					<input type="checkbox" name="reggender" id="boy" value="1" />
+					<input type="checkbox" name="reggender" id="girl" value="2" />
+				</li>
+		
+				<li>
+					<div><label class="labelClass">나&nbsp;이</label></div>
+				</li>
+				<li class="ageGroup">
+					<label id="whole2" for="regage">전&nbsp;체</label>
+					<label id="regageten" for="ten">10대</label>
+					<label id="regagetwenty" for="twenty">20대</label>
+					<label id="regagethirty" for="thirty">30대</label>
+					<label id="regageforty" for="forty">40대</label>
+					<label id="regagefiftyOver" for="fiftyOver" style="width:100px">50대 이상</label>
+					
+					<input type="checkbox" id="regage" />
+					<input type="checkbox" name="regage" id="ten" value="1" />
+					<input type="checkbox" name="regage" id="twenty" value="2"/>
+					<input type="checkbox" name="regage" id="thirty" value="3" />
+					<input type="checkbox" name="regage" id="forty" value="4" />
+					<input type="checkbox" name="regage" id="fiftyOver" value="5"/>
+					
+				</li>
+				<li>
+					<div>
+						<input type="button" name="search" value="검&nbsp;색" id="search">
+						<input type="button" id="reset" value="초기화" >
+					</div>
+				</li>
+			</ul>
+		</form>
 	</div>
+	<div>
+		<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label>
+			<input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
+		
 	
-	<div id="regGenderDiv">
-		<div><label class="labelClass">성&nbsp;별</label></div>
-				<div><label id="whole" for="reggender">전&nbsp;체</label></div>
-				<div><label id="genderboy" for="boy">남</label></div>
-				<div><label id="gendergirl" for="girl">여</label></div>
+		<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
+		<div id="tourBoardListDivTop">	
 				
-				<div><input type="checkbox" id="reggender"/></div>
-				<div><input type="checkbox" name="reggender" id="boy" value="1" /></div>
-				<div><input type="checkbox" name="reggender" id="girl" value="2" /></div>
-			</div>
-	
-	<div id="regAgeDiv">
-		<div><label class="labelClass">나&nbsp;이</label></div>
-		<div><label id="whole2" for="regage">전&nbsp;체</label></div>
-		<div><label id="regageten" for="ten">10대</label></div>
-		<div><label id="regagetwenty" for="twenty">20대</label></div>
-		<div><label id="regagethirty" for="thirty">30대</label></div>
-		<div><label id="regageforty" for="forty">40대</label></div>
-		<div><label id="regagefiftyOver" for="fiftyOver" style="width:100px">50대 이상</label></div>
-		
-		<div><input type="checkbox" id="regage" /></div>
-		<div><input type="checkbox" name="regage" id="ten" value="1" /></div>
-		<div><input type="checkbox" name="regage" id="twenty" value="2"/></div>
-		<div><input type="checkbox" name="regage" id="thirty" value="3" /></div>
-		<div><input type="checkbox" name="regage" id="forty" value="4" /></div>
-		<div><input type="checkbox" name="regage" id="fiftyOver" value="5"/></div>
-		
-	</div>
-	<div id="searchAndReset">
-		<div><input type="button" name="search" value="검&nbsp;색" id="search"></div>
-		<div><input type="button" id="reset" value="초기화" ></div>
-	</div>
-</form>
-
-	<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label></div>
-	<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
-	
-	
-	<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
-	<div id="tourBoardListDivTop">	
-			
-	</div>
-	<div  id="paging">
-		<ul>
-			<!-- 이전 페이지 -->
-				<c:if test="${paging.nowPage != 1 }">
-					<li><a href="#">Prev</a></li>
-				</c:if>
-				<c:forEach var="p" begin="${paging.startPageNum }" end="${paging.startPageNum + paging.onePageNumCount -1}">
-					<c:if test="${paging.totalPage >= p }">
-						<c:if test="${paging.nowPage == p }">
-							<li style='color:#00B0B0; font-weight:600;'>${p }</li>
-						</c:if>
-						<c:if test="${paging.nowPage != p }">
-							<li><a href='javascript:movePage(${p })' style='color:black; font-weight:600;'>${p }</a></li>
-						</c:if>
+		</div>
+		<div  id="paging">
+			<ul>
+				<!-- 이전 페이지 -->
+					<c:if test="${paging.nowPage != 1 }">
+						<li><a href="#">Prev</a></li>
 					</c:if>
-				</c:forEach>
-		<!-- 다음 페이지 -->
-			<c:if test="${paging.nowPage != paging.totalPage }">
-				<li><a href="#">Next</a></li>
-			</c:if>
-		</ul>
+					<c:forEach var="p" begin="${paging.startPageNum }" end="${paging.startPageNum + paging.onePageNumCount -1}">
+						<c:if test="${paging.totalPage >= p }">
+							<c:if test="${paging.nowPage == p }">
+								<li style='color:#00B0B0; font-weight:600;'>${p }</li>
+							</c:if>
+							<c:if test="${paging.nowPage != p }">
+								<li><a href='javascript:movePage(${p })' style='color:black; font-weight:600;'>${p }</a></li>
+							</c:if>
+						</c:if>
+					</c:forEach>
+			<!-- 다음 페이지 -->
+				<c:if test="${paging.nowPage != paging.totalPage }">
+					<li><a href="#">Next</a></li>
+				</c:if>
+			</ul>
+		</div>
 	</div>
-
-</div>
 </div>
 <script>
 var nowPage = $("input[name=nowPage]").val();
