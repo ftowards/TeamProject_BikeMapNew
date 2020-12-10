@@ -12,7 +12,7 @@
 			
 			//alert(result.length+" : 결과 줄");
 			if(i==0){
-				listTag +=  "<li>번호</li> <li>아이디</li> <li>이름</li> <li>성별</li> <li>나이</li> <li>모임횟수</li> <li>좋아요</li> <li>상태</li> <li>정지기간</li>"	;
+				listTag +=  "<li>번&nbsp;&nbsp;호</li> <li>아이디</li> <li>이&nbsp;&nbsp;름</li> <li>성&nbsp;&nbsp;별</li> <li>나&nbsp;&nbsp;이</li> <li>모임횟수</li> <li>좋아요</li> <li>상태</li> <li>정지기간</li>"	;
 			}
 			//list안에 데이터 추가
 			listTag += "<li>"+result[i].rownum+"</li>";
@@ -65,7 +65,13 @@
 							<!-- DB작업완료 후 for문 생성 -->
 							<c:forEach items="${list}" var="vo" varStatus="status">
 								<li>${vo.rownum}</li>
-								<li id="contents" ><a href="#" data-toggle="modal" data-target="#modal_registView">${vo.userid }</a></li>
+								<li class="contents" >
+									<input type="hidden" class="hiddenEmail" value="${vo.email }"/>
+									<input type="hidden" class="hiddenRegdate" value="${vo.regdate }"/>
+									<a href="#" data-toggle="modal" data-target="#modal_User" title=" 사용자 프로필 보기 " id="userprofileShow" >
+										${vo.userid }					
+									</a>
+								</li>
 								<li>${vo.username}</li>
 								<li class="fa fa-square fa-stack-2x">
 									<c:if test="${vo.gender=='1'}">
@@ -90,31 +96,7 @@
 								<li style="color:red">~${vo.endday}</li>
 							</c:forEach>
 					</ul>
-					   
-				
-				    <!--Popup Start -->
-				    <div id="userlayer" class="layerpop"
-				        style="width: 200px; height: 300px;">
-				        <article class="layerpop_area">
-				        <div class="title" style="padding:15px; border-bottom:2px solid #00B0B0">회원정보</div>
-				        <a href="javascript:userPopupClose();" class="layerpop_close"
-				            id="userlayerbox_close"></a> <br/>
-				        <div class="content">
-				        <span id="modal_username">홍길동</span>
-				       	<span id="modal_userid">hong1234</span><br/>
-				       	가입 : <span id="modal_regdate">2020.07.24</span><br/>
-		
-				        <div id="pop1_IsStop">정지여부 : <span style="font-color:red">정지중</span></div>
-				        <div id="pop1_StopTime">정지지간 : <span style="font-color:red">2020.11.14</span><br/></div>
-				        <div style="border-bottom:2px solid #00B0B0; padding-bottom:10px">
-					        <input type="button" name="userBanned" value="정지하기" onclick="javascript:suspendPopupOpen();" class="red_Btn"/>
-					        <input type="button" name="userPage" value="회원페이지">
-				       </div>
-				        </div>
-				        </article>
-				    </div>
-
-				   
+					      
 				<!-- Page Content -->
 				<div id="paging">
 					<ul>
@@ -143,42 +125,9 @@
 			</div><!-- adminContent -->
 			
 				
-			<div class="modal-container" >
-			    <div class="modal modal-dialog-centered modal-sm" id="modal_registView">
-			      <button class="close-btn" id="close">
-			        <i class="fa fa-times"></i>
-			      </button>
-			      <div class="modal-header">
-			        <h3>Sign Up</h3>
-			      </div>
-			      <div class="modal-content">
-			        <p>Register with us to get offers, support and more</p>
-			        <form class="modal-form">
-			          <div>
-			            <label for="name">Name</label>
-			            <input type="text" id="name" placeholder="Enter Name" class="form-input">
-			          </div>
-			          <div>
-			            <label for="email">Email</label>
-			            <input type="email" id="email" placeholder="Enter email" class="form-input">
-			          </div>
-			          <div>
-			            <label for="password">Password</label>
-			            <input type="password" id="password" placeholder="Enter password" class="form-input">
-			          </div>
-			          <div>
-			            <label for="password2">Confirm Password</label>
-			            <input type="password" id="password2" placeholder="Confirm password" class="form-input">
-			          </div>
-			
-			          <input type="submit" value="submit" class="submit-btn">
-			        </form>
-			      </div>
-			    </div>
-			  </div>
-			  
+	
 			<div id="modal_simple" class="modal fade" tabindex="-1" role="dialog">
-				  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:100%; width:auto; display:table;">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
 				    <div class="modal-content">
 				   	 <form id="userSuspendFrm" >
 				    	<input type="hidden" name="userid" id="userid" value=""/>
@@ -209,7 +158,7 @@
 						    			이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.
 						    		</textarea>
 								</div>
-							</div>
+								</div>
 						    	
 					  </div>
 				    <div class="modal-footer">
@@ -268,8 +217,72 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="modal_User" class="modal fade"  tabindex="-1" role="dialog">
+				  <div class="modal-dialog" role="document" style=" ">
+				    <div class="modal-content">	
+<!-- 				    	 <div class="modal-header"> -->
+<!-- 					        <h5 class="modal-title">회원 정보 보기</h5> -->
+<!-- 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!-- 					          <span aria-hidden="true">&times;</span> -->
+<!-- 					        </button> -->
+<!-- 				      	</div> -->
+					 <div class="modal-header">
+				        <h3 class="modal-title">회원 정보</h3>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				     </div>
+					<div class="container">
+					
+				    <div class="row">
+				        <div class="col-xs-12 col-sm-6 col-md-6">
+				            <div class="well well-sm">
+				                <div class="row">
+				                    <div class="col-sm-6 col-md-4">
+				                        <img src='img/img_admin/adminuserprofile_pic.png' alt="" class="img-rounded img-responsive" />
+				                    </div>
+				                    <div class="col-sm-6 col-md-8">
+				                        <h4>
+				                            <span id="modalUsername">홍길동</span></h4>
+				                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+				                        </i></cite></small>
+				                        <p>
+				                            <i class="glyphicon glyphicon-envelope"></i><span id="modalEmail">bikemap@bikemap.com</span>
+				                            <br />
+				                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
+				                            <br />
+				                            <i class="glyphicon glyphicon-gift"></i><span id="modalRegidate">June 02, 1988</span></p>
+				                        Split button
+				                        <div class="btn-group">
+				                            <button type="button" class="btn btn-primary">
+				                                Social</button>
+				                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+				                                <span class="caret"></span><span class="sr-only">Social</span>
+				                            </button>
+				                            <ul class="dropdown-menu" role="menu">
+				                                <li><a href="#">Twitter</a></li>
+				                                <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
+				                                <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+				                                <li class="divider"></li>
+				                                <li><a href="#">Github</a></li>
+				                            </ul>
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+					
+			</div>
+			<div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						  
+		</div>
+	  </div> <!-- modal-bialog .// -->
+	</div><!-- modal.//   --> 
 			<!-- suspend POP -->
 <!--  adminBottom -->
+</div>
 </div>
 </div>
 <!-- Page Content -->

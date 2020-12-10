@@ -3,7 +3,7 @@ body{
 	font-family: 'Noto Sans KR', sans-serif;
 	width:100%;
 	margin: 0 auto;
-	overflow-y: hidden; overflow-x: hidden;
+	/* overflow-y: hidden; overflow-x: hidden;== 스크롤기능 ===*/
 }
 textarea:focus {
 	outline: none;
@@ -55,7 +55,7 @@ a{
 	margin:30px 15px 0px 5px;
 	border-radius: 15px;
 }
-/* ================ �궗�씠�뱶諛� ==============*/
+/* ================네비게이션(사이드바) ==============*/
 .navigation {
 	float: left;
 	width: 300px;
@@ -151,7 +151,7 @@ a{
     border: 1px solid #00B0B0;
     background-color: white;
 }
-/*================= 而⑦뀗痢� ================*/
+/*================= 컨텐츠 ================*/
 .adminContent {
 	width: 1600px;
 	float: right;
@@ -179,7 +179,7 @@ a{
 }
 
 
-/*�럹�씠吏� 留ㅺ린湲�*/
+/*페이징*/
 #paging>ul {
 	overflow: auto;
 	margin: 0 auto;
@@ -220,7 +220,7 @@ a{
 	font-weight:600;
 	margin-bottom:20px;
 }
-/* ================ �쉶�썝愿�由� =================*/
+/* ================ 회원관리 게시판 =================*/
 #userList>li:nth-child(-n+9) {
 	color:#1f1f63;
 	font-size:16.5px;
@@ -261,8 +261,32 @@ a{
     font-size: 17.5px;
     color: rgb(64,64,64);
 }
+/* userList 모달관련 CSS*/
+.modal {
+        text-align: center;
+}
+ 
+@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+}
+.modal-dialog {
+        display: inline-block;
+        vertical-align: middle;
+}
 
-/* ================ �룞�뻾紐⑥쭛 ==================*/
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+		display: block;
+		line-height: 1.428571429;
+		color: #999;
+}
+/* ================ 동행찾기 게시판 ==================*/
 #tourList{
 	width:88%;
 	margin:0px 0 0px 82px;
@@ -607,7 +631,7 @@ input:checked + .slider:before {
     display: block;
     margin-left:22px;
     margin-top:7px;
-    background: url("../img/img_admin/stop_25_25.png")no-repeat;
+    background: url("../img/img_admin/edit_25_25.png")no-repeat;
     object-fit: fill;
 }
 #suspendEditBtn{
@@ -616,7 +640,7 @@ input:checked + .slider:before {
     display: block;
     margin-left:22px;
     margin-top:7px;
-    background: url("../img/img_admin/edit_25_25.png")no-repeat;
+    background: url("../img/img_admin/stop_25_25.png")no-repeat;
     object-fit: fill;
 }
 #suspendDiv{

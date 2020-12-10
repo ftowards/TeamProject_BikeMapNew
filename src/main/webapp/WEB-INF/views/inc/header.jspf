@@ -55,7 +55,7 @@
 		                                    <li><a href="<%=request.getContextPath()%>/mySavedRoute">저장된 루트</a></li>
 											<li><hr/></li>
 											<c:if test="${logId == 'admin' }">
-												<li><a href="#">관리자 페이지</a></li>
+												<li><a href="<%=request.getContextPath()%>/adminUser">관리자 페이지</a></li>
 											</c:if>
 		                                    <li><a href="javascript:window.open('/home/sendMsg', 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0')">1:1문의</a></li>
 		                                    <li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
