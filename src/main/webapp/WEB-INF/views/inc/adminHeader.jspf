@@ -129,8 +129,13 @@ function movePage(page){
 		});
 		
 	}
+	
+function io(noboard){
+	
+}
 function leaveMessage(noboard, userid){
 	
+	console.log(noboard+"이게 들어왔어요");
 	sendMsg(noboard, userid, 3);
 	
 	//데이터 구하기
@@ -141,9 +146,9 @@ function leaveMessage(noboard, userid){
 		url:"/home/replyWriteOk"
 		,data: data
 		,success:function(result){
-			if(result == 1){
-				setTimeout(function(){location.reload(true)},1500);
-			}
+		//	if(result == 1){
+	//			setTimeout(function(){location.reload(true)},1500);
+			//}
 		},error:function(){
 			console.log("댓글쓰기 에러 발생..");
 		}
@@ -316,18 +321,15 @@ function sendMsg(noboard, receiver, type){
 		               	btn.attr("id","suspendBtn");
 		               	btn.attr("data-target", "#modal_simple");
 		               	btn.parent().next().text("~");
-	            	}
-	            	
-	            	btn.parent().next().text(result.enddayStr);	
-	            	
+	            	}	            	
+	            	btn.parent().next().text(result.enddayStr);	            	
 	            },
 	            error:function(e){
 	            	console.log('정지연장', e.responseText);
 	            }
 	        });
 	        return false;
-	 });
-    	
+	 	});  	
     	// 라디오버튼 클릭시 이벤트 발생
 		$('input:radio[name=selSuspend]').click(function(){	
             if($('input[name=selSuspend]:checked').val() == "0"){
@@ -420,8 +422,7 @@ function sendMsg(noboard, receiver, type){
     	$(document).on('change','input:checkbox[name=adminScrapBtn]', function(){	
     		var noboard = $(this).val();
     		var userid = $(this).parents().next(".userid").val();
-    	
-    		console.log(userid);
+    		
     		var dataSingle = {"noboard":noboard};
     		//추천하는경우
     		if($(this).is(":checked") == true) {  
@@ -464,28 +465,46 @@ function sendMsg(noboard, receiver, type){
     	// 관리자 추천 한꺼번에 여러개
     	$(document).on('click','input:button[name=adminScrapAllBtn]', function(){	    		
     		var chkArray = new Array();
-    		var alreadyChk = new Array();
-			$('input:checkbox[name=listChk]:checked').each(function(){	
-				chkArray.push(this.value);	
+    		var noboards = "";
+    		var useridAll = "";
+
+    		$('input:checkbox[name=listChk]:checked').each(function(){	
+				chkArray.push(this.value);
+				noboards += this.value+"/";
     		});
-			//현재 체크표시한 데이터가 이미 추천되어있는지 확인 벨류가 눌러져있는지 확인.
-    		$('input:checkbox[name=adminScrapBtn]:checked').each(function(){
-				var index = chkArray.indexOf(this.value);
-    			if(index>-1){
-    				chkArray.splice(index, 1);
-    			}
-			});
+			
+    		//현재 고치게 될 넘버만 들어있음.
+			for(var i=0; i<chkArray.length; i++){
+				for(var j = 0 ; j< 10 ; j++){
+					if(chkArray[i] == $("#routeList>li").eq(9*(j+1)+1).text()){
+						//useridAll.push($("#routeList>li").eq(9*(j+1)+3).text());
+						useridAll += $("#routeList>li").eq(9*(j+1)+3).text()+"/";
+					}
+				}
+			}
+
+    		//alert(chkArray.length+":"+useridAll.length);
+// 			$('input:checkbox[name=adminScrapBtn]:not(:checked)').each(function(){
+// 				var useridSingle = $(this).parents().next(".userid").val();//변경해야할 userid
+//     			userid.push(useridSingle);
+// 			});
 			//추천하는경우
-    		if(chkArray.length>0) {  			
-    			for(var i=0; i<chkArray.length; i++){
-    				var dataSingle = {"noboard":chkArray[i]};
-    				$.ajax({
-		            url: 'scrapRoute',
-		            data:dataSingle,
+			
+			console.log("noboards"+noboards + "&userids="+useridAll);
+			
+    		if(chkArray.length>0) {
+   				//var dataSingle = {'noboard' : noboard , 'userid' : userid};
+   				//var noboard = JSON.stringify(chkArray);
+   				//var userid = JSON.stringify(useridAll);
+   				
+   				$.ajax({
+		            url: 'scrapRouteAll',
+		            data: "noboards="+noboards + "&userids="+useridAll,
 		            success: function (result) {
+		            	
+		            	return false;
 		            	if(result>0){
-			            	console.log("스크랩완료~");   
-			            	
+		            		leaveMessage(noboard, userid);
 		            	}else{
 		            		console.log("스크랩 실패;;")
 		            	}	    
@@ -494,10 +513,10 @@ function sendMsg(noboard, receiver, type){
 		            	console.log('관리자 추천', e.responseText);
 		            	return false;
 		            }
-		        });
-    			}
-    			alert(chkArray+"번호 글이 관리자 추천되었습니다.");
-    			location.reload();
+	      	  	});
+   				
+   				return false;
+    			
     		}
     	});
     	//추천해제 여러개
@@ -540,44 +559,44 @@ function sendMsg(noboard, receiver, type){
     	});
     	
     	// 관리자 공개 처리 여러개
-    	$(document).on('click','input:button[name=adminScrapAllBtn]', function(){	    		
-    		var chkArray = new Array();
-    		var alreadyChk = new Array();
-			$('input:checkbox[name=listChk]:checked').each(function(){	
-				chkArray.push(this.value);	
-    		});
-			//현재 체크표시한 데이터가 이미 추천되어있는지 확인 벨류가 눌러져있는지 확인.
-    		$('input:checkbox[name=adminScrapBtn]:checked').each(function(){
-				var index = chkArray.indexOf(this.value);
-    			if(index>-1){
-    				chkArray.splice(index, 1);
-    			}
-			});
-			//추천하는경우
-    		if(chkArray.length>0) {  			
-    			for(var i=0; i<chkArray.length; i++){
-    				var dataSingle = {"noboard":chkArray[i]};
-    				$.ajax({
-		            url: 'scrapRoute',
-		            data:dataSingle,
-		            success: function (result) {
-		            	if(result>0){
-			            	console.log("스크랩완료~");   
+//     	$(document).on('click','input:button[name=adminScrapAllBtn]', function(){	    		
+//     		var chkArray = new Array();
+//     		var alreadyChk = new Array();
+// 			$('input:checkbox[name=listChk]:checked').each(function(){	
+// 				chkArray.push(this.value);	
+//     		});
+// 			//현재 체크표시한 데이터가 이미 추천되어있는지 확인 벨류가 눌러져있는지 확인.
+//     		$('input:checkbox[name=adminScrapBtn]:checked').each(function(){
+// 				var index = chkArray.indexOf(this.value);
+//     			if(index>-1){
+//     				chkArray.splice(index, 1);
+//     			}
+// 			});
+// 			//추천하는경우
+//     		if(chkArray.length>0) {  			
+//     			for(var i=0; i<chkArray.length; i++){
+//     				var dataSingle = {"noboard":chkArray[i]};
+//     				$.ajax({
+// 		            url: 'scrapRoute',
+// 		            data:dataSingle,
+// 		            success: function (result) {
+// 		            	if(result>0){
+// 			            	console.log("스크랩완료~");   
 			            	
-		            	}else{
-		            		console.log("스크랩 실패;;")
-		            	}	    
-		            },
-		            error:function(e){
-		            	console.log('관리자 추천', e.responseText);
-		            	return false;
-		            }
-		        });
-    			}
-    			alert(chkArray+"번호 글이 관리자 추천되었습니다.");
-    			location.reload();
-    		}
-    	});
+// 		            	}else{
+// 		            		console.log("스크랩 실패;;")
+// 		            	}	    
+// 		            },
+// 		            error:function(e){
+// 		            	console.log('관리자 추천', e.responseText);
+// 		            	return false;
+// 		            }
+// 		        });
+//     			}
+//     			alert(chkArray+"번호 글이 관리자 추천되었습니다.");
+//     			location.reload();
+//     		}
+//     	});
     	// 관리자 비공개 처리
     	$(document).on('click','input:button[name=adminCloseAllBtn]', function(){	    		
     		var chkArray = new Array();
@@ -634,6 +653,7 @@ function sendMsg(noboard, receiver, type){
 </div>
 <div class="adminSearchBar">
 	<input type="hidden" id="logId" value="${logId}"/>
+	<input type="hidden" id="nowPage" value="${pagingVO.nowPage}"/>
 	<form  id="adminSearchFrm" method="post" action="javascript:movePage(1)">
 		   <!-- <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /> //검색조건 
    	 		<input type="hidden" name="searchValue" value="${pageVO.searchValue }" /> //검색어 -->

@@ -69,7 +69,7 @@ function makeRouteTable(result){
 							<li>${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/routeSearchView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
-							<li>${vo.rating }</li>
+							<li>${vo.rating}</li>
 							<li>${vo.ratecnt }</li>
 							<li>${vo.region}</li>
 							<li>
@@ -131,8 +131,6 @@ function makeRouteTable(result){
 				<div id="partnerBtn">
 						<input type="button" id="partnerBtn1" name="adminScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
 						<input type="button" id="partnerBtn2" name="adminReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
-						<input type="button" name="adminCloseAllBtn" value="비공개" class="mint_Btn"/>
-						<input type="button" name="adminReleaseCloseAllBtn" value="비공개 해제" class="red_Btn"/>
 				</div><!-- btn -->
 <!-- Page Content -->
 </body>

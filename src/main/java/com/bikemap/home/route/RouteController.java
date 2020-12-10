@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.bikemap.home.notice.NoticeDaoImp;
+import com.bikemap.home.notice.NoticeVO;
+import com.bikemap.home.reply.ReplyDaoImp;
+import com.bikemap.home.reply.ReplyVO;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 @Controller
 public class RouteController {
@@ -565,8 +573,52 @@ public class RouteController {
 		
 		try {
 			result = dao.scrapRoute(noboard);
+			System.out.println(noboard + " 스크랩 리절트 " + result);
 		}catch(Exception e) {
 			System.out.println("루트 스크랩 에러 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 루트 스크랩 전체
+	@RequestMapping("/scrapRouteAll")
+	@ResponseBody
+	public int scrapRoute(String noboards, String userids) {
+		int result = 0;
+		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
+		NoticeDaoImp nDao = sqlSession.getMapper(NoticeDaoImp.class);
+		ReplyDaoImp rDao = sqlSession.getMapper(ReplyDaoImp.class);
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = transactionManager.getTransaction(def);
+		
+		String noArray[] = noboards.split("/");
+		String userid[] = userids.split("/");
+		
+		try {
+			for(int i = 0 ; i < noArray.length ; i++) {
+				if(dao.scrapRoute(Integer.parseInt(noArray[i])) > 0) {
+					NoticeVO nVO = new NoticeVO();
+					nVO.setIdsend("admin");
+					nVO.setUserid(userid[i]);
+					nVO.setMsg("<a href='/home/routeSearchView?noboard="+noArray[i]+"'>"+noArray[i]+ "번 루트가 추천 루트로 등록되었습니다.</a>");
+					nDao.insertNotice(nVO);
+					
+					// 메세지
+					ReplyVO rVO = new ReplyVO();
+					rVO.setNoboard(Integer.parseInt(noArray[i]));
+					rVO.setUserid("admin");
+					rVO.setReply("해당 루트가 추천 루트로 게시됩니다. 게시를 원치 않으실 경우 관리자 문의 부탁드립니다.");
+					
+					rDao.replyInsert(rVO);
+				}
+			}
+			
+			transactionManager.commit(status);
+		}catch(Exception e) {
+			System.out.println("루트 전체 스크랩 에러 " + e.getMessage());
+			transactionManager.rollback(status);
 		}
 		return result;
 	}
