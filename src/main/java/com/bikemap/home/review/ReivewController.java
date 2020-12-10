@@ -8,7 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +37,9 @@ public class ReivewController {
 		this.sqlSession = sqlSession;
 		
 	}
+	
+	@Autowired
+	DataSourceTransactionManager transactionManager;
 	
 	//글쓰기 폼 이동
 	@RequestMapping("/reviewWriteForm")
@@ -111,13 +117,18 @@ public class ReivewController {
 	public ModelAndView reviewSelect(int noboard) {
 				
 		ReviewDaoImp dao =  sqlSession.getMapper(ReviewDaoImp.class);		
-
-		int cnt = dao.hitCount(noboard);
-		ReviewVO vo = dao.reviewSelect(noboard);
-				
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("vo",vo);
-		mav.setViewName("review/reviewView");
+		
+		try {
+			ReviewVO vo = dao.reviewSelect(noboard);
+			int cnt = dao.hitCount(noboard);
+					
+			mav.addObject("vo",vo);
+			mav.setViewName("review/reviewView");
+			
+		}catch(Exception e) {
+			System.out.println("글 보기 에러" + e.getMessage());
+		}
 		
 		return mav;
 	}
@@ -126,18 +137,16 @@ public class ReivewController {
 	//글쓰기 수정
 	@RequestMapping("/reviewEdit")
 	public ModelAndView reviewEdit(int noboard) {
-			System.out.println("NOBOARD======>"+noboard);
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-			System.out.println("DAO======>"+dao);
 		ReviewVO vo = dao.reviewSelect(noboard);
-			System.out.println("VO======>"+vo);
 		ModelAndView mav = new ModelAndView();
-			System.out.println("MAV======>"+mav);
-		
-		mav.addObject("vo", vo);
-		mav.setViewName("review/reviewEdit");
-		
-		return mav;
+		try {
+			mav.addObject("vo", vo);
+			mav.setViewName("review/reviewEdit");
+		}catch(Exception e) {
+			System.out.println("글쓰기 에러" + e.getMessage());
+		}
+			return mav;
 	}
 	
 	
@@ -150,13 +159,18 @@ public class ReivewController {
 
 		int result = dao.reviewUpdate(vo);
 		ModelAndView mav = new ModelAndView();
-		if(result>0) {
-			mav.addObject("noboard", vo.getNoboard());
-			mav.setViewName("redirect:reviewList");
-		
-		}else {
-			mav.setViewName("review/reviewResult");
-				
+	
+		try {	
+			if(result>0) {
+				mav.addObject("noboard", vo.getNoboard());
+				mav.setViewName("redirect:reviewList");
+			
+			}else {
+				mav.setViewName("review/reviewResult");
+					
+			}
+		}catch(Exception e){
+			System.out.println("수정확인 문제" + e.getMessage());
 		}
 			return mav;
 	}
@@ -168,8 +182,8 @@ public class ReivewController {
 	
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 		int result = dao.reviewDelete(noboard,(String)ses.getAttribute("logId"));
-		
 		ModelAndView mav = new ModelAndView();
+		try {
 			if(result>0) {
 				mav.setViewName("redirect: reviewList");
 				
@@ -177,13 +191,15 @@ public class ReivewController {
 				mav.setViewName("review/reviewResult");
 				
 			}
-			return mav;
-		
+		}catch(Exception e) {
+			System.out.println("글삭제 에러" + e.getMessage());
+		}	
+		return mav;
 	}
 	
 	
 	// 루트 검색 페이지 페이징 처리
-		@RequestMapping(value="/searchReviewPaging")
+		@RequestMapping(value="/searchReviewPaging", method= {RequestMethod.GET, RequestMethod.POST})
 		@ResponseBody
 		public ReviewPagingVO searchReviewPageing(ReviewPagingVO pagingVO) {		
 			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
@@ -211,6 +227,50 @@ public class ReivewController {
 			System.out.println("추천 리뷰 호출 에러" + e.getMessage());
 		}
 		return list;
+	}
+	
+	//추천 기능
+	// 추천 한 적이 있는 지 확인
+	@RequestMapping("/chkAlreadyReviewRate")
+	@ResponseBody
+	public int chkAlreadyReviewRate(ReviewVO vo, HttpSession ses) {
+		int result = 0;
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		vo.setUserid((String)ses.getAttribute("logId"));
+		
+		try {
+			result = dao.chkAlreadyReviewRate(vo);
+			System.out.println(result);
+		}catch(Exception e) {
+			System.out.println("기존 추천 비추천 확인 오류 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	@RequestMapping("/setThumb")
+	@ResponseBody
+	public int setThumb(ReviewVO vo, HttpSession ses) {
+		int result = 0;
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = transactionManager.getTransaction(def);
+		
+		String logId = (String)ses.getAttribute("logId");
+		vo.setUserid(logId);
+		try {
+			// 리뷰 평가 작업
+			if(dao.setThumb(vo) > 0 ) {
+				// 성공 시 reviewrate 에 기록 남기기
+				result = dao.insertReviewrate(vo);
+			}
+			transactionManager.commit(status);
+		}catch(Exception e) {
+			System.out.println("리뷰 평가 오류 " + e.getMessage());
+			transactionManager.rollback(status);
+		}
+		return result;
 	}
 }
 	
