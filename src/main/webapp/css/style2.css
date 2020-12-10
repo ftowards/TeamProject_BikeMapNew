@@ -618,15 +618,16 @@ body{
 #searchIdList{
 	display:none;
 	position : absolute;
-	width : 200px;
+	width: 49%;
 	line-height : 20px;
 	font-size : 12px;
 	left : 150px;
-	background-color : #00B0B0;
-	color: white;
-	border: 1px solid #00B0B0;
+	background-color:rgba(64,64,64,0.5);
+	color: #fff;
+	border-bottom: 1px solid #eee;
  	border-radius: 5px;
- 	font-weight: bold;
+ 
+ 	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 }
 #msgContainer>ul>li{
 	float : left;
@@ -640,12 +641,17 @@ body{
 }
 
 #searchIdList li{
-	width :100%;
+	width :98%;
 	height : 25px;
 	text-align : left;
 	padding-left : 5px;
-	font-size : 13px;
+	font-size : 15px;
 	line-height : 25px;
+}
+#searchIdList li:hover{
+	
+						background-color:gray;
+	
 }
 
 .slider_Review{

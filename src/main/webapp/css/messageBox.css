@@ -3,7 +3,7 @@
   
 	#page-wrapper {
 	  padding-left: 250px;
-	  background-color:black;
+	  box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
 	  min-height : calc(100vh - 170px);
 	}
 	
@@ -18,15 +18,21 @@
 		height : 500px;
 	}
 	#sidebar-wrapper {
-	  position: sticky;
-	  width: 250px;
-	  height: 100%;
-	  margin-left: -250px;
-	  background: #000;
-	  overflow-x: hidden;
-	  overflow-y: auto;
+   						position: sticky;
+					    width: 250px;
+					    height: 100%;
+					    margin-left: -250px;
+					    border-radius:10px;
+					  	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+						margin-top:100px;
+					    overflow-x: hidden;
+					    overflow-y: auto;
 	}
-	
+	 .sidebar-nav img{
+	 					width:200px;
+	 					margin-top:30px;
+	 
+	 }
 	#page-content-wrapper {
 	
 	  width: 100%;
@@ -45,23 +51,28 @@
 	
 	  text-indent: 2em;
 	  line-height: 2.8em;
+
+	  
 	}
 	
-	.sidebar-nav li a {
+	.sidebar-nav li label {
 	  display: block;
 	  text-decoration: none;
 	  color: #999;
+	  margin-right:50px;
+	  text-align:center;
 	}
 	
-	.sidebar-nav li a:hover {
-	  color: #fff;
-	  background: rgba(255, 255, 255, 0.2);
+	.sidebar-nav li label:hover {
+	    color: rgb(0,176,176);
+	
 	}
 	
 	.sidebar-nav > .sidebar-brand {
 	  font-size: 1.3em;
 	  line-height: 3em;
 	   color: #999;
+	  
 	}
 	
 	/*=================================게시판==========================*/
@@ -126,7 +137,7 @@
 	
 	}
 	.Ok{
-				padding-top:3px;
+		padding-top:3px;
 		text-align:center;
 		border:none;
 		border-radius:10px;
@@ -201,11 +212,12 @@
 	.listTitle, .listTitle2{
 		height : 40px;
 		margin : 0;
+		font-weight:bold;
 	}
 	.listTitle>li, .list>li{
 		height : 40px;
 		line-height : 40px;
-		font-size:14x;
+		font-size:15px;
 		text-align : center;
 		width : 15%;
 		float:left; 
@@ -238,26 +250,35 @@
   	}
   	
   	.readYet{
-  		font-weight : bold;
+  		color:rgb(0,176,176);
   	}
   	
-  	.btn{
+  	.btn,.btn_del{
   		font-weight: bold;
-	    border-radius: 5px;
+	    border-radius: 10px;
 	    text-decoration: none;
 	    text-align: center;
 	    padding: 3px 6px;
 	    margin : -11px 8px 0 0;
 	    color: white;
-	    border: 1px solid #00B0B0;
-	    background-color: #00B0B0;
+	    border:none;
+	    background-color: rgb(0,64,64);
 	    float: right;
 	    height : 30px;
 	    line-height :20px;
 	    font-size : 14px;
+	    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+  	}
+  	.btn_del{
+  			 background-color: #FF6347;	
+  			 color: #fff;
+  			 border: none;
+  				
+  	
   	}
   	.readYetChk{
   		margin-left : 5px;
   		line-height : 20px;
   		height : 20px;
   	}
+  	a:hover,a:link,a:visited{text-decoration:none; color: inherit;}

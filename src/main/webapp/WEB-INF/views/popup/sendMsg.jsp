@@ -34,15 +34,41 @@
 		margin : 10px 0;
 	}
 	.receiverLbl{
-		font-size : 15px;
-		margin : 0 10px;
-		width :20%;
-		font-weight : bold;
-		color: #222;		
+		text-align:center;
+		border:none;
+		border-radius:10px;
+		font-size:15px;
+		width:65%;
+		margin-left:10px;
+		height:30px;
+		line-height:30px;
+		font-weight:bold;
+		color:#fff;
+		background-color:rgb(64,64,64);
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+				
+	}
+	.sendMintBtn{
+					text-align:center;
+					border:none;
+					border-radius:10px;
+					font-size:15px;
+					width:65%;
+					margin-left:10px;
+					height:30px;
+					line-height:30px;
+					font-weight:bold;
+					color:#fff;
+					background-color:rgb(0,176,176);
+					box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+				
+	
 	}
 	#msgContainer input[type=text]{
 		width : 85%;
 		height : 20px;
+		border-radius: 5px;
+	
 	}
 	
 	#msgContainer textarea{
@@ -50,7 +76,10 @@
 		font-family:'Noto Sans KR', sans-serif;
 		border-radius: 8px 8px 0 0;
 		border:1px solid gray;
+		
 	}
+	input:focus {outline:none;}
+
 </style>
 <script>
 var socketP = parent.socket;
@@ -99,7 +128,7 @@ function setIdlist(result){
 	
 	$result.each(function(i, val){
 		if(val != 'admin' && val != $("#logId").val()){
-			tag += "<li onclick='setUserid(title);' title='"+val+"'>"+val+"</li>"	
+			tag += "<li onclick='setUserid(title);' title='"+val+"'>"+"@"+val+"</li>"	
 		}
 	});
 	
@@ -179,11 +208,12 @@ function toast(msg, time) {
 <div id="msgContainer">
 	<input type="hidden" id="logId" value="${logId }">
 	<ul>	
-		<li><label class="receiverLbl">받는 사람</label></li>
+		<li><div class="receiverLbl">받는 사람</div></li>
 		<li>
-			<input type="text" name="userid" id="userid"/>
+			<input type="text" name="userid" id="userid" autocomplete="off"/>
 			<div id="searchIdList"></div>
 		</li>
+	
 		<li>	
 			<div>
 				<textarea id="message" rows='10' cols='50' maxlength='200'style="resize:none" ></textarea>
@@ -191,7 +221,7 @@ function toast(msg, time) {
 			</div>
 		</li>
 		
-		<li><input type="button" class="mintBtn" onclick="sendMsg();" value="보내기"/></li>
+		<li><input type="button" class="sendMintBtn" onclick="sendMsg();" value="보내기"/></li>
 	</ul>
 </div>
 	<div id="toast" class="toast" style="top : 40px;">
