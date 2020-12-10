@@ -17,7 +17,8 @@
 			<hr style="opacity:0 ; height : 25px;"/>
 			<div id="searchResultList">
 			</div>
-			<input type="hidden" id="reference" name="reference"/>
+			<input type="hidden" id="reference" name="reference" 
+				<c:if test="${reference != null && reference > 0 }">value='${reference }'</c:if>/>
 		</div>
 	</div>
 	
@@ -190,6 +191,13 @@ var viaImage = new kakao.maps.MarkerImage('./img/img_route/markerVia.png', marke
 var map = new kakao.maps.Map(container, options);
 
 $(function(){
+	// 투어 모집 링크 타고 들어왔을 때 처리
+	
+	if($("#reference").val() != null && $("#reference").val() >0){
+		setReference($("#reference").val());
+	}
+	
+	
 	$("#reggender").on('change', function(){
 		if($(this).is(":checked")){
 			$("#whole").css('color','white').css('background-color','rgb(0,176,176)');
@@ -611,6 +619,9 @@ function getTourTime(){
 	 	CKEDITOR.replace('content',{
 			height:600
 			,width:1200
+			,extraPlugins: 'easyimage',
+		    cloudServices_tokenUrl: 'https://76760.cke-cs.com/token/dev/fb98221c99f6d4fccf45b51c839a7d022ad90ab2f9dfbc25f02ecdc03d98',
+		    cloudServices_uploadUrl: 'https://76760.cke-cs.com/easyimage/upload/'
 		
 		}); 
 	  

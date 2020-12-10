@@ -8,7 +8,7 @@ $(function(){
 	
 	if($("#logId").val() != null && $("#logId").val() !=""){
 		sock = new SockJS('/home/echo');
-		socket = sock;		
+		socket = sock;
 	}
 
 	sock.onopen = function(){

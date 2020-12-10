@@ -143,6 +143,11 @@ $(function(){
 	
  		window.open("/home/routeCollect","Bikemap","width=400px, height=200px, left =300px, top=300px");
  	});
+ 	
+ 	$("#recruitment").on('click', function(){
+ 		$("input[name=reference]").val($("#noboard").val());
+ 		$("#tourWriteWithReference").submit();
+ 	});
 });
 /////////////////// event //////////////////////////
 

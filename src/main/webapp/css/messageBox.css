@@ -11,6 +11,12 @@
 		background-color:white;
 		min-height:inherit;
 	}
+	
+	iframe{
+		border : none;
+		width : 500px;
+		height : 500px;
+	}
 	#sidebar-wrapper {
 	  position: sticky;
 	  width: 250px;
@@ -156,6 +162,9 @@
 		display:block;
 	}
 	#noticeBox:checked~div:nth-of-type(3){
+		display:block;
+	}
+	#sendMessage:checked~div:nth-of-type(4){
 		display:block;
 	}
 	.tab{

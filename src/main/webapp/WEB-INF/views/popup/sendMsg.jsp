@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style2.css" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
 <title>쪽지 보내기</title>
 <style>
 	html{
@@ -52,9 +53,14 @@
 	}
 </style>
 <script>
-var socket = opener.socket;
+var socketP = parent.socket;
+
+if(parent.socket == null){
+	socketP = opener.socket;
+}
 
 $(function(){
+	
 	//===============댓글쓰기 200자 제한================
 	$("#message").keyup(function(){
 		var commentBox = $(this).val();
@@ -92,7 +98,7 @@ function setIdlist(result){
 	var $result = $(result);
 	
 	$result.each(function(i, val){
-		if(val != 'admin' && val != $("#logId", opener.document).val()){
+		if(val != 'admin' && val != $("#logId").val()){
 			tag += "<li onclick='setUserid(title);' title='"+val+"'>"+val+"</li>"	
 		}
 	});
@@ -119,7 +125,7 @@ function getBytes(str){
 //메세지 저장하기 ++ 통신으로 메세지 보내기
 function sendMsg(){
 	var receiver = $("#userid").val();
-	var sender = $("#logId", opener.document).val();
+	var sender = $("#logId").val();
 	
 	if(receiver == null || receiver ==""){
 		toast("받을 사람을 입력하세요.",1500);
@@ -141,7 +147,7 @@ function sendMsg(){
 		data : data,
 		success : function(result){
 			if(result == 1){
-				socket.send(socketMsg);
+				socketP.send(socketMsg);
 				toast("쪽지가 발송되었습니다.",1500);
 				$("#userid").val("");
 				$("#message").val("");
@@ -171,7 +177,8 @@ function toast(msg, time) {
 </head>
 <body>
 <div id="msgContainer">
-	<ul>
+	<input type="hidden" id="logId" value="${logId }">
+	<ul>	
 		<li><label class="receiverLbl">받는 사람</label></li>
 		<li>
 			<input type="text" name="userid" id="userid"/>
