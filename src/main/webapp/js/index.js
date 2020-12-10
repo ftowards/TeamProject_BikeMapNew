@@ -62,3 +62,14 @@ $(function(){
     		}
     	});
    	}	
+   	
+   	function searchRegion(title){
+   		var obj = $("#searchRegion");
+   		
+   		var tag = "<input type='hidden' name='searchKey' value='region'/>";
+   			tag += "<input type='hidden' name='searchWord' value='"+title+"'/>";
+   			
+   		obj.html(tag);
+   		obj.submit();
+   		
+   	}

@@ -18,37 +18,38 @@
 		</div>
 		<ul style='margin-top:25px'>
 			<li class="location1">
-				<a href="#">
+				<a href="#" onclick="searchRegion(title);" title='서울'>
 					<div class="locationDiv" id="seoul">
 						<span class="locationTitle">서울</span>
 					</div>
 				</a>
-				<a href="#">
+				<a href="#" onclick="searchRegion(title);" title='부산'>
 					<div class="locationDiv" id="busan">
 						<span class="locationTitle">부산</span>
 					</div>
 				</a>
 			</li>
 			<li class="location2">
-				<a href="#">
+				<a href="#" onclick="searchRegion(title);" title='여수'>
 					<div class="locationDiv" id="yeosu">
 						<span class="locationTitle">여수</span>
 					</div>
 				</a>
 				<div class="locationDiv" style='margin-top:25px'>
-				<a href="#">
+				<a href="#" onclick="searchRegion(title);" title='제주'>
 					<div id="jeju">
 						<span class="locationTitle">제주</span>
 					</div>
 				</a>
 				</div>
-				<a href="#">
+				<a href="#" onclick="searchRegion(title);" title='전주'>
 					<div id="jeonju">
 						<span class="locationTitle">전주</span>
 					</div>
 				</a>
 			</li>
 		</ul>
+		<form id="searchRegion" method="post" action="/home/routeSearch"></form>
 	</div>
 
 

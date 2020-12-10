@@ -35,17 +35,20 @@ public class RouteController {
 	DataSourceTransactionManager transactionManager;
 	
 	//코스검색
-	@RequestMapping("/routeSearch")
+	@RequestMapping(value="/routeSearch", method= {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView routeSearch(RoutePagingVO pagingVO) {
 		ModelAndView mav = new ModelAndView();
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 
-		System.out.println(pagingVO.getNowPage());
+		System.out.println(pagingVO.getSearchKey());
+		System.out.println(pagingVO.getSearchWord());
 		
 		try {
 			int totalRecord = dao.searchResultRecord(pagingVO);
-			pagingVO.setTotalRecord(totalRecord);			
-			mav.addObject("pagingVO", pagingVO);		
+			pagingVO.setTotalRecord(totalRecord);
+			mav.addObject("pagingVO", pagingVO);
+			
+			System.out.println(pagingVO.getTotalRecord());
 		}catch(Exception e) {
 			System.out.println("루트 검색 화면 호출 에러 " + e.getMessage());
 		}		
