@@ -734,8 +734,9 @@ function getTourTime(){
 				success : function(result){
 					console.log(result);
 					if(result>0){
-						toast("글이 등록되었습니다.")
-						location.href="/home/tourList";
+						toastConfirm("게시글 작성 이후 모집 요강 수정이 불가능합니다.\n등록 하시겠습니까?",function(){
+							location.href="/home/tourList";
+						});
 					}else{
 						toast("글등록이 실패하였습니다.");
 					}
