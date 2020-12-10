@@ -64,6 +64,20 @@
 		<div id="content1"></div> <!-- 추천 루트 들어가는 위치 -->
 	</div><br/>	
 </div>
+<div class="banner_wrap2"></div>
+<div class="bg_bikemap">
+	<img src="<%=request.getContextPath() %>/img/img_main/bg_bikemap.png"/>
+</div>
+
+<div class="reviewFrame">
+	<span class="routeTitle" style="width:100%; font-size:35px;">
+			추천 후기&nbsp;
+	</span><br/>
+	<div id="reviewTop"></div> <!--  후기 -->
+</div>
+
+<a href="#" class="topIcon"><img src="<%=request.getContextPath() %>/img/img_main/top.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_main/top_over2.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_main/top.png'"></a>
+
 <script type="text/javascript">
 	$(function(){
 
@@ -83,6 +97,7 @@
 		$.ajax({
 			url : "/home/reivew/getRecReview",
 			success : function(result){
+				console.log(result);
 				makeThumbnail2(result);
 			}, error : function(err){
 				console.log(err);
@@ -98,7 +113,7 @@
 		});
 	})
 	
-	var	timer = setInterval('postMove()',2.5);
+	var	timer = setInterval('postMove()',8);
 	var left = 0;
 	var step = 0.5;
 	
@@ -182,20 +197,3 @@
 		
 	}
 </script>
-
-
-<div class="banner_wrap2"></div>
-<div class="bg_bikemap">
-	<img src="<%=request.getContextPath() %>/img/img_main/bg_bikemap.png"/>
-</div>
-
-
-
-<div class="reviewFrame">
-	<span class="routeTitle" style="width:100%; font-size:35px;">
-			추천 후기&nbsp;
-	</span><br/>
-	<div id="reviewTop"></div> <!--  후기 -->
-</div>
-
-<a href="#" class="topIcon"><img src="<%=request.getContextPath() %>/img/img_main/top.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_main/top_over2.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_main/top.png'"></a>

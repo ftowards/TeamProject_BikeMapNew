@@ -81,7 +81,7 @@
 		});
 		
 		$("#poster").on('mouseout', function(){
-			step = 0.5;
+			step = 0.4;
 		});
 		
 		var nowPage = $("input[name=nowPage]").val();
@@ -103,9 +103,9 @@
 		});
 	});
 	
-	var	timer = setInterval('postMove()',2.5);
+	var	timer = setInterval('postMove()',7);
 	var left = 0;
-	var step = 0.5;
+	var step = 0.4;
 	
 	// 추천 루트 무한 루프
 	function postMove(){
