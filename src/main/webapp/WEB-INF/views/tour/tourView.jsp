@@ -134,9 +134,16 @@ $(function(vo){
 			}
 		});
 		
-	}
-
+	}	
 });
+
+//목록보기 이동
+function goList(){
+	var data = $("#pagingVO").serialize();
+	console.log(data);
+	$("#pagingVO").attr("action", "/home/tourList");
+	$("#pagingVO").submit();
+}
 
 </script>
 <div class="mainDivTourView">
@@ -241,30 +248,41 @@ $(function(vo){
 		</div>
 	</div>			
 	<div id="writeForm">
-		<ul class="tourViewWriteFormClass">
-    		<li><label class="tourViewLabelClass" >작성자</label></li>
-        	<li><input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox" style="margin-left:0; padding-top:0px;"></li>
-			<li><label class="tourViewLabelClass">모집내용</label></li>
-			<li><div id="content">${vo.content }</div></li>
-		</ul>
-	</div>		
-
-	<div id="roomCheckDiv">
-		<div></div>
-		<div id="checkComplist" class="roomCheckDivLbl" data-target="#dialog" data-toggle="modal"><label>참여인원 확인하기></label></div>
+		<div class="tourViewWriteFormClass">
+    		<div  class="tourViewLabelClass" ><label>작성자</label></div>
+        	<div><input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox" style="margin-left:0; padding-top:0px;"></div>
+        	<div style="float:right" ><button class="conditionBox" onclick="javascript:goList()" style="margin-right:70px; padding-top:3px;">목록보기</button></div>
+        		<!-- 목록보기 페이징 보내기 -->
+        		<form id="pagingVO" method="post" action="/home/tourView" style="display:none">
+        			<input type="hidden" name="nowPage" value="${pagingVO.nowPage}"/>
+       				 <input type="hidden" name="departuredate" value="${pagingVO.departuredate}"/>
+        			<input type="hidden" name="departureTime" value="${pagingVO.departureTime}"/>
+        			<input type="hidden" name="arrivedate" value="${pagingVO.arrivedate}"/>
+        			<input type="hidden" name="arriveTime" value="${pagingVO.arriveTime}"/>
+        			<input type="hidden" name="place" value="${pagingVO.place}"/>
+        			<input type="hidden" name="reggender" value="${pagingVO.reggender}"/>
+        			<input type="hidden" name="regage" value="${pagingVO.regage}"/>
+        			<input type="hidden" name="order" value="${pagingVO.order}"/>
+        		</form>
+		</div>
+		<div class="tourViewWriteFormClass">	
+		<div id="checkComplist" class="roomCheckDivLbl" data-target="#dialog" data-toggle="modal" ><label>참여인원 확인하기</label></div>
 		<c:if test="${logId == vo.userid}">
 			<input type="hidden" id="manageConditon" value="ok"/>
 		</c:if>
-	</div>
+		</div>
 	
 	<c:if test="${logId != vo.userid && logId != null}">
 		<div id="tourStateDiv">
 			<div><button id="applyTour">참가신청</button></div>
-			<div><button id="cancelTour">참가취소</button></div>		 	
+			<div><button id="cancelTour">참가취소</button></div>
+		</div>			 		
+	</c:if>	
+		<div class="tourViewWriteFormClass">
+			<div class="tourViewLabelClass"><label>모집내용</label></div>
+			<div><div id="content">${vo.content }</div></div>
 		</div>
-	</c:if>
-
-	
+	</div>	
 	<!-- 참가 인원 확인 창 : 모달 창 만들기 -->
 	<div class="modal" id="dialog">
 		<div class="modal-dialog">
@@ -293,8 +311,9 @@ $(function(vo){
 				</div>
 			</div>
 		</div>
-	</div>
-	
+	</div>	
+
+
 	
 	<input type="hidden" id="noboard" value="${vo.noboard}">
 	<%@ include file="../inc/reply.jspf"%>
@@ -364,16 +383,16 @@ $(function(){
 			data : data,
 			success : function(result){
 				if(result == 1){
-					alert("참가 신청이 완료되었습니다.");
+					toast("참가 신청이 완료되었습니다.");
 					sendMsg($("#noboard").val(), $("#userInformation").val(), 2);
 				}else if(result == 2){
-					alert("이미 참가 신청 중 입니다.");
+					toast("이미 참가 신청 중 입니다.");
 				}else if(result == 3){
-					alert("이미 참가 중 입니다.");
+					toast("이미 참가 중 입니다.");
 				}else if(result == 5){
-					alert("마감 시간이 지나 참가 신청이 처리되지 않았습니다.");
+					toast("마감 시간이 지나 참가 신청이 처리되지 않았습니다.");
 				}else{
-					alert("참가 신청 오류입니다.");
+					toast("참가 신청 오류입니다.");
 				}
 			},error : function(){
 				console.log("참가 신청 오류");
@@ -390,15 +409,15 @@ $(function(){
 			data : data,
 			success : function(result){
 				if(result == '1'){
-					if(confirm("현재 참가 신청 중입니다.\n신청을 취소하시겠습니까?")){
+					toastConfirm("현재 참가 신청 중입니다.\n신청을 취소하시겠습니까?",function(){
 						cancleTour();
-					}
+					});
 				}else if(result == '2'){
-					if(confirm("현재 참가 중입니다.\n참가를 취소하시겠습니까?")){
+					toastConfirm("현재 참가 중입니다.\n참가를 취소하시겠습니까?",function(){
 						cancleTour();
-					}
+					});
 				}else {
-					alert("참가 내역이 없습니다.");
+					toast("참가 내역이 없습니다.");
 				}
 			},error : function(){
 				console.log("참가 취소 오류");
@@ -513,10 +532,10 @@ function confirmComplist(title){
 		data : data,
 		success : function(result){
 			if(result == 1){
-				alert("참가 승인 완료되었습니다.");
+				toast("참가 승인 완료되었습니다.");
 				sendMsg(strs[0], strs[1], 1);
 			}else{
-				alert("승인 오류 입니다.");
+				toast("승인 오류 입니다.");
 			}
 		},error : function(err){
 			console.log(err);
@@ -532,12 +551,12 @@ function cancleTour(){
 		data : data,
 		success : function(result){
 			if(result == 1){
-				alert("참가 내역이 취소되었습니다.");
+				toast("참가 내역이 취소되었습니다.");
 				sendMsg($("#noboard").val(), $("#userInformation").val(), 3);
 			}else if(result == 5){
-				alert("마감 시간이 지나 신청 취소가 불가능합니다.\n주최자에게 불참을 알려주세요.");
+				toast("마감 시간이 지나 신청 취소가 불가능합니다.\n주최자에게 불참을 알려주세요.");
 			}else{
-				alert("취소 신청 오류입니다. 다시 시도해주십시오.");
+				toast("취소 신청 오류입니다. 다시 시도해주십시오.");
 			}
 		},error : function(){
 			console.log("참가 신청 오류 발생");

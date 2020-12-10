@@ -35,7 +35,10 @@ public class TourVO {
 	private String scrap;
 	
 	
-
+	
+	
+	
+	
 	public String getScrap() {
 		return scrap;
 	}
@@ -274,7 +277,7 @@ public class TourVO {
 		}
 		return age50;
 	}
-	
+
 	
 	
 }

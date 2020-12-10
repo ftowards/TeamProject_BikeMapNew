@@ -14,7 +14,7 @@
 	<select id="selectTour" resultType="com.bikemap.home.tour.TourVO" parameterType="com.bikemap.home.tour.PagingVO">
 		select * from 
 			(select * from 
-				(select noboard, title, to_char(departure,'YY/MM/DD') departure, to_char(arrive,'YY/MM/DD') arrive, reference from tour
+				(select noboard, title, to_char(departure,'YY/MM/DD') departure, to_char(arrive,'YY/MM/DD') arrive, distance, reference from tour
 					where state = '1'
 					<if test='regage != null and regage neq ""'>
 			 			and regage like '%'||#{regage}||'%' and reggender like '%'||#{reggender}||'%' 

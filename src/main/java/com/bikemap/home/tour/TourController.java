@@ -37,42 +37,23 @@ public class TourController {
 	DataSourceTransactionManager transactionManager;
 
 	// 게시판 목록
-	@RequestMapping("/tourList")
+	@RequestMapping(value="/tourList", method= {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView TourList(PagingVO vo) {
 		ModelAndView mav = new ModelAndView();
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
-		PagingVO pagingVO = new PagingVO();
-		List<TourVO> list = dao.selectAllTour(pagingVO);
-	
+		
+		System.out.println("nowPage" + vo.getNowPage());
 		try {
-			pagingVO.setTotalRecord(dao.getTotalTourRecord(vo));
-			
+			vo.setTotalRecord(dao.getTourRecord(vo));
 		}catch(Exception e) {
 			System.out.println("동행찾기게시판 페이징 에러"+ e.getMessage());
 		}
 	
-		mav.addObject("paging", pagingVO);
-		mav.addObject("viewAll",list);
-		
+		mav.addObject("paging", vo);
 		mav.setViewName("tour/tourList");
 		return mav;
 	}
 
-	@RequestMapping("/tourPagingListAll")
-	@ResponseBody
-	public List<TourVO> tourAllSelectAll(PagingVO vo) {
-		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
-		List<TourVO> list = new ArrayList<TourVO>();
-		try {
-			vo.setTotalRecord(dao.getTotalTourRecord(vo));			
-			list = dao.selectAllTour(vo);
-		}catch(Exception e) {
-			System.out.println("페이징 에러 " + e.getMessage());
-		}
-		
-		return list;
-	}
-	
 	@RequestMapping("/tourPagingList")
 	@ResponseBody
 	public List<TourVO> tourAllSelect(PagingVO vo) {
@@ -80,28 +61,27 @@ public class TourController {
 		List<TourVO> list = new ArrayList<TourVO>();
 		try {
 			vo.setTotalRecord(dao.getTourRecord(vo));
-			System.out.println(vo.getOnePageRecord());
-			list = dao.selectAllTour(vo);
+			list = dao.selectTour(vo);
 		}catch(Exception e) {
 			System.out.println("페이징 에러 " + e.getMessage());
 		}
-		
 		return list;
 	}
 																							
 	//글보기
-	@RequestMapping("/tourView")
-	public ModelAndView TourView(int noboard) {
+	@RequestMapping(value="/tourView", method= {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView TourView(PagingVO pagingVO) {
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		ModelAndView mav = new ModelAndView();
 		TourVO vo = new TourVO();
 		try {
-			vo = dao.tourSelect(noboard);
+			System.out.println(pagingVO.getRegage());
+			vo = dao.tourSelect(pagingVO);
 		}catch(Exception e) {
 			System.out.println("투어 보기 에러" + e.getMessage());
 		}
-		
 		mav.addObject("vo", vo);
+		mav.addObject("pagingVO", pagingVO);
 		mav.setViewName("tour/tourView");
 		
 		return mav;
@@ -161,7 +141,7 @@ public class TourController {
 	public PagingVO searchTourPagingAll(PagingVO vo) {	
 		try {
 			TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
-			vo.setTotalRecord(dao.getTotalTourRecord(vo));
+			vo.setTotalRecord(dao.getTourRecord(vo));
 		}catch(Exception e) {
 			System.out.println("페이징에러"+e.getMessage());
 			e.printStackTrace();
@@ -491,39 +471,11 @@ public class TourController {
 		return list;
 	}
 	
-	//마감된 여행
-	@RequestMapping("/mytourClose")
-	public String mytourClose() {
-		return "/tour/mytourClose";
-	}
-	
-	// 완료한 여행
-	@RequestMapping("/mytourComplete")
-	public String mytourComplete() {
-		return "/tour/mytourComplete";
-	
-	}
-
-	
-	
 	//////////// 참여한 투어 ////////////////
-	// 승인 대기 중
+	// 내가 참여한 투어 페이지
 	@RequestMapping("/tourApply")
 	public String applyTour() {
 		return "/tour/tourApply";
-	}
-	
-	// 참가 중
-	@RequestMapping("/tourIn")
-	public String tourIn() {
-		return "/tour/tourIn";
-		
-	}
-	
-	// 완료
-	@RequestMapping("/tourComplete")
-	public String tourComplete() {
-		return "/tour/tourComplete";
 	}
 	
 	//글삭제 조건
@@ -629,23 +581,4 @@ public class TourController {
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

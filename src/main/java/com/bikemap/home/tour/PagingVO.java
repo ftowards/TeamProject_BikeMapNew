@@ -10,6 +10,10 @@ public class PagingVO {
 	private int startPageNum = 1;
 	private int lastPageRecordCount = 8; // 마지막 페이지 레코드 숫자
 	
+	private String order = "noboard" ;
+	
+	private int noboard ;
+
 	/// 검색 단
 	private String departure;
 		private String departuredate;
@@ -149,17 +153,33 @@ public class PagingVO {
 		this.distance2 = distance2;
 	}
 	public String getReggender() {
-		reggender = reggender.replaceAll(",", "%");
+		if(reggender != null) {
+			reggender = reggender.replaceAll(",", "%");
+		}
 		return reggender;
 	}
 	public void setReggender(String regender) {
 		this.reggender = regender;
 	}
 	public String getRegage() {
-		regage = regage.replaceAll(",", "%");
+		if(regage != null) {
+			regage = regage.replaceAll(",", "%");
+		}
 		return regage;
 	}
 	public void setRegage(String regage) {
 		this.regage = regage;
+	}
+	public String getOrder() {
+		return order;
+	}
+	public void setOrder(String order) {
+		this.order = order;
+	}
+	public int getNoboard() {
+		return noboard;
+	}
+	public void setNoboard(int noboard) {
+		this.noboard = noboard;
 	}
 }

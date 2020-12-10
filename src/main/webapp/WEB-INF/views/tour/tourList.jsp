@@ -7,7 +7,9 @@
 
 <div id="mainDivTour">
 <div class="tourSearchListDiv">
-<form id="searchTour">	
+<form id="searchTour" method="post">	
+	<input type="hidden" name="nowPage" value="${paging.nowPage }"/>
+	<input type="hidden" name="noboard" value="0"/>
 	<div id="dateDiv">
 		<div class="labelClass"><label>일&nbsp;정</label></div>
 		<div><input type="text" name="departuredate" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"></div>
@@ -70,12 +72,10 @@
 		
 	</div>
 	<div id="searchAndReset">
-		<div><input type="submit" name="search" value="검&nbsp;색" id="search"></div>
+		<div><input type="button" name="search" value="검&nbsp;색" id="search"></div>
 		<div><input type="button" id="reset" value="초기화" ></div>
 	</div>
 </form>
-
-	
 
 	<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label></div>
 	<div id="tourWriteDiv"><input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
@@ -111,6 +111,7 @@
 </div>
 </div>
 <script>
+var nowPage = $("input[name=nowPage]").val();
 $(function(){
 	
 	//성별 css,체크 변화
@@ -127,7 +128,6 @@ $(function(){
 			for(var i = 0 ; i < $("input[name=reggender]").length ; i++){
 				if($("input[name=reggender]").eq(i).prop("checked")){
 					$("input[name=reggender]").eq(i).trigger('click');
-				
 				}
 			}
 		}
@@ -234,11 +234,7 @@ $(function(){
 	$("#arrive").on('change',function(){
 		$("#arriveTime>option").eq(1).prop("selected", true);
 	});
-
 	 
-	$("#whole").trigger("click");
-	$("#whole2").trigger("click");
-	
 	// 초기화
 	$("#reset").click(function(){
 		$("input[type=text]").val("");
@@ -254,24 +250,22 @@ $(function(){
 		}
 	});
 	
-	$("#searchTour").submit(function(){
-		movePage(1, true);
-		return false;
+	$("input[name=search]").on('click', function(){
+		movePage(1);
 	});
 	
-	movePage(1, false);	
+	movePage(nowPage);	
 		
 });
-	function setPaging(vo, search){
+	function setPaging(vo){
 		// 이전 페이징 삭제
-		$("#paging").children().remove();
 		nowPage = vo.nowPage;
 		
 		console.log(vo);
 		var tag = "<ul>";
 		
 		if(vo.nowPage != 1){
-			tag += "<li style='margin-right:25px;'><a href='javascript:movePage("+(vo.nowPage -1)+", "+search+");'>Prev</a></li>";
+			tag += "<li style='margin-right:25px;'><a href='javascript:movePage("+(vo.nowPage -1)+");'>Prev</a></li>";
 		}
 		
 		for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount -1 ; i++){
@@ -279,27 +273,23 @@ $(function(){
 				if(vo.nowPage == i){
 					tag += "<li style='color:#00B0B0; font-weight:600;'>"+i+"</li>";
 				}else{
-					tag += "<li><a href='javascript:movePage("+i+", "+search+")' style='color:black; font-weight:600;'>"+i+"</a></li>";
+					tag += "<li><a href='javascript:movePage("+i+")' style='color:black; font-weight:600;'>"+i+"</a></li>";
 				}
 			}
 		}
 	
 		if(vo.nowPage != vo.totalPage){
-			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+", "+search+")'>Next</a></li>"
+			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 		}
-		$("#paging").append(tag);
+		$("#paging").html(tag);
 	}
 	
 	//페이지 이동
-	function movePage(p, search){
+	function movePage(p){
 		
-		var url ="<%=request.getContextPath()%>/searchTourPagingAll";
+		$("input[name=nowPage]").val(p);
+		var url ="<%=request.getContextPath()%>/searchTourPaging";
 		
-		if(search){
-			url = "/home/searchTourPaging";	
-			console.log("검색 조건");
-		}
-
 		//페이징 변경
 		var	params = $("#searchTour").serialize();
 			params += "&nowPage="+p;
@@ -311,10 +301,10 @@ $(function(){
 			,data:params
 			,success:function(result){
 				if(result.totalRecord == 0){
-					alert("검색 결과가 없습니다.");
+					toast("검색 결과가 없습니다.", 1500);
 				}else{
-					setPaging(result, search);
-					tourListSelect(p, search);	
+					setPaging(result);
+					tourListSelect(p);	
 				}
 			},error:function(){
 				console.log("페이징 오류");
@@ -322,14 +312,9 @@ $(function(){
 		});
 	}
 	
-	function tourListSelect(p, search){
+	function tourListSelect(p){
 		
-		var url ="/home/tourPagingListAll";
-		
-		if(search){
-			url ="/home/tourPagingList";	
-		}
-		
+		var url ="/home/tourPagingList";
 		var	params = $("#searchTour").serialize();
 			params += "&nowPage="+p;
 		
@@ -337,12 +322,11 @@ $(function(){
 			url:url
 			,data:params
 			,success:function(result){
-
 				if(result == null){
-					alert("검색 결과가 없습니다.");
+					toast("검색 결과가 없습니다.",1500);
 					return false;
 				}else{
-					$("#tourBoardListDivTop").children().remove();
+					console.log(result);
 					setList(result);
 				}
 			},error:function(){
@@ -356,14 +340,14 @@ $(function(){
 		var $result = $(result);
 		var tag="";
 		$result.each(function(i,v){
-			tag += "<div class='tourImgDivClass'><a href='/home/tourView?noboard="+v.noboard+"'>";
+			tag += "<div class='tourImgDivClass'><a href='javascript:goViewPage("+(v.noboard)+");'>";
 			tag += "<div id='map"+i+"' class='tourImgClass'></div>";
 			tag += "<div class='blackWrapDiv'>";	
 			tag += "<p style='font-size:25px;' class='tourBoardTitle'><b>"+ v.title+"</b></p>";
 			tag += "<p style='font-size:20px;' class='tourBoardWrite'>"+v.departure+'~'+v.arrive+"</p>";
 			tag += "<hr style='width:200px;'/>";
 			tag += "<p style='font-size:36px;' class='tourBoardDay'><b>"+'총'+v.distance+'km'+"</b></p></div></a></div>";
-			
+		
 			// 썸네일 만들기
 			$.ajax({
 				url : "/home/selectRouteForThumbnail",
@@ -407,5 +391,15 @@ $(function(){
 		    strokeStyle: 'solid' // 선의 스타일입니다
 		});
     	polyline.setMap(map);
+	}
+	
+	
+	function goViewPage(noboard){
+		
+		$("#searchTour").attr("action",'/home/tourView')
+		$("input[name=noboard]").val(noboard);
+		
+		console.log($("#searchTour").serialize());
+		$("#searchTour").submit();
 	}
 </script>
