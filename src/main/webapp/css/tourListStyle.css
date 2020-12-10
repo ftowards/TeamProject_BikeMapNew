@@ -4,65 +4,91 @@ body{margin:0; padding:0;
     overflow-y:auto;}
 	ul,li{margin:0px; padding:0px;list-style-type:none;} 
 	ul{list-style-type:none;}
+	
 	#mainDivTour{
 				width:1200px; 
 				margin:0 auto;
 				padding:0;
-			
 	}
-	#dateDiv{
-			 	width:100%;
-				height:80px;
-				margin:40px 0 0 230px;
-				
-				
-				}
+	
+	.searchBoardUl>li{
+		float: left;
+		height : 35px;
+		line-height : 35px;
+		margin-top : 25px;
+	}
+	.searchBoardUl>li:nth-of-type(2n+1){
+		width : 25%;
+	}
+	
+	.searchBoardUl>li:nth-of-type(2n+2){
+		width : 75%;
+		padding-left : 35px;
+	}
+	.searchBoardUl>li:nth-of-type(2n+2)>*{
+		margin-right : 25px;
+		float:left;
+	}
+	
+	.searchBoardUl>li:nth-of-type(4)>div{
+		margin-right :0px;
+	}
+	
+	.searchBoardUl>li:nth-of-type(9){
+		width : 100%;
+	}
+	.searchBoardUl>li:nth-of-type(9) div{
+		width : fit-content;
+		margin : 25px auto;
+	}
+	
+	.searchBoardUl>li:nth-of-type(9) div>input{
+		margin-right : 25px;
+	}
 	
 	.tourSearchListDiv{
 					 	border-radius:15px;
 					 	background-color:#fff;
-					 	width:1200px;
+					 	width:1000px;
 					 	height:400px;
-					 	float:left;
-						margin:0 0 50px 40px;
+					 	padding-top : 20px;
+						margin:0px auto 50px;
 						box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
-					
-						
-	
 	}	
-	.labelClass,#distanceLbl {	
-									position:relative;
-									padding-top:7px;
-									text-align:center;
-									border:none;
-									border-radius:10px;
-									width:70px;
-									height:35px;
-									background-color:rgb(0,176,176);
-									font-size:15px;
-									font-weight:bold;
-									color:#fff;
-									float:left;
-									box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-								}
+	.labelClass{	
+				position:relative;
+				text-align:center;
+				border:none;
+				border-radius:10px;
+				width:70px;
+				height:35px;
+				background-color:rgb(0,176,176);
+				font-size:15px;
+				font-weight:bold;
+				color:#fff;
+				float:right;
+				box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	}
+	
+	.distanceLbl{
+		float:none;
+		margin-left : 40px;
+	}
 			
 	#departure,#arrive,#place{	
-												border:none;
-												text-align:center;
-												border-radius:10px;
-												width:130px;
-												height:35px;
-												background-color:#fff;
-												color:rgb(0,176,176);
-												font-size:15px;
-												font-weight:bold;
-												float:left;
-												box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-		
+				border:none;
+				text-align:center;
+				border-radius:10px;
+				width:130px;
+				height:35px;
+				background-color:#fff;
+				color:rgb(0,176,176);
+				font-size:15px;
+				font-weight:bold;
+				box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	.arriveTime,.departureTime{
 				position:relative;
-				padding-top:2px;
 				text-align:center;
 				border:none;
 				border-radius:10px;
@@ -72,123 +98,67 @@ body{margin:0; padding:0;
 				color:rgb(0,176,176);
 				font-size:15px;
 				font-weight:bold;
-				float:left;
 				box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-				margin-left:20px;
 				text-align-last:center;
 	
 	
 	}
+	.distanceGroup{
+		width : fit-content;
+		margin-right : 0;
+	}
 	.distance{
-					border:none;
-					text-align:center;
-					border-radius:10px;
-					width:130px;
-					height:35px;
-					background-color:#fff;
-					color:rgb(0,176,176);
-					font-size:15px;
-					font-weight:bold;
-					float:left;
-					box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-					margin-left:50px;
-	
+			border:none;
+			text-align:center;
+			border-radius:10px;
+			width:130px;
+			height:35px;
+			background-color:#fff;
+			color:rgb(0,176,176);
+			font-size:15px;
+			font-weight:bold;
+			box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
-	.kmLbl1{
+	.kmLbl{
 				position:relative;
 				color:rgb(0,176,176);
 				font-size:15px;
 				font-weight:bold;
-				top:7px;
-				left:-30px;
-	
+				left:-32px;
 	}
-	.kmLbl2{
-				position:relative;
-				color:rgb(0,176,176);
-				font-size:15px;
-				font-weight:bold;
-				left:-30px;
-				top:-26px;
-			
 	
-	}
 	.label1{
-			margin:10px 0 0 20px;
 			color:rgb(0,176,176);
 			font-weight:bold;
 			font-size:15px;
 	}
-	.label2{
-			margin:-5px 0 0 20px;
-			color:rgb(0,176,176);
-			font-weight:bold;
-			font-size:15px;
-	}
-	#departure,#place,#distance,#whole,#whole2{
-												margin-left:50px;
-	}
-	#arrive{
-				margin:-30px 0 0 50px;
-				
-				}
 
-	#placeAndDistanceDiv{
-					width:800px;
-					margin-left:300px;
-					
-	}
-	#placeDiv{
-				height:80px;
-				margin-left:230px;
-	
-	}
-	#regGenderDiv{
-					height:60px;
-					margin-left:230px;
-			
-	}
-	#whole,#whole2,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver{
-																						position:relative;
-																						padding-top:7px;
-																						text-align:center;
-																						border:none;
-																						border-radius:10px;
-																						width:70px;
-																						height:35px;
-																						background-color:rgba(0,176,176,0.2);
-																						color:rgb(0,176,176);
-																						font-size:15px;
-																						font-weight:bold;
-																						float:left;
-																						box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	.ageGroup>label, #whole{
+		position:relative;
+		text-align:center;
+		border:none;
+		border-radius:10px;
+		width:70px;
+		height:35px;
+		background-color:rgba(0,176,176,0.2);
+		color:rgb(0,176,176);
+		font-size:15px;
+		font-weight:bold;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	
-	#genderboy,#gendergirl{
-								position:relative;
-								padding-top:7px;
-								text-align:center;
-								border:none;
-								border-radius:10px;
-								width:40px;
-								height:35px;
-								background-color:rgba(0,176,176,0.2);
-								color:rgb(0,176,176);
-								font-size:15px;
-								font-weight:bold;
-								float:left;
-								margin-left:25px;
-								box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-	}
-
-	#regAgeDiv{
-					height:80px;
-					margin-left:230px;
-			
-	
-	}
-	#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver{
-														margin-left:25px;
+	.genderGroup>label{
+		position:relative;
+		text-align:center;
+		border:none;
+		border-radius:10px;
+		width:40px;
+		height:35px;
+		background-color:rgba(0,176,176,0.2);
+		color:rgb(0,176,176);
+		font-size:15px;
+		font-weight:bold;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	
 	input:focus{outline:none;}
@@ -215,7 +185,6 @@ body{margin:0; padding:0;
 				font-weight:bold;
 				color:#fff;
 				float:left;
-				margin-left:30px;
 				box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	
@@ -232,27 +201,25 @@ body{margin:0; padding:0;
 				font-weight:bold;
 				color:black;
 				float:left;
-				margin-left:50px;
 				box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 					
 	}
 	 #tourSearchTitleDiv{
-	 						width:1200px;
-	 						height:30px;
-	 						padding-top:40px;
-	 						
-	 						
-	 					}
+		width:1200px;
+		height:100px;
+		margin-bottom : 30px;
+		padding-top:30px;
+	}
 	 #tourSearchTitleLbl{
-	 
-	 				font-size:22px; 
-	 				color:rgb(64,64,64);
+		font-size:22px; 
+		color:rgb(64,64,64);
+		margin-left : 40px;
 	 }
 	 
 	#paging{
-				height:60px; 
-			
-				
+		height:60px;
+		line-height : 60px;
+		margin : 10px auto 35px;		
 	} 
 	#paging ul{
 				text-align:center;
@@ -279,12 +246,9 @@ body{margin:0; padding:0;
 	
 	
 	
-	#tourBoardListDivTop,#tourBoardListDivBottom{
-											
-													width:1200px;
-													height:600px;
-													
-													
+	#tourBoardListDivTop{
+		width:1200px;
+		height:600px;
 	}	
 	
 	.tourImgDivClass{
@@ -349,17 +313,18 @@ body{margin:0; padding:0;
 	
 	
 	
-	#tourWriteDiv input{
-								border:none;
-								border-radius:10px;
-								width:70px;
-								font-weight:bold;
-								height:35px;
-								background-color:#fff;
-								color:black;
-								font-size:15px;
-								margin:0px 0 20px 1125px;
-								box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-				
+	#tourSearchTitleDiv input{
+		border:none;
+		border-radius:10px;
+		width:70px;
+		font-weight:bold;
+		height:35px;
+		background-color:#fff;
+		color:black;
+		font-size:15px;
+		float:right;
+		margin-right : 40px;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);			
 	}
+	
 	

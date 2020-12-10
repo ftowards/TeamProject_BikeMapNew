@@ -268,6 +268,24 @@ body{
 	.userMenu a:hover{
 		color:black;
 	}
+	
+	.loginMenu>li{
+		height : 35px;
+		line-height : 35px;
+	}
+	
+	.loginMenu>li>a{
+		height : 35px;
+		line-height : 35px;
+		padding: 0;
+		text-align : center;
+		font-family:'Noto Sans KR', sans-serif;
+		
+	}
+	
+	.loginMenu hr{
+		margin: 5px 0;
+	}
 	/*================================================footer==================================================================*/
 	body{
 		z-index:1000;
