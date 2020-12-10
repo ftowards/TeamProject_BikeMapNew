@@ -86,12 +86,15 @@ function makeRouteTable(result){
 									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">
 									  <span class="slider round"></span>
 									</label>							
+									<input type="hidden" class="userid" value="${vo.userid }"/>
 								</c:if>
 								<c:if test="${vo.scrap=='T'}">
 									<label class="switch">
 									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >
 									  <span class="slider round"></span>
 									</label>
+									<input type="hidden" class="userid" value="${vo.userid }"/>
+									
 								</c:if>
 							</li>
 					</c:forEach>

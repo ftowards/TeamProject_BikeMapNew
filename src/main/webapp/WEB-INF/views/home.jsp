@@ -2,11 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/WEB-INF/views/inc/headerMainBxSlider.jspf"%>
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
 
@@ -53,24 +51,33 @@
 	</div>
 
 
+
+
+
+
+<div id="mainDivHome">
+	<img class="hit_route" src="<%=request.getContextPath() %>/img/img_main/hit_route.gif"/>
+	<div id="hitRoute">
+	<!-- 	<span class="routeTitle" style="width:100%; font-size:35px;">
+			추천 루트&nbsp;
+		</span><br/> -->
+		<div id="content1"></div> <!-- 추천 루트 들어가는 위치 -->
+	</div><br/>	
+</div>
 <div class="banner_wrap2"></div>
 <div class="bg_bikemap">
 	<img src="<%=request.getContextPath() %>/img/img_main/bg_bikemap.png"/>
 </div>
+
 <div class="reviewFrame">
-	<span class="routeTitle" style="width:100%; font-size:35px; font-weight:bold;">
+	<span class="routeTitle" style="width:100%; font-size:35px;">
 			추천 후기&nbsp;
 	</span><br/>
 	<div id="reviewTop"></div> <!--  후기 -->
 </div>
-<div id="mainDivHome">
-	<div id="hitRoute">
-		<span class="routeTitle" style="width:100%; font-size:35px; font-weight:bold;">
-			추천 루트&nbsp;
-		</span><br/>
-		<div id="content1"></div> <!-- 추천 루트 들어가는 위치 -->
-	</div><br/>	
-</div>
+
+<a href="#" class="topIcon"><img src="<%=request.getContextPath() %>/img/img_main/top.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_main/top_over2.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_main/top.png'"></a>
+
 <script type="text/javascript">
 	$(function(){
 
@@ -90,6 +97,7 @@
 		$.ajax({
 			url : "/home/reivew/getRecReview",
 			success : function(result){
+				console.log(result);
 				makeThumbnail2(result);
 			}, error : function(err){
 				console.log(err);
@@ -105,7 +113,7 @@
 		});
 	})
 	
-	var	timer = setInterval('postMove()',2.5);
+	var	timer = setInterval('postMove()',8);
 	var left = 0;
 	var step = 0.5;
 	
@@ -127,14 +135,14 @@
 	// 2. 지도 썸네일 만들기
  	function makeThumbnail(result){
 	
- 		var listTag = "<ul id='contentDivs'>";
+ 		var listTag = "<p class='mainRouteTitle'>한 눈에 보는 <span class='blinking'>인기 코스</span></p><ul id='contentDivs'>";
 		for(var i = 0 ; i < 4 ; i++){
 			// 썸네일 작성부
-			listTag += "<li class='contentDiv' onclick='goViewPage("+result[i].noboard+")'><div id='map"+i+"' class='map'></div>";
+			listTag += "<li class='contentDivMain' onclick='goViewPage("+result[i].noboard+")'><div id='map"+i+"' class='mainMap'></div>";
 			// 루트 설명 작성부
-			listTag += "<div class='routeSubscript'><ul ><li class='wordCut'>"+result[i].title+"</li><li class='wordCut'>"+result[i].region+"</li><li>"+result[i].distance.toFixed(2)+"km</li>";
+			listTag += "<div class='mainSubscript'><ul ><li class='wordCut' id='routeTitle'>"+result[i].title+"</li><li class='wordCut' style='font-size:16px; font-weight:bold;'>"+result[i].region+"</li><li style='font-weight:bold;'>총 거리 "+result[i].distance.toFixed(2)+"km</li>";
 			var rateWidth =  (result[i].rating/5 *125);
-			listTag += "<li>"+result[i].userid+"</li><li><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
+			listTag += "<li style='text-align:right; font-weight:bold'>"+result[i].userid+"</li><li style='width:100%; text-align:center; margin-top:11px;'><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
 		}
 		listTag +="</ul>";
 		
@@ -188,6 +196,4 @@
 		$("#reviewTop").html(listTag);
 		
 	}
-	
-	
 </script>

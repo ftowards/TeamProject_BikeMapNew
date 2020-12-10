@@ -4,6 +4,7 @@ body{
 		margin:0; padding:0;      
 		overflow-x:hidden;
     	overflow-y:auto;
+    	font-family:'Noto Sans KR', sans-serif;
 	}
 	html{
 		scroll-behavior: smooth;
@@ -16,7 +17,7 @@ body{
 	ul{
 		font-size:18.5px;
 		list-style-type:none;
-		font-family:'Noto Sans KR', sans-serif;
+		font-family: 'Nanum Gothic', sans-serif;
 	}
 	
 	.locationSearchDiv{
@@ -185,7 +186,7 @@ body{
 	
 	#mainDivHome{
 		width:100%;
-		height:700px;
+		height:695px;
 		margin:0 auto;
 		background-color:#F0F3F5;
 	}
@@ -285,6 +286,10 @@ body{
 	
 	.loginMenu hr{
 		margin: 5px 0;
+
+ .navbar-nav>li>.dropdown-menu{
+		width:200px;
+		font-size:16px;
 	}
 	/*================================================footer==================================================================*/
 	body{
@@ -310,7 +315,7 @@ body{
 	#bottomDiv div:last-child{width:47.5%;height:80px;text-align:center;}
 	#bottomDiv div:last-child>label{color:#9d9d9d;;font-size:12px;}
 	
-	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:#9d9d9d;}
+	#topDiv a:link,#topDiv a:visited{text-decoration:none; color:#9d9d9d; font-size:14px;}
 	
 
 	/*=====================================main=====================================================*/
@@ -323,8 +328,7 @@ body{
 	
 	.bg_bikemap{
 		width:100%;
-		height:400px;
-		padding-top:18px;
+		height:335px;
 		/*background: url(../img/img_main/8.png) no-repeat;*/
 	}
 	.bg_bikemap span{
@@ -340,16 +344,40 @@ body{
 	}
 	
 	#hitRoute{
-		width:1200px;
+		width:1525px;
 		height:900px;
-		margin-left:350px;
+		margin-left:205px;
 		text-align:center;
-		padding-top:60px;
+		padding-top:2px;
 	}
 	#content1{
-		height:710px;
-		margin-top:130px;
+		z-index:400;
+		width:1520px;
+		height:540px;
+		margin-top:105px;
+		box-shadow:4px 4px 7px #949494;
+		padding:40px 0 10px 15px;
+		border-radius:10px;
+		background-color:white;
+		font-family:'Noto Sans KR', sans-serif;
 	}
+	.mainRouteTitle{
+		font-size:30px;
+		font-weight:bold;
+		font-family: 'Nanum Gothic', sans-serif;
+	}
+	
+	
+	#routeTitle{
+		height:30px;
+		color:#0f6767;
+		font-size:24px;
+		font-weight:bold;
+		font-family:'Poor Story', cursive;
+		margin:6px 0 8px 0;
+	}	
+	
+	
 	
 	.hitIcon{
 		width:100px;
@@ -393,6 +421,8 @@ body{
 		margin-bottom:6px;
 		padding-left:5px;
 		line-height:nomal;
+		font-family:'Noto Sans KR', sans-serif;
+		
 	}	
 	.courseReview{
 		font-size:26px;
@@ -486,10 +516,11 @@ body{
 		height:340px;
 	}
 	.topIcon img{
-		width:80px;
-		height:100px;
+		width:75px;
+		height:90px;
 		position:relative;
-		left:750px; bottom:70px;
+		left:1720px;
+		bottom:110px;
 	}
 	/*=========================소라 수정20/11/13===========================================*/	
 	
@@ -689,11 +720,57 @@ body{
 		font-family:'Noto Sans KR', sans-serif;
 	}
 	
+	
+	.mainMap{
+		width:333px;
+		height:265px;
+		margin:0 auto;
+		border-radius:5px;
+	}
+	.contentDivMain{
+		float:left;
+		width:333px;
+		text-align:center;
+		margin:25px 10px 51px 25px;
+	}
+	.mainSubscript li{
+		float:left;
+		width:50%;
+		height:25px;
+		text-align:left;
+		font-size:14px;
+		color:#17076d;
+		margin-top:5px;
+	}
+	.mainSubscript li:first-child, .mainSubscript li:nth-of-type(2){
+		width:100%;
+	}
+	.hit_route{
+		position:absolute;
+		width:130px;
+		left:200px;
+		padding-top:96px;
+		z-index:500;
+	}
+	
+.blinking{
+	-webkit-animation:blink 0.5s ease-in-out infinite alternate;
+    animation:blink 0.5s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {color:#fd2323;}
+    100% {color:#fb89b3;}
+}
+	
 .reviewFrame{
-	width: 1200px;
-    height: 480px;
+	width: 1300px;
+    height: 460px;
     margin : 0 auto;
-    padding-top: 60px;
+    padding-top: 40px;
     overflow: hidden;
 }
 	
@@ -710,6 +787,8 @@ body{
 	
 }
 .recommendReview{
+	width : 270px;
+	height : 200px;
 	padding:15px 20px 0px 15px;
 	border-radius:10px / 10px;
 	width:300px;
@@ -721,12 +800,14 @@ body{
 }
 /* 리뷰 썸네일 div 스타일*/
 .recommendReview .thumbnailImage{
-	width : 270px;
-	height : 200px;
 	background-size : contain;
 	background-color : white;
 	background-repeat : no-repeat;
 	border : 1px solid #777;
+}
+.thumbnailImage{
+	width:270px;
+	height:195px;
 }
 .reviewSubscription li{
 	float : left;

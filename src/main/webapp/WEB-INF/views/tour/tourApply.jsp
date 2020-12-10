@@ -8,6 +8,7 @@
 	<div style="position: absolute;background-color:black;">
 		<div id="sidebar-wrapper">
 		   	<ul class="sidebar-nav">
+		   	  <li><img src="<%=request.getContextPath()%>/img/img_myRoute/bike5.png"/></li>
 				<li class="sidebar-brand"><label>참여 목록</label></li>
 				<li><label for="tourApply">승인 대기</label></li>
 				<li><label for="tourPartin">참여 중</label></li>

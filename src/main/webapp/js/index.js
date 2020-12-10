@@ -73,3 +73,7 @@ $(function(){
    		obj.submit();
    		
    	}
+   	
+   	function goViewPage(noboard){
+   		return false;
+   	}

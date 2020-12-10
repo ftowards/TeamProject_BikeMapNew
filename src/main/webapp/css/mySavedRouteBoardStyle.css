@@ -3,7 +3,7 @@
   
   #page-wrapper {
     padding-left: 250px;
-    background-color: black;
+ 
     smin-height : calc(100vh - 170px);
     
   }
@@ -13,7 +13,9 @@
     width: 250px;
     height: 100%;
     margin-left: -250px;
-    background: #000;
+    border-radius:10px;
+  	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	margin-top:100px;
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -24,14 +26,16 @@
   }
   
   #page-content-wrapper {
- 
+ 	
     width: 100%;
     padding: 20px;
+    height: 100%;
   }
   /* 사이드바 스타일 */
   
   .sidebar-nav {
     width: 250px;
+    height: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -48,8 +52,8 @@
     color: #999;
   }
   
-  .sidebar-nav li label:hover {
-    color: #fff;
+  .sidebar-nav li label:hover{
+    color: rgb(0,176,176);
     background: rgba(255, 255, 255, 0.2);
   }
   .sidebar-nav img{
