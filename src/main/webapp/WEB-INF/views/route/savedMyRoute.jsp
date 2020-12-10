@@ -34,7 +34,7 @@
 	<div style="position: absolute;background-color:black;">
 		<div id="sidebar-wrapper">
 	  		<ul class="sidebar-nav">
-	    		<li><img src="<%=request.getContextPath()%>/img/img_myRoute/bike.png"/></li>
+	    		<li><img src="<%=request.getContextPath()%>/img/img_myRoute/bike6.png"/></li>
 	     	 	<!-- 탭 카테고리 패널 -->
 	     		<li class="sidebar-brand">
 	     			<label>저장된 루트</label>   
