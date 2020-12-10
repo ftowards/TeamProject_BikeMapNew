@@ -1,7 +1,7 @@
 @charset "UTF-8";
 	body{
-		background: url(../img/img_route/bike_pattern2.png);
-		no-repeat:repeat;
+	/*	background: url(../img/img_route/bike_pattern.png);
+		no-repeat:repeat;	*/
 		
 		font-family: 'Nanum Gothic', sans-serif;
 	}
@@ -9,7 +9,7 @@
 				width:1200px; 
 				margin:0 auto;
 				padding:0;
-				background-color:white;			
+				background-color:#eee;			
 	}
 	#tourViewFormTitleDiv{
 							width:50%;
@@ -20,7 +20,7 @@
 	.timeConditionDiv{
 					 	border-radius:15px;
 					 	background-color:#fff;
-					 	width:500px;
+					 	width:415px;
 					 	height:350px;
 					 	float:left;
 						margin-left:40px;
@@ -56,10 +56,10 @@
 								
 	}
 	.timeConditionDiv2{
-	
+						background:yellow;
 					 	border-radius:15px;
-					 	background-color:#fff;
-					 	width:500px;
+					 	background-color:yellow;
+					 	width:415px;
 					 	height:170px;
 					 	float:left;
 					 	margin-bottom:40px;
@@ -68,8 +68,8 @@
 	}
 	.timeConditionDiv3{
 						border-radius:15px;
-					 	background-color:#fff;
-					 	width:500px;
+					 	background-color:orange;
+					 	width:415px;
 					 	height:250px;
 					 	float:left;
 					 	margin-bottom:30px;
@@ -134,19 +134,35 @@
 	}
 
 	#routeResultDiv{
-						width:600px;
-
-						height:840px;
+						width:745px;
+						height:877px;
 						float:left;	
 	
 	}
 	#conditionDiv{
-					width:800px;
+					width:415px;
 					height:360px;
 					float:left;
+					background:pink;
 					
 	}
-	.labelClass,#departure,#arrive,.conditionBox,.labelClass2,#deadline,#place,.labelUseridClass{	
+	
+	.txtShadow2{
+		padding-top:7px;	
+		width:100px;
+		height:40px;
+	    font-size: 17px;
+	    font-weight: bold;
+	    float: left;
+	    border:none;
+	    font-size: 18px;
+	    color: #005766;
+	    height: 40px;
+		margin-left:26px;
+	    background-color:white;
+	    text-shadow: 2px 2px 6px #8EC7D0;
+	}
+	.labelClass,#departure,#arrive,.labelClass2,#deadline,#place,.labelUseridClass{	
 																				
 																				padding-top:7px;
 																				text-align:center;
@@ -154,34 +170,34 @@
 																				border-radius:10px;
 																				width:70px;
 																				height:35px;
-																				background-color:rgb(64,64,64);
-																				font-size:15px;
+																			
+																				font-size:17px;
 																				font-weight:bold;
-																				color:#fff;
+																				color:black;
 																				float:left;
-																				box-shadow: 3px 3px 5px 3px rgb(230,230,230);		
+							
 			}
 			
 			
 	.conditionDivTop{
-					 	width:450px;
+					 	width:384px;
 						height:50px;
-						margin:25px 0 0 45px;
+						margin:25px 0 0 20px;
 						float:left;
 				}
 				
 	.conditionDivTop2{
-						width:450px;
+						width:384px;
 						height:30px;
-						margin:25px 0 0 45px;
+						margin:25px 0 0 20px;
 						float:left;
 	
 	
 	}		
 	.conditionDivTop3{
-						width:450px;
+						width:425px;
 						height:55px;
-						margin:40px 0 0 45px;
+						margin:40px 0 0 20px;
 						float:left;
 						
 	
@@ -194,18 +210,6 @@
 											background-color:#fff;
 											color:rgb(123,123,123);
 		}
-
-	.conditionBox{
-					padding-top:7px;	
-					width:100px;
-					background-color:#fff;
-					color:rgb(123,123,123);
-					
-					
-	}	
-	#departure,#place,.conditionBox,#deadline,#room,.useridBox{
-														margin-left:20px;
-	}
 	
 	#label1{
 			margin-left:9px;
@@ -214,7 +218,7 @@
 			font-size:15px;
 	}
 	#arrive{
-				margin-left:92px;
+				margin-left:70px;
 				
 				}
 
@@ -231,7 +235,7 @@
 					font-weight:bold;
 					color:rgb(123,123,123);
 					float:left;
-					box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+					box-shadow: 2px 2px 4px 2px rgb(214 214 214);
 				
 	}	
 	.useridBox{
@@ -254,7 +258,7 @@
 																													font-weight:bold;
 																													color:rgb(123,123,123);
 																													float:left;
-																													box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+																													box-shadow: 2px 2px 4px 2px rgb(214 214 214);
 	
 	}
 	
@@ -307,9 +311,7 @@
 							width:35px;
 							margin-left:10px;
 	}	
-	#whole,#whole2,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver{
-															margin-left:20px;
-	}		
+		
 
 	.conditionDivBottom{
 						margin-left:115px;
@@ -450,7 +452,7 @@
 										width:70px;
 										height:35px;
 										margin:0 0px 0 20px;
-										box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+										box-shadow: 2px 2px 4px 2px rgb(214 214 214);	
 	
 	}	
 			
@@ -560,29 +562,29 @@
 		box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
 	}
 	.routeResultDiv2{
-	 	width:600px;
-	 	height:800px;
+	 	width:745px;
+	 	height:840px;
 	 	margin-top : 40px;
-	
 	}
 	
 	#routeMap{
-		width : 500px; 
-		height : 500px;
+		width : 670px; 
+		height : 475px;
 		margin : 0 auto;
 	}
 	
 	#elevation_chart{
-		width : 500px; height: 200px;
+		width : 667px; height: 215px;
 		margin : 0 auto;
 	}
 
 	#routeTitle {
-		height: 35px;
-		width : 400px;
+		height: 50px;
+		width : 668px;
 		white-space:nowrap;
 		overflow:hidden;
-		text-overflow:ellipsis;		
+		text-overflow:ellipsis;	
+		font-family:none;	
 	}
 	.routeTitleDiv{
 		width : 550px;
