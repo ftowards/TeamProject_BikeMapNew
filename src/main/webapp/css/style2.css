@@ -19,6 +19,14 @@ body{
 		list-style-type:none;
 		font-family: 'Nanum Gothic', sans-serif;
 	}
+	.locationGroup{
+		width : 1200px;
+		margin : 0 auto;
+	}
+	.locationGroup>li{
+		 
+		float:left;
+	}
 	
 	.locationSearchDiv{
 		background-color:#273137;
@@ -60,7 +68,13 @@ body{
 		margin-right:20px;
 	}
 	.location2{
-		width:770px;		
+		width:770px;
+		margin-left : 4px;
+	}
+	
+	.location2>div>a{
+		float: left;
+		height : 100%;
 	}
 	#seoul, #busan, #yeosu, #jeju, #jeonju{
 		border-radius:10px;
@@ -101,10 +115,8 @@ body{
 	#jeonju{
 		width:373px;
 		height:340px;
-		bottom:-990px;
-		right:360px;
-		position:absolute;
 		background: url(../img/img_main/jeonju.png);
+		margin-left : 23px;
 	}
 	
 	.locationTitle{
@@ -286,8 +298,8 @@ body{
 	
 	.loginMenu hr{
 		margin: 5px 0;
-
- .navbar-nav>li>.dropdown-menu{
+	}
+ 	.navbar-nav>li>.dropdown-menu{
 		width:200px;
 		font-size:16px;
 	}
