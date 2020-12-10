@@ -47,9 +47,15 @@
 	<update id="hitCount" parameterType="int">
 		update review set hit = hit+1 where noboard=#{param1}
 	</update>
+ <!-- 추천 -->
+<!--  	<update id="thumUp" parameterType="int"> -->
+<!--  		update review set thumbUp = thumbUp+1 where noboard=#{noboard} -->
+<!--  	</update> -->
+ 
+ <!-- 비추천 -->	
  	
  	
- 	<!-- 페이징 전체 레코드 -->
+ <!-- 페이징 전체 레코드 -->
  	<select id="searchTotalRecord" resultType="int" parameterType="com.bikemap.home.review.ReviewPagingVO">
  		select count(noboard) from review 
  		<if test='searchWord neq null and searchWord neq ""'> 
@@ -57,7 +63,29 @@
  		</if>
  	</select>
  	
+ <!-- 페이징 선택 레코드 -->
  	<select id="selectRecommendReview" resultType="com.bikemap.home.review.ReviewVO">
  		select noboard, subject, content, userid, thumbup from review where scrap='T' order by noboard desc
  	</select>
+ 	
+ <!-- 기존 추천 확인 -->
+ 	<select id="chkAlreadyReviewRate" resultType="int" parameterType="com.bikemap.home.review.ReviewVO">
+ 		select count(userid) thumb from reviewrate where noboard=#{noboard} and userid =#{userid}
+ 	</select>
+ <!-- 리뷰 평가 (추천/ 비추천) -->
+ 	<update id="setThumb" parameterType="com.bikemap.home.review.ReviewVO">
+ 		update review set 
+ 			<choose>
+ 				<when test='thumbType neq null and thumbType == 1'>
+ 					thumbup = thumbup + 1
+ 				</when>
+ 				<when test='thumbType neq null and thumbType == 2'>
+ 					thumbdown = thumbdown + 1
+ 				</when>
+ 			</choose>
+ 		where noboard = #{noboard} 		
+ 	</update>
+ 	<insert id="insertReviewrate" parameterType="com.bikemap.home.review.ReviewVO">
+ 		insert into reviewrate(noboard, userid) values(#{noboard}, #{userid})
+ 	</insert>
 </mapper>

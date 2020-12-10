@@ -71,11 +71,11 @@
 			  border-radius: 5px;
 			  text-decoration: none;
 			  text-align : center;
-			  padding:3px 6px;
-			  margin:0 10px;
 			  color : white;
 			  border: 1px solid #00B0B0;
 			  background-color: #00B0B0;
+			  margin : 20px 20px 0 0;
+			  line-height: 40px;
 			  width : 70px;
 			  height : 40px;
 			  box-shadow:3px 3px 3px #ccc;
@@ -86,21 +86,28 @@
 			  border-radius: 5px;
 			  color : white;
 			  background-color: rgb(69,69,79);
-			  width : 100px;
-			  height : 45px;
+			  width : 70px;
+			  height : 40px;
 			  border:0;
+			  margin : 20px 20px 0 0;
+			  line-height: 40px;
 			  letter-spacing:1px;
+			  box-shadow:3px 3px 3px #ccc;
 		}
+		
 		.gray_Btn:hover{
 			background-color: rgb(107 107 107);
 		}
 		
+		.btnGroup{
+			text-align:right;
+		}
 	 		
 	 		
 	 		
 /* ===================================== 공통 ===================================== */	 
 	 
-/*=====================================reviewView START=====================================================*/
+/*=====================================reviewList START=====================================================*/
 
 		
 	.content{
@@ -368,14 +375,14 @@
 	}
 
 
-/*=====================================reviewView END=====================================================*/
+/*=====================================reviewList END=====================================================*/
 
 
 
 
 
 
-/*=====================================reviewList START=====================================================*/
+/*=====================================reviewView START=====================================================*/
 
 
 
@@ -386,12 +393,54 @@
   	  	
 	
 	}
+	
+	.contentList{
+		height : fit-content;
+		width : 100%;
+	}
+	
+	.contentUpper{
+		height : auto;
+		overflow : auto;
+		margin-bottom : 20px;
+	}
+	
+	.contentUpper>ul>li{
+		float:left;
+		width : 100%;
+		height : 80px;
+	}
+	
+	.contentUpper>ul>li:nth-of-type(2){
+		width : 50%;
+	}
+	
+	.contentUpper>ul>li:nth-of-type(3){
+		width : 50%;
+		float: right;
+	}
+	
+	.reviewInfo>li{
+		width : 50%;
+		maring : 5px;
+		float: left;
+	}
+	
+	.reviewInfo>li:nth-of-type(1){
+		width : 100%;
+	}
 
 	.content2 {
 		float: left;
 		margin-right: 30px;
 		clear:both;
 		width : 52%;
+	}
+	
+	.review-content2{
+		width : 100%;
+		height : auto;
+		margin : 20px auto;
 	}
 
 	.contentlocationdiv2{
@@ -417,7 +466,9 @@
 		text-align:left;
 		font-size: 33px;
 	 	font-weight: 600;
-		
+	 	border-bottom: 1px solid #ebecef; 
+	 	padding-bottom: 20px;
+	 	margin : 50px 0;
 	}
 	
 	#revcommentDiv{
@@ -606,13 +657,45 @@
 											color:rgb(64,64,64);
 	}
 
+/*  =====================추천&비추천 ========================= */
+	#thumb {
+		text-align:center;
+	
+	}
 
 
 
-
-
-
-
+	.labelClass{
+		background-color:rgb(64,64,64);
+	    color:#fff;
+	    font-weight:bold;
+	    border-radius: 10px;
+	    border: none;
+	    width: 70px;
+	    height:35px;
+	    padding-top:6px;
+	    text-align: center;
+	    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+		font-size:15px;
+		margin-right : 20px;
+	}
+	
+	.WMint_Btn{
+		
+		font-size: 15px;
+	    border-radius: 5px;
+	    text-decoration: none;
+	    text-align: center;
+	    color : #00B0B0;
+		border: 1px solid #00B0B0;
+	    background-color: white;
+		margin: 10px 20px 0 0;
+	    line-height: 40px;
+	    width: 70px;
+	    height: 40px;
+	    box-shadow: 3px 3px 3px #ccc;
+	    
+	}
 
 
 

@@ -173,8 +173,6 @@ $(function(){
 
 
 
-
-
 </script>
 <!-- 후기보기메인 -->
 <div class="container">
@@ -193,8 +191,8 @@ $(function(){
 		</form>
 		<form id="pagingVO" method="post" action="/home/searchReview" style="diplay:none">
 			<input type="hidden" name="nowPage" value="${pagingVO.nowPage }"/>
-<%-- 			<input type="hidden" name="searchKey" value="${pagingVO.searchKey }"/> --%>
-<%-- 			<input type="hidden" name="searchWord" value="${pagingVO.searchKey }"/> --%>
+			<input type="hidden" name="searchType" value="${pagingVO.searchType }"/>
+			<input type="hidden" name="searchWord" value="${pagingVO.searchType }"/>
 			<input type="hidden" name="noboard" value=""/>
 		</form>
 
@@ -230,6 +228,7 @@ $(function(){
 						
 							<div id="subtitle">
 								<ul>
+
 									<li class="subject_Hitcount">조회수 ${vo.hit}</li>
 									<li class="wordCut">
 										<a class="subject_title" href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
@@ -287,7 +286,9 @@ $(function(){
 						</c:if>
 					</ul>
 				</div><br/>
-		<div id= "bottom"></div>
+		<div id= "bottom">
+	
+		</div>
 	</div>
 </div>
 </div>

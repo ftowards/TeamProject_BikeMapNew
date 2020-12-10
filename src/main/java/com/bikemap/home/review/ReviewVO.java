@@ -14,10 +14,14 @@ public class ReviewVO {
 	//1203 최병대 추가
 	private int thumbUp;
 	private int thumbDown;
+	
+	private int thumbType;
+	
 	private String scrap;
 	
 	private String thumbnailImg ; 
 	
+
 
 	public int getThumbUp() {
 		return thumbUp;
@@ -92,9 +96,13 @@ public class ReviewVO {
 		}
 		return thumbnailImg;
 	}
-	
-	
 	public void setThumbnailImg(String thumbnailImg) {
 		this.thumbnailImg = thumbnailImg;
+	}
+	public int getThumbType() {
+		return thumbType;
+	}
+	public void setThumbType(int thumbType) {
+		this.thumbType = thumbType;
 	}
 }

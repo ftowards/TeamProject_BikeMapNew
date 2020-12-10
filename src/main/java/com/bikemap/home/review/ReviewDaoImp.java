@@ -32,4 +32,14 @@ public interface ReviewDaoImp {
 	
 	// 추천 리뷰 호출하기
 	public List<ReviewVO> selectRecommendReview();
+	
+	//추천수 
+	public int chkAlreadyReviewRate(ReviewVO vo);
+	
+	// 리뷰 평가
+	public int setThumb(ReviewVO vo);
+	
+	// 리뷰 평가한 기록 남기기
+	public int insertReviewrate(ReviewVO vo);
+	
 }
