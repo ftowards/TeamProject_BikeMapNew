@@ -197,3 +197,5 @@
 	</span><br/>
 	<div id="reviewTop"></div> <!--  후기 -->
 </div>
+
+<a href="#" class="topIcon"><img src="<%=request.getContextPath() %>/img/img_main/top.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_main/top_over2.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_main/top.png'"></a>

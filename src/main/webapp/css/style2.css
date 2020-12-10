@@ -499,10 +499,11 @@ body{
 		height:340px;
 	}
 	.topIcon img{
-		width:80px;
-		height:100px;
+		width:75px;
+		height:90px;
 		position:relative;
-		left:750px; bottom:70px;
+		left:1720px;
+		bottom:110px;
 	}
 	/*=========================소라 수정20/11/13===========================================*/	
 	
@@ -750,7 +751,7 @@ body{
 	
 .reviewFrame{
 	width: 1300px;
-    height: 615px;
+    height: 460px;
     margin : 0 auto;
     padding-top: 40px;
     overflow: hidden;
@@ -769,6 +770,8 @@ body{
 	
 }
 .recommendReview{
+	width : 270px;
+	height : 200px;
 	padding:15px 20px 0px 15px;
 	border-radius:10px / 10px;
 	width:300px;
@@ -780,12 +783,14 @@ body{
 }
 /* 리뷰 썸네일 div 스타일*/
 .recommendReview .thumbnailImage{
-	width : 270px;
-	height : 200px;
 	background-size : contain;
 	background-color : white;
 	background-repeat : no-repeat;
 	border : 1px solid #777;
+}
+.thumbnailImage{
+	width:270px;
+	height:195px;
 }
 .reviewSubscription li{
 	float : left;
