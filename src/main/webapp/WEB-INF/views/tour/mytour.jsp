@@ -8,10 +8,11 @@
 		<div id="sidebar-wrapper">
 	    	<ul class="sidebar-nav">
 	    		<li><img src="<%=request.getContextPath()%>/img/img_myRoute/bike4.png"/></li>
-				<li class="sidebar-brand"><label>여행 목록</label></li>
+				<li class="sidebar-brand"><label style="color:rgb(0,176,176)">여행 목록</label></li>
+				<hr/>
 				<li><label for="tourOn">진행여행</label></li>
 				<li><label for="tourClose">마감된 여행</label></li>
-				<li><label for="tourComplete">완료된 여행</label></li>
+				<li style="margin-bottom:30px"><label for="tourComplete">완료된 여행</label></li>
 		    </ul>
 		</div>
 	</div>
@@ -29,7 +30,7 @@
 				<div class="myTourBoardMainDiv">
 		     		<div>
 		     			<div >
-		     				<ul id="tourOnListTitle" class="tourlistTitle">
+		     				<ul id="tourOnListTitle" class="tourlistTitle" style="font-weight:bold;">
 		     					<li>번&nbsp;호</li>
 				     			<li>제&nbsp;목</li>
 				     			<li>마감일시</li>
@@ -49,7 +50,7 @@
 				<div class="myTourBoardMainDiv">
 		     		<div>
 		     			<div >
-		     				<ul id="tourCloseListTitle" class="tourlistTitle2">
+		     				<ul id="tourCloseListTitle" class="tourlistTitle2" style="font-weight:bold;">
 		     					<li>번&nbsp;호</li>
 				     			<li>제&nbsp;목</li>
 				     			<li>출발일시</li>
@@ -70,7 +71,7 @@
 				<div class="myTourBoardMainDiv">
 		     		<div>
 		     			<div >
-		     				<ul id="tourCompleteListTitle" class="tourlistTitle3">
+		     				<ul id="tourCompleteListTitle" class="tourlistTitle3" style="font-weight:bold;">
 		     					<li>번&nbsp;호</li>
 				     			<li>제&nbsp;목</li>
 				     			<li>출발일시</li>
@@ -193,7 +194,7 @@ function setList(result){
 			
 			
 			if(chkArriveTime(val.arrive)){
-				tag += "<li><span onclick='completeTour("+val.noboard+")'>완료버튼</span></li>"
+				tag += "<li><button class='tourNo' onclick='completeTour("+val.noboard+")'>완료하기</button></li>"
 			}else{
 				tag += "<li></li>";
 			}
@@ -302,7 +303,7 @@ function setAcodianList(result, noboard){
 	
 	var tag =""
 	if(tourState == '1'){
-		tag += "<li>참가자</li><li>나이</li><li>성별</li><li>모임횟수</li><li>좋아요</li><li>참가상태</li><li></li>";
+		tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>참가상태</b></li><li></li>";
 		
 		$result.each(function(idx, val){
 			tag += "<li>"+val.userid+"</li>"
@@ -321,7 +322,7 @@ function setAcodianList(result, noboard){
 				tag += "<li>승인 대기</li>";
 				tag += "<li><button class='tourIn' onclick='confirmComplist(title)' title='"+noboard+"/"+val.userid+"'>승&nbsp;인</button></li>";
 			}else if(val.state == '2'){
-				tag += "<li>참가 중</li>";
+				tag += "<li><button class='tourOk'>참가 중</button></li>";
 				if(val.userid != $("#logId").val()){
 					tag += "<li><button class='tourOut' onclick='cancelComplist(title)' title='"+noboard+"/"+val.userid+"'>취&nbsp;소</button></li>";
 				}else{
@@ -332,7 +333,7 @@ function setAcodianList(result, noboard){
 		
 		$("#complist"+noboard).html(tag);
 	}else if(tourState == '2'){
-		tag += "<li>참가자</li><li>나이</li><li>성별</li><li>모임횟수</li><li>좋아요</li><li>참가상태</li><li></li>";
+		tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>참가상태</b></li><li></li>";
 		
 		$result.each(function(idx, val){
 			if(val.state != '1'){
@@ -352,7 +353,7 @@ function setAcodianList(result, noboard){
 					tag += "<li>불참</li>";
 					tag += "<li></li>";
 				}else if(val.state == '2'){
-					tag += "<li>참가 중</li>";
+					tag += "<li><button class='tourOk'>참가 중</button></li>";
 					if(val.userid != $("#logId").val()){
 						tag += "<li><button class='tourOut' onclick='absentComplist(title)' title='"+noboard+"/"+val.userid+"'>불&nbsp;참</button></li>";
 					}else{
@@ -364,7 +365,7 @@ function setAcodianList(result, noboard){
 		
 		$("#complist"+noboard).html(tag);
 	}else if(tourState == '3'){
-		tag += "<li>참가자</li><li>나이</li><li>성별</li><li>모임횟수</li><li>좋아요</li><li>평가 여부</li><li></li>";
+		tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>평가여부</b></li><li></li>";
 		
 		$result.each(function(idx, val){			
 			tag += "<li>"+val.objid+"</li>"

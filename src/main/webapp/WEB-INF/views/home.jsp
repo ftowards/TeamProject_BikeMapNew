@@ -15,7 +15,7 @@
 			<span class="locationTitle1">어디로 떠날까요?</span><br/>
 			<span class="locationTitle2">To travel is to take a journey into yourself.</span>
 		</div>
-		<ul style='margin-top:25px'>
+		<ul class="locationGroup" style='margin-top:25px'>
 			<li class="location1">
 				<a href="#" onclick="searchRegion(title);" title='서울'>
 					<div class="locationDiv" id="seoul">
@@ -35,21 +35,21 @@
 					</div>
 				</a>
 				<div class="locationDiv" style='margin-top:25px'>
-				<a href="#" onclick="searchRegion(title);" title='제주'>
-					<div id="jeju">
-						<span class="locationTitle">제주</span>
-					</div>
-				</a>
+					<a href="#" onclick="searchRegion(title);" title='제주'>
+						<div id="jeju">
+							<span class="locationTitle">제주</span>
+						</div>
+					</a>
+					<a href="#" onclick="searchRegion(title);" title='전주'>
+						<div id="jeonju">
+							<span class="locationTitle">전주</span>
+						</div>
+					</a>
 				</div>
-				<a href="#" onclick="searchRegion(title);" title='전주'>
-					<div id="jeonju">
-						<span class="locationTitle">전주</span>
-					</div>
-				</a>
 			</li>
 		</ul>
 		<form id="searchRegion" method="post" action="/home/routeSearch"></form>
-	</div>
+	</div>	
 
 
 

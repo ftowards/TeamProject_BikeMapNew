@@ -54,17 +54,19 @@
 	    display: block;
 	    text-decoration: none;
 	    color: #999;
+	   	margin-right:50px;
+	  	text-align:center;
 	  }
 	  
 	  .sidebar-nav li label:hover {
 	    color: rgb(0,176,176);
-	    background: rgba(64, 64,64, 0.2);
+	   
 	  }
 	
 	.sidebar-nav > .sidebar-brand {
 	  font-size: 1.3em;
 	  line-height: 3em;
-	   color: #999;
+	  color: #999;
 	   margin-top:20px;
 	}
 	
@@ -85,13 +87,12 @@
 	
 	}
 	.titleMyTourDiv1 label:first-child{
-								font-size:22px; 
+							font-size:22px; 
 							color:rgb(64,64,64);
 	
 	}
 	.myTourBoardMainDiv{
 			width:100%;
-			
 			border-radius:10px;
 			border:none;
 			box-shadow: 3px 3px 5px 3px rgb(230,230,230);
@@ -115,7 +116,7 @@
 	}
 	.tourOut{
 				
-		padding: 5px 0;
+	
 		text-align:center;
 		border:none;
 		border-radius:10px;
@@ -130,12 +131,12 @@
 	
 	}
 	.tourOk{
-				padding-top:3px;
 		text-align:center;
 		border:none;
 		border-radius:10px;
 		width:70px;
 		height:30px;
+		line-height:30px;
 		font-size:15px;
 		font-weight:bold;
 		color:#fff;
@@ -144,18 +145,21 @@
 	
 	
 	}
-	.tourNo{
-				padding-top:3px;
+	.tourNo,.tourClose{
 		text-align:center;
 		border:none;
 		border-radius:10px;
-		width:70px;
+		width:75px;
 		height:30px;
+		line-height:30px;
 		font-size:15px;
 		font-weight:bold;
 		color:#fff;
 		background-color:rgb(64,64,64);
 		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	}
+	.tourClose{
+				margin:8px 0 0 30px;
 	
 	}
 	
@@ -201,20 +205,26 @@
 	}
 	
 	<!-- ---------------- 진행 투어  --------------------- -->
-	.tourlistTitle, .tourlistTitle2{
+	.tourlistTitle, .tourlistTitle2,.tourlistTitle3{
 		height : 40px;
 		margin : 0;
+		
 	}
-	.tourlistTitle>li, .tourlist>li, .tourlistTitle2>li, .tourlist2>li{
-		height : 40px;
-		line-height : 40px;
+	.tourlistTitle>li, .tourlist>li, .tourlistTitle2>li,.tourlist2>li,.tourlist3>li,.tourlistTitle3>li{
+		height : 50px;
+		line-height : 45px;
 		font-size:15x;
 		text-align : center;
 		width : 10%;
 		float:left; 
 		border-bottom : 1px solid lightgray;
+		
   	}
-  	
+
+  	.tourlist2,.tourlist,.tourlist3{
+  			font-size:15px;
+  			
+  	}
   	.tourlistTitle>li:nth-of-type(7n+2){
   		width : 32%;
 	
@@ -235,6 +245,7 @@
   		margin : 0;
   		padding : 0;
   		overflow : auto;
+  		
   	}
   	
   	.acodianList>li{
@@ -243,6 +254,9 @@
   		line-height : 45px;
   		text-align : center;
   		float: left;
+  		font-size:15px;
+  		border-bottom:1px solid #eee;
+  		background-color:rgba(0,176,176,0.05);
   	}
   	
   	 .acodianList>li:nth-of-type(7n+7){
@@ -298,3 +312,4 @@
 	#tourEnd:checked~div:nth-of-type(3){
 		display:block;
 	}
+	a:hover,a:link,a:visited{text-decoration:none; color: inherit;}

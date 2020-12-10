@@ -56,7 +56,7 @@
 	}
 	#titleLine{
 		background-color:#353535;
-		margin-bottom:35px;
+		margin-bottom:25px;
 	}
 	.wordCut{
 		white-space:nowrap;
@@ -528,18 +528,24 @@
 	}
 	
 	/* 비공개 스크랩 삭제 기능*/
+	
+	#routeWriterMenu{
+		margin-top : 30px;
+	}
 	#routeWriterMenu>ul{
-		height : 40px;
-		line-height : 40px;
+		height : 30px;
+		line-height : 30px;
 		display: inline-block;
 		width : 100%;
 	}
 	
 	#routeWriterMenu>ul>li{
 		float : left;
+		height : 30px;
+		line-height : 30px;
 	}
 	
-	#routeWriterMenu>ul>li:nth-of-type(2),#routeWriterMenu>ul>li:nth-of-type(3){
+	#routeWriterMenu>ul>li:nth-of-type(3),#routeWriterMenu>ul>li:nth-of-type(4){
 		float : right;
 	}
 	
@@ -564,5 +570,20 @@
 	#routeWriterMenu .mint_Btn{
 		color : white;
 		background-color: #00B0B0;
+	}
+	
+	.labelClass{
+		background-color:rgb(64,64,64);
+	    color:#fff;
+	    font-weight:bold;
+	    border-radius: 8px;
+	    border: none;
+	    width:70px;
+	    height:30px;
+	    line-height : 20px;
+	    text-align: center;
+	    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+		font-size:15px;
+		margin-right: 10px;
 	}
 	

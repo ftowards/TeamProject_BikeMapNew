@@ -8,7 +8,9 @@
 	<div style="position: absolute;background-color:black;">
 		<div id="sidebar-wrapper">
 	    	<ul class="sidebar-nav">
-				<li class="sidebar-brand"><label>쪽지함</label></li>
+	    		<li><img src="<%=request.getContextPath()%>/img/img_tour/messge.png"/></li>
+				<li class="sidebar-brand"><label style="color:rgb(0,176,176)">쪽지함</label></li>
+				<hr/>
 				<li><label for="receiveBox">받은 쪽지</label></li>
 				<li><label for="sendBox">보낸 쪽지</label></li>
 				<li><label for="noticeBox">알림</label></li>
@@ -32,7 +34,7 @@
 					<input type="checkbox" id="read1" name="read" value="F" />
 					<span>안 읽은 쪽지만 보기</span>
 				</span>
-				<input type="button" name="deleteMsg" value="삭제" class="btn"/>
+				<input type="button" name="deleteMsg" value="삭제" class="btn_del"/>
 				<input type="button" name="readMsg" value="읽음" class="btn"/>
 				<div class="myBoardMainDiv">
 		     		<div>
@@ -54,7 +56,7 @@
 				<span class="readYetChk">
 					<input type="checkbox" id="read2" name="read" value="F" />
 					<span>안 읽은 쪽지만 보기</span>
-				</span>				<input type="button" name="deleteMsg" value="삭제" class="btn"/>
+				</span>				<input type="button" name="deleteMsg" value="삭제" class="btn_del"/>
 				<input type="button" name="readMsg" value="읽음" class="btn"/>
 				<div class="myBoardMainDiv">
 		     		<div>
@@ -76,8 +78,8 @@
 				<span class="readYetChk">
 					<input type="checkbox" id="read3" name="read" value="F" />
 					<span>안 읽은 쪽지만 보기</span>
-				</span>				<input type="button" name="deleteMsg" value="삭제" class="btn"/>
-				<input type="button" name="readMsg" value="읽음" class="btn"/>
+				</span>				<input type="button" name="deleteMsg" value="삭제" class="btn_del"/>
+				<input type="button" name="readMsg" value="읽음" class="btn" />
 				
 				<div class="myBoardMainDiv">
 		     		<div>

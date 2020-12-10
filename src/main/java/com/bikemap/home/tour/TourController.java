@@ -90,11 +90,13 @@ public class TourController {
 	
 	// 글쓰기 폼 이동
 	@RequestMapping(value="/tourWriteForm", method= {RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView tourBoardWrite(int reference) {
+	public ModelAndView tourBoardWrite(TourVO vo) {
 		ModelAndView mav = new ModelAndView();
-		
-		if(reference > 0) {
-			mav.addObject("reference", reference);
+		try {
+			mav.addObject("vo", vo);
+			
+		}catch(Exception e) {
+			System.out.println("글쓰기 폼 이동 에러" + e.getMessage());
 		}
 		mav.setViewName("tour/tourWriteForm");
 		return mav;
