@@ -4,13 +4,14 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/home/css/myRoute.css" type="text/css"/>
+<link rel="stylesheet" href="/home/css/myTour.css" type="text/css"/>
 
 <div id="page-wrapper">
   <!-- 사이드바 -->
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
+
      		<label>참여모임</label>   
       </li>
       <li><a href="<%=request.getContextPath()%>/tourApply">신청여행</a></li>

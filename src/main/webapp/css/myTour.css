@@ -3,7 +3,7 @@
   
 	#page-wrapper {
 	  padding-left: 250px;
-	  background-color:black;
+	  box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
 	  min-height : calc(100vh - 170px);
 	}
 	
@@ -13,13 +13,15 @@
 	}
 	
 	#sidebar-wrapper {
-	  position: sticky;
-	  width: 250px;
-	  height: 100%;
-	  margin-left: -250px;
-	  background: #000;
-	  overflow-x: hidden;
-	  overflow-y: auto;
+					    position: sticky;
+					    width: 250px;
+					    height: 100%;
+					    margin-left: -250px;
+					    border-radius:10px;
+					  	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+						margin-top:100px;
+					    overflow-x: hidden;
+					    overflow-y: auto;
 	}
 	
 	#page-content-wrapper {
@@ -28,12 +30,18 @@
 	  padding: 20px;
 	}
 	/* 사이드바 스타일 */
-	
+	 .sidebar-nav img{
+  		width:200px;
+  		margin-top:60px;
+  		margin-left:-8px;
+  
+  }
 	.sidebar-nav {
 	  width: 250px;
 	  margin: 0;
 	  padding: 0;
 	  list-style: none;
+	
 	}
 	
 	.sidebar-nav li {
@@ -49,14 +57,15 @@
 	  }
 	  
 	  .sidebar-nav li label:hover {
-	    color: #fff;
-	    background: rgba(255, 255, 255, 0.2);
+	    color: rgb(0,176,176);
+	    background: rgba(64, 64,64, 0.2);
 	  }
 	
 	.sidebar-nav > .sidebar-brand {
 	  font-size: 1.3em;
 	  line-height: 3em;
 	   color: #999;
+	   margin-top:20px;
 	}
 	
 	/*=================================게시판==========================*/

@@ -7,6 +7,7 @@
 	<div style="position: absolute;background-color:black;">
 		<div id="sidebar-wrapper">
 	    	<ul class="sidebar-nav">
+	    		<li><img src="<%=request.getContextPath()%>/img/img_myRoute/bike4.png"/></li>
 				<li class="sidebar-brand"><label>여행 목록</label></li>
 				<li><label for="tourOn">진행여행</label></li>
 				<li><label for="tourClose">마감된 여행</label></li>
@@ -23,7 +24,6 @@
 	    	<input type="radio" name="tourState" id="tourOn" value="1" checked/> 
 	    	<input type="radio" name="tourState" id="tourClose" value="2" />
 	    	<input type="radio" name="tourState" id="tourComplete" value="3"/>
-			
 			<!-- tourOn 시작 -->	
 			<div class="titleMyTourDiv1 tab"><label>진행여행</label>
 				<div class="myTourBoardMainDiv">
