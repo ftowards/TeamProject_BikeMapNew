@@ -38,7 +38,7 @@ function makeTourTable(result){
 }
 </script>
 	<!-- /Page Sidebar -->
-	
+	<!-- 미완료된 리스트보기추가 -->
 	<!-- Page Content -->
 	<div class="adminContent">
 				<div id="adminTable">
@@ -49,7 +49,8 @@ function makeTourTable(result){
 						<li>제&nbsp;&nbsp;목</li>
 						<li>작성자</li>
 						<li>완료여부</li>
-						<li>관리자추천</li>
+						<li>모집인원</li>
+						<li>참여인원</li>
 					
 						<!-- DB작업완료 후 for문 생성 -->
 						<c:forEach items="${list}" var="vo" varStatus="status">
@@ -65,20 +66,12 @@ function makeTourTable(result){
 									완료
 								</c:if>
 							</li>
-							<li>
-								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
-									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">
-									  <span class="slider round"></span>
-									</label>							
-								</c:if>
-								<c:if test="${vo.scrap=='T'}">
-									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >
-									  <span class="slider round"></span>
-									</label>
-								</c:if>
-							</li>
+							<li>모집인원</li>
+							<li>참여인원</li>
+							
+							
+							 
+
 					</c:forEach>
 					</ul>
 			</div>
@@ -99,8 +92,7 @@ function makeTourTable(result){
 									<li><a href="javascript:movePage(${page })" style='color:black; font-weight:600;'>${page }</a></li>
 								</c:if>
 							</c:if>
-						</c:forEach>
-					
+						</c:forEach>					
 						<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
 							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>

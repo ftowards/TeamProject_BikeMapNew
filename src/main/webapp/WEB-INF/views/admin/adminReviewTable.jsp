@@ -22,7 +22,7 @@ function makeReviewTable(result){
 		listTag += "<li><span style='color:blue'>"+result[i].thumbUp+" </span>/ <span >"+result[i].thumbDown+" </span></li>";
 		listTag += "<li>";
 		listTag += "<label class='switch'>";
-		listTag += "<input type='checkbox' name='adminReviewScrapBtn' value='"+result[i].noboard+"'";
+		listTag += "<input type='checkbox' name='adminRev	iewScrapBtn' value='"+result[i].noboard+"'";
 		if(result[i].scrap=='T'){
 			listTag += "checked='checked'";
 		}
