@@ -111,31 +111,43 @@
 	#tab6:checked~div:nth-of-type(6){
 		display:block;
 	}	
+	.pagingDiv{
+
+						text-align:center;
+						height:50px;
+						line-height: 50px;
+						color:#353535;
+						font-size:20px;
+						margin : 20px auto 0
+				
 	
-
-	.paging{
-		height:50px;
-		line-height: 50px;
-		color:#353535;
-		font-size:20px;
-		margin : 20px auto 0;
-		text-align : center;
 	}
+	.paging{
+			width:25%;
+			margin:0 auto;
 
+			height:50px;
+										
+	}
 	.paging>ul{
 		display: inline-block;		
+		width:200px;
+		backgrond-color:pink;
 	}
 	.paging li{
-		float: left;
+		float:left;
 		margin-left:30px;
 		font-weight:600;
 		color:#7F7F7F;		
 	}
 	
+
+
 	.paging li a:link,.paging li a:visited{
 											text-decoration:none;
 											color:rgb(64,64,64);
 	}
+	
 	.tourImgDivClass{
 				
 				width:23%;

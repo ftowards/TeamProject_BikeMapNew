@@ -69,7 +69,9 @@
 					</div>
 				
 	   				<div id="contentDiv0" class="contentBlock"></div>
-					<div id="paging0" class="paging"></div>
+	   				<div class="pagingDiv">
+						<div id="paging0" class="paging"></div>
+					</div>
 				</div>
 			</div>
 			
