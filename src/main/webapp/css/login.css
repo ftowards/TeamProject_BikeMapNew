@@ -33,11 +33,26 @@
 		display: inline-block;
 		
 	}
+	
 	#bikeDiv1 img{
 		width:531px;
 		height:106px;
 		position:relative;
 		top:150px;
+	}
+	#bikeDiv3{
+		width:80%;
+		text-align:right;
+		padding-right:15px;
+		display: inline-block;
+		
+	}
+	
+	#bikeDiv3 img{
+		width:531px;
+		height:106px;
+		position:relative;
+		
 	}
 	#bikeDiv2{
 		float:right;
@@ -137,6 +152,7 @@
 		font-size:15px;
 		font-weight:bold;
 		text-align : center;
+		
 	}
 	.RegisterWhite_Btn{
 		color: #5D5D5D;

@@ -6,16 +6,16 @@
 <head>
 <style>
 	body{
-		width : 800px;
-		height : 300px;
+		width : 780px;
+		height : 400px;
 	}
 	.registerMainDiv{
+		margin: 15px auto 5px;
 		width : 100%;
 		overflow : auto;
 	}
 	.loginPopupForm{
 		width: 550px;
-    	margin: 15px auto 5px;
     	height: 120px;
     	background-color: #eee;
 	}
@@ -126,30 +126,30 @@
 </head>
 	<body>
 		<div class="registerMainDiv">
-	<div id="bikeDiv">
-		<div id="bikeDiv1">
+	<div id="bikeDiv" style="height:150px; width:750px">
+		<div id="bikeDiv3">
 			<a href="<%=request.getContextPath()%>/">
 				<img src="<%=request.getContextPath() %>/img/img_logo/bikemapLogo12.png"/>
 			</a>
 		</div>
 	</div>
 	<form id="loginForm">
-	<div id="loginDiv2">
-		<div id="useridDiv">
+	<div id="loginDiv4">
+		<div id="useridDiv" style="padding:0 0 0 20px">
 			<span class="loginLabel">ID</span>
 			<input type="text" name="userid" id="userid"/></div>
 
-				<div id="loginBtnDiv">
+				<div id="loginBtnDiv" style="margin:-30px 0 0 380px">
 					<input type="submit" class="RegisterMint_Btn" value="로그인"/>
 				</div>
-		<div id="userPwdDiv">
+		<div id="userPwdDiv" style="padding:20px 0 0 20px">
 			<span class="loginLabel" style='margin-right:30px'>PASSWORD</span>
 			<input type="password" name="userpwd" id="userpwd"/>
 		</div>
 	</div>	
 	</form>
 	
-	<div id="find_Info">
+	<div id="find_Info" style="margin:100px 0 0 -20px;">
 		아이디, 비밀번호를 잊어버리셨나요?&nbsp;
 		<input type="button" value="아이디/비밀번호 찾기" onclick="location.href='/home/registFindInfo'" class="RegisterWhite_Btn"/>
 		<span id="text1">|</span>

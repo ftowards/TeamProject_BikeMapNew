@@ -139,7 +139,7 @@ $(function(){
 		// 로그인 상태가 아닐 때 로그인 팝업 띄우기
 		var logId = $("#replyUseridDiv").text();
 		if(logId == ""){
-			window.open("/home/loginPopup","Bikemap Login","width=600px, height=200px, left =200px, top=200px");
+			window.open("/home/loginPopup","Bikemap Login","width=780px, height=400px, left =200px, top=200px");
 			return false;
 		}
 	
