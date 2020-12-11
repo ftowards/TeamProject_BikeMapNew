@@ -67,7 +67,8 @@
 	#msgContainer input[type=text]{
 		width : 85%;
 		height : 20px;
-		border-radius: 5px;
+		border-radius: 5px;	
+		border:1px solid gray;
 	
 	}
 	
@@ -79,6 +80,7 @@
 		
 	}
 	input:focus {outline:none;}
+	textarea:focus {outline:none;}
 
 </style>
 <script>
