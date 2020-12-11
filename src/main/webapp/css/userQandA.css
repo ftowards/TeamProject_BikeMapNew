@@ -336,25 +336,27 @@
 		line-height : 40px;
 		font-size:15px;
 		text-align : center;
-		width : 18%;
+		width : 15%;
 		float:left; 
 		border-bottom : 1px solid lightgray;
   	}
   	
-  	.listTitle>li:nth-of-type(5n+4){
-  		width:49%;
+  	.listTitle>li:nth-of-type(6n+5){
+  		width:42%;
 	
   	}
-  	.list>li:nth-of-type(5n+4){
-		width:49%;
+  	.list>li:nth-of-type(6n+5){
+		width:42%;
+		padding : 0 2%;
+		text-align: left;
   	}
   	
-  	.listTitle>li:nth-of-type(5n+1), .list>li:nth-of-type(5n+1){
+  	.listTitle>li:nth-of-type(6n+1), .list>li:nth-of-type(6n+1){
 		width : 5%
   	}
   	
-  	.listTitle>li:nth-of-type(5n+2), .list>li:nth-of-type(5n+2){
-		width : 10%
+  	.listTitle>li:nth-of-type(6n+2), .list>li:nth-of-type(6n+2){
+		width : 8%
   	}
   	
   	.list input[type=check]{
@@ -364,7 +366,7 @@
   	
   	.wordcut{
   		white-space: nowrap;
-  		over-flow: hidden;
+  		overflow: hidden;
   		text-overflow: ellipsis;
   	}
   	
@@ -415,3 +417,53 @@
 	 select:focus{
 	 	outline:none;
 	 }
+	 
+	.modal{
+		width : 530px;
+		min-height : fit-content;
+		top : 20%;
+		left : 45%;
+	}
+	.modal-body{
+		width : auto;
+		height : auto;
+		font-size : medium;
+		padding-top : 0;
+	}
+	.modal-dialog{
+		margin : 0;
+		width : inherit;
+	}
+	.modal-header{
+		padding-bottom : 0;
+	}
+	.modal-header label{
+						color:rgb(64,64,64);
+						font-size:16px;
+
+	}
+	.applyTourCloseBtn{
+					    background-color:rgb(64,64,64);
+					    color:#fff;
+					    font-weight:bold;
+					    border-radius: 6px;
+					    border: none;
+					    width: 25px;
+					    margin-top : 2.5px;
+					    height: 25px;
+					    text-align: center;
+					    font-size : 12px;
+					    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+					    line-height : 25px;
+					    float:right;
+	}
+	.modal .qAndaSubjectBox{
+		width : 387px;
+	}
+	.modal .qAndaContentBox{
+		width : inherit;
+	}
+	
+	.modal .qAndaTypeDiv{
+		margin-top : 0;
+	}

@@ -124,6 +124,7 @@
 <script>
 var messageBox = 1;
 var nowPage = 1;
+var $result ;
 
 $(function(){
 	// 1. 페이징	
@@ -244,7 +245,7 @@ function getList(page){
 
 function setList(result){
 	var tag ="";
-	var $result = $(result);
+	$result = $(result);
 	
 	// 표 내용
 	$result.each(function(idx, val){			
@@ -253,21 +254,21 @@ function setList(result){
 		if(messageBox == 2){
 			if(val.read == 'T' ){
 				tag += "<li>"+val.userid+"</a></li>";
-				tag += "<li class='wordcut' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  title='"+val.nonotice+"' >"+val.msg+"</li>";
+				tag += "<li class='wordcut' onclick='viewMsg(title)' title='"+val.nonotice+"' >"+val.msg+"</li>";
 				tag += "<li>"+val.writedate+"</li>";
 			}else if(val.read =='F'){
 				tag += "<li class='readYet'>"+val.userid+"</a></li>";
-				tag += "<li class='wordcut readYet' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  title='"+val.nonotice+"'>"+val.msg+"</li>";
+				tag += "<li class='wordcut readYet' onclick='viewMsg(title)' title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li class='readYet'>"+val.writedate+"</li>";
 			}
 		}else{
 			if(val.read == 'T' ){
 				tag += "<li>"+val.idsend+"</a></li>";
-				tag += "<li class='wordcut' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  title='"+val.nonotice+"'>"+val.msg+"</li>";
+				tag += "<li class='wordcut' onclick='viewMsg(title)' title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li>"+val.writedate+"</li>";
 			}else if(val.read =='F'){
 				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.idsend+"</a></li>";
-				tag += "<li onclick='readMsg(title);' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  class='wordcut readYet' title='"+val.nonotice+"'>"+val.msg+"</li>";
+				tag += "<li onclick='readMsg(title); viewMsg(title)' class='wordcut readYet' title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.writedate+"</li>";
 			}
 		}
@@ -295,7 +296,7 @@ function readMsg(title){
 	});
 }
 
-function veiwMsg(title){
+function viewMsg(title){
 	var nonotice = title;
 	
 	var x = event.pageX + 'px';
@@ -306,25 +307,18 @@ function veiwMsg(title){
 		left : x
 	});
 	
-	$.ajax({
-		url : "/home/messageView",
-		data : "nonotice="+nonotice,
-		success : function(result){
-			if(result != null){
-				console.log(result);
-				if(messageBox == 1 || messageBox == 3){
-					$("#msgId").text(result.idsend);
-				}else{
-					$("#msgId").text(result.userid);
-				}
-				
-				$("#msgView").html(result.msg);
+	$result.each(function(i, val){
+		if(val.nonotice == nonotice){
+			if(messageBox == 1 || messageBox == 3){
+				$("#msgId").text(val.idsend);
+			}else{
+				$("#msgId").text(val.userid);
 			}
-		}, error : function(err){
-			console.log(err);
+			$("#msgView").html(val.msg);
 		}
-	});	
+	});
 	
+	$("#dialog").modal('show');
 }
 
 function deleteMsg(nonotice){
