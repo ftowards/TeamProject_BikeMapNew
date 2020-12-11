@@ -119,10 +119,14 @@
 		select userid from routelist where noboard=#{param1} and userid <![CDATA[<>]]> #{param2}
 	</select>
 	<update id="updateRouteClosed">
-		update route set closed ='T' where noboard=#{param1} and userid = #{param2}
+		update route set closed ='T' where noboard=#{param1}<if test="logId != 'admin'.toString()">
+					and userid = #{param2}
+		</if>  
 	</update>
 	<update id="updateRouteOpen">
-		update route set closed ='F' where noboard=#{param1} and userid = #{param2}
+		update route set closed ='F' where noboard=#{param1}<if test="logId != 'admin'.toString()">
+					and userid = #{param2}
+		</if>  
 	</update>
 	<delete id="revertRoutelist" parameterType = "com.bikemap.home.route.RouteListVO">
 		delete from routelist where userid =#{userid} and noboard = #{noboard}
