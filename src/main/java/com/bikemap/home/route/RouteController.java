@@ -492,6 +492,7 @@ public class RouteController {
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		
 		String logId = (String)ses.getAttribute("logId");
+		System.out.println(logId+": 현재 사용자");
 		try {
 			// route 비공개 처리
 			result = dao.updateRouteClosed(noboard, logId);

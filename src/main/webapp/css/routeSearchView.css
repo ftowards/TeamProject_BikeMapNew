@@ -586,4 +586,27 @@
 		font-size:15px;
 		margin-right: 10px;
 	}
+	.starRatingGroup{
+		height : 39px;
+		margin-left : 20px;
+	}
+	.starRatingGroup li{
+		line-height : 39px;
+		float: left;
+		margin-right : 10px;
+	}
 	
+	.starRatingGroup li:nth-of-type(1){
+		margin-top : 5px;
+	}
+	
+	.star-rating{width : 125px;}
+	.star-rating, .star-rating span{display : inline-block; height: 39px; overflow:hidden;  
+		background : url(/home/img/img_route/starGray.png) no-repeat;
+	}
+		
+	.star-rating span{
+		background : url(/home/img/img_route/starColored.png) no-repeat;
+		float : left;
+		line-height:0; 
+		vertical-align : top;}

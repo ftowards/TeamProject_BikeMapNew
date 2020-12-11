@@ -18,6 +18,24 @@
 		    </ul>
 		</div>
 	</div>
+	<div class="modal modal-sm modalPosition" id="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header" style="border:none">
+					<label><img src="<%=request.getContextPath()%>/img/img_tour/messge.png" style="width:30px">&ensp;<span id="msgId"></span></label>
+					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
+				</div>
+				<!-- body -->
+				<div id="msgView" class="modal-body">
+				</div>
+				<!-- footer -->
+				<div class="modal-footer" style="border:none">
+					
+				</div>
+			</div>
+		</div>
+	</div>	
   <!-- /사이드바 -->
 
   <!-- 본문 -->
@@ -151,6 +169,10 @@ $(function(){
 			};
 		});
 	});
+	
+	$(".wordcut").on('mouseenter',function(){
+		console.log(1111);
+	});
 });
 
 function movePage(page){
@@ -167,7 +189,6 @@ function movePage(page){
 		url : "/home/noticePaging",
 		data : data,
 		success : function(result){
-			console.log(result);
 			setPaging(result);
 		},error : function(err){
 			console.log(err);
@@ -236,21 +257,21 @@ function setList(result){
 		if(messageBox == 2){
 			if(val.read == 'T' ){
 				tag += "<li>"+val.userid+"</a></li>";
-				tag += "<li class='workcut'>"+val.msg+"</li>";
+				tag += "<li class='wordcut' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  title='"+val.nonotice+"' >"+val.msg+"</li>";
 				tag += "<li>"+val.writedate+"</li>";
 			}else if(val.read =='F'){
 				tag += "<li class='readYet'>"+val.userid+"</a></li>";
-				tag += "<li class='workcut readYet'>"+val.msg+"</li>";
+				tag += "<li class='wordcut readYet' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li class='readYet'>"+val.writedate+"</li>";
 			}
 		}else{
 			if(val.read == 'T' ){
 				tag += "<li>"+val.idsend+"</a></li>";
-				tag += "<li class='workcut'>"+val.msg+"</li>";
+				tag += "<li class='wordcut' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li>"+val.writedate+"</li>";
 			}else if(val.read =='F'){
 				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.idsend+"</a></li>";
-				tag += "<li onclick='readMsg(title);' class='workcut readYet' title='"+val.nonotice+"'>"+val.msg+"</li>";
+				tag += "<li onclick='readMsg(title);' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  class='wordcut readYet' title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.writedate+"</li>";
 			}
 		}
@@ -276,6 +297,38 @@ function readMsg(title){
 			console.log(err);
 		}
 	});
+}
+
+function veiwMsg(title){
+	var nonotice = title;
+	
+	var x = event.pageX + 'px';
+	var y = event.pageY + 'px';
+	
+	$(".modal").css({
+		top : y,
+		left : x
+	});
+	
+	$.ajax({
+		url : "/home/messageView",
+		data : "nonotice="+nonotice,
+		success : function(result){
+			if(result != null){
+				console.log(result);
+				if(messageBox == 1 || messageBox == 3){
+					$("#msgId").text(result.idsend);
+				}else{
+					$("#msgId").text(result.userid);
+				}
+				
+				$("#msgView").html(result.msg);
+			}
+		}, error : function(err){
+			console.log(err);
+		}
+	});	
+	
 }
 
 function deleteMsg(nonotice){

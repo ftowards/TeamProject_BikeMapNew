@@ -66,7 +66,7 @@
 		where rownum <![CDATA[<=]]> #{lastPageRecordCount} order by ${order} desc
 	</select>
 	<select id="checkRateAlready" resultType="int" parameterType="com.bikemap.home.route.RouteVO">
-		select count(userid) from routerate where noboard = #{noboard}
+		select count(userid) from routerate where noboard = #{noboard} and userid = #{userid}
 	</select>
 	<update id="ratingRoute" parameterType="com.bikemap.home.route.RouteVO">
 		update route SET rating = ((rating * ratecnt)+ #{rating})/(ratecnt+1) , ratecnt = ratecnt +1  where noboard = #{noboard}
@@ -119,10 +119,14 @@
 		select userid from routelist where noboard=#{param1} and userid <![CDATA[<>]]> #{param2}
 	</select>
 	<update id="updateRouteClosed">
-		update route set closed ='T' where noboard=#{param1} and userid = #{param2}
+		update route set closed ='T' where noboard=#{param1}<if test="logId != 'admin'.toString()">
+					and userid = #{param2}
+		</if>  
 	</update>
 	<update id="updateRouteOpen">
-		update route set closed ='F' where noboard=#{param1} and userid = #{param2}
+		update route set closed ='F' where noboard=#{param1}<if test="logId != 'admin'.toString()">
+					and userid = #{param2}
+		</if>  
 	</update>
 	<delete id="revertRoutelist" parameterType = "com.bikemap.home.route.RouteListVO">
 		delete from routelist where userid =#{userid} and noboard = #{noboard}

@@ -75,6 +75,50 @@
 	  
 	}
 	
+	.caution{
+		font-weight : bole;
+		font-size : medium;
+		coloe : brown;
+		
+	}
+	
+	.modal{
+		width : fit-content;
+		min-height : fit-content;
+		padding : 10px;
+		top : 40%;
+		left : 45%;
+	}
+	.modal-body{
+		overflow-wrap:anywhere;
+		font-size : medium;
+	}
+	.modal-dialog{
+		margin : 0;
+		min-width : 400px;
+	}
+	.modal-header label{
+						color:rgb(64,64,64);
+						font-size:16px;
+
+	}
+	.applyTourCloseBtn{
+					    background-color:rgb(64,64,64);
+					    color:#fff;
+					    font-weight:bold;
+					    border-radius: 6px;
+					    border: none;
+					    width: 25px;
+					    margin-top : 2.5px;
+					    height: 25px;
+					    text-align: center;
+					    font-size : 12px;
+					    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+					    line-height : 25px;
+					    float:right;
+	}
+	
+	
 	/*=================================게시판==========================*/
 	.container-fluid{
 		height : auto;
@@ -228,6 +272,9 @@
   		width : 65%;
 	
   	}
+  	.list a:link{
+  		pointer-events : none;
+  	}
   	.list>li:nth-of-type(4n+3){
 		width : 65%;
 		text-align : left;
@@ -245,12 +292,13 @@
   	
   	.wordcut{
   		white-space: nowrap;
-  		over-flow: hidden;
+  		overflow: hidden;
   		text-overflow: ellipsis;
   	}
   	
   	.readYet{
   		color:rgb(0,176,176);
+  		font-weight : 700;
   	}
   	
   	.btn,.btn_del{
@@ -281,4 +329,24 @@
   		line-height : 20px;
   		height : 20px;
   	}
-  	a:hover,a:link,a:visited{text-decoration:none; color: inherit;}
+  	.list a:hover,.list a:link,.list a:visited{text-decoration:none; color: inherit;}
+  	
+  	#msgBox{
+  		width : 200px;
+  		height : 120px;
+  		line-height :30px;
+	    font-size : 14px;
+	    border-radius:10px;
+		border:none;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+  		position : absolute;
+  		display:none;	
+  	}
+  	
+  	.modal a:link, .moadl a:visited{
+		color : lightblue;
+		font-weight : 700;
+		text-decoraiton : none;
+	}
+  	
+  	

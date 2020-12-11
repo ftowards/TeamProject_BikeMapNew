@@ -167,7 +167,10 @@ function goList(){
 		<div class="routeResultDiv2">
 			<div class="routeTitleDiv">
 				<div style='margin-left : 40px;height : 55px;'>
-					<div id="routeTitle" class="conditionBox"></div>
+					<label>코스 상세보기 <span class="blue_arrow">click!</span>
+						<img src="<%=request.getContextPath() %>/img/img_tour/blue_arrow.png" style='width:20px; padding-top: 8px;'/>
+					</label>
+					<div id="routeTitle" class="conditionBox tourLink"></div>
 				</div>
 				<div>
         			<input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox txtShadow2">
