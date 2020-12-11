@@ -58,7 +58,7 @@
 		     		<div>
 		     			<div >
 		     				<ul id="receiveBoxTitle" class="listTitle">
-		     					<li><input type="checkbox" id="chkAll1"/></li>
+		     					<li><input type="checkbox" name="chkAll" id="chkAll1"/></li>
 				     			<li>보낸회원</li>
 				     			<li>내용</li>
 				     			<li>날짜</li>
@@ -80,7 +80,7 @@
 		     		<div>
 		     			<div >
 		     				<ul id="sendBoxTitle" class="listTitle">
-		     					<li><input type="checkbox" id="chkAll2"/></li>
+		     					<li><input type="checkbox"name="chkAll"  id="chkAll2"/></li>
 				     			<li>받은회원</li>
 				     			<li>내용</li>
 				     			<li>날짜</li>
@@ -103,7 +103,7 @@
 		     		<div>
 		     			<div >
 		     				<ul id="noticeBoxTitle" class="listTitle">
-		     					<li><input type="checkbox" id="chkAll3"/></li>
+		     					<li><input type="checkbox" name="chkAll" id="chkAll3"/></li>
 				     			<li>보낸회원</li>
 				     			<li>내용</li>
 				     			<li>날짜</li>
@@ -132,7 +132,8 @@ $(function(){
 	$("input[name=messageBox]").on('change', function(){
 		$("#read"+messageBox).prop("checked", false);
 		messageBox = $("input[name=messageBox]:checked").val();
-		
+		console.log(messageBox);
+
 		if(messageBox != 4){
 			movePage(1);
 		}
@@ -142,12 +143,12 @@ $(function(){
 		movePage(1);
 	});
 	
-	$("#chkAll"+messageBox).on('change', function(){
-		if($(this).prop("checked")){
+	$("input[name=chkAll]").on('change', function(){
+		if($("input[name=chkAll]").eq(messageBox-1).prop("checked")){
 			$("#messageList"+messageBox+" input[type=checkbox]").prop("checked", true);
 		}
 		
-		if(!($(this).prop("checked"))){
+		if(!($("input[name=chkAll]").eq(messageBox-1).prop("checked"))){
 			$("#messageList"+messageBox+" input[type=checkbox]").prop("checked", false);
 		}
 	});
@@ -162,17 +163,12 @@ $(function(){
 	});
 	
 	$("input[name=readMsg]").on('click', function(){
-		
 		$("#messageList"+messageBox+" input[type=checkbox]").each(function(){
 			if($(this).prop("checked")){
 				readMsg($(this).val());				
 			};
 		});
-	});
-	
-	$(".wordcut").on('mouseenter',function(){
-		console.log(1111);
-	});
+	});	
 });
 
 function movePage(page){

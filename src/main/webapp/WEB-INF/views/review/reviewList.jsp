@@ -2,179 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<script>
-
-//리뷰 리스트 만들기
-function makeReviewlist(result){
-		$("#reviewBoard").html("");
-		
-		var listTag = "";
-		for(var i = 0 ; i < result.length ; i++){
-			
-			listTag += "<div class ='boardlist'>";
-			listTag += "<div class='reviewContents'>";
-				
-			listTag += "<div class ='left'>";
-			listTag +=	"<a href='/home/reviewView?noboard="+result[i].noboard+"'>";
-			listTag +=	"<img src="+result[i].thumbnailImg+"/>";
-			listTag +=	"</a>";
-			listTag +=	"</div>";
-					
-			listTag +=	"<div class='right'>";
-			listTag +=	"<div class= 'subtitle'>";
-			
-			listTag +=	"<ul>";
-			listTag +=	"<li class='wordCut'>";
-			listTag +=	"<a class='subject_title' href='/home/reviewView?noboard="+result[i].noboard+"'>";
-			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
-			listTag +=	"</a>";
-			listTag +=	"<li class='subject_Hitcount'>";
-			listTag +=	"조회수 :"+result[i].hit;
-			listTag +=	"</li>";
-			listTag +=	"</li>";
-			listTag +=	"</ul>";
-			listTag +=	"</div>";
-			listTag += "<br/><br/><br/>"
-			listTag +=	"<ul>";
-			listTag +=	"<li class='wordCut' id='reviewtext'>";
-			listTag +=	"<a href='/home/reviewView?noboard="+result[i].noboard+"'>";
-			listTag +=	result[i].content;
-			listTag +=	"</a>";
-			listTag +=	"</li>";
-			listTag +=	"</ul>";
-			
-			listTag +="<div class='writedate'>";
-			listTag +="<ul>";
-			listTag +="<li class='userid'>";
-			listTag +="<img src='/home/img/img_Review/review.png'/>";
-			listTag += result[i].userid+"님의 생생한 후기";
-			listTag +="</li>";
-			listTag +="<li class='writedate'>"+result[i].writedate+"작성</li>"
-			listTag +="</ul>";
-			listTag +="</div>";
-			listTag +="</div>";
-			
-			listTag +="</div>";
-			listTag +="</div>";
-		
-			//console.log(listTag); 
-			//console.log('----------------------------------');
-		}
-		console.log(listTag);
-		$("#reviewBoard").html(listTag);
-		return false;
-}
-
-// 페이징 리스트 만들기
-function setPaging(vo){
-	// 이전 페이징 삭제
-	$("#paging").children().remove();
-	var tag = "<ul>";
-	
-	if(vo.nowPage != 1){
-		tag += "<li><a href='javascript:movePage("+(vo.nowPage -1)+")'> Prev </a></li>";
-	}
-	
-	for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount -1 ; i++){
-		if(vo.totalPage >= i){
-			if(vo.nowPage == i){
-				tag += "<li style='color:#00B0B0; font-weight:600;'>"+i+"</li>";
-			}else{
-				tag += "<li><a href='javascript:movePage("+i+")' style='color:black; font-weight:600;'>"+i+"</a></li>";
-			}
-		}
-	}
-	
-	if(vo.nowPage != vo.totalPage){
-		tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
-	}
-
-	tag += "</ul>";
-	$("#paging").append(tag);
-				
-}
-
-
-// 페이지 이동
-function movePage(page){
-	
-	// 페이징 먼저 변경
-	var url = "<%=request.getContextPath()%>/searchReviewPaging";
-	var 
-		data = $("#searchReview").serialize();
-		data = "nowPage="+page+"&searchType="+$("#searchTypeReview").val()+"&searchWord="+$("#searchBarReview").val();
-		//수리중........
-// 		data += "&order="+$("input[name=order]:checked").val();
-		
-	$.ajax({
-		url : url,
-		data : data,
-		success : function(result){
-			if(result.totalRecord <= 0){
-				toast("검색 결과가 없습니다.",1500);
-				return false;
-			}else{
-				$("input[name=searchType]").val($("#searchTypeReview").val())
-				$("input[name=searchWord]").val($("#searchBarReview").val())
-				
-				setPaging(result);
-				nowPage = result.nowPage;
-				$("input[name=nowPage]").val(nowPage);	
-			}
-		
-		},error : function(){
-			console.log("페이징 오류");
-		}
-	});
-	
-	
-	//리스트 데이터 검색
-	url = "<%=request.getContextPath()%>/searchReview";
-	$.ajax({
-		url : url,
-		data : data,
-		success : function(result){
-			console.log(result);
-			if( result.length <= 0 ){
-				toast("검색 결과가 없습니다.",1500);
-				
-			} else{ 
-				
-				makeReviewlist(result);
-			}
-		}, error : function(){
-			console.log("페이지 + 검색 결과 호출 에러");
-		}
-	});
-}
-
-// 검색 기능
-$(function(){
-	var nowPage = $("input[name=nowpage]").val();
-	// 페이지 로딩 시 전체 리스트 불러오기
-	movePage(nowPage);
-	
-	// 검색
-	$("#searchReview").submit(function(){
-		if($("#searchBarReview").val() == ""){
-			toast("검색어를 입력하세요.", 1500);
-			return false;
-		};
-		
-		movePage(1);
-		return false;
-	});
-	
-	$("input[name=order]").on('change',function(){
-		movePage(nowPage);
-		
-	});
-});
-
-
-
-
-</script>
 <!-- 후기보기메인 -->
 <div class="container">
 <div class = "mainDiv">
@@ -182,7 +9,6 @@ $(function(){
 	<div class="reviewBody">	
 		<form class = "search" id="searchReview" name="searchReview">
 			<select name="searchTypeReview" id="searchTypeReview">
-				<option >키워드</option>
 				<option value="subject">글제목</option>
 				<option value="userid">작성자</option>
 				<option value="content">내용</option>				
@@ -197,14 +23,12 @@ $(function(){
 			<input type="hidden" name="noboard" value=""/>
 		</form>
 
-
-
 <!--후기 제목 -->
 		<div class= "reviewtitle">
 			<div class="title">후기 게시판</div><br><br>
 			<div class="orderRadio">
-				<input type="radio"  name="order" id="orderDesc" value="desc" checked/>
-				<label for="orderDesc" class="orderBtn">최신순</label>&ensp;|&ensp;<input type="radio" name="order" id="orderAsc" value="asc" /><label for="orderAsc" class="orderBtn">조회수</label>
+				<input type="radio"  name="order" id="orderDesc" value="noboard" checked/>
+				<label for="orderDesc" class="orderBtn">최신순</label>&ensp;|&ensp;<input type="radio" name="order" id="orderAsc" value="thumbup" /><label for="orderAsc" class="orderBtn">추천순</label>
 				<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'" style='float:right; margin:0 25px 10px 0;'>
 			</div>
 		</div><br/>
@@ -292,3 +116,177 @@ $(function(){
 	</div>
 </div>
 </div>
+<script>
+
+//리뷰 리스트 만들기
+function makeReviewlist(result){
+		$("#reviewBoard").html("");
+		
+		var listTag = "";
+		for(var i = 0 ; i < result.length ; i++){
+			
+			listTag += "<div class ='boardlist'>";
+			listTag += "<div class='reviewContents'>";
+				
+			listTag += "<div class ='left'>";
+			listTag +=	"<a href='/home/reviewView?noboard="+result[i].noboard+"'>";
+			listTag +=	"<img src="+result[i].thumbnailImg+"/>";
+			listTag +=	"</a>";
+			listTag +=	"</div>";
+					
+			listTag +=	"<div class='right'>";
+			listTag +=	"<div class= 'subtitle'>";
+			
+			listTag +=	"<ul>";
+			listTag +=	"<li class='wordCut'>";
+			listTag +=	"<a class='subject_title' href='/home/reviewView?noboard="+result[i].noboard+"'>";
+			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
+			listTag +=	"</a>";
+			listTag +=	"<li class='subject_Hitcount'>";
+			listTag +=	"조회수 :"+result[i].hit;
+			listTag +=	"</li>";
+			listTag +=	"</li>";
+			listTag +=	"</ul>";
+			listTag +=	"</div>";
+			listTag += "<br/><br/><br/>"
+			listTag +=	"<ul>";
+			listTag +=	"<li class='wordCut' id='reviewtext'>";
+			listTag +=	"<a href='/home/reviewView?noboard="+result[i].noboard+"'>";
+			listTag +=	result[i].content;
+			listTag +=	"</a>";
+			listTag +=	"</li>";
+			listTag +=	"</ul>";
+			
+			listTag +="<div class='writedate'>";
+			listTag +="<ul>";
+			listTag +="<li class='userid'>";
+			listTag +="<img src='/home/img/img_Review/review.png'/>";
+			listTag += result[i].userid+"님의 생생한 후기";
+			listTag +="</li>";
+			listTag +="<li class='writedate'>"+result[i].writedate+"작성</li>"
+			listTag +="</ul>";
+			listTag +="</div>";
+			listTag +="</div>";
+			
+			listTag +="</div>";
+			listTag +="</div>";
+		
+			//console.log(listTag); 
+			//console.log('----------------------------------');
+		}
+		$("#reviewBoard").html(listTag);
+		return false;
+}
+
+// 페이징 리스트 만들기
+function setPaging(vo){
+	// 이전 페이징 삭제
+	$("#paging").children().remove();
+	var tag = "<ul>";
+	
+	if(vo.nowPage != 1){
+		tag += "<li><a href='javascript:movePage("+(vo.nowPage -1)+")'> Prev </a></li>";
+	}
+	
+	for(var i = vo.startPageNum ; i <= vo.startPageNum+vo.onePageNumCount -1 ; i++){
+		if(vo.totalPage >= i){
+			if(vo.nowPage == i){
+				tag += "<li style='color:#00B0B0; font-weight:600;'>"+i+"</li>";
+			}else{
+				tag += "<li><a href='javascript:movePage("+i+")' style='color:black; font-weight:600;'>"+i+"</a></li>";
+			}
+		}
+	}
+	
+	if(vo.nowPage != vo.totalPage){
+		tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
+	}
+
+	tag += "</ul>";
+	$("#paging").append(tag);
+				
+}
+
+
+// 페이지 이동
+function movePage(page){
+	
+	// 페이징 먼저 변경
+	var url = "<%=request.getContextPath()%>/searchReviewPaging";
+	var data = $("#searchReview").serialize();
+		data = "&nowPage="+page+"&searchType="+$("#searchTypeReview").val()+"&searchWord="+$("#searchBarReview").val();
+ 		data += "&order="+$("input[name=order]:checked").val();
+		
+ 		console.log(data);
+	$.ajax({
+		url : url,
+		data : data,
+		success : function(result){
+			if(result.totalRecord <= 0){
+				toast("검색 결과가 없습니다.",1500);
+			}else{
+				console.log(result);
+				$("input[name=searchType]").val($("#searchTypeReview").val())
+				$("input[name=searchWord]").val($("#searchBarReview").val())
+				
+				setPaging(result);
+				nowPage = result.nowPage;
+				$("input[name=nowPage]").val(nowPage);	
+			}
+		
+		},error : function(){
+			console.log("페이징 오류");
+		}
+	});
+	
+	
+	console.log(data);
+	//리스트 데이터 검색
+	url = "<%=request.getContextPath()%>/searchReview";
+	$.ajax({
+		url : url,
+		data : data,
+		success : function(result){
+			console.log(result);
+			if( result.length <= 0 ){
+				toast("검색 결과가 없습니다.",1500);
+				
+			} else{ 
+				
+				makeReviewlist(result);
+			}
+		}, error : function(){
+			console.log("페이지 + 검색 결과 호출 에러");
+		}
+	});
+}
+
+// 검색 기능
+$(function(){
+	var nowPage = $("input[name=nowPage]").val();
+	console.log(nowPage);
+	
+	// 페이지 로딩 시 전체 리스트 불러오기
+	movePage(nowPage);
+	
+	// 검색
+	$("#searchReview").submit(function(){
+		if($("#searchBarReview").val() == ""){
+			toast("검색어를 입력하세요.", 1500);
+			return false;
+		};
+		
+		movePage(1);
+		return false;
+	});
+	
+	$("input[name=order]").on('change',function(){
+		movePage(nowPage);
+		
+	});
+});
+
+
+
+
+</script>
