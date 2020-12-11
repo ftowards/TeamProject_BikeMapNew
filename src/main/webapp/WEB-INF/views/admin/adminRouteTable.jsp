@@ -22,12 +22,15 @@ function makeRouteTable(result){
 		listTag += "<li>"+result[i].rating+"</li>";
 		listTag += "<li>"+result[i].ratecnt+"</li>";
 		listTag += "<li>"+result[i].region+"</li>";
+		
 		listTag += "<li>";
-		if(result[i].closed=='F'||result[i].closed==null){
-			listTag +="공개";
-		}else if(result[i].gender=='T'){
-			listTag +="비공개";
+		listTag += "<label class='switch'>";
+		listTag += "<input type='checkbox' name='adminHideBtn' value='"+result[i].noboard+"'";
+		if(result[i].closed=='T'){
+			listTag += "checked='checked'";
 		}
+		listTag += "><span class='slider round'></span>";
+		
 		listTag += "</li>";
 		listTag += "<li>";
 		listTag += "<label class='switch'>";
@@ -77,7 +80,7 @@ function makeRouteTable(result){
 									  <input type="checkbox" name="adminHideBtn" value="${vo.noboard }">				
 								</c:if>
 								<c:if test="${vo.closed=='T'}">
-									  <input type="checkbox" name="adminHideReleaseBtn" value="${vo.noboard }" checked="checked" >							
+									  <input type="checkbox" name="adminHideBtn" value="${vo.noboard }" checked="checked" >							
 								</c:if>
 								 <span class="slider round"></span>
 								</label>							

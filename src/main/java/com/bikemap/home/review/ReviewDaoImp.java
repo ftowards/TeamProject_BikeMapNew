@@ -42,4 +42,9 @@ public interface ReviewDaoImp {
 	// 리뷰 평가한 기록 남기기
 	public int insertReviewrate(ReviewVO vo);
 	
+	// 리뷰글 관리자 추천하기
+	public int scrapReview(int noboard);
+	
+	// 리뷰글 관리자 추천 해제하기
+	public int releaseReview(int noboard);
 }

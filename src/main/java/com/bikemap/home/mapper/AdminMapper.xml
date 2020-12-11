@@ -71,7 +71,7 @@
 		select count(noboard) from route
 	</select>
 	<select id = "routeAllRecord" resultType="com.bikemap.home.route.RouteVO">
-		select * from(select * from(select noboard, title, polyline, userid, region, distance, mapcenter, maplevel, TRUNC(nvl(rating,0), 1) rating, scrap from route 
+		select * from(select * from(select noboard, title, polyline, userid, region, distance, mapcenter, maplevel, TRUNC(nvl(rating,0), 1) rating, scrap, closed from route 
 		<include refid="search"></include> order by ${order} desc)
 		<![CDATA[where rownum <= ]]> (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
 		<![CDATA[where rownum <= ]]> #{lastPageRecordCount} order by ${order}  desc
