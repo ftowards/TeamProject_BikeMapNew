@@ -1,8 +1,10 @@
 package com.bikemap.home.notice;
 
+import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -86,7 +87,7 @@ public SqlSession sqlSession ;
 		return vo;
 	}
 	
-	// 쪽지함 페이징
+	// 쪽지함 리스트 가져오기
 	@RequestMapping("/selectMessage")
 	@ResponseBody
 	public List<NoticeVO> selectMessage(NoticePagingVO vo, HttpSession ses) {
@@ -148,9 +149,55 @@ public SqlSession sqlSession ;
 
 	//1:1문의사항 페이지 이동
 	@RequestMapping("/userQandA")
-	public String userQandA() {
-		return "message/userQandA";
+	public ModelAndView userQandA() {
+		ModelAndView mav = new ModelAndView();
+		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
+		
+		try {
+			List<QnaTypeVO> list = dao.selectQnaType();
+			mav.addObject("qnatypeList", list);
+		}catch(Exception e) {
+			System.out.println("문의 유형 선택 에러 " + e.getMessage());
+		}
+		mav.setViewName("/message/userQandA");
+		return mav;
+	}
+	
+	// 문의사항 남기기
+	@RequestMapping("/insertQna")
+	@ResponseBody
+	public int insertQna(QnaVO vo, HttpServletRequest req) {
+		int result = 0;
+		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
+		HttpSession ses = req.getSession();
+		
+		vo.setUserid((String)ses.getAttribute("logId"));
+		vo.setIp(req.getRemoteAddr());
+		
+		System.out.println(vo.getSubject());
+		System.out.println(vo.getContent());
+		try {
+			result = dao.insertQna(vo);
+		}catch(Exception e) {
+			System.out.println("문의 사항 남기기 에러 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// qna 페이징
+	@RequestMapping("/qnaPaging")
+	@ResponseBody
+	public QnaPagingVO qnaPaging(QnaPagingVO vo, HttpSession ses) {
+		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
 
+		vo.setId((String)ses.getAttribute("logId"));
+		
+		try {
+			vo.setTotalRecord(dao.selectQnaRecord(vo));
+		}catch(Exception e) {
+			System.out.println("문의사항 페이징 에러 " + e.getMessage());
+		}
+		return vo;
 	}
 	
 	//나의 문의사항 글보기
@@ -158,5 +205,5 @@ public SqlSession sqlSession ;
 	public String userQandAView() {
 		return "message/userQandAView";
 	}
-	
+
 }

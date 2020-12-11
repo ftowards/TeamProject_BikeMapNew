@@ -22,7 +22,7 @@ function makeReviewTable(result){
 		listTag += "<li><span style='color:blue'>"+result[i].thumbUp+" </span>/ <span >"+result[i].thumbDown+" </span></li>";
 		listTag += "<li>";
 		listTag += "<label class='switch'>";
-		listTag += "<input type='checkbox' name='adminScrapBtn' value='"+result[i].noboard+"'";
+		listTag += "<input type='checkbox' name='adminReviewScrapBtn' value='"+result[i].noboard+"'";
 		if(result[i].scrap=='T'){
 			listTag += "checked='checked'";
 		}
@@ -69,13 +69,13 @@ function makeReviewTable(result){
 							<li>
 								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
 									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">
+									  <input type="checkbox" name="adminReviewScrapBtn" value="${vo.noboard }">
 									  <span class="slider round"></span>
 									</label>							
 								</c:if>
 								<c:if test="${vo.scrap=='T'}">
 									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >
+									  <input type="checkbox" name="adminReviewScrapBtn" value="${vo.noboard }" checked="checked" >
 									  <span class="slider round"></span>
 									</label>
 								</c:if>

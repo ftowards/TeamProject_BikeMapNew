@@ -82,4 +82,13 @@
  	<insert id="insertReviewrate" parameterType="com.bikemap.home.review.ReviewVO">
  		insert into reviewrate(noboard, userid) values(#{noboard}, #{userid})
  	</insert>
+ 	
+ 	<!-- 관리자 추천하기 // 1211추가 -->
+ 	<update id="scrapReview">
+		update review set scrap='T' where noboard = #{param1} and scrap ='F' OR scrap = null
+	</update>
+	<!-- 관리자 추천 해제 -->
+	<update id="releaseReview">
+		update review set scrap='F' where noboard = #{param1} and scrap ='T'
+	</update>
 </mapper>

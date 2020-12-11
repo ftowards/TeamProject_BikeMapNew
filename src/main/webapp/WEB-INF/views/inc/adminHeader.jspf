@@ -20,7 +20,6 @@
  * 
  */
  	var socket = null;
- 	var nowPageNum =
 	//Admin USER 테이블
     //버튼 클릭시 정지기간 조정
     function change_suspendTime(time){
@@ -66,7 +65,9 @@
 		if(vo.nowPage != vo.totalPage){
 			tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 		}
-		$("#paging").append(tag);		
+		$("#paging").append(tag);	
+		$("#nowPage").attr("value",vo.nowPage);
+		console.log($("#nowPage").val());
 	}
 function movePage(page){		
 		// 페이징 먼저 변경
@@ -135,7 +136,6 @@ function io(noboard){
 }
 function leaveMessage(noboard, userid){
 	
-	console.log(noboard+"이게 들어왔어요");
 	sendMsg(noboard, userid, 3);
 	
 	//데이터 구하기
@@ -331,7 +331,8 @@ function sendMsg(noboard, receiver, type){
 		  		success : function(result){
 		  			if(result >0 ){
 		  				toast(noboard+"번 루트를 비공개 처리하였습니다.",1500);
-						setTimeout(function(){location.reload(true)}, 1500);
+						setTimeout(function(){}, 1500);
+						movePage($("#nowPage").val());	
 		  			}else{
 		  				toast("루트 비공개 처리 오류입니다.");
 		  			}
@@ -341,6 +342,25 @@ function sendMsg(noboard, receiver, type){
 		  	});
 	  	});
 	  }
+	  function setOpenRoute(noboard){
+		  	
+		  	toastConfirm("루트를 공개 처리하면 검색 및 다른 회원들의 리스트에 저장이 가능합니다.<br/>진행하시겠습니까?", function(){
+		  		$.ajax({
+					url : "/home/route/setOpenRoute",
+					data : "noboard="+noboard,
+					success : function(result){
+						if(result == 1){
+							toast(noboard + "번 루트가 공개처리 되었습니다.",1500);
+							movePage($("#nowPage").val());				
+						}else{
+							toast("루트 공개 처리 오류입니다.");
+						}
+					},error : function(err){
+						console.log(err);
+					}
+		  		});
+		  	});
+		  }	
 	 var btn, userid;
      $(function(){    	
     	//관리자 정지 화면
@@ -584,7 +604,8 @@ function sendMsg(noboard, receiver, type){
     		var chkArray = new Array();
     		var noboards = "";
     		var useridAll = "";
-
+			console.log("외않되?");
+			
     		$('input:checkbox[name=listChk]:checked').each(function(){	
 				chkArray.push(this.value);
 				noboards += this.value+"/";
@@ -607,7 +628,6 @@ function sendMsg(noboard, receiver, type){
 // 			});
 			//추천하는경우
 			
-			console.log("noboards"+noboards + "&userids="+useridAll);
 			
     		if(chkArray.length>0) {
    				//var dataSingle = {'noboard' : noboard , 'userid' : userid};
@@ -631,7 +651,8 @@ function sendMsg(noboard, receiver, type){
 		            	return false;
 		            }
 	      	  	});
-   				
+   				console.log($(nowPage)+": 현재페이지 입니다..")
+   				movePage($("#nowPage").val());
    				return false;
     			
     		}
@@ -644,12 +665,12 @@ function sendMsg(noboard, receiver, type){
 				chkArray.push(this.value);	
     		});
 			//현재 체크표시한 데이터가 이미 해제되어있는지 확인한다. 벨류가 눌러져있는지 확인.
-    		$(!($('input:checkbox[name=adminScrapBtn]:checked'))).each(function(){
-				var index = chkArray.indexOf(this.value);
-    			
+    		$('input:checkbox[name=adminScrapBtn]:not(:checked)').each(function(){
+				var index = chkArray.indexOf(this.value); 			
 				if(index>-1){
     				chkArray.splice(index, 1);
     			}
+				console.log("삭제");
 			});
     		if(chkArray.length>0) {  			
     			for(var i=0; i<chkArray.length; i++){
@@ -670,30 +691,75 @@ function sendMsg(noboard, receiver, type){
 		            }
 		        });
     			}
-    			alert(chkArray+"번호 글이 관리자 추천 해제 되었습니다.");
-    			location.reload();
+    			console.log($("#nowPage").val());
+    			movePage($("#nowPage").val());
     		}
     	});
-    	
-
     	// 관리자 비공개 처리
     	// 체크된 비공개 개별 버튼  클릭시 
     	$(document).on('change','input:checkbox[name=adminHideBtn]', function(){	
     		var noboard = $(this).val();
-    		var userid = $(this).parents().next(".userid").val();
     		var type="close";
-    		setCloseRoute1(noboard, type);
-    		
+    		if($(this).is(":checked") == true) {  
+    			setCloseRoute1(noboard, type);
+    		}else{
+    			setOpenRoute(noboard);
+    		}
+    		movePage($("#nowPage").val());
     	});
-//     	
-    	
+//     	  	
     	$(document).on('change','input:radio[name=order]', function(){	
     		var order = $("input[name=order]:checked").val();
     		//추천하는경우
     		console.log(order);
     		movePage(1);
     	});
-    	
+    	//리뷰게시판 관리자 추천 비추천
+    	$(document).on('change','input:checkbox[name=adminReviewScrapBtn]', function(){	
+    		var noboard = $(this).val();
+    		var userid = $(this).parents().next(".userid").val();
+    		
+    		var dataSingle = {"noboard":noboard};
+    		
+    		//추천하는경우
+    		if($(this).is(":checked") == true) {  
+    			$.ajax({
+		            url: 'scrapReview',
+		            data:dataSingle,
+		            success: function (result) {
+		            	if(result>0){
+			            	console.log("스크랩완료~"); 
+			            	console.log(noboard);
+			            	leaveMessage(noboard, userid);
+			            	toast(userid+"님의 글이 추천되었습니다.");
+		            	}else{
+		            		console.log("스크랩 실패;;")
+		            	}	    
+		            },
+		            error:function(e){
+		            	console.log('관리자 추천', e.responseText);
+		            	return false;
+		            }
+		        });
+    		//추천 해제
+    		}else if($(this).is(":checked")==false){
+    			$.ajax({
+		            url: 'releaseReview',
+		            data:dataSingle,
+		            success: function (result) {
+		            	if(result>0){
+			            	console.log("스크랩 해제완료");         
+		            	}else{
+		            		console.log("스크랩 해제 실패;;")
+		            	}	    
+		            },
+		            error:function(e){
+		            	console.log('관리자 추천', e.responseText);
+		            	return false;
+		            }
+		        });
+    		}
+    	});
     });
 </script>
 </head>

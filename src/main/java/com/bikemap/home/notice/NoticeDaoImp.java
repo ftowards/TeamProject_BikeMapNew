@@ -2,6 +2,8 @@ package com.bikemap.home.notice;
 
 import java.util.List;
 
+import com.bikemap.home.admin.AdminQnaVO;
+
 public interface NoticeDaoImp {
 	
 	// 메세지 추가하기
@@ -21,5 +23,14 @@ public interface NoticeDaoImp {
 	
 	// 메세지 내용 불러오기
 	public NoticeVO messageView(NoticeVO vo);
-
+	
+	// 문의 카테고리 가져오기
+	public List<QnaTypeVO> selectQnaType();
+	
+	// 문의하기
+	public int insertQna(QnaVO vo);
+	
+	// 문의사항 페이징 전체 레코드 
+	public int selectQnaRecord(QnaPagingVO vo);
+		
 }
