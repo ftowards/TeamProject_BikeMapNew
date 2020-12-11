@@ -6,7 +6,8 @@ body{margin:0; padding:0;
 	ul{list-style-type:none;}
 	
 	#mainDivTour{
-				width:1200px; 
+				width:1200px;
+				height:1350px;
 				margin:0 auto;
 				padding:0;
 	}

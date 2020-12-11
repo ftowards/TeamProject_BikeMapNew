@@ -166,9 +166,15 @@ function goList(){
 		<div><label class="tourWriteConditionTitle">루&nbsp;트</label></div>
 		<div class="routeResultDiv2">
 			<div class="routeTitleDiv">
-				<div style='margin-left : 40px;height : 70px;'><label class="labelClass">루트 제목</label>
-					<div id="routeTitle" class="conditionBox"></div>
-				</div>		
+				<div style='margin-left : 40px;height : 55px;'>
+					<label>코스 상세보기 <span class="blue_arrow">click!</span>
+						<img src="<%=request.getContextPath() %>/img/img_tour/blue_arrow.png" style='width:20px; padding-top: 8px;'/>
+					</label>
+					<div id="routeTitle" class="conditionBox tourLink"></div>
+				</div>
+				<div>
+        			<input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox txtShadow2">
+        		</div>
 			</div>
 			<div id="routeMap"></div>
 			<hr/>
@@ -251,8 +257,6 @@ function goList(){
 	</div>			
 	<div id="writeForm">
 		<div class="tourViewWriteFormClass">
-    		<div  class="tourViewLabelClass" ><label>작성자</label></div>
-        	<div><input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox" style="margin-left:0; padding-top:0px;"></div>
         	<div style="float:right" ><button class="conditionBox" onclick="javascript:goList()" style="margin-right:70px; padding-top:3px;">목록보기</button></div>
         		<!-- 목록보기 페이징 보내기 -->
         		<form id="pagingVO" method="post" action="/home/tourView" style="display:none">

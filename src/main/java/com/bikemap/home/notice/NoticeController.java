@@ -144,5 +144,11 @@ public SqlSession sqlSession ;
 			System.out.println("쪽지 내용 불러오기 에러 " + e.getMessage());
 		}
 		return vo;
+
+	//1:1문의사항 페이지 이동
+	@RequestMapping("/userQandA")
+	public String userQandA() {
+		return "message/userQandA";
+
 	}
 }

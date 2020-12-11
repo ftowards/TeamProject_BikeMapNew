@@ -47,8 +47,7 @@ function makeRouteTable(result){
 	<!-- Page Content -->
 	<div class="adminContent">	
 				<div id="adminTable">
-				<h1 class="adminListHead">루트게시판</h1>
-				
+				<h1 class="adminListHead">루트게시판</h1>				
 				<div class="orderRadio">
 					<input type="radio" name="order" id="orderNoboard" value="noboard" checked="checked"><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar"> | </span>
 					<input type="radio" name="order" id="orderRating" value="rating"><label for="orderRating" class="subTxt">평점순</label>
@@ -69,33 +68,32 @@ function makeRouteTable(result){
 							<li>${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/routeSearchView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
-							<li>${vo.rating }</li>
+							<li>${vo.rating}</li>
 							<li>${vo.ratecnt }</li>
 							<li>${vo.region}</li>
-							<li>
+							<li>								
+								<label class="switch">
 								<c:if test="${vo.closed==null||vo.closed=='F'}">
-									공개
+									  <input type="checkbox" name="adminHideBtn" value="${vo.noboard }">				
 								</c:if>
 								<c:if test="${vo.closed=='T'}">
-									비공개
+									  <input type="checkbox" name="adminHideReleaseBtn" value="${vo.noboard }" checked="checked" >							
 								</c:if>
+								 <span class="slider round"></span>
+								</label>							
+								<input type="hidden" class="userid" value="${vo.userid }"/>
 							</li>
-							<li>
+							<li>	
+								<label class="switch">
 								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
-									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">
-									  <span class="slider round"></span>
-									</label>							
-									<input type="hidden" class="userid" value="${vo.userid }"/>
+									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">				
 								</c:if>
 								<c:if test="${vo.scrap=='T'}">
-									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >
-									  <span class="slider round"></span>
-									</label>
-									<input type="hidden" class="userid" value="${vo.userid }"/>
-									
+									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >							
 								</c:if>
+								 <span class="slider round"></span>
+								</label>							
+								<input type="hidden" class="userid" value="${vo.userid }"/>
 							</li>
 					</c:forEach>
 				</ul>
@@ -104,8 +102,7 @@ function makeRouteTable(result){
 				<!-- paging -->
 			 
 			<div id="paging">
-					<ul>
-					
+					<ul>				
 						<c:if test="${pagingVO.nowPage != 1 }">
 							<li><a href="javascript:movePage(${pagingVO.nowPage-1 })"> Prev </a></li>
 						</c:if>
@@ -131,8 +128,6 @@ function makeRouteTable(result){
 				<div id="partnerBtn">
 						<input type="button" id="partnerBtn1" name="adminScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
 						<input type="button" id="partnerBtn2" name="adminReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
-						<input type="button" name="adminCloseAllBtn" value="비공개" class="mint_Btn"/>
-						<input type="button" name="adminReleaseCloseAllBtn" value="비공개 해제" class="red_Btn"/>
 				</div><!-- btn -->
 <!-- Page Content -->
 </body>
