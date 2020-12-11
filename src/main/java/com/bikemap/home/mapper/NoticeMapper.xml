@@ -57,4 +57,17 @@
 	<select id="messageView" resultType="com.bikemap.home.notice.NoticeVO" parameterType="com.bikemap.home.notice.NoticeVO">
 		select userid, idsend, msg from notice where nonotice = #{nonotice}
 	</select>
+	<select id="selectQnaType" resultType="com.bikemap.home.notice.QnaTypeVO">
+		select noqnatype, typename from qnatype order by noqnatype asc
+	</select>
+	<insert id="insertQna" parameterType ="com.bikemap.home.notice.QnaVO">
+		insert into qna(noqna, subject, userid, noqnatype, content, ip)
+		values(a_sq.nextval, #{subject}, #{userid}, #{noqnatype}, #{content}, #{ip})
+	</insert>
+	<select id="selectQnaRecord" resultType="int" parameterType="com.bikemap.home.notice.QnaPagingVO">
+		select count(noqna) from qna where userid = #{id}
+		<if test='answer neq null and answer neq ""'>
+			and answer = #{answer}
+		</if>
+	</select>
 </mapper>

@@ -11,8 +11,8 @@
 	    		<li><img src="<%=request.getContextPath()%>/img/img_admin/QnA.png"/></li>
 				<li class="sidebar-brand"><label style="color:rgb(0,176,176)">1:1문의하기</label></li>
 				<hr/>
-				<li><label for="receiveBox">문의하기</label></li>
-				<li><label for="sendBox">나의 문의사항</label></li>
+				<li><label for="sendQna">문의하기</label></li>
+				<li><label for="readQna">나의 문의사항</label></li>
 		    </ul>
 		</div>
 	</div>
@@ -22,61 +22,66 @@
 	<div class="my">
     	<div class="container-fluid">
     		<!-- 탭 전환용 라디오 버튼 : 숨김 처리 -->
-	    	<input type="radio" name="messageBox" id="receiveBox" value="1" checked/> 
-	    	<input type="radio" name="messageBox" id="sendBox" value="2" />
+	    	<input type="radio" name="board" id="sendQna" value="1" checked/> 
+	    	<input type="radio" name="board" id="readQna" value="2" />
 			<!-- 1:1문의하기 Form -->	
 			<div class="titleMyDiv1 tab"><label>문의하기</label>
-			<ul class="qAndALbl">
-				<li>-문의하신 내용을 신속하고 정확하게 답변 드리겠습니다.</li>
-				<li>-상담에 대한 답변은 1:1문의>나의 문의사항 에서 확인하실 수 있습니다.</li>
-				<li>-1:1 문의글 작성 후에는 수정, 삭제가 되지 않습니다.</li>
-			</ul>	
-			<div class="qAndaTypeDiv">
-				<ul>
-					<li><div class="qAndaTypeLbl">문의유형</div></li>
-					<li>
-						<select class="qAndaTypeBox1">
-							<option>서비스이용</option>
-						</select>
-					</li>
-				</ul>
-			</div>	
-			<div class="subjectQandADiv">	
-			
-				<ul>
-					<li><div class="subjectQandALbl">제&nbsp;목</div></li>
-					<li><input type="text" class="qAndaSubjectBox"/></li>
+				<ul class="qAndALbl">
+					<li>-문의하신 내용을 신속하고 정확하게 답변 드리겠습니다.</li>
+					<li>-상담에 대한 답변은 1:1문의>나의 문의사항 에서 확인하실 수 있습니다.</li>
+					<li>-1:1 문의글 작성 후에는 수정, 삭제가 되지 않습니다.</li>
 				</ul>	
-			</div>
-			<div class="subjectQandADiv">	
-				<ul>
-					<li><div class="subjectQandALbl">내&nbsp;용</div></li>
-					<li><textarea class="qAndaSubjectBox" rows='10' cols='50' maxlength='200'style="resize:none"></textarea></li>
-				</ul>	
-			</div>	
-			<div class="qAndBtnDiv">	
-				<ul>
-					<li><div class="qandABtnLbl">문의하기</div></li>
-					<li><div class="qandABtnResetLbl">다시쓰기</div></li>
-				</ul>	
-			</div>	
+				<form id="qnaInsert">
+					<div class="qAndaTypeDiv">
+						<ul>
+							<li><div class="qAndaTypeLbl">문의유형</div></li>
+							<li>
+								<select name="noqnatype" class="qAndaTypeBox1">
+									<c:forEach var="list" items="${qnatypeList }">
+										<option value="${list.noqnatype }">${list.typename }</option>
+									</c:forEach>
+								</select>
+							</li>
+						</ul>
+					</div>	
+					<div class="subjectQandADiv">	
+						<ul>
+							<li><div class="subjectQandALbl">제&nbsp;목</div></li>
+							<li><input type="text" id="subject" name="subject" class="qAndaSubjectBox"/></li>
+						</ul>	
+					</div>
+					<div class="subjectQandADiv">	
+						<ul>
+							<li><div class="subjectQandALbl">내&nbsp;용</div></li>
+							<li><textarea id="content" name="content" class="qAndaContentBox" rows='10' cols='50' maxlength='250'style="resize:none"></textarea></li>
+						</ul>	
+					</div>	
+					<div class="qAndBtnDiv">	
+						<ul>
+							<li><input type="submit" value="문의하기" class="qandABtnLbl"></li>
+							<li><input type="reset" value="다시쓰기" class="qandABtnResetLbl"></li>
+						</ul>	
+					</div>
+				</form>
 			</div>
 			<!-- 나의 문의사항 시작 -->
 			<div class="titleMyDiv1 tab"><label>나의 문의사항</label>
+				<input type="checkbox" id="answer" name="answer" value="Y" />
+				<span>답변 완료만 보기</span>
 				<input type="button" name="deleteMsg" value="삭제" class="btn_del"/>
 				<div class="myBoardMainDiv">
 		     		<div>
 		     			<div >
-		     				<ul id="sendBoxTitle" class="listTitle">
-		     					<li><input type="checkbox" id="chkAll2"/></li>
+		     				<ul id="qnaListTitle" class="listTitle">
+		     					<li><input type="checkbox" id="chkAll"/></li>
 				     			<li>답변상태</li>
 				     			<li>문의유형</li>
 				     			<li>제목</li>
 				     			<li>등록일</li>
 		     				</ul>
-		     				<ul id="messageList2" class="list"></ul>
+		     				<ul id="qnaList" class="list"></ul>
 						</div>
-						<div id="paging2" class="paging"></div>
+						<div id="paging" class="paging"></div>
 					</div>
 				</div>
 			</div>
@@ -85,71 +90,64 @@
 	</div>
 </div>
 <script>
-var messageBox = 1;
+var board = 1;
 var nowPage = 1;
 
 $(function(){
-	// 1. 페이징	
-	movePage(nowPage);
 	// 2. 리스트 불러오기
-	$("input[name=messageBox]").on('change', function(){
-		$("#read"+messageBox).prop("checked", false);
-		messageBox = $("input[name=messageBox]:checked").val();
-		
-		if(messageBox != 4){
-			movePage(1);
+	$("input[name=board]").on('change', function(){
+		if($("input[name=board]:checked").val() == 2){
+			movePage(nowPage);	
 		}
 	});
 	
-	$("input[name=read]").on('change', function(){
-		movePage(1);
-	});
-	
-	$("#chkAll"+messageBox).on('change', function(){
-		if($(this).prop("checked")){
-			$("#messageList"+messageBox+" input[type=checkbox]").prop("checked", true);
+	$("#qnaInsert").submit(function(){
+		
+		if($("#subject").val() ==""){
+			toast("제목을 입력하세요.", 1500);
+			return false;
 		}
 		
-		if(!($(this).prop("checked"))){
-			$("#messageList"+messageBox+" input[type=checkbox]").prop("checked", false);
+		if($("#content").val() ==""){
+			toast("내용을 입력하세요.", 1500);
+			return false;
 		}
-	});
-	
-	$("input[name=deleteMsg]").on('click', function(){
 		
-		$("#messageList"+messageBox+" input[type=checkbox]").each(function(){
-			if($(this).prop("checked")){
-				deleteMsg($(this).val());				
-			};
+		var data = $("#qnaInsert").serialize();
+		
+		console.log(data);
+	
+		$.ajax({
+			url : "/home/insertQna",
+			data : data,
+			success : function(result){
+				if(result == 1){
+					toast("문의가 완료되었습니다.", 1500);
+				}else{
+					toast("문의 오류입니다. 다시 시도해주십시오.",1500);
+				}
+			},error : function(err){
+				console.log(err);
+			}
 		});
+		return false;
 	});
 	
-	$("input[name=readMsg]").on('click', function(){
-		
-		$("#messageList"+messageBox+" input[type=checkbox]").each(function(){
-			if($(this).prop("checked")){
-				readMsg($(this).val());				
-			};
-		});
-	});
 });
 
 function movePage(page){
 	
 	nowPage = page;
-	$("#chkAll"+messageBox).prop("checked", false);
-	
-	var data = "nowPage="+page+"&messageBox="+messageBox;
-	if($("#read"+messageBox).prop("checked")){
-		data+= "&read="+"F";
+	var data = "nowPage="+page;
+	if($("#answer").prop("checked")){
+		data+= "&answer="+"Y";
 	}
 	
 	$.ajax({
-		url : "/home/noticePaging",
+		url : "/home/qnaPaging",
 		data : data,
 		success : function(result){
-			console.log(result);
-			setPaging(result);
+			setPaging(result);	
 		},error : function(err){
 			console.log(err);
 		}			
@@ -175,26 +173,25 @@ function setPaging(result){
 		}
 		if(result.nowPage != result.totalPage){
 			tag += "<li onclick='movePage("+(result.nowPage+1)+")'>Next</li>";
-		}
-		
+		}		
 		getList(result.nowPage);
 	}else {
 		tag +="<li>검색 결과가 없습니다.</li></ul>";
 		$("#messageList"+messageBox).children().remove();
 	}
-	
-	$("#paging"+messageBox).html(tag);
+	$("#paging").html(tag);
 }
 
 function getList(page){
 	
-	var data = "nowPage="+page+"&messageBox="+messageBox;
-	if($("#read"+messageBox).prop("checked")){
-		data+= "&read="+"F";
+	var data = "nowPage="+page;
+	if($("#answer").prop("checked")){
+		data+= "&answer=Y";
 	}
 	
+	return false;
 	$.ajax({
-		url : "/home/selectMessage",
+		url : "/home/selectQna",
 		data : data,
 		success : function(result){
 			if(result != null){
