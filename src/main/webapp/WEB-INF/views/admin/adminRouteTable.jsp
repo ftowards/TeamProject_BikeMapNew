@@ -47,8 +47,7 @@ function makeRouteTable(result){
 	<!-- Page Content -->
 	<div class="adminContent">	
 				<div id="adminTable">
-				<h1 class="adminListHead">루트게시판</h1>
-				
+				<h1 class="adminListHead">루트게시판</h1>				
 				<div class="orderRadio">
 					<input type="radio" name="order" id="orderNoboard" value="noboard" checked="checked"><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar"> | </span>
 					<input type="radio" name="order" id="orderRating" value="rating"><label for="orderRating" class="subTxt">평점순</label>
@@ -72,30 +71,29 @@ function makeRouteTable(result){
 							<li>${vo.rating}</li>
 							<li>${vo.ratecnt }</li>
 							<li>${vo.region}</li>
-							<li>
+							<li>								
+								<label class="switch">
 								<c:if test="${vo.closed==null||vo.closed=='F'}">
-									공개
+									  <input type="checkbox" name="adminHideBtn" value="${vo.noboard }">				
 								</c:if>
 								<c:if test="${vo.closed=='T'}">
-									비공개
+									  <input type="checkbox" name="adminHideReleaseBtn" value="${vo.noboard }" checked="checked" >							
 								</c:if>
+								 <span class="slider round"></span>
+								</label>							
+								<input type="hidden" class="userid" value="${vo.userid }"/>
 							</li>
-							<li>
+							<li>	
+								<label class="switch">
 								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
-									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">
-									  <span class="slider round"></span>
-									</label>							
-									<input type="hidden" class="userid" value="${vo.userid }"/>
+									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">				
 								</c:if>
 								<c:if test="${vo.scrap=='T'}">
-									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >
-									  <span class="slider round"></span>
-									</label>
-									<input type="hidden" class="userid" value="${vo.userid }"/>
-									
+									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >							
 								</c:if>
+								 <span class="slider round"></span>
+								</label>							
+								<input type="hidden" class="userid" value="${vo.userid }"/>
 							</li>
 					</c:forEach>
 				</ul>
@@ -104,8 +102,7 @@ function makeRouteTable(result){
 				<!-- paging -->
 			 
 			<div id="paging">
-					<ul>
-					
+					<ul>				
 						<c:if test="${pagingVO.nowPage != 1 }">
 							<li><a href="javascript:movePage(${pagingVO.nowPage-1 })"> Prev </a></li>
 						</c:if>
