@@ -242,27 +242,32 @@
 	#content2{
 		width:1200px;
 		height:820px;
+		
 	}
 	.thumbnail2{
 		width:250px;
 		height:250px;
 		border-radius:5px;
+		
 	}
 	#contentDiv{
 		float:left;
 		margin-right:5px;
+		
 	}
 	.contentDiv{
 		float:left;
 		width:250px;
 		text-align:center;
 		margin : 0 25px 50px 25px;
+		
 	}
 	.map{
 		width : 265px;
 		height : 250px;
 		margin : 0 auto;
 		border-radius:5px;
+		box-shadow: 3px 3px 5px 3px rgb(180,180,180);
 	}
 	
 	.routeSubscript{
