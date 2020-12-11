@@ -190,7 +190,7 @@
 			
 			listTag +="<li class='recommendReview'>";
 			listTag +="<div class='thumbnailImage' style='background-image:url("+val.thumbnailImg+")'/></div>";
-			listTag +="<ul class='reviewSubscription'><li>"+val.subject+"</li><li>"+val.userid+"</li><li>추천 수:"+val.thumbUp+"</li></ul></li>"
+			listTag +="<ul class='reviewSubscription'><li>"+val.subject+"</li><li>"+val.userid+"</li><li>추천 수:"+val.thumbup+"</li></ul></li>"
 			
 		});
 		

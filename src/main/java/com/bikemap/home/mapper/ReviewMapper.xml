@@ -9,7 +9,7 @@
 	<select id = "reviewAllRecord" parameterType="com.bikemap.home.review.ReviewPagingVO" resultType="com.bikemap.home.review.ReviewVO">
 		select * from 
 			(select * from 
-				(select noboard, subject, userid, content, reference, hit, to_char(writedate, 'YYYY-MM-DD HH24:MI') writedate, thumbup
+				(select noboard, subject, userid, content, reference, hit, to_char(writedate, 'YY-MM-DD HH24:MI') writedate, thumbup, thumbdown
 				 from review 
 				<if test='searchWord neq null and searchWord neq ""'> 
  					where ${searchType} like '%'||#{searchWord}||'%'
@@ -21,7 +21,7 @@
 
 <!--레코드 한 개 선택 - 글 보기 -->
 	<select id ="reviewSelect" parameterType= "int" resultType="com.bikemap.home.review.ReviewVO">
-		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD HH:MI') writedate, hit 
+		select noboard, subject, userid, content, reference, to_char(writedate, 'YY-MM-DD HH:MI') writedate, hit 
 			from review where noboard=#{noboard}
 	</select>
 	
