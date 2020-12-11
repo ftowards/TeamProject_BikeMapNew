@@ -126,26 +126,36 @@
 </head>
 	<body>
 		<div class="registerMainDiv">
-			<form id="loginForm" class='loginPopupForm'>
-				<ul>
-					<li style="height:100px;width:20%; padding-left:25px;">
-						ID<br/>
-						PASSWORD	
-					</li>
-					<li style='height:100px; width : 45%;'>
-						<input type="text" name="userid" id="userid" style='width:200px; height:25px;'/>
-						<input type="password" name="userpwd" id="userpwd" style='width:200px; height:25px;'/>
-					</li>
-					<li style='height:100px; width : 20%;'>
-						<input type="submit" class="mint_Btn" value="로그인"/>
-					</li>
-				</ul>	
-			</form>
-			<div style="text-align:center; margin : 15px;">
-				<span  class="white_Btn"><a href='/home/registFindInfo' target="_blank">아이디/비밀번호 찾기</a></span>
-				<span class='centerBar'>|</span>
-				<span  class="white_Btn"><a href='/home/registerForm' target="_blank">회원가입</a></span>
-			</div>
+	<div id="bikeDiv">
+		<div id="bikeDiv1">
+			<a href="<%=request.getContextPath()%>/">
+				<img src="<%=request.getContextPath() %>/img/img_logo/bikemapLogo12.png"/>
+			</a>
 		</div>
+	</div>
+	<form id="loginForm">
+	<div id="loginDiv2">
+		<div id="useridDiv">
+			<span class="loginLabel">ID</span>
+			<input type="text" name="userid" id="userid"/></div>
+
+				<div id="loginBtnDiv">
+					<input type="submit" class="RegisterMint_Btn" value="로그인"/>
+				</div>
+		<div id="userPwdDiv">
+			<span class="loginLabel" style='margin-right:30px'>PASSWORD</span>
+			<input type="password" name="userpwd" id="userpwd"/>
+		</div>
+	</div>	
+	</form>
+	
+	<div id="find_Info">
+		아이디, 비밀번호를 잊어버리셨나요?&nbsp;
+		<input type="button" value="아이디/비밀번호 찾기" onclick="location.href='/home/registFindInfo'" class="RegisterWhite_Btn"/>
+		<span id="text1">|</span>
+		아직 회원이 아니신가요?&nbsp;
+		<input type="button" value="회원가입" onclick="location.href='/home/registerForm'" class="RegisterWhite_Btn"/>
+	</div>
+</div> 
 	</body>
 </html>

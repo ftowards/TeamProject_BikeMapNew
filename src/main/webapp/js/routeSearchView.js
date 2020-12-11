@@ -143,7 +143,7 @@ $(function(){
 			return false;
 		}
 	
- 		window.open("/home/routeCollect","Bikemap","width=400px, height=200px, left =300px, top=300px");
+ 		window.open("/home/routeCollect","Bikemap","width=600px, height=230px, left =300px, top=300px");
  	});
  	
  	$("#recruitment").on('click', function(){
