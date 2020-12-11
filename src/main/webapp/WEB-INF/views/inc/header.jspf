@@ -22,7 +22,7 @@
 	<div>
 		<div class="logo_Header">
 			<a href="<%=request.getContextPath()%>/">
-				<img src="<%=request.getContextPath() %>/img/img_logo/bikemapLogo2.png"/>
+				<img src="<%=request.getContextPath() %>/img/img_logo/bikemap.png"/>
 			</a>
 		</div>
 		<div class="headerLineDiv"></div>
