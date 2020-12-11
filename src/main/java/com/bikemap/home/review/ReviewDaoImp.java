@@ -41,5 +41,5 @@ public interface ReviewDaoImp {
 	
 	// 리뷰 평가한 기록 남기기
 	public int insertReviewrate(ReviewVO vo);
-	
+
 }

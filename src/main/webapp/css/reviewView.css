@@ -30,7 +30,7 @@
 	}
 		
 	.reviewBody{
-		width:1200px; 
+		width:1000px; 
 		margin : 0 auto;
 	}
 	
@@ -400,6 +400,7 @@
 	}
 	
 	.contentUpper{
+	    width: 1000px;
 		height : auto;
 		overflow : auto;
 		margin-bottom : 20px;

@@ -25,7 +25,7 @@ function makeReviewlist(result){
 			
 			listTag +=	"<ul>";
 			listTag +=	"<li class='wordCut'>";
-			listTag +=	"<a href='/home/reviewView?noboard="+result[i].noboard+"'>";
+			listTag +=	"<a class='subject_title' href='/home/reviewView?noboard="+result[i].noboard+"'>";
 			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
 			listTag +=	"</a>";
 			listTag +=	"<li class='subject_Hitcount'>";
@@ -103,7 +103,8 @@ function movePage(page){
 	var 
 		data = $("#searchReview").serialize();
 		data = "nowPage="+page+"&searchType="+$("#searchTypeReview").val()+"&searchWord="+$("#searchBarReview").val();
-		data += "&order="+$("input[name=order]:checked").val();
+		//수리중........
+// 		data += "&order="+$("input[name=order]:checked").val();
 		
 	$.ajax({
 		url : url,
@@ -202,8 +203,8 @@ $(function(){
 		<div class= "reviewtitle">
 			<div class="title">후기 게시판</div><br><br>
 			<div class="orderRadio">
-				<input type ="radio" name="order" id="orderNobard" value="noboard" checked/><label for="orderNobard" class="subTxt">최신순</label><span id="lBar">&ensp;|&ensp;</span>
-				<input type ="radio" name="order" id="orderHit" value="hit"/><label for="orderRating" class="subTxt">추천순</label>
+				<input type="radio"  name="order" id="orderDesc" value="desc" checked/>
+				<label for="orderDesc" class="orderBtn">최신순</label>&ensp;|&ensp;<input type="radio" name="order" id="orderAsc" value="asc" /><label for="orderAsc" class="orderBtn">조회수</label>
 				<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'" style='float:right; margin:0 25px 10px 0;'>
 			</div>
 		</div><br/>
@@ -228,13 +229,12 @@ $(function(){
 						
 							<div id="subtitle">
 								<ul>
-
-									<li class="subject_Hitcount">조회수 ${vo.hit}</li>
 									<li class="wordCut">
 										<a class="subject_title" href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
 											${vo.noboard }&emsp;<span>${vo.subject }</span>
 										</a>
 									</li>
+									<li class="subject_Hitcount">조회수 ${vo.hit}</li>
 								</ul>
 							</div>
 							

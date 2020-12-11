@@ -47,13 +47,7 @@
 	<update id="hitCount" parameterType="int">
 		update review set hit = hit+1 where noboard=#{param1}
 	</update>
- <!-- 추천 -->
-<!--  	<update id="thumUp" parameterType="int"> -->
-<!--  		update review set thumbUp = thumbUp+1 where noboard=#{noboard} -->
-<!--  	</update> -->
- 
- <!-- 비추천 -->	
- 	
+
  	
  <!-- 페이징 전체 레코드 -->
  	<select id="searchTotalRecord" resultType="int" parameterType="com.bikemap.home.review.ReviewPagingVO">
