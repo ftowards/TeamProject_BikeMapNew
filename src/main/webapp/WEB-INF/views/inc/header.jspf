@@ -22,9 +22,10 @@
 	<div>
 		<div class="logo_Header">
 			<a href="<%=request.getContextPath()%>/">
-				<img src="<%=request.getContextPath() %>/img/img_logo/logo_main.png"/>
+				<img src="<%=request.getContextPath() %>/img/img_logo/bikemapLogo2.png"/>
 			</a>
 		</div>
+		<div class="headerLineDiv"></div>
 		<div class="navbar navbar-inverse" style="z-index:800; margin-bottom:0;	border-radius:0">
 		        <div class="container-fluid">
 		            <div class="row">

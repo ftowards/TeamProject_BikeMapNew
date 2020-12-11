@@ -205,4 +205,5 @@ public SqlSession sqlSession ;
 	public String userQandAView() {
 		return "message/userQandAView";
 	}
+
 }
