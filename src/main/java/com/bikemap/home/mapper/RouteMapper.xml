@@ -66,7 +66,7 @@
 		where rownum <![CDATA[<=]]> #{lastPageRecordCount} order by ${order} desc
 	</select>
 	<select id="checkRateAlready" resultType="int" parameterType="com.bikemap.home.route.RouteVO">
-		select count(userid) from routerate where noboard = #{noboard}
+		select count(userid) from routerate where noboard = #{noboard} and userid = #{userid}
 	</select>
 	<update id="ratingRoute" parameterType="com.bikemap.home.route.RouteVO">
 		update route SET rating = ((rating * ratecnt)+ #{rating})/(ratecnt+1) , ratecnt = ratecnt +1  where noboard = #{noboard}

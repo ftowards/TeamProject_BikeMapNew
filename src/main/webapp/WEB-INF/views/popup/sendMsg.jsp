@@ -180,6 +180,8 @@ function sendMsg(){
 				toast("쪽지가 발송되었습니다.",1500);
 				$("#userid").val("");
 				$("#message").val("");
+			}else{
+				toast("쪽지 발송 실패입니다.<br/>받는 사람 아이디를 확인하세요.",1500);				
 			}
 		},error : function(err){
 			console.log(err);
@@ -216,8 +218,8 @@ function toast(msg, time) {
 	
 		<li>	
 			<div>
-				<textarea id="message" rows='10' cols='50' maxlength='200'style="resize:none" ></textarea>
-				<div class="textCntDiv"><span id="cntSPAN" style="padding-right:10px;">0</span>&nbsp;/400</div>
+				<textarea id="message" rows='10' cols='50' style="resize:none" ></textarea>
+				<div class="textCntDiv"><span id="cntSPAN" style="padding-right:10px;">0</span>&nbsp;/250</div>
 			</div>
 		</li>
 		

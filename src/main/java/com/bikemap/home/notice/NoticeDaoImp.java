@@ -17,6 +17,9 @@ public interface NoticeDaoImp {
 	public int readMessage(int nonotice); 
 	
 	// 메세지 삭제
-	public int deleteMessage(int nonotice); 
+	public int deleteMessage(int nonotice);
+	
+	// 메세지 내용 불러오기
+	public NoticeVO messageView(NoticeVO vo);
 
 }

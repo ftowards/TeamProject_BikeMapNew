@@ -199,8 +199,10 @@ function goList(){
 				<input type="hidden" id="geocode" value="${routeVO.geocode }"/><br/>
 				<div class="title">코스평점</div>
 				<div>
-					<img src="<%=request.getContextPath() %>/img/img_main/star.png" style="width:185px; padding-left:7%;"/>
-					<label id="starLbl">${routeVO.rating }</label><span style='color:gray'>(참여 ${routeVO.ratecnt })</span>
+					<ul class="starRatingGroup">
+						<li><span class='star-rating'><span id="rating" title="${routeVO.rating }"></span></span></li>
+						<li><label id="starLbl">${routeVO.rating }</label><span style='color:gray'>(참여 ${routeVO.ratecnt })</span></li>
+					</ul>
 				</div>
 				<div class="course_Info">
 					<p>코스정보</p>
