@@ -216,18 +216,18 @@ function goList(){
 		<div class="timeConditionDiv2">	
 			<div><label class="tourWriteConditionTitle">여&nbsp;행</label></div>		
 				<div class="conditionDivTop2">
-					<div><label class="labelClass" style='position:relative; top:2px; right:10px; color:#ce0000;'>거&nbsp;리</label></div>
-					<div><label class="conditionBox" id="distance" style='top:12px; right:18px; color:#ce0000;'>${vo.distance}&nbsp;&nbsp;</label></div>
+					<div><label class="labelClass" style='position:relative; top:1px; right:10px; color:#ce0000;'>거&nbsp;리</label></div>
+					<div><label class="conditionBox" id="distance" style='top:11px; right:18px; color:#ce0000;'>${vo.distance}&nbsp;&nbsp;</label></div>
 						<label class="kmLbl1">km</label>
 					<div><label class="labelClass2" style="margin:-50px 0 0 203px;">소요시간</label></div>
-					<div><label style="position:relative; top:-40px; left:297px;" id="tourtime" class="conditionBox"></label></div>
+					<div><label style="position:relative; top:-41px; left:297px;" id="tourtime" class="conditionBox"></label></div>
 				</div>	
 				<div class="conditionDivTop">
-					<div><label  class="labelClass2" style='position:relative; top:18px; right:10px;'>속&nbsp;도</label></div>
-					<div><label  class="conditionBox" id="speed" style='position:relative; top:27px; right:9px;'>${vo.speed }</label></div>
+					<div><label  class="labelClass2" style='position:relative; top:8px; right:10px;'>속&nbsp;도</label></div>
+					<div><label  class="conditionBox" id="speed" style='position:relative; top:17px; right:9px;'>${vo.speed }</label></div>
 						<label class="kmLbl2">km</label>
-					<div><label  class="labelClass2" style="margin:-35px 0 0 172px;">비&nbsp;용</label></div>
-					<div><label style="position:relative; left:280px; top:-25px;" class="conditionBox">${vo.budget }</label></div>
+					<div><label  class="labelClass2" style="margin:-35px 0 0 172px; position:relative; bottom:10px;">비&nbsp;용</label></div>
+					<div><label style="position:relative; left:280px; top:-35px;" class="conditionBox">${vo.budget }</label></div>
 						<label class="wonLbl">원</label>	
 				</div>	
 		</div>
@@ -237,7 +237,7 @@ function goList(){
 					<div><label class="labelClass" style='position:relative; right:18px'>인&nbsp;원</label></div>
 					<div><label id="room" style="position: relative; right: 28px;">${vo.room }</label></div>
 	
-					<div><label class="labelClass" style="margin-left:-30px;">성&nbsp;별</label></div>
+					<div><label class="labelClass" style="margin-left:-30px; position:relative; left:8px;">성&nbsp;별</label></div>
 					<div><label id="whole">전&nbsp;체</label></div>
 					<div><label id="genderboy" class='reggender' <c:if test='${vo.genderM }'>title="on"</c:if>>남</label></div>
 					<div><label id="gendergirl" class='reggender' <c:if test='${vo.genderF }'>title="on"</c:if>>여</label></div>
@@ -247,12 +247,12 @@ function goList(){
 					<div><label class="labelClass" style='position:relative; right:18px'>나&nbsp;이</label></div>
 					<div><label id="whole2">전&nbsp;체</label></div>
 					<div><label id="regageten" class='regage' <c:if test='${vo.age10 }'>title="on"</c:if>>10대</label></div>
-					<div><label id="regagetwenty" class='regage' <c:if test='${vo.age20 }'>title="on"</c:if>>20대</label></div>
-					<div><label id="regagethirty" class='regage' <c:if test='${vo.age30 }'>title="on"</c:if>>30대</label></div>
+					<div><label id="regagetwenty" class='regage' style='position:relative; left:14px;' <c:if test='${vo.age20 }'>title="on"</c:if>>20대</label></div>
+					<div><label id="regagethirty" class='regage' style='left: 86px; position:relative; top:10px;' <c:if test='${vo.age30 }'>title="on"</c:if>>30대</label></div>
 				</div>
 				<div class="conditionDivBottom">	
-					<div><label id="regageforty" class='regage' <c:if test='${vo.age40 }'>title="on"</c:if>>40대</label></div>
-					<div><label id="regagefiftyOver" class='regage' <c:if test='${vo.age50 }'>title="on"</c:if> style="width:100px">50대 이상</label></div>					
+					<div><label id="regageforty" class='regage' style='position:relative; left:75px;' <c:if test='${vo.age40 }'>title="on"</c:if>>40대</label></div>
+					<div><label id="regagefiftyOver" class='regage' style='position:relative; left:89px; width:90px;' <c:if test='${vo.age50 }'>title="on"</c:if> style="width:100px">50대 이상</label></div>					
 				</div>
 		</div>
 	</div>			
