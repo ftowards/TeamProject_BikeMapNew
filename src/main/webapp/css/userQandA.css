@@ -173,6 +173,16 @@
 							font-size:14px;
 	
 	}
+	.qAndaSubjectBoxView,.qAndaSubjectBoxView,.qAndaSubjectBoxView{
+							border-radius:10px;
+							margin-left:20px;
+							box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+							border:none;
+							line-height:25px;
+							font-size:14px;
+							width:
+	
+	}
 	.qAndaTypeDiv select{
 						
 							border-radius:10px;
@@ -183,6 +193,19 @@
 							border:none;
 							line-height:45px;
 							font-size:14px;
+	
+	
+	}
+	.qAndaTypeBox1{
+							border-radius:10px;
+							height:30px;
+							width:150px;
+							margin-left:20px;
+							padding:5px 0 0 10px;
+							box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+							border:none;
+							font-size:14px;
+							
 	
 	
 	}
@@ -266,6 +289,7 @@
 						box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 						width:600px;
 						border:none;
+						height:100%;
 	
 	}
 	.paging{

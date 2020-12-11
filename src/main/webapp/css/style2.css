@@ -27,7 +27,7 @@ body{
 		 
 		float:left;
 	}
-	
+
 	.locationSearchDiv{
 		background-color:#273137;
 		width : 100%;
@@ -183,9 +183,9 @@ body{
 			margin-bottom:0px;
 	}
 	.navTxt{
-		font-size:19px;
+		font-size:23px;
 		letter-spacing:1px;
-		margin-left:70px;
+		margin-left:65px;
 	}
 	.container{
 		margin:0;
@@ -274,7 +274,7 @@ body{
 		bottom:45px;
 	}
 	.userMenu a{
-		font-size:17px;
+		font-size:25px;
 		color:black;
 		text-decoration:none;
 	}
