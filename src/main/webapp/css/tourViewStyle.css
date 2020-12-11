@@ -5,15 +5,20 @@
 		
 		font-family: 'Nanum Gothic', sans-serif;
 	}
+	p{
+		width: 780px;
+	    line-height: 27px;
+	    margin: 5px 0 0px 0;
+	}
 	.mainDivTourView{
 				width:1200px; 
 				margin:0 auto;
 				padding-top:130px;		
 	}
 	#tourViewFormTitleDiv{
-							width:55%;
+							width:88%;
 							float:left;
-							height:115px;
+							height:140px;
 							margin-top:50px;	
 	}
 	.timeConditionDiv{
@@ -22,44 +27,42 @@
 					 	width:415px;
 					 	height:305px;
 					 	float:left;
-						margin-left:40px;
+						margin:65px 0 0 40px;
 						box-shadow: 2px 2px 4px 2px rgb(171 171 171);	
 						
 	
 	}
+
 	.tourViewEdit,.tourViewDelete{
+					width:6%;
+					position:relative;
+					left:1061px;
 					float:left;
-					width:50%;
 					border:none;
 					background-color:transparent;
 					font-weight:bold;
-					color:rgb(156,156,156);
+					color:rgb(49 48 113);
 				
 					
 	
 	}
 	.tourViewEditAndDeleteDiv a:hover,.tourViewEditAndDeleteDiv a:link,.tourViewEditAndDeleteDiv a:visited{
 							text-decoration:none;
-							color:rgb(156,156,156);
 	}
 	
 
 	.tourViewEditAndDeleteDiv{
-								width:45%;
-								padding-top:40px;
-								height:115px;
-								float:left;
-								padding-left:450px;
-								margin-top:50px;
+								position:relative;
+								text-align:right;
 	}
 	.tourViewEditAndDeleteDiv a, .tourViewDelete{
-								font-size:17px;
+								font-size:19px;
 	}
 	.timeConditionDiv2{
 					 	border-radius:15px;
 					 	background-color:#fff;
 					 	width:415px;
-					 	height:170px;
+					 	height:190px;
 					 	float:left;
 					 	margin-bottom:40px;
 						box-shadow: 2px 2px 4px 2px rgb(171 171 171);		
@@ -68,7 +71,7 @@
 	.timeConditionDiv3{
 						border-radius:15px;
 					 	width:415px;
-					 	height:250px;
+					 	height:267px;
 					 	float:left;
 					 	margin-bottom:30px;
 						box-shadow: 2px 2px 4px 2px rgb(171 171 171);	
@@ -88,12 +91,15 @@
 								padding-top:5px;
 								text-align:center;
 								border-radius:8px;
-								width:110px;
-								height:35px;
-								font-size:20px;
+								width:115px;
+								height:37px;
+								font-size:19px;
 								color:#fff;
 								float:left;	
 								margin:-15px 0 0 40px;
+								letter-spacing: 3px;
+								text-shadow: 1px 1px 2px #003042;
+								border: 2px solid #00b0b0;
 								background: linear-gradient(#0b8a8a, #00b0b0);
 								
 	}
@@ -149,14 +155,15 @@
 	    float: left;
 	    border:none;
 	    font-size: 20px;
-	    color: #005766;
-		margin:30px 0 0 30px;
-	    background-color:white;
-	    text-shadow: 2px 2px 6px #8EC7D0;
+	    color: #660000;
+	    margin: 48px 0 10px 31px;
+	    background-color: white;
+	    text-shadow: 2px 2px 6px #dca0c5;
 	}
 	
 	
 	.blue_arrow{
+		font-size:17px;
 		-webkit-animation:blink 0.5s ease-in-out infinite alternate;
 	    animation:blink 0.5s ease-in-out infinite alternate;
 	}
@@ -172,27 +179,46 @@
 	
 	
 	
-	.labelClass,#departure,#arrive,.labelClass2,#deadline,#place,.labelUseridClass{	
-																				margin-right: 12px;
-																				padding-top:7px;
-																				text-align:right;
-																				border:none;
-																				border-radius:10px;
-																				width:70px;
-																				height:35px;
-																			
-																				font-size:17px;
-																				font-weight:bold;
-																				color:black;
-																				float:left;
-							
+	#departure,#arrive,#deadline{	
+				margin-right: 10px;
 			}
+	.labelClass,.labelClass2,#place,.labelUseridClass{
+				margin-right: 23px;
+	}
+	
+	.labelClass, .labelClass > label, .labelClass2{	
+			font-size:18px;
+			letter-spacing:2px;
+			padding-top:7px;
+			text-align:right;
+			border:none;
+			border-radius:10px;
+			width:77px;
+			height:35px;
+			font-weight:bold;
+			color:black;
+			float:left;
+	}
+	
+	#departure,#arrive,#deadline,#place,.labelUseridClass{	
+																	padding-top:7px;
+																	text-align:right;
+																	border:none;
+																	border-radius:10px;
+																	width:70px;
+																	height:35px;
+																			
+																	font-size:17px;
+																	font-weight:bold;
+																	color:black;
+																	float:left;
+		}
 			
 			
 	.conditionDivTop{
 					 	width:384px;
 						height:50px;
-						margin:18px 0 0 20px;
+						margin:14px 0 0 20px;
 						float:left;
 				}
 				
@@ -215,19 +241,23 @@
 
 				
 	#departure,#arrive,#deadline{	
-							padding-top:7px;	
-							width:140px;
+							padding-top:9px;	
+							width:160px;
+							height:42px;
 							background-color:#efefef;
 							color:rgb(90,90,90);
 							text-align: center;
+							letter-spacing: 1px;
 	}
 	#place{	
-							padding-top:7px;	
-							width:240px;
+							padding-top:9px;	
+							width:255px;
+							height:42px;
 							background-color:#fff;
 							color:rgb(90,90,90);
 							text-align: center;
 							background-color:#efefef;
+							letter-spacing: 2px;
 	}
 	
 	#label1{
@@ -237,7 +267,7 @@
 			font-size:15px;
 	}
 	#arrive{
-				margin-left:82px;
+				margin-left:100px;
 				
 				}
 
@@ -249,7 +279,7 @@
 					border-radius:8px;
 					width:55px;
 					height:35px;
-					background-color:#fff;
+					background-color:#efefef;
 					font-size:15px;
 					font-weight:bold;
 					color:rgb(90,90,90);
@@ -271,7 +301,7 @@
 																													border-radius:10px;
 																													width:70px;
 																													height:35px;
-																													background-color:#fff;
+																													background-color:#efefef;
 																													font-size:15px;
 																													font-weight:bold;
 																													color:rgb(90,90,90);
@@ -338,7 +368,7 @@
 	#tourWriteTitleEdit{
 						width:500px;
 						height:35px;
-						margin-bottom:20px;
+						margin-bottom:32px;
 						border-radius:10px;
 						box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 						border:none;
@@ -385,10 +415,11 @@
 	}
 	
 	#tourWriteTitle{
-						width:500px;
-						height:35px;
+						width:80%;
+						height:80%;
 						margin-bottom:20px;
 						font-size:35px;
+						padding-left:38px;
 					
 	}
 	#content{
@@ -401,9 +432,18 @@
 			  box-shadow: 2px 2px 4px 2px rgb(171 171 171);
 			  font-size:15px;
 			  width:840px;
-			  height: 67px;
+			  height: 110px;
 			  margin-bottom:20px;
 	}
+	
+	.tourContentTxt{
+		position:relative;
+		right: -29px;
+   		bottom: 34px;
+    	font-weight: bold;
+    	font-size: 17px;
+	}
+	
 
 	#writebuttonDiv{
 					width:250px;
@@ -469,9 +509,11 @@
 	}	
 	#departureTime,#departureMinutes,#deadlineTime,#arriveTime,#arriveMinutes{
 										width:70px;
-										height:35px;
-										margin:0 0px 0 20px;
-										background-color:#efefef;	
+										height:42px;
+										padding-top:9px;
+										font-size:17.5px;
+										background-color:#efefef;
+										letter-spacing: 1px;
 	
 	}	
 		
@@ -581,7 +623,7 @@
 	
 	#routeMap{
 		width : 670px; 
-		height : 475px;
+		height : 450px;
 		margin : 0 auto;
 	}
 	
