@@ -32,6 +32,19 @@
 	 					margin-top:30px;
 	 
 	 }
+		
+	 textarea:focus {
+	  outline: none;
+	 }
+	 button:focus {
+	    outline: none;
+	 }
+	 input:focus {
+	    outline: none;
+	 }
+	 select:focus{
+	 	outline:none;
+	 }
 	#page-content-wrapper {
 	
 	  width: 100%;
