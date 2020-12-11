@@ -149,17 +149,18 @@ function goList(){
 
 </script>
 <div class="mainDivTourView">
-	<div id="tourViewFormTitleDiv"><label id="tourWriteTitle"><b>${vo.title}</b></label></div>
-	<div class="tourViewEditAndDeleteDiv">
-	
-			<c:choose>
-			<c:when test="${logStatus != null && logStatus != '' && logId == vo.userid}">
-				<c:if test="${vo.state != '2'}">
-					<div><label class="tourViewEdit"><a href="<%=request.getContextPath()%>/tourViewEdit?noboard=${vo.noboard}">수정</a></label></div>
-				</c:if>
-				<div><label class="tourViewDelete">삭제</label></div>
-			</c:when>
-			</c:choose>	
+	<div id="tourViewFormTitleDiv"><label id="tourWriteTitle"><b>${vo.title}</b></label>
+		<div class="tourViewEditAndDeleteDiv">
+		
+				<c:choose>
+				<c:when test="${logStatus != null && logStatus != '' && logId == vo.userid}">
+					<c:if test="${vo.state != '2'}">
+						<div><label class="tourViewEdit"><a href="<%=request.getContextPath()%>/tourViewEdit?noboard=${vo.noboard}">수정</a></label></div>
+					</c:if>
+					<div><label class="tourViewDelete">삭제</label></div>
+				</c:when>
+				</c:choose>	
+		</div>
 	</div>
 	<div id="routeResultDiv" class="routeResultDiv">
 		<input type='hidden' id='reference' value='${vo.reference }'/>
@@ -170,7 +171,7 @@ function goList(){
 					<label>코스 상세보기 <span class="blue_arrow">click!</span>
 						<img src="<%=request.getContextPath() %>/img/img_tour/blue_arrow.png" style='width:20px; padding-top: 8px;'/>
 					</label>
-					<div id="routeTitle" class="conditionBox tourLink"></div>
+					<div id="routeTitle" class="conditionBox tourLink" style="margin-top:3px; font-family: 'Nanum Gothic', sans-serif;"></div>
 				</div>
 				<div>
         			<input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox txtShadow2">
@@ -286,7 +287,9 @@ function goList(){
 	</c:if>	
 		<div class="tourViewWriteFormClass">
 			<div class="tourViewLabelClass"><label>모집내용</label></div>
-			<div><div id="content">${vo.content }</div></div>
+			<div>
+				<div id="content"><img src="<%=request.getContextPath()%>/img/img_tour/bubble.png" style='width:20px;'/><span class='tourContentTxt'>${vo.content }</span></div>
+			</div>
 		</div>
 	</div>	
 	<!-- 참가 인원 확인 창 : 모달 창 만들기 -->
