@@ -133,6 +133,13 @@ public SqlSession sqlSession ;
 	public String userQandA() {
 		return "message/userQandA";
 	}
+	
+	//나의 문의사항 글보기
+	@RequestMapping("/userQandAView")
+	public String userQandAView() {
+		return "message/userQandAView";
+	}
+	
 }
 
 
