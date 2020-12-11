@@ -258,7 +258,7 @@ function goList(){
 	</div>			
 	<div id="writeForm">
 		<div class="tourViewWriteFormClass">
-        	<div style="float:right" ><button class="conditionBox" onclick="javascript:goList()" style="margin-right:70px; padding-top:3px;">목록보기</button></div>
+        	<div style="float:right" ><button class="conditionBox" id="tourlistBtn" onclick="javascript:goList()">목록보기</button></div>
         		<!-- 목록보기 페이징 보내기 -->
         		<form id="pagingVO" method="post" action="/home/tourView" style="display:none">
         			<input type="hidden" name="nowPage" value="${pagingVO.nowPage}"/>
@@ -273,7 +273,7 @@ function goList(){
         		</form>
 		</div>
 		<div class="tourViewWriteFormClass">	
-		<div id="checkComplist" class="roomCheckDivLbl" data-target="#dialog" data-toggle="modal" ><label>참여인원 확인하기</label></div>
+		<div id="checkComplist" class="roomCheckDivLbl" data-target="#dialog" data-toggle="modal" ><img src="<%=request.getContextPath()%>/img/img_tour/roomCheck.png"/>&nbsp;<label>참여 인원 확인하기</label></div>
 		<c:if test="${logId == vo.userid}">
 			<input type="hidden" id="manageConditon" value="ok"/>
 		</c:if>
@@ -286,7 +286,7 @@ function goList(){
 		</div>			 		
 	</c:if>	
 		<div class="tourViewWriteFormClass">
-			<div class="tourViewLabelClass"><label>모집내용</label></div>
+			<div><label style='font-size:15px'>모집 내용</label></div>
 			<div>
 				<div id="content"><img src="<%=request.getContextPath()%>/img/img_tour/bubble.png" style='width:20px;'/><span class='tourContentTxt'>${vo.content }</span></div>
 			</div>
@@ -371,7 +371,7 @@ $(function(){
 	var ageCnt = 0 ;
 	$(".regage").each(function(){
 		if($(this).attr('title') != null){
-			$(this).css('color','white').css('background-color','rgb(0,176,176)');
+			$(this).css('color','#0a9696').css('background','linear-gradient(rgb(205 253 253), rgb(166 234 234))');
 			ageCnt++;
 		}
 		if(ageCnt == 5) {
