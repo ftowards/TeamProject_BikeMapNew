@@ -127,4 +127,18 @@ public SqlSession sqlSession ;
 		}
 		return result;
 	}
+	
+	//1:1문의사항 페이지 이동
+	@RequestMapping("/userQandA")
+	public String userQandA() {
+		return "message/userQandA";
+	}
 }
+
+
+
+
+
+
+
+
