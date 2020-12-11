@@ -74,9 +74,10 @@
 		     			<div >
 		     				<ul id="qnaListTitle" class="listTitle">
 		     					<li><input type="checkbox" id="chkAll"/></li>
-				     			<li>답변상태</li>
+				     			<li>답변</li>
 				     			<li>문의유형</li>
 				     			<li>제목</li>
+				     			<li>문의내용</li>
 				     			<li>등록일</li>
 		     				</ul>
 		     				<ul id="qnaList" class="list"></ul>
@@ -84,6 +85,50 @@
 						<div id="paging" class="paging"></div>
 					</div>
 				</div>
+				
+				<!-- 문의사항 보기 Modal -->
+				<div class="modal modalPosition" id="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+						<!-- header -->
+						<div class="modal-header" style="border:none">
+							<label><img src="<%=request.getContextPath()%>/img/img_admin/QnA.png" style="width:100px"></label>
+							<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
+						</div>
+						<!-- body -->
+						<div id="content" class="modal-body">
+							<div class="qAndaTypeDiv">
+								<ul>
+									<li><div class="qAndaTypeLbl">문의유형</div></li>
+									<li><input type="text" id="modalQnatype" name="modalQnatype" class="qAndaTypeBox1" readonly/></li>
+								</ul>
+							</div>	
+							<div class="subjectQandADiv">	
+								<ul>
+									<li><div class="subjectQandALbl">제&nbsp;목</div></li>
+									<li><input type="text" id="modalSubject" name="modalSubject" class="qAndaSubjectBox" readonly/></li>
+								</ul>	
+							</div>
+							<div class="subjectQandADiv">	
+								<ul>
+									<li><div class="subjectQandALbl">내&nbsp;용</div></li>
+									<li><textarea id="modalContent" name="modalContent" class="qAndaContentBox" rows='10' cols='50' maxlength='250'style="resize:none" readonly></textarea></li>
+								</ul>	
+							</div>	
+							<div class="subjectQandADiv">	
+								<ul>
+									<li><div class="subjectQandALbl">답&nbsp;변</div></li>
+									<li><textarea id="modalAnswercontent" name="modalAnswercontent" class="qAndaContentBox" rows='10' cols='50' maxlength='250'style="resize:none" readonly></textarea></li>
+								</ul>	
+							</div>
+						</div>
+							<!-- footer -->
+							<div class="modal-footer" style="border:none">
+								
+							</div>
+						</div>
+					</div>
+				</div>	
 			</div>
 			
 		</div>
@@ -92,6 +137,7 @@
 <script>
 var board = 1;
 var nowPage = 1;
+var $result ;
 
 $(function(){
 	// 2. 리스트 불러오기
@@ -214,19 +260,38 @@ function getList(page){
 
 function setList(result){
 	var tag ="";
-	var $result = $(result);
+	$result = $(result);
 	
 	// 표 내용
 	$result.each(function(idx, val){			
 		tag += "<li><input type='checkbox' value='"+val.noqna+"'/></li>";
 		
-		tag += "<li>"+val.answer+"</a></li>";
-		tag += "<li>"+val.typename+"</a></li>";
-		tag += "<li class='workcut'>"+val.subject+"</li>";
-		tag += "<li>"+val.writedate+"</li>";
+		tag += "<li onclick='openUp(title)' title='"+val.noqna+"'>"+val.answer+"</a></li>";
+		tag += "<li onclick='openUp(title)' title='"+val.noqna+"'>"+val.typename+"</a></li>";
+		tag += "<li class='wordcut' onclick='openUp(title)' title='"+val.noqna+"'>"+val.subject+"</li>";
+		tag += "<li class='wordcut' onclick='openUp(title)' title='"+val.noqna+"'>"+val.content+"</li>";
+		tag += "<li onclick='openUp(title)' title='"+val.noqna+"'>"+val.writedate+"</li>";
 	});
 		
 	$("#qnaList").html(tag);
+}
+
+function openUp(title){
+	
+	$result.each(function(i, val){
+		if(val.noqna == title){
+			$("#modalQnatype").val(val.typename);
+			$("#modalSubject").val(val.subject);
+			$("#modalContent").val(val.content);
+			
+			if(val.answer == 'Y'){
+				$("#modalAnswerContent").val(val.answercontent);
+			}else{
+				$("#modalAnswercontent").val("답변 전입니다.");
+			}
+		}
+	});
+	$("#dialog").modal('show');
 }
 
 function readMsg(title){
@@ -261,45 +326,5 @@ function deleteMsg(nonotice){
 			console.log(err);
 		}
 	});
-}
-// 메세지 저장하기 ++ 통신으로 메세지 보내기
-function sendMsg(noboard, receiver, type){
-	var receiver = receiver;
-	var sender = $("#logId").val();
-	
-	console.log(receiver);
-	console.log(sender);
-	console.log(type);
-	
-	var noboard = noboard;
-	var msg ="";
-	var socketMsg = "";
-	if(type == 1){
-		msg = "<a href='/home/View?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 승인하였습니다.</a>";
-		socketMsg = "confirm,"+receiver+","+sender+","+noboard;
-	}else if(type == 2){
-		msg = "<a href='/home/View?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 취소처리 하였습니다.</a>";
-		socketMsg = "revert,"+receiver+","+sender+","+noboard;
-	}else if(type == 3){
-		msg = "<a href='/home/View?noboard="+noboard+"'>" + noboard + "번 투어가 불참 처리되었습니다.</a>";
-		socketMsg = "absent,"+receiver+","+sender+","+noboard;
-	}else if(type == 4){
-		msg = "<a href='/home/View?noboard="+noboard+"'>"+ noboard + "번 투어가 완료되었습니다.</a>";
-		socketMsg = "complete,"+receiver+","+sender+","+noboard;
-	}
-	
-	var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
-	
-	$.ajax({
-		url : "/home/insertNotice",
-		data : data,
-		success : function(result){
-			if(result == 1){
-				socket.send(socketMsg);
-			}
-		},error : function(err){
-			console.log(err);
-		}
-	})
 }
 </script>
