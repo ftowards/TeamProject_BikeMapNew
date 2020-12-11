@@ -3,32 +3,35 @@
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
 <script>
 
-// //추천 & 비추천
-
-
-
 
 //글삭제 
-	$(function(){
-		$("#reviewdel").click(function(){
-			if(confirm("삭제하시겠습니까?")){
-				location.href="/home/reviewDel?noboard=${vo.noboard}";	
-			}
-		});
+$(function(){
 		
-		$("#upBtn").on('click', function(){
-			// 이미 평가한 사람인 지 확인
-			chkAlread(1);
-		});
-
-		$("#downBtn").on('click', function(){
-			// 이미 평가한 사람인 지 확인
-			chkAlread(2);
-		});
+	$("#reviewdel").click(function(){
+		if(confirm("삭제하시겠습니까?")){
+			location.href="/home/reviewDel?noboard=${vo.noboard}";	
+		}
 	});
-	
 
-//////평점 주기
+	$("#reviewEdit").click(function(){
+		if(confirm("수정하시겠습니까")){
+			location.href="/home/reviewEdit?noboard=${vo.noboard}";
+		}
+	});
+		
+	$("#upBtn").on('click', function(){
+			// 이미 평가한 사람인 지 확인
+		chkAlread(1);
+	});
+
+	$("#downBtn").on('click', function(){
+			// 이미 평가한 사람인 지 확인
+		chkAlread(2);
+	});
+
+});
+
+//////추천 비추천
 
 function chkAlread(type){
 	// 로그인 상태가 아닐 때 로그인 팝업 띄우기
@@ -108,8 +111,8 @@ function addThumb(type){
 						</li>
 						<li class="btnGroup">
 							<input type="button" value="삭제" id="reviewdel" class="gray_Btn"/>
-							<input type="submit" value="수정" id="revsaveBtn" class="gray_Btn"/>
-							<input type="submit" value="목록" id="revsaveBtn" class="mint_Btn"/>
+							<input type="submit" value="수정" id="reviewEdit" class="gray_Btn"/>
+							<input type="submit" value="목록" id="reviewList" class="mint_Btn"/>
 						</li>
 						
 					</ul>	

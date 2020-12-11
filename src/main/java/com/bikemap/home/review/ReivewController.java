@@ -46,6 +46,7 @@ public class ReivewController {
 	@Autowired
 	DataSourceTransactionManager transactionManager;
 	
+
 	//글쓰기 폼 이동
 	@RequestMapping("/reviewWriteForm")
 	public String ReviewWriteForm() {

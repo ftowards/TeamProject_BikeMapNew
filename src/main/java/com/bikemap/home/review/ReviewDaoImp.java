@@ -47,4 +47,5 @@ public interface ReviewDaoImp {
 	
 	// 리뷰글 관리자 추천 해제하기
 	public int releaseReview(int noboard);
+
 }
