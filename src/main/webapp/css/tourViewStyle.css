@@ -13,7 +13,7 @@
 	.mainDivTourView{
 				width:1200px; 
 				margin:0 auto;
-				padding-top:130px;		
+				padding-top:105px;		
 	}
 	#tourViewFormTitleDiv{
 							width:88%;
@@ -154,16 +154,15 @@
 	    font-weight: bold;
 	    float: left;
 	    border:none;
-	    font-size: 20px;
-	    color: #660000;
-	    margin: 48px 0 10px 31px;
+	    color: #66005e;
+	    margin: 38px 0 11px 24px;
 	    background-color: white;
 	    text-shadow: 2px 2px 6px #dca0c5;
 	}
 	
 	
 	.blue_arrow{
-		font-size:17px;
+		font-size:20px;
 		-webkit-animation:blink 0.5s ease-in-out infinite alternate;
 	    animation:blink 0.5s ease-in-out infinite alternate;
 	}
@@ -175,10 +174,7 @@
 	    0% {color:blue;}
 	    100% {color:#6fafff;}
 	}	
-	
-	
-	
-	
+
 	#departure,#arrive,#deadline{	
 				margin-right: 10px;
 			}
@@ -213,8 +209,18 @@
 																	color:black;
 																	float:left;
 		}
-			
-			
+	
+	
+	/*	여행 탭	*/
+	/* 거리 값 */
+	
+	.conditionBox{
+		position:relative;
+		top:10px;
+		font-size:16px;
+	}
+	
+		
 	.conditionDivTop{
 					 	width:384px;
 						height:50px;
@@ -254,7 +260,7 @@
 							width:255px;
 							height:42px;
 							background-color:#fff;
-							color:rgb(90,90,90);
+							color:rgb(0 36 169);
 							text-align: center;
 							background-color:#efefef;
 							letter-spacing: 2px;
@@ -311,34 +317,28 @@
 	
 	.kmLbl1{
 				position:relative;
-				color:rgb(90,90,90);
+				color:#ce0000;
 				font-size:15px;
 				font-weight:bold;
-				top:7px;
-				left:-32px;
+				top:-15px;
+				left:40px;
 				
 	
 	}
 	.wonLbl{
-				
-				position:relative;
-				color:rgb(90,90,90);
-				font-size:15px;
-				font-weight:bold;
-				top:-18px;
-				left:-23px;
-	
-	
+			    position: relative;
+			    color: rgb(90,90,90);
+			    font-size: 15px;
+			    font-weight: bold;
+			    top: -52px;
+			    left: 342px;
 	}
 	.kmLbl2{
 				position:relative;
 				color:rgb(90,90,90);
 				font-size:15px;
 				font-weight:bold;
-				left:-30px;
-				top:6px;
-			
-	
+				left: 40px;
 	}
 
 	.tourTimeLbl{
