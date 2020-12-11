@@ -216,8 +216,8 @@ function goList(){
 		<div class="timeConditionDiv2">	
 			<div><label class="tourWriteConditionTitle">여&nbsp;행</label></div>		
 				<div class="conditionDivTop2">
-					<div><label class="labelClass" style='position:relative; right:10px; color:#ce0000;'>거&nbsp;리</label></div>
-					<div><label class="conditionBox" id="distance" style='right:9px; color:#ce0000;'>${vo.distance}&nbsp;&nbsp;</label></div>
+					<div><label class="labelClass" style='position:relative; top:2px; right:10px; color:#ce0000;'>거&nbsp;리</label></div>
+					<div><label class="conditionBox" id="distance" style='top:12px; right:18px; color:#ce0000;'>${vo.distance}&nbsp;&nbsp;</label></div>
 						<label class="kmLbl1">km</label>
 					<div><label class="labelClass2" style="margin:-50px 0 0 203px;">소요시간</label></div>
 					<div><label style="position:relative; top:-40px; left:297px;" id="tourtime" class="conditionBox"></label></div>
@@ -234,17 +234,17 @@ function goList(){
 		<div class="timeConditionDiv3">	
 			<div><label class="tourWriteConditionTitle">모집조건</label></div>	
 				<div class="conditionDivTop3">
-					<div><label  class="labelClass">인&nbsp;원</label></div>
-					<div><label id="room" style="text-align-last:center">${vo.room }</label></div>
+					<div><label class="labelClass" style='position:relative; right:18px'>인&nbsp;원</label></div>
+					<div><label id="room" style="position: relative; right: 28px;">${vo.room }</label></div>
 	
-					<div><label class="labelClass" style="margin-left:20px;">성&nbsp;별</label></div>
+					<div><label class="labelClass" style="margin-left:-30px;">성&nbsp;별</label></div>
 					<div><label id="whole">전&nbsp;체</label></div>
 					<div><label id="genderboy" class='reggender' <c:if test='${vo.genderM }'>title="on"</c:if>>남</label></div>
 					<div><label id="gendergirl" class='reggender' <c:if test='${vo.genderF }'>title="on"</c:if>>여</label></div>
 				</div>
 		
 				<div class="conditionDivTop">
-					<div><label class="labelClass">나&nbsp;이</label></div>
+					<div><label class="labelClass" style='position:relative; right:18px'>나&nbsp;이</label></div>
 					<div><label id="whole2">전&nbsp;체</label></div>
 					<div><label id="regageten" class='regage' <c:if test='${vo.age10 }'>title="on"</c:if>>10대</label></div>
 					<div><label id="regagetwenty" class='regage' <c:if test='${vo.age20 }'>title="on"</c:if>>20대</label></div>
