@@ -54,4 +54,7 @@
 	<delete id="deleteMessage">
 		delete from notice where nonotice = #{param1}
 	</delete>
+	<select id="messageView" resultType="com.bikemap.home.notice.NoticeVO" parameterType="com.bikemap.home.notice.NoticeVO">
+		select userid, idsend, msg from notice where nonotice = #{nonotice}
+	</select>
 </mapper>

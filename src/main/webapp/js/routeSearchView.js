@@ -52,6 +52,8 @@
 /////////////////// 기본 데이터 세팅 /////////////////
 $(function(){
 
+	setRatingStar();	
+
 	// 루트 마커 세팅하기 
 	// 마커 지정할 좌표 순서대로 입력
 	var routePosition = [];
@@ -489,6 +491,9 @@ $("#grayBtn").on('click', function(){
   		success : function(result){
   			$("#starLbl").text(result.rating);
   			$("#starLbl").next().text("("+result.ratecnt+")");
+  			$("#rating").attr("title", result.rating);
+  			setRatingStar();
+  			
   		},error : function(){
   			console.log("평점 호출 에러");
   		}
@@ -768,3 +773,7 @@ function sendMsg(noboard, receiver, type){
 	})
 }
 
+function setRatingStar(){
+	var rateWidth =  $("#rating").attr("title")/5 *125;
+	$("#rating").css('width', rateWidth+'px');
+}

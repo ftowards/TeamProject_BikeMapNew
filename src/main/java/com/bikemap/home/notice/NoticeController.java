@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bikemap.home.regist.RegistDaoImp;
+
 @Controller
 public class NoticeController {
 	
@@ -37,8 +39,11 @@ public SqlSession sqlSession ;
 	public int insertNotice(NoticeVO vo) {
 		int result = 0;
 		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
+		RegistDaoImp rDao = sqlSession.getMapper(RegistDaoImp.class);
 		try {
-			result = dao.insertNotice(vo);
+			if(rDao.idDoubleChk(vo.getUserid())>0) {
+				result = dao.insertNotice(vo);
+			}
 		}catch(Exception e) {
 			System.out.println("메세지 입력 에러 " + e.getMessage());
 		}
@@ -128,17 +133,22 @@ public SqlSession sqlSession ;
 		return result;
 	}
 	
+	// 쪽지 크게 읽기
+	@RequestMapping(value = "/messageView")
+	@ResponseBody
+	public NoticeVO messageView(NoticeVO vo) {
+		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
+		try {
+			vo = dao.messageView(vo);
+		}catch(Exception e) {
+			System.out.println("쪽지 내용 불러오기 에러 " + e.getMessage());
+		}
+		return vo;
+
 	//1:1문의사항 페이지 이동
 	@RequestMapping("/userQandA")
 	public String userQandA() {
 		return "message/userQandA";
+
 	}
 }
-
-
-
-
-
-
-
-
