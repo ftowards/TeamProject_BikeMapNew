@@ -41,7 +41,6 @@ function makeTourTable(result){
 	
 	<!-- Page Content -->
 	<div class="adminContent">
-			
 				<div id="adminTable">
 				<h1 class="adminListHead">동행모집게시판</h1>
 					<ul id="tourList">

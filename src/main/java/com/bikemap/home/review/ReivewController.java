@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bikemap.home.notice.NoticeDaoImp;
+import com.bikemap.home.notice.NoticeVO;
+import com.bikemap.home.reply.ReplyDaoImp;
+import com.bikemap.home.reply.ReplyVO;
+import com.bikemap.home.route.RouteDaoImp;
 import com.bikemap.home.route.RouteVO;
 
 
@@ -269,6 +274,36 @@ public class ReivewController {
 		}catch(Exception e) {
 			System.out.println("리뷰 평가 오류 " + e.getMessage());
 			transactionManager.rollback(status);
+		}
+		return result;
+	}
+	// 루트 스크랩
+	@RequestMapping("/scrapReview")
+	@ResponseBody
+	public int scrapReview(int noboard) {
+		int result = 0;
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		
+		try {
+			result = dao.scrapReview(noboard);
+			System.out.println(noboard + " 스크랩 리절트 " + result);
+		}catch(Exception e) {
+			System.out.println("루트 스크랩 에러 " + e.getMessage());
+		}
+		return result;
+	}
+	
+	// 루트 스크랩 해제
+	@RequestMapping("/releaseReview")
+	@ResponseBody
+	public int releaseReview(int noboard) {
+		int result = 0;
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		
+		try {
+			result = dao.releaseReview(noboard);
+		}catch(Exception e) {
+			System.out.println("루트 스크랩 해제 에러 " + e.getMessage());
 		}
 		return result;
 	}
