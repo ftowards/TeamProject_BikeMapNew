@@ -336,24 +336,25 @@
 		line-height : 40px;
 		font-size:15px;
 		text-align : center;
-		width : 10%;
+		width : 18%;
 		float:left; 
 		border-bottom : 1px solid lightgray;
   	}
   	
-  	.listTitle>li:nth-of-type(4n){
-  		width:50%;
+  	.listTitle>li:nth-of-type(5n+4){
+  		width:49%;
 	
   	}
-  	.listTitle>li:nth-of-type(3n){
-  			width:20%;
-  	}
-  	.list>li:nth-of-type(4n){
-			width:50%;
+  	.list>li:nth-of-type(5n+4){
+		width:49%;
   	}
   	
-  	.listTitle>li:nth-of-type(4n+1), .list>li:nth-of-type(4n+1){
-	
+  	.listTitle>li:nth-of-type(5n+1), .list>li:nth-of-type(5n+1){
+		width : 5%
+  	}
+  	
+  	.listTitle>li:nth-of-type(5n+2), .list>li:nth-of-type(5n+2){
+		width : 10%
   	}
   	
   	.list input[type=check]{

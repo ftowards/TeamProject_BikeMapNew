@@ -9,15 +9,14 @@
 	<select id = "reviewAllRecord" parameterType="com.bikemap.home.review.ReviewPagingVO" resultType="com.bikemap.home.review.ReviewVO">
 		select * from 
 			(select * from 
-				(select noboard, subject, userid, content, reference, hit, to_char(writedate, 'YYYY-MM-DD HH24:MI') writedate
+				(select noboard, subject, userid, content, reference, hit, to_char(writedate, 'YYYY-MM-DD HH24:MI') writedate, thumbup
 				 from review 
 				<if test='searchWord neq null and searchWord neq ""'> 
  					where ${searchType} like '%'||#{searchWord}||'%'
 				</if>
-					 order by ${order} desc)
-			 <![CDATA[ where rownum <= (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
-		where rownum <= #{lastPageRecordCount} order by ${order} desc
-				]]> 
+				 order by ${order} desc)
+			 where rownum <![CDATA[ <=]]> (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
+		where rownum <![CDATA[<=]]> #{lastPageRecordCount} order by ${order} desc
 	</select>
 
 <!--레코드 한 개 선택 - 글 보기 -->

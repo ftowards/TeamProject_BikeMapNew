@@ -67,13 +67,13 @@ public class ReivewController {
 				mav.addObject("list", list);
 				mav.addObject("pagingVO", pagingVO);
 				mav.setViewName("review/reviewList");
-					
 			}catch(Exception e) {
 				System.out.println("리뷰 문제있음"+e.getMessage());
 			}
 			
 		return mav;
 	}
+	
 	//페이징 전체 선택 레코드 가져오기
 	@RequestMapping(value="/searchReview")
 	@ResponseBody
@@ -87,7 +87,6 @@ public class ReivewController {
 			pagingVO.setTotalRecord(totalRecord);
 			
 			list = dao.reviewAllRecord(pagingVO);
-			System.out.println(list);
 		}catch(Exception e) {
 			System.out.println("리뷰 리스트 호출 에러 " + e.getMessage());
 		}
@@ -204,20 +203,22 @@ public class ReivewController {
 	}
 	
 	
-	// 루트 검색 페이지 페이징 처리
-		@RequestMapping(value="/searchReviewPaging", method= {RequestMethod.GET, RequestMethod.POST})
-		@ResponseBody
-		public ReviewPagingVO searchReviewPageing(ReviewPagingVO pagingVO) {		
-			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-			try {
-				int totalRecord = dao.searchTotalRecord(pagingVO);
-				pagingVO.setTotalRecord(totalRecord);
-				
-			}catch(Exception e) {
-				System.out.println("리뷰 페이징 에러 " + e.getMessage());
-			}
-			return pagingVO;
+	// 리뷰 페이징 처리
+	@RequestMapping(value="/searchReviewPaging", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public ReviewPagingVO searchReviewPageing(ReviewPagingVO pagingVO) {		
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		try {
+			
+			System.out.println(pagingVO.getNowPage());
+			int totalRecord = dao.searchTotalRecord(pagingVO);
+			pagingVO.setTotalRecord(totalRecord);
+			
+		}catch(Exception e) {
+			System.out.println("리뷰 페이징 에러 " + e.getMessage());
 		}
+		return pagingVO;
+	}
 		
 	// 추천 리뷰 가져오기
 	@RequestMapping("/reivew/getRecReview")
@@ -278,6 +279,7 @@ public class ReivewController {
 		}
 		return result;
 	}
+	
 	// 루트 스크랩
 	@RequestMapping("/scrapReview")
 	@ResponseBody
@@ -309,17 +311,3 @@ public class ReivewController {
 		return result;
 	}
 }
-	
-	
-	
-
-
-
-	
-
-
-
-
-
-
-

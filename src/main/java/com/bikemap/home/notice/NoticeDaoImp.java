@@ -32,5 +32,7 @@ public interface NoticeDaoImp {
 	
 	// 문의사항 페이징 전체 레코드 
 	public int selectQnaRecord(QnaPagingVO vo);
-		
+	
+	// 문의사항 리스트 구하기
+	public List<QnaVO> selectQnaList(QnaPagingVO vo);
 }

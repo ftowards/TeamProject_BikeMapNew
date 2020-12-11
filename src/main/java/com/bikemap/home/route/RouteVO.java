@@ -153,7 +153,7 @@ public class RouteVO {
 					cnt++;
 				}
 			}
-			if(cnt ==0 ){
+			if(cnt ==0 && !regions[i].equals("undefined") && !regions[i].equals("")){
 				list[nxt++] = regions[i]; 
 			}
 		}

@@ -189,7 +189,6 @@ public SqlSession sqlSession ;
 	@ResponseBody
 	public QnaPagingVO qnaPaging(QnaPagingVO vo, HttpSession ses) {
 		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
-
 		vo.setId((String)ses.getAttribute("logId"));
 		
 		try {
@@ -200,6 +199,21 @@ public SqlSession sqlSession ;
 		return vo;
 	}
 	
+	// qna 리스트 가져오기
+	@RequestMapping("/selectQnaList")
+	@ResponseBody
+	public List<QnaVO> selectQnaList(QnaPagingVO vo, HttpSession ses){
+		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
+		vo.setId((String)ses.getAttribute("logId"));
+		List<QnaVO> list = new ArrayList<QnaVO>();
+		
+		try {
+			list = dao.selectQnaList(vo);
+		}catch(Exception e) {
+			System.out.println("문의사항 리스트 호출 에러 " +e.getMessage());
+		}
+		return list;
+	}
 	//나의 문의사항 글보기
 	@RequestMapping("/userQandAView")
 	public String userQandAView() {

@@ -99,7 +99,13 @@ $(function(){
 		if($("input[name=board]:checked").val() == 2){
 			movePage(nowPage);	
 		}
+		$("input[name=answer]").prop("checked",false);
 	});
+	
+	$("input[name=answer]").on('change', function(){
+		movePage(1);
+	});
+
 	
 	$("#qnaInsert").submit(function(){
 		
@@ -157,6 +163,7 @@ function movePage(page){
 function setPaging(result){
 	var tag = "<ul>";
 	
+	console.log(result);
 	if(result.totalRecord != 0){
 		if(result.nowPage != 1){
 			tag += "<li onclick='movePage("+(result.nowPage-1)+")'>Prev</li>";
@@ -173,12 +180,14 @@ function setPaging(result){
 		}
 		if(result.nowPage != result.totalPage){
 			tag += "<li onclick='movePage("+(result.nowPage+1)+")'>Next</li>";
-		}		
+		}
+		tag +="</ul>";
 		getList(result.nowPage);
 	}else {
 		tag +="<li>검색 결과가 없습니다.</li></ul>";
-		$("#messageList"+messageBox).children().remove();
+		$("#qnaList").children().remove();
 	}
+	
 	$("#paging").html(tag);
 }
 
@@ -188,12 +197,12 @@ function getList(page){
 	if($("#answer").prop("checked")){
 		data+= "&answer=Y";
 	}
-	
-	return false;
+
 	$.ajax({
-		url : "/home/selectQna",
+		url : "/home/selectQnaList",
 		data : data,
 		success : function(result){
+			console.log(result);
 			if(result != null){
 				setList(result);
 			}
@@ -209,31 +218,15 @@ function setList(result){
 	
 	// 표 내용
 	$result.each(function(idx, val){			
-		tag += "<li><input type='checkbox' value='"+val.nonotice+"'/></li>";
+		tag += "<li><input type='checkbox' value='"+val.noqna+"'/></li>";
 		
-		if(messageBox == 2){
-			if(val.read == 'T' ){
-				tag += "<li>"+val.userid+"</a></li>";
-				tag += "<li class='workcut'>"+val.msg+"</li>";
-				tag += "<li>"+val.writedate+"</li>";
-			}else if(val.read =='F'){
-				tag += "<li class='readYet'>"+val.userid+"</a></li>";
-				tag += "<li class='workcut readYet'>"+val.msg+"</li>";
-				tag += "<li class='readYet'>"+val.writedate+"</li>";
-			}
-		}else{
-			if(val.read == 'T' ){
-				tag += "<li>"+val.idsend+"</a></li>";
-				tag += "<li class='workcut'>"+val.msg+"</li>";
-				tag += "<li>"+val.writedate+"</li>";
-			}else if(val.read =='F'){
-				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.idsend+"</a></li>";
-				tag += "<li onclick='readMsg(title);' class='workcut readYet' title='"+val.nonotice+"'>"+val.msg+"</li>";
-				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.writedate+"</li>";
-			}
-		}
+		tag += "<li>"+val.answer+"</a></li>";
+		tag += "<li>"+val.typename+"</a></li>";
+		tag += "<li class='workcut'>"+val.subject+"</li>";
+		tag += "<li>"+val.writedate+"</li>";
 	});
-	$("#messageList"+messageBox).html(tag);
+		
+	$("#qnaList").html(tag);
 }
 
 function readMsg(title){
