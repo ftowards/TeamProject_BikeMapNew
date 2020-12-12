@@ -12,28 +12,27 @@ public class ReviewVO {
 	private String ip;
 	
 	//1203 최병대 추가
-	private int thumbUp;
-	private int thumbDown;
+	private int thumbup;
+	private int thumbdown;
 	
 	private int thumbType;
 	
 	private String scrap;
 	
 	private String thumbnailImg ; 
-	
 
 
-	public int getThumbUp() {
-		return thumbUp;
+	public int getThumbup() {
+		return thumbup;
 	}
-	public void setThumbUp(int thumbUp) {
-		this.thumbUp = thumbUp;
+	public void setThumbup(int thumbup) {
+		this.thumbup = thumbup;
 	}
-	public int getThumbDown() {
-		return thumbDown;
+	public int getThumbdown() {
+		return thumbdown;
 	}
-	public void setThumbDown(int thumbDown) {
-		this.thumbDown = thumbDown;
+	public void setThumbdown(int thumbdown) {
+		this.thumbdown = thumbdown;
 	}
 	public String getScrap() {
 		return scrap;
@@ -93,6 +92,8 @@ public class ReviewVO {
 	public String getThumbnailImg() {
 		if(content != null && content.indexOf(" src=") > 0 && content.indexOf(" srcset=") > content.indexOf(" src=") ) {
 			thumbnailImg = content.substring(content.indexOf(" src=")+6, content.indexOf(" srcset=")-1);
+		}else {
+			// 썸네일 없을 때 이미지 설정
 		}
 		return thumbnailImg;
 	}

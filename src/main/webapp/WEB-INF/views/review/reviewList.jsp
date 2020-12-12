@@ -2,186 +2,68 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/home/css/reviewView.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<!-- 후기보기메인 -->
-<div class="container">
-<div class = "mainDiv">
-
-	<div class="reviewBody">	
-		<form class = "search" id="searchReview" name="searchReview">
-			<select name="searchTypeReview" id="searchTypeReview">
-				<option value="subject">글제목</option>
-				<option value="userid">작성자</option>
-				<option value="content">내용</option>				
-			</select>
-			<input type="text" id="searchBarReview" name="searchWordReview"/>
-			<input type="submit" class="mint_Btn" value="검 색"/>
-		</form>
-		<form id="pagingVO" method="post" action="/home/searchReview" style="diplay:none">
-			<input type="hidden" name="nowPage" value="${pagingVO.nowPage }"/>
-			<input type="hidden" name="searchType" value="${pagingVO.searchType }"/>
-			<input type="hidden" name="searchWord" value="${pagingVO.searchType }"/>
-			<input type="hidden" name="noboard" value=""/>
-		</form>
-
-<!--후기 제목 -->
-		<div class= "reviewtitle">
-			<div class="title">후기 게시판</div><br><br>
-			<div class="orderRadio">
-				<input type="radio"  name="order" id="orderDesc" value="noboard" checked/>
-				<label for="orderDesc" class="orderBtn">최신순</label>&ensp;|&ensp;<input type="radio" name="order" id="orderAsc" value="thumbup" /><label for="orderAsc" class="orderBtn">추천순</label>
-				<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'" style='float:right; margin:0 25px 10px 0;'>
-			</div>
-		</div><br/>
-		
-
-<!-- 후기창 게시판 -->
-		<hr style='border:1.5px solid black; background-color:black'/>
-		<div id="reviewBoard">
-		<c:forEach var="vo" items="${list }">
-				<div class ="boardlist">
-					<div class="reviewContents">
-					
-<!-- 						후기창 왼쪽 면 -->
-						<div class ="left">
-							<a href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
-								<img src="${vo.thumbnailImg }"/>
-							</a>
-						</div>
-						
-<!-- 						후기창 오른쪽 면 -->
-						<div class="right">
-						
-							<div id="subtitle">
-								<ul>
-									<li class="wordCut">
-										<a class="subject_title" href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
-											${vo.noboard }&emsp;<span>${vo.subject }</span>
-										</a>
-									</li>
-									<li class="subject_Hitcount">조회수 ${vo.hit}</li>
-								</ul>
-							</div>
-							
-								<ul>
-									<li class="wordCut" id="reviewtext">
-										<a href="<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">
-											${vo.content }
-										</a>
-									</li>
-								</ul>
-								
-							<div class="writedate">
-								<ul>
-									<li class="userid">
-										<img src="<%=request.getContextPath() %>/img/img_Review/review.png"/>
-										${vo.userid }님의 생생한 후기
-									</li>
-									<li class="writedate">${vo.writedate } 작성</li>
-									
-								</ul>
-							</div>
-						</div>
-						
-		 			</div>
-				</div>
-			</c:forEach>
-			</div>
-			
-<!-- 		=============================페이징============================= -->
-				<div id="paging">
-					<ul>
-					<!-- 이전 페이지 -->
-						<c:if test="${pagingVO.nowPage != 1 }">
-							<li><a href="javascript:movePage(${pagingVO.nowPage-1 })"> Prev </a></li>
-						</c:if>
-						<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
-							<c:if test="${pagingVO.totalPage >= page }">
-								<c:if test="${pagingVO.nowPage == page }">
-									<li style='color:#00B0B0; font-weight:600;'>${page }</li>
-								</c:if>
-								<c:if test="${pagingVO.nowPage != page }">
-									<li><a href="javascript:movePage(${page })" style='color:black; font-weight:600;'>${page }</a></li>
-								</c:if>
-							</c:if>
-						</c:forEach>
-					<!-- 다음 페이지 -->
-						<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
-							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
-						</c:if>
-					</ul>
-				</div><br/>
-		<div id= "bottom">
-	
-		</div>
-	</div>
-</div>
-</div>
 <script>
-
-//리뷰 리스트 만들기
-function makeReviewlist(result){
-		$("#reviewBoard").html("");
-		
-		var listTag = "";
-		for(var i = 0 ; i < result.length ; i++){
-			
-			listTag += "<div class ='boardlist'>";
-			listTag += "<div class='reviewContents'>";
-				
-			listTag += "<div class ='left'>";
-			listTag +=	"<a href='/home/reviewView?noboard="+result[i].noboard+"'>";
-			listTag +=	"<img src="+result[i].thumbnailImg+"/>";
-			listTag +=	"</a>";
-			listTag +=	"</div>";
-					
-			listTag +=	"<div class='right'>";
-			listTag +=	"<div class= 'subtitle'>";
-			
-			listTag +=	"<ul>";
-			listTag +=	"<li class='wordCut'>";
-			listTag +=	"<a class='subject_title' href='/home/reviewView?noboard="+result[i].noboard+"'>";
-			listTag +=	result[i].noboard+"&emsp;<span>"+result[i].subject+"</span>";
-			listTag +=	"</a>";
-			listTag +=	"<li class='subject_Hitcount'>";
-			listTag +=	"조회수 :"+result[i].hit;
-			listTag +=	"</li>";
-			listTag +=	"</li>";
-			listTag +=	"</ul>";
-			listTag +=	"</div>";
-			listTag += "<br/><br/><br/>"
-			listTag +=	"<ul>";
-			listTag +=	"<li class='wordCut' id='reviewtext'>";
-			listTag +=	"<a href='/home/reviewView?noboard="+result[i].noboard+"'>";
-			listTag +=	result[i].content;
-			listTag +=	"</a>";
-			listTag +=	"</li>";
-			listTag +=	"</ul>";
-			
-			listTag +="<div class='writedate'>";
-			listTag +="<ul>";
-			listTag +="<li class='userid'>";
-			listTag +="<img src='/home/img/img_Review/review.png'/>";
-			listTag += result[i].userid+"님의 생생한 후기";
-			listTag +="</li>";
-			listTag +="<li class='writedate'>"+result[i].writedate+"작성</li>"
-			listTag +="</ul>";
-			listTag +="</div>";
-			listTag +="</div>";
-			
-			listTag +="</div>";
-			listTag +="</div>";
-		
-			//console.log(listTag); 
-			//console.log('----------------------------------');
-		}
-		$("#reviewBoard").html(listTag);
+var nowPage = 1;
+//검색 기능
+$(function(){
+	nowPage = $("input[name=nowPage]").val();
+	console.log(nowPage);
+	
+	// 페이지 로딩 시 전체 리스트 불러오기
+	movePage(nowPage);
+	
+	// 검색
+	$("#searchReview").submit(function(){
+		if($("#searchBarReview").val() == ""){
+			toast("검색어를 입력하세요.", 1500);
+			return false;
+		};
+		movePage(1);
 		return false;
+	});
+	
+	$("input[name=orderReview]").on('change',function(){
+		movePage(nowPage);
+	});
+});
+
+
+
+// 펑션 ////////////////////////////////
+
+// 페이지 이동
+function movePage(page){
+	
+	// 페이징 먼저 변경
+	var url = "<%=request.getContextPath()%>/searchReviewPaging";
+	var data = "nowPage="+page+"&searchType="+$("#searchTypeReview").val()+"&searchWord="+$("#searchBarReview").val();
+ 		data += "&order="+$("input[name=orderReview]:checked").val();
+		
+ 		console.log(data);
+ 		
+	$.ajax({
+		url : url,
+		data : data,
+		success : function(result){
+			if(result.totalRecord <= 0){
+				toast("검색 결과가 없습니다.",1500);
+			}else{
+				$("input[name=searchType]").val($("#searchTypeReview").val())
+				$("input[name=searchWord]").val($("#searchBarReview").val())
+				$("input[name=order]").val($("input[name=orderReview]:checked").val());
+				
+				setPaging(result, data);
+				$("input[name=nowPage]").val(result.nowPage);	
+			}
+		},error : function(){
+			console.log("페이징 오류");
+		}
+	});
 }
 
 // 페이징 리스트 만들기
-function setPaging(vo){
+function setPaging(vo, data){
 	// 이전 페이징 삭제
-	$("#paging").children().remove();
 	var tag = "<ul>";
 	
 	if(vo.nowPage != 1){
@@ -197,50 +79,20 @@ function setPaging(vo){
 			}
 		}
 	}
-	
 	if(vo.nowPage != vo.totalPage){
 		tag += "<li><a href='javascript:movePage("+(vo.nowPage +1)+")'>Next</a></li>"
 	}
-
+	
 	tag += "</ul>";
-	$("#paging").append(tag);
-				
+	$("#paging").html(tag);
+	
+	getList(data);
 }
 
 
-// 페이지 이동
-function movePage(page){
-	
-	// 페이징 먼저 변경
-	var url = "<%=request.getContextPath()%>/searchReviewPaging";
-	var data = $("#searchReview").serialize();
-		data = "&nowPage="+page+"&searchType="+$("#searchTypeReview").val()+"&searchWord="+$("#searchBarReview").val();
- 		data += "&order="+$("input[name=order]:checked").val();
-		
- 		console.log(data);
-	$.ajax({
-		url : url,
-		data : data,
-		success : function(result){
-			if(result.totalRecord <= 0){
-				toast("검색 결과가 없습니다.",1500);
-			}else{
-				console.log(result);
-				$("input[name=searchType]").val($("#searchTypeReview").val())
-				$("input[name=searchWord]").val($("#searchBarReview").val())
-				
-				setPaging(result);
-				nowPage = result.nowPage;
-				$("input[name=nowPage]").val(nowPage);	
-			}
-		
-		},error : function(){
-			console.log("페이징 오류");
-		}
-	});
-	
-	
-	console.log(data);
+
+
+function getList(data){
 	//리스트 데이터 검색
 	url = "<%=request.getContextPath()%>/searchReview";
 	$.ajax({
@@ -248,45 +100,127 @@ function movePage(page){
 		data : data,
 		success : function(result){
 			console.log(result);
-			if( result.length <= 0 ){
-				toast("검색 결과가 없습니다.",1500);
-				
-			} else{ 
-				
-				makeReviewlist(result);
-			}
+			makeReviewlist(result);
 		}, error : function(){
 			console.log("페이지 + 검색 결과 호출 에러");
 		}
 	});
 }
 
-// 검색 기능
-$(function(){
-	var nowPage = $("input[name=nowPage]").val();
-	console.log(nowPage);
-	
-	// 페이지 로딩 시 전체 리스트 불러오기
-	movePage(nowPage);
-	
-	// 검색
-	$("#searchReview").submit(function(){
-		if($("#searchBarReview").val() == ""){
-			toast("검색어를 입력하세요.", 1500);
-			return false;
-		};
-		
-		movePage(1);
-		return false;
-	});
-	
-	$("input[name=order]").on('change',function(){
-		movePage(nowPage);
-		
-	});
-});
+//리뷰 리스트 만들기
 
+function makeReviewlist(result){
+		
+	var $result = $(result);
+		var listTag = "";
+		$result.each(function(i, val){
+			listTag += "<li class='reviewContents'><div class = 'left'>";
+			listTag += "<img src='"+val.thumbnailImg+"' onclick='goReviewView(title);' title = '"+val.noboard+"'/></div>";
+			listTag += "<div class='right'><ul onclick='goReviewView(title);' title ='"+val.noboard+"'>";
+			listTag += "<li id='subtitle' class='wordCut subject_title'>"+val.subject+"</li>";
+			listTag += "<li class='subject_Hitcount'>Hit "+val.hit+" / 추천 "+val.thumbup+" / 비추천 "+val.thumbdown+"</li>";
+			
+			var contentText = val.content.replace(/(<([^>]+)>)/ig, "").replaceAll("&nbsp;" ,"");
+			listTag += "<li class='paragraph' style='width : calc(100% - 20px);' id='reviewtext'>"+contentText+"</li>";
+			listTag += "<li class='userid'><img src='/home/img/img_Review/review.png'/>"+val.userid+"님의 생생한 후기</li>";
+			listTag += "<li class='writedate'>"+val.writedate+"</li></ul></div></li>";
+		});
+	$("#reviewBoard").html(listTag);
+}
 
+function goReviewView(noboard){
+	console.log(noboard);
+	
+	$("input[name=noboard]").val(noboard);
+	$("#pagingVO").submit();
+}
 
 
 </script>
+<!-- 후기보기메인 -->
+<div class="container">
+	<div class="reviewBody">	
+		<form class = "search" id="searchReview" name="searchReview">
+			<select name="searchTypeReview" id="searchTypeReview">
+				<option value="subject">글제목</option>
+				<option value="userid">작성자</option>
+				<option value="content">내용</option>				
+			</select>
+			<input type="text" id="searchBarReview" name="searchWordReview"/>
+			<input type="submit" class="mint_Btn" style="vertical-align:bottom; margin-left : 10px;"value="검 색"/>
+		</form>
+		<form id="pagingVO" method="post" action="/home/reviewView" style="diplay:none">
+			<input type="hidden" name="nowPage" value="${pagingVO.nowPage }"/>
+			<input type="hidden" name="searchType" value="${pagingVO.searchType }"/>
+			<input type="hidden" name="searchWord" value="${pagingVO.searchWord }"/>
+			<input type="hidden" name="order" value="${pagingVO.order }"/>
+			<input type="hidden" name="noboard" value=""/>
+		</form>
+
+<!--후기 제목 -->
+		<div class= "reviewtitle">
+			<ul>
+				<li class="title">후기 게시판</li>
+				<li class="orderRadio">
+				<input type="radio"  name="orderReview" id="orderDesc" value="noboard" <c:if test="${pagingVO.order == 'noboard' }">checked</c:if>/>
+					<label for="orderDesc" class="orderBtn">최신순</label>&ensp;|&ensp;
+				<input type="radio" name="orderReview" id="orderAsc" value="thumb" <c:if test="${pagingVO.order == 'thumb' }">checked</c:if>/>
+					<label for="orderAsc" class="orderBtn">추천순</label></li>
+				<li>
+				<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'"></li>
+			</ul>
+		</div>
+
+<!-- 후기창 게시판 -->
+		<hr style='border:1.5px solid black; margin-bottom:0; background-color:black'/>
+		<div id="reviewBoard">
+			<ul class ="boardlist">
+				<c:forEach var="vo" items="${list }">
+					<li class="reviewContents">
+		<!-- 						후기창 왼쪽 면 -->
+						<div class ="left">
+							<img src="${vo.thumbnailImg }" onclick="goReviewView(title);" title = "${vo.noboard }"/>
+						</div>
+		<!-- 						후기창 오른쪽 면 -->
+						<div class="right">
+							<ul onclick="goReviewView(title);" title = "${vo.noboard }">
+								<li id="subtitle" class="wordCut subject_title">${vo.subject }</li>
+								<li class="subject_Hitcount">Hit ${vo.hit} / 추천 ${vo.thumbup } / 비추천 ${vo.thumbdown }</li>
+								<li class="wordCut" id="reviewtext">${vo.content }</li>
+								<li class="userid">
+									<img src="<%=request.getContextPath() %>/img/img_Review/review.png"/>
+									${vo.userid }님의 생생한 후기
+								</li>
+								<li class="writedate">${vo.writedate }</li>
+							</ul>
+						</div>
+		 			</li>
+		 		</c:forEach>
+			</ul>
+		</div>
+			
+<!-- 		=============================페이징============================= -->
+		<div id="paging">
+			<ul>
+			<!-- 이전 페이지 -->
+				<c:if test="${pagingVO.nowPage != 1 }">
+					<li><a href="javascript:movePage(${pagingVO.nowPage-1 })"> Prev </a></li>
+				</c:if>
+				<c:forEach var="page" begin="${pagingVO.startPageNum }" end="${pagingVO.startPageNum + pagingVO.onePageNumCount -1}">
+					<c:if test="${pagingVO.totalPage >= page }">
+						<c:if test="${pagingVO.nowPage == page }">
+							<li style='color:#00B0B0; font-weight:600;'>${page }</li>
+						</c:if>
+						<c:if test="${pagingVO.nowPage != page }">
+							<li><a href="javascript:movePage(${page })" style='color:black; font-weight:600;'>${page }</a></li>
+						</c:if>
+					</c:if>
+				</c:forEach>
+			<!-- 다음 페이지 -->
+				<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
+					<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
+				</c:if>
+			</ul>
+		</div>
+	</div>
+</div>

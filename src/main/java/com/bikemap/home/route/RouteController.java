@@ -22,8 +22,6 @@ import com.bikemap.home.notice.NoticeDaoImp;
 import com.bikemap.home.notice.NoticeVO;
 import com.bikemap.home.reply.ReplyDaoImp;
 import com.bikemap.home.reply.ReplyVO;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 
 @Controller
 public class RouteController {
@@ -99,42 +97,33 @@ public class RouteController {
 
 	//코스검색(글보기)
 	@RequestMapping(value="/routeSearchView", method= {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView routeSearchView(int noboard, RoutePagingVO pagingVO, HttpSession session) {
+	public ModelAndView routeSearchView(RoutePagingVO pagingVO, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		
-		String logId = (String)session.getAttribute("logId");
 		try {
-			RouteVO vo = dao.selectRoute(noboard);
+			RouteVO vo = dao.selectRoute(pagingVO.getNoboard());
+			RoutePlaceVO placeVO = dao.selectRoutePlace(pagingVO.getNoboard());
+			
+			mav.addObject("routeVO", vo);
+			mav.addObject("placeVO", placeVO);
+			
 			if(vo.getClosed().equals("F")) {
-				RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
+				pagingVO.setTotalRecord(dao.searchResultRecord(pagingVO));
+				// 이전 글 다음 글 검색하기
+				int idx = dao.getPrevNext(pagingVO);
 				
-				mav.addObject("routeVO", vo);
-				mav.addObject("placeVO", placeVO);
-				
-			}else {
-				if(vo.getUserid().equals(logId)) {
-					RoutePlaceVO placeVO = dao.selectRoutePlace(noboard);
-					
-					mav.addObject("routeVO", vo);
-					mav.addObject("placeVO", placeVO);
+				if(idx < pagingVO.getTotalRecord()) {
+					pagingVO.setIdx(idx+1);
+					RouteVO prev = dao.selectPrevNext(pagingVO);
+					mav.addObject("prev", prev);
 				}
-			}
-			
-			pagingVO.setTotalRecord(dao.searchResultRecord(pagingVO));
-			// 이전 글 다음 글 검색하기
-			int idx = dao.getPrevNext(pagingVO);
-			
-			if(idx < pagingVO.getTotalRecord()) {
-				pagingVO.setIdx(idx+1);
-				RouteVO prev = dao.selectPrevNext(pagingVO);
-				mav.addObject("prev", prev);
-			}
-			
-			if(idx > 1 ) {
-				pagingVO.setIdx(idx-1);
-				RouteVO next = dao.selectPrevNext(pagingVO);
-				mav.addObject("next", next);
+				
+				if(idx > 1 ) {
+					pagingVO.setIdx(idx-1);
+					RouteVO next = dao.selectPrevNext(pagingVO);
+					mav.addObject("next", next);
+				}
 			}
 			
 			mav.addObject("pagingVO", pagingVO);

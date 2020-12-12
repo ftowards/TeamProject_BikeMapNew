@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,7 +36,7 @@ public SqlSession sqlSession ;
 	DataSourceTransactionManager transactionManager;
 	
 	// 메세지 저장하기
-	@RequestMapping("/insertNotice")
+	@RequestMapping(value="/insertNotice", method= {RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
 	public int insertNotice(NoticeVO vo) {
 		int result = 0;
@@ -44,6 +45,7 @@ public SqlSession sqlSession ;
 		try {
 			if(rDao.idDoubleChk(vo.getUserid())>0) {
 				result = dao.insertNotice(vo);
+				System.out.println(result);
 			}
 		}catch(Exception e) {
 			System.out.println("메세지 입력 에러 " + e.getMessage());

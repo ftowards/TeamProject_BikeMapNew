@@ -16,6 +16,7 @@
 	}
 	.replyMain{
 		width : 800px;
+		height : auto;
 		margin : 0 auto;
 	}
 	
@@ -92,9 +93,6 @@
 			margin : 5px;
 			float:right;
 			box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-	}
-	#replyViewDiv{
-						float:left;
 	}
 	#replyUseridDiv{
 			width : 100%;

@@ -13,7 +13,7 @@ function goViewPage(noboard){
 	
 	$("input[name=noboard]").val(noboard)
 	var data = $("#pagingVO").serialize();
-	
+
 	$("#pagingVO").attr("action","/home/routeSearchView" );
 	$("#pagingVO").submit();
 }
@@ -36,11 +36,14 @@ function goList(){
 			<ul>
 				<li class="labelClass">작성자</li>
 				<li id="userid" class="txtShadow">${routeVO.userid }</li>
-				<c:if test="${logId == 'admin' && routeVO.scrap !='T'}">
-					<li><input type="button" value="스크랩" class="WMint_Btn" onclick="scrapRoute()"/></li>
-				</c:if>
-				<c:if test="${logId == 'admin' && routeVO.scrap =='T'}">
-					<li><input type="button" value="스크랩 해제" class="mint_Btn" onclick="releaseRoute()"/></li>
+				<c:if test="${logId == 'admin'}">
+					<li><c:if test="${routeVO.scrap !='T' }"><input type="button" value="스크랩" class="WMint_Btn" onclick="scrapRoute()"/></c:if>
+						<c:if test="${routeVO.scrap !='F' }"><input type="button" value="스크랩 해제" class="mint_Btn" onclick="releaseRoute()"/></c:if>
+					</li>
+					<li>
+						<c:if test="${routeVO.closed == 'F'}"><input type="button" class="WMint_Btn" value="비공개" onclick="setCloseRoute1('close');"/></c:if>
+						<c:if test="${routeVO.closed == 'T'}"><input type="button" class="WMint_Btn" value="공개" onclick="setOpenRoute();"/></c:if>
+					</li>
 				</c:if>
 				<c:if test="${routeVO.userid == logId }">
 					<li><input type="button" value="삭제" class="WMint_Btn" onclick="setCloseRoute1('del')"/></li>
@@ -200,7 +203,7 @@ function goList(){
 				<div class="title">코스평점</div>
 				<div>
 					<ul class="starRatingGroup">
-						<li><span class='star-rating'><span id="rating" title="${routeVO.rating }"></span></span></li>
+						<li><span class='star-rating'><span id="rating" style="width:<c:out value="${routeVO.rating /5 *125 }"/>px"></span></span></li>
 						<li><label id="starLbl">${routeVO.rating }</label><span style='color:gray'>(참여 ${routeVO.ratecnt })</span></li>
 					</ul>
 				</div>

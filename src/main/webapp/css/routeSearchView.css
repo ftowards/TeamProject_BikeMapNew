@@ -185,6 +185,7 @@
 		color : white;
 		border: 1px solid #00B0B0;
 		background-color: #00B0B0;
+		width : auto;
 	}
 	.mint_Btn:hover{
 		color : white;
@@ -580,6 +581,8 @@
 	#routeWriterMenu .mint_Btn{
 		color : white;
 		background-color: #00B0B0;
+		letter-spacing:0;
+		font-size:small;
 	}
 	
 	.labelClass{
