@@ -750,7 +750,7 @@ function sendMsg(noboard, receiver, type){
 		msg = sender + "님이 " + noboard + "번 루트를 삭제하였습니다.";
 		socketMsg = "deleteRoute,"+receiver+","+sender+","+noboard;
 	}else if(type == 3){
-		msg = "<a href='/home/routeSearchView?noboard="+noboard+"'>"+noboard+ "번 루트가 추천 루트로 등록되었습니다.</a>";
+		msg = "<a href='/home/routeSearchView?noboard="+noboard+"' target='_blank'>"+noboard+ "번 루트가 추천 루트로 등록되었습니다.</a>";
 		socketMsg = "scrapRoute,"+receiver+","+sender+","+noboard;
 	}
 	

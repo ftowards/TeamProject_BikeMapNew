@@ -8,24 +8,34 @@
 $(function(){
 		
 	$("#reviewdel").click(function(){
-		if(confirm("삭제하시겠습니까?")){
-			location.href="/home/reviewDel?noboard=${vo.noboard}";	
-		}
+		toastConfirm("후기를 삭제하시겠습니까?<br/>삭제 후 복구가 불가능합니다.", function(){
+			$.ajax({
+				url : "/home/reviewDel",
+				data : "noboard="+$("#noboard").val(),
+				success : function(result){
+					if(result > 0){
+						toast("후기를 삭제하였습니다.", 1500);
+						setTimeout(function(){location.href="/home/reviewList";}, 1500);
+					}else {
+						toast("후기 삭제 오류 입니다. 다시 시도해주십시오.", 1500);
+					}
+				}, error : function(err){
+					console.log(err);
+				}
+			});
+		});
 	});
 
 	$("#reviewEdit").click(function(){
-		if(confirm("수정하시겠습니까")){
-			location.href="/home/reviewEdit?noboard=${vo.noboard}";
-		}
+		location.href="/home/reviewEdit?noboard="+$("#noboard").val();	
 	});
-		
+	
+	// 이미 평가한 사람인 지 확인
 	$("#upBtn").on('click', function(){
-			// 이미 평가한 사람인 지 확인
 		chkAlread(1);
 	});
 
 	$("#downBtn").on('click', function(){
-			// 이미 평가한 사람인 지 확인
 		chkAlread(2);
 	});
 
@@ -49,6 +59,10 @@ function chkAlread(type){
 	   return false;
 	}
 	
+	var tag = "추천";
+	if(type == 2){tag ="비추천";}
+	
+	
 	var url = "/home/chkAlreadyReviewRate";
 	var data = "noboard="+$("#noboard").val();
 	     
@@ -57,7 +71,9 @@ function chkAlread(type){
 	    data : data,
 	    success : function(result){
 			if(result == 0){
-				addThumb(type);				
+				toastConfirm("후기에 대한 평가는 수정이 불가능합니다.<br/>후기를 "+tag+" 하시겠습니까?", function(){
+					addThumb(type);
+				});
 	        }else {
 	        	toast("이미 평가한 후기입니다.",1500);
 	        }
@@ -78,7 +94,8 @@ function addThumb(type){
 		data : "noboard="+$("#noboard").val()+"&thumbType="+type,
 		success : function(result){
 			if(result >0){
-				toast($("#noboard").val()+ "번 글을 " + tag + " 하셨습니다.",1500)
+				toast($("#noboard").val()+ "번 글을 " + tag + " 하셨습니다.",1500);
+				setThumb();
 			}else {
 				toast("후기 평가 오류입니다.", 1500);
 			}
@@ -87,9 +104,121 @@ function addThumb(type){
 		}
 	});
 }
-	
-</script>
 
+function goReviewView(noboard){
+	console.log(noboard);
+	
+	$("#pagingVO").attr("action", "/home/reviewView");
+	$("input[name=noboard]").val(noboard);
+	$("#pagingVO").submit();
+}
+
+function goReviewList(){
+	
+	console.log($("#pagingVO").serialize());
+	$("#pagingVO").submit();
+}
+
+function setThumb(){
+	$.ajax({
+		url : "/home/selectReviewThumb",
+		data : "noboard="+$("#noboard").val(),
+		success : function(result){
+			$("#thumbup").text(result.thumbup);
+			$("#thumbdown").text(result.thumbdown);
+		},error : function(err){
+			console.log(err);
+		}
+	});
+}
+
+function setScrap(){
+	$.ajax({
+		url : "/home/scrapReview",
+		data : "noboard="+$("#noboard").val(),
+		success : function(result){
+			if(result >= 0){
+				toast("스크랩 완료", 1500);
+				leaveMessage();
+			}else{
+				toast("스크랩 오류", 1500);
+			}
+		},error : function(err){
+			console.log(err);	
+		}
+	});
+}
+
+function releaseScrap(){
+	$.ajax({
+		url : "/home/releaseReview",
+		data : "noboard="+$("#noboard").val(),
+		success : function(result){
+			if(result >= 0){
+				toast("스크랩 해제", 1500);
+				setTimeout(function(){location.reload(true)},1500);
+			}else{
+				toast("스크랩 해제 오류", 1500);
+			}
+		},error : function(err){
+			console.log(err);	
+		}
+	});
+}
+
+function leaveMessage(){
+	
+	//데이터 구하기
+	var data = "reply="+"해당 루트가 추천 루트로 게시됩니다. 게시를 원치 않으실 경우 관리자 문의 부탁드립니다.";
+		data += "&noboard="+$("#noboard").val();
+		
+	$.ajax({
+		url:"/home/replyWriteOk"
+		,data: data
+		,success:function(result){
+			if(result == 1){
+				sendMsg(noboard, $("#userid").text(), 1);
+			}
+		},error:function(){
+			console.log("댓글쓰기 에러 발생..");
+		}
+	});
+}
+  
+  //메세지 저장하기 ++ 통신으로 메세지 보내기
+function sendMsg(noboard, receiver, type){
+	var receiver = receiver;
+	var sender = $("#logId").val();
+	
+	var noboard = $("#noboard").val();;
+	var msg ="";
+	var socketMsg = "";
+	
+	if(type == 1){
+		msg = "<a href='/home/routeSearchView?noboard="+noboard+"' target='_blank'>"+noboard+ "번 후기가 추천 후기로 등록되었습니다.</a>";
+		socketMsg = "scrapReview,"+receiver+","+sender+","+noboard;
+	}
+
+	var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
+	console.log(data);
+
+	$.ajax({
+		type : 'POST',
+		url : "/home/insertNotice",
+		data : data,
+		success : function(result){
+			if(result == 1){
+				socket.send(socketMsg);
+				setTimeout(function(){location.reload(true)},1500);
+			}else{
+				toast("알림 남기기 실패", 1500);
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	})
+}
+</script>
 
 <!-- 후기게시판 제목 -->
 <div class = "mainDiv">
@@ -104,15 +233,22 @@ function addThumb(type){
 						<li id="conttitle">${vo.subject }</li>
 						<li>
 							<ul class="reviewInfo">
-								<li><label class="labelClass">작성자</label><span>${vo.userid }</span></li>
+								<li><label class="labelClass">작성자</label><span id="userid">${vo.userid }</span></li>
 								<li><label class="labelClass">작성일</label>${vo.writedate }</li>
 								<li><label class="labelClass">조회수</label>${vo.hit }</li>
 							</ul>
 						</li>
 						<li class="btnGroup">
-							<input type="button" value="삭제" id="reviewdel" class="gray_Btn"/>
-							<input type="submit" value="수정" id="reviewEdit" class="gray_Btn"/>
-							<input type="submit" value="목록" id="reviewList" class="mint_Btn"/>
+							<c:if test="${logStatus == 'Y' && logId== vo.userid }">
+								<input type="button" value="삭제" id="reviewdel" class="gray_Btn"/>
+								<input type="submit" value="수정" id="reviewEdit" class="gray_Btn"/>
+							</c:if>
+							<c:if test="${logStatus == 'Y' && logId =='admin' }">
+								<c:if test="${vo.scrap == 'T' }"><input type="button" value="추천 해제" onclick="releaseScrap();" style="font-size:smaller" class="mint_Btn"/></c:if>
+								<c:if test="${vo.scrap == 'F' }"><input type="button" value="추천" onclick="setScrap();" class="mint_Btn"/></c:if>							
+								<input type="button" value="삭제" id="reviewdel" class="gray_Btn"/>
+							</c:if>
+							<input type="submit" value="목록" id="reviewList" class="mint_Btn" onclick="goReviewList()"/>
 						</li>
 						
 					</ul>	
@@ -126,24 +262,53 @@ function addThumb(type){
 				<div id ="thumb">
 					<ul>
 						<li>
-							<b>추천 : ${vo.thumbUp }</b>
-							<b>비추천 : ${vo.thumbDown }</b>
+							<b>추천 : <span id='thumbup'>${vo.thumbup }</span></b>
+							<b>비추천 : <span id='thumbdown'>${vo.thumbdown }</span></b>
 						</li>
-						<li>
-							<button type ="button" class ="WMint_Btn" id="upBtn">추천</button>
-							<button type ="button" class ="mint_Btn" id="downBtn">비추천</button>
+						<li class="btnGroup2">
+							<input type ="button" class ="WMint_Btn" id="upBtn" value="추천"/>
+							<input type ="button" class ="mint_Btn" id="downBtn" value="비추천"/>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		
-		
+		<div>
+			<form id="pagingVO" method="post" action="/home/reviewList" style="diplay:none">
+				<input type="hidden" name="nowPage" value="${pagingVO.nowPage }"/>
+				<input type="hidden" name="searchType" value="${pagingVO.searchType }"/>
+				<input type="hidden" name="searchWord" value="${pagingVO.searchWord }"/>
+				<input type="hidden" name="order" value="${pagingVO.order }"/>
+				<input type="hidden" name="noboard" value="0"/>
+			</form>
+			<ul>
+				<li>
+					<hr/>
+				</li>
+				<c:if test="${next != null }">
+					<li class="prevTxt">
+						다음글<span class="prev_next">▲</span><a href="javascript:goReviewView(${next.noboard})">${next.subject }</a>
+					</li>
+					<li>
+						<hr>
+					</li>
+				</c:if>
+				<c:if test="${prev != null }">
+					<li class="prevTxt">
+						이전글<span class="prev_next">▼</span><a href="javascript:goReviewView(${prev.noboard})">${prev.subject }</a>
+					</li>
+					<li>
+						<hr/>
+					</li>
+				</c:if>
+				<li class="listBtn">
+					<input type="button" onclick="goReviewList()" value="목록"/>
+				</li>
+			</ul>
+		</div>
 	<!--댓글-->
 		<input type='hidden' id="noboard" value="${vo.noboard }"/>
 		<%@ include file="../inc/reply.jspf"%>
 	</div>
-	
-	
 <!-- 	테스트 중 -->
 </div>

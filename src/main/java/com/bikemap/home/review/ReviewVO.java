@@ -20,7 +20,6 @@ public class ReviewVO {
 	private String scrap;
 	
 	private String thumbnailImg ; 
-	
 
 
 	public int getThumbup() {
@@ -93,6 +92,8 @@ public class ReviewVO {
 	public String getThumbnailImg() {
 		if(content != null && content.indexOf(" src=") > 0 && content.indexOf(" srcset=") > content.indexOf(" src=") ) {
 			thumbnailImg = content.substring(content.indexOf(" src=")+6, content.indexOf(" srcset=")-1);
+		}else {
+			// 썸네일 없을 때 이미지 설정
 		}
 		return thumbnailImg;
 	}

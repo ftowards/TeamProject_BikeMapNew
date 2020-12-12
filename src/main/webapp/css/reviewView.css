@@ -26,7 +26,7 @@
 			
 	.mainDiv{
 		width:1200px;
-		height:2300px;
+		min-height : fit-content; 
 		margin:0 auto;
 	}
 		
@@ -125,8 +125,12 @@
 		.btnGroup{
 			text-align:right;
 		}
-	 		
-	 		
+		
+		.btnGroup>input, .btnGroup2>input{
+			font-weight:600;
+			font-size : 18px;
+			width : 90px;
+		}	
 	 		
 /* ===================================== ���� ===================================== */	 
 	 
@@ -399,8 +403,16 @@
 		line-height : 20px;
 	}
 	.right>ul>li:nth-of-type(3){
-		height : 140px;
-		padding : 5px 10px 15px 10px;
+		height : 120px;
+		margin : 10px;
+		line-height : 30px;
+	}
+	
+	.paragraph{
+		white-space : normal;
+		line-break : inherit;
+		text-indent : 15px;
+			
 	}
 	
 	.right>ul>li:nth-of-type(4), .right>ul>li:nth-of-type(5){
@@ -752,8 +764,43 @@
 	    width: 70px;
 	    height: 40px;
 	    box-shadow: 3px 3px 3px #ccc;
-	    
+	    font-weight : 600;
 	}
 
+	/*=========목록보기=========*/
+	.prevTxt{
+		margin:25px 0 25px 60px;
+		font-size:16px;
+		letter-spacing:1px;
+	}
+	
+	.prev_next{
+		font-size:13px;
+		margin:0 45px 0 20px;
+	}
+	
+	.prevTxt > a{
+		color:black;
+		text-decoration:none;
+	}
+	
+	.prevTxt > a:hover{
+		color:gray;
+	}
+	
+	.listBtn{
+		text-align:right;
+	}
+	.listBtn > input{
+		width:110px;
+		height:45px;
+		background-color:white;
+		border:1px solid #a7a7a7;
+		color:#717171;
+		font-size:16px;
+	}
 
-
+	.pull-right>input{
+		font-size : 16px;
+		width : 90px;
+	}
