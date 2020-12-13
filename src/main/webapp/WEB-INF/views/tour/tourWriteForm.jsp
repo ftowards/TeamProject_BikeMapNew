@@ -29,7 +29,7 @@
 			<div><label class="tourWriteConditionTitle">루&nbsp;트</label></div>
 			<div class="routeResultDiv2">
 				<div class="routeTitleDiv">
-					<div style='margin-left : 40px;height : 70px;'><label class="labelClass">루트 제목</label>
+					<div style='margin-left:40px; width:620px; height:70px;'><label class="labelClass">루트 제목</label>
 						<div id="routeTitle" class="conditionBox"></div>
 					</div>		
 				</div>
@@ -45,7 +45,7 @@
 				<div class="conditionDivTop">
 					<div class="labelClass"><label>일&nbsp;정</label></div>
 					<div>
-						<input type="text" name="departuredate" placeholder="출발날짜" id="departuredate" maxlength="10" autocomplete="off"/>
+						<input type="text" name="departuredate" placeholder="출발 날짜" id="departuredate" maxlength="10" autocomplete="off"/>
 					</div>
 					<div>
 						<select name="departureTime" id="departureTime">
