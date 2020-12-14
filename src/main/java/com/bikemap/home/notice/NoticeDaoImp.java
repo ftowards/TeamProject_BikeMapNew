@@ -35,4 +35,7 @@ public interface NoticeDaoImp {
 	
 	// 문의사항 리스트 구하기
 	public List<QnaVO> selectQnaList(QnaPagingVO vo);
+	
+	// 문의사항 삭제
+	public int deleteQna(int nonotice);
 }

@@ -79,4 +79,7 @@
 		</if>
 		order by noqna desc 
 	</select>
+	<delete id="deleteQna">
+		delete from qna where noqna = #{param1}
+	</delete>
 </mapper>

@@ -20,13 +20,22 @@
 				url : url,
 				data : data,
 				success : function(result){
-					if(result == 1){
-						toast("로그인 되었습니다.", 1500);
-						location.href="/home";
-					}else if(result == 2){
-						toast("메일 인증이 되지 않은 아이디 입니다.\n가입 시 입력한 이메일에서 인증 절차를 진행해주십시오.");					
-					}else{
-						toast("로그인 실패하였습니다.\n로그인 정보를 확인해주세요.");
+					var logChk = result.loginResult;
+					console.log(result.loginResult);
+					
+					if(logChk == 0){
+						toast("로그인 실패.<br/>로그인 정보를 확인해주세요.",1500);
+					}else if(logChk == 1){
+						toast("로그인 하였습니다.", 1500);
+						setTimeout(function(){location.href="/home";},1500);
+					}else if(logChk == 2){
+						toast("메일 인증이 되지 않은 아이디 입니다.<br/>가입 시 입력한 이메일에서 인증 절차를 진행해주십시오.");	
+					}else if(logChk == 3){
+						var tag = "활동이 정지된 회원입니다.<br/><br/>";
+							tag +="정지 기간 : "+result.endday +" 까지<br/>";
+							tag +="정지 사유 : " +result.cause+"<br/>";
+							tag +="문의 사항은 bikemap@google.com 으로 연락바랍니다.";
+						toast(tag);
 					}
 				},error : function(){
 					console.log("로그인 에러");
