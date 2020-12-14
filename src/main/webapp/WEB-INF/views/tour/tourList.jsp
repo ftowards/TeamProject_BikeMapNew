@@ -353,9 +353,9 @@ $(function(){
 			tag += "<div id='map"+i+"' class='tourImgClass'></div>";
 			tag += "<div class='blackWrapDiv'>";	
 			tag += "<p style='font-size:25px;' class='tourBoardTitle'><b>"+ v.title+"</b></p>";
-			tag += "<p style='font-size:20px;' class='tourBoardWrite'>"+v.departure+'~'+v.arrive+"</p>";
+			tag += "<p style='font-size:20px; color:#00b0b0; letter-spacing:2px; font-weight:bold' class='tourBoardWrite'>"+v.departure+'~'+v.arrive+"</p>";
 			tag += "<hr style='width:200px;'/>";
-			tag += "<p style='font-size:36px;' class='tourBoardDay'><b>"+'총'+v.distance+'km'+"</b></p></div></a></div>";
+			tag += "<p style='font-size:34px; letter-spacing:2px' class='tourBoardDay'><b>"+'총 '+v.distance+'km'+"</b></p></div></a></div>";
 		
 			// 썸네일 만들기
 			$.ajax({
