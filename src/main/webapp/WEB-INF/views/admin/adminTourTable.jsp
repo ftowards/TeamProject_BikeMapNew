@@ -96,7 +96,7 @@ function makeTourTable(result){
 		}
 		listTag += "</li>";
 		
-		listTag += "<div id='viewAcodian"+result[i].noboard+"' class='panel-collapse collapse'><ul id='complist"+result[i].noboard+"' class='acodianList'></ul></div>";
+		//listTag += "<div id='viewAcodian"+result[i].noboard+"' class='panel-collapse collapse'><ul id='complist"+result[i].noboard+"' class='acodianList'></ul></div>";
 		}$("#tourList").append(listTag);
 }
 </script>
@@ -136,9 +136,9 @@ function makeTourTable(result){
 									완료
 								</c:if>						
 								<!-- 내일 한번 여쭤보자~~ -->
-								<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>	
+									
 							</li>
-							
+							<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>
 					</c:forEach>
 				</ul>
 			</div>
