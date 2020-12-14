@@ -114,7 +114,7 @@
 		});
 	})
 	
-	var	timer = setInterval('postMove()',8);
+	var	timer = setInterval('postMove()',5);
 	var left = 0;
 	var step = 0.5;
 	
@@ -124,7 +124,7 @@
 		document.getElementById("reviewTop").style.left = left +"px";
 		
 		var length = $("#reviewTop>ul>li").length-1;
-		if(left <= -330){
+		if(left <= -370){
 			left = 0;
 			$("#reviewTop>ul>li").eq(0).insertAfter($("#reviewTop>ul>li").eq(length));
 		}
@@ -188,14 +188,12 @@
 		console.log(result);
 		$result.each(function(i, val){
 			
-			listTag +="<li><img src='/home/img/img_main/t.png' class='tape'/></li>";
 			listTag +="<li class='recommendReview'>";
-			listTag +="<div class='thumbnailImage' style='background-image:url("+val.thumbnailImg+")'/></div>";
+			listTag +="<img src='/home/img/img_main/t.png' class='tape'/><div class='thumbnailImage' style='background-image:url("+val.thumbnailImg+")'/></div>";
 			listTag +="<ul class='reviewSubscription'><li>"+val.subject+"</li><li class='reviewMainUserid'>@"+val.userid+"</li>";
-			listTag += "<li class='reviewMainLike'>추천수:"+val.thumbup+"</li></ul></li>";
-	
-			listTag +="<li><img src='/home/img/img_main/t.png' class='tapeBottom'/></li>";
-			
+			listTag += "<li class='reviewMainLike'>추천수:"+val.thumbup+"</li>";
+			listTag += "<img src='/home/img/img_main/t.png' class='tapeBottom'/></ul></li>";
+				
 		});
 		
 		$("#reviewTop").html(listTag);

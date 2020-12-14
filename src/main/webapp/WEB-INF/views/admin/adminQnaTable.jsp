@@ -11,6 +11,15 @@ $(function(){
 	$("input[name=answer]").on('change', function(){
 		movePage(1);
 	});
+	
+	$(document).on("change", $("#checkAll"), function(){
+		console.log(11);
+		if($("#checkAll").prop("checked")){
+			$("#questionList input[type=checkbox]").prop("checked",true);
+		}else{
+			$("#questionList input[type=checkbox]").prop("checked",false);
+		}
+	});
 });
 
 

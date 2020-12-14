@@ -105,8 +105,46 @@
 	}
 	
 	.replyList>li{
-		margin-bottom:4px;
+		margin-bottom:12px;
 		line-height : 25px;
+		height: 50px;
+		width : 50%;
+		float: left;
+		padding : 0 10px;
+	}
+	
+	.replyView>li:nth-of-type(1){
+		
+	}
+	.replyView>li:nth-of-type(1)>span{
+		font-size : 14px;
+		font-style:italic;
+	}
+	
+	.replyView>li:nth-of-type(3){
+		width : 100%;
+		height: auto;
+	    white-space: normal;
+    	line-break: anywhere;
+    	font-weight : 400;
+    	font-size : 16px;
+	}
+	
+	.replyListEdit>li{
+		width : calc(100% - 20px);
+		margin : 0 10px 3px;
+	}
+	
+	.replyListEdit textarea{
+		border : 1px solid #bbbbbb;
+		border-radius : 6px;
+		height : 80px; 
+		resize:none;
+		width : 100%;
+	}
+	
+	.replyListEdit>li:nth-of-type(2){
+		height : 50px;
 	}
 	
 	#replyList>hr{
@@ -118,12 +156,13 @@
 							border:none;
 							border-radius:6px;
 							width:40px;
-							height: 25px;
+							height: 30px;
 							background-color:#fff;
-							font-size:13px;
+							font-size:14px;
 							color:rgb(123,123,123);
 							float: right;
-							margin-right : 15px;
+							margin : 10px 5px;
+							font-weight: bold;
 							box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	.replyEdit{

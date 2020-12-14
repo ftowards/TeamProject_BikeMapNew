@@ -19,6 +19,7 @@
 /**
  * 
  */
+var $result ;
  	var socket = null;
 	//Admin USER 테이블
     //버튼 클릭시 정지기간 조정
@@ -126,6 +127,7 @@ function movePage(page){
 					}else if(${type=='route'}){
 						makeRouteTable(result)
 					}
+					$result = $(result);
 				}
 			}, error : function(error){
 				console.log("페이지 + 검색 결과 호출 에러"+error);
@@ -138,21 +140,25 @@ function movePage(page){
 function io(noboard){
 	
 }
-function leaveMessage(noboard, userid){
-	
-	sendMsg(noboard, userid, 3);
-	
+function leaveMessage(noboard, userid, type){
+		
 	//데이터 구하기
 	var data = "reply="+"해당 루트가 추천 루트로 게시됩니다. 게시를 원치 않으실 경우 관리자 문의 부탁드립니다.";
 		data += "&noboard="+noboard;
-		
+	
+	if(type == 4){
+		data = "reply="+"해당 후기가 추천 후기로 게시됩니다. 게시를 원치 않으실 경우 관리자 문의 부탁드립니다.";
+		data += "&noboard="+noboard;
+	}
+	
+	console.log(data);
 	$.ajax({
 		url:"/home/replyWriteOk"
 		,data: data
 		,success:function(result){
-		//	if(result == 1){
-	//			setTimeout(function(){location.reload(true)},1500);
-			//}
+			if(result == 1){
+				sendMsg(noboard, userid, 4);
+			}
 		},error:function(){
 			console.log("댓글쓰기 에러 발생..");
 		}
@@ -177,8 +183,11 @@ function sendMsg(noboard, receiver, type){
 		msg = sender + "님이 " + noboard + "번 루트를 삭제하였습니다.";
 		socketMsg = "deleteRoute,"+receiver+","+sender+","+noboard;
 	}else if(type == 3){
-		msg = "<a href='/home/routeSearchView?noboard="+noboard+"'>"+noboard+ "번 루트가 추천 루트로 등록되었습니다.</a>";
+		msg = "<a href='/home/routeSearchView?noboard="+noboard+"' target='_blank'>"+noboard+ "번 루트가 추천 루트로 등록되었습니다.</a>";
 		socketMsg = "scrapRoute,"+receiver+","+sender+","+noboard;
+	}else if(type == 4){
+		msg = "<a href='/home/reviewView?noboard="+noboard+"' target='_blank'>"+ noboard+" 번 후기가 추천 후기로 등록되었습니다.</a>";
+		socketMsg = "scrapReview,"+receiver+","+sender+","+noboard;
 	}
 	
 	var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
@@ -712,11 +721,6 @@ function sendMsg(noboard, receiver, type){
     		console.log(order);
     		movePage(1);
     	});
-
-
-
-
-
     	
     	//리뷰게시판 관리자 추천 비추천
     	$(document).on('change','input:checkbox[name=adminReviewScrapBtn]', function(){	
@@ -765,55 +769,37 @@ function sendMsg(noboard, receiver, type){
 		        });
     		}
     	});
+    	
     	// 리뷰게시판 관리자 추천 한꺼번에 여러개
     	$(document).on('click','input:button[name=adminReviewScrapAllBtn]', function(){	    		
-    		var chkArray = new Array();
     		var noboards = "";
     		var useridAll = "";
-			
-    		$('input:checkbox[name=listChk]:checked').each(function(){	
-				chkArray.push(this.value);
-				noboards += this.value+"/";
-    		});
-			console.log(chkArray);
-    		//현재 고치게 될 넘버만 들어있음.
-			for(var i=0; i<chkArray.length; i++){
-				for(var j = 0 ; j< 10 ; j++){
-					//console.log($("#reviewList>li").eq(8*(j+1)+1).text()+":    "+chkArray[i]);
-					var stringArray = $("#reviewList>li").eq(8*(j+1)+1).text();
-					console.log(stringArray+"!!!::LL");
-					if(chkArray[i].equals(stringArray)){
-						//console.log("ddddd!!!!");
-						//useridAll.push($("#routeList>li").eq(9*(j+1)+3).text());
-						useridAll += $("#reviewList>li").eq(8*(j+1)+3).text()+"/";
-					}
-				}
-			}
-			console.log(useridAll+"GWP whywhy");
-    		if(chkArray.length>0) {
+    		   		
+    		$result.each(function(i, val){
+    			if($("input[name=listChk]").eq(i).prop("checked")){
+    				
+       				$.ajax({
+    		            url: 'scrapReviewAll',
+    		            data: "noboard="+val.noboard + "&userid="+val.userid,
+    		            success: function (result) {
+    		            	
+    		            	if(result>0){
+    			            	leaveMessage(val.noboard, val.userid, 4);
+    		            		setTimeout(function(){}, 1500);
+    		            	}else{
+    		            		console.log("스크랩 실패;;")
+    		            	}	    
+    		            },
+    		            error:function(e){
+    		            	console.log('관리자 추천', e.responseText);
+    		            	return false;
+    		            }
+    	      	  	});
 
-   				$.ajax({
-		            url: 'scrapReviewAll',
-		            data: "noboards="+noboards + "&userids="+useridAll,
-		            success: function (result) {
-		            	
-		            	if(result>0){
-			            	
-		            		leaveMessage(noboard, userid);
-		            	}else{
-		            		console.log("스크랩 실패;;")
-		            	}	    
-		            },
-		            error:function(e){
-		            	console.log('관리자 추천', e.responseText);
-		            	return false;
-		            }
-	      	  	});
-   				console.log($(nowPage)+": 현재페이지 입니다..")
-   				movePage($("#nowPage").val());
-   				return false;
-    			
-    		}
+    			}
+    		});
+    		
+    		movePage($("#nowPage").val());
     	});
     	//리뷰글 추천해제 여러개
     	$(document).on('click','input:button[name=adminReviewReleaseAllBtn]', function(){	    		
