@@ -65,7 +65,7 @@ function makeReviewTable(result){
 							<li>${vo.userid}</li>
 							<li>${vo.reference }</li>
 							<li><input type="hidden" value="${vo.scrap }" />${vo.hit}회</li>
-							<li><span style='color:blue'>${vo.thumbUp} </span>/ <span >${vo.thumbDown} </span></li>
+							<li><span style='color:blue'>${vo.thumbup} </span>/ <span >${vo.thumbdown} </span></li>
 							<li>
 								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
 									<label class="switch">
@@ -89,8 +89,7 @@ function makeReviewTable(result){
 				<!-- paging -->
 			 
 			<div id="paging">
-					<ul>
-					
+					<ul>					
 						<c:if test="${pagingVO.nowPage != 1 }">
 							<li><a href="#">Prev</a></li>
 						</c:if>
