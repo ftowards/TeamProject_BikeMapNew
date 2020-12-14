@@ -73,10 +73,14 @@ function movePage(page){
 		// 페이징 먼저 변경
 		var url = "<%=request.getContextPath()%>/adminPaging";
 		var data = $("#adminSearchFrm").serialize();
-		data += "&order="+$("input[name=order]:checked").val();
-	
+		data += "&order="+$("input[name=order]:checked").val();	
 		data += "&nowPage="+page;
-				
+		
+		if(${type=='qna'}){
+			data += "&answer="+$("input[name=answer]:checked").val();
+		}
+		
+		
 		console.log(data);	
 		
 		$.ajax({

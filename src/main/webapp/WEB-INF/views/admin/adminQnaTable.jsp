@@ -3,9 +3,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
-<script>	
+<script>
+
+$(function(){
+	movePage(1);
+
+	$("input[name=answer]").on('change', function(){
+		movePage(1);
+	});
+});
+
+
 	function makeQnaTable(result){
-		$("#questionList").children().remove();
 		var listTag = "";
 		for(var i = 0; i < result.length ; i++){		
 			//alert(result.length+" : 결과 줄");
@@ -13,18 +22,41 @@
 				listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번호</li> <li>아이디</li> <li>제목</li> <li>작성일자</li> <li>답변여부</li> "	;
 			}
 			//list안에 데이터 추가
-			listTag += "<li><input type='checkbox' /></li>";
-			listTag += "<li>"+result[i].noqna+"</li>";
-			listTag += "<li id='subject' class='wordCut' ><a href=''/home/adminQnaWrite?noqna="+result[i].noqna+">"+result[i].subject+"</a></li>";
-			listTag += "<li>"+result[i].writedate+"</li>";
-			listTag += "<li style='color:00B0B0'>";
-			if(result[i].answer=='Y'){
-				listTag +="답변완료";
-			}else if(result[i].answer=='N'||result[i].answer==null){
-				listTag +="답변대기";
+			listTag += "<li><input type='checkbox' value='"+result[i].noqna+"' /></li>";
+			console.log(result[i]);
+			if(result[i].answer == 'N'){
+				listTag += "<li class='answerYet'>"+result[i].noqna+"</li>";
+				listTag += "<li class='answerYet'>"+result[i].userid+"</li>";
+				listTag += "<li id='subject' class='wordCut answerYet' ><a href='/home/adminQnaWrite?noqna="+result[i].noqna+"'>"+result[i].subject+"</a></li>";
+				listTag += "<li class='answerYet'>"+result[i].writedate+"</li>";
+				listTag += "<li style='color:00B0B0'  class='answerYet'>답변 대기</li>";
+			}else{
+				listTag += "<li>"+result[i].noqna+"</li>";
+				listTag += "<li >"+result[i].userid+"</li>";
+				listTag += "<li id='subject' class='wordCut' ><a href='/home/adminQnaWrite?noqna="+result[i].noqna+"'>"+result[i].subject+"</a></li>";
+				listTag += "<li>"+result[i].writedate+"</li>";
+				listTag += "<li style='color:00B0B0'>답변 완료</li>";
 			}
-			listTag += "</li>";
-		}$("#questionList").append(listTag);
+		}$("#questionList").html(listTag);
+	}
+	
+	function deleteQna(){
+		$("#questionList input[type=checkbox]").each(function(i, val){
+			if($(this).prop("checked")){
+
+				$.ajax({
+					url : "/home/deleteQna",
+					data : "noqna="+$(this).val(),
+					success : function(result){
+						if(result == 1){
+							movePage(1);
+						}
+					}, error : function(err){
+						console.log(err);
+					}
+				});
+			}
+		});	
 	}
 </script>
 <!-- Page Content -->
@@ -32,31 +64,12 @@
 	<!-- Page Content -->
 	<div class="adminContent">
 				<div id="adminTable">
-				<h1 class=adminListHead>1:1 문의사항</h1>
-				<ul id="questionList">
-					<li><input type="checkbox" id="checkAll" /></li>
-					<li>번&nbsp;&nbsp;호</li>
-					<li>아이디</li>
-					<li>제&nbsp;&nbsp;목</li>
-					<li>작성 일자</li>
-					<li>답변여부</li>				
-					
-					<c:forEach items="${list}" var="vo" varStatus="status">
-								<li><input type="checkbox" name="listChk"/></li>
-								<li>${vo.noqna}</li>
-								<li>${vo.userid}</li>
-								<li id="subject" class='wordCut' ><a href="/home/adminQnaWrite?noqna=${vo.noqna}&answer=${vo.answer}">${vo.subject}</a></li>
-								<li>${vo.writedate}</li>
-								<li>
-									<c:if test="${vo.answer=='Y'}">
-										답변완료
-									</c:if>
-									<c:if test="${vo.answer=='N'}">
-										답변대기
-									</c:if>
-								</li>					
-							</c:forEach>						
-				</ul>			
+					<h1 class=adminListHead>1:1 문의사항</h1>
+						<div class="answerAlready">
+							<input type="checkbox" id="answer" name="answer" value="N" />
+							<span>미답변 만 보기</span>
+						</div>
+					<ul id="questionList"></ul>			
 				</div>
 				
 				<!-- paging -->
@@ -80,12 +93,13 @@
 								<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 							</c:if>
 						</ul>
-				</div><br/>
+				</div>
 				<!-- /paging -->
+				<div id="partnerBtn">
+					<input type="button" id="partnerBtn1" name="partnerDeleteBtn" onclick="deleteQna();" value="삭제하기" class="mint_Btn"/>
+				</div><!-- btn -->
 			</div><!-- adminContent -->
-			<div id="partnerBtn">
-				<input type="button" id="partnerBtn1" name="partnerDeleteBtn" value="삭제하기" class="mint_Btn"/><input type="button" id="partnerBtn2" name="partnerHideBtn" value="비공개"/>
-			</div><!-- btn -->
+			
 <!-- Page Content -->
 </div><!--  adminBottom -->
 </body>

@@ -244,7 +244,10 @@ public class AdminController {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		List<AdminQnaVO>list = new ArrayList<AdminQnaVO>();
 		try {	
+			System.out.println("앤서 "+vo.getAnswer());
 			int totalRecord = dao.searchQnaRecord(vo);
+			
+			System.out.println("qna 전체 레코드" + totalRecord);
 			vo.setTotalRecord(totalRecord);
 			list = dao.selectQnaAll(vo);		
 		}catch(Exception e) {

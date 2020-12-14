@@ -6,7 +6,6 @@
 <!-- Page Content -->
 <script>
 function makeReviewTable(result){
-	$("#reviewList").children().remove();
 	var listTag = "";
 	for(var i = 0; i < result.length ; i++){
 		if(i==0){
@@ -29,10 +28,30 @@ function makeReviewTable(result){
 		listTag += "><span class='slider round'></span>";
 		listTag += "</label>";
 		listTag += "</li>";
-		}$("#reviewList").append(listTag);
+		}$("#reviewList").html(listTag);
+}
+
+function deleteReview(){
+	$("#reviewList input[type=checkbox]").each(function(i, val){
+		if($(this).prop("checked")){
+
+			$.ajax({
+				url : "/home/reviewDel",
+				data : "noboard="+$(this).val(),
+				success : function(result){
+					if(result > 0){
+						movePage(1);
+					}else {
+						toast("후기 삭제 오류 입니다. 다시 시도해주십시오.", 1500);
+					}
+				}, error : function(err){
+					console.log(err);
+				}
+			});
+		}
+	});
 }
 </script>
-
 	<!-- /Page Sidebar -->
 	
 	<!-- Page Content -->
@@ -107,13 +126,15 @@ function makeReviewTable(result){
 							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>
 					</ul>
-			</div><br/> 
-			<!-- /paging -->
-			</div><!-- adminContent -->
-				<div id="reviewBtnDiv">					
-						<input type="button" id="partnerBtn1" name="adminReviewScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
-						<input type="button" id="partnerBtn2" name="adminReviewReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
-				</div><!— btn —>
-<!— Page Content —>
+			</div>			<!-- /paging -->
+			<div id="reviewBtnDiv">
+        <input type="button" id="partnerBtn1" name="adminReviewScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
+        <input type="button" id="partnerBtn2" name="adminReviewReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
+        <input type="button" class="mint_Btn" onclick="deleteReview();" value="삭제" />
+			</div><!-- btn -->
+
+		</div><!-- adminContent -->
+				
+<!-- Page Content -->
 </body>
 </html>

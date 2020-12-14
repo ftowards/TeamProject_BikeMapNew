@@ -306,8 +306,8 @@ function setAcodianList(result, noboard){
 		tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>참가상태</b></li><li></li>";
 		
 		$result.each(function(idx, val){
-			tag += "<li>"+val.userid+"</li>"
-			tag += "<li>"+val.age+"대</li>"
+			tag += "<li><span onclick='popMsgSend(title)' title='"+val.userid+"'>"+val.userid+"</span></li>";
+			tag += "<li>"+val.age+"대</li>";
 			
 			if(val.gender == '1'){
 				tag += "<li>남</li>";
@@ -337,8 +337,8 @@ function setAcodianList(result, noboard){
 		
 		$result.each(function(idx, val){
 			if(val.state != '1'){
-				tag += "<li>"+val.userid+"</li>"
-				tag += "<li>"+val.age+"대</li>"
+				tag += "<li><span onclick='popMsgSend(title)' title='"+val.userid+"'>"+val.userid+"</span></li>";
+				tag += "<li>"+val.age+"대</li>";
 				
 				if(val.gender == '1'){
 					tag += "<li>남</li>";
@@ -367,9 +367,10 @@ function setAcodianList(result, noboard){
 	}else if(tourState == '3'){
 		tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>평가여부</b></li><li></li>";
 		
-		$result.each(function(idx, val){			
-			tag += "<li>"+val.objid+"</li>"
-			tag += "<li>"+val.age+"대</li>"
+		$result.each(function(idx, val){		
+			
+			tag += "<li><span onclick='popMsgSend(title)' title='"+val.objid+"'>"+val.objid+"</span></li>";
+			tag += "<li>"+val.age+"대</li>";
 			
 			if(val.gender == '1'){
 				tag += "<li>남</li>";
@@ -524,4 +525,12 @@ function sendMsg(noboard, receiver, type){
 		}
 	})
 }
+//쪽지창 열기
+function popMsgSend(userid){
+	if(userid == 'admin' || userid == $("logId").val()){
+		return false
+	}
+	window.open('/home/sendMsg?userid='+userid, 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0');	
+}
+
 </script>

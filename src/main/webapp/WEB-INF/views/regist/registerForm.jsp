@@ -29,11 +29,11 @@
 		// 아이디 정규식 체크	
 		$("#idChk").click(function(){
 			if($("#userid").val()==""){
-				alert("아이디를 입력하세요.");
+				toast("아이디를 입력하세요.",1500);
 				return false;
 			} 
 			if(!regId.test($("#userid").val())){
-				alert("아이디는 8~12자리\n영문자로 시작하여야 하고, 숫자와 특수문자 _ 만 사용 가능합니다.");
+				toast("아이디는 8~12자리\n영문자로 시작하여야 하고, 숫자와 특수문자 _ 만 사용 가능합니다.",1500);
 				return false;
 			}
 			
@@ -45,9 +45,9 @@
 				success : function(result){
 					if(result == 0){
 						idChk = "Y";
-						alert("사용 가능한 아이디 입니다.");
+						toast("사용 가능한 아이디 입니다.",1500);
 					}else{
-						alert("이미 사용 중인 아이디입니다.");
+						toast("이미 사용 중인 아이디입니다.",1500);
 					}
 				},error : function(){
 					console.log("중복 체크 에러");
@@ -69,7 +69,7 @@
 		// 이메일 중복 검사 로직	
 		$("#emailChk").click(function(){
 			if($("#email1").val()=="" || $("#email2").val=="" ){
-				alert("이메일을 입력하세요.");
+				toast("이메일을 입력하세요.", 1500);
 				return false;
 			}
 			
@@ -81,9 +81,9 @@
 				success : function(result){
 					if(result == 0){
 						emailChk = "Y";
-						alert("사용 가능한 이메일입니다.");
+						toast("사용 가능한 이메일입니다.", 1500);
 					}else{
-						alert("이미 등록된 메일 주소입니다.");
+						toast("이미 등록된 메일 주소입니다.", 1500);
 					}
 				},error : function(){
 					console.log("중복 체크 에러");
@@ -103,38 +103,38 @@
 		// 입력사항 체크
 		$("#registerForm").submit(function(){			
 			if(idChk != "Y"){
-				alert("아이디 중복 검사를 하세요.");
+				toast("아이디 중복 검사를 하세요.", 1500);
 				return false;
 			}
 			
 			if($("#userpwd").val()==""){
-				alert("비밀번호를 입력하세요.");
+				toast("비밀번호를 입력하세요.", 1500);
 				return false;
 			}
 			
 			if($("#userpwdChk").val()==""){
-				alert("비밀번호 확인을 입력하세요.");
+				toast("비밀번호 확인을 입력하세요.", 1500);
 				return false;
 			}else if($("#userpwd").val() != $("#userpwdChk").val()){
-				alert("비밀번호가 일치하지 않습니다.");
+				toast("비밀번호가 일치하지 않습니다.", 1500);
 				return false;
 			}
 			
 			if($("#username").val()==""){
-				alert("이름을 입력하세요.");
+				toast("이름을 입력하세요.", 1500);
 				return false;
 			}else if(!regName.test($("#username").val())){
-				alert("이름은 한글로 2~5자 사이로 입력해주세요.");
+				toast("이름은 한글로 2~5자 사이로 입력해주세요.", 1500);
 				return false;
 			}
 			
 			if(emailChk != "Y"){
-				alert("이메일 중복 검사를 하세요.");
+				toast("이메일 중복 검사를 하세요.", 1500);
 				return false;
 			}
 			
 			if($("#datepicker").val()==""){
-				alert("생일을 선택하세요.");
+				toast("생일을 선택하세요.", 1500);
 				return false;
 			}
 			
@@ -146,10 +146,10 @@
 				data : data,
 				success : function(result){
 					if(result > 0){
-						alert("회원 가입 완료")
-						location.href="/home/registWelcome";
+						toast("회원 가입 완료", 1500)
+						setTimeout(function(){location.href="/home/registWelcome";},1500);
 					} else{
-						alert("회원가입에 실패하였습니다.");
+						toast("회원가입에 실패하였습니다.", 1500);
 					}
 				},error: function(){
 					console.log("회원 가입 오류");
@@ -162,21 +162,22 @@
 </script>
 <div class="registerMainDiv" style='margin-bottom:150px'>
 	<form id="registerForm" method="post" action="<%=request.getContextPath()%>/registerFormOk">
-		<div class="registerTitle"><label class="registerTitleLbl">회원가입</label><br/><br/></div>
-		<div class="registerWriteForm">	
-			<div class = "registerFormLblDiv">
-				<ul>
-					<li>아이디</li>
-					<li>비밀번호</li>
-					<li>비밀번호 확인</li>
-					<li>이  름</li>
-					<li>이메일</li>
-					<li>성  별</li>
-					<li>생년월일</li>
-				</ul>
-			</div>
-		</div>		
-			<div id="input">
+		<ul>
+			<li class="registerTitle"><label class="registerTitleLbl">회원가입</label></li>
+			<li class="registerWriteForm">	
+				<div class = "registerFormLblDiv">
+					<ul>
+						<li>아이디</li>
+						<li>비밀번호</li>
+						<li>비밀번호 확인</li>
+						<li>이  름</li>
+						<li>이메일</li>
+						<li>성  별</li>
+						<li>생년월일</li>
+					</ul>
+				</div>
+			</li>	
+			<li id="input">
 				<ul>
 					<li><input type="text" name="userid" id="userid" class="i1" maxlength="12" size="12" autocomplete="off"/> <input type="button" class="gray_Btn" id="idChk" value="중복검사"/></li>
 						<li><span class="reg">&nbsp;&ensp;※ 8~12자 영문(시작)/숫자/_ 사용</span></li>
@@ -197,17 +198,18 @@
 					<input type="button" class="gray_Btn" id="emailChk" value="중복검사"/></li>
 					<li><span class="reg">※ 이메일은 계정 활성화 및 아이디&비밀번호 찾기 인증 수단으로 사용됩니다.</span></li>
 					
-					<li><input type="radio"name="gender" value="1"/><span class="tlbl">남 자</span>
-						<input type="radio" name="gender"value="2" checked/><span class="tlbl">여 자</span></li>
+					<li><input type="radio"name="gender" id="male" value="1"/><label for="male" class="tlbl2">남 자</label>
+						<input type="radio" name="gender" id="female" value="2" checked/><label for="female" class="tlbl2">여 자</label></li>
 						<li><span class="reg">&ensp;</span></li>
 					<li><input type="text" name="birth" id="datepicker" class="i2" maxlength="10" autocomplete="off"></li>	
 						<li><span class="reg">&ensp;※ ex)1980-12-03</span></li>	
 				</ul>
-			</div>
-		<div id="buttons2">
-			<input type="submit" class="mint_Btn" value="회원가입"/>
-			<input type="reset" class="WMint_Btn" value="다시쓰기"/>
-		</div>
+			</li>
+			<li id="buttons2">
+				<input type="submit" class="mint_Btn" value="회원가입"/>
+				<input type="reset" class="WMint_Btn" value="다시쓰기"/>
+			</li>
+		</ul>
 	</form>
 
 </div>

@@ -14,93 +14,37 @@ $(function(){
 	});
 });	
 </script>
-<style>
-		table.table2{
-                border-collapse: separate;
-                border-spacing: 1px;
-                text-align: left;
-                line-height: 1.5;
-                margin : 0px 10px;
-        }
-        table.table2 tr {
-                width: 50px;
-                padding: 10px;
-                font-weight: bold;
-                vertical-align: top;
-        }
-        table.table2 td {
-                 width: 100px;
-                 padding: 10px;
-                 vertical-align: top;  
-        }
-		#tt td{
-			border-bottom: 3px solid #ccc;
-		}
-		#questionReplyDiv{
-			padding-left:50px;
-			float:left;
-		}
-</style>
+
 <div id="questionReplyDiv">
-	<c:if test="${vo.answer==null||vo.answer=='N'}">
-		<h2 class="question_title" style='margin-bottom:30px;'>1:1 문의내역</h2>	
-	</c:if>
-	<c:if test="${vo.answer=='Y'}">
-		<h2 class="question_title" style='margin-bottom:30px;'>1:1 문의내역 수정</h2>	
-	</c:if>
+	<h2 class="question_title" >1:1 문의내역</h2>	
 	<form method="post" id="replyFrm" action="adminQnaWriteOk">
         <input type="hidden" name="noqna" value="${vo.noqna}"/>
-        <table style="align=center; width=60%; border=0; cellpadding=2;" >
-                <tr style='height:515px'>
-                <td class="question_td">
-                <table class = "table2">
-                        <tr>
-                        <td>작성자</td>
-                        <td>${vo.userid}</td>
-                        </tr>
- 
-                        <tr>
-                        <td>제목</td>
-                        <td>${vo.subject }</td>
-                        </tr>
-                    
-                        <tr>
-                        <td>내용</td>
-                        <td>${vo.content }</td>
-                        </tr>
- 
-                        <tr>
-                        <td>문의 유형</td>
-                        <td><select name="choice" id="bigCate">
-								<option value="userid">${vo.typename}</option>
-							</select>
-                        </tr>                   
-                        <tr id="tt">
-                        <td>첨부파일</td>
-                        <td><a href="#">동행찾기 화면캡처.jpg</a></td>
-                        </tr>
-                        <tr>
-                        <td>관리자 답변</td>
-                        <td><textarea name="answercontent" id="questionReplyTxt" cols=70 rows=10 style="resize: none;overflow:hidden;">
-                        <c:if test="${vo.answer==null||vo.answer=='N'}">
-							안녕하세요 바이크맵 입니다.<br>
-							현재 <span>${vo.typename}</span> 게시판 점검중으로 2020-11-01 02:00 이후 정상 운영됩니다.<br>
-							이용에 불편을 드려서 죄송합니다.<br>
-												
-							바이크맵 드림.
-						</c:if>					
-						<c:if test="${vo.answer=='Y'}">
-							<span>${vo.answercontent}</span>
-						</c:if>
-                        </textarea><br/></td>
-                        </tr>
-                        </table>    
-                        <input type="submit" value="답변달기" id="replySubmit" class="mint_Btn"/>
-                       
-                </td>
-                </tr>
-        </table>
-        </form>
+        <ul class="adminQnaView">
+        	<li>작성자</li>
+        	<li><input type="text" value="${vo.subject }" readonly/></li>
+        	<li>문의유형</li>
+        	<li><input type="text" value="${vo.typename }" readonly/></li>
+        	<li>제목</li>
+        	<li><input type="text" value="${vo.subject }" readonly/></li>
+        	<li class="qnaLong">내용</li>
+        	<li class="qnaLong"><textarea readonly>"${vo.content }"</textarea></li>
+          	<li class="qnaLong">답변</li>
+			<c:if test="${vo.answer==null||vo.answer=='N'}">
+				<li class="qnaLong"><textarea name="answercontent" maxlength="200">안녕하세요 바이크맵 입니다.
+					이용에 불편을 드려서 죄송합니다.
+					바이크맵 드림.</textarea></li>
+			</c:if>					
+			<c:if test="${vo.answer=='Y'}">
+				<li class="qnaLong"><textarea readonly>${vo.answercontent}</textarea></li>
+			</c:if>
+			<c:if test="${vo.answer==null||vo.answer=='N'}">
+				<li>
+					<input type="submit" value="답변달기" id="replySubmit" class="mint_Btn"/>
+					<input type="reset" value="다시쓰기" class="mint_Btn"/>
+				</li>
+        	</c:if>
+        </ul>
+	</form>
 </div>
 
 </body>

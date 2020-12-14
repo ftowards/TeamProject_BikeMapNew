@@ -26,6 +26,14 @@ function goList(){
 	$("#pagingVO").submit();
 }
 
+// 쪽지창 열기
+function popMsgSend(userid){
+	if(userid == 'admin' || userid == $("logId").val()){
+		return false
+	}
+	window.open('/home/sendMsg?userid='+userid, 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0');	
+}
+
 </script>
 <div class="routeSearchViewDiv2">
 	<div id="mapDiv" style='width:1200px;'>
@@ -35,7 +43,7 @@ function goList(){
 		<div id="routeWriterMenu">
 			<ul>
 				<li class="labelClass">작성자</li>
-				<li id="userid" class="txtShadow">${routeVO.userid }</li>
+				<li id="userid" onclick="popMsgSend(title)" title="${routeVO.userid }" class="txtShadow">${routeVO.userid }</li>
 				<c:if test="${logId == 'admin'}">
 					<li><c:if test="${routeVO.scrap !='T' }"><input type="button" value="스크랩" class="WMint_Btn" onclick="scrapRoute()"/></c:if>
 						<c:if test="${routeVO.scrap !='F' }"><input type="button" value="스크랩 해제" class="mint_Btn" onclick="releaseRoute()"/></c:if>

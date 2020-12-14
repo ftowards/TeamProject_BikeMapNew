@@ -214,7 +214,7 @@ function toast(msg, time) {
 	<ul>	
 		<li><div class="receiverLbl">받는 사람</div></li>
 		<li>
-			<input type="text" name="userid" id="userid" autocomplete="off"/>
+			<input type="text" name="userid" id="userid" <c:if test="${userid != null }">value="${userid }"</c:if>autocomplete="off"/>
 			<div id="searchIdList"></div>
 		</li>
 	

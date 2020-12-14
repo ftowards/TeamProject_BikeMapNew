@@ -115,7 +115,6 @@ $(function(){
 	$(document).on('contextmenu', function(){
 		  return false;
 	});
-	
 });
 
 //페이지 이동
@@ -279,7 +278,6 @@ function transferDialog(){
 	$("#rightContext2").css("display","block");
 	$("#rightContext2").css("top", y);
 	$("#rightContext2").css("left",x);
-
 }
 
 function transferCategory(){

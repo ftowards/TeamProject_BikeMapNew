@@ -15,7 +15,7 @@ public class AdminPagingVO {
 	private String type;
 	
 	private String order = "noboard" ; // 아니면 "rating"
-	
+	private String answer ;
 	
 	
 	public String getOrder() {
@@ -99,9 +99,10 @@ public class AdminPagingVO {
 	public void setLastPageRecordCount(int lastPageRecordCount) {
 		this.lastPageRecordCount = lastPageRecordCount;
 	}
-	
-	
-	
-	
-	
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 }

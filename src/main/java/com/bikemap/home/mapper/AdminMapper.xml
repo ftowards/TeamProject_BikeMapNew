@@ -49,13 +49,28 @@
 	
 	
 	<!-- 1대1 문의 게시판 -->
-	<select id="searchQnaRecord" parameterType="com.bikemap.home.admin.AdminSuspendVO" resultType="int">
-		select count(noqna) from qna <include refid="search"></include>
+	<select id="searchQnaRecord" parameterType="com.bikemap.home.admin.AdminPagingVO" resultType="int">
+			select count(noqna) from
+		<if test = 'answer neq null and answer eq "N"'>
+			 (select noqna, answer from
+		</if>
+			 qna <include refid="search"></include>
+		<if test = 'answer neq null and answer eq "N"'>
+			) where answer = 'N'
+		</if>
 	</select>
 	
 	<select id="selectQnaAll" parameterType="com.bikemap.home.admin.AdminPagingVO" resultType="com.bikemap.home.admin.AdminQnaVO">
-		select * from(select * from(select noqna, userid, subject,  to_char(writedate,'YYYY-MM-DD') writedate, answer from qna
-		<include refid="search"></include> order by noqna desc)
+		select * from(select * from(	
+		<if test = 'answer neq null and answer eq "N"'>
+			select * from (
+		</if>
+			select noqna, userid, subject,  to_char(writedate,'YYYY-MM-DD') writedate, answer from qna
+		<include refid="search"></include> 		
+			order by noqna desc)
+		<if test = 'answer neq null and answer eq "N"'>
+			where answer = 'N')
+		</if>
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noqna asc) 
 		where rownum <= #{lastPageRecordCount} order by noqna  desc]]>
 	</select>
@@ -85,7 +100,7 @@
 		select count(noboard) from review
 	</select>
 	<select id = "reviewAllRecord" resultType="com.bikemap.home.review.ReviewVO">
-		select * from(select * from(select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit, thumbUp, thumbDown, scrap
+		select * from(select * from(select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit, thumbup, thumbdown, scrap
 		from review <include refid="search"></include> order by ${order} desc) 
 		<![CDATA[where rownum <=]]> (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
 		<![CDATA[where rownum <=]]> #{lastPageRecordCount} order by ${order} desc
