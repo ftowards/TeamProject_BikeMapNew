@@ -102,8 +102,11 @@
 										background-color:rgb(221,221,221);
 										font-size:18px;
 										font-weight:bold;
-										color:rgb(64,64,64);										
+										color:rgb(64,64,64);
+										position:relative;
+										left:40px;										
 	}
+
 	
 	#searchResultList{
 						width:500px;
