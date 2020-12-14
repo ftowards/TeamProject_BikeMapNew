@@ -350,7 +350,7 @@ function setAcodianList(result, noboard){
 				tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
 				
 				if(val.state == '3'){
-					tag += "<li>불참</li>";
+					tag += "<li><div class='tourOut>불참</div></li>";
 					tag += "<li></li>";
 				}else if(val.state == '2'){
 					tag += "<li><button class='tourOk'>참가 중</button></li>";

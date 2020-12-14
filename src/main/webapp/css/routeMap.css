@@ -1,7 +1,7 @@
 @charset "UTF-8";
 	hr{
 		border:0;
-		border-top: 0.2em dotted #bbb;
+		border-top: 1px solid #eee;
 	}
 	.route_hr{
 		margin: 13px 0 14px 0;
@@ -96,7 +96,7 @@
 		width:275px;
 		height:40px;
 		font-size:16px;
-		border-radius:5px;
+		border-radius:10px;
 		padding-left:10px;
 		margin-left:-10px;
 		font-weight:bold;
@@ -110,11 +110,14 @@
 	#foodList, #sightsList, #accomodationList, #convenientList{
 		padding-top:4px;
 	}
-	
+
 	.startBox{
 		color:#548434;
+		border-radius:10px;
 		background-color:#E6F2DE;
-		border:2px solid #548434;	
+		border:none;	
+		box-shadow: 3px 3px 5px 3px rgb(180,180,180);
+		
 	}
 	input.startBox::-webkit-input-placeholder {
 		color: #548434;
@@ -122,7 +125,10 @@
 	.arriveBox{
 		color:#EA3E3E;
 		background-color:#FFE5E5;
-		border:2px solid #EA3E3E;	
+		border:none;	
+		margin-top:10px;
+		border-radius:10px;
+		box-shadow: 3px 3px 5px 3px rgb(180,180,180);
 	}
 	input.arriveBox::-webkit-input-placeholder {
 		color: #EA3E3E;
@@ -157,9 +163,10 @@
 	#searchWord{
 		width : 88%;
 		height : 40px;
-		border-radius : 5px;
+		border-radius :10px;
 		margin : 21px;
-		border : 2px inset #A6A6A6;
+		border : none;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 		padding-left:10px;
 		letter-spacing:1px;
 		color:black;
@@ -292,12 +299,13 @@
 	
 	.food_Btn, .sights_Btn, .accomodation_Btn, .convenient_Btn{
 		float : left;
-		border-radius: 5px;
+		border-radius:10px;
 		text-decoration: none;
 		text-align : center;
 		font-weight:bold;
 		letter-spacing:1px;
 		background-color: white;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	.food_Btn{
 		background-color : #EB3807;
@@ -382,14 +390,15 @@
 	}
 	.mint_Btn{
 		font-weight:bold;
-		border-radius: 5px;
+		border-radius:10px;
 		text-decoration: none;
 		text-align : center;
 		padding:3px 6px;
 		margin-right: 8px;
 		color : white;
-		background-color: #00B0B0;
+		background-color: rgb(0,176,176);
 		border: 0;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	.mint_Btn:hover{
 		color : white;
@@ -419,13 +428,13 @@
 		width:295px;
 		height:38px;
 		margin:0 0 10px 8px;
-		border:0;
-    	border-radius: 5px;
+		border:none;
+    	border-radius: 10px;
     	font-size:14px;
     	font-family:'Noto Sans KR', sans-serif;
     	padding-left: 12px;
    		background-color: #F1F1F1;
-   		border:2px inset #A6A6A6;
+   		box-shadow: 3px 3px 5px 3px rgb(180,180,180);
 	}
 	#routeSave{
 		padding:40px 0 0 20px;
@@ -462,7 +471,7 @@
 	}
 	
 	.saveTxt{
-		color:#247B8A;
+		color:rgb(0,176,176);
 		font-weight:bold;
 		font-size:13px;
 		padding-left:23px;
@@ -482,6 +491,7 @@
 		margin : 10px 0 0 6px;
 		color: white;
 		border:0;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	.gray_Btn:hover{
 		color : white;
@@ -500,7 +510,7 @@
 		font-size:12px;
 		text-align:center;
 		float:center;
-		width:148px;
+		width:152px;
 		height:auto;
 		border:6px solid #eee;
 		white-space:nowrap;
@@ -511,58 +521,59 @@
 		font-size:14px;
 		font-weight:bold;
 		text-decoration: none;
-		border: rgba(75,112,253,0.3) solid;
-		border-width: 0 0 6px 0;
+		border:1px rgba(75,112,253,0.3) solid;
+		border-width: 0 0 4px 0;
 	}
 	#start_Btn, #via_Btn, #arrive_Btn{
 		width:105px;
 		height:30px;
 		font-size:16px;
-		letter-spacing:1px;
+		letter-spacing:2px;
+		margin-top:5px
 	}
 	#start_Btn{
 		text-decoration: none;
 		text-align : center;
 		font-weight:bold;
-		border-radius:5px;
+		border-radius:10px;
 		background-color : white;
-		border : 2px solid #0E6C15;
+		border :none;
 		color: #0E6C15;
+		box-shadow: 2px 2px 3px 2px rgb(180,180,180);
 	}
 	#via_Btn{
 		text-decoration: none;
 		text-align : center;
 		font-weight:bold;
-		border-radius:5px;
+		border-radius:10px;
 		background-color : white;
-		border : 2px solid #D68A00;
-		color: #D68A00;	
+		border :none;
+		color: orange;	
+		box-shadow: 2px 2px 3px 2px rgb(180,180,180);
 	}
 	#arrive_Btn{
 		text-decoration: none;
 		text-align : center;
 		font-weight:bold;
-		border-radius:5px;
+		border-radius:10px;
 		background-color : white;
-		border : 2px solid #C41F04;
+		border :none;
 		color: #C41F04;	
+		box-shadow: 2px 2px 3px 2px rgb(180,180,180);
 	}
 	#start_Btn:hover{
 		color : white;
 		font-weight:bold;
-		border-radius:5px;
 		background-color: #0E6C15;
 	}	
 	#via_Btn:hover{
 		color : white;
 		font-weight:bold;
-		border-radius:5px;
-		background-color: #D68A00;
+		background-color:orange;
 	}
 	#arrive_Btn:hover{
 		color : white;
 		font-weight:bold;
-		border-radius:5px;
 		background-color: #C41F04;
 	}	
 
@@ -585,6 +596,24 @@
 		height:30px;
 		box-shadow: 3px 3px 5px 3px rgb(180,180,180);
 	}
+	.blue_Btn1{
+					font-weight:bold;
+					border-radius: 10px;
+					text-decoration: none;
+					text-align : center;
+					padding:3px 6px;
+					color : white;
+					background-color:rgb(0,176,176);		
+					border: 0;
+					width:80px;
+					height:42px;
+					box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	
+	}
+	.blue_Btn1:hover{
+		color : white;
+		background-color: #00B0B0;
+	}
 	.blue_Btn:hover{
 		color : white;
 		background-color: #00B0B0;
@@ -592,8 +621,10 @@
 	#saveBtn{
 		width:222px;
 		height:53px;
+		border-radius:10px;
 		margin:0 18px 0 9px;
 		font-size:17px;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 		font-family:'Noto Sans KR', sans-serif;
 	}
 
@@ -606,11 +637,12 @@
 		height:127px;
 		margin-left:8px;
 		padding:5px;
-		border-radius:3px;
-		border:2px inset #00B0B0;
+		border-radius:10px;
+		border:none;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	textarea#description::placeholder {
-		color:#00B0B0;
+		color:gray;
 		font-size:13.5px;
 		font-weight:400;
 	}
@@ -672,16 +704,17 @@
 		right:12px;	 
 	 }
 	.food_Btn2, .sights_Btn2, .accomodation_Btn2, .convenient_Btn2{
-		width:105px;
+		width:115px;
 		height:30px;
 		font-size:16px;
 		float : left;
-		border-radius: 5px;
+		border-radius:10px;
 		text-decoration: none;
 		text-align : center;
 		font-weight:bold;
 		position:relative;
 		background-color: white;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	.food_Btn2{
 		background-color : #EB3807;

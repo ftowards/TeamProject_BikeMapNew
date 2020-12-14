@@ -88,7 +88,7 @@
 					<input type="button" value="경로 탐색" onclick="searchRoute();" class="mint_Btn" style='font-size:14px; height:35px'/>
 				</div>
 				<div style='text-align:center'>
-					<input type="button" value="지점 전환" onclick="changeStartArrive();" class="blue_Btn" style='font-size:16px; width:105px; padding: 11px 12px'/>
+					<input type="button" value="지점 전환" onclick="changeStartArrive();" class="blue_Btn1" style='font-size:16px; width:105px; padding: 11px 12px'/>
 					<input type="button" value="초기화" onclick="clearRoute();" class="gray_Btn" style='font-size:16px; width:105px; padding: 11px 12px'/>
 				</div>
 				<div id="routeInfo">
@@ -144,13 +144,13 @@
 								<option value="addCategory">카테고리 추가</option>
 							</c:if>
 						</select><br/>
-						<span class="saveTxt">※ 루트 공개여부를 설정해주세요</span><br/>
+						<span class="saveTxt">※ 루트 공개여부를 설정해주세요.</span><br/>
 					<div style='margin:8px 0 0 18px;'>
 						<input type="radio" name="closed" value="F" checked/><span class="saveTxt2"> 공개</span>&emsp;&emsp;&emsp;
 						<input type="radio" name="closed" value="T"/><span class="saveTxt2"> 비공개</span>
 					</div><br/>
 					<div id="saveDiv3">
-						<textarea name="description" id="description" placeholder="루트에 대한 설명을 적어주세요:)" rows="6" cols="15" style="resize:none" maxlength="50"></textarea><br/>
+						<textarea name="description" id="description" placeholder="루트에 대한 설명을 적어주세요." rows="6" cols="15" style="resize:none" maxlength="50"></textarea><br/>
 					</div>
 					<div id="saveDiv2">
 						<input type="submit" value="나의 루트 저장하기" class="blue_Btn" id="saveBtn"/>

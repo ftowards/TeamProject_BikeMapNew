@@ -65,7 +65,7 @@
 		if(event.keyCode == 13){
 			var keyword = $("#searchWord").val();
 			if(keyword == ""){
-				alert("검색어를 입력하세요.");
+				toast("검색어를 입력하세요.");
 				return false;
 			}
 			ps.keywordSearch(keyword, placeSearchCB, {size: 10});
@@ -82,10 +82,10 @@
 			displayPagination(pagination);
 			
 		}else if(status === kakao.maps.services.Status.ZERO_RESULT){
-			alert("검색 결과가 존재하지 않습니다.");
+			toast("검색 결과가 존재하지 않습니다.");
 			return ;
 		}else if(satus === kakao.maps.services.Statuas.ERROR){
-			alert("검색 결과 중 오류가 발생했습니다.");
+			toast("검색 결과 중 오류가 발생했습니다.");
 			return;
 		}
 	};
@@ -307,7 +307,7 @@
 			else if(type== 'convenientList'){removeMarker(convenientMarker);}
 		}else{
 			if($("#"+type).children("li").length == 0){
-				alert("찜한 리스트가 없습니다.");
+				toast("찜한 리스트가 없습니다.");
 			}else{
 				$("#"+type).css("display", "block");
 				if(type == 'foodList') { setPlaceMarker(foodMarker);}
@@ -336,7 +336,7 @@
 			$("#"+type).children("li").each(function(){
 				var id = $(this).attr("title");
 				if(id == json.id){
-					alert("이미 등록된 장소입니다.");
+					toast("이미 등록된 장소입니다.");
 					overlap++;
 					return false;
 				}
@@ -363,7 +363,7 @@
 				return false;
 			}
 		} else{
-			alert("장소는 코스당 종류 별로 최대 5개 등록이 가능합니다.");
+			toast("장소는 코스당 종류 별로 최대 5개 등록이 가능합니다.");
 			return false;
 		}
 	}
@@ -458,7 +458,7 @@ $(function(){
 		var overlap = 0;
 		$("input[name=routePoint]").each(function(){
 			if($(this).val() == point){
-				alert("이미 등록된 위치입니다.");
+				toast("이미 등록된 위치입니다.");
 				overlap ++;
 				return false;
 			}
@@ -480,7 +480,7 @@ $(function(){
 				console.log(cnt);
 				// 5개 이상일 때 오류 메세지 출력
 				if( cnt >= 7 ){
-					alert("경유지는 5개까지만 설정 가능합니다.");
+					toast("경유지는 5개까지만 설정 가능합니다.");
 					return false;
 				}else{ // 경유지에 남은 자리가 있을 경우 추가 가능
 					var viaTag = "<li class='tab_liTag ui-sortable-handle'><input type='text' value='"+json.place_name+"' readonly/>";
@@ -573,7 +573,7 @@ $(function(){
 				var names = $(this).attr("title");
 				console.log(names);
 				if(names == catename){
-					alert("이미 등록된 이름입니다.");
+					toast("이미 등록된 이름입니다.");
 					overlap++;
 					return false;
 				}
@@ -591,10 +591,10 @@ $(function(){
 					data : data,
 					success : function(result){
 						if(result == 1){
-							alert("새로운 카테고리가 추가되었습니다.");
+							toast("새로운 카테고리가 추가되었습니다.");
 							selectCategory();
 						}else{
-							alert("카테고리 추가 에러");
+							toast("카테고리 추가 에러");
 						}
 					}, error : function(){
 						console.log("카테고리 새로 추가 에러");
@@ -628,7 +628,7 @@ $(function(){
 				
 				$("#catename").html(tag);
 			},error : function(){
-				alert("카테고리 호출 에러");
+				toast("카테고리 호출 에러");
 			}
 		});
 	}
@@ -650,7 +650,7 @@ $(function(){
 	
 	function searchRoute(){
 		if($("#routePoint>li:first").children("input[type=text]").val() == "" || $("#routePoint>li:last").children("input[type=text]").val() == ""){
-			alert("경로를 검색할 위치를 입력하세요.");
+			toast("경로를 검색할 위치를 입력하세요.");
 			return false;
 		}
 	
@@ -933,7 +933,7 @@ $(function(){
 		if($("#title").val() != ""){
 			data+="title="+$("#title").val();
 		}else{
-			alert("루트 제목을 입력하세요.");
+			toast("루트 제목을 입력하세요.");
 			return false;
 		}
 		
@@ -948,13 +948,13 @@ $(function(){
 		});
 		
 		if(cntRoute < 2){
-			alert("저장할 경로를 2개 이상 입력하세요.");
+			toast("저장할 경로를 2개 이상 입력하세요.");
 			return false;
 		}
 		
 		// 3. geocode 데이터 존재 여부 확인
 		if(geocode == ""){
-			alert("경로 탐색을 먼저 실행하세요.");
+			toast("경로 탐색을 먼저 실행하세요.");
 			return false;
 		}else{
 			data += "&geocode="+geocode;
@@ -1004,10 +1004,10 @@ $(function(){
 			data : data,
 			success : function(result){
 				if(result == 1){
-					alert("루트가 저장되었습니다.");
+					toast("루트가 저장되었습니다.");
 					clearRoute();
 				}else{
-					alert("루트가 저장되지 않았습니다.\n다시 시도해주십시오.");
+					toast("루트가 저장되지 않았습니다.\n다시 시도해주십시오.");
 				}
 			},error : function(){
 				console.log("루트 저장 에러");
