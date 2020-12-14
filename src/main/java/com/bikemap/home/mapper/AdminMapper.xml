@@ -98,24 +98,11 @@
 	<!-- 리뷰 -->
 	<select id = "reviewTotalRecord" resultType="int">
 		select count(noboard) from review
-		<if test = 'answer neq null and answer eq "N"'>
-			 (select noboard, state from
-		</if>
-			 review <include refid="search"></include>
-		<if test = 'answer neq null and answer eq "N"'>
-			) where state = '1'
-		</if>
 	</select>
 	<select id = "reviewAllRecord" resultType="com.bikemap.home.review.ReviewVO">
 		select * from(select * from(
-		<if test = 'answer neq null and answer eq "N"'>
-			 select * from
-		</if>
-			 select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit, thumbup, thumbdown, scrap
-			 from review <include refid="search"></include> order by ${order} desc)
-		<if test = 'answer neq null and answer eq "N"'>
-			) where state = '1'
-		</if>	 
+		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit, thumbup, thumbdown, scrap
+		from review <include refid="search"></include> order by ${order} desc)
 		<![CDATA[where rownum <=]]> (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
 		<![CDATA[where rownum <=]]> #{lastPageRecordCount} order by ${order} desc
 	</select>
@@ -125,15 +112,36 @@
 	
 	<!-- 동행모집 -->
 	<select id = "tourTotalRecord" resultType="int">
-		select count(noboard) from tour
+		select count(noboard) from tour				
 	</select>
 	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourlistVO">
-		select * from(select * from(select noboard, title, userid, state
-		from tour <include refid="search"></include> order by noboard desc)
+		
+		select * from(select * from(
+		<if test = 'state neq null and state eq "1"'>
+			 select * from (
+		</if>		
+			tour <include refid="search"></include>
+		<if test = 'state neq null and state eq "1"'>
+			) where state = '1'
+		</if>		
+		select noboard, title, userid, state, party from tour 
+		<include refid="search"></include> 
+			order by noboard desc)
+		<if test = 'state neq null and state eq "1"'>
+			) where state = '1'
+		</if>
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
 		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
 	</select>
-	<select id="searchTourRecord" parameterType="com.bikemap.home.tour.TourlistVO" resultType="int">
-		select count(noboard) from tour <include refid="search"></include>
+	
+	<select id="searchTourRecord" parameterType="com.bikemap.home.admin.AdminPagingVO" resultType="int">		
+		select count(noboard) from 
+		<if test = 'state neq null and state eq "1"'>
+			 (select noboard, state from
+		</if>
+			tour <include refid="search"></include>
+		<if test = 'state neq null and state eq "1"'>
+			) where state = '1'
+		</if>		
 	</select>
 </mapper> 
