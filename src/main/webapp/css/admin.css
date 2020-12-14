@@ -324,7 +324,66 @@ small {
 	text-align : center;
 }
 
-
+  	<!-- 아코디언 리스트 스타일 -->
+  	.acodianList{
+  		margin : 0;
+  		padding : 0;
+  		overflow : auto;
+  		
+  	}
+  	
+  	.acodianList>li{
+  		width : 14%;
+  		height : 45px;
+  		line-height : 45px;
+  		text-align : center;
+  		float: left;
+  		font-size:15px;
+  		border-bottom:1px solid #eee;
+  		background-color:rgba(0,176,176,0.05);
+  	}
+  	
+  	 .acodianList>li:nth-of-type(7n+7){
+  		width : 16%;
+  	}
+  	
+  	.acodianList img{
+  		width:35px;
+  	}
+  	 	
+  	.tourlistTitle2>li:nth-of-type(7n+2), .tourlist2>li:nth-of-type(7n+2){
+  		width : 30%;
+  	}
+  	.tourlistTitle2>li:nth-of-type(7n+3), .tourlist2>li:nth-of-type(7n+3){
+  		width : 15%;
+  	}
+  	.tourlistTitle2>li:nth-of-type(7n+4), .tourlist2>li:nth-of-type(7n+4){
+  		width : 15%;
+  	}
+  	
+	.tourlistTitle3{
+		height : 40px;
+		margin : 0;
+	}
+	.tourlistTitle3>li, .tourlist3>li{
+		height : 40px;
+		line-height : 40px;
+		font-size:15x;
+		text-align : center;
+		width : 14%;
+		float:left; 
+		border-bottom : 1px solid lightgray;
+  	}
+  	
+  	.tourlistTitle3>li:nth-of-type(6n+2){
+  		width : 30%;
+	
+  	}
+  	.tourlist3>li:nth-of-type(6n+2){
+		width : 30%;
+		text-align : left;
+		text-indent: 5%;
+  	}
 
 /* ================ 由щ럭�뀒�씠釉� ================*/
 #reviewList{
@@ -484,7 +543,7 @@ small {
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 34px;
+  height: 30px;
 }
 .switch input {
   opacity: 0;
@@ -532,7 +591,7 @@ input:checked + .slider:before {
   content:"YES";
 }
 .slider.round {
-  border-radius: 34px;
+  border-radius: 30px;
 }
 
 .slider.round:before {
