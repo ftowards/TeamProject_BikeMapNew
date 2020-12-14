@@ -120,15 +120,11 @@
 		<if test = 'state neq null and state eq "1"'>
 			 select * from (
 		</if>		
-			tour <include refid="search"></include>
-		<if test = 'state neq null and state eq "1"'>
-			) where state = '1'
-		</if>		
 		select noboard, title, userid, state, party from tour 
 		<include refid="search"></include> 
 			order by noboard desc)
 		<if test = 'state neq null and state eq "1"'>
-			) where state = '1'
+			 where state = '1')
 		</if>
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
 		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
