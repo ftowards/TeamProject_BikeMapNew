@@ -15,6 +15,7 @@
 	
 	<div id="RouteSearchDiv">
 		<div>
+			<img src="<%=request.getContextPath() %>/img/img_route/search.png" style='position:relative; left:-502px; width:30px'/>
 			<input type="text" id="referenceSearch" placeholder="루트검색(제목/작성자/지역)" autocomplete="off"/>
 			<hr style="opacity:0 ; height : 25px;"/>
 			<div id="searchResultList">
@@ -202,7 +203,7 @@ $(function(){
 	
 	$("#reggender").on('change', function(){
 		if($(this).is(":checked")){
-			$("#whole").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+			$("#whole").css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 			for(var i = 0 ; i < $("input[name=reggender]").length ; i++){
 				if(!($("input[name=reggender]").eq(i).prop("checked"))){
 					$("input[name=reggender]").eq(i).trigger('click');
@@ -222,7 +223,7 @@ $(function(){
 	$("input[name=reggender]").on('change', function(){
 		var type = $(this).attr("id");
 		if($(this).prop("checked")){
-			$("#gender"+type).css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+			$("#gender"+type).css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 		}else{
 			$("#gender"+type).css('color','rgb(90,90,90)').css('background-color','#fff');
 		}
@@ -246,7 +247,7 @@ $(function(){
 			});
 			if(cnt == 2) {
 				$("#reggender").prop("checked", true);
-				$("#whole").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+				$("#whole").css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 			}
 		}
 	});
@@ -255,7 +256,7 @@ $(function(){
 
 	$("#regage").on('change',function(){
 		if($(this).is(":checked")){
-			$("#whole2").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+			$("#whole2").css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 			for(var i = 0; i < $("input[name=regage]").length ; i++){
 				if(!($("input[name=regage]").eq(i).prop("checked"))){
 					$("input[name=regage]").eq(i).trigger('click');
@@ -273,7 +274,7 @@ $(function(){
 	$("input[name=regage]").on('change', function(){
 		var type = $(this).attr("id");
 		if($(this).prop("checked")){
-			$("#regage"+type).css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+			$("#regage"+type).css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 		}else{
 			$("#regage"+type).css('color','rgb(90,90,90)').css('background-color','#fff');
 		}
@@ -297,7 +298,7 @@ $(function(){
 			});
 			if(cnt == 5) {
 				$("#regage").prop("checked", true);
-				$("#whole2").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+				$("#whole2").css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 			}
 		}
 	});
