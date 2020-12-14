@@ -98,13 +98,13 @@
 	<select id = "tourTotalRecord" resultType="int">
 		select count(noboard) from tour
 	</select>
-	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourVO">
-		select * from(select * from(select noboard, title, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate
+	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourlistVO">
+		select * from(select * from(select noboard, title, userid, state, party
 		from tour <include refid="search"></include> order by noboard desc)
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
 		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
 	</select>
-	<select id="searchTourRecord" parameterType="com.bikemap.home.tour.TourVO" resultType="int">
+	<select id="searchTourRecord" parameterType="com.bikemap.home.tour.TourlistVO" resultType="int">
 		select count(noboard) from tour <include refid="search"></include>
 	</select>
 </mapper> 
