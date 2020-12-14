@@ -66,7 +66,7 @@
 		update qna set answercontent=#{answercontent}, answer='Y', answerdate=sysdate where noqna=#{noqna}
 	</update>
 	
-	<!-- 리뷰 -->
+	<!-- 루트 -->
 	<select id = "routeTotalRecord" resultType="int">
 		select count(noboard) from route
 	</select>
@@ -94,12 +94,12 @@
 		select count(noboard) from review <include refid="search"></include>
 	</select>
 	
-	<!-- 리뷰 -->
+	<!-- 동행모집 -->
 	<select id = "tourTotalRecord" resultType="int">
 		select count(noboard) from tour
 	</select>
 	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourlistVO">
-		select * from(select * from(select noboard, title, userid, state, party
+		select * from(select * from(select noboard, title, userid, state
 		from tour <include refid="search"></include> order by noboard desc)
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
 		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
