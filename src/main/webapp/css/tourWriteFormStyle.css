@@ -378,7 +378,9 @@
 	
 	
 	}
-	.kmLbl2{
+	.kmLbl2{	
+				width:25px;
+				background-color:white;
 				position:relative;
 				color:rgb(123,123,123);
 				font-size:15px;
