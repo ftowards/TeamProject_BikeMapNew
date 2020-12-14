@@ -51,16 +51,16 @@ function makeTourTable(result){
 				<!-- 모집중인게시판만보기 -->
 				<div class="answerAlready">
 							<input type="checkbox" id="answer" name="answer" value="N" />
-							<span>미답변 만 보기</span>
+							<span>모집중인 게시글만 보기</span>
 				</div>
 					<ul id="tourList">
 						<li><input type="checkbox" id="checkAll" /></li>
 						<li>번&nbsp;&nbsp;호</li>
 						<li>제&nbsp;&nbsp;목</li>
 						<li>작성자</li>
-						<li>참&nbsp;&nbsp;가</li>
+						<li>참가인원</li>
 						<li>참가목록</li>
-						<li>완&nbsp;&nbsp;료</li>
+						<li>상&nbsp;&nbsp;태</li>
 						
 					
 						<c:forEach items="${list}" var="vo" varStatus="status">
@@ -80,7 +80,7 @@ function makeTourTable(result){
 									완료
 								</c:if>
 							</li>	
-							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard})'>▼</a></li>
+							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard},${vo.state })'>▼</a></li>
 							<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>
 
 					</c:forEach>
