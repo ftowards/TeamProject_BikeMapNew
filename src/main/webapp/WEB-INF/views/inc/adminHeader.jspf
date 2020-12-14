@@ -361,102 +361,6 @@ function sendMsg(noboard, receiver, type){
 		  		});
 		  	});
 		  }	
-	// 참가자 목록 만들기
-	  function setAcodianList(result, noboard){
-	  	console.log(result);
-	  	var $result = $(result);
-	  	
-	  	var tag =""
-	  	if(tourState == '1'){
-	  		tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>참가상태</b></li><li></li>";
-	  		
-	  		$result.each(function(idx, val){
-	  			tag += "<li>"+val.userid+"</li>"
-	  			tag += "<li>"+val.age+"대</li>"
-	  			
-	  			if(val.gender == '1'){
-	  				tag += "<li>남</li>";
-	  			}else{ 
-	  				tag += "<li>여</li>";
-	  			}
-	  			
-	  			tag += "<li>"+val.tourcnt+"</li>";
-	  			tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
-	  			
-	  			if(val.state == '1'){
-	  				tag += "<li>승인 대기</li>";
-	  				tag += "<li><button class='tourIn' onclick='confirmComplist(title)' title='"+noboard+"/"+val.userid+"'>승&nbsp;인</button></li>";
-	  			}else if(val.state == '2'){
-	  				tag += "<li><button class='tourOk'>참가 중</button></li>";
-	  				if(val.userid != $("#logId").val()){
-	  					tag += "<li><button class='tourOut' onclick='cancelComplist(title)' title='"+noboard+"/"+val.userid+"'>취&nbsp;소</button></li>";
-	  				}else{
-	  					tag +="<li></li>";
-	  				}
-	  			}			
-	  		});
-	  		
-	  		$("#complist"+noboard).html(tag);
-	  	}else if(tourState == '2'){
-	  		tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>참가상태</b></li><li></li>";
-	  		
-	  		$result.each(function(idx, val){
-	  			if(val.state != '1'){
-	  				tag += "<li>"+val.userid+"</li>"
-	  				tag += "<li>"+val.age+"대</li>"
-	  				
-	  				if(val.gender == '1'){
-	  					tag += "<li>남</li>";
-	  				}else{ 
-	  					tag += "<li>여</li>";
-	  				}
-	  				
-	  				tag += "<li>"+val.tourcnt+"</li>";
-	  				tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
-	  				
-	  				if(val.state == '3'){
-	  					tag += "<li>불참</li>";
-	  					tag += "<li></li>";
-	  				}else if(val.state == '2'){
-	  					tag += "<li><button class='tourOk'>참가 중</button></li>";
-	  					if(val.userid != $("#logId").val()){
-	  						tag += "<li><button class='tourOut' onclick='absentComplist(title)' title='"+noboard+"/"+val.userid+"'>불&nbsp;참</button></li>";
-	  					}else{
-	  						tag +="<li></li>";
-	  					}
-	  				}
-	  			}
-	  		});
-	  		
-	  		$("#complist"+noboard).html(tag);
-	  	}else if(tourState == '3'){
-	  		tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>평가여부</b></li><li></li>";
-	  		
-	  		$result.each(function(idx, val){			
-	  			tag += "<li>"+val.objid+"</li>"
-	  			tag += "<li>"+val.age+"대</li>"
-	  			
-	  			if(val.gender == '1'){
-	  				tag += "<li>남</li>";
-	  			}else{ 
-	  				tag += "<li>여</li>";
-	  			}
-	  			
-	  			tag += "<li>"+val.tourcnt+"</li>";
-	  			tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
-	  			
-	  			if(val.eval == 'N'){
-	  				tag += "<li>미평가</li>";
-	  				tag += "<li><button class='tourOut' onclick='addLike(title)' title='"+noboard+"/"+val.objid+"'>좋아요</button></li>";
-	  			}else if(val.eval == 'Y'){
-	  				tag += "<li>완료</li>";
-	  				tag +="<li></li>";
-	  			}
-	  		});
-	  		
-	  		$("#complist"+noboard).html(tag);
-	  	}
-	  }
 	 var btn, userid;
      $(function(){    	
     	//관리자 정지 화면
@@ -695,12 +599,12 @@ function sendMsg(noboard, receiver, type){
 		        });
     		}
     	});
-    	// 관리자 추천 한꺼번에 여러개
+    	// 관리자 루트 추천 한꺼번에 여러개
     	$(document).on('click','input:button[name=adminScrapAllBtn]', function(){	    		
     		var chkArray = new Array();
     		var noboards = "";
     		var useridAll = "";
-			console.log("외않되?");
+			//console.log("외않되?");
 			
     		$('input:checkbox[name=listChk]:checked').each(function(){	
 				chkArray.push(this.value);
@@ -717,18 +621,11 @@ function sendMsg(noboard, receiver, type){
 				}
 			}
 
-    		//alert(chkArray.length+":"+useridAll.length);
-// 			$('input:checkbox[name=adminScrapBtn]:not(:checked)').each(function(){
-// 				var useridSingle = $(this).parents().next(".userid").val();//변경해야할 userid
-//     			userid.push(useridSingle);
-// 			});
 			//추천하는경우
 			
 			
     		if(chkArray.length>0) {
-   				//var dataSingle = {'noboard' : noboard , 'userid' : userid};
-   				//var noboard = JSON.stringify(chkArray);
-   				//var userid = JSON.stringify(useridAll);
+
    				
    				$.ajax({
 		            url: 'scrapRouteAll',
@@ -753,7 +650,7 @@ function sendMsg(noboard, receiver, type){
     			
     		}
     	});
-    	//추천해제 여러개
+    	//루트추천해제 여러개
     	$(document).on('click','input:button[name=adminReleaseAllBtn]', function(){	    		
     		var chkArray = new Array();
     		var alreadyChk = new Array();
@@ -791,8 +688,9 @@ function sendMsg(noboard, receiver, type){
     			movePage($("#nowPage").val());
     		}
     	});
-    	// 관리자 비공개 처리
-    	// 체크된 비공개 개별 버튼  클릭시 
+    	
+    	// 관리자 루트게시판비공개 처리
+    	// 체크된 루트비공개 개별 버튼  클릭시 
     	$(document).on('change','input:checkbox[name=adminHideBtn]', function(){	
     		var noboard = $(this).val();
     		var type="close";
@@ -810,6 +708,12 @@ function sendMsg(noboard, receiver, type){
     		console.log(order);
     		movePage(1);
     	});
+
+
+
+
+
+    	
     	//리뷰게시판 관리자 추천 비추천
     	$(document).on('change','input:checkbox[name=adminReviewScrapBtn]', function(){	
     		var noboard = $(this).val();
@@ -844,7 +748,8 @@ function sendMsg(noboard, receiver, type){
 		            data:dataSingle,
 		            success: function (result) {
 		            	if(result>0){
-			            	console.log("스크랩 해제완료");         
+			            	console.log("스크랩 해제완료");  
+			            	toast(userid+"님의 글이 추천 해제 되었습니다.");      
 		            	}else{
 		            		console.log("스크랩 해제 실패;;")
 		            	}	    
@@ -856,8 +761,14 @@ function sendMsg(noboard, receiver, type){
 		        });
     		}
     	});
+
+
+
+
+
+    	
     	// 리뷰게시판 관리자 추천 한꺼번에 여러개
-    	$(document).on('click','input:button[name=adminScrapAllBtn]', function(){	    		
+    	$(document).on('click','input:button[name=adminReviewScrapAllBtn]', function(){	    		
     		var chkArray = new Array();
     		var noboards = "";
     		var useridAll = "";
@@ -871,12 +782,13 @@ function sendMsg(noboard, receiver, type){
     		//현재 고치게 될 넘버만 들어있음.
 			for(var i=0; i<chkArray.length; i++){
 				for(var j = 0 ; j< 10 ; j++){
-					if(chkArray[i] == $("#reviewList>li").eq(9*(j+1)+1).text()){
+					if(chkArray[i] == $("#reviewList>li").eq(8*(j+1)+1).text()){
 						//useridAll.push($("#routeList>li").eq(9*(j+1)+3).text());
-						useridAll += $("#reviewList>li").eq(9*(j+1)+3).text()+"/";
+						useridAll += $("#reviewList>li").eq(8*(j+1)+3).text()+"/";
 					}
 				}
 			}
+			
     		if(chkArray.length>0) {
 
    				$.ajax({
@@ -884,8 +796,8 @@ function sendMsg(noboard, receiver, type){
 		            data: "noboards="+noboards + "&userids="+useridAll,
 		            success: function (result) {
 		            	
-		            	return false;
 		            	if(result>0){
+			            	
 		            		leaveMessage(noboard, userid);
 		            	}else{
 		            		console.log("스크랩 실패;;")
@@ -902,15 +814,15 @@ function sendMsg(noboard, receiver, type){
     			
     		}
     	});
-    	//추천해제 여러개
-    	$(document).on('click','input:button[name=adminReleaseAllBtn]', function(){	    		
+    	//리뷰글 추천해제 여러개
+    	$(document).on('click','input:button[name=adminReviewReleaseAllBtn]', function(){	    		
     		var chkArray = new Array();
     		var alreadyChk = new Array();
 			$('input:checkbox[name=listChk]:checked').each(function(){	
 				chkArray.push(this.value);	
     		});
 			//현재 체크표시한 데이터가 이미 해제되어있는지 확인한다. 벨류가 눌러져있는지 확인.
-    		$('input:checkbox[name=adminScrapBtn]:not(:checked)').each(function(){
+    		$('input:checkbox[name=adminReviewScrapBtn]:not(:checked)').each(function(){
 				var index = chkArray.indexOf(this.value); 			
 				if(index>-1){
     				chkArray.splice(index, 1);
@@ -941,8 +853,6 @@ function sendMsg(noboard, receiver, type){
     		}
     	});
     });
-
-     
 </script>
 </head>
 <body>

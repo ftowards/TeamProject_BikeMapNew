@@ -19,7 +19,7 @@ function makeReviewTable(result){
 		listTag += "<li>"+result[i].userid+"</li>";
 		listTag += "<li>"+result[i].reference+"</li>";
 		listTag += "<li><input type='hidden' value='"+result[i].scrap+"' />"+result[i].hit+"회</li>";
-		listTag += "<li><span style='color:blue'>"+result[i].thumbUp+" </span>/ <span >"+result[i].thumbDown+" </span></li>";
+		listTag += "<li><span style='color:blue'>"+result[i].thumbup+" </span>/ <span >"+result[i].thumbdown+" </span></li>";
 		listTag += "<li>";
 		listTag += "<label class='switch'>";
 		listTag += "<input type='checkbox' name='adminReviewScrapBtn' value='"+result[i].noboard+"'";
@@ -65,7 +65,7 @@ function makeReviewTable(result){
 							<li>${vo.userid}</li>
 							<li>${vo.reference }</li>
 							<li><input type="hidden" value="${vo.scrap }" />${vo.hit}회</li>
-							<li><span style='color:blue'>${vo.thumbUp} </span>/ <span >${vo.thumbDown} </span></li>
+							<li><span style='color:blue'>${vo.thumbup} </span>/ <span >${vo.thumbdown} </span></li>
 							<li>
 								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
 									<label class="switch">
@@ -78,6 +78,7 @@ function makeReviewTable(result){
 									  <input type="checkbox" name="adminReviewScrapBtn" value="${vo.noboard }" checked="checked" >
 									  <span class="slider round"></span>
 									</label>
+									<input type="hidden" class="userid" value="${vo.userid }"/>
 								</c:if>
 							</li>
 					</c:forEach>
@@ -89,8 +90,7 @@ function makeReviewTable(result){
 				<!-- paging -->
 			 
 			<div id="paging">
-					<ul>
-					
+					<ul>					
 						<c:if test="${pagingVO.nowPage != 1 }">
 							<li><a href="#">Prev</a></li>
 						</c:if>
@@ -113,8 +113,8 @@ function makeReviewTable(result){
 			<!-- /paging -->
 			</div><!-- adminContent -->
 				<div id="reviewBtnDiv">					
-						<input type="button" id="partnerBtn1" name="adminScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
-						<input type="button" id="partnerBtn2" name="adminReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
+						<input type="button" id="partnerBtn1" name="adminReviewScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
+						<input type="button" id="partnerBtn2" name="adminReviewReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
 				</div><!-- btn -->
 <!-- Page Content -->
 </body>
