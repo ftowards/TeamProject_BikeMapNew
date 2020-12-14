@@ -15,7 +15,7 @@ function makeReviewTable(result){
 		//list안에 데이터 추가
 		listTag += "<li><input type='checkbox'  name='tourCheck' value='"+result[i].noboard+"'/></li>"
 		listTag += "<li>"+result[i].noboard+"</li>";
-		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/reviewList?noboard="+result[i].noboard+"'>"+result[i].subject+"</a></li>";
+		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>"+result[i].subject+"</a></li>";
 		listTag += "<li>"+result[i].userid+"</li>";
 		listTag += "<li>"+result[i].reference+"</li>";
 		listTag += "<li><input type='hidden' value='"+result[i].scrap+"' />"+result[i].hit+"회</li>";
@@ -61,7 +61,7 @@ function makeReviewTable(result){
 			
 							<li><input type="checkbox" name="listChk"/></li>
 							<li> ${vo.noboard}</li>
-							<li class='wordCut'><a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
+							<li class='wordCut'><a href = "<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">${vo.subject }</a></li>
 							<li>${vo.userid}</li>
 							<li>${vo.reference }</li>
 							<li><input type="hidden" value="${vo.scrap }" />${vo.hit}회</li>
@@ -112,10 +112,9 @@ function makeReviewTable(result){
 			</div><br/> 
 			<!-- /paging -->
 			</div><!-- adminContent -->
-				<div id="reviewBtnDiv">
-						
-						<input type="button" id="reviewHideBtn2" name="hideReview" value="비공개"/>
-						<input type="button" id="reviewRecommentBtn" name="recomReview" value="추천하기" />
+				<div id="reviewBtnDiv">					
+						<input type="button" id="partnerBtn1" name="adminScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
+						<input type="button" id="partnerBtn2" name="adminReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
 				</div><!-- btn -->
 <!-- Page Content -->
 </body>

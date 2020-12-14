@@ -18,7 +18,10 @@ public class RegistVO {
 	private String active;
 	private String code;
 	
+	private String endday;
+	private String cause;
 
+	private int loginResult ; 
 	public String getUserid() {
 		return userid;
 	}
@@ -48,14 +51,18 @@ public class RegistVO {
 		this.email = email;
 	}
 	public String getEmail1() {
-		email1= email.substring(0, email.indexOf("@"));
+		if(email != null) {
+			email1= email.substring(0, email.indexOf("@"));
+		}
 		return email1;
 	}
 	public void setEmail1(String email1) {
 		this.email1 = email1;
 	}
 	public String getEmail2() {
-		email2= email.substring(email.indexOf("@")+1);
+		if(email != null) {
+			email2= email.substring(email.indexOf("@")+1);			
+		}
 		return email2;
 	}
 	public void setEmail2(String email2) {
@@ -103,8 +110,23 @@ public class RegistVO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
-	
-	//1124추가
+	public String getEndday() {
+		return endday;
+	}
+	public String getCause() {
+		return cause;
+	}
+	public void setEndday(String endday) {
+		this.endday = endday;
+	}
+	public void setCause(String cause) {
+		this.cause = cause;
+	}
+	public int getLoginResult() {
+		return loginResult;
+	}
+	public void setLoginResult(int loginResult) {
+		this.loginResult = loginResult;
+	}
 	
 }

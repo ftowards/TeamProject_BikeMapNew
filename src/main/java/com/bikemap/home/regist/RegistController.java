@@ -182,21 +182,31 @@ public class RegistController {
 	// 로그인 체크
 	@RequestMapping("/loginOk")
 	@ResponseBody
-	public int loginOk(RegistVO vo, HttpSession session) {
+	public RegistVO loginOk(RegistVO vo, HttpSession session) {
 		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
-		int result = 0;
+		RegistVO result = new RegistVO();
+		
 		try {
-			RegistVO resultVO = dao.login(vo);
-			
-			if(resultVO.getUsername() != null) {
-				if(resultVO.getActive().equals("Y")) {
-					session.setAttribute("logStatus", "Y");
-					session.setAttribute("logId", resultVO.getUserid());
-					session.setAttribute("logName", resultVO.getUsername());
-					result = 1;
+			RegistVO chk = dao.login(vo);
+			System.out.println(chk);
+			if(chk != null) {
+				if(chk.getActive().equals("Y")) {
+					RegistVO chk2 = dao.selectCause(chk);
+					if(chk2 == null) {
+						session.setAttribute("logStatus", "Y");
+						session.setAttribute("logId", chk.getUserid());
+						session.setAttribute("logName", chk.getUsername());				
+						result.setLoginResult(1);
+					}else {
+						result.setLoginResult(3); // 정지
+						result.setEndday(chk2.getEndday());
+						result.setCause(chk2.getCause());
+					}
 				}else {
-					result = 2;
+					result.setLoginResult(2); // 미인증
 				}
+			}else {
+				result.setLoginResult(0);
 			}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());

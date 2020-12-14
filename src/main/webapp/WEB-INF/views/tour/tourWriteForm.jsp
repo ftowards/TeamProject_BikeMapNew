@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/home/css/tourWriteFormStyle.css" type="text/css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/home/api/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
@@ -27,7 +29,7 @@
 			<div><label class="tourWriteConditionTitle">루&nbsp;트</label></div>
 			<div class="routeResultDiv2">
 				<div class="routeTitleDiv">
-					<div style='margin-left : 40px;height : 70px;'><label class="labelClass">루트 제목</label>
+					<div style='margin-left:40px; width:620px; height:70px;'><label class="labelClass">루트 제목</label>
 						<div id="routeTitle" class="conditionBox"></div>
 					</div>		
 				</div>
@@ -43,7 +45,7 @@
 				<div class="conditionDivTop">
 					<div class="labelClass"><label>일&nbsp;정</label></div>
 					<div>
-						<input type="text" name="departuredate" placeholder="출발날짜" id="departuredate" maxlength="10" autocomplete="off"/>
+						<input type="text" name="departuredate" placeholder="출발 날짜" id="departuredate" maxlength="10" autocomplete="off"/>
 					</div>
 					<div>
 						<select name="departureTime" id="departureTime">
@@ -200,14 +202,14 @@ $(function(){
 	
 	$("#reggender").on('change', function(){
 		if($(this).is(":checked")){
-			$("#whole").css('color','white').css('background-color','rgb(0,176,176)');
+			$("#whole").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
 			for(var i = 0 ; i < $("input[name=reggender]").length ; i++){
 				if(!($("input[name=reggender]").eq(i).prop("checked"))){
 					$("input[name=reggender]").eq(i).trigger('click');
 				}
 			}
 		}else{
-			$("#whole").css('color','rgb(123,123,123)').css('background-color','white');
+			$("#whole").css('color','rgb(90,90,90)').css('background-color','#efefef');
 			for(var i = 0 ; i < $("input[name=reggender]").length ; i++){
 				if($("input[name=reggender]").eq(i).prop("checked")){
 					$("input[name=reggender]").eq(i).trigger('click');
@@ -220,9 +222,9 @@ $(function(){
 	$("input[name=reggender]").on('change', function(){
 		var type = $(this).attr("id");
 		if($(this).prop("checked")){
-			$("#gender"+type).css('color','white').css('background-color','rgb(0,176,176)');
+			$("#gender"+type).css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
 		}else{
-			$("#gender"+type).css('color','rgb(123,123,123)').css('background-color','white');
+			$("#gender"+type).css('color','rgb(90,90,90)').css('background-color','#efefef');
 		}
 		
 		var cnt = 0;
@@ -234,7 +236,7 @@ $(function(){
 			});
 			if(cnt < 2) {
 				$("#reggender").prop("checked", false);
-				$("#whole").css('color','rgb(123,123,123)').css('background-color','white');
+				$("#whole").css('color','rgb(90,90,90)').css('background-color','#efefef');
 			}
 		}else if(!$("#reggender").prop("checked")) {
 			$("input[name=reggender]").each(function(){
@@ -244,7 +246,7 @@ $(function(){
 			});
 			if(cnt == 2) {
 				$("#reggender").prop("checked", true);
-				$("#whole").css('color','white').css('background-color','rgb(0,176,176)');
+				$("#whole").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
 			}
 		}
 	});
@@ -253,14 +255,14 @@ $(function(){
 
 	$("#regage").on('change',function(){
 		if($(this).is(":checked")){
-			$("#whole2").css('color','white').css('background-color','rgb(0,176,176)');
+			$("#whole2").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
 			for(var i = 0; i < $("input[name=regage]").length ; i++){
 				if(!($("input[name=regage]").eq(i).prop("checked"))){
 					$("input[name=regage]").eq(i).trigger('click');
 				}
 			}
 		}else{
-			$("#whole2").css('color','rgb(123,123,123)').css('background-color','white');
+			$("#whole2").css('color','rgb(90,90,90)').css('background-color','#efefef');
 			for(var i = 0 ; i < $("input[name=regage]").length ; i++){
 				if($("input[name=regage]").eq(i).prop("checked")){
 					$("input[name=regage]").eq(i).trigger('click');
@@ -271,9 +273,9 @@ $(function(){
 	$("input[name=regage]").on('change', function(){
 		var type = $(this).attr("id");
 		if($(this).prop("checked")){
-			$("#regage"+type).css('color','white').css('background-color','rgb(0,176,176)');
+			$("#regage"+type).css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
 		}else{
-			$("#regage"+type).css('color','rgb(123,123,123)').css('background-color','white');
+			$("#regage"+type).css('color','rgb(90,90,90)').css('background-color','#efefef');
 		}
 		
 		var cnt = 0;
@@ -285,7 +287,7 @@ $(function(){
 			});
 			if(cnt < 5) {
 				$("#regage").prop("checked", false);
-				$("#whole2").css('color','rgb(123,123,123)').css('background-color','white');
+				$("#whole2").css('color','rgb(90,90,90)').css('background-color','#efefef');
 			}
 		}else if(!$("#regage").prop("checked")) {
 			$("input[name=regage]").each(function(){
@@ -295,7 +297,7 @@ $(function(){
 			});
 			if(cnt == 5) {
 				$("#regage").prop("checked", true);
-				$("#whole2").css('color','white').css('background-color','rgb(0,176,176)');
+				$("#whole2").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
 			}
 		}
 	});
