@@ -299,7 +299,7 @@ small {
 	letter-spacing:2px;
 	margin-bottom:4px;
 }
-#tourList>li:nth-child(-n+7){
+#tourList>li:nth-child(n+8):nth-child(-n+14){
 	border-top: 1px solid #afafaf;
 }
 #tourList>li, #tourListBtm>li{

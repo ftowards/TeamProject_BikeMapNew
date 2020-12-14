@@ -16,6 +16,7 @@ public class AdminPagingVO {
 	
 	private String order = "noboard" ; // 아니면 "rating"
 	private String answer ;
+	private String state;
 	
 	
 	public String getOrder() {
@@ -105,4 +106,11 @@ public class AdminPagingVO {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	
 }
