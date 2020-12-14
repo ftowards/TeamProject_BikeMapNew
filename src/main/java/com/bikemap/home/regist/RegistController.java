@@ -1,5 +1,6 @@
 package com.bikemap.home.regist;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,10 +108,23 @@ public class RegistController {
 			        sendMail.setSubject("[바이크맵] 회원 인증 메일입니다.");
 			        
 			        sendMail.setText(
-			        		new StringBuffer().append("<h1>메일인증</h1>").
+			        		new StringBuffer().append("<div class='container'>").
+			        		append("<img src='http://localhost:9090/home/img/img_logo/bikemap.png' style='width:400px; margin-top:-60px'>").
+			        		append("<h1 style='margin:-100px 0 0 40px; z-index:9; color:rgb(0,176,176)'>").
+			        		append("<b>이메일 주소 인증</b></h1>").
+			        		append("<div style='margin:20px 0 0 40px'>").
+			        		append("<p>안녕하세요. bikemap입니다.</p>").
+			        		append("<p style='margin-top:20px'>회원가입을 위한 본인인증절차를 완료하기 위해<br/>").
+			        		append("아래 링크를 클릭하여 주세요.</p></div>").
+			        		append("<div style='margin:20px 0 0 40px;'>").
 			        		append("<a href='http://localhost:9090/home/registAuthorize?email=").
 			        		append(vo.getEmail()).append("&code=").append(vo.getCode()).
-			        		append("' target='_blank'>이메일 인증 확인</a>").toString());
+			        		append("' target='_blank'><button style='border:none; width:150px; height:30px; border-radius:10px; background-color:rgb(0,176,176); color:#fff;'><b>이메일 인증하기</b></button></a>").
+			        		append("</div>").
+			        		append("<div style='margin:20px 0 0 40px; height:30px; width:60%; background-color:#eee;'>").
+			        		append("<p style='padding-top:5px;'>본 메일은 발신전용입니다. 궁금하신 점이나 불편하신 사항은 고객센터를 이용해 주시기 바랍니다.</p>").
+			        		append("</div></div>").toString());
+			        		
 			        sendMail.setFrom("project.bikemap@gmail.com", "바이크맵");
 			        
 			        sendMail.setTo(vo.getEmail());
@@ -124,6 +138,7 @@ public class RegistController {
 		}
 		return result;
 	}
+
 	
 	// 인증 절차
 	@RequestMapping("/registAuthorize")
@@ -361,10 +376,16 @@ public class RegistController {
 		        sendMail.setSubject("[바이크맵] 임시 비밀번호입니다.");
 		        
 		        sendMail.setText(
-		        		new StringBuffer().append("<h1>임시 비밀번호</h1>").
-		        		append("<hr/><p>"+resultVO.getUserid()+" 회원님의 임시 비밀번호가 설정되었습니다.<br/>임시 비밀번호로 접속하신 후 비밀번호 변경하시기 바랍니다.<br/>").
-		        		append("임시 비밀번호 : " +tempPwd +"<br/>").
-		        		append("<a href='http://localhost:9090/home/login'target='_blank'>로그인 하러 가기</a>").toString());
+		        		new StringBuffer().append("<div class='container'>").
+		        		append("<img src='http://localhost:9090/home/img/img_logo/bikemap.png' style='width:400px; margin-top:-60px'>").
+		        		append("<h1 style='margin:-100px 0 0 40px; z-index:9; color:rgb(0,176,176)'>").
+		        		append("<b>임시 비밀번호</b></h1>").
+		        		append("<div style='margin:20px 0 0 40px'>").
+		        		append("<p>"+resultVO.getUserid()+" 회원님의 임시 비밀번호가 설정되었습니다.<br/>임시 비밀번호로 접속하신 후 비밀번호 변경하시기 바랍니다.<br/></div>").
+		        		append("<div style='margin:20px 0 0 40px'>").
+		        		append("임시 비밀번호 : " +tempPwd +"</div><br/>").
+		        		append("<div style='margin:20px 0 0 40px'>").
+		        		append("<a href='http://localhost:9090/home/login'target='_blank'><button style='border:none; width:150px; height:30px; border-radius:10px; background-color:rgb(0,176,176); color:#fff;'><b>로그인 하러 가기</b></button></a></div></div>").toString());
 		        sendMail.setFrom("project.bikemap@gmail.com", "바이크맵");
 		        sendMail.setTo(resultVO.getEmail());
 		        

@@ -8,6 +8,28 @@
 <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
+<div class="banner_wrap2"></div>
+<div class="bg_bikemap">
+	<img src="<%=request.getContextPath() %>/img/img_main/bg_bikemap.png"/>
+</div>
+
+<div id="mainDivHome">
+
+	<div id="hitRoute">
+	<!-- 	<span class="routeTitle" style="width:100%; font-size:35px;">
+			추천 루트&nbsp;
+		</span><br/> -->
+		<div id="content1"></div> <!-- 추천 루트 들어가는 위치 -->
+	</div><br/>	
+</div>
+
+
+<div class="reviewFrame">
+	<span class="routeTitle" style="width:100%; font-size:35px;">
+			추천 후기&nbsp;
+	</span><br/>
+	<div id="reviewTop"></div> <!--  후기 -->
+</div>
 
 <!-- 도시 검색창 -->		
 	<div class = "locationSearchDiv">
@@ -53,29 +75,6 @@
 
 
 
-
-
-
-<div id="mainDivHome">
-	<img class="hit_route" src="<%=request.getContextPath() %>/img/img_main/hit_route2.gif"/>
-	<div id="hitRoute">
-	<!-- 	<span class="routeTitle" style="width:100%; font-size:35px;">
-			추천 루트&nbsp;
-		</span><br/> -->
-		<div id="content1"></div> <!-- 추천 루트 들어가는 위치 -->
-	</div><br/>	
-</div>
-<div class="banner_wrap2"></div>
-<div class="bg_bikemap">
-	<img src="<%=request.getContextPath() %>/img/img_main/bg_bikemap.png"/>
-</div>
-
-<div class="reviewFrame">
-	<span class="routeTitle" style="width:100%; font-size:35px;">
-			추천 후기&nbsp;
-	</span><br/>
-	<div id="reviewTop"></div> <!--  후기 -->
-</div>
 
 <a href="#" class="topIcon"><img src="<%=request.getContextPath() %>/img/img_main/top.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_main/top_over2.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_main/top.png'"></a>
 

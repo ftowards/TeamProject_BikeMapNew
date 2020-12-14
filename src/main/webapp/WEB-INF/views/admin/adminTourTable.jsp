@@ -92,7 +92,7 @@ function makeTourTable(result){
 								</c:if>
 							</li>	
 							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard})'>▼</a></li>
-							<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>
+							<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>
 										
 >>>>>>> d9d243f1e611950e1871aa004a6ea42688474893
 					</c:forEach>
