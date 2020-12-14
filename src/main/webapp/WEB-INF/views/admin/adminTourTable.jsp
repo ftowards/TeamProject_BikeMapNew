@@ -52,9 +52,9 @@ function makeTourTable(result){
 						<li>번&nbsp;&nbsp;호</li>
 						<li>제&nbsp;&nbsp;목</li>
 						<li>작성자</li>
-						<li>참여인원</li>
-						<li>완료여부</li>
+						<li>참&nbsp;&nbsp;가</li>
 						<li>참가목록</li>
+						<li></li>
 						
 					
 						<c:forEach items="${list}" var="vo" varStatus="status">
