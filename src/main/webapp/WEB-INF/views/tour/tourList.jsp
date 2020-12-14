@@ -12,7 +12,7 @@
 			<input type="hidden" name="noboard" value="0"/>
 			<ul class="searchBoardUl">
 				<li>
-					<div class="labelClass"><label>일&nbsp;정</label></div>
+					<div class="labelClass1"><label>일&nbsp;정</label></div>
 				</li>
 				<li>
 					<input type="text" name="departuredate" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"/>
@@ -33,11 +33,11 @@
 				</li>
 		
 				<li>
-					<div><label class="labelClass">장&nbsp;소</label></div>
+					<div><label class="labelClass1">장&nbsp;소</label></div>
 				</li>
 				<li>
 					<input type="text" name="place" placeholder="출발장소" id="place" autocomplete="off">
-					<label class="labelClass distanceLbl">이동거리</label>
+					<label class="labelClass1 distanceLbl">이동거리</label>
 					<div class="distanceGroup"><input type="number" name="distance1" class="distance" maxlength="4" autocomplete="off" value="0">
 						<label class="kmLbl">km</label></div>
 					<label class="label1">~</label>
@@ -46,7 +46,7 @@
 				</li>
 		
 				<li>
-					<div><label class="labelClass">성&nbsp;별</label></div>
+					<div><label class="labelClass2">성&nbsp;별</label></div>
 				</li>
 				<li class="genderGroup">
 					<label id="whole" for="reggender">전&nbsp;체</label>
@@ -59,7 +59,7 @@
 				</li>
 		
 				<li>
-					<div><label class="labelClass">나&nbsp;이</label></div>
+					<div><label class="labelClass3">나&nbsp;이</label></div>
 				</li>
 				<li class="ageGroup">
 					<label id="whole2" for="regage">전&nbsp;체</label>
