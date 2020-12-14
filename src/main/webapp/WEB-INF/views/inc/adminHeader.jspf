@@ -365,8 +365,11 @@ function sendMsg(noboard, receiver, type){
 		  		});
 		  	});
 		  }	
-	  function getTourComplist(noboard){
+
+	  
+	  function getTourComplist(noboard, tourState){
 		   var url = "/home/tour/selectEvallist";
+		   
 		   if(tourState == '1' || tourState == '2'){
 		      url = "/home/selectComplist";
 		   }
@@ -388,7 +391,7 @@ function sendMsg(noboard, receiver, type){
 		   var $result = $(result);
 		   
 		   var tag =""
-		   (tourState == '2'){
+		   if(tourState == '2'){
 		      tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>참가상태</b></li><li></li>";
 		      
 		      $result.each(function(idx, val){
