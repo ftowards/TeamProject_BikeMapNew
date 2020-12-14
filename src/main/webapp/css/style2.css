@@ -378,6 +378,7 @@ body{
 		font-family:'Noto Sans KR', sans-serif;
 	}
 	.mainRouteTitle{
+		
 		font-size:30px;
 		font-weight:bold;
 		font-family: 'Nanum Gothic', sans-serif;
@@ -389,9 +390,8 @@ body{
 		color:#0f6767;
 		font-size:27px;
 		/*font-family:'Poor Story', cursive;*/
-		
 		font-family: 'East Sea Dokdo', cursive;
-		margin:6px 0 6px 0;
+		
 	}	
 	
 	
@@ -789,18 +789,19 @@ body{
 }
 	
 .reviewFrame{
-	width: 1300px;
-    height: 490px;
+	width: 1400px;
+    height: 600px;
     margin : 0 auto;
     padding-top: 40px;
     overflow: hidden;
-    background-color:#eee;
+   
 }
 	
+
 /* 추천 후기 스타일 */
 #reviewTop{
 	width : 3000px;;
-	height : 450px;
+	height : 800px;
 	position : relative;
 	overflow : hidden; 
 }
@@ -810,25 +811,27 @@ body{
 	
 }
 .recommendReview{
-	padding:25px 20px 0px 15px;
-	width:300px;
-	height:400px;		
-	margin:5px 30px 30px 0px;	
+	padding:45px 30px 0px 25px;
+	width:330px;
+	height:450px;		
+	margin:10px 40px 60px 0px;	
 	background:#fff;
-	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	box-shadow: 5px 5px 5px 5px rgb(230,230,230);
 	text-align:center;	
 }
 /* 리뷰 썸네일 div 스타일*/
 .recommendReview .thumbnailImage{
-	background-size : contain;
+	width:280px;
+	height:300px;
 	background-color : white;
 	background-repeat : no-repeat;
 	border :none;
+	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 
 }
 .thumbnailImage{
-	width:270px;
-	height:195px;
+	width:250px;
+	height:200px;
 }
 .reviewSubscription li{
 	float : left;
@@ -838,26 +841,50 @@ body{
 
 /* 후기 타이틀*/
 .reviewSubscription li:nth-of-type(1){
-	margin-top : 10px;
-	text-align : left;
-	font-size:19px;
-	font-family:'Noto Sans KR', sans-serif;
-	
+	text-align :center;
+	font-size:35px;
+	font-family: 'East Sea Dokdo', cursive;
 	white-space:nowrap;
 	overflow:hidden;
+	margin-top:10px;
 	text-overflow:ellipsis;
 }
-
+.tape{
+		height:100px;
+		margin:-10px -60px 0 0px;
+		z-index:10;
+		position:relative;
+}
+.tapeBottom{
+	
+		height:100px;
+		margin:400px -800px 0 300px;
+		z-index:10;
+		position:relative;
+	
+	
+}
 
 /* 유저 스타일*/
-.reviewSubscription li:nth-of-type(2){
-	width : 70%;
-	color:#00B0B0;
-	font-size:17px;
-	font-family:'Noto Sans KR', sans-serif;
+.reviewMainUserid{
+	width : 40%;
+	color:rgb(64,64,64);
+	font-size:30px;
+	font-family: 'East Sea Dokdo', cursive;
+}
+.reviewMainUserid{
+					margin-top:-395px;
+					z-index:10;
+					color:gray;
+	
 }
 
 /* 추천 수 스타일*/
-.reviewSubscription li:nth-of-type(3){
-	width : 30%;
+.reviewMainLike{
+	width : 20%;
+	font-family: 'East Sea Dokdo', cursive;
+	color:rgb(0,176,176);
+	margin-top:5px;
+	font-size:25px;
+
 }

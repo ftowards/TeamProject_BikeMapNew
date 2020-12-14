@@ -8,28 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/home/css/route.css" type="text/css"/>
-<div class="banner_wrap2"></div>
-<div class="bg_bikemap">
-	<img src="<%=request.getContextPath() %>/img/img_main/bg_bikemap.png"/>
-</div>
-
-<div id="mainDivHome">
-
-	<div id="hitRoute">
-	<!-- 	<span class="routeTitle" style="width:100%; font-size:35px;">
-			추천 루트&nbsp;
-		</span><br/> -->
-		<div id="content1"></div> <!-- 추천 루트 들어가는 위치 -->
-	</div><br/>	
-</div>
-
-
-<div class="reviewFrame">
-	<span class="routeTitle" style="width:100%; font-size:35px;">
-			추천 후기&nbsp;
-	</span><br/>
-	<div id="reviewTop"></div> <!--  후기 -->
-</div>
 
 <!-- 도시 검색창 -->		
 	<div class = "locationSearchDiv">
@@ -72,6 +50,29 @@
 		</ul>
 		<form id="searchRegion" method="post" action="/home/routeSearch"></form>
 	</div>	
+
+<div class="banner_wrap2"></div>
+<div class="bg_bikemap">
+	<img src="<%=request.getContextPath() %>/img/img_main/bg_bikemap.png"/>
+</div>
+
+<div id="mainDivHome">
+
+	<div id="hitRoute">
+	<!-- 	<span class="routeTitle" style="width:100%; font-size:35px;">
+			추천 루트&nbsp;
+		</span><br/> -->
+		<div id="content1"></div> <!-- 추천 루트 들어가는 위치 -->
+	</div><br/>	
+</div>
+
+
+<div class="reviewFrame">
+	<span class="routeTitle" style="width:100%; font-size:35px;">
+			추천 후기&nbsp;
+	</span><br/>
+	<div id="reviewTop"></div> <!--  후기 -->
+</div>
 
 
 
@@ -187,9 +188,13 @@
 		console.log(result);
 		$result.each(function(i, val){
 			
+			listTag +="<li><img src='/home/img/img_main/t.png' class='tape'/></li>";
 			listTag +="<li class='recommendReview'>";
 			listTag +="<div class='thumbnailImage' style='background-image:url("+val.thumbnailImg+")'/></div>";
-			listTag +="<ul class='reviewSubscription'><li>"+val.subject+"</li><li>"+val.userid+"</li><li>추천 수:"+val.thumbup+"</li></ul></li>"
+			listTag +="<ul class='reviewSubscription'><li>"+val.subject+"</li><li class='reviewMainUserid'>@"+val.userid+"</li>";
+			listTag += "<li class='reviewMainLike'>추천수:"+val.thumbup+"</li></ul></li>";
+	
+			listTag +="<li><img src='/home/img/img_main/t.png' class='tapeBottom'/></li>";
 			
 		});
 		
