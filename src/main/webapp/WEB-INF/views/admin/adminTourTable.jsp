@@ -89,7 +89,7 @@ function makeTourTable(result){
 		listTag += "<li>";
 		if(result[i].state=='1'||result[i].state==null){
 			listTag +="미완료";
-		}else if(result[i].gender=='2'){
+		}else if(result[i].state=='2'){
 			listTag +="완료";
 		}
 		listTag += "</li>";
@@ -103,9 +103,9 @@ function makeTourTable(result){
 		listTag += "</label>";
 		listTag += "</li>";	
 
-		tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li>";
+		listTag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li>";
 		
-		tag += "<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>";
+		listTag += "<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>";
 		}$("#tourList").append(listTag);
 }
 </script>
@@ -129,7 +129,6 @@ function makeTourTable(result){
 						<li>참가인원</li>
 						<li>참가목록</li>
 						<li>완료여부</li>
-					</ul>	
 					
 						<c:forEach items="${list}" var="vo" varStatus="status">
 							<li><input type="checkbox" name="listChk" value="${vo.noboard}" title="${vo.userid }"/></li>
@@ -152,6 +151,7 @@ function makeTourTable(result){
 							</li>
 							
 					</c:forEach>
+				</ul>
 			</div>
 			<!-- Page Content -->
 			<!-- paging -->
