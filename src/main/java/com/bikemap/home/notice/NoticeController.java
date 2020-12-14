@@ -131,7 +131,7 @@ public SqlSession sqlSession ;
 		try {
 			result = dao.deleteMessage(nonotice);
 		}catch(Exception e) {
-			System.out.println("쪽지 읽음 처리 에러 " + e.getMessage());
+			System.out.println("쪽지 삭제 에러 " + e.getMessage());
 		}
 		return result;
 	}
@@ -220,6 +220,21 @@ public SqlSession sqlSession ;
 	@RequestMapping("/userQandAView")
 	public String userQandAView() {
 		return "message/userQandAView";
+	}
+	
+	// qna 삭제
+	@RequestMapping("/deleteQna")
+	@ResponseBody
+	public int deleteQna(int noqna) {
+		int result = 0;
+		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
+		
+		try {
+			result = dao.deleteQna(noqna);
+		}catch(Exception e) {
+			System.out.println("문의사항 삭제 에러 " + e.getMessage());
+		}
+		return result;
 	}
 
 }
