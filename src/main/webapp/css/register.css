@@ -1,6 +1,7 @@
 	/*===================================registDel===================================*/
 	body{
 		font-family:'Noto Sans KR', sans-serif;
+		background-color:rgba(255,201,14,0.08);
 	}
 	textarea:focus {
 		outline: none;
