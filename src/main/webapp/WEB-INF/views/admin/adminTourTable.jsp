@@ -80,8 +80,10 @@ function makeTourTable(result){
 								<c:if test="${vo.state=='3'}">
 									완료
 								</c:if>
+								
+								<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>	
 							</li>
-							<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>	
+							
 							
 
 					</c:forEach>
