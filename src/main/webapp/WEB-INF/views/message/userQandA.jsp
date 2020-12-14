@@ -161,7 +161,7 @@ function openUp(title){
 			$("#modalContent").val(val.content);
 			
 			if(val.answer == 'Y'){
-				$("#modalAnswerContent").val(val.answercontent);
+				$("#modalAnswercontent").val(val.answercontent);
 			}else{
 				$("#modalAnswercontent").val("답변 전입니다.");
 			}

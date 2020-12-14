@@ -6,7 +6,6 @@
 <!-- Page Content -->
 <script>
 function makeReviewTable(result){
-	$("#reviewList").children().remove();
 	var listTag = "";
 	for(var i = 0; i < result.length ; i++){
 		if(i==0){
@@ -19,7 +18,7 @@ function makeReviewTable(result){
 		listTag += "<li>"+result[i].userid+"</li>";
 		listTag += "<li>"+result[i].reference+"</li>";
 		listTag += "<li><input type='hidden' value='"+result[i].scrap+"' />"+result[i].hit+"회</li>";
-		listTag += "<li><span style='color:blue'>"+result[i].thumbUp+" </span>/ <span >"+result[i].thumbDown+" </span></li>";
+		listTag += "<li><span style='color:blue'>"+result[i].thumbup+" </span>/ <span >"+result[i].thumbdown+" </span></li>";
 		listTag += "<li>";
 		listTag += "<label class='switch'>";
 		listTag += "<input type='checkbox' name='adminReviewScrapBtn' value='"+result[i].noboard+"'";
@@ -29,11 +28,30 @@ function makeReviewTable(result){
 		listTag += "><span class='slider round'></span>";
 		listTag += "</label>";
 		listTag += "</li>";
-		}$("#reviewList").append(listTag);
+		}$("#reviewList").html(listTag);
+}
+
+function deleteReview(){
+	$("#reviewList input[type=checkbox]").each(function(i, val){
+		if($(this).prop("checked")){
+
+			$.ajax({
+				url : "/home/reviewDel",
+				data : "noboard="+$(this).val(),
+				success : function(result){
+					if(result > 0){
+						movePage(1);
+					}else {
+						toast("후기 삭제 오류 입니다. 다시 시도해주십시오.", 1500);
+					}
+				}, error : function(err){
+					console.log(err);
+				}
+			});
+		}
+	});
 }
 </script>
-
-
 
 
 	<!-- /Page Sidebar -->
@@ -59,13 +77,13 @@ function makeReviewTable(result){
 					<!-- DB작업완료 후 for문 생성 -->
 					<c:forEach items="${list}" var="vo" varStatus="status">
 			
-							<li><input type="checkbox" name="listChk"/></li>
+							<li><input type="checkbox" name="listChk" value="${vo.noboard }"/></li>
 							<li> ${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
 							<li>${vo.userid}</li>
 							<li>${vo.reference }</li>
 							<li><input type="hidden" value="${vo.scrap }" />${vo.hit}회</li>
-							<li><span style='color:blue'>${vo.thumbUp} </span>/ <span >${vo.thumbDown} </span></li>
+							<li><span style='color:blue'>${vo.thumbup} </span>/ <span >${vo.thumbdown} </span></li>
 							<li>
 								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
 									<label class="switch">
@@ -109,14 +127,14 @@ function makeReviewTable(result){
 							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>
 					</ul>
-			</div><br/> 
-			<!-- /paging -->
-			</div><!-- adminContent -->
-				<div id="reviewBtnDiv">
-						
-						<input type="button" id="reviewHideBtn2" name="hideReview" value="비공개"/>
-						<input type="button" id="reviewRecommentBtn" name="recomReview" value="추천하기" />
-				</div><!-- btn -->
+			</div>			<!-- /paging -->
+			<div id="reviewBtnDiv">
+				<input type="button" class="mint_Btn" id="reviewRecommentBtn" name="recomReview" value="추천하기" />
+				<input type="button" class="mint_Btn" onclick="deleteReview();" value="삭제" />
+			</div><!-- btn -->
+
+		</div><!-- adminContent -->
+				
 <!-- Page Content -->
 </body>
 </html>

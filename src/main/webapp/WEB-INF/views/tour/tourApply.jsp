@@ -248,8 +248,8 @@ function setAcodianList(result, noboard, userid){
 		tag += "<li>참가자</li><li>나이</li><li>성별</li><li>모임횟수</li><li>좋아요</li><li>참가상태</li><li></li>";
 		
 		$result.each(function(idx, val){
-			tag += "<li>"+val.userid+"</li>"
-			tag += "<li>"+val.age+"대</li>"
+			tag += "<li><span onclick='popMsgSend(title)' title='"+val.userid+"'>"+val.userid+"</span></li>";
+			tag += "<li>"+val.age+"대</li>";
 			
 			if(val.gender == '1'){
 				tag += "<li>남</li>";
@@ -278,8 +278,8 @@ function setAcodianList(result, noboard, userid){
 		tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>참가상태</b></li><li></li>";
 		
 		$result.each(function(idx, val){
-			tag += "<li>"+val.userid+"</li>"
-			tag += "<li>"+val.age+"대</li>"
+			tag += "<li><span onclick='popMsgSend(title)' title='"+val.userid+"'>"+val.userid+"</span></li>";
+			tag += "<li>"+val.age+"대</li>";
 			
 			if(val.gender == '1'){
 				tag += "<li>남</li>";
@@ -307,9 +307,9 @@ function setAcodianList(result, noboard, userid){
 	}else if(applyState == '3'){
 		tag += "<li>참가자</li><li>나이</li><li>성별</li><li>모임횟수</li><li>좋아요</li><li>평가 여부</li><li></li>";
 		
-		$result.each(function(idx, val){			
-			tag += "<li>"+val.objid+"</li>"
-			tag += "<li>"+val.age+"대</li>"
+		$result.each(function(idx, val){
+			tag += "<li><span onclick='popMsgSend(title)' title='"+val.objid+"'>"+val.objid+"</span></li>";
+			tag += "<li>"+val.age+"대</li>";
 			
 			if(val.gender == '1'){
 				tag += "<li>남</li>";
@@ -356,7 +356,7 @@ function cancelApply(title){
 		msg = "참가 신청을";
 	}
 	
-	if(confirm(strs[0] + "번 투어 "+msg+" 취소하시겠습니까?")){
+	toastConfirm(strs[0] + "번 투어 "+msg+" 취소하시겠습니까?", function(){
 		$.ajax({
 			url : "/home/cancelTour",
 			data : data,
@@ -374,14 +374,14 @@ function cancelApply(title){
 			}
 		});	
 		getTourComplist(strs[0]);
-	}
+	});
 }
 
 function addLike(title){
 	var strs = title.split("/");
 	var data = "noboard="+strs[0]+"&objid="+strs[1];
 	
-	if(confirm("좋아요 평가는 취소할 수 없으며, 평가 여부를 상대방이 알 수 없습니다.\n"+strs[1]+" 님에게 좋아요를 보내시겠습니까?")){
+	toastConfirm("좋아요 평가는 취소할 수 없으며, 평가 여부를 상대방이 알 수 없습니다.\n"+strs[1]+" 님에게 좋아요를 보내시겠습니까?", function(){
 		
 		$.ajax({
 			url : "/home/mytour/addHeart",
@@ -397,7 +397,7 @@ function addLike(title){
 			}
 		});	
 		getTourComplist(strs[0]);
-	}
+	});
 }
 
 //메세지 저장하기 ++ 통신으로 메세지 보내기
@@ -431,4 +431,13 @@ function sendMsg(noboard, receiver, type){
 		}
 	})
 }
+
+//쪽지창 열기
+function popMsgSend(userid){
+	if(userid == 'admin' || userid == $("logId").val()){
+		return false
+	}
+	window.open('/home/sendMsg?userid='+userid, 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0');	
+}
+
 </script>

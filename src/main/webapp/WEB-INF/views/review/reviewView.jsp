@@ -218,6 +218,14 @@ function sendMsg(noboard, receiver, type){
 		}
 	})
 }
+  
+//쪽지창 열기
+function popMsgSend(userid){
+	if(userid == 'admin' || userid == $("logId").val()){
+		return false
+	}
+	window.open('/home/sendMsg?userid='+userid, 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0');	
+}
 </script>
 
 <!-- 후기게시판 제목 -->
@@ -233,7 +241,7 @@ function sendMsg(noboard, receiver, type){
 						<li id="conttitle">${vo.subject }</li>
 						<li>
 							<ul class="reviewInfo">
-								<li><label class="labelClass">작성자</label><span id="userid">${vo.userid }</span></li>
+								<li><label class="labelClass">작성자</label><span id="userid" onclick="popMsgSend(title)" title="${vo.userid }">${vo.userid }</span></li>
 								<li><label class="labelClass">작성일</label>${vo.writedate }</li>
 								<li><label class="labelClass">조회수</label>${vo.hit }</li>
 							</ul>

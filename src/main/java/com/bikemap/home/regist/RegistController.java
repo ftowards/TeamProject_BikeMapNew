@@ -186,7 +186,7 @@ public class RegistController {
 						result.setLoginResult(3); // 정지
 						result.setEndday(chk2.getEndday());
 						result.setCause(chk2.getCause());
-					}
+					}		
 				}else {
 					result.setLoginResult(2); // 미인증
 				}

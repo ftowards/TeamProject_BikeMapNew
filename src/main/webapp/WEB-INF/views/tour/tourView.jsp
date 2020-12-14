@@ -23,17 +23,17 @@ $(function(vo){
 			data : data,
 			success: function(result){
 				if(result == 1){
-					toast("완료된 여행은 삭제가 불가능합니다.");
+					toast("완료된 여행은 삭제가 불가능합니다.",1500);
 				}else if(result == 2){
 						selectTourCompList(result);
 				
 				}else if(result == 3){
-					toastConfirm("삭제된 글은 복구가 불가능합니다.\n그래도 삭제하시겠습니까?",function(){
+					toastConfirm("삭제된 글은 복구가 불가능합니다.<br/>그래도 삭제하시겠습니까?",function(){
 						deleteTourView(result);
 					});
 					
 			}else{
-					toast("글삭제에 실패하였습니다.");
+					toast("글삭제에 실패하였습니다.",1500);
 					}
 				},error:function(){
 					console.log("글삭제 조건 에러");
@@ -53,12 +53,12 @@ $(function(vo){
 			,data:data
 			,success : function(result){
 				if(result.length>0){
-					toastConfirm("현재"+result.length+"명의 참여인원이 있습니다.\n그래도 삭제하시겠습니까?",function(){
+					toastConfirm("현재"+result.length+"명의 참여인원이 있습니다.<br/>그래도 삭제하시겠습니까?",function(){
 						selectTourCompReceiver(result);
 						
 					});	
 				}else{
-					toast("참여인원 리스트불러오기에 실패하였습니다.");	
+					toast("참여인원 리스트불러오기에 실패하였습니다.",1500);	
 				}
 			
 			},error:function(){
@@ -126,10 +126,10 @@ $(function(vo){
 			,data:data
 			,success:function(result){
 				if(result == 1){
-					toast("게시글이 삭제되었습니다.");
-					location.href="/home/tourList";
+					toast("게시글이 삭제되었습니다.",1500);
+					setTimeout(function(){location.href="/home/tourList";}, 1500);
 				}else{
-					toast("글삭제에 실패하였습니다.");
+					toast("글삭제에 실패하였습니다.",1500);
 				}
 			},error:function(){
 				console.log("글삭제 에러");
@@ -147,6 +147,13 @@ function goList(){
 	$("#pagingVO").submit();
 }
 
+//쪽지창 열기
+function popMsgSend(userid){
+	if(userid == 'admin' || userid == $("logId").val()){
+		return false
+	}
+	window.open('/home/sendMsg?userid='+userid, 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0');	
+}
 </script>
 <div class="mainDivTourView">
 	<div id="tourViewFormTitleDiv"><label id="tourWriteTitle"><b>${vo.title}</b></label>
@@ -174,7 +181,7 @@ function goList(){
 					<div id="routeTitle" class="conditionBox tourLink" style="margin-top:-4px; font-family: 'Nanum Gothic', sans-serif;"></div>
 				</div>
 				<div>
-        			<input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox txtShadow2">
+        			<input type="text" value="${vo.userid}" id="userid" readonly onclick="popMsgSend(value)" class="conditionBox txtShadow2">
         		</div>
 			</div>
 			<div id="routeMap"></div>
@@ -259,30 +266,30 @@ function goList(){
 	<div id="writeForm">
 		<div class="tourViewWriteFormClass">
         	<div style="float:right" ><button class="conditionBox" id="tourlistBtn" onclick="javascript:goList()">목록보기</button></div>
-        		<!-- 목록보기 페이징 보내기 -->
-        		<form id="pagingVO" method="post" action="/home/tourView" style="display:none">
-        			<input type="hidden" name="nowPage" value="${pagingVO.nowPage}"/>
-       				 <input type="hidden" name="departuredate" value="${pagingVO.departuredate}"/>
-        			<input type="hidden" name="departureTime" value="${pagingVO.departureTime}"/>
-        			<input type="hidden" name="arrivedate" value="${pagingVO.arrivedate}"/>
-        			<input type="hidden" name="arriveTime" value="${pagingVO.arriveTime}"/>
-        			<input type="hidden" name="place" value="${pagingVO.place}"/>
-        			<input type="hidden" name="reggender" value="${pagingVO.reggender}"/>
-        			<input type="hidden" name="regage" value="${pagingVO.regage}"/>
-        			<input type="hidden" name="order" value="${pagingVO.order}"/>
-        		</form>
+       		<!-- 목록보기 페이징 보내기 -->
+       		<form id="pagingVO" method="post" action="/home/tourView" style="display:none">
+       			<input type="hidden" name="nowPage" value="${pagingVO.nowPage}"/>
+      				 <input type="hidden" name="departuredate" value="${pagingVO.departuredate}"/>
+       			<input type="hidden" name="departureTime" value="${pagingVO.departureTime}"/>
+       			<input type="hidden" name="arrivedate" value="${pagingVO.arrivedate}"/>
+       			<input type="hidden" name="arriveTime" value="${pagingVO.arriveTime}"/>
+       			<input type="hidden" name="place" value="${pagingVO.place}"/>
+       			<input type="hidden" name="reggender" value="${pagingVO.reggender}"/>
+       			<input type="hidden" name="regage" value="${pagingVO.regage}"/>
+       			<input type="hidden" name="order" value="${pagingVO.order}"/>
+       		</form>
 		</div>
-		<div class="tourViewWriteFormClass">	
-		<div id="checkComplist" class="roomCheckDivLbl" data-target="#dialog" data-toggle="modal" ><img src="<%=request.getContextPath()%>/img/img_tour/roomCheck.png"/>&nbsp;<label>참여 인원 확인하기</label></div>
-		<c:if test="${logId == vo.userid}">
-			<input type="hidden" id="manageConditon" value="ok"/>
-		</c:if>
+		<div class="temp">	
+			<div id="checkComplist" class="roomCheckDivLbl" data-target="#dialog" data-toggle="modal" ><img src="<%=request.getContextPath()%>/img/img_tour/roomCheck.png"/>&nbsp;<label>참여 인원 확인하기</label></div>
+			<c:if test="${logId == vo.userid}">
+				<input type="hidden" id="manageConditon" value="ok"/>
+			</c:if>
 		</div>
 	
 	<c:if test="${logId != vo.userid && logId != null}">
 		<div id="tourStateDiv">
-			<div><button id="applyTour">참가신청</button></div>
-			<div><button id="cancelTour">참가취소</button></div>
+			<button id="applyTour">참가신청</button>
+			<button id="cancelTour">참가취소</button>
 		</div>			 		
 	</c:if>	
 		<div class="tourViewWriteFormClass">
@@ -392,16 +399,16 @@ $(function(){
 			data : data,
 			success : function(result){
 				if(result == 1){
-					toast("참가 신청이 완료되었습니다.");
-					sendMsg($("#noboard").val(), $("#userInformation").val(), 2);
+					toast("참가 신청이 완료되었습니다.",1500);
+					sendMsg($("#noboard").val(), $("#userid").val(), 2);
 				}else if(result == 2){
-					toast("이미 참가 신청 중 입니다.");
+					toast("이미 참가 신청 중 입니다.",1500);
 				}else if(result == 3){
-					toast("이미 참가 중 입니다.");
+					toast("이미 참가 중 입니다.",1500);
 				}else if(result == 5){
-					toast("마감 시간이 지나 참가 신청이 처리되지 않았습니다.");
+					toast("마감 시간이 지나 참가 신청이 처리되지 않았습니다.",1500);
 				}else{
-					toast("참가 신청 오류입니다.");
+					toast("참가 신청 오류입니다.",1500);
 				}
 			},error : function(){
 				console.log("참가 신청 오류");
@@ -418,15 +425,15 @@ $(function(){
 			data : data,
 			success : function(result){
 				if(result == '1'){
-					toastConfirm("현재 참가 신청 중입니다.\n신청을 취소하시겠습니까?",function(){
+					toastConfirm("현재 참가 신청 중입니다.<br/>신청을 취소하시겠습니까?",function(){
 						cancleTour();
 					});
 				}else if(result == '2'){
-					toastConfirm("현재 참가 중입니다.\n참가를 취소하시겠습니까?",function(){
+					toastConfirm("현재 참가 중입니다.<br/>참가를 취소하시겠습니까?",function(){
 						cancleTour();
 					});
 				}else {
-					toast("참가 내역이 없습니다.");
+					toast("참가 내역이 없습니다.",1500);
 				}
 			},error : function(){
 				console.log("참가 취소 오류");
@@ -522,7 +529,7 @@ function setComplist(result){
 		}
 
 		if($("#logId").val() != v.userid){
-			tag += "<li><img src='<%=request.getContextPath()%>/img/img_tour/messge.png' style='width:35px;' onclick='sendMessage();'/></li>";
+			tag += "<li><img src='<%=request.getContextPath()%>/img/img_tour/messge.png' style='width:35px;' onclick='popMsgSend(title);' title='"+v.userid+"'/></li>";
 		}else{
 			tag +="<li></li>";
 		}
@@ -541,10 +548,10 @@ function confirmComplist(title){
 		data : data,
 		success : function(result){
 			if(result == 1){
-				toast("참가 승인 완료되었습니다.");
+				toast("참가 승인 완료되었습니다.",1500);
 				sendMsg(strs[0], strs[1], 1);
 			}else{
-				toast("승인 오류 입니다.");
+				toast("승인 오류 입니다.",1500);
 			}
 		},error : function(err){
 			console.log(err);
@@ -561,11 +568,11 @@ function cancleTour(){
 		success : function(result){
 			if(result == 1){
 				toast("참가 내역이 취소되었습니다.");
-				sendMsg($("#noboard").val(), $("#userInformation").val(), 3);
+				sendMsg($("#noboard").val(), $("#userid").val(), 3);
 			}else if(result == 5){
-				toast("마감 시간이 지나 신청 취소가 불가능합니다.\n주최자에게 불참을 알려주세요.");
+				toast("마감 시간이 지나 신청 취소가 불가능합니다.\n주최자에게 불참을 알려주세요.",1500);
 			}else{
-				toast("취소 신청 오류입니다. 다시 시도해주십시오.");
+				toast("취소 신청 오류입니다. 다시 시도해주십시오.",1500);
 			}
 		},error : function(){
 			console.log("참가 신청 오류 발생");

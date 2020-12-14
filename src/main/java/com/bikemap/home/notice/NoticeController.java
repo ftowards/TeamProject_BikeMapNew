@@ -55,10 +55,11 @@ public SqlSession sqlSession ;
 	
 	// 쪽지 보내기 창 열기
 	@RequestMapping("/sendMsg")
-	public ModelAndView sendMsg(HttpSession ses){
+	public ModelAndView sendMsg(String userid, HttpSession ses){
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("logId", (String)ses.getAttribute(("logId")));
+		mav.addObject("userid", userid);
 		mav.setViewName("popup/sendMsg");
 		return mav;
 	}

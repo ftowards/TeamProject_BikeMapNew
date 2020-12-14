@@ -21,9 +21,6 @@ $(function(){
 	$("#tourEditForm").submit(function(){
 		CKEDITOR.instances.content.updateElement();		
 		
-		
-		
-		
 		if($("#tourWriteTitleEdit").val()==""){
 			toast("제목을 입력하세요.");
 			$("#tourWriteTitleEdit").focus();
