@@ -5,8 +5,9 @@
 <mapper namespace="com.bikemap.home.admin.AdminDaoImp">
 	<!-- 관리자 사용자 페이지 -->
 	<select id="selectRegistAll" parameterType="com.bikemap.home.admin.AdminPagingVO" resultType="com.bikemap.home.admin.AdminRegistVO"><!-- VO하나만 합성으로 설정 -->	
-		select * from(select * from(select to_char(a.regdate, 'YYYY.MM.DD') regdate, rownum, a.email, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt,  a.heart, (select to_char(s.endday,'YY-MM-DD')	
-		from suspend s  <![CDATA[where s.userid = a.userid and rownum=1 and s.endday>=sysdate]]>) endday from regist a <include refid="search"></include> order by regdate desc )
+		select * from(select * from(select to_char(a.regdate, 'YYYY.MM.DD') regdate, a.email, a.userid, a.username, a.gender, trunc((to_number(to_char(sysdate, 'YYYY'))-to_number(to_char(a.birth, 'YYYY'))+1),-1) birth, a.tourcnt,  a.heart, (select to_char(s.endday,'YY-MM-DD')	
+		from suspend s  
+		<![CDATA[where s.userid = a.userid and rownum=1 and s.endday>=sysdate]]>) endday from regist a <include refid="search"></include> order by regdate desc )
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by regdate asc) 
 		where rownum <= #{lastPageRecordCount} order by regdate  desc]]>
 	</select>
@@ -25,7 +26,6 @@
 			<if test="searchType == 'routeAll'.toString()">WHERE USERID LIKE '%' || #{searchWord} || '%' OR  TITLE LIKE '%' || #{searchWord} || '%'</if>
 		</if>
 	</sql>
-
 	
 	<select id="searchRegistRecord" parameterType="com.bikemap.home.admin.AdminSuspendVO" resultType="int">
 		select count(userid) from regist <include refid="search"></include>
@@ -81,7 +81,7 @@
 		update qna set answercontent=#{answercontent}, answer='Y', answerdate=sysdate where noqna=#{noqna}
 	</update>
 	
-	<!-- 리뷰 -->
+	<!-- 루트 -->
 	<select id = "routeTotalRecord" resultType="int">
 		select count(noboard) from route
 	</select>
@@ -109,17 +109,17 @@
 		select count(noboard) from review <include refid="search"></include>
 	</select>
 	
-	<!-- 리뷰 -->
+	<!-- 동행모집 -->
 	<select id = "tourTotalRecord" resultType="int">
 		select count(noboard) from tour
 	</select>
-	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourVO">
-		select * from(select * from(select noboard, title, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate
+	<select id = "tourAllRecord" resultType="com.bikemap.home.tour.TourlistVO">
+		select * from(select * from(select noboard, title, userid, state
 		from tour <include refid="search"></include> order by noboard desc)
 		<![CDATA[where rownum <= (#{nowPage} * #{onePageRecord}) order by noboard asc) 
 		where rownum <= #{lastPageRecordCount} order by noboard  desc]]>
 	</select>
-	<select id="searchTourRecord" parameterType="com.bikemap.home.tour.TourVO" resultType="int">
+	<select id="searchTourRecord" parameterType="com.bikemap.home.tour.TourlistVO" resultType="int">
 		select count(noboard) from tour <include refid="search"></include>
 	</select>
 </mapper> 

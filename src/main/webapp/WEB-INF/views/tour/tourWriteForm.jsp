@@ -15,6 +15,7 @@
 	
 	<div id="RouteSearchDiv">
 		<div>
+			<img src="<%=request.getContextPath() %>/img/img_route/search.png" style='position:relative; left:-502px; width:30px'/>
 			<input type="text" id="referenceSearch" placeholder="루트검색(제목/작성자/지역)" autocomplete="off"/>
 			<hr style="opacity:0 ; height : 25px;"/>
 			<div id="searchResultList">
@@ -94,30 +95,30 @@
 					<div><label  class="labelClass">거&nbsp;리</label></div>
 					<div><input type="text" id="distance" name="distance" maxlength="4" class="conditionBox" readonly/></div>
 					<label class="kmLbl1">km</label>
-					<div><label  class="labelClass2" style="margin:-25px 0 0 40px;" >소요시간</label></div>
+					<div><label  class="labelClass2" style="margin:-25px 0 0 19px;" >소요시간</label></div>
 					<div><input type="text" id="tourtime" class="conditionBox" maxlength="3" style="margin:-25px 0 0 20px;" readonly/></div>
 					
 				</div>	
-				<div class="conditionDivTop">
+				<div class="conditionDivTop4">
 					<div><label  class="labelClass2" >속&nbsp;도</label></div>
 					<div><input type="number" name="speed" id="speed" maxlength="4" class="conditionBox"/></div>
 						<label class="kmLbl2">km</label>
-					<div><label  class="labelClass2" style="margin:-25px 0 0 40px;">비&nbsp;용</label></div>
-					<div><input type="text" name="budget" id="budget" maxlength="6" style="margin:-25px 0 0 20px;" class="conditionBox"/></div>
+					<div><label  class="labelClass2" style="margin:-25px; position:relative; left:13px">비&nbsp;용</label></div>
+					<div><input type="text" name="budget" id="budget" maxlength="6" class="conditionBox"/></div>
 					<label class="wonLbl">원</label>					
 				</div>	
 			</div>
 			<div class="timeConditionDiv3">	
 				<div><label class="tourWriteConditionTitle">모집조건</label></div>	
 					<div class="conditionDivTop3">
-						<div><label  class="labelClass">인&nbsp;원</label></div>
+						<div><label  class="labelClass" style='text-align:left; padding-left:17px'>인&nbsp;원</label></div>
 								<select name="room" id="room" style="text-align-last:center">
 								<c:forEach var="i" begin="2" end="10" step="1">
 									<option value="${i }">${i }</option>
 								</c:forEach>
 								</select>
 			
-						<div><label class="labelClass" style="margin-left:20px;">성&nbsp;별</label></div>
+						<div><label class="labelClass">성&nbsp;별</label></div>
 						<div><label id="whole" for="reggender">전&nbsp;체</label></div>
 						<div><label id="genderboy" for="boy">남</label></div>
 						<div><label id="gendergirl" for="girl">여</label></div>
@@ -128,7 +129,7 @@
 					</div>
 				
 					<div class="conditionDivTop">
-						<div><label class="labelClass">나&nbsp;이</label></div>
+						<div><label class="labelClass" style='text-align:left; padding-left:17px'>나&nbsp;이</label></div>
 						<div><label id="whole2" for="regage">전&nbsp;체</label></div>
 						<div><label id="regageten" for="ten">10대</label></div>
 						<div><label id="regagetwenty" for="twenty">20대</label></div>
@@ -202,14 +203,14 @@ $(function(){
 	
 	$("#reggender").on('change', function(){
 		if($(this).is(":checked")){
-			$("#whole").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+			$("#whole").css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 			for(var i = 0 ; i < $("input[name=reggender]").length ; i++){
 				if(!($("input[name=reggender]").eq(i).prop("checked"))){
 					$("input[name=reggender]").eq(i).trigger('click');
 				}
 			}
 		}else{
-			$("#whole").css('color','rgb(90,90,90)').css('background-color','#efefef');
+			$("#whole").css('color','rgb(90,90,90)').css('background-color','#fff');
 			for(var i = 0 ; i < $("input[name=reggender]").length ; i++){
 				if($("input[name=reggender]").eq(i).prop("checked")){
 					$("input[name=reggender]").eq(i).trigger('click');
@@ -222,9 +223,9 @@ $(function(){
 	$("input[name=reggender]").on('change', function(){
 		var type = $(this).attr("id");
 		if($(this).prop("checked")){
-			$("#gender"+type).css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+			$("#gender"+type).css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 		}else{
-			$("#gender"+type).css('color','rgb(90,90,90)').css('background-color','#efefef');
+			$("#gender"+type).css('color','rgb(90,90,90)').css('background-color','#fff');
 		}
 		
 		var cnt = 0;
@@ -236,7 +237,7 @@ $(function(){
 			});
 			if(cnt < 2) {
 				$("#reggender").prop("checked", false);
-				$("#whole").css('color','rgb(90,90,90)').css('background-color','#efefef');
+				$("#whole").css('color','rgb(90,90,90)').css('background-color','#fff');
 			}
 		}else if(!$("#reggender").prop("checked")) {
 			$("input[name=reggender]").each(function(){
@@ -246,7 +247,7 @@ $(function(){
 			});
 			if(cnt == 2) {
 				$("#reggender").prop("checked", true);
-				$("#whole").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+				$("#whole").css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 			}
 		}
 	});
@@ -255,14 +256,14 @@ $(function(){
 
 	$("#regage").on('change',function(){
 		if($(this).is(":checked")){
-			$("#whole2").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+			$("#whole2").css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 			for(var i = 0; i < $("input[name=regage]").length ; i++){
 				if(!($("input[name=regage]").eq(i).prop("checked"))){
 					$("input[name=regage]").eq(i).trigger('click');
 				}
 			}
 		}else{
-			$("#whole2").css('color','rgb(90,90,90)').css('background-color','#efefef');
+			$("#whole2").css('color','rgb(90,90,90)').css('background-color','#fff');
 			for(var i = 0 ; i < $("input[name=regage]").length ; i++){
 				if($("input[name=regage]").eq(i).prop("checked")){
 					$("input[name=regage]").eq(i).trigger('click');
@@ -273,9 +274,9 @@ $(function(){
 	$("input[name=regage]").on('change', function(){
 		var type = $(this).attr("id");
 		if($(this).prop("checked")){
-			$("#regage"+type).css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+			$("#regage"+type).css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 		}else{
-			$("#regage"+type).css('color','rgb(90,90,90)').css('background-color','#efefef');
+			$("#regage"+type).css('color','rgb(90,90,90)').css('background-color','#fff');
 		}
 		
 		var cnt = 0;
@@ -287,7 +288,7 @@ $(function(){
 			});
 			if(cnt < 5) {
 				$("#regage").prop("checked", false);
-				$("#whole2").css('color','rgb(90,90,90)').css('background-color','#efefef');
+				$("#whole2").css('color','rgb(90,90,90)').css('background-color','#fff');
 			}
 		}else if(!$("#regage").prop("checked")) {
 			$("input[name=regage]").each(function(){
@@ -297,7 +298,7 @@ $(function(){
 			});
 			if(cnt == 5) {
 				$("#regage").prop("checked", true);
-				$("#whole2").css('color','rgb(10, 150, 150)').css('background-color','rgb(0,176,176)');
+				$("#whole2").css('color','rgb(10, 150, 150)').css('background-color','rgb(166, 234, 234)');
 			}
 		}
 	});

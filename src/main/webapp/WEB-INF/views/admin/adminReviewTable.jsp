@@ -14,7 +14,7 @@ function makeReviewTable(result){
 		//list안에 데이터 추가
 		listTag += "<li><input type='checkbox'  name='tourCheck' value='"+result[i].noboard+"'/></li>"
 		listTag += "<li>"+result[i].noboard+"</li>";
-		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/reviewList?noboard="+result[i].noboard+"'>"+result[i].subject+"</a></li>";
+		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>"+result[i].subject+"</a></li>";
 		listTag += "<li>"+result[i].userid+"</li>";
 		listTag += "<li>"+result[i].reference+"</li>";
 		listTag += "<li><input type='hidden' value='"+result[i].scrap+"' />"+result[i].hit+"회</li>";
@@ -52,8 +52,6 @@ function deleteReview(){
 	});
 }
 </script>
-
-
 	<!-- /Page Sidebar -->
 	
 	<!-- Page Content -->
@@ -79,7 +77,7 @@ function deleteReview(){
 			
 							<li><input type="checkbox" name="listChk" value="${vo.noboard }"/></li>
 							<li> ${vo.noboard}</li>
-							<li class='wordCut'><a href = "<%=request.getContextPath()%>/reviewList?noboard=${vo.noboard }">${vo.subject }</a></li>
+							<li class='wordCut'><a href = "<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">${vo.subject }</a></li>
 							<li>${vo.userid}</li>
 							<li>${vo.reference }</li>
 							<li><input type="hidden" value="${vo.scrap }" />${vo.hit}회</li>
@@ -89,13 +87,15 @@ function deleteReview(){
 									<label class="switch">
 									  <input type="checkbox" name="adminReviewScrapBtn" value="${vo.noboard }">
 									  <span class="slider round"></span>
-									</label>							
+									</label>		
+									<input type="hidden" class="userid" value="${vo.userid }"/>				
 								</c:if>
 								<c:if test="${vo.scrap=='T'}">
 									<label class="switch">
 									  <input type="checkbox" name="adminReviewScrapBtn" value="${vo.noboard }" checked="checked" >
 									  <span class="slider round"></span>
 									</label>
+									<input type="hidden" class="userid" value="${vo.userid }"/>
 								</c:if>
 							</li>
 					</c:forEach>
@@ -107,8 +107,7 @@ function deleteReview(){
 				<!-- paging -->
 			 
 			<div id="paging">
-					<ul>
-					
+					<ul>					
 						<c:if test="${pagingVO.nowPage != 1 }">
 							<li><a href="#">Prev</a></li>
 						</c:if>
@@ -129,8 +128,9 @@ function deleteReview(){
 					</ul>
 			</div>			<!-- /paging -->
 			<div id="reviewBtnDiv">
-				<input type="button" class="mint_Btn" id="reviewRecommentBtn" name="recomReview" value="추천하기" />
-				<input type="button" class="mint_Btn" onclick="deleteReview();" value="삭제" />
+        <input type="button" id="partnerBtn1" name="adminReviewScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
+        <input type="button" id="partnerBtn2" name="adminReviewReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
+        <input type="button" class="mint_Btn" onclick="deleteReview();" value="삭제" />
 			</div><!-- btn -->
 
 		</div><!-- adminContent -->

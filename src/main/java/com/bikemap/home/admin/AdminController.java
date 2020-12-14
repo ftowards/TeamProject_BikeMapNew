@@ -43,7 +43,7 @@ public class AdminController {
 			totalRecord = dao.searchRegistRecord(vo);
 			vo.setTotalRecord(totalRecord);
 			list = dao.selectRegistAll(vo);
-	
+			System.out.println(vo.getLastPageRecordCount()+": 마지막 페이지 레코드수");
 			mav.addObject("type", "user");
 			mav.addObject("list", list);
 			mav.addObject("pagingVO", vo);	

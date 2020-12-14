@@ -27,9 +27,7 @@
 					 	height:308px;
 					 	float:left;
 						margin-left:40px;
-						box-shadow: 2px 2px 4px 2px rgb(171 171 171);	
-						background:pink;
-	
+						box-shadow: 2px 2px 4px 2px rgb(171 171 171);
 	}
 	.timeConditionDiv2{
 	
@@ -40,16 +38,16 @@
 					 	float:left;
 					 	margin-bottom:60px;
 						box-shadow: 2px 2px 4px 2px rgb(171 171 171);		
-						background:orange;
+						background:#efefef;
 	}
 	.timeConditionDiv3{
 						border-radius:15px;
 					 	background-color:#fff;
 					 	width:460px;
-					 	height:250px;
+					 	height:263px;
 					 	float:left;
 						box-shadow: 2px 2px 4px 2px rgb(171 171 171);	
-						background:lightblue;
+						background:#efefef;
 	
 	}
 	.tourWriteConditionTitle{
@@ -72,6 +70,12 @@
 	hr{
 		margin-top:15px;
 	}
+	
+	.cke_reset{
+		border-radius:5px;
+		box-shadow:2px 2px 5px #9c9c9b;
+	}
+	
 	#tourWriteFormTitleLbl{
 							font-size:22px; 
 	 						color:rgb(64,64,64);
@@ -98,8 +102,11 @@
 										background-color:rgb(221,221,221);
 										font-size:18px;
 										font-weight:bold;
-										color:rgb(64,64,64);										
+										color:rgb(64,64,64);
+										position:relative;
+										left:40px;										
 	}
+
 	
 	#searchResultList{
 						width:500px;
@@ -170,12 +177,14 @@
 	}
 	
 	#routeTitle {
-		height: 35px;
-		width : 535px;
+		height: 46px;
+		width : 505px;
 		white-space:nowrap;
 		overflow:hidden;
+		font-size:24px;
 		text-overflow:ellipsis;
-		margin:25px 0 20px 0;	
+		margin:25px 0 20px 27px;
+		padding:6px 13px 0 13px;
 	}
 	#routeTitle a{
 		text-decoration:none;
@@ -197,8 +206,11 @@
 		top:-27px;
 	}
 	#elevation_chart{
-		width : 500px; height: 200px;
+		width : 616px;
+		height: 160px;
+		background:#efefef;
 		margin : 0 auto;
+		margin-left:42px;
 	}
 	#conditionDiv{
 		width:415px;
@@ -228,29 +240,27 @@
 						height:50px;
 						margin:14px 0 0 20px;
 						float:left;
-						background:yellow;
-				}
+	}
 				
 	.conditionDivTop2{
-						width:450px;
+						width:425px;
 						height:30px;
-						margin:17px 0 0 20px;
+						margin-top:20px;
 						float:left;
-						background:lightblue;
-	
-	
 	}		
 	.conditionDivTop3{
-						width:450px;
+						width:440px;
 						height:55px;
-						margin:40px 0 0 20px;
+						margin:38px 0 4px 20px;
 						float:left;
-						background:pink;
-						
-	
 	}
-
-		
+	.conditionDivTop4{
+					 	width:440px;
+						height:50px;
+						margin-top:27px;
+						float:left;	
+	}
+	
 	#departuredate,#arrivedate,#deadlinedate{		
 						width:180px;
 						color:rgb(123,123,123);				
@@ -287,10 +297,10 @@
 					width:100px;
 					background-color:#fff;
 					color:rgb(123,123,123);
-				
+					box-shadow:2px 2px 5px #9c9b9b;
 					
 	}	
-	#departuredate,#place,.conditionBox,#deadlinedate,#room{
+	#departuredate,#place,.conditionBox,#deadlinedate{
 												margin-left:20px;
 	}
 	
@@ -313,12 +323,12 @@
 						border-radius:8px;
 						width:55px;
 						height:35px;
-						background-color:#fff;
+						background-color:#e5f7f7;
 						font-size:15px;
 						font-weight:bold;
-						color:rgb(123,123,123);
+						color:#00b0b0;
 						float:left;
-						box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+						box-shadow:2px 2px 5px #9c9b9b;
 						
 				
 	}	
@@ -328,15 +338,24 @@
 																													text-align:center;
 																												
 																													border-radius:10px;
-																													width:70px;
+																													width:77px;
 																													height:35px;
 																													background-color:#fff;
 																													font-size:15px;
 																													font-weight:bold;
 																													color:rgb(123,123,123);
 																													float:left;
-																													box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+																													box-shadow:2px 2px 5px #9c9b9b;
 															
+	}
+	
+	#regagethirty, #regageforty, #regagefiftyOver{
+		position:relative;
+		left:90px;	
+	}
+	
+	#regagethirty{
+		top:9px;
 	}
 	.kmLbl1{
 				position:relative;
@@ -344,7 +363,7 @@
 				font-size:15px;
 				font-weight:bold;
 				top:7px;
-				left:-32px;
+				left:-29px;
 				
 	
 	}
@@ -354,22 +373,42 @@
 				color:rgb(123,123,123);
 				font-size:15px;
 				font-weight:bold;
-				top:-18px;
-				left:-23px;
+				top:-19px;
+				left:61px;
 	
 	
 	}
-	.kmLbl2{
+	.kmLbl2{	
+				width:25px;
+				background-color:white;
 				position:relative;
 				color:rgb(123,123,123);
 				font-size:15px;
 				font-weight:bold;
 				left:-30px;
 				top:6px;
-			
+				z-index:15;
+	}
 	
+	#budget{
+		position:relative;
+		left:88px;
+		margin-top:-26px;
+		width:115px;
 	}
 
+
+	#distance, #speed, #budget{
+		text-align:left;
+		padding-left:16px;
+	}
+	#distance, #speed, #budget, #tourtime{
+		font-size:15px;
+	}
+	
+	#tourtime{
+		text-align:center;
+	}
 	.tourTimeLbl{
 			
 				position:relative;
@@ -385,9 +424,12 @@
 							width:35px;
 							margin-left:10px;
 	}	
-	#whole,#whole2,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver{
-																						margin-left:20px;
+	#whole,#regageten,#regagetwenty,#regagethirty,#regageforty,#regagefiftyOver{
+																						margin-left:19px;
 	}		
+	#whole2{
+		margin-left:25px;
+	}
 	input[type=checkbox]{
 						display:none;
 	}	
@@ -439,7 +481,7 @@
 							color:#fff;
 							float:left;
 							margin-left:30px;
-							box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+							box-shadow: 2px 2px 5px #9c9c9b;	
 							
 	
 	}	
@@ -455,10 +497,10 @@
 														text-align:center;
 														border:none;
 														border-radius:10px;
-														background-color:#fff;
+														background-color:#e5f7f7;
 														font-size:15px;
 														font-weight:bold;
-														color:rgb(123,123,123);
+														color:#00b0b0;
 														float:left; 
 														text-align-last:center;
 														letter-spacing:2px;

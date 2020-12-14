@@ -34,11 +34,15 @@ function makeTourTable(result){
 		listTag += "><span class='slider round'></span>";
 		listTag += "</label>";
 		listTag += "</li>";	
+
+		tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li>";
+		
+		tag += "<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>";
 		}$("#tourList").append(listTag);
 }
 </script>
 	<!-- /Page Sidebar -->
-	
+	<!-- 미완료된 리스트보기추가 -->
 	<!-- Page Content -->
 	<div class="adminContent">
 				<div id="adminTable">
@@ -48,37 +52,32 @@ function makeTourTable(result){
 						<li>번&nbsp;&nbsp;호</li>
 						<li>제&nbsp;&nbsp;목</li>
 						<li>작성자</li>
-						<li>완료여부</li>
-						<li>관리자추천</li>
+						<li>참&nbsp;&nbsp;가</li>
+						<li>참가목록</li>
+						<li></li>
+						
 					
-						<!-- DB작업완료 후 for문 생성 -->
 						<c:forEach items="${list}" var="vo" varStatus="status">
 							<li><input type="checkbox" name="listChk" value="${vo.noboard}" title="${vo.userid }"/></li>
 							<li>${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
+							<li>${vo.party }</li>
 							<li>
 								<c:if test="${vo.state=='1'||vo.state==null}">
-									미완료
+									모집중
 								</c:if>
 								<c:if test="${vo.state=='2'}">
+									마감
+								</c:if>
+								
+								<c:if test="${vo.state=='3'}">
 									완료
 								</c:if>
-							</li>
-							<li>
-								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
-									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">
-									  <span class="slider round"></span>
-									</label>							
-								</c:if>
-								<c:if test="${vo.scrap=='T'}">
-									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >
-									  <span class="slider round"></span>
-									</label>
-								</c:if>
-							</li>
+							</li>	
+							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard})'>▼</a></li>
+							<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>
+
 					</c:forEach>
 					</ul>
 			</div>
@@ -99,8 +98,7 @@ function makeTourTable(result){
 									<li><a href="javascript:movePage(${page })" style='color:black; font-weight:600;'>${page }</a></li>
 								</c:if>
 							</c:if>
-						</c:forEach>
-					
+						</c:forEach>					
 						<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
 							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>

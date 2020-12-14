@@ -186,6 +186,7 @@ a{
 	margin: 0 auto;
 	width: 15%;
 	padding:15px 0 0 20px;
+
 }
 
 #paging li {
@@ -261,16 +262,15 @@ a{
 }
 /* userList 모달관련 CSS*/
 .modal {
-        text-align: center;
+    text-align: center;
 }
- 
 @media screen and (min-width: 768px) { 
-        .modal:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 100%;
-        }
+    .modal:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: " ";
+            height: 100%;
+    }
 }
 .modal-dialog {
         display: inline-block;
@@ -289,7 +289,7 @@ small {
 	width:88%;
 	margin:0px 0 0px 82px;
 }
-#tourList>li:nth-child(-n+6) {
+#tourList>li:nth-child(-n+7) {
 	font-size:16px;
 	color:#1f1f63;
 	background:linear-gradient(#eee, lightgray);
@@ -299,12 +299,12 @@ small {
 	letter-spacing:2px;
 	margin-bottom:4px;
 }
-#tourList>li:nth-child(n+7):nth-child(-n+12){
+#tourList>li:nth-child(n+8):nth-child(-n+14){
 	border-top: 1px solid #afafaf;
 }
 #tourList>li{
 	float: left;
-	width: 15%;
+	width: 12%; /* 84/% */
 	height: 50px;
 	line-height: 40px;
 	border-bottom: 1px solid #afafaf;
@@ -313,11 +313,11 @@ small {
 	font-size:16px;
 	background-color: #fff;
 }
-#tourList>li:nth-child(6n+3) {
-	width: 37%;
+#tourList>li:nth-child(7n+3) {
+	width: 37%; /* 번호+제목 40% + 나머지  60% = 100*/
 	text-align : left;
 }
-#tourList>li:nth-child(6n+1){
+#tourList>li:nth-child(7n+1){
 	width:3%;
 }
 #tourList>li:nth-child(3) {

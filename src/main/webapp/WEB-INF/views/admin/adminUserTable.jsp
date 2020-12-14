@@ -7,15 +7,17 @@
 <script>
 	function makeUserTable(result){
 		$("#userList").children().remove();
+		var nowPage =$("#nowPage").val();
+		var listNum = 0;
 		var listTag = "";
-		for(var i = 0; i < result.length ; i++){
-			
+		for(var i = 0; i < result.length ; i++){			
 			//alert(result.length+" : 결과 줄");
 			if(i==0){
 				listTag +=  "<li>번&nbsp;&nbsp;호</li> <li>아이디</li> <li>이&nbsp;&nbsp;름</li> <li>성&nbsp;&nbsp;별</li> <li>나&nbsp;&nbsp;이</li> <li>모임횟수</li> <li>좋아요</li> <li>상태</li> <li>정지기간</li>"	;
 			}
+			listNum = i+(nowPage-1)*10+1;
 			//list안에 데이터 추가
-			listTag += "<li>"+result[i].rownum+"</li>";
+			listTag += "<li>"+listNum+"</li>";
 			listTag += "<li id='contents' ><a href='javascript:userPopupOpen();'>"+result[i].userid+" </a></li>";
 			listTag += "<li>"+result[i].username+"</li>";
 			listTag += "<li>";
@@ -64,7 +66,7 @@
 							<li>정지기간</li>
 							<!-- DB작업완료 후 for문 생성 -->
 							<c:forEach items="${list}" var="vo" varStatus="status">
-								<li>${vo.rownum}</li>
+								<li>${status.count+(pagingVO.nowPage-1)*10}</li>
 								<li class="contents" >
 									<input type="hidden" class="hiddenEmail" value="${vo.email }"/>
 									<input type="hidden" class="hiddenRegdate" value="${vo.regdate }"/>
@@ -218,10 +220,19 @@
 		</div>
 	</div>
 	
-	<div id="modal_User" class="modal fade"  tabindex="-1" role="dialog">
-				  <div class="modal-dialog" role="document" style=" ">
+<!-- 완료 -->
+<!-- 	// 가입일 이모티콘 변경 -->
+<!-- 	// 필요없는거 빼기 -->
+<!-- 	// 하단 클로즈 가운데정렬 -->
+
+<!-- 이것만 해결하자... -->
+<!-- // 가로사이즈 줄이기 -->
+<!-- // rownum순서 제대로 나오게 db query문 수정  -->
+
+	<div id="modal_User" class="modal fade modal-userprofile"  tabindex="-1" role="dialog">
+				  <div class="modal-dialog" role="document" >
 				    <div class="modal-content">	
-<!-- 				    	 <div class="modal-header"> -->
+<!-- 				    	 <div class="modal-header"> 화면 닫기 -->
 <!-- 					        <h5 class="modal-title">회원 정보 보기</h5> -->
 <!-- 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
 <!-- 					          <span aria-hidden="true">&times;</span> -->
@@ -229,20 +240,17 @@
 <!-- 				      	</div> -->
 					 <div class="modal-header">
 				        <h3 class="modal-title">회원 정보</h3>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
 				     </div>
 					<div class="container">
 					
 				    <div class="row">
-				        <div class="col-xs-12 col-sm-6 col-md-6">
+				        <div class="col-xs-9 col-sm-6 col-md-6">
 				            <div class="well well-sm">
 				                <div class="row">
-				                    <div class="col-sm-6 col-md-4">
+				                    <div class="col-sm-6 col-md-3">
 				                        <img src='img/img_admin/adminuserprofile_pic.png' alt="" class="img-rounded img-responsive" />
 				                    </div>
-				                    <div class="col-sm-6 col-md-8">
+				                    <div class="col-sm-6 col-md-6">
 				                        <h4>
 				                            <span id="modalUsername">홍길동</span></h4>
 				                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
@@ -250,24 +258,9 @@
 				                        <p>
 				                            <i class="glyphicon glyphicon-envelope"></i><span id="modalEmail">bikemap@bikemap.com</span>
 				                            <br />
-				                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
-				                            <br />
-				                            <i class="glyphicon glyphicon-gift"></i><span id="modalRegidate">June 02, 1988</span></p>
-				                        Split button
-				                        <div class="btn-group">
-				                            <button type="button" class="btn btn-primary">
-				                                Social</button>
-				                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-				                                <span class="caret"></span><span class="sr-only">Social</span>
-				                            </button>
-				                            <ul class="dropdown-menu" role="menu">
-				                                <li><a href="#">Twitter</a></li>
-				                                <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
-				                                <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
-				                                <li class="divider"></li>
-				                                <li><a href="#">Github</a></li>
-				                            </ul>
-				                        </div>
+				                           
+				                            <i class="glyphicon glyphicon glyphicon-ok-circle"></i><span id="modalRegidate">June 02, 1988</span></p>
+				                        
 				                    </div>
 				                </div>
 				            </div>
@@ -275,7 +268,7 @@
 				    </div>
 					
 			</div>
-			<div class="modal-footer">
+			<div class="modal-footer" style="text-align:center">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						  
 		</div>
 	  </div> <!-- modal-bialog .// -->
