@@ -5,6 +5,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <!-- Page Content -->
 <script>
+$(function(){
+	movePage(1);	
+	
+	
+	$("#checkAll").on("change", function(){
+		console.log(11);
+		if($("#checkAll").prop("checked")){
+			$("#reviewList input[name=listChk]").prop("checked",true);
+		}else{
+			$("#reviewList input[name=listChk]").prop("checked",false);
+		}
+	});
+});
+
 function makeReviewTable(result){
 	var listTag = "";
 	for(var i = 0; i < result.length ; i++){
@@ -12,7 +26,7 @@ function makeReviewTable(result){
 			listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번&nbsp;&nbsp;호</li> <li>제&nbsp;&nbsp;목</li> <li>작성자</li> <li>레퍼런스 번호</li><li>조회수</li><li>추천/비추천</li> <li>관리자추천</li>"	;
 		}			
 		//list안에 데이터 추가
-		listTag += "<li><input type='checkbox'  name='tourCheck' value='"+result[i].noboard+"'/></li>"
+		listTag += "<li><input type='checkbox'  name='listChk' value='"+result[i].noboard+"'/></li>"
 		listTag += "<li>"+result[i].noboard+"</li>";
 		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>"+result[i].subject+"</a></li>";
 		listTag += "<li>"+result[i].userid+"</li>";
@@ -59,7 +73,7 @@ function deleteReview(){
 				<div id="adminTable">
 				<h1 class="adminListHead">후기게시판</h1>
 				<div class="orderRadio_review">
-					<input type="radio" name="order" id="orderNoboard" value="noboard" checked="checked"><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar"> | </span>
+					<input type="radio" name="order" id="orderNoboard" value="noboard" checked><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar"> | </span>
 					<input type="radio" name="order" id="orderHit" value="hit"><label for="orderHit" class="subTxt">조회수</label>
 				</div>
 				<ul id="reviewList">	
