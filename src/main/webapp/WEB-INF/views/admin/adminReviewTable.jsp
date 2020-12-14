@@ -33,9 +33,6 @@ function makeReviewTable(result){
 }
 </script>
 
-
-
-
 	<!-- /Page Sidebar -->
 	
 	<!-- Page Content -->
@@ -59,7 +56,7 @@ function makeReviewTable(result){
 					<!-- DB작업완료 후 for문 생성 -->
 					<c:forEach items="${list}" var="vo" varStatus="status">
 			
-							<li><input type="checkbox" name="listChk"/></li>
+							<li><input type="checkbox" name="listChk" value="${vo.noboard }"/></li>
 							<li> ${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/reviewView?noboard=${vo.noboard }">${vo.subject }</a></li>
 							<li>${vo.userid}</li>
@@ -71,7 +68,8 @@ function makeReviewTable(result){
 									<label class="switch">
 									  <input type="checkbox" name="adminReviewScrapBtn" value="${vo.noboard }">
 									  <span class="slider round"></span>
-									</label>							
+									</label>		
+									<input type="hidden" class="userid" value="${vo.userid }"/>				
 								</c:if>
 								<c:if test="${vo.scrap=='T'}">
 									<label class="switch">
@@ -115,7 +113,7 @@ function makeReviewTable(result){
 				<div id="reviewBtnDiv">					
 						<input type="button" id="partnerBtn1" name="adminReviewScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
 						<input type="button" id="partnerBtn2" name="adminReviewReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
-				</div><!-- btn -->
-<!-- Page Content -->
+				</div><!— btn —>
+<!— Page Content —>
 </body>
 </html>

@@ -42,7 +42,7 @@ function makeTourTable(result){
 }
 </script>
 	<!-- /Page Sidebar -->
-	
+	<!-- 미완료된 리스트보기추가 -->
 	<!-- Page Content -->
 	<div class="adminContent">
 				<div id="adminTable">
@@ -52,11 +52,11 @@ function makeTourTable(result){
 						<li>번&nbsp;&nbsp;호</li>
 						<li>제&nbsp;&nbsp;목</li>
 						<li>작성자</li>
-						<li>참가인원</li>
-						<li>상태</li>
+						<li>참여인원</li>
+						<li>완료여부</li>
 						<li>참가목록</li>
-											
 						
+					
 						<c:forEach items="${list}" var="vo" varStatus="status">
 							<li><input type="checkbox" name="listChk" value="${vo.noboard}" title="${vo.userid }"/></li>
 							<li>${vo.noboard}</li>
@@ -70,13 +70,14 @@ function makeTourTable(result){
 								<c:if test="${vo.state=='2'}">
 									마감
 								</c:if>
+								
 								<c:if test="${vo.state=='3'}">
 									완료
 								</c:if>
 							</li>	
 							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard})'>▼</a></li>
 							<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>
-										
+
 					</c:forEach>
 					</ul>
 			</div>
@@ -97,8 +98,7 @@ function makeTourTable(result){
 									<li><a href="javascript:movePage(${page })" style='color:black; font-weight:600;'>${page }</a></li>
 								</c:if>
 							</c:if>
-						</c:forEach>
-					
+						</c:forEach>					
 						<c:if test="${pagingVO.nowPage != pageVO.totalPage }">
 							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>
