@@ -314,7 +314,7 @@ small {
 	background-color: #fff;
 }
 #tourList>li:nth-child(7n+3), #tourListBtm>li:nth-child(7n+3) {
-	width: 37%; /* 번호+제목 40% + 나머지  60% = 100*/
+	width: 32%; /* 번호+제목 40% + 나머지  60% = 100*/
 	text-align : left;
 }
 #tourList>li:nth-child(7n+1), #tourListBtm>li:nth-child(7n+3){
