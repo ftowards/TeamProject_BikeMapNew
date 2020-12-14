@@ -285,7 +285,7 @@ small {
 		color: #999;
 }
 /* ================ 동행찾기 게시판 ==================*/
-#tourList{
+#tourList, #tourListBtm{
 	width:88%;
 	margin:0px 0 0px 82px;
 }
@@ -299,25 +299,25 @@ small {
 	letter-spacing:2px;
 	margin-bottom:4px;
 }
-#tourList>li:nth-child(n+8):nth-child(-n+14){
+#tourList>li:nth-child(-n+7){
 	border-top: 1px solid #afafaf;
 }
-#tourList>li{
+#tourList>li, #tourListBtm>li{
 	float: left;
 	width: 12%; /* 84/% */
 	height: 50px;
 	line-height: 40px;
 	border-bottom: 1px solid #afafaf;
 }
-#tourList, #tourList>li {
+#tourList, #tourList>li, #tourListBtm>li{
 	font-size:16px;
 	background-color: #fff;
 }
-#tourList>li:nth-child(7n+3) {
+#tourList>li:nth-child(7n+3), #tourListBtm>li:nth-child(7n+3) {
 	width: 37%; /* 번호+제목 40% + 나머지  60% = 100*/
 	text-align : left;
 }
-#tourList>li:nth-child(7n+1){
+#tourList>li:nth-child(7n+1), #tourListBtm>li:nth-child(7n+3){
 	width:3%;
 }
 #tourList>li:nth-child(3) {
@@ -350,39 +350,8 @@ small {
   		width:35px;
   	}
   	 	
-  	.tourlistTitle2>li:nth-of-type(7n+2), .tourlist2>li:nth-of-type(7n+2){
-  		width : 30%;
-  	}
-  	.tourlistTitle2>li:nth-of-type(7n+3), .tourlist2>li:nth-of-type(7n+3){
-  		width : 15%;
-  	}
-  	.tourlistTitle2>li:nth-of-type(7n+4), .tourlist2>li:nth-of-type(7n+4){
-  		width : 15%;
-  	}
-  	
-	.tourlistTitle3{
-		height : 40px;
-		margin : 0;
-	}
-	.tourlistTitle3>li, .tourlist3>li{
-		height : 40px;
-		line-height : 40px;
-		font-size:15x;
-		text-align : center;
-		width : 14%;
-		float:left; 
-		border-bottom : 1px solid lightgray;
-  	}
-  	
-  	.tourlistTitle3>li:nth-of-type(6n+2){
-  		width : 30%;
-	
-  	}
-  	.tourlist3>li:nth-of-type(6n+2){
-		width : 30%;
-		text-align : left;
-		text-indent: 5%;
-  	}
+
+
 
 /* ================ 由щ럭�뀒�씠釉� ================*/
 #reviewList{

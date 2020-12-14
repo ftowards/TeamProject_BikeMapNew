@@ -61,15 +61,18 @@ function makeTourTable(result){
 						<li>참가인원</li>
 						<li>참가목록</li>
 						<li>상&nbsp;&nbsp;태</li>
-						
+					</ul>	
 					
 						<c:forEach items="${list}" var="vo" varStatus="status">
+							<ul id="tourListBtm">
 							<li><input type="checkbox" name="listChk" value="${vo.noboard}" title="${vo.userid }"/></li>
 							<li>${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
 							<li>${vo.party }</li>
-							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard},${vo.state })'>▼</a></li>
+							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard},${vo.state })'>▼</a>	</li>
+							
+							
 							<li>
 								<c:if test="${vo.state=='1'||vo.state==null}">
 									모집중
@@ -80,14 +83,10 @@ function makeTourTable(result){
 								<c:if test="${vo.state=='3'}">
 									완료
 								</c:if>
-								
-								<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>	
 							</li>
-							
-							
-
+							<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>	
+						</ul>	
 					</c:forEach>
-					</ul>
 			</div>
 			<!-- Page Content -->
 			<!-- paging -->
