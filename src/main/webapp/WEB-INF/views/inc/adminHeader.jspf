@@ -761,34 +761,31 @@ function sendMsg(noboard, receiver, type){
 		        });
     		}
     	});
-
-
-
-
-
-    	
     	// 리뷰게시판 관리자 추천 한꺼번에 여러개
     	$(document).on('click','input:button[name=adminReviewScrapAllBtn]', function(){	    		
     		var chkArray = new Array();
     		var noboards = "";
     		var useridAll = "";
-			console.log("외않되?");
 			
     		$('input:checkbox[name=listChk]:checked').each(function(){	
 				chkArray.push(this.value);
 				noboards += this.value+"/";
     		});
-			
+			console.log(chkArray);
     		//현재 고치게 될 넘버만 들어있음.
 			for(var i=0; i<chkArray.length; i++){
 				for(var j = 0 ; j< 10 ; j++){
-					if(chkArray[i] == $("#reviewList>li").eq(8*(j+1)+1).text()){
+					//console.log($("#reviewList>li").eq(8*(j+1)+1).text()+":    "+chkArray[i]);
+					var stringArray = $("#reviewList>li").eq(8*(j+1)+1).text();
+					console.log(stringArray+"!!!::LL");
+					if(chkArray[i].equals(stringArray)){
+						//console.log("ddddd!!!!");
 						//useridAll.push($("#routeList>li").eq(9*(j+1)+3).text());
 						useridAll += $("#reviewList>li").eq(8*(j+1)+3).text()+"/";
 					}
 				}
 			}
-			
+			console.log(useridAll+"GWP whywhy");
     		if(chkArray.length>0) {
 
    				$.ajax({
