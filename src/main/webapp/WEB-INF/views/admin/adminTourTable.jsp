@@ -46,7 +46,13 @@ function makeTourTable(result){
 	<!-- Page Content -->
 	<div class="adminContent">
 				<div id="adminTable">
+				
 				<h1 class="adminListHead">동행모집게시판</h1>
+				<!-- 모집중인게시판만보기 -->
+				<div class="answerAlready">
+							<input type="checkbox" id="answer" name="answer" value="N" />
+							<span>미답변 만 보기</span>
+				</div>
 					<ul id="tourList">
 						<li><input type="checkbox" id="checkAll" /></li>
 						<li>번&nbsp;&nbsp;호</li>
@@ -54,7 +60,7 @@ function makeTourTable(result){
 						<li>작성자</li>
 						<li>참&nbsp;&nbsp;가</li>
 						<li>참가목록</li>
-						<li></li>
+						<li>완&nbsp;&nbsp;료</li>
 						
 					
 						<c:forEach items="${list}" var="vo" varStatus="status">
@@ -69,8 +75,7 @@ function makeTourTable(result){
 								</c:if>
 								<c:if test="${vo.state=='2'}">
 									마감
-								</c:if>
-								
+								</c:if>		
 								<c:if test="${vo.state=='3'}">
 									완료
 								</c:if>
