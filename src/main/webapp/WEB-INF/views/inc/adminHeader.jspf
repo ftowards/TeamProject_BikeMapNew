@@ -374,6 +374,65 @@ function sendMsg(noboard, receiver, type){
 		  		});
 		  	});
 		  }	
+
+	  
+	  function getTourComplist(noboard, tourState){
+		   var url = "/home/tour/selectEvallist";
+		   
+		   if(tourState == '1' || tourState == '2'){
+		      url = "/home/selectComplist";
+		   }
+		   
+		   $.ajax({
+		      url : url,
+		      data : "noboard="+noboard,
+		      success : function(result){
+		         setAcodianList(result, noboard, tourState);
+		      },error : function(err){
+		         console.log(err);
+		      }
+		   });
+		}
+
+		// 참가자 목록 만들기
+		function setAcodianList(result, noboard, tourState){
+		   console.log(result);
+		   var $result = $(result);
+		   
+		   var tag =""
+		   if(tourState == '2'){
+		      tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>참가상태</b></li><li></li>";
+		      
+		      $result.each(function(idx, val){
+		         if(val.state != '1'){
+		            tag += "<li><span onclick='popMsgSend(title)' title='"+val.userid+"'>"+val.userid+"</span></li>";
+		            tag += "<li>"+val.age+"대</li>";
+		            
+		            if(val.gender == '1'){
+		               tag += "<li>남</li>";
+		            }else{ 
+		               tag += "<li>여</li>";
+		            }
+		            
+		            tag += "<li>"+val.tourcnt+"</li>";
+		            tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
+		            
+		            if(val.state == '3'){
+		               tag += "<li>불참</li>";
+		               tag += "<li></li>";
+		            }else if(val.state == '2'){
+		               tag += "<li><button class='tourOk'>참가 중</button></li>";
+		               if(val.userid != $("#logId").val()){
+		                  tag += "<li><button class='tourOut' onclick='absentComplist(title)' title='"+noboard+"/"+val.userid+"'>불&nbsp;참</button></li>";
+		               }else{
+		                  tag +="<li></li>";
+		               }
+		            }
+		         }
+		      });
+		      
+		      $("#complist"+noboard).html(tag);
+		   }}
 	 var btn, userid;
      $(function(){    	
     	//관리자 정지 화면

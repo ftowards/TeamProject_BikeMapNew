@@ -50,6 +50,7 @@ public interface ReviewDaoImp {
 	
 	// 이전글 다음글 세팅
 	public int getPrevNext(ReviewPagingVO vo);
+	
 	public ReviewVO selectPrevNext(ReviewPagingVO vo);
 	
 	// 추천 비추천 호출

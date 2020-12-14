@@ -46,15 +46,21 @@ function makeTourTable(result){
 	<!-- Page Content -->
 	<div class="adminContent">
 				<div id="adminTable">
+				
 				<h1 class="adminListHead">동행모집게시판</h1>
+				<!-- 모집중인게시판만보기 -->
+				<div class="answerAlready">
+							<input type="checkbox" id="answer" name="answer" value="N" />
+							<span>모집중인 게시글만 보기</span>
+				</div>
 					<ul id="tourList">
 						<li><input type="checkbox" id="checkAll" /></li>
 						<li>번&nbsp;&nbsp;호</li>
 						<li>제&nbsp;&nbsp;목</li>
 						<li>작성자</li>
-						<li>참&nbsp;&nbsp;가</li>
+						<li>참가인원</li>
 						<li>참가목록</li>
-						<li></li>
+						<li>상&nbsp;&nbsp;태</li>
 						
 					
 						<c:forEach items="${list}" var="vo" varStatus="status">
@@ -63,20 +69,20 @@ function makeTourTable(result){
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
 							<li>${vo.party }</li>
+							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard},${vo.state })'>▼</a></li>
 							<li>
 								<c:if test="${vo.state=='1'||vo.state==null}">
 									모집중
 								</c:if>
 								<c:if test="${vo.state=='2'}">
 									마감
-								</c:if>
-								
+								</c:if>		
 								<c:if test="${vo.state=='3'}">
 									완료
 								</c:if>
-							</li>	
-							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard})'>▼</a></li>
-							<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>
+							</li>
+							<div id="viewAcodian${vo.noboard}" class='panel-collapse collapse'><ul id="complist${vo.noboard}" class='acodianList'></ul></div>	
+							
 
 					</c:forEach>
 					</ul>
