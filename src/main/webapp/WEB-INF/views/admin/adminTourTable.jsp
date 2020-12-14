@@ -34,6 +34,10 @@ function makeTourTable(result){
 		listTag += "><span class='slider round'></span>";
 		listTag += "</label>";
 		listTag += "</li>";	
+
+		tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li>";
+		
+		tag += "<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>";
 		}$("#tourList").append(listTag);
 }
 </script>
@@ -48,37 +52,31 @@ function makeTourTable(result){
 						<li>번&nbsp;&nbsp;호</li>
 						<li>제&nbsp;&nbsp;목</li>
 						<li>작성자</li>
-						<li>완료여부</li>
-						<li>관리자추천</li>
-					
-						<!-- DB작업완료 후 for문 생성 -->
+						<li>참가인원</li>
+						<li>상태</li>
+						<li>참가목록</li>
+											
+						
 						<c:forEach items="${list}" var="vo" varStatus="status">
 							<li><input type="checkbox" name="listChk" value="${vo.noboard}" title="${vo.userid }"/></li>
 							<li>${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
+							<li>${vo.party }</li>
 							<li>
 								<c:if test="${vo.state=='1'||vo.state==null}">
-									미완료
+									모집중
 								</c:if>
 								<c:if test="${vo.state=='2'}">
+									마감
+								</c:if>
+								<c:if test="${vo.state=='3'}">
 									완료
 								</c:if>
-							</li>
-							<li>
-								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
-									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }">
-									  <span class="slider round"></span>
-									</label>							
-								</c:if>
-								<c:if test="${vo.scrap=='T'}">
-									<label class="switch">
-									  <input type="checkbox" name="adminScrapBtn" value="${vo.noboard }" checked="checked" >
-									  <span class="slider round"></span>
-									</label>
-								</c:if>
-							</li>
+							</li>	
+							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard})'>▼</a></li>
+							<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>
+										
 					</c:forEach>
 					</ul>
 			</div>
