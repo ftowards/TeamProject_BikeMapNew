@@ -92,7 +92,6 @@
 						<div class="modal-content">
 						<!-- header -->
 						<div class="modal-header" style="border:none">
-							<label><img src="<%=request.getContextPath()%>/img/img_admin/QnA.png" style="width:100px"></label>
 							<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 						</div>
 						<!-- body -->
@@ -117,7 +116,7 @@
 							</div>	
 							<div class="subjectQandADiv">	
 								<ul>
-									<li><div class="subjectQandALbl">답&nbsp;변</div></li>
+									<li><div class="subjectQandALbl" style="background-color:rgb(0,176,176)">답&nbsp;변</div></li>
 									<li><textarea id="modalAnswercontent" name="modalAnswercontent" class="qAndaContentBox" rows='10' cols='50' maxlength='250'style="resize:none" readonly></textarea></li>
 								</ul>	
 							</div>
