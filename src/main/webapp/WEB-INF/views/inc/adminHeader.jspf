@@ -378,7 +378,7 @@ function sendMsg(noboard, receiver, type){
 		      url : url,
 		      data : "noboard="+noboard,
 		      success : function(result){
-		         setAcodianList(result, noboard);
+		         setAcodianList(result, noboard, tourState);
 		      },error : function(err){
 		         console.log(err);
 		      }
@@ -386,7 +386,7 @@ function sendMsg(noboard, receiver, type){
 		}
 
 		// 참가자 목록 만들기
-		function setAcodianList(result, noboard){
+		function setAcodianList(result, noboard, tourState){
 		   console.log(result);
 		   var $result = $(result);
 		   
