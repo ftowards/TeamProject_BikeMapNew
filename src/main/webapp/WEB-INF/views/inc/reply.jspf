@@ -4,16 +4,16 @@
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- ========================댓글 달기====================================================== -->
 <div>
-	<hr class="replyHr" style="background-color:white;"/>
+	<hr class="replyHr"/>
 	<div class="replyMain">
 		<div class="replyTitle">
 			<div class="titleMain">
-				<span>댓글</span>&nbsp;
+				<img src='<%=request.getContextPath()%>/img/img_reply/reply.png' style='width:40px; float:left;'><span>&nbsp;&nbsp;댓글</span>&nbsp;
 				<span style="color:rgb(0,176,176)" id="totalRecord"></span>
 			</div>
 			<div class="orderRadio">
 				<input type="radio"  name="order" id="orderDesc" value="desc" checked/>
-				<label for="orderDesc" class="orderBtn">최신순</label>&ensp;|&ensp;<input type="radio" name="order" id="orderAsc" value="asc" /><label for="orderAsc" class="orderBtn">작성순</label>
+				<label for="orderDesc" class="orderBtn">최신순</label>&ensp;&ensp;<input type="radio" name="order" id="orderAsc" value="asc" /><label for="orderAsc" class="orderBtn">작성순</label>
 			</div>
 		</div>
 		
@@ -32,7 +32,7 @@
 				<div><input type="submit" value="등 록" class="replySubmit"></div>
 			</c:if>
 		</form>
-		<hr class='replyHr' style="background-color:white;"/>
+		<hr class='replyHr'/>
 		<div id="replyViewDiv">
 			<ul id="replyList"></ul>
 			<div id="replyPaging"></div>		
@@ -157,7 +157,7 @@
 				if(vo.nowPage == i){
 					tag += "<li style='color:#00B0B0; font-weight:600;'>"+i+"</li>";
 				}else{
-					tag += "<li><a href='javascript:movePage("+i+")' style='color:black; font-weight:600;'>"+i+"</a></li>";
+					tag += "<li><a href='javascript:movePage("+i+")' style='color:black;'>"+i+"</a></li>";
 				}
 			}
 		}
@@ -187,13 +187,14 @@
 				$result.each(function(i,v){
 					// 댓글 보이는 창
 					tag += "<ul id='reply"+v.noreply+"' class='replyList replyView'>";
-					tag += "<li style='color:rgb(64,64,64)' onclick='popMsgSend(title)' title='"+v.userid+"' ><b>"+ v.userid+"</b>";
+					tag += "<div><img src='<%=request.getContextPath()%>/img/img_reply/p.png' style='width:70px; float:left;'></div><li style='color:rgb(64,64,64)' onclick='popMsgSend(title)' title='"+v.userid+"' ><b>"+ v.userid+"</b>";
 					tag += "<br/><span>"+v.writedate+"</li><li>";
+				
+					tag +="</li><li>"+v.reply+"</li></ul>";
 					if(v.userid=='${logId}'){
 						tag+="<input type='button' class='replyDel' value='삭제' onclick='delReply("+v.noreply+");'/>";
 						tag+="<input type='button' class='replyEdit' value='수정' onclick='editReply("+v.noreply+");'/>";
 					}
-					tag +="</li><li>"+v.reply+"</li></ul>";
 					
 					// 댓글 수정 창
 					tag += "<ul id='replyEdit"+v.noreply+"' class = 'replyListEdit' style='display:none;'>";
