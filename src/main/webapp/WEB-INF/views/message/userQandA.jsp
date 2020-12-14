@@ -279,32 +279,32 @@ function deleteQna(){
 						<div class="modal-content">
 						<!-- header -->
 						<div class="modal-header" style="border:none">
-							<label><img src="<%=request.getContextPath()%>/img/img_admin/QnA.png" style="width:100px"></label>
+						
 							<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 						</div>
 						<!-- body -->
 						<div id="content" class="modal-body">
 							<div class="qAndaTypeDiv">
 								<ul>
-									<li><div class="qAndaTypeLbl">문의유형</div></li>
+									<li><div class="qAndaTypeLbl" style="background-color:rgb(0,176,176);">문의유형</div></li>
 									<li><input type="text" id="modalQnatype" name="modalQnatype" class="qAndaTypeBox1" readonly/></li>
 								</ul>
 							</div>	
 							<div class="subjectQandADiv">	
 								<ul>
-									<li><div class="subjectQandALbl">제&nbsp;목</div></li>
+									<li><div class="subjectQandALbl" style="background-color:rgb(0,176,176);">제&nbsp;목</div></li>
 									<li><input type="text" id="modalSubject" name="modalSubject" class="qAndaSubjectBox" readonly/></li>
 								</ul>	
 							</div>
 							<div class="subjectQandADiv">	
 								<ul>
-									<li><div class="subjectQandALbl">내&nbsp;용</div></li>
+									<li><div class="subjectQandALbl" style="background-color:rgb(0,176,176);">내&nbsp;용</div></li>
 									<li><textarea id="modalContent" name="modalContent" class="qAndaContentBox" rows='10' cols='50' maxlength='250'style="resize:none" readonly></textarea></li>
 								</ul>	
 							</div>	
 							<div class="subjectQandADiv">	
 								<ul>
-									<li><div class="subjectQandALbl">답&nbsp;변</div></li>
+									<li><div class="subjectQandALbl" style="background-color:rgb(0,176,176);">답&nbsp;변</div></li>
 									<li><textarea id="modalAnswercontent" name="modalAnswercontent" class="qAndaContentBox" rows='10' cols='50' maxlength='250'style="resize:none" readonly></textarea></li>
 								</ul>	
 							</div>
