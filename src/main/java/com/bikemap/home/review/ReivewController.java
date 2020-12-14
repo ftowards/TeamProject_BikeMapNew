@@ -53,27 +53,23 @@ public class ReivewController {
 		return "review/reviewWriteForm";
 	}
 	
-	//글쓰기 전체 레코드 선택
-	@RequestMapping("/reviewList")
+	// 후기 검색 페이지 이동
+	@RequestMapping(value="/reviewList", method= {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView reviewAllRecord(ReviewPagingVO pagingVO) {
-			ModelAndView mav = new ModelAndView();
-			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-			List<ReviewVO> list;
-			try {
-				int totalRecord = dao.searchTotalRecord(pagingVO);
-				pagingVO.setTotalRecord(totalRecord);
-				
-				list = dao.reviewAllRecord(pagingVO);
-				mav.addObject("list", list);
-				mav.addObject("pagingVO", pagingVO);
-				mav.setViewName("review/reviewList");
-					
-			}catch(Exception e) {
-				System.out.println("리뷰 문제있음"+e.getMessage());
-			}
+		ModelAndView mav = new ModelAndView();
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		
+		try {
+			pagingVO.setTotalRecord(dao.searchTotalRecord(pagingVO));
 			
+			mav.addObject("pagingVO", pagingVO);
+			mav.setViewName("review/reviewList");
+		}catch(Exception e) {
+			System.out.println("리뷰 문제있음"+e.getMessage());
+		}	
 		return mav;
 	}
+	
 	//페이징 전체 선택 레코드 가져오기
 	@RequestMapping(value="/searchReview")
 	@ResponseBody
@@ -81,13 +77,11 @@ public class ReivewController {
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
 		
-		System.out.println("searchReview");
 		try {
 			int totalRecord = dao.searchTotalRecord(pagingVO);
 			pagingVO.setTotalRecord(totalRecord);
 			
 			list = dao.reviewAllRecord(pagingVO);
-			System.out.println(list);
 		}catch(Exception e) {
 			System.out.println("리뷰 리스트 호출 에러 " + e.getMessage());
 		}
@@ -105,8 +99,6 @@ public class ReivewController {
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 		int result = 0;
 		
-		System.out.println(result);
-		
 		try {
 			result = dao.reviewInsert(vo);
 			System.out.println(result);
@@ -119,23 +111,39 @@ public class ReivewController {
 	
 	
 	//레코드 한개 선택 - 글 보기
-	@RequestMapping("/reviewView")
-	public ModelAndView reviewSelect(int noboard) {
+	@RequestMapping(value="/reviewView", method= {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView reviewSelect(ReviewPagingVO pagingVO) {
 				
 		ReviewDaoImp dao =  sqlSession.getMapper(ReviewDaoImp.class);		
 		ModelAndView mav = new ModelAndView();
 		
 		try {
-			ReviewVO vo = dao.reviewSelect(noboard);
-			int cnt = dao.hitCount(noboard);
+			ReviewVO vo = dao.reviewSelect(pagingVO.getNoboard());
+			dao.hitCount(pagingVO.getNoboard());
+			
+			pagingVO.setTotalRecord(dao.searchTotalRecord(pagingVO));
+			// 이전 글 다음 글 검색하기
+			int idx = dao.getPrevNext(pagingVO);
+			
+			if(idx < pagingVO.getTotalRecord()) {
+				pagingVO.setIdx(idx+1);
+				ReviewVO prev = dao.selectPrevNext(pagingVO);
+				mav.addObject("prev", prev);
+			}
+			
+			if(idx > 1 ) {
+				pagingVO.setIdx(idx-1);
+				ReviewVO next = dao.selectPrevNext(pagingVO);
+				mav.addObject("next", next);
+			}
 					
 			mav.addObject("vo",vo);
+			mav.addObject("pagingVO", pagingVO);
 			mav.setViewName("review/reviewView");
 			
 		}catch(Exception e) {
 			System.out.println("글 보기 에러" + e.getMessage());
 		}
-		
 		return mav;
 	}
 
@@ -157,67 +165,51 @@ public class ReivewController {
 	
 	
 
-	//글 수정 확인
+	//리뷰 수정 확인
 	@RequestMapping(value="/reviewEditOk", method=RequestMethod.POST)
-	public ModelAndView reviewEditOk(ReviewVO vo, HttpSession ses) {
+	@ResponseBody
+	public int reviewEditOk(ReviewVO vo, HttpSession ses) {
 		vo.setUserid((String)ses.getAttribute("logId"));
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		int result = 0;
 
-		int result = dao.reviewUpdate(vo);
-		ModelAndView mav = new ModelAndView();
-	
 		try {	
-			if(result>0) {
-				mav.addObject("noboard", vo.getNoboard());
-				mav.setViewName("redirect:reviewList");
-			
-			}else {
-				mav.setViewName("review/reviewResult");
-					
-			}
+			result = dao.reviewUpdate(vo);
 		}catch(Exception e){
-			System.out.println("수정확인 문제" + e.getMessage());
+			System.out.println("리뷰 수정 오류" + e.getMessage());
 		}
-			return mav;
+			return result;
 	}
 
 	
-	//글삭제 폼
+	//리뷰 삭제
 	@RequestMapping("/reviewDel")
-	public ModelAndView reviewDel(int noboard, HttpSession ses) {
-	
+	@ResponseBody
+	public int reviewDel(int noboard, HttpSession ses) {
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-		int result = dao.reviewDelete(noboard,(String)ses.getAttribute("logId"));
-		ModelAndView mav = new ModelAndView();
+		int result = 0;
+		
 		try {
-			if(result>0) {
-				mav.setViewName("redirect: reviewList");
-				
-			}else {
-				mav.setViewName("review/reviewResult");
-				
-			}
+			result = dao.reviewDelete(noboard,(String)ses.getAttribute("logId"));			
 		}catch(Exception e) {
-			System.out.println("글삭제 에러" + e.getMessage());
+			System.out.println("리뷰 삭제 에러" + e.getMessage());
 		}	
-		return mav;
+		return result;
 	}
 	
-	
-	// 루트 검색 페이지 페이징 처리
-		@RequestMapping(value="/searchReviewPaging", method= {RequestMethod.GET, RequestMethod.POST})
-		@ResponseBody
-		public ReviewPagingVO searchReviewPageing(ReviewPagingVO pagingVO) {		
-			ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-			try {
-				int totalRecord = dao.searchTotalRecord(pagingVO);
-				pagingVO.setTotalRecord(totalRecord);
-				
-			}catch(Exception e) {
-				System.out.println("리뷰 페이징 에러 " + e.getMessage());
-			}
-			return pagingVO;
+	// 리뷰 페이징 처리
+	@RequestMapping(value="/searchReviewPaging", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public ReviewPagingVO searchReviewPageing(ReviewPagingVO pagingVO) {		
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+
+		try {
+			pagingVO.setTotalRecord(dao.searchTotalRecord(pagingVO));
+		}catch(Exception e) {
+			System.out.println("리뷰 페이징 에러 " + e.getMessage());
 		}
+		return pagingVO;
+	}
 		
 	// 추천 리뷰 가져오기
 	@RequestMapping("/reivew/getRecReview")
@@ -228,7 +220,6 @@ public class ReivewController {
 		
 		try {
 			list = dao.selectRecommendReview();
-			
 		}catch(Exception e) {
 			System.out.println("추천 리뷰 호출 에러" + e.getMessage());
 		}
@@ -246,7 +237,6 @@ public class ReivewController {
 		
 		try {
 			result = dao.chkAlreadyReviewRate(vo);
-			System.out.println(result);
 		}catch(Exception e) {
 			System.out.println("기존 추천 비추천 확인 오류 " + e.getMessage());
 		}
@@ -278,7 +268,8 @@ public class ReivewController {
 		}
 		return result;
 	}
-	// 루트 스크랩
+	
+	// 리뷰 스크랩
 	@RequestMapping("/scrapReview")
 	@ResponseBody
 	public int scrapReview(int noboard) {
@@ -287,14 +278,53 @@ public class ReivewController {
 		
 		try {
 			result = dao.scrapReview(noboard);
-			System.out.println(noboard + " 스크랩 리절트 " + result);
 		}catch(Exception e) {
-			System.out.println("루트 스크랩 에러 " + e.getMessage());
+			System.out.println("리뷰 스크랩 에러 " + e.getMessage());
 		}
 		return result;
 	}
-	
-	// 루트 스크랩 해제
+	// 루트 스크랩 전체
+	@RequestMapping("/scrapReviewAll")
+	@ResponseBody
+	public int scrapRoute(String noboards, String userids) {
+		int result = 0;
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		NoticeDaoImp nDao = sqlSession.getMapper(NoticeDaoImp.class);
+		ReplyDaoImp rDao = sqlSession.getMapper(ReplyDaoImp.class);
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = transactionManager.getTransaction(def);
+		
+		String noArray[] = noboards.split("/");
+		String userid[] = userids.split("/");		
+		try {
+			for(int i = 0 ; i < noArray.length ; i++) {
+				if(dao.scrapReview(Integer.parseInt(noArray[i])) > 0) {
+					NoticeVO nVO = new NoticeVO();
+					nVO.setIdsend("admin");
+					nVO.setUserid(userid[i]);
+					nVO.setMsg("<a href='/home/reviewView?noboard="+noArray[i]+"'>"+noArray[i]+ "번 루트가 추천 루트로 등록되었습니다.</a>");
+					nDao.insertNotice(nVO);
+					
+					// 메세지
+					ReplyVO rVO = new ReplyVO();
+					rVO.setNoboard(Integer.parseInt(noArray[i]));
+					rVO.setUserid("admin");
+					rVO.setReply("해당 루트가 추천 루트로 게시됩니다. 게시를 원치 않으실 경우 관리자 문의 부탁드립니다.");
+					
+					rDao.replyInsert(rVO);
+				}
+			}
+			
+			transactionManager.commit(status);
+		}catch(Exception e) {
+			System.out.println("루트 전체 스크랩 에러 " + e.getMessage());
+			transactionManager.rollback(status);
+		}
+		return result;
+	}
+	// 리뷰 스크랩 해제
 	@RequestMapping("/releaseReview")
 	@ResponseBody
 	public int releaseReview(int noboard) {
@@ -304,22 +334,24 @@ public class ReivewController {
 		try {
 			result = dao.releaseReview(noboard);
 		}catch(Exception e) {
-			System.out.println("루트 스크랩 해제 에러 " + e.getMessage());
+			System.out.println("리뷰 스크랩 해제 에러 " + e.getMessage());
 		}
 		return result;
 	}
+	
+	// 리뷰 추천 비추천 불러오기
+	@RequestMapping("/selectReviewThumb")
+	@ResponseBody
+	public ReviewVO selectReviewThumb(int noboard) {
+		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		ReviewVO vo = new ReviewVO();
+		
+		try {
+			vo = dao.selectReviewThumb(noboard);
+			
+		}catch(Exception e) {
+			System.out.println("리뷰 추천 비추천 호출 에러 " + e.getMessage());
+		}
+		return vo;
+	}
 }
-	
-	
-	
-
-
-
-	
-
-
-
-
-
-
-

@@ -52,8 +52,6 @@
 /////////////////// 기본 데이터 세팅 /////////////////
 $(function(){
 
-	setRatingStar();	
-
 	// 루트 마커 세팅하기 
 	// 마커 지정할 좌표 순서대로 입력
 	var routePosition = [];
@@ -139,11 +137,11 @@ $(function(){
 		// 로그인 상태가 아닐 때 로그인 팝업 띄우기
 		var logId = $("#replyUseridDiv").text();
 		if(logId == ""){
-			window.open("/home/loginPopup","Bikemap Login","width=600px, height=200px, left =200px, top=200px");
+			window.open("/home/loginPopup","Bikemap Login","width=780px, height=400px, left =200px, top=200px");
 			return false;
 		}
 	
- 		window.open("/home/routeCollect","Bikemap","width=400px, height=200px, left =300px, top=300px");
+ 		window.open("/home/routeCollect","Bikemap","width=600px, height=230px, left =300px, top=300px");
  	});
  	
  	$("#recruitment").on('click', function(){
@@ -224,7 +222,7 @@ $("#grayBtn").on('click', function(){
   				toast("이미 평점을 등록한 루트입니다.",1500);
   			}else {
   				toast("평점이 등록되었습니다.",1500);
-  				setRating();
+				setTimeout(setRating(),1500);
   			}
   		},error : function(){
   			console.log("평점 입력 오류");
@@ -509,7 +507,6 @@ $("#grayBtn").on('click', function(){
 	if(type == 'close'){
 		msg = "비공개 처리";
 	}
-
   	
   	$.ajax({
   		url : "/home/route/chkReference",
@@ -640,7 +637,7 @@ $("#grayBtn").on('click', function(){
 	  		success : function(result){
 	  			if(result >0 ){
 	  				toast(noboard+"번 루트를 비공개 처리하였습니다.",1500);
-					setTimeout(function(){location.reload(true)}, 1500);
+					setTimeout(function(){console.log(noboard); goViewPage(noboard);}, 1500);
 	  			}else{
 	  				toast("루트 비공개 처리 오류입니다.");
 	  			}
@@ -662,7 +659,7 @@ $("#grayBtn").on('click', function(){
 			success : function(result){
 				if(result == 1){
 					toast(noboard + "번 루트가 공개처리 되었습니다.",1500);
-					setTimeout(function(){location.reload(true)}, 1500);
+					setTimeout(goViewPage(noboard), 1500);
 					
 				}else{
 					toast("루트 공개 처리 오류입니다.");
@@ -753,7 +750,7 @@ function sendMsg(noboard, receiver, type){
 		msg = sender + "님이 " + noboard + "번 루트를 삭제하였습니다.";
 		socketMsg = "deleteRoute,"+receiver+","+sender+","+noboard;
 	}else if(type == 3){
-		msg = "<a href='/home/routeSearchView?noboard="+noboard+"'>"+noboard+ "번 루트가 추천 루트로 등록되었습니다.</a>";
+		msg = "<a href='/home/routeSearchView?noboard="+noboard+"' target='_blank'>"+noboard+ "번 루트가 추천 루트로 등록되었습니다.</a>";
 		socketMsg = "scrapRoute,"+receiver+","+sender+","+noboard;
 	}
 	

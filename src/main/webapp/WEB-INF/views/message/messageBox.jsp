@@ -58,7 +58,7 @@
 		     		<div>
 		     			<div >
 		     				<ul id="receiveBoxTitle" class="listTitle">
-		     					<li><input type="checkbox" id="chkAll1"/></li>
+		     					<li><input type="checkbox" name="chkAll" id="chkAll1"/></li>
 				     			<li>보낸회원</li>
 				     			<li>내용</li>
 				     			<li>날짜</li>
@@ -80,7 +80,7 @@
 		     		<div>
 		     			<div >
 		     				<ul id="sendBoxTitle" class="listTitle">
-		     					<li><input type="checkbox" id="chkAll2"/></li>
+		     					<li><input type="checkbox"name="chkAll"  id="chkAll2"/></li>
 				     			<li>받은회원</li>
 				     			<li>내용</li>
 				     			<li>날짜</li>
@@ -103,7 +103,7 @@
 		     		<div>
 		     			<div >
 		     				<ul id="noticeBoxTitle" class="listTitle">
-		     					<li><input type="checkbox" id="chkAll3"/></li>
+		     					<li><input type="checkbox" name="chkAll" id="chkAll3"/></li>
 				     			<li>보낸회원</li>
 				     			<li>내용</li>
 				     			<li>날짜</li>
@@ -124,6 +124,7 @@
 <script>
 var messageBox = 1;
 var nowPage = 1;
+var $result ;
 
 $(function(){
 	// 1. 페이징	
@@ -132,7 +133,8 @@ $(function(){
 	$("input[name=messageBox]").on('change', function(){
 		$("#read"+messageBox).prop("checked", false);
 		messageBox = $("input[name=messageBox]:checked").val();
-		
+		console.log(messageBox);
+
 		if(messageBox != 4){
 			movePage(1);
 		}
@@ -142,12 +144,12 @@ $(function(){
 		movePage(1);
 	});
 	
-	$("#chkAll"+messageBox).on('change', function(){
-		if($(this).prop("checked")){
+	$("input[name=chkAll]").on('change', function(){
+		if($("input[name=chkAll]").eq(messageBox-1).prop("checked")){
 			$("#messageList"+messageBox+" input[type=checkbox]").prop("checked", true);
 		}
 		
-		if(!($(this).prop("checked"))){
+		if(!($("input[name=chkAll]").eq(messageBox-1).prop("checked"))){
 			$("#messageList"+messageBox+" input[type=checkbox]").prop("checked", false);
 		}
 	});
@@ -162,17 +164,12 @@ $(function(){
 	});
 	
 	$("input[name=readMsg]").on('click', function(){
-		
 		$("#messageList"+messageBox+" input[type=checkbox]").each(function(){
 			if($(this).prop("checked")){
 				readMsg($(this).val());				
 			};
 		});
-	});
-	
-	$(".wordcut").on('mouseenter',function(){
-		console.log(1111);
-	});
+	});	
 });
 
 function movePage(page){
@@ -248,7 +245,7 @@ function getList(page){
 
 function setList(result){
 	var tag ="";
-	var $result = $(result);
+	$result = $(result);
 	
 	// 표 내용
 	$result.each(function(idx, val){			
@@ -257,21 +254,21 @@ function setList(result){
 		if(messageBox == 2){
 			if(val.read == 'T' ){
 				tag += "<li>"+val.userid+"</a></li>";
-				tag += "<li class='wordcut' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  title='"+val.nonotice+"' >"+val.msg+"</li>";
+				tag += "<li class='wordcut' onclick='viewMsg(title)' title='"+val.nonotice+"' >"+val.msg+"</li>";
 				tag += "<li>"+val.writedate+"</li>";
 			}else if(val.read =='F'){
 				tag += "<li class='readYet'>"+val.userid+"</a></li>";
-				tag += "<li class='wordcut readYet' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  title='"+val.nonotice+"'>"+val.msg+"</li>";
+				tag += "<li class='wordcut readYet' onclick='viewMsg(title)' title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li class='readYet'>"+val.writedate+"</li>";
 			}
 		}else{
 			if(val.read == 'T' ){
 				tag += "<li>"+val.idsend+"</a></li>";
-				tag += "<li class='wordcut' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  title='"+val.nonotice+"'>"+val.msg+"</li>";
+				tag += "<li class='wordcut' onclick='viewMsg(title)' title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li>"+val.writedate+"</li>";
 			}else if(val.read =='F'){
 				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.idsend+"</a></li>";
-				tag += "<li onclick='readMsg(title);' onclick='veiwMsg(title)' data-target='#dialog' data-toggle='modal'  class='wordcut readYet' title='"+val.nonotice+"'>"+val.msg+"</li>";
+				tag += "<li onclick='readMsg(title); viewMsg(title)' class='wordcut readYet' title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.writedate+"</li>";
 			}
 		}
@@ -299,7 +296,7 @@ function readMsg(title){
 	});
 }
 
-function veiwMsg(title){
+function viewMsg(title){
 	var nonotice = title;
 	
 	var x = event.pageX + 'px';
@@ -310,25 +307,18 @@ function veiwMsg(title){
 		left : x
 	});
 	
-	$.ajax({
-		url : "/home/messageView",
-		data : "nonotice="+nonotice,
-		success : function(result){
-			if(result != null){
-				console.log(result);
-				if(messageBox == 1 || messageBox == 3){
-					$("#msgId").text(result.idsend);
-				}else{
-					$("#msgId").text(result.userid);
-				}
-				
-				$("#msgView").html(result.msg);
+	$result.each(function(i, val){
+		if(val.nonotice == nonotice){
+			if(messageBox == 1 || messageBox == 3){
+				$("#msgId").text(val.idsend);
+			}else{
+				$("#msgId").text(val.userid);
 			}
-		}, error : function(err){
-			console.log(err);
+			$("#msgView").html(val.msg);
 		}
-	});	
+	});
 	
+	$("#dialog").modal('show');
 }
 
 function deleteMsg(nonotice){

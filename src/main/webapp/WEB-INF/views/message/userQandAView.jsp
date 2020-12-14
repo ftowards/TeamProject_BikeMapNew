@@ -11,8 +11,8 @@
 	    		<li><img src="<%=request.getContextPath()%>/img/img_admin/QnA.png"/></li>
 				<li class="sidebar-brand"><label style="color:rgb(0,176,176)">1:1문의하기</label></li>
 				<hr/>
-				<li><label for="receiveBox">문의하기</label></li>
-				<li><label for="sendBox">나의 문의사항</label></li>
+				<li><label for="sendQna">문의하기</label></li>
+				<li><label for="readQna">나의 문의사항</label></li>
 		    </ul>
 		</div>
 	</div>
@@ -22,8 +22,8 @@
 	<div class="my">
     	<div class="container-fluid">
     		<!-- 탭 전환용 라디오 버튼 : 숨김 처리 -->
-	    	<input type="radio" name="messageBox" id="receiveBox" value="1" checked/> 
-	    	<input type="radio" name="messageBox" id="sendBox" value="2" />
+	    	<input type="radio" name="messageBox" id="sendQna" value="1" checked/> 
+	    	<input type="radio" name="messageBox" id="readQna" value="2" />
 			<!-- 1:1문의하기 Form -->	
 			<div class="titleMyDiv1 tab"><label>문의하기</label>
 			<ul class="qAndALbl">

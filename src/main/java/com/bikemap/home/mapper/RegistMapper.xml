@@ -8,7 +8,12 @@
 		values(#{userid}, #{userpwd}, #{username}, #{email}, #{gender}, #{birth}, #{code}) 
 	</insert>
 	<select id="login" resultType="com.bikemap.home.regist.RegistVO">
-		select userid, username, active from regist where userid = #{userid} and userpwd = #{userpwd}
+		select userid, username, active from regist
+		where userid=#{userid} and userpwd=#{userpwd}
+	</select>
+	<select id="selectCause" resultType="com.bikemap.home.regist.RegistVO">
+		select cause, to_char(endday, 'YYYY-MM-DD') endday from suspend
+		where userid = #{userid} and endday <![CDATA[ > ]]> sysdate
 	</select>
 	<select id="selectUser" resultType="com.bikemap.home.regist.RegistVO">
 		select userid, userpwd, username, email, gender, to_char(birth,'YYYY-MM-DD') birth from regist where userid = #{userid}

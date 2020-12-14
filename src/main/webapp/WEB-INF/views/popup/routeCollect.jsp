@@ -5,11 +5,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <style>
 	body{
-		background-color: lightgray;
+		background-color:rgba(255,201,14,0.08);
 	}
 	.form{
 		margin:50px auto;
-		width : 200px;
+		width : 500px;
 		text-align : center;
 		line-height: 180px;
 	}
@@ -122,7 +122,7 @@
 </script> 
 <div class="registerMainDiv">
 	<form id="routeCollect" class="form">
-		<select id="catename" class="selectBox" style='width:240px; height: 50px; font-size:15px;'>
+		<select id="catename" class="selectBox" style='width:300px; height:30px; font-size:15px;'>
 			<c:forEach var="list" items="${category }">
 				<option value="${list.noroutecate }" title="${list.catename }">${list.catename}</option>
 			</c:forEach>

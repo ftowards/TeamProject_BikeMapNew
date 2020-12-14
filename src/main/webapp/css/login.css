@@ -1,6 +1,8 @@
 	/*===================================login===================================*/
 	body{
 		font-family:'Noto Sans KR', sans-serif;
+		background-color:rgba(255,201,14,0.08);
+		
 	}
 	textarea:focus {
 		outline: none;
@@ -13,6 +15,7 @@
 	}
 	.registerMainDiv *{
 		margin : 0 auto;
+		
 	}
 
 	#bikeDiv{
@@ -21,36 +24,51 @@
 		margin:0 auto;
 		padding:0;
 	}
-	#bikeDiv1, #bikeDiv2{
-		height:150px;
-	}
+
 	#bikeDiv1{
-		width:33%;
+		width:73.5%;
+		margin-top:60px;
 		text-align:right;
 		padding-right:15px;
-		padding-top:120px;
 		display: inline-block;
+		
 	}
+	
 	#bikeDiv1 img{
-		width:128px;
-		height:190px;
+		width:531px;
+		height:106px;
 		position:relative;
-		bottom:20px;
+		top:150px;
+	}
+	#bikeDiv3{
+		width:80%;
+		text-align:right;
+		padding-right:15px;
+		display: inline-block;
+		
+	}
+	
+	#bikeDiv3 img{
+		width:531px;
+		height:106px;
+		position:relative;
+		
 	}
 	#bikeDiv2{
 		float:right;
-		width:65%;
-		padding-top:120px;
+		width:50%;
+		
+		margin-left:-100px;
 	}
 	
 	.contentText{
-		width:1000px;
+		width:600px;
 		letter-spacing:-1px;
 		line-height:32px;
 		margin:0 auto;
-		margin-bottom:45px;
+		margin-bottom:30px;
 		color:#353535;
-		font-size:16px;
+		font-size:15px;
 	}
 	.contentText:last-child{
 		font-size:17px;
@@ -60,9 +78,8 @@
 		width:1000px;
 		margin:0 auto;
 		height : 215px;
-		background-color : #eee;
 		border-radius:10px;
-		box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+	
 	
 	}
 	#useridDiv{
@@ -132,13 +149,15 @@
 		border-radius: 10x;
 	}
 	#find_Info{
-		font-size:17.5px;
+		font-size:15px;
 		font-weight:bold;
 		text-align : center;
+		
 	}
 	.RegisterWhite_Btn{
 		color: #5D5D5D;
 		border:none;
+		font-weight:bold;
 		border-radius: 10px;
 		text-decoration: none;
 		text-align : center;
@@ -155,6 +174,6 @@
 	}
 	#text1{
 		color:#D8D8D8;
-		padding:0 135px 0 135px;
+		padding:0 30px 0 30px;
 		font-size:20px;
 	}

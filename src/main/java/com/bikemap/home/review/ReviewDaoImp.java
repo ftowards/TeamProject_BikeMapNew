@@ -47,5 +47,11 @@ public interface ReviewDaoImp {
 	
 	// 리뷰글 관리자 추천 해제하기
 	public int releaseReview(int noboard);
-
+	
+	// 이전글 다음글 세팅
+	public int getPrevNext(ReviewPagingVO vo);
+	public ReviewVO selectPrevNext(ReviewPagingVO vo);
+	
+	// 추천 비추천 호출
+	public ReviewVO selectReviewThumb(int noboard);
 }

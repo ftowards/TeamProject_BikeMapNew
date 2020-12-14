@@ -132,8 +132,8 @@
 		font-size:14.5px;
 		font-weight:bold;
 		color:#353535;
-		border:0px;
-		border-radius:5px;
+		border:none;
+		border-radius:10px;
 		background-color:#eee;
 		background: url(../img/img_route/selectBox.png) no-repeat 92% 55%;
 		-webkit-appearance: none; /* 네이티브 외형 감추기 */
@@ -141,10 +141,11 @@
     	appearance: none;
     	margin:0 -19px 0 20px;
     	padding-left:20px;
+    	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	
 	 .gray_Btn{
-		border-radius: 5px;
+		border-radius:10px;
 		background-color : #353535;
 		text-decoration: none;
 		text-align : center;
@@ -152,6 +153,8 @@
 		padding : 4px 8px;
 		color: white;
 		border : 0;
+		font-weight:bold;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
  	}
  	.gray_Btn:hover{
 		color : white;
@@ -182,6 +185,7 @@
 		color : white;
 		border: 1px solid #00B0B0;
 		background-color: #00B0B0;
+		width : auto;
 	}
 	.mint_Btn:hover{
 		color : white;
@@ -333,34 +337,39 @@
 
 	.blue_Btn{
 		  font-size:17px;
-		  border-radius: 5px;
+		  border-radius:10px;
 		  text-decoration: none;
 		  text-align : center;
 		  padding:3px 6px;
 		  margin:0 10px;
 		  float:left;
+		  font-weight:bold;
 		  color : white;
-		  background-color: #247B8A;
-		  border:0;
+		  background-color: rgb(0,176,176);
+		  box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+		  border:none;
 	}
 	.blue_Btn:hover{
+	
 		color : white;
 		background-color: #49a2b1;
 	}
 	.WBlue_Btn{
 		  font-size:17px;
-		  border-radius: 5px;
+		  border-radius:10px;
+		  font-weight:bold;
 		  text-decoration: none;
 		  text-align : center;
 		  padding:3px 6px;
 		  margin:0 10px;
-		  color : #247B8A;
-		  border: 2px solid #247B8A;
+		  color:rgb(0,176,176);
+		  border:none;
 		  background-color: white;
+		  box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	.WBlue_Btn:hover{
 		color : #1ba5bd;
-		border:2px solid #76d9ea;
+		border:none;
 		background-color: #d6f9ff;
 	}
 	
@@ -521,10 +530,12 @@
 	.listBtn > button{
 		width:110px;
 		height:45px;
+		border-radius:10px;
 		background-color:white;
 		border:1px solid #a7a7a7;
 		color:#717171;
 		font-size:16px;
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 	}
 	
 	/* 비공개 스크랩 삭제 기능*/
@@ -570,6 +581,8 @@
 	#routeWriterMenu .mint_Btn{
 		color : white;
 		background-color: #00B0B0;
+		letter-spacing:0;
+		font-size:small;
 	}
 	
 	.labelClass{
@@ -609,4 +622,5 @@
 		background : url(/home/img/img_route/starColored.png) no-repeat;
 		float : left;
 		line-height:0; 
-		vertical-align : top;}
+		vertical-align : top;
+	}

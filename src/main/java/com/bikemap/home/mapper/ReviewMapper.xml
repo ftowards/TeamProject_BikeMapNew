@@ -9,21 +9,20 @@
 	<select id = "reviewAllRecord" parameterType="com.bikemap.home.review.ReviewPagingVO" resultType="com.bikemap.home.review.ReviewVO">
 		select * from 
 			(select * from 
-				(select noboard, subject, userid, content, reference, hit, to_char(writedate, 'YYYY-MM-DD HH24:MI') writedate
-				 from review 
+				(select noboard, subject, userid, content, reference, hit, to_char(writedate, 'YY-MM-DD HH24:MI') writedate, thumbup, thumbdown,
+				 scrap, (thumbup - thumbdown) thumb from review 
 				<if test='searchWord neq null and searchWord neq ""'> 
  					where ${searchType} like '%'||#{searchWord}||'%'
 				</if>
-					 order by ${order} desc)
-			 <![CDATA[ where rownum <= (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
-		where rownum <= #{lastPageRecordCount} order by ${order} desc
-				]]> 
+				 order by ${order} desc)
+			 where rownum <![CDATA[ <=]]> (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
+		where rownum <![CDATA[<=]]> #{lastPageRecordCount} order by ${order} desc
 	</select>
 
 <!--레코드 한 개 선택 - 글 보기 -->
 	<select id ="reviewSelect" parameterType= "int" resultType="com.bikemap.home.review.ReviewVO">
-		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD HH:MI') writedate, hit 
-			from review where noboard=#{noboard}
+		select noboard, subject, userid, content, reference, to_char(writedate, 'YY-MM-DD HH:MI') writedate, hit,
+		scrap, thumbup, thumbdown  from review where noboard=#{noboard}
 	</select>
 	
 <!--글쓰기 등록 -->
@@ -40,7 +39,13 @@
  	
  <!--글삭제 -->
  	<delete id = "reviewDelete" >
- 		delete from review where noboard=#{param1} and userid=#{param2}
+ 		delete from review where noboard=#{param1} 
+ 		<choose>
+ 			<when test='param2 neq null and param2 eq "admin"'></when>
+ 			<when test='param2 neq null and param2 neq "admin"'>
+ 				and userid=#{param2}
+ 			</when>
+ 		</choose>
  	</delete>
  	
  <!-- 조회수 -->
@@ -91,4 +96,27 @@
 	<update id="releaseReview">
 		update review set scrap='F' where noboard = #{param1} and scrap ='T'
 	</update>
+	
+	<!-- 이전글 다음글 설정하기 -->
+	<select id="getPrevNext" resultType="int" parameterType="com.bikemap.home.review.ReviewPagingVO">
+		select idx from 
+			(select noboard, subject, rownum idx, (thumbup - thumbdown) thumb from review
+				<if test='searchWord neq null and searchWord neq ""'>
+					 where and ${searchType} like '%'||#{searchWord}||'%'	
+				</if>
+			order by ${order} desc) 
+		where noboard = #{noboard}
+	</select>
+	<select id="selectPrevNext" resultType="com.bikemap.home.review.ReviewVO" parameterType="com.bikemap.home.review.ReviewPagingVO">
+		select * from 
+			(select noboard, subject, rownum idx, (thumbup - thumbdown) thumb  from review
+				<if test='searchWord neq null and searchWord neq ""'>
+					where ${searchType} like '%'||#{searchWord}||'%'	
+				</if>
+			order by ${order} desc) 
+		where idx = #{idx}
+	</select>
+	<select id="selectReviewThumb" resultType="com.bikemap.home.review.ReviewVO">
+		select thumbup, thumbdown from review where noboard = #{noboard}
+	</select>
 </mapper>

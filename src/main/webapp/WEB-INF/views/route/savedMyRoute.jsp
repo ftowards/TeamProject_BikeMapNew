@@ -9,17 +9,17 @@
 <div id="page-wrapper">
 	<!-- 첫번째 우클릭 div -->
 	<div id="rightContext" class="rightContext" >
+		<input type="button" class="btn" value="X" onclick="$('#rightContext').css('display','none');"/>
 		<ul>
 			<li onclick="excludeList();">리스트 제외</li>
 			<li onclick="transferDialog();">카테고리 이동</li>
 		</ul>
-		<input type="button" class="btn" value="X" onclick="$('#rightContext').css('display','none');"/>
 	</div>
 	
 	<!-- 2번째 추가 div -->
-	<div id="rightContext2" class="rightContext" >
+	<div id="rightContext2" class="rightContext2" >
+		<input type="button" class="btn" value="X" onclick="$('#rightContext2').css('display','none');"/>
 		<ul>
-			<li><input type="button" class="btn" value="X" onclick="$('#rightContext2').css('display','none');"/></li>
 			<li>
 				<select id="cateMoveTO">
 					<c:forEach var='cate' items="${list }">
@@ -27,7 +27,7 @@
 		    		</c:forEach>		
 	    		</select>
     		</li>
-	    	<li><input type="button" class="btn move" value="옮기기" onclick="transferCategory();"/></li>
+	    	<li><input type="button" class="btn move" value="옮기기" style="margin-top:7px;" onclick="transferCategory();"/></li>
 	    </ul>
 	</div>
 	<!-- 사이드바 -->
@@ -37,7 +37,7 @@
 	    		<li><img src="<%=request.getContextPath()%>/img/img_myRoute/bike6.png"/></li>
 	     	 	<!-- 탭 카테고리 패널 -->
 	     		<li class="sidebar-brand">
-	     			<label style="color:rgb(0,176,176)">저장된 루트</label>   
+	     			<label style="color:rgb(0,176,176)">저장 루트</label>   
 	    		</li>
 	    		<hr/>
 	    		<li><label for="tab1">전체 루트(<span id="totalRecord">5</span>)</label></li>

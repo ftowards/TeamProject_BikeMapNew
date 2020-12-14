@@ -9,6 +9,9 @@ public interface RegistDaoImp {
 
 	// 로그인
 	public RegistVO login(RegistVO vo);
+	
+	// 정지 사유 확인하기
+	public RegistVO selectCause(RegistVO vo);
 
 	// 회원 정보 선택
 	public RegistVO selectUser(String userid);

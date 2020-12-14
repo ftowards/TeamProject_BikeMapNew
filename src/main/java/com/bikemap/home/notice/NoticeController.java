@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,7 +36,7 @@ public SqlSession sqlSession ;
 	DataSourceTransactionManager transactionManager;
 	
 	// 메세지 저장하기
-	@RequestMapping("/insertNotice")
+	@RequestMapping(value="/insertNotice", method= {RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
 	public int insertNotice(NoticeVO vo) {
 		int result = 0;
@@ -44,6 +45,7 @@ public SqlSession sqlSession ;
 		try {
 			if(rDao.idDoubleChk(vo.getUserid())>0) {
 				result = dao.insertNotice(vo);
+				System.out.println(result);
 			}
 		}catch(Exception e) {
 			System.out.println("메세지 입력 에러 " + e.getMessage());
@@ -129,7 +131,7 @@ public SqlSession sqlSession ;
 		try {
 			result = dao.deleteMessage(nonotice);
 		}catch(Exception e) {
-			System.out.println("쪽지 읽음 처리 에러 " + e.getMessage());
+			System.out.println("쪽지 삭제 에러 " + e.getMessage());
 		}
 		return result;
 	}
@@ -189,7 +191,6 @@ public SqlSession sqlSession ;
 	@ResponseBody
 	public QnaPagingVO qnaPaging(QnaPagingVO vo, HttpSession ses) {
 		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
-
 		vo.setId((String)ses.getAttribute("logId"));
 		
 		try {
@@ -200,10 +201,40 @@ public SqlSession sqlSession ;
 		return vo;
 	}
 	
+	// qna 리스트 가져오기
+	@RequestMapping("/selectQnaList")
+	@ResponseBody
+	public List<QnaVO> selectQnaList(QnaPagingVO vo, HttpSession ses){
+		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
+		vo.setId((String)ses.getAttribute("logId"));
+		List<QnaVO> list = new ArrayList<QnaVO>();
+		
+		try {
+			list = dao.selectQnaList(vo);
+		}catch(Exception e) {
+			System.out.println("문의사항 리스트 호출 에러 " +e.getMessage());
+		}
+		return list;
+	}
 	//나의 문의사항 글보기
 	@RequestMapping("/userQandAView")
 	public String userQandAView() {
 		return "message/userQandAView";
+	}
+	
+	// qna 삭제
+	@RequestMapping("/deleteQna")
+	@ResponseBody
+	public int deleteQna(int noqna) {
+		int result = 0;
+		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
+		
+		try {
+			result = dao.deleteQna(noqna);
+		}catch(Exception e) {
+			System.out.println("문의사항 삭제 에러 " + e.getMessage());
+		}
+		return result;
 	}
 
 }

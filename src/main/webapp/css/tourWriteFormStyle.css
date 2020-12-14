@@ -1,8 +1,15 @@
 @charset "UTF-8";
+	body{
+		background: url(../img/img_route/bike_pattern.png);
+		font-family: 'Nanum Gothic', sans-serif;
+	}
+	
 	#mainDivTourWrite{
-				width:1200px;
+				width:1440px;
+				height:2085px;
+				padding:125px 0 0 125px;
 				margin:0 auto;
-				height:1600px;			
+				background:#fbfbfb;		
 	}
 	
 	.infoDiv{
@@ -11,55 +18,55 @@
 		margin-top : 20px;
 	}
 	#tourWriteFormTitleDiv{
-							height:80px;
-							margin-top:50px;	
+							height:80px;	
 	}
 	.timeConditionDiv{
 					 	border-radius:15px;
 					 	background-color:#fff;
-					 	width:500px;
-					 	height:350px;
+					 	width:460px;
+					 	height:308px;
 					 	float:left;
 						margin-left:40px;
-						box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
-						
+						box-shadow: 2px 2px 4px 2px rgb(171 171 171);	
+						background:pink;
 	
 	}
 	.timeConditionDiv2{
 	
 					 	border-radius:15px;
 					 	background-color:#fff;
-					 	width:500px;
+					 	width:460px;
 					 	height:170px;
 					 	float:left;
-					 	margin-bottom:40px;
-						box-shadow: 3px 3px 5px 3px rgb(230,230,230);		
-	
+					 	margin-bottom:60px;
+						box-shadow: 2px 2px 4px 2px rgb(171 171 171);		
+						background:orange;
 	}
 	.timeConditionDiv3{
 						border-radius:15px;
 					 	background-color:#fff;
-					 	width:500px;
+					 	width:460px;
 					 	height:250px;
 					 	float:left;
-						box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
-	
+						box-shadow: 2px 2px 4px 2px rgb(171 171 171);	
+						background:lightblue;
 	
 	}
 	.tourWriteConditionTitle{
 								padding-top:5px;
 								text-align:center;
-								border:1px solid rgb(0,176,176);
-								border-radius:10px;
-								width:100px;
-								height:35px;
-								background-color:rgb(0,176,176);
+								border-radius:8px;
+								width:115px;
+								height:37px;
 								font-size:18px;
-								font-weight:bold;
 								color:#fff;
-								float:left;
-								box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+								float:left;	
 								margin:-15px 0 0 40px;
+								letter-spacing: 3px;
+								/* box-shadow: 2px 2px 5px #232323; */
+								text-shadow: 1px 1px 2px #003042;
+								background: #348e8e;
+								/* background: linear-gradient(#8cd6d6, #00b0b0); */
 								
 	}
 	hr{
@@ -83,15 +90,15 @@
 	}
 	#RouteSearchDiv input[type=text]{
 										width:500px;
-										padding:4px 0 0 10px;
+										padding-left:10px;
 										border:1px solid rgb(221,221,221);
 										border-radius:10px;
-										height:35px;
+										height:45px;
+										letter-spacing:2px;
 										background-color:rgb(221,221,221);
-										font-size:15px;
+										font-size:18px;
 										font-weight:bold;
-										color:rgb(64,64,64);
-										box-shadow: 3px 3px 5px 3px rgb(230,230,230);										
+										color:rgb(64,64,64);										
 	}
 	
 	#searchResultList{
@@ -112,9 +119,14 @@
 	}
 	
 	#searchResultList a:link, #searchResultList a:visited, #searchResultList a:hover{
+		text-decoration:none;
 		color:rgb(64,64,64);
 	}
+	#searchResultList a:hover{
+		color:#00b0b0;
+	}
 	#searchResultList>ul>li{
+		font-size:16.5px;
 		float:left;
 		margin-bottom : 5px;
 	}
@@ -142,7 +154,7 @@
 	 	background-color:#fff;
 	 	width:600px;
 	 	height:900px;
-		box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+		box-shadow: 2px 2px 4px 2px rgb(171 171 171);	
 	}
 	.routeResultDiv2{
 	 	width:600px;
@@ -152,85 +164,123 @@
 	}
 	
 	#routeResultDiv{
-						width:600px;
-						height:840px;
+						width:700px;
+						height:861px;
 						float:left;	
 	}
 	
 	#routeTitle {
 		height: 35px;
-		width : 400px;
+		width : 535px;
 		white-space:nowrap;
 		overflow:hidden;
-		text-overflow:ellipsis;		
+		text-overflow:ellipsis;
+		margin:25px 0 20px 0;	
+	}
+	#routeTitle a{
+		text-decoration:none;
+		font-family: 'Nanum Gothic', sans-serif;
 	}
 	#routeMap{
-		width : 500px; 
+		width : 610px; 
 		height : 500px;
 		margin : 0 auto;
+		right:-48px;
 	}
-	
+	#routeMap > div{
+		position:absolute;
+		left:-60px;
+	}
+	#routeMap > div > div{
+		position:absolute;
+		left:220px;
+		top:-27px;
+	}
 	#elevation_chart{
 		width : 500px; height: 200px;
 		margin : 0 auto;
 	}
 	#conditionDiv{
-		width:800px;
-		height:360px;
+		width:415px;
+		height:345px;
 		float:left;	
 	}
-	.labelClass,#departuredate,#arrivedate,.conditionBox,.labelClass2,#deadlinedate,#place{	
-																				
-																				padding-top:6px;
-																				text-align:center;
-																				border:none;
-																				border-radius:10px;
-																				width:70px;
-																				height:35px;
-																				background-color:rgb(123,123,123);
-																				font-size:15px;
-																				font-weight:bold;
-																				color:#fff;
-																				float:left;
-																				box-shadow: 3px 3px 5px 3px rgb(230,230,230);		
+
+	.labelClass,.conditionBox,.labelClass2{	
+						font-size:18px;
+						letter-spacing:2px;
+						padding-top:7px;
+						text-align:right;
+						border:none;
+						border-radius:10px;
+						width:83px;
+						height:35px;
+						font-weight:bold;
+						color:black;
+						float:left;		
 			}
 	.routeTitleDiv{
 		width : 550px;
 		height : 50px;
 	}
 	.conditionDivTop{
-					 	width:450px;
+					 	width:422px;
 						height:50px;
-						margin:25px 0 0 45px;
+						margin:14px 0 0 20px;
 						float:left;
+						background:yellow;
 				}
 				
 	.conditionDivTop2{
 						width:450px;
 						height:30px;
-						margin:25px 0 0 45px;
+						margin:17px 0 0 20px;
 						float:left;
+						background:lightblue;
 	
 	
 	}		
 	.conditionDivTop3{
 						width:450px;
 						height:55px;
-						margin:40px 0 0 45px;
+						margin:40px 0 0 20px;
 						float:left;
+						background:pink;
 						
 	
 	}
 
 		
-	#departuredate,#arrivedate,#deadlinedate,#place{	
-											padding-top:3px;	
-											width:150px;
-											background-color:#fff;
-											color:rgb(123,123,123);
-										
-					
-		}
+	#departuredate,#arrivedate,#deadlinedate{		
+						width:180px;
+						color:rgb(123,123,123);				
+						font-size:15px;
+						letter-spacing:2px;
+						text-align:center;
+						border:none;
+						border-radius:10px;
+						height:40px;
+						font-weight:bold;
+						float:left;
+						background-color:#efefef;
+						box-shadow:2px 2px 5px #9c9b9b;					
+	}
+	
+	#place{
+						width:270px;
+						color:rgb(0 36 169);				
+						font-size:17px;
+						letter-spacing:1px;
+						text-align:center;
+						border:none;
+						border-radius:10px;
+						height:40px;
+						font-weight:bold;
+						float:left;
+						background-color:#efefef;
+						box-shadow:2px 2px 5px #9c9b9b;
+	}
+	
 
 	.conditionBox{
 					padding-top:3px;	
@@ -251,7 +301,7 @@
 			font-size:15px;
 	}
 	#arrivedate{
-			margin-left:92px;
+			margin-left:103px;
 				
 				}
 
@@ -355,12 +405,14 @@
 			
 	}	
 	#tourWriteTitle{
-						width:500px;
-						height:35px;
+						width:700px;
+						height:45px;
+						padding-left:20px;
 						margin-bottom:20px;
 						border-radius:10px;
-						box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+						box-shadow: 2px 2px 5px #9c9b9b;
 						border:none;
+						letter-spacing:2px;
 	}
 
 
@@ -400,37 +452,29 @@
 	
 		
 	#departureTime,#departureMinutes,#deadlineTime,#arriveTime,#arriveMinutes{
-														padding-top:3px;
 														text-align:center;
 														border:none;
 														border-radius:10px;
-														width:75px;
-														height:35px;
 														background-color:#fff;
 														font-size:15px;
 														font-weight:bold;
 														color:rgb(123,123,123);
-														float:left;
-														margin:0 15px 0 10px;
-														height:26px; 
+														float:left; 
 														text-align-last:center;
+														letter-spacing:2px;
+														paddng-left:10px;
 														
 	}	
 		
-	#departureTime,#departureMinutes,#deadlineTime{
+	#departureTime,#departureMinutes,#deadlineTime,#arriveTime{
 										width:70px;
-										height:35px;
+										height:39px;
 										margin:0 0px 0 20px;
-										box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
+										padding-left:10px;
+										box-shadow:2px 2px 5px #9c9b9b;	
 	
 	}	
-			
-	#arriveTime,#arriveMinutes{
-									width:70px;
-									height:35px;
-									margin:0 0 0 20px;
-									box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
-	}	
+	
 		
 
 		

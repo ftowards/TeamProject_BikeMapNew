@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/home/css/login.css" type="text/css"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <script>
 	$(function(){
 		$("#loginForm").submit(function(){
@@ -20,13 +19,22 @@
 				url : url,
 				data : data,
 				success : function(result){
-					if(result == 1){
-						toast("로그인 되었습니다.", 1500);
-						location.href="/home";
-					}else if(result == 2){
-						toast("메일 인증이 되지 않은 아이디 입니다.\n가입 시 입력한 이메일에서 인증 절차를 진행해주십시오.");					
-					}else{
-						toast("로그인 실패하였습니다.\n로그인 정보를 확인해주세요.");
+					var logChk = result.loginResult;
+					console.log(result.loginResult);
+					
+					if(logChk == 0){
+						toast("로그인 실패.<br/>로그인 정보를 확인해주세요.",1500);
+					}else if(logChk == 1){
+						toast("로그인 하였습니다.", 1500);
+						setTimeout(function(){location.href="/home";},1500);
+					}else if(logChk == 2){
+						toast("메일 인증이 되지 않은 아이디 입니다.<br/>가입 시 입력한 이메일에서 인증 절차를 진행해주십시오.");	
+					}else if(logChk == 3){
+						var tag = "활동이 정지된 회원입니다.<br/><br/>";
+							tag +="정지 기간 : "+result.endday +" 까지<br/>";
+							tag +="정지 사유 : " +result.cause+"<br/>";
+							tag +="문의 사항은 bikemap@google.com 으로 연락바랍니다.";
+						toast(tag);
 					}
 				},error : function(){
 					console.log("로그인 에러");
@@ -40,11 +48,9 @@
 <div class="registerMainDiv">
 	<div id="bikeDiv">
 		<div id="bikeDiv1">
-			<img src="<%=request.getContextPath() %>/img/img_login/bike.png"/>
-		</div>
-		<div id="bikeDiv2">
-			<h2>바이크맵에 오신 것을 환영합니다.</h2><br/>
-			<p class="contentText">로그인을 하시면 사이트의 모든 서비스를 이용하실 수 있습니다.<br/>아직 회원이 아니시라면 회원가입을 진행해주세요.</p>
+			<a href="<%=request.getContextPath()%>/">
+				<img src="<%=request.getContextPath() %>/img/img_logo/bikemapLogo12.png"/>
+			</a>
 		</div>
 	</div>
 	<form id="loginForm">
@@ -54,7 +60,7 @@
 			<input type="text" name="userid" id="userid"/></div>
 
 				<div id="loginBtnDiv">
-					<input type="submit" class="RegisterMint_Btn" value="Login"/>
+					<input type="submit" class="RegisterMint_Btn" value="로그인"/>
 				</div>
 		<div id="userPwdDiv">
 			<span class="loginLabel" style='margin-right:30px'>PASSWORD</span>

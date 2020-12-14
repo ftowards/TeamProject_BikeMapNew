@@ -6,16 +6,16 @@
 <head>
 <style>
 	body{
-		width : 800px;
-		height : 300px;
+		width : 780px;
+		height : 400px;
 	}
 	.registerMainDiv{
+		margin: 15px auto 5px;
 		width : 100%;
 		overflow : auto;
 	}
 	.loginPopupForm{
 		width: 550px;
-    	margin: 15px auto 5px;
     	height: 120px;
     	background-color: #eee;
 	}
@@ -53,18 +53,25 @@
 			var url = "/home/loginOk";
 			var data = $("#loginForm").serialize();
 			$.ajax({
-				
 				url : url,
 				data : data,
 				success : function(result){
-					if(result == 1){
-						alert("로그인 되었습니다.");
-						opener.location.reload();
-						window.close();
-					}else if(result == 2){
-						alert("메일 인증이 되지 않은 아이디 입니다.\n가입 시 입력한 이메일에서 인증 절차를 진행해주십시오.");					
-					}else{
-						alert("로그인 실패하였습니다.\n로그인 정보를 확인해주세요.");
+					var logChk = result.loginResult;
+					console.log(result.loginResult);
+					
+					if(logChk == 0){
+						toast("로그인 실패.<br/>로그인 정보를 확인해주세요.",1500);
+					}else if(logChk == 1){
+						toast("로그인 하였습니다.", 1500);
+						setTimeout(function(){location.href="/home";},1500);
+					}else if(logChk == 2){
+						toast("메일 인증이 되지 않은 아이디 입니다.<br/>가입 시 입력한 이메일에서 인증 절차를 진행해주십시오.");	
+					}else if(logChk == 3){
+						var tag = "활동이 정지된 회원입니다.<br/><br/>";
+							tag +="정지 기간 : "+result.endday +" 까지<br/>";
+							tag +="정지 사유 : " +result.cause+"<br/>";
+							tag +="문의 사항은 bikemap@google.com 으로 연락바랍니다.";
+						toast(tag);
 					}
 				},error : function(){
 					console.log("로그인 에러");
@@ -126,26 +133,36 @@
 </head>
 	<body>
 		<div class="registerMainDiv">
-			<form id="loginForm" class='loginPopupForm'>
-				<ul>
-					<li style="height:100px;width:20%; padding-left:25px;">
-						ID<br/>
-						PASSWORD	
-					</li>
-					<li style='height:100px; width : 45%;'>
-						<input type="text" name="userid" id="userid" style='width:200px; height:25px;'/>
-						<input type="password" name="userpwd" id="userpwd" style='width:200px; height:25px;'/>
-					</li>
-					<li style='height:100px; width : 20%;'>
-						<input type="submit" class="mint_Btn" value="로그인"/>
-					</li>
-				</ul>	
-			</form>
-			<div style="text-align:center; margin : 15px;">
-				<span  class="white_Btn"><a href='/home/registFindInfo' target="_blank">아이디/비밀번호 찾기</a></span>
-				<span class='centerBar'>|</span>
-				<span  class="white_Btn"><a href='/home/registerForm' target="_blank">회원가입</a></span>
-			</div>
+	<div id="bikeDiv" style="height:150px; width:750px">
+		<div id="bikeDiv3">
+			<a href="<%=request.getContextPath()%>/">
+				<img src="<%=request.getContextPath() %>/img/img_logo/bikemapLogo12.png"/>
+			</a>
 		</div>
+	</div>
+	<form id="loginForm">
+	<div id="loginDiv4">
+		<div id="useridDiv" style="padding:0 0 0 20px">
+			<span class="loginLabel">ID</span>
+			<input type="text" name="userid" id="userid"/></div>
+
+				<div id="loginBtnDiv" style="margin:-30px 0 0 380px">
+					<input type="submit" class="RegisterMint_Btn" value="로그인"/>
+				</div>
+		<div id="userPwdDiv" style="padding:20px 0 0 20px">
+			<span class="loginLabel" style='margin-right:30px'>PASSWORD</span>
+			<input type="password" name="userpwd" id="userpwd"/>
+		</div>
+	</div>	
+	</form>
+	
+	<div id="find_Info" style="margin:100px 0 0 -20px;">
+		아이디, 비밀번호를 잊어버리셨나요?&nbsp;
+		<input type="button" value="아이디/비밀번호 찾기" onclick="location.href='/home/registFindInfo'" class="RegisterWhite_Btn"/>
+		<span id="text1">|</span>
+		아직 회원이 아니신가요?&nbsp;
+		<input type="button" value="회원가입" onclick="location.href='/home/registerForm'" class="RegisterWhite_Btn"/>
+	</div>
+</div> 
 	</body>
 </html>

@@ -34,6 +34,10 @@ function makeTourTable(result){
 		listTag += "><span class='slider round'></span>";
 		listTag += "</label>";
 		listTag += "</li>";	
+
+		tag += "<li><a data-toggle='collapse' href='#viewAcodian"+val.noboard+"' onclick='getTourComplist("+val.noboard+")'>▼</a></li>";
+		
+		tag += "<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>";
 		}$("#tourList").append(listTag);
 }
 </script>
@@ -48,23 +52,33 @@ function makeTourTable(result){
 						<li>번&nbsp;&nbsp;호</li>
 						<li>제&nbsp;&nbsp;목</li>
 						<li>작성자</li>
+<<<<<<< HEAD
 						<li>완료여부</li>
 						<li>모집인원</li>
 						<li>참여인원</li>
 					
 						<!-- DB작업완료 후 for문 생성 -->
+=======
+						<li>참가인원</li>
+						<li>상태</li>
+						<li>참가목록</li>
+											
+						
+>>>>>>> d9d243f1e611950e1871aa004a6ea42688474893
 						<c:forEach items="${list}" var="vo" varStatus="status">
 							<li><input type="checkbox" name="listChk" value="${vo.noboard}" title="${vo.userid }"/></li>
 							<li>${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
+							<li>${vo.party }</li>
 							<li>
 								<c:if test="${vo.state=='1'||vo.state==null}">
-									미완료
+									모집중
 								</c:if>
 								<c:if test="${vo.state=='2'}">
-									완료
+									마감
 								</c:if>
+<<<<<<< HEAD
 							</li>
 							<li>모집인원</li>
 							<li>참여인원</li>
@@ -72,6 +86,15 @@ function makeTourTable(result){
 							
 							 
 
+=======
+								<c:if test="${vo.state=='3'}">
+									완료
+								</c:if>
+							</li>	
+							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard})'>▼</a></li>
+							<div id='viewAcodian"+val.noboard+"' class='panel-collapse collapse'><ul id='complist"+val.noboard+"' class='acodianList'></ul></div>
+										
+>>>>>>> d9d243f1e611950e1871aa004a6ea42688474893
 					</c:forEach>
 					</ul>
 			</div>

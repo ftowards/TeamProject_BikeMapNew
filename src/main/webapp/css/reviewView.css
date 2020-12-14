@@ -17,15 +17,16 @@
 		outline: none;
 	}
 
-/* ===================================== °øÅë ===================================== */
+/* ===================================== ï¿½ï¿½ï¿½ï¿½ ===================================== */
 	.container{
 		width:100%; 
+		min-height : fit-content; 
 		margin : 0 auto;
 	}
 			
 	.mainDiv{
 		width:1200px;
-		height:2300px;
+		min-height : fit-content; 
 		margin:0 auto;
 	}
 		
@@ -38,34 +39,56 @@
 		 text-align: left; 
 		 margin: 60px 0 20px 0;
 	 }
+	 
+	 .reviewtitle li{
+	 	height : 50px;
+	 	width : 100%;
+	 	text-align : right;
+	 	float : left;
+	 }
+	 
+	 .reviewtitle li:nth-of-type(1){
+	 	text-align : left;
+	 }
+	 
+	 .reviewtitle li:nth-of-type(2){
+	 	width : 90%;
+	 	line-height : 40px;
+	 }
+	 .reviewtitle li:nth-of-type(3){
+	 	width : 10%;
+	 }
+	 
+	 .reviewtitle li:nth-of-type(3)>*{
+	 	margin : 0 15px;
+	 }
+	 
+	 
 
-/* 	ÆùÆ® »çÀÌÁî */
+/* 	ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	
-	/* Á¦¸ñ */
+	/* ï¿½ï¿½ï¿½ï¿½ */
 		.title{
 		  font-size: 23px;
 		  font-weight: 600;
 		  letter-spacing: -0.6px;
-		  text-align: left;
 		  color: #212529;
-		  margin-bottom: 40px;
 		}
 		
 		#subTxt{
 			font-size:17px;
 		}
 		
-	/* ¼ÒÁ¦¸ñ */
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 		#subtitle { 
 	 	  font-size: 29px;
 		  letter-spacing: -0.5px;
 		  text-align: left;
-		  color: #212529;
-		  margin-bottom: 50px;
-	 		
-	 }
+		  color: #0d5194;
+		  font-weight : 600;
+		}
 	 
-	 /* ¹öÆ° */
+	 /* ï¿½ï¿½Æ° */
 		.mint_Btn{
 			  font-size:15px;
 			  border-radius: 5px;
@@ -102,10 +125,14 @@
 		.btnGroup{
 			text-align:right;
 		}
+		
+		.btnGroup>input, .btnGroup2>input{
+			font-weight:600;
+			font-size : 18px;
+			width : 90px;
+		}	
 	 		
-	 		
-	 		
-/* ===================================== °øÅë ===================================== */	 
+/* ===================================== ï¿½ï¿½ï¿½ï¿½ ===================================== */	 
 	 
 /*=====================================reviewList START=====================================================*/
 
@@ -168,10 +195,23 @@
 	
 	.search{
 		text-align: center; 
-		margin:70px 0 120px 0;
+		margin:0 0 80px 0;
 	}
 	
-/* 	serachKeyword -> searchTypeReview ³×ÀÓº¯°æ */
+	.orderRadio>input[type=radio]{
+		display:none;
+	}
+	.subTxt{
+		color:#AEAAAA;
+	}
+	.orderRadio>input[type=radio]:checked+label{
+		color:#353535;
+		font-size:20px;
+		font-weight:600;
+		margin-bottom:20px;
+	}
+	
+/* 	serachKeyword -> searchTypeReview ï¿½ï¿½ï¿½Óºï¿½ï¿½ï¿½ */
 	#searchTypeReview {  
 		width: 140px; 
 		z-index: 1; 
@@ -184,7 +224,7 @@
 		border-radius:5px;
 		background-color:#eee;
 		background: url(../img/img_route/selectBox.png) no-repeat 95% 50%;
-		-webkit-appearance: none; /* ³×ÀÌÆ¼ºê ¿ÜÇü °¨Ãß±â */
+		-webkit-appearance: none; /* ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½ */
     	-moz-appearance: none;
     	appearance: none;
 		padding-left:25px;
@@ -208,7 +248,7 @@
 	
 	
 	#searchTypeReviewbefore{
-		/* È­»ìÇ¥ ´ëÃ¼ */ content: ""; 
+		/* È­ï¿½ï¿½Ç¥ ï¿½ï¿½Ã¼ */ content: ""; 
 		position: absolute; 
 		top: 50%; 
 		right: 15px; 
@@ -243,7 +283,7 @@
 	 	appearance: none; 
 	}
 		
-/* 	searchWordReview - > searchBarReview ³×ÀÓ º¯°æ */
+/* 	searchWordReview - > searchBarReview ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	#searchBarReview{
 		background-color:#F1F1F1;
 		border:0;
@@ -254,7 +294,8 @@
 	}
 
 	.orderRadio{
-		font-size:18px;
+		font-size:16px;
+		float:right;
 	}
 
 	#orderNobard, #orderHit{
@@ -264,11 +305,16 @@
 	
 	.boardlist{
 	    width: 100%;
-	   	height : 370px;
-	    border-bottom: 1px solid gray;
-	    padding: 10px 25px 25px 25px;
+	   	height : auto;
 	}
 	
+	.reviewContents{
+		width : 100%;
+		height : 301px;
+		padding: 10px 20px;
+		border-bottom : 1px solid gray;
+	}
+
 	.wordCut{
 		white-space:nowrap;
 		overflow:hidden;
@@ -279,19 +325,15 @@
 	}
 	.subject_Hitcount{
 		text-align:right;
-		width:100%; height:20px;
 		font-size:15px;
 		color:#22539c;
 	}
 	
 	#reviewtext{
 	    width: 100%;
-	    height: 127px;
 	    overflow: hidden;
 	    font-size:16.5px;
 	    font-weight:300;
-	    position:relative;
-	    bottom:30px;
 	}
 
 	.content img {
@@ -301,13 +343,16 @@
 
 	.left{
 		width:28%;
+		height : 100%;
 		float: left;
 		overflow: hidden;
+		padding : 20px 0;
 	}
 	.left img {
-		width:290px;
-		height:290px;
+		width:240px;
+		height:240px;
 		border-radius: 5px;
+		margin : 0 auto;
 	    -webkit-transform:scale(1);
 	    -moz-transform:scale(1);
 	    -ms-transform:scale(1); 
@@ -333,9 +378,8 @@
 	.right{
 		width:72%;
 		float:right;
-		height:250px;
-		margin-top:40px;
-		padding:0 25px;
+		height:100%;
+		padding: 20px 25px;
 	}
 	.right a{
 		color:black;
@@ -347,12 +391,34 @@
 		color:gray;
 	}
 	
-	.writedate{
-		clear: both;
-   	 	float: left;
+	.right>ul>li{
+		width : 100%;
+		height : 40px;
+		line-height : 40px;
+		
 	}
 	
+	.right>ul>li:nth-of-type(2){
+		height : 20px;
+		line-height : 20px;
+	}
+	.right>ul>li:nth-of-type(3){
+		height : 120px;
+		margin : 10px;
+		line-height : 30px;
+	}
 	
+	.paragraph{
+		white-space : normal;
+		line-break : inherit;
+		text-indent : 15px;
+			
+	}
+	
+	.right>ul>li:nth-of-type(4), .right>ul>li:nth-of-type(5){
+		float:left;
+		width : 50%;
+	}
 	
 	.badge1{
 			text-align: right;
@@ -444,11 +510,14 @@
 		margin : 20px auto;
 	}
 
+	.review-content2 img{
+		max-width : 100%;
+		padding : 0 10%;
+	}
 	.contentlocationdiv2{
 		width : 50%;
 		float: left;
 		height : 200px;
-	
 	}
 	
 	.contentlocationdiv2 img {
@@ -484,7 +553,7 @@
 	}
 	
 	
-/*´ñ±ÛÃ¢*/
+/*ï¿½ï¿½ï¿½Ã¢*/
 	#revcommentBox{
 	    width: 786px;
     	height: 100px;
@@ -528,7 +597,7 @@
 	
 	
 	
-/*´ñ±Û*/	
+/*ï¿½ï¿½ï¿½*/	
 	#revcomment{
 		heigth :800px;
 	
@@ -632,11 +701,11 @@
 
 
 
-/*=============ÆäÀÌÂ¡===================*/
+/*=============ï¿½ï¿½ï¿½ï¿½Â¡===================*/
 	#paging{
 		height:40px; 
 		text-align: center;
-	    margin : 0 auto;
+	    margin : 20px auto 40px;
 				
 	} 
 	#paging ul{
@@ -658,7 +727,7 @@
 											color:rgb(64,64,64);
 	}
 
-/*  =====================ÃßÃµ&ºñÃßÃµ ========================= */
+/*  =====================ï¿½ï¿½Ãµ&ï¿½ï¿½ï¿½ï¿½Ãµ ========================= */
 	#thumb {
 		text-align:center;
 	
@@ -695,8 +764,43 @@
 	    width: 70px;
 	    height: 40px;
 	    box-shadow: 3px 3px 3px #ccc;
-	    
+	    font-weight : 600;
 	}
 
+	/*=========ëª©ë¡ë³´ê¸°=========*/
+	.prevTxt{
+		margin:25px 0 25px 60px;
+		font-size:16px;
+		letter-spacing:1px;
+	}
+	
+	.prev_next{
+		font-size:13px;
+		margin:0 45px 0 20px;
+	}
+	
+	.prevTxt > a{
+		color:black;
+		text-decoration:none;
+	}
+	
+	.prevTxt > a:hover{
+		color:gray;
+	}
+	
+	.listBtn{
+		text-align:right;
+	}
+	.listBtn > input{
+		width:110px;
+		height:45px;
+		background-color:white;
+		border:1px solid #a7a7a7;
+		color:#717171;
+		font-size:16px;
+	}
 
-
+	.pull-right>input{
+		font-size : 16px;
+		width : 90px;
+	}

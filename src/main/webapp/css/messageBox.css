@@ -22,7 +22,6 @@
 					    width: 250px;
 					    height: 100%;
 					    margin-left: -250px;
-					    border-radius:10px;
 					  	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 						margin-top:100px;
 					    overflow-x: hidden;
@@ -32,6 +31,19 @@
 	 					width:200px;
 	 					margin-top:30px;
 	 
+	 }
+		
+	 textarea:focus {
+	  outline: none;
+	 }
+	 button:focus {
+	    outline: none;
+	 }
+	 input:focus {
+	    outline: none;
+	 }
+	 select:focus{
+	 	outline:none;
 	 }
 	#page-content-wrapper {
 	

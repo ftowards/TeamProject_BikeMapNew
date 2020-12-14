@@ -70,4 +70,16 @@
 			and answer = #{answer}
 		</if>
 	</select>
+	<select id="selectQnaList" resultType="com.bikemap.home.notice.QnaVO" parameterType="com.bikemap.home.notice.QnaPagingVO">
+		select noqna, answer, typename, subject, content, to_char(writedate, 'YY-MM-DD HH24:MI') writedate from qna a 
+		join qnatype b on a.noqnatype = b.noqnatype
+		where userid = #{id}
+		<if test = 'answer neq null and answer eq "Y"'>
+			and answer = 'Y'
+		</if>
+		order by noqna desc 
+	</select>
+	<delete id="deleteQna">
+		delete from qna where noqna = #{param1}
+	</delete>
 </mapper>

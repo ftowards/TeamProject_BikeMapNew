@@ -168,10 +168,10 @@ function goList(){
 		<div class="routeResultDiv2">
 			<div class="routeTitleDiv">
 				<div style='margin-left : 40px;height : 55px;'>
-					<label>코스 상세보기 <span class="blue_arrow">click!</span>
+					<label style='color:blue'>코스 상세보기 <span class="blue_arrow">click!</span>
 						<img src="<%=request.getContextPath() %>/img/img_tour/blue_arrow.png" style='width:20px; padding-top: 8px;'/>
 					</label>
-					<div id="routeTitle" class="conditionBox tourLink" style="margin-top:3px; font-family: 'Nanum Gothic', sans-serif;"></div>
+					<div id="routeTitle" class="conditionBox tourLink" style="margin-top:-4px; font-family: 'Nanum Gothic', sans-serif;"></div>
 				</div>
 				<div>
         			<input type="submit" value="${vo.userid}" id="userInformation" class="conditionBox txtShadow2">
@@ -189,9 +189,9 @@ function goList(){
 			<div class="conditionDivTop">
 				<div class="labelClass"><label>일&nbsp;정</label></div>
 				<div>
-					<div><label id="departure">${vo.departuredate}</label></div>
+					<div><label id="departure" style='color:black;'>${vo.departuredate}</label></div>
 				</div>
-				<div><label id="departureTime">${vo.departureTime}시</label></div>
+				<div><label id="departureTime" style='color:black;'>${vo.departureTime}시</label></div>
 				
 			</div>
 			<div class="conditionDivTop">
@@ -209,56 +209,56 @@ function goList(){
 			</div>
 			<div class="conditionDivTop" style="margin-top:20px;">
 				<div><label  class="labelClass2">마감날짜</label></div>
-					<div><label name="deadline" id="deadline" >${vo.deadlinedate }</label></div>
-				<div><label id="deadlineTime">${vo.deadlineTime }시</label></div>
+					<div><label name="deadline" id="deadline" style='color:black;'>${vo.deadlinedate }</label></div>
+				<div><label id="deadlineTime" style='color:black;'>${vo.deadlineTime }시</label></div>
 			</div>
 		</div>
 		<div class="timeConditionDiv2">	
 			<div><label class="tourWriteConditionTitle">여&nbsp;행</label></div>		
 				<div class="conditionDivTop2">
-					<div><label class="labelClass">거&nbsp;리</label></div>
-					<div><label class="conditionBox" id="distance">${vo.distance}&nbsp;&nbsp;</label></div>
+					<div><label class="labelClass" style='position:relative; top:1px; right:10px; color:#ce0000;'>거&nbsp;리</label></div>
+					<div><label class="conditionBox" id="distance" style='top:11px; right:18px; color:#ce0000;'>${vo.distance}&nbsp;&nbsp;</label></div>
 						<label class="kmLbl1">km</label>
-					<div><label class="labelClass2" style="margin:-25px 0 0 40px;">소요시간</label></div>
-					<div><label style="margin:-25px 0 0 20px;" id="tourtime" class="conditionBox"></label></div>
+					<div><label class="labelClass2" style="margin:-50px 0 0 203px;">소요시간</label></div>
+					<div><label style="position:relative; top:-41px; left:297px;" id="tourtime" class="conditionBox"></label></div>
 				</div>	
 				<div class="conditionDivTop">
-					<div><label  class="labelClass2" >속&nbsp;도</label></div>
-					<div><label  class="conditionBox" id="speed">${vo.speed }</label></div>
+					<div><label  class="labelClass2" style='position:relative; top:8px; right:10px;'>속&nbsp;도</label></div>
+					<div><label  class="conditionBox" id="speed" style='position:relative; top:17px; right:9px;'>${vo.speed }</label></div>
 						<label class="kmLbl2">km</label>
-					<div><label  class="labelClass2" style="margin:-25px 0 0 40px;">비&nbsp;용</label></div>
-					<div><label style="margin:-25px 0 0 20px;" class="conditionBox">${vo.budget }</label></div>
+					<div><label  class="labelClass2" style="margin:-35px 0 0 172px; position:relative; bottom:10px;">비&nbsp;용</label></div>
+					<div><label style="position:relative; left:280px; top:-35px;" class="conditionBox">${vo.budget }</label></div>
 						<label class="wonLbl">원</label>	
 				</div>	
 		</div>
 		<div class="timeConditionDiv3">	
 			<div><label class="tourWriteConditionTitle">모집조건</label></div>	
 				<div class="conditionDivTop3">
-					<div><label  class="labelClass">인&nbsp;원</label></div>
-					<div><label id="room" style="text-align-last:center">${vo.room }</label></div>
+					<div><label class="labelClass" style='position:relative; right:18px'>인&nbsp;원</label></div>
+					<div><label id="room" style="position: relative; right: 28px;">${vo.room }</label></div>
 	
-					<div><label class="labelClass" style="margin-left:20px;">성&nbsp;별</label></div>
+					<div><label class="labelClass" style="margin-left:-30px; position:relative; left:8px;">성&nbsp;별</label></div>
 					<div><label id="whole">전&nbsp;체</label></div>
 					<div><label id="genderboy" class='reggender' <c:if test='${vo.genderM }'>title="on"</c:if>>남</label></div>
 					<div><label id="gendergirl" class='reggender' <c:if test='${vo.genderF }'>title="on"</c:if>>여</label></div>
 				</div>
 		
 				<div class="conditionDivTop">
-					<div><label class="labelClass">나&nbsp;이</label></div>
+					<div><label class="labelClass" style='position:relative; right:18px'>나&nbsp;이</label></div>
 					<div><label id="whole2">전&nbsp;체</label></div>
 					<div><label id="regageten" class='regage' <c:if test='${vo.age10 }'>title="on"</c:if>>10대</label></div>
-					<div><label id="regagetwenty" class='regage' <c:if test='${vo.age20 }'>title="on"</c:if>>20대</label></div>
-					<div><label id="regagethirty" class='regage' <c:if test='${vo.age30 }'>title="on"</c:if>>30대</label></div>
+					<div><label id="regagetwenty" class='regage' style='position:relative; left:14px;' <c:if test='${vo.age20 }'>title="on"</c:if>>20대</label></div>
+					<div><label id="regagethirty" class='regage' style='left: 86px; position:relative; top:10px;' <c:if test='${vo.age30 }'>title="on"</c:if>>30대</label></div>
 				</div>
 				<div class="conditionDivBottom">	
-					<div><label id="regageforty" class='regage' <c:if test='${vo.age40 }'>title="on"</c:if>>40대</label></div>
-					<div><label id="regagefiftyOver" class='regage' <c:if test='${vo.age50 }'>title="on"</c:if> style="width:100px">50대 이상</label></div>					
+					<div><label id="regageforty" class='regage' style='position:relative; left:75px;' <c:if test='${vo.age40 }'>title="on"</c:if>>40대</label></div>
+					<div><label id="regagefiftyOver" class='regage' style='position:relative; left:89px; width:90px;' <c:if test='${vo.age50 }'>title="on"</c:if> style="width:100px">50대 이상</label></div>					
 				</div>
 		</div>
 	</div>			
 	<div id="writeForm">
 		<div class="tourViewWriteFormClass">
-        	<div style="float:right" ><button class="conditionBox" onclick="javascript:goList()" style="margin-right:70px; padding-top:3px;">목록보기</button></div>
+        	<div style="float:right" ><button class="conditionBox" id="tourlistBtn" onclick="javascript:goList()">목록보기</button></div>
         		<!-- 목록보기 페이징 보내기 -->
         		<form id="pagingVO" method="post" action="/home/tourView" style="display:none">
         			<input type="hidden" name="nowPage" value="${pagingVO.nowPage}"/>
@@ -273,7 +273,7 @@ function goList(){
         		</form>
 		</div>
 		<div class="tourViewWriteFormClass">	
-		<div id="checkComplist" class="roomCheckDivLbl" data-target="#dialog" data-toggle="modal" ><label>참여인원 확인하기</label></div>
+		<div id="checkComplist" class="roomCheckDivLbl" data-target="#dialog" data-toggle="modal" ><img src="<%=request.getContextPath()%>/img/img_tour/roomCheck.png"/>&nbsp;<label>참여 인원 확인하기</label></div>
 		<c:if test="${logId == vo.userid}">
 			<input type="hidden" id="manageConditon" value="ok"/>
 		</c:if>
@@ -286,7 +286,7 @@ function goList(){
 		</div>			 		
 	</c:if>	
 		<div class="tourViewWriteFormClass">
-			<div class="tourViewLabelClass"><label>모집내용</label></div>
+			<div><label style='font-size:15px'>모집 내용</label></div>
 			<div>
 				<div id="content"><img src="<%=request.getContextPath()%>/img/img_tour/bubble.png" style='width:20px;'/><span class='tourContentTxt'>${vo.content }</span></div>
 			</div>
@@ -371,7 +371,7 @@ $(function(){
 	var ageCnt = 0 ;
 	$(".regage").each(function(){
 		if($(this).attr('title') != null){
-			$(this).css('color','white').css('background-color','rgb(0,176,176)');
+			$(this).css('color','#0a9696').css('background','linear-gradient(rgb(205 253 253), rgb(166 234 234))');
 			ageCnt++;
 		}
 		if(ageCnt == 5) {
