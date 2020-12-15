@@ -761,3 +761,30 @@
 		width:17px;
 		height:17px;
 	}
+	
+	
+	
+	/* 도움말 모달창 */
+	.modal-header{
+		font-size:20px;
+		font-family:'Noto Sans KR', sans-serif;
+	}
+	
+	.modal-header > label{
+		color:#2d7373;
+	}
+	
+	.applyTourCloseBtn{
+		width:24px;
+		height:24px;
+		font-size:13px;
+		float:right;
+	}
+	
+	.modal-content{
+		width:1000px;
+	}
+	.modal-body {
+    	overflow: auto;
+
+	}
