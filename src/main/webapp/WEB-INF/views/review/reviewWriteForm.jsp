@@ -77,8 +77,8 @@ $(function(){
 			
 				<div class = "box-footer">
 					<div class = "pull-right">
-						<button type="submit" class="mint_Btn" id="inputBtn">등 록</button>
-						<button type ="reset" class="gray_Btn" style = "width:80px;">다시 쓰기</button>
+						<button type="submit" class="mint_Btn" id="inputBtn" style="margin-top:5px">등 록</button>
+						<button type ="reset" class="gray_Btn" style = "width:90px;">다시 쓰기</button>
 					</div>
 				</div>
 		</form>
