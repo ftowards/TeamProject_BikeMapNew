@@ -102,7 +102,7 @@
 		select idx from 
 			(select noboard, subject, rownum idx, (thumbup - thumbdown) thumb from review
 				<if test='searchWord neq null and searchWord neq ""'>
-					 where and ${searchType} like '%'||#{searchWord}||'%'	
+					 where ${searchType} like '%'||#{searchWord}||'%'	
 				</if>
 			order by ${order} desc) 
 		where noboard = #{noboard}
