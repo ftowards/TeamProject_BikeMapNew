@@ -766,7 +766,7 @@
 	
 	/* 도움말 모달창 */
 	.modal-header{
-		font-size:20px;
+		font-size:23px;
 		font-family:'Noto Sans KR', sans-serif;
 	}
 	
@@ -783,10 +783,10 @@
 	
 	.modal-content{
 		width:1165px;
-		height:780px;
+		height:755px;
 	}
 	.modal-body {
-		margin-bottom:25px;
+		padding-top:0;
     	overflow: auto;
 	}
 	
