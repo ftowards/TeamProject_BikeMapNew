@@ -17,7 +17,7 @@
 		outline: none;
 	}
 
-/* ===================================== ���� ===================================== */
+/* ===================================== 占쏙옙占쏙옙 ===================================== */
 	.container{
 		width:100%; 
 		min-height : fit-content; 
@@ -65,9 +65,9 @@
 	 
 	 
 
-/* 	��Ʈ ������ */
+/* 	占쏙옙트 占쏙옙占쏙옙占쏙옙 */
 	
-	/* ���� */
+	/* 占쏙옙占쏙옙 */
 		.title{
 		  font-size: 23px;
 		  font-weight: 600;
@@ -79,7 +79,7 @@
 			font-size:17px;
 		}
 		
-	/* ������ */
+	/* 占쏙옙占쏙옙占쏙옙 */
 		#subtitle { 
 	 	  font-size: 29px;
 		  letter-spacing: -0.5px;
@@ -88,17 +88,17 @@
 		  font-weight : 600;
 		}
 	 
-	 /* ��ư */
+	 /* 占쏙옙튼 */
 		.mint_Btn{
-			  font-size:15px;
-			  border-radius: 5px;
+			  font-size:18px;
+			  border-radius: 10px;
 			  text-decoration: none;
 			  text-align : center;
 			  color : white;
 			  border: 1px solid #00B0B0;
 			  background-color: #00B0B0;
 			  margin : 20px 20px 0 0;
-			  line-height: 40px;
+			  line-height: 30px;
 			  width : 70px;
 			  height : 40px;
 			  box-shadow:3px 3px 3px #ccc;
@@ -106,14 +106,14 @@
 		.gray_Btn{
 			  font-size:18px;
 			  font-weight:400;
-			  border-radius: 5px;
+			  border-radius: 10px;
 			  color : white;
 			  background-color: rgb(69,69,79);
 			  width : 70px;
 			  height : 40px;
 			  border:0;
 			  margin : 20px 20px 0 0;
-			  line-height: 40px;
+			  line-height: 30px;
 			  letter-spacing:1px;
 			  box-shadow:3px 3px 3px #ccc;
 		}
@@ -132,7 +132,7 @@
 			width : 90px;
 		}	
 	 		
-/* ===================================== ���� ===================================== */	 
+/* ===================================== 占쏙옙占쏙옙 ===================================== */	 
 	 
 /*=====================================reviewList START=====================================================*/
 
@@ -211,7 +211,7 @@
 		margin-bottom:20px;
 	}
 	
-/* 	serachKeyword -> searchTypeReview ���Ӻ��� */
+/* 	serachKeyword -> searchTypeReview 占쏙옙占쌈븝옙占쏙옙 */
 	#searchTypeReview {  
 		width: 140px; 
 		z-index: 1; 
@@ -224,7 +224,7 @@
 		border-radius:5px;
 		background-color:#eee;
 		background: url(../img/img_route/selectBox.png) no-repeat 95% 50%;
-		-webkit-appearance: none; /* ����Ƽ�� ���� ���߱� */
+		-webkit-appearance: none; /* 占쏙옙占쏙옙티占쏙옙 占쏙옙占쏙옙 占쏙옙占쌩깍옙 */
     	-moz-appearance: none;
     	appearance: none;
 		padding-left:25px;
@@ -248,7 +248,7 @@
 	
 	
 	#searchTypeReviewbefore{
-		/* ȭ��ǥ ��ü */ content: ""; 
+		/* 화占쏙옙표 占쏙옙체 */ content: ""; 
 		position: absolute; 
 		top: 50%; 
 		right: 15px; 
@@ -283,7 +283,7 @@
 	 	appearance: none; 
 	}
 		
-/* 	searchWordReview - > searchBarReview ���� ���� */
+/* 	searchWordReview - > searchBarReview 占쏙옙占쏙옙 占쏙옙占쏙옙 */
 	#searchBarReview{
 		background-color:#F1F1F1;
 		border:0;
@@ -558,7 +558,7 @@
 	}
 	
 	
-/*���â*/
+/*占쏙옙占시�*/
 	#revcommentBox{
 	    width: 786px;
     	height: 100px;
@@ -602,7 +602,7 @@
 	
 	
 	
-/*���*/	
+/*占쏙옙占�*/	
 	#revcomment{
 		heigth :800px;
 	
@@ -706,7 +706,7 @@
 
 
 
-/*=============����¡===================*/
+/*=============占쏙옙占쏙옙징===================*/
 	#paging{
 		height:40px; 
 		text-align: center;
@@ -732,7 +732,7 @@
 											color:rgb(64,64,64);
 	}
 
-/*  =====================��õ&����õ ========================= */
+/*  =====================占쏙옙천&占쏙옙占쏙옙천 ========================= */
 	#thumb {
 		text-align:center;
 		margin : 20px 0 ;
@@ -789,7 +789,7 @@
 	    font-weight : 600;
 	}
 
-	/*=========목록보기=========*/
+	/*=========紐⑸줉蹂닿린=========*/
 	.prevTxt{
 		margin:25px 0 25px 60px;
 		font-size:16px;
