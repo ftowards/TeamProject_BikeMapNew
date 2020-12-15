@@ -126,14 +126,14 @@ $(function(){
 	//성별 css,체크 변화
 	$("#reggender").on('change', function(){
 		if($(this).is(":checked")){
-			$("#whole").css('color','white').css('background-color','rgb(0,176,176)');
+			$("#whole").css('color','white').css('background-color','#7f5ab1');
 			for(var i = 0 ; i < $("input[name=reggender]").length ; i++){
 				if(!($("input[name=reggender]").eq(i).prop("checked"))){
 					$("input[name=reggender]").eq(i).trigger('click');
 				}
 			}
 		}else{
-			$("#whole").css('color','rgb(0,176,176)').css('background-color','rgba(0,176,176,0.2)');
+			$("#whole").css('color','#63468a').css('background-color','#e9e4fb');
 			for(var i = 0 ; i < $("input[name=reggender]").length ; i++){
 				if($("input[name=reggender]").eq(i).prop("checked")){
 					$("input[name=reggender]").eq(i).trigger('click');
@@ -144,9 +144,9 @@ $(function(){
 	$("input[name=reggender]").on('change', function(){
 		var type = $(this).attr("id");
 		if($(this).prop("checked")){
-			$("#gender"+type).css('color','white').css('background-color','rgb(0,176,176)');
+			$("#gender"+type).css('color','white').css('background-color','#7f5ab1');
 		}else{
-			$("#gender"+type).css('color','rgb(0,176,176)').css('background-color','rgba(0,176,176,0.2)');
+			$("#gender"+type).css('color','#63468a').css('background-color','#e9e4fb');
 		}
 		
 		var cnt = 0;
@@ -158,7 +158,7 @@ $(function(){
 			});
 			if(cnt < 2) {
 				$("#reggender").prop("checked", false);
-				$("#whole").css('color','rgb(0,176,176)').css('background-color','rgba(0,176,176,0.2)');
+				$("#whole").css('color','#63468a').css('background-color','#e9e4fb');
 			}
 		}else if(!$("#reggender").prop("checked")) {
 			$("input[name=reggender]").each(function(){
@@ -168,7 +168,7 @@ $(function(){
 			});
 			if(cnt == 2) {
 				$("#reggender").prop("checked", true);
-				$("#whole").css('color','white').css('background-color','rgb(0,176,176)');
+				$("#whole").css('color','white').css('background-color','#7f5ab1');
 			}
 		}
 	});

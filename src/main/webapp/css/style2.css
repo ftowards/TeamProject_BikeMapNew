@@ -392,7 +392,7 @@ body{
 		font-size:27px;
 		/*font-family:'Poor Story', cursive;*/
 		font-family: 'East Sea Dokdo', cursive;
-		
+		/*font-family:'Nanum Gothic' sans-serif;*/
 	}	
 	
 	
@@ -436,10 +436,11 @@ body{
 	.routeTitle{
 		float:left;
 		word-spacing:-3px;
-		margin-bottom:6px;
+		margin-bottom:40px;
 		padding-left:5px;
 		line-height:nomal;
-		font-family:'Noto Sans KR', sans-serif;
+		font-weight:bold;
+		font-family:'Nanum Gothic', sans-serif;
 		
 	}	
 	.courseReview{
@@ -776,7 +777,7 @@ body{
 		z-index:500;
 	}
 	
-.blinking{
+.blinking, .review_blinking{
 	-webkit-animation:blink 0.5s ease-in-out infinite alternate;
     animation:blink 0.5s ease-in-out infinite alternate;
 }
@@ -788,12 +789,29 @@ body{
     0% {color:#fd2323;}
     100% {color:#fb89b3;}
 }
-	
+
+
+/*
+.review_blinking{
+	-webikt-animation:blink 0.3s ease-in-out infinite alternate;
+	animation:blink 0.3s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+@keyframes blink{
+	0% {color:#17076d;}
+	100% {color:#578dc5;}
+}
+*/
+
+
 .reviewFrame{
 	width: 1400px;
-    height: 600px;
+    height: 735px;
     margin : 0 auto;
-    padding-top: 40px;
+    padding-top: 70px;
     overflow: hidden;
    
 }
@@ -815,7 +833,7 @@ body{
 	padding:0 30px 0px 25px;
 	width:330px;
 	height:450px;		
-	margin:10px 40px 60px 0px;	
+	margin:10px 40px 130px 0px;	
 	background:#fff;
 	box-shadow: 5px 5px 5px 5px rgb(230,230,230);
 	text-align:center;	
