@@ -576,7 +576,7 @@ body{
     border-radius: 0;
     visibility: hidden;
     transition: opacity .5s, visibility .5s, transform .5s;
-    /*background: rgba(0, 0, 0, .35);*/
+    background: rgba(0, 0, 0, .35);
     background: repeating-linear-gradient(-45deg, #ED0000, #ED0000 10px, #2F9D27 0, #2F9D27 20px);   
     color: #666;
     z-index: 10000;
@@ -600,7 +600,64 @@ body{
 	
 }
 
-.toast.reveal {
+.toastChristmas{
+    position: fixed;
+    top: 250px;
+    width : fit-content;
+    height : fit-content;
+    left: 50%;
+    padding: 10px;
+    transform: translate(-50%, 10px);
+    border-radius: 0;
+    visibility: hidden;
+    transition: opacity .5s, visibility .5s, transform .5s;
+    /*background: rgba(0, 0, 0, .35);*/
+    background: repeating-linear-gradient(-45deg, #ED0000, #ED0000 10px, #2F9D27 0, #2F9D27 20px);   
+    color: #666;
+    z-index: 10000;
+    box-shadow: 3px 3px 3px rgb(130,130,130);
+}
+
+.toastChristmas img{
+	position: absolute;
+    width: 80px;
+    top: -30px;
+    left: -20px;
+}
+
+.toastChristmasMsg{
+	background-color: #FFFFE4;
+    width : fit-content;
+    height : fit-content;
+    line-height : 30px;
+    font-size: 16px;
+    padding : 15px;	
+}
+.toastChristmas .mintBtn , .toastChristmas .btn{
+	font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size:15px;
+    width:70px;
+	height:30px;
+    text-align: center;
+    padding: 3px 6px;
+    margin : 8px 5px 0 0;
+    color: #2F9D27;
+    border: #ED0000 3px solid;
+    background-color: #FFFFE4;    
+    float: right;
+    line-height :20px;
+    box-shadow: 3px 3px 3px rgb(84,84,84);	
+}
+
+.toastChristmas .btn{	
+	color: #ED0000;
+    border: 1px solid #2F9D27;
+    background-color: #FFFFE4;
+}
+
+.toast.reveal, .toastChristmas.reveal {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0)

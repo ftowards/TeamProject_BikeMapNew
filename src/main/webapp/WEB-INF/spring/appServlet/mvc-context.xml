@@ -24,12 +24,57 @@
 	 		<mvc:mapping path="/insertRoute"/>
 	 		<mvc:mapping path="/rateRoute"/>	 
 	 		
+	 		<mvc:mapping path="/insertCategory"/>
+	 		<mvc:mapping path="/mySavedRoute"/>
+	 		<mvc:mapping path="/myroute/selectMyroute"/>	 
+	 		<mvc:mapping path="/route/setCloseRoute1"/>
+	 		<mvc:mapping path="/route/setCloseRoute2"/>
+	 		<mvc:mapping path="/route/setCloseRoute3"/>	 
+	 		<mvc:mapping path="/route/setOpenRoute"/>
+	 		<mvc:mapping path="/route/deleteRoute"/>
+	 		<mvc:mapping path="/scrapRoute"/>	 
+ 		
 	 		<mvc:mapping path="/tourWriteForm"/>
 	 		<mvc:mapping path="/tourWriteFormOk"/>
 	 		<mvc:mapping path="/applyTour"/>
 	 		<mvc:mapping path="/checkCompllistIn"/>
 	 		<mvc:mapping path="/cancelTour"/>
-	 			 		
+
+	 		<mvc:mapping path="/mytour/confirmComplist"/>
+	 		<mvc:mapping path="/mytour/revertComplist"/>
+	 		<mvc:mapping path="/mytour/absentComplist"/>
+	 		<mvc:mapping path="/mytour/completeTour"/>
+	 		<mvc:mapping path="/mytour/addHeart"/>
+	 		<mvc:mapping path="/mytour"/>
+	 		<mvc:mapping path="/tourApply"/>
+	 		<mvc:mapping path="/deleteTourView"/>
+	 		<mvc:mapping path="/tourViewEdit"/>
+	 		<mvc:mapping path="/tourEditFormOk"/>
+
+			<mvc:mapping path="/insertNotice"/>
+			<mvc:mapping path="/sendMsg"/>
+	 		<mvc:mapping path="/messageBox"/>
+			<mvc:mapping path="/userQandA"/>
+			<mvc:mapping path="/deleteQna"/>
+	 		<mvc:mapping path="/userQandAView"/>
+	 		<mvc:mapping path="/selectQnaList"/>
+			<mvc:mapping path="/messageView"/>
+	 		<mvc:mapping path="/deleteMsg"/>
+	 		
+	 		<mvc:mapping path="/replyWriteOk"/>
+			<mvc:mapping path="/delReply"/>
+	 		<mvc:mapping path="/updateReply"/>
+	 		
+	 		<mvc:mapping path="/reviewWriteForm"/>
+			<mvc:mapping path="/reviewWriteFormOk"/>
+	 		<mvc:mapping path="/reviewEdit"/>
+		 	<mvc:mapping path="/reviewEditOk"/>
+			<mvc:mapping path="/reviewDel"/>
+	 		<mvc:mapping path="/setThumb"/>
+		 	<mvc:mapping path="/scrapReview"/>
+			<mvc:mapping path="/scrapReviewAll"/>
+	 		<mvc:mapping path="/releaseReview"/>
+		 		
 	 		<bean class="com.bikemap.home.interceptor.LoginInterceptor"/>	
 	 	</mvc:interceptor>
 	 	<mvc:interceptor>
