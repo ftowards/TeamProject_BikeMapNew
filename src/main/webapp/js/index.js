@@ -35,12 +35,12 @@ $(function(){
 	function toast(msg, time) {
 		var toast = $("#toast");
     	toast.addClass("reveal");
-    	toast.html(msg);
+    	$("#toastMsg").html(msg);
     	
     	var click = '$("#toast").removeClass("reveal")';
     	if(time == null || time == 'undefined'){
     		var tag = "<br><input type='button' class='mintBtn' value='닫기' onclick='"+click+"'/>";
-    		toast.append(tag);
+    		$("#toastMsg").append(tag);
 		}else {
 			setTimeout(function(){
 				toast.removeClass("reveal");

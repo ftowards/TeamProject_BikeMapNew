@@ -139,11 +139,11 @@
  		var listTag = "<p class='mainRouteTitle'>한 눈에 보는 <span class='blinking'>인기 코스</span></p><ul id='contentDivs'>";
 		for(var i = 0 ; i < 4 ; i++){
 			// 썸네일 작성부
-			listTag += "<li class='contentDivMain' onclick='goViewPage("+result[i].noboard+")'><div id='map"+i+"' class='mainMap'></div>";
+			listTag += "<li class='contentDivMain'><a href='/home/routeSearchView?noboard="+result[i].noboard+"'><div id='map"+i+"' class='mainMap'></div>";
 			// 루트 설명 작성부
 			listTag += "<div class='mainSubscript'><ul ><li class='wordCut' id='routeTitle'>"+result[i].title+"</li><li class='wordCut' style='font-size:16px; font-weight:bold;'>"+result[i].region+"</li><li style='font-weight:bold;'>총 거리 "+result[i].distance.toFixed(2)+"km</li>";
 			var rateWidth =  (result[i].rating/5 *125);
-			listTag += "<li style='color: #d20091; text-align:right; font-weight:bold'>"+result[i].userid+"</li><li style='width:100%; text-align:center; margin-top:11px;'><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></li>";
+			listTag += "<li style='color: #d20091; text-align:right; font-weight:bold'>"+result[i].userid+"</li><li style='width:100%; text-align:center; margin-top:11px;'><span class='star-rating'><span style='width:"+rateWidth+"px'></span></span></li></ul></div></a></li>";
 		}
 		listTag +="</ul>";
 		
@@ -188,11 +188,11 @@
 		console.log(result);
 		$result.each(function(i, val){
 			
-			listTag +="<li class='recommendReview'>";
+			listTag +="<li class='recommendReview'><a href='/home/reviewView?noboard="+val.noboard+"'>";
 			listTag +="<img src='/home/img/img_main/t.png' class='tape'/><div class='thumbnailImage' style='background-image:url("+val.thumbnailImg+")'/></div>";
 			listTag +="<ul class='reviewSubscription'><li>"+val.subject+"</li><li class='reviewMainUserid'>@"+val.userid+"</li>";
 			listTag += "<li class='reviewMainLike'>추천수:"+val.thumbup+"</li>";
-			listTag += "<img src='/home/img/img_main/t.png' class='tapeBottom'/></ul></li>";
+			listTag += "<img src='/home/img/img_main/t.png' class='tapeBottom'/></ul></a></li>";
 				
 		});
 		

@@ -43,6 +43,8 @@ $(function(){
 			success : function(result){
 				if(result == 1){
 					toast("문의가 완료되었습니다.", 1500);
+					$("#subject").val("");
+					$("#content").val("");
 				}else{
 					toast("문의 오류입니다. 다시 시도해주십시오.",1500);
 				}
