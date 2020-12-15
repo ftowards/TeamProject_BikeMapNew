@@ -86,7 +86,7 @@ function makeTourTable(result){
 		listTag += "<li>"+result[i].noboard+"</li>";
 		listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/tourView?noboard="+result[i].noboard+"'>"+result[i].title+"</a></li>";
 		listTag += "<li>"+result[i].userid+"</li>";
-		listTag += "<li>"+result[i].party+"</li>";
+		listTag += "<li>"+result[i].room+"</li>";
 		listTag += "<li><a data-toggle='collapse' href='#viewAcodian"+result[i].noboard+"' onclick='getTourComplist("+result[i].noboard+")'>▼</a></li>";
 		listTag += "<li>";
 		if(result[i].state=='1'||result[i].state==null){
@@ -126,7 +126,7 @@ function makeTourTable(result){
 							<li>${vo.noboard}</li>
 							<li class='wordCut'><a href = "<%=request.getContextPath()%>/tourView?noboard=${vo.noboard }">${vo.title }</a></li>
 							<li>${vo.userid}</li>
-							<li>${vo.party }</li>
+							<li>${vo.room }</li>
 							<li><a data-toggle='collapse' href="#viewAcodian${vo.noboard}" onclick='getTourComplist(${vo.noboard},${vo.state })'>▼</a>	</li>
 							<li>
 								<c:if test="${vo.state=='1'||vo.state==null}">

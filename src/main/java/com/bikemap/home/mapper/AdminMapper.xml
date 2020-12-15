@@ -120,7 +120,7 @@
 		<if test = 'state neq null and state eq "1"'>
 			 select * from (
 		</if>		
-		select noboard, title, userid, state, party from tour 
+		select noboard, title, userid, state, room from tour 
 		<include refid="search"></include> 
 			order by noboard desc)
 		<if test = 'state neq null and state eq "1"'>
