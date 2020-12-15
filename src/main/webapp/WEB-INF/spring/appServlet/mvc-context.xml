@@ -32,6 +32,11 @@
 	 			 		
 	 		<bean class="com.bikemap.home.interceptor.LoginInterceptor"/>	
 	 	</mvc:interceptor>
+	 	<mvc:interceptor>
+	 		<mvc:mapping path="/insertRouteList"/>
+	 			 		
+	 		<bean class="com.bikemap.home.interceptor.AdminInterceptor"/>	
+	 	</mvc:interceptor>
 	 </mvc:interceptors>
 	 
 </beans>

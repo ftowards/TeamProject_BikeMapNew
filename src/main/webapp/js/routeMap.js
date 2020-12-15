@@ -224,6 +224,7 @@
 		
 		var group = places.category_group_code;
 		var content = '<div id="infoWin">'; // 인포윈도우
+		$("#infoWin").parent().parent().addClass("infoWindow");
 		
 		// 인포 윈도우 이름에 링크 설정
 		if(places.place_url){

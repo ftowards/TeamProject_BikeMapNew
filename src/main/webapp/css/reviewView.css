@@ -735,11 +735,28 @@
 /*  =====================��õ&����õ ========================= */
 	#thumb {
 		text-align:center;
-	
+		margin : 20px 0 ;
 	}
-
-
-
+	
+	#thumb li{
+		margin : 10px 0 ;
+	}
+	
+	#thumb input, #thumb img{
+		margin : 0 10px;
+	}
+	
+	#thumb img:first-child{
+	    padding: 0 0 12px 0;
+	}
+	#thumbup {
+		margin-right : 10px;
+	}
+	
+	#thumbup, #thumbdown {
+		font-weight:bold;
+	}
+	
 	.labelClass{
 		background-color:rgb(64,64,64);
 	    color:#fff;
