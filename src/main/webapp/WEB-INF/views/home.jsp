@@ -68,7 +68,7 @@
 
 
 <div class="reviewFrame">
-	<span class="routeTitle" style="width:100%; font-size:35px;">
+	<span class="routeTitle review_blinking" style="width:100%; font-size:30px;">
 			추천 후기&nbsp;
 	</span><br/>
 	<div id="reviewTop"></div> <!--  후기 -->

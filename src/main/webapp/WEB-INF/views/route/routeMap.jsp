@@ -19,6 +19,7 @@
 				<li><label for="tab2"><img src="<%=request.getContextPath() %>/img/img_course/mapGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/mapColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/mapGray.png'"></label></li>
 				<li><label for="tab3"><img src="<%=request.getContextPath() %>/img/img_course/buildingGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/buildingColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/buildingGray.png'"></label></li>
 				<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/saveColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/saveGray.png'"></label></li>
+				<li><label for="tab5"><img src="<%=request.getContextPath() %>/img/img_course/info2.png"></label></li>
 			</ul>
 		</div>
 		
@@ -28,12 +29,13 @@
 			<input type="radio" name="tab" class="tabIcon" id="tab2"/>
 			<input type="radio" name="tab" class="tabIcon" id="tab3"/>
 			<input type="radio" name="tab" class="tabIcon" id="tab4"/>
+			<input type="radio" name="tab" class="tabIcon" id="tab5"/>
 			
 			<!-- 검색 패널 -->
 			<div class="tab" id="pannel1" style='overflow-x:hidden;'>
 				<div id="searchPannel">
 					<input type="text" name="searchWord" id="searchWord" placeholder="장소·주소를 검색하세요"/><br/>
-					<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> <span class="grayTxt">자전거도로 정보 보기</span>
+					<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> <span class="grayTxt">자전거도로 정보 보기<div data-target="#dialog" data-toggle="modal">dfdf</div></span>
 					<hr class="route_hr"/>
 					<div style="height:25px;"onclick="showCategory();">
 						<img id="listImg" src="<%=request.getContextPath() %>/img/img_route/star3.png"/>
@@ -162,6 +164,30 @@
 				</c:if>
 			</div>
 		</div>
+		
+		
+			<!-- 참가 인원 확인 창 : 모달 창 만들기 -->
+	<div class="modal" id="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header" style="border:none">
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;바이크맵 루트짜기 이용가이드</label>
+					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
+				</div>
+				<!-- body -->
+				<div class="modal-body">
+					<img src="<%=request.getContextPath() %>/img/img_course/설명임시.png" style='width:950px'/>
+				</div>
+				<!-- footer -->
+				<div class="modal-footer" style="border:none">
+					
+				</div>
+			</div>
+		</div>
+	</div>	
+		
+		
 	</div>
 	<div id="map">
 	

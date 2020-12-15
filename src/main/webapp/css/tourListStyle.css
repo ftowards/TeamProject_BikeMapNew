@@ -7,7 +7,7 @@ body{margin:0; padding:0;
 	
 	#mainDivTour{
 				width:1200px;
-				height:1350px;
+				height:1400px;
 				margin:0 auto;
 				padding:0;
 	}
@@ -53,7 +53,7 @@ body{margin:0; padding:0;
 					 	width:1000px;
 					 	height:400px;
 					 	padding-top : 20px;
-						margin:0px auto 50px;
+						margin:0px auto 85px;
 						box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
 	}	
 	.labelClass1, .labelClass2, .labelClass3{	
@@ -93,8 +93,8 @@ body{margin:0; padding:0;
 				border-radius:10px;
 				width:130px;
 				height:35px;
-				background-color:#e5f7f7;
-				color:rgb(36, 109, 109);
+				background-color:#e6eeff;
+				color:#2f5092;
 				font-size:15px;
 				font-weight:bold;
 				box-shadow: 2px 2px 5px #9c9b9b;
@@ -106,8 +106,8 @@ body{margin:0; padding:0;
 				border-radius:10px;
 				width:70px;
 				height:35px;
-				background-color:#e5f7f7;
-				color:rgb(36, 109, 109);
+				background-color:#e6eeff;
+				color:#2f5092;
 				font-size:15px;
 				font-weight:bold;
 				box-shadow: 2px 2px 5px #9b9c9c;
@@ -125,19 +125,19 @@ body{margin:0; padding:0;
 			border-radius:10px;
 			width:130px;
 			height:35px;
-			background-color:#e5f7f7;
-			color:rgb(0,176,176);
+			background-color:#e6eeff;
+			color:#2f5092;
 			font-size:15px;
 			font-weight:bold;
 			box-shadow: 2px 2px 5px #9c9b9b;
 	}
 	.kmLbl{
 				position:relative;
-				color:rgb(0,176,176);
+				color:#2f5092;
 				font-size:15px;
 				font-weight:bold;
 				left:-32px;
-				background-color:#e5f7f7;
+				background-color:#e6eeff;
 				border-radius:5px;
 	}
 	
@@ -146,7 +146,12 @@ body{margin:0; padding:0;
 			font-weight:bold;
 			font-size:15px;
 	}
-
+	
+	#whole, #genderboy, #gendergirl{
+		background-color:#e9e4fb;
+		color:#63468a;
+	}
+	
 	.ageGroup>label, #whole{
 		position:relative;
 		text-align:center;
@@ -154,11 +159,14 @@ body{margin:0; padding:0;
 		border-radius:10px;
 		width:70px;
 		height:35px;
-		background-color:rgba(0,176,176,0.2);
-		color:rgb(0,176,176);
 		font-size:15px;
 		font-weight:bold;
 		box-shadow: 2px 2px 5px #9c9b9b;
+	}
+	
+	.ageGroup>label{
+		background-color:rgba(0,176,176,0.2);
+		color:rgb(0,176,176);
 	}
 	
 	.genderGroup>label{
@@ -221,13 +229,14 @@ body{margin:0; padding:0;
 	 #tourSearchTitleDiv{
 		width:1200px;
 		height:100px;
-		margin-bottom : 30px;
+		margin-bottom :45px;
 		padding-top:30px;
 	}
 	 #tourSearchTitleLbl{
-		font-size:22px; 
+		font-size:25px; 
 		color:rgb(64,64,64);
-		margin-left : 40px;
+		margin-left : 14px;
+		letter-spacing:2px;
 	 }
 	 
 	#paging{
@@ -339,7 +348,7 @@ body{margin:0; padding:0;
 		color:white;
 		font-size:18px;
 		float:right;
-		margin: 30px 8px 0 0;
+		margin: 55px 8px 0 0;
 		box-shadow: 2px 2px 5px #9c9b9b;			
 	}
 	
