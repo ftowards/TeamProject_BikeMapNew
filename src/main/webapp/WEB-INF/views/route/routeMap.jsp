@@ -35,7 +35,7 @@
 			<div class="tab" id="pannel1" style='overflow-x:hidden;'>
 				<div id="searchPannel">
 					<input type="text" name="searchWord" id="searchWord" placeholder="장소·주소를 검색하세요"/><br/>
-					<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> <span class="grayTxt">자전거도로 정보 보기<div data-target="#dialog" data-toggle="modal">dfdf</div></span>
+					<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> <span class="grayTxt">자전거도로 정보 보기<div data-target="#dialog" data-toggle="modal">임시</div></span>
 					<hr class="route_hr"/>
 					<div style="height:25px;"onclick="showCategory();">
 						<img id="listImg" src="<%=request.getContextPath() %>/img/img_route/star3.png"/>
@@ -177,7 +177,7 @@
 				</div>
 				<!-- body -->
 				<div class="modal-body">
-					<img src="<%=request.getContextPath() %>/img/img_course/설명임시7.png"'/>
+					<img src="<%=request.getContextPath() %>/img/img_course/설명임시9.png"'/>
 				</div>
 				<!-- footer -->
 				<div class="modal-footer" style="border:none">
