@@ -132,6 +132,9 @@ function goReviewView(noboard){
 	console.log(noboard);
 	
 	$("input[name=noboard]").val(noboard);
+	
+	console.log($("#pagingVO").serialize());
+
 	$("#pagingVO").submit();
 }
 

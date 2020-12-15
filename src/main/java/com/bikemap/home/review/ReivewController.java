@@ -123,6 +123,7 @@ public class ReivewController {
 			
 			pagingVO.setTotalRecord(dao.searchTotalRecord(pagingVO));
 			// 이전 글 다음 글 검색하기
+			
 			int idx = dao.getPrevNext(pagingVO);
 			
 			if(idx < pagingVO.getTotalRecord()) {
@@ -188,7 +189,6 @@ public class ReivewController {
 	public int reviewDel(int noboard, HttpSession ses) {
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 		int result = 0;
-		
 		try {
 			result = dao.reviewDelete(noboard,(String)ses.getAttribute("logId"));			
 		}catch(Exception e) {

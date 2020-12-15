@@ -166,7 +166,7 @@
 	.routeResultDiv2{
 	 	width:600px;
 	 	height:800px;
-	 	margin-top : 40px;
+	 	margin : 40px auto 0;
 	
 	}
 	
@@ -178,25 +178,28 @@
 	
 	#routeTitle {
 		height: 46px;
-		width : 505px;
+		width : 480px;
 		white-space:nowrap;
 		overflow:hidden;
 		font-size:24px;
 		text-overflow:ellipsis;
-		margin:25px 0 20px 27px;
-		padding:6px 13px 0 13px;
+		margin:12px 0 12px 27px;
+		padding:0 13px;
+		line-height : 46px;
+		text-align: center;
 	}
 	#routeTitle a{
 		text-decoration:none;
 		font-family: 'Nanum Gothic', sans-serif;
+		line-height : 46px;
 	}
 	#routeMap{
 		width : 610px; 
 		height : 500px;
 		margin : 0 auto;
-		right:-48px;
 	}
-	#routeMap > div{
+
+/*	#routeMap > div{
 		position:absolute;
 		left:-60px;
 	}
@@ -204,20 +207,25 @@
 		position:absolute;
 		left:220px;
 		top:-27px;
-	}
+	}*/
 	#elevation_chart{
 		width : 616px;
 		height: 160px;
-		background:#efefef;
 		margin : 0 auto;
-		margin-left:42px;
 	}
 	#conditionDiv{
 		width:415px;
 		height:345px;
 		float:left;	
 	}
-
+	.placeholder{
+		width : 100%;
+		height : 100%;
+		line-height : 500px;
+		font-size: 2em;
+		text-align:center;
+		font-weight:bold
+	}
 	.labelClass,.conditionBox,.labelClass2{	
 						font-size:18px;
 						letter-spacing:2px;
@@ -232,8 +240,9 @@
 						float:left;		
 			}
 	.routeTitleDiv{
-		width : 550px;
-		height : 50px;
+		width : 100%;
+		height : 60px;
+		line-height : 60px;
 	}
 	.conditionDivTop{
 					 	width:422px;

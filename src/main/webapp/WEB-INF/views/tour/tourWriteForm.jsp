@@ -30,11 +30,11 @@
 			<div><label class="tourWriteConditionTitle">루&nbsp;트</label></div>
 			<div class="routeResultDiv2">
 				<div class="routeTitleDiv">
-					<div style='margin-left:40px; width:620px; height:70px;'><label class="labelClass">루트 제목</label>
+					<div style='width:620px; height:70px; line-height : 70px;'><label class="labelClass" style="padding:0;">루트 제목</label>
 						<div id="routeTitle" class="conditionBox"></div>
 					</div>		
 				</div>
-				<div id="routeMap"></div>
+				<div id="routeMap"><div class="placeholder">&nbsp;모집할 루트를 선택하세요.</div></div>
 				<hr/>
 				<div id="elevation_chart"></div>
 			</div>
@@ -190,8 +190,7 @@ var startImage = new kakao.maps.MarkerImage('./img/img_route/markerStart.png', m
 var arriveImage = new kakao.maps.MarkerImage('./img/img_route/markerArrive.png', markerSize, markerOption);
 var viaImage = new kakao.maps.MarkerImage('./img/img_route/markerVia.png', markerSize, markerOption);
 
-// 지도 추가
-var map = new kakao.maps.Map(container, options);
+
 
 $(function(){
 	// 투어 모집 링크 타고 들어왔을 때 처리
@@ -517,6 +516,10 @@ function getRoutePoint(point, chk){
 }
 
 function setMap(result){
+	// 지도 추가
+	
+	$("#routeMap").children().remove();
+	var map = new kakao.maps.Map(container, options);
 	
 	var titleTag = "<a href='/home/routeSearchView?noboard="+result.noboard+"'>"+result.title+"</a>";
 	$("#routeTitle").html(titleTag);
@@ -545,7 +548,7 @@ function setMap(result){
 	if(result.routepoint7 != null ) {getRoutePoint(result.routepoint7)}
 		
 	var points = decode(result.geocode, true);
-	setRouteLine(points);
+	setRouteLine(points, map);
 	
 	// 경로 마커 만들기
 	for(var i = 0 ; i < routePosition.length ; i++){
@@ -822,7 +825,7 @@ function getTourTime(){
     // Load the Visualization API and the columnchart package.
     google.load("visualization", "1", { packages: ["columnchart"] });
 
-    function setRouteLine(points){
+    function setRouteLine(points, map){
     
     	// 기존에 경로 객체가 있을 경우, 맵 상에서 지우기
     	if(polyline != "") {
