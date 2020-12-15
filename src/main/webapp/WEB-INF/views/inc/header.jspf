@@ -82,12 +82,16 @@
 	</div>
 	<!-- 알림 창 -->
 	<div id="toast" class="toast">
-		<img src="<%=request.getContextPath() %>/img/img_main/leaf.png"/>
 		<div id="toastMsg" class="toastMsg"></div>
 	</div>
 	<div id="toastConfirm" class="toast">
-		<img src="<%=request.getContextPath() %>/img/img_main/leaf.png"/>
 		<div id="toastConfirmMsg" class="toastMsg"></div>
 		<input type="button" class="mintBtn" value="닫기" onclick="$('#toastConfirm').removeClass('reveal');"/>
 		<input type="button" class="btn" value="확인" />
 	</div>
+	
+	<div id="toastLogin" class="toastChristmas">
+		<img src="<%=request.getContextPath() %>/img/img_main/leaf.png"/>
+		<div id="toastMsg" class="toastChristmasMsg"></div>
+	</div>
+	
