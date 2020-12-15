@@ -73,6 +73,8 @@ public class NoticeHandler extends TextWebSocketHandler{
 					tmpMsg = new TextMessage("<a href='/home/tourView?noboard="+noboard+"' target='_blank'>"+sender + "님이 " + noboard + "번 투어에 댓글을 달았습니다.</a>");					
 				}else if(msgType.equals("reviewReply")) {
 					tmpMsg = new TextMessage("<a href='/home/reviewView?noboard="+noboard+"' target='_blank'>"+sender + "님이 " + noboard + "번 후기에 댓글을 달았습니다.</a>");					
+				}else if(msgType.equals("cancelTourAdmin")) {
+					tmpMsg = new TextMessage(sender + "님이 " + noboard + "번 투어를 취소하였습니다.");	
 				}
 				
 				boardWriterSession.sendMessage(tmpMsg);

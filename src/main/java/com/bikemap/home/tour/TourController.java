@@ -489,14 +489,19 @@ public class TourController {
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 			
 		try {
-				if(1 <= dao.selectTourCompState(noboard)) {
+				if(2 ==  dao.selectTourCompState(noboard)) {
 					result = 1;
-				
-				}else if(2 <= dao.selectComplistChk(noboard)){
-					result = 2;
-				
-				}else{
-					result = 3;
+				}else {
+					int cnt = dao.selectComplistChk(noboard);
+					String logId = (String)ses.getAttribute("logId");
+					
+					if(logId.equals("admin") && cnt >= 1) {
+						result = 2;
+					}else if(!(logId.equals("admin"))&& cnt >=2 ) {
+						result = 2;
+					}else {
+						result = 3;
+					}
 				}
 		}catch(Exception e) {
 			System.out.println("투어 게시글 확인 실패"+e.getMessage());
@@ -531,8 +536,7 @@ public class TourController {
 	public int tourViewDelete(int noboard,HttpSession ses) {
 		
 		int result = 0;
-		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
-		
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);		
 		try {
 			result = dao.deleteTourView(noboard,(String)ses.getAttribute("logId"));
 			

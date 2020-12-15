@@ -26,19 +26,16 @@ $(function(vo){
 					toast("완료된 여행은 삭제가 불가능합니다.",1500);
 				}else if(result == 2){
 						selectTourCompList(result);
-				
 				}else if(result == 3){
 					toastConfirm("삭제된 글은 복구가 불가능합니다.<br/>그래도 삭제하시겠습니까?",function(){
 						deleteTourView(result);
 					});
-					
 			}else{
 					toast("글삭제에 실패하였습니다.",1500);
 					}
 				},error:function(){
 					console.log("글삭제 조건 에러");
 				}
-
 		});
 		return false;
 	});
@@ -55,7 +52,6 @@ $(function(vo){
 				if(result.length>0){
 					toastConfirm("현재"+result.length+"명의 참여인원이 있습니다.<br/>그래도 삭제하시겠습니까?",function(){
 						selectTourCompReceiver(result);
-						
 					});	
 				}else{
 					toast("참여인원 리스트불러오기에 실패하였습니다.",1500);	
@@ -74,26 +70,22 @@ $(function(vo){
 		var $result = $(result);
 		
 		$result.each(function(i,val){
-			sendTourDeleteMsg(val);
+			if(val != $("#logId").val){
+				sendTourDeleteMsg(val);
+			}
 		});
 		
+		deleteTourView(result);
 	}	
 	// 게시글 삭제 메세지 보내기
 	function sendTourDeleteMsg(receiver){
 		var receiver = receiver;
 		var sender = $("#logId").val();
-		
 
-		console.log("동행찾기 게시글 삭제 msg receiver=="+receiver);
-		console.log("동행찾기 게시글 삭제 msg sender=="+sender);
-		console.log("동행찾기 게시글 삭제 msg noboard=="+noboard);
-		
-		
 		var noboard = ${vo.noboard};
-		var msg = "";
-		var socketMsg = ""; 
+		var msg = sender + "님이 " + noboard + "번 투어를 취소하였습니다.";
+		var socketMsg = "cancelTourAdmin,"+receiver+","+sender+","+noboard; 
 		
-		msg = sender + "님이 " + noboard + "번 동행찾기 게시글을 삭제하였습니다.";
 		var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
 		
 		$.ajax({
@@ -101,22 +93,17 @@ $(function(vo){
 			data: data,
 			success : function(result){
 				if(result == 1){
-					socket.send(socketMsg);
-					deleteTourView(result);
+					//socket.send(socketMsg);
 				}
 			},error:function(err){
 				console.log(err);
 			}
-			
-			
 		});
-		
-		
 	}
 	
 	
 	//글삭제하기
-	function deleteTourView(result){
+	function deleteTourView(){
 		
 		var url = "/home/deleteTourView";
 		var data = "noboard="+${vo.noboard};
