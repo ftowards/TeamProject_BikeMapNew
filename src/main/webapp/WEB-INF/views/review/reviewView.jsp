@@ -270,8 +270,10 @@ function popMsgSend(userid){
 				<div id ="thumb">
 					<ul>
 						<li>
-							<b>추천 : <span id='thumbup'>${vo.thumbup }</span></b>
-							<b>비추천 : <span id='thumbdown'>${vo.thumbdown }</span></b>
+							<img src="<%=request.getContextPath() %>/img/img_Review/good2.png"/>
+							<span id='thumbup'>${vo.thumbup }</span>
+							<img src="<%=request.getContextPath() %>/img/img_Review/bad2.png"/>
+							<span id='thumbdown'>${vo.thumbdown }</span>
 						</li>
 						<li class="btnGroup2">
 							<input type ="button" class ="WMint_Btn" id="upBtn" value="추천"/>
