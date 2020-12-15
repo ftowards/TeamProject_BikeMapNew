@@ -285,11 +285,12 @@ small {
 		color: #999;
 }
 /* ================ 동행찾기 게시판 ==================*/
-#tourList, #tourListBtm{
-	width:88%;
-	margin:0px 0 0px 82px;
+#tourList, #tourListTitle, #tourListBtm{
+	width:90%;
+	margin:0 5%;
+	display:	inline-block;
 }
-#tourList>li:nth-child(-n+7) {
+#tourListTitle>li{
 	font-size:16px;
 	color:#1f1f63;
 	background:linear-gradient(#eee, lightgray);
@@ -298,11 +299,13 @@ small {
 	border-top:1px solid gray;
 	letter-spacing:2px;
 	margin-bottom:4px;
+	float: left;
+	width : 12%;
 }
-#tourList>li:nth-child(n+8):nth-child(-n+14){
+#tourList>li:nth-of-type(-n+7){
 	border-top: 1px solid #afafaf;
 }
-#tourList>li, #tourListBtm>li{
+#tourList>li, #tourListTitle>li, #tourListBtm>li{
 	float: left;
 	width: 12%; /* 84/% */
 	height: 50px;
@@ -313,14 +316,14 @@ small {
 	font-size:16px;
 	background-color: #fff;
 }
-#tourList>li:nth-child(7n+3), #tourListBtm>li:nth-child(7n+3) {
+#tourListTitle>li:nth-of-type(7n+3), #tourList>li:nth-of-type(7n+3), #tourListBtm>li:nth-of-type(7n+3) {
 	width: 37%; /* 번호+제목 40% + 나머지  60% = 100*/
 	text-align : left;
 }
-#tourList>li:nth-child(7n+1), #tourListBtm>li:nth-child(7n+3){
+#tourListTitle>li:nth-of-type(7n+1), #tourList>li:nth-of-type(7n+1), #tourListBtm>li:nth-of-type(7n+3){
 	width:3%;
 }
-#tourList>li:nth-child(3) {
+#tourListTitle>li:nth-of-type(3) {
 	text-align : center;
 }
 
@@ -328,11 +331,12 @@ small {
   		margin : 0;
   		padding : 0;
   		overflow : auto;
-  		
+  		width : 100%;
+  		height : fit-content;;
   	}
   	
   	.acodianList>li{
-  		width : 14%;
+  		width : 16%;
   		height : 45px;
   		line-height : 45px;
   		text-align : center;
@@ -342,14 +346,26 @@ small {
   		background-color:rgba(0,176,176,0.05);
   	}
   	
-  	 .acodianList>li:nth-of-type(7n+7){
-  		width : 16%;
+  	 .acodianList>li:nth-of-type(6n+6){
+  		width : 20%;
   	}
   	
   	.acodianList img{
   		width:35px;
   	}
-  	 	
+  	.tourOk{
+		text-align:center;
+		border:none;
+		border-radius:10px;
+		width:70px;
+		height:30px;
+		line-height:30px;
+		font-size:15px;
+		font-weight:bold;
+		color:#fff;
+		background-color:rgb(0,176,176);
+		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+	}
 
 
 

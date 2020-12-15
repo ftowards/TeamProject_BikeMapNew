@@ -214,7 +214,10 @@
 		select count(userid) from complist where noboard=#{noboard}
 	</select>
 	<delete id="deleteTourView">
-		delete from tour where noboard=#{param1} and userid=#{param2}
+		delete from tour where noboard=#{param1} 
+		<if test='param2 neq null and param2 neq "admin"'>
+			and userid=#{param2}
+		</if>
 	</delete>
 	<select id="selectComplistExceptLogId" resultType="String">
 		select userid from complist where noboard=#{param1} and userid  <![CDATA[ <> ]]> #{param2}

@@ -575,7 +575,7 @@ body{
     transform: translate(-50%, 10px);
     border-radius: 20px;
     font-size: 18px;
-    opacity: 0.3;
+    opacity: 0.1;
     visibility: hidden;
     transition: opacity .5s, visibility .5s, transform .5s;
     background: rgba(0, 0, 0, .35);
@@ -602,10 +602,10 @@ body{
     margin : 5px 8px 0 0;
     color: white;
     border:none;
-    background-color: #00B0B0;
+    background-color: #00B0B0;    
     float: right;
     line-height :20px;
-     box-shadow: 3px 3px 3px rgb(84,84,84);
+    box-shadow: 3px 3px 3px rgb(84,84,84);
 }
 
 .toast .btn{	
