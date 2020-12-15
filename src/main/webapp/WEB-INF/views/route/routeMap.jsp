@@ -19,7 +19,7 @@
 				<li><label for="tab2"><img src="<%=request.getContextPath() %>/img/img_course/mapGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/mapColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/mapGray.png'"></label></li>
 				<li><label for="tab3"><img src="<%=request.getContextPath() %>/img/img_course/buildingGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/buildingColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/buildingGray.png'"></label></li>
 				<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/saveColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/saveGray.png'"></label></li>
-				<li><label for="tab5"><img src="<%=request.getContextPath() %>/img/img_course/info2.png"></label></li>
+				<li><label for="tab5" data-target="#dialog1" data-toggle="modal"><img src="<%=request.getContextPath() %>/img/img_course/info2.png"></label></li>
 			</ul>
 		</div>
 		
@@ -35,7 +35,7 @@
 			<div class="tab" id="pannel1" style='overflow-x:hidden;'>
 				<div id="searchPannel">
 					<input type="text" name="searchWord" id="searchWord" placeholder="장소·주소를 검색하세요"/><br/>
-					<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> <span class="grayTxt">자전거도로 정보 보기<div data-target="#dialog1" data-toggle="modal">임시</div></span>
+					<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> <span class="grayTxt">자전거도로 정보 보기</span>
 					<hr class="route_hr"/>
 					<div style="height:25px;"onclick="showCategory();">
 						<img id="listImg" src="<%=request.getContextPath() %>/img/img_route/star3.png"/>
