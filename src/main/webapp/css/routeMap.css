@@ -782,9 +782,18 @@
 	}
 	
 	.modal-content{
-		width:1000px;
+		width:1165px;
+		height:780px;
 	}
 	.modal-body {
+		margin-bottom:25px;
     	overflow: auto;
-
+	}
+	
+	.modal-body > img{
+		width:1116px;
+		height:657px;
+		margin:0 8px;
+		border: 1px solid #dadada;
+	    border-radius: 10px;
 	}

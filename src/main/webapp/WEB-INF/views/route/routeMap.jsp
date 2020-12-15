@@ -168,16 +168,16 @@
 		
 			<!-- 참가 인원 확인 창 : 모달 창 만들기 -->
 	<div class="modal" id="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog" style='margin:85px 0 0 350px; padding:15px 0 10px 23px;'>
 			<div class="modal-content">
 				<!-- header -->
 				<div class="modal-header" style="border:none">
-					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;바이크맵 루트짜기 이용가이드</label>
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:23px; color:blue'>[길찾기]</span></label>
 					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 				</div>
 				<!-- body -->
 				<div class="modal-body">
-					<img src="<%=request.getContextPath() %>/img/img_course/설명임시.png" style='width:950px'/>
+					<img src="<%=request.getContextPath() %>/img/img_course/설명임시7.png"'/>
 				</div>
 				<!-- footer -->
 				<div class="modal-footer" style="border:none">
