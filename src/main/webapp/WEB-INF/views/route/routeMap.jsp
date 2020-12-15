@@ -35,7 +35,7 @@
 			<div class="tab" id="pannel1" style='overflow-x:hidden;'>
 				<div id="searchPannel">
 					<input type="text" name="searchWord" id="searchWord" placeholder="장소·주소를 검색하세요"/><br/>
-					<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> <span class="grayTxt">자전거도로 정보 보기<div data-target="#dialog" data-toggle="modal">임시</div></span>
+					<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> <span class="grayTxt">자전거도로 정보 보기<div data-target="#dialog1" data-toggle="modal">임시</div></span>
 					<hr class="route_hr"/>
 					<div style="height:25px;"onclick="showCategory();">
 						<img id="listImg" src="<%=request.getContextPath() %>/img/img_route/star3.png"/>
@@ -166,13 +166,93 @@
 		</div>
 		
 		
-			<!-- 참가 인원 확인 창 : 모달 창 만들기 -->
-	<div class="modal" id="dialog">
+			<!-- 루트짜기 도움말 탭 -->
+			<div class="tab">
+				도움말 들어가는 탭
+			</div>
+			
+			
+			
+
+		<!-- =====================================모달창====================================== -->
+		
+		
+
+			<!-- 루트짜기 이용가이드 : 1.검색 모달창-->
+	<div class="modal" id="dialog1">
 		<div class="modal-dialog" style='margin:85px 0 0 350px; padding:15px 0 10px 23px;'>
 			<div class="modal-content">
 				<!-- header -->
 				<div class="modal-header" style="border:none">
-					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:23px; color:blue'>[길찾기]</span></label>
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:blue'>[검색]</span></label>
+					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
+				</div>
+				<!-- body -->
+				<div class="modal-body">
+					<img src="<%=request.getContextPath() %>/img/img_course/설명임시9.png"'/>
+				</div>
+				<!-- footer -->
+				<div class="modal-footer" style="border:none">
+					
+				</div>
+			</div>
+		</div>
+	</div>	
+		
+		
+			<!-- 루트짜기 이용가이드 : 2.길찾기 모달창 -->
+	<div class="modal" id="dialog2">
+		<div class="modal-dialog" style='margin:85px 0 0 350px; padding:15px 0 10px 23px;'>
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header" style="border:none">
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:blue'>[길찾기]</span></label>
+					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
+				</div>
+				<!-- body -->
+				<div class="modal-body">
+					<img src="<%=request.getContextPath() %>/img/img_course/설명임시9.png"'/>
+				</div>
+				<!-- footer -->
+				<div class="modal-footer" style="border:none">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+			<!-- 루트짜기 이용가이드 : 3.장소 모달창 -->
+	<div class="modal" id="dialog3">
+		<div class="modal-dialog" style='margin:85px 0 0 350px; padding:15px 0 10px 23px;'>
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header" style="border:none">
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:blue'>[장소]</span></label>
+					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
+				</div>
+				<!-- body -->
+				<div class="modal-body">
+					<img src="<%=request.getContextPath() %>/img/img_course/설명임시9.png"'/>
+				</div>
+				<!-- footer -->
+				<div class="modal-footer" style="border:none">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+			<!-- 루트짜기 이용가이드 : 4.저장 모달창 -->
+	<div class="modal" id="dialog4">
+		<div class="modal-dialog" style='margin:85px 0 0 350px; padding:15px 0 10px 23px;'>
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header" style="border:none">
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:blue'>[저장]</span></label>
 					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 				</div>
 				<!-- body -->

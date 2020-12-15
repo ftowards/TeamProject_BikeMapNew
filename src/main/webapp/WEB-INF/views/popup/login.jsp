@@ -8,6 +8,7 @@
 	body{
 		width : 780px;
 		height : 400px;
+		overflow:hidden;
 	}
 	.registerMainDiv{
 		margin: 15px auto 5px;
