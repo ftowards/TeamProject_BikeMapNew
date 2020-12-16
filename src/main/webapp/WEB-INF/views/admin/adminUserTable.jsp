@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <script>
 	function makeUserTable(result){
-		$("#userList").children().remove();
+		
 		var nowPage =$("#nowPage").val();
 		var listNum = 0;
 		var listTag = "";
@@ -18,9 +18,10 @@
 			listNum = i+(nowPage-1)*10+1;
 			//list안에 데이터 추가
 			listTag += "<li>"+listNum+"</li>";
-			listTag += "<li id='contents' ><a href='javascript:userPopupOpen();'>"+result[i].userid+" </a></li>";
+			listTag += "<li class='contents' ><input type='hidden' class='hiddenEmail' value='"+result[i].email+"'/><input type='hidden' class='hiddenRegdate' value='"+result[i].regdate+"'/>";
+			listTag += "<a href='#' data-toggle='modal' data-target='#modal_User' title=' 사용자 프로필 보기 ' id='userprofileShow' >"+result[i].userid+"</a></li>";
 			listTag += "<li>"+result[i].username+"</li>";
-			listTag += "<li>";
+			listTag += "<li class='fa fa-square fa-stack-2x'>";
 			if(result[i].gender=='1'){
 				listTag +="남";
 			}else if(result[i].gender=='2'){
@@ -31,7 +32,7 @@
 			listTag += "<li>"+result[i].birth+"대</li>";
 			listTag += "<li>"+result[i].tourcnt+"회</li>";
 			listTag += "<li>"+result[i].heart+"회</li>";			
-			listTag += "<li style='color:red'>";
+			listTag += "<li style='padding-left:50px; color:red'>";
 				if(result[i].endday==null){
 					listTag +="<input type='button' title="+result[i].userid+" id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/>";
 					listTag += "</li>";
@@ -42,7 +43,7 @@
 					listTag += "<li style='color:red'>~"+result[i].endday+"</li>";
 				}		
 			}
-			$("#userList").append(listTag);
+			$("#userList").html(listTag);
 		}
 </script>
 
@@ -230,53 +231,36 @@
 <!-- // rownum순서 제대로 나오게 db query문 수정  -->
 
 	<div id="modal_User" class="modal fade modal-userprofile"  tabindex="-1" role="dialog">
-				  <div class="modal-dialog" role="document" >
-				    <div class="modal-content">	
-<!-- 				    	 <div class="modal-header"> 화면 닫기 -->
-<!-- 					        <h5 class="modal-title">회원 정보 보기</h5> -->
-<!-- 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-<!-- 					          <span aria-hidden="true">&times;</span> -->
-<!-- 					        </button> -->
-<!-- 				      	</div> -->
-					 <div class="modal-header">
-				        <h3 class="modal-title">회원 정보</h3>
-				     </div>
-					<div class="container">
-					
-				    <div class="row">
-				        <div class="col-xs-9 col-sm-6 col-md-6">
-				            <div class="well well-sm">
-				                <div class="row">
-				                    <div class="col-sm-6 col-md-3">
-				                        <img src='img/img_admin/adminuserprofile_pic.png' alt="" class="img-rounded img-responsive" />
-				                    </div>
-				                    <div class="col-sm-6 col-md-6">
-				                        <h4>
-				                            <span id="modalUsername">홍길동</span></h4>
-				                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
-				                        </i></cite></small>
-				                        <p>
-				                            <i class="glyphicon glyphicon-envelope"></i><span id="modalEmail">bikemap@bikemap.com</span>
-				                            <br />
-				                           
-				                            <i class="glyphicon glyphicon glyphicon-ok-circle"></i><span id="modalRegidate">June 02, 1988</span></p>
-				                        
-				                    </div>
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-					
-			</div>
-			<div class="modal-footer" style="text-align:center">
-						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						  
+		<div class="modal-dialog" role="document" >
+			<div class="modal-content">	
+				<div class="modal-header">
+					<h3 class="modal-title">회원 정보</h3>
+			    </div>
+				<ul class="userInfo">
+			    	<li>
+						<img src='img/img_reply/p.png' alt="" class="img-rounded img-responsive" />
+					</li>
+					<li	>
+						<h4><span id="modalUsername">홍길동</span></h4>
+						<p>
+							<i class="glyphicon glyphicon-envelope"></i><span id="modalEmail">bikemap@bikemap.com</span>
+			                <br />
+			                <i class="glyphicon glyphicon glyphicon-ok-circle"></i><span id="modalRegidate">June 02, 1988</span>
+		                </p>
+	                </li>
+                </ul>
+               
+               	<div class="modal-footer" style="text-align:center">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						  
+				</div>
+			 </div>
 		</div>
-	  </div> <!-- modal-bialog .// -->
-	</div><!-- modal.//   --> 
+	</div>
+	
+		
+</div> <!-- modal-bialog .// -->
 			<!-- suspend POP -->
 <!--  adminBottom -->
-</div>
-</div>
 </div>
 <!-- Page Content -->
 </body>

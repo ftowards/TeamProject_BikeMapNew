@@ -787,3 +787,40 @@ input:checked + .slider:before {
 	padding-left : 120px;
 	
 }
+
+
+/* 유저 인포 모달 창*/
+.userInfo{
+	width : fit-content;
+	height : 130px;
+	display: inline-block;
+	background-color : #ddd;
+}
+
+.userInfo>li{
+	float:left;
+	line-height : 130px;
+	height: 130px;
+}
+
+.userInfo>li:nth-of-type(1){
+	width : 130px;
+}
+
+.userInfo>li:nth-of-type(2){
+	width : auto;
+	margin : 5px 20px 5px 0;
+	text-align:center;
+	line-height : 40px;
+	font-size : 16px;
+}
+
+.userInfo img{
+	width : 80%;
+	margin : 13px 10%;	
+}
+
+.modal-dialog{
+	width : fit-content;	
+}
+}
