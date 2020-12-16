@@ -77,6 +77,24 @@
 		 		
 	 		<bean class="com.bikemap.home.interceptor.LoginInterceptor"/>	
 	 	</mvc:interceptor>
-		 </mvc:interceptors>
-	 
+	 	<mvc:interceptor>
+	 		<mvc:mapping path="/adminUser"/>
+	 		<mvc:mapping path="/adminUserAjax"/>
+	 		
+	 		<mvc:mapping path="/adminQna"/>	 
+	 		<mvc:mapping path="/adminQnaWrite"/>
+	 		<mvc:mapping path="/adminQnaAjax"/>
+	 		
+	 		<mvc:mapping path="/adminReview"/>	 
+	 		<mvc:mapping path="/adminReviewAjax"/>
+	 		
+	 		<mvc:mapping path="/adminRoute"/>
+	 		<mvc:mapping path="/adminRouteAjax"/>
+	 		
+	 		<mvc:mapping path="/adminTour"/>
+	 		<mvc:mapping path="/adminTourAjax"/>	 	 
+	 			 		
+	 		<bean class="com.bikemap.home.interceptor.AdminInterceptor"/>	
+	 	</mvc:interceptor>
+	 </mvc:interceptors>
 </beans>
