@@ -768,15 +768,63 @@
 	
 	
 	.info_tab{
-		height:408px;
-		padding:20px 0 0 35px;
-		background-color:pink;
+		height:380px;
+		padding-top:45px;
+		text-align:center;
+		font-family:'Noto Sans KR', sans-serif;
 	}
 	
 	.info_tab2{
-		padding:20px 0 0 35px;
-		background-color:lightblue;
+		padding:20px;
+		text-align:center;
+		font-family:'Noto Sans KR', sans-serif;
 	}
+	
+	.info_title{
+		color:#09094c;
+		font-size:19px;
+		font-weight:bold;
+		letter-spacing:1px;
+	}
+	
+	.info_btn{
+		margin: 5px 0 20px 0;
+	    letter-spacing: 1px;
+	    width: 105px;
+	    height: 35px;
+	    border-radius: 8px;
+	    font-weight: bold;
+	}
+	.info_txt1, .info_txt2{
+		font-weight:bold;
+	}
+	
+	.info_txt1{
+		font-size:18px;
+	}
+	
+	.info_txt2{
+		font-size: 19px;
+	    margin-top: 5px;
+	    font-weight: bold;
+	    letter-spacing: -1px;
+	}
+	
+	
+	.blinking{
+		margin-right:2px;
+		-webkit-animation:blink 0.5s ease-in-out infinite alternate;
+	    animation:blink 0.5s ease-in-out infinite alternate;
+	}
+	@-webkit-keyframes blink{
+	    0% {opacity:0;}
+	    100% {opacity:1;}
+	}
+	@keyframes blink{
+	    0% {color:#fd2323;}
+	    100% {color:#fb89b3;}
+	}
+
 	
 	/* 도움말 모달창 */
 	.modal-header{
