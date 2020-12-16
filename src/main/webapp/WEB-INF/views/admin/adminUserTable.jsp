@@ -46,9 +46,10 @@
 				listTag += "<li style='padding-left:50px; color:red'>관리자</li>"; 
 				listTag += "<li style='color:red'>-</li>";
 			}
-			
-			$("#userList").append(listTag);
 		}
+		$("#userList").append(listTag);
+		}
+	
 </script>
 
 <!-- Page Content -->
