@@ -147,7 +147,7 @@
 							</c:if>
 						</select><br/>
 						<span class="saveTxt">※ 루트 공개여부를 설정해주세요.</span><br/>
-					<div style='margin:8px 0 0 18px;'>
+					<div style='margin:8px 0 12px 18px;'>
 						<input type="radio" name="closed" value="F" checked/><span class="saveTxt2"> 공개</span>&emsp;&emsp;&emsp;
 						<input type="radio" name="closed" value="T"/><span class="saveTxt2"> 비공개</span>
 					</div><br/>
@@ -162,11 +162,25 @@
 					</div>
 				</form>
 				</c:if>
-			</div>
+			</div>			
 			<!-- 루트짜기 도움말 탭 -->
 			<div class="tab">
-				도움말 들어가는 탭
-			</div>
+				<div class="info_tab">
+					<span>1. [검색]</span></br/>
+					<button data-target="#dialog1" data-toggle="modal">이용가이드</button><br/>
+					<span>2. [길찾기]</span></br/>
+					<button data-target="#dialog2" data-toggle="modal">이용가이드</button><br/>
+					<span>3. [저장 장소]</span></br/>
+					<button data-target="#dialog3" data-toggle="modal">이용가이드</button><br/>
+					<span>4. [저장]</span></br/>
+					<button data-target="#dialog4" data-toggle="modal">이용가이드</button><br/>
+				</div>
+				<div class="info_tab2">
+					바이크맵을 처음 이용하시나요?<br/>
+				
+				</div>
+			</div>			
+			
 		</div>
 
 		<!-- =====================================모달창====================================== -->
@@ -177,12 +191,12 @@
 			<div class="modal-content">
 				<!-- header -->
 				<div class="modal-header" style="border:none">
-					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:blue'>[검색]</span></label>
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:#EB3807'>[검색]</span></label>
 					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 				</div>
 				<!-- body -->
 				<div class="modal-body">
-					<img src="<%=request.getContextPath() %>/img/img_course/설명임시9.png"'/>
+					<img src="<%=request.getContextPath() %>/img/img_course/1_search_info.png"'/>
 				</div>
 				<!-- footer -->
 				<div class="modal-footer" style="border:none">
@@ -199,12 +213,12 @@
 			<div class="modal-content">
 				<!-- header -->
 				<div class="modal-header" style="border:none">
-					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:blue'>[길찾기]</span></label>
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:#002060'>[길찾기]</span></label>
 					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 				</div>
 				<!-- body -->
 				<div class="modal-body">
-					<img src="<%=request.getContextPath() %>/img/img_course/설명임시9.png"'/>
+					<img src="<%=request.getContextPath() %>/img/img_course/2_routepoint_info.png"'/>
 				</div>
 				<!-- footer -->
 				<div class="modal-footer" style="border:none">
@@ -216,18 +230,18 @@
 	
 	
 	
-			<!-- 루트짜기 이용가이드 : 3.장소 모달창 -->
+			<!-- 루트짜기 이용가이드 : 3.저장 장소 모달창 -->
 	<div class="modal" id="dialog3">
 		<div class="modal-dialog" style='margin:85px 0 0 350px; padding:15px 0 10px 23px;'>
 			<div class="modal-content">
 				<!-- header -->
 				<div class="modal-header" style="border:none">
-					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:blue'>[장소]</span></label>
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:#5A147A'>[저장장소]</span></label>
 					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 				</div>
 				<!-- body -->
 				<div class="modal-body">
-					<img src="<%=request.getContextPath() %>/img/img_course/설명임시9.png"'/>
+					<img src="<%=request.getContextPath() %>/img/img_course/3_show_place_list.png"'/>
 				</div>
 				<!-- footer -->
 				<div class="modal-footer" style="border:none">
@@ -245,12 +259,12 @@
 			<div class="modal-content">
 				<!-- header -->
 				<div class="modal-header" style="border:none">
-					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:blue'>[저장]</span></label>
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:#2E75B6'>[저장]</span></label>
 					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 				</div>
 				<!-- body -->
 				<div class="modal-body">
-					<img src="<%=request.getContextPath() %>/img/img_course/설명임시9.png"'/>
+					<img src="<%=request.getContextPath() %>/img/img_course/4_route_save.png"'/>
 				</div>
 				<!-- footer -->
 				<div class="modal-footer" style="border:none">

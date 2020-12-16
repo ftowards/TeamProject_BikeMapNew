@@ -146,10 +146,9 @@
 	#tab4:checked~div:nth-of-type(4){
 		display:block;
 	}
-	#tab5:checked~div:nth-of-type(5){
-		display:block;
-	}
-	
+   #tab5:checked~div:nth-of-type(5){
+      display:block;
+   }
 	
 	#pannel1{
 		height: 83vh;
@@ -433,14 +432,16 @@
 		margin:0 0 10px 8px;
 		border:none;
     	border-radius: 10px;
-    	font-size:14px;
+    	color:#005050;
+    	font-size:15px;
+    	font-weight:bold;
     	font-family:'Noto Sans KR', sans-serif;
-    	padding-left: 12px;
+    	padding: 0 12px;
    		background-color: #F1F1F1;
-   		box-shadow: 3px 3px 5px 3px rgb(180,180,180);
+   		box-shadow:2px 2px 3px 2px rgb(180,180,180);
 	}
 	#routeSave{
-		padding:40px 0 0 20px;
+		padding:44px 0 0 20px;
 	}
 	#txt2{
 		font-size:10px;
@@ -460,14 +461,14 @@
 		border-radius:10px;
 		font-family:'Noto Sans KR', sans-serif;
 		background: url(../img/img_route/selectBox.png) no-repeat 92% 55%;
-		-webkit-appearance: none; /* �꽕�씠�떚釉� �쇅�삎 媛먯텛湲� */
+		-webkit-appearance: none;
     	-moz-appearance: none;
     	appearance: none;
     	margin-right:15px;
     	padding-left:15px;
-    	margin-bottom:20px;
+    	margin-bottom:38px;
     	border:none;
-    	box-shadow: 3px 3px 5px 3px rgb(180,180,180);
+    	box-shadow: 2px 2px 3px 2px rgb(180,180,180);
 	}
 	select:focus{
 				outline:none;
@@ -593,11 +594,8 @@
 		text-align : center;
 		padding:3px 6px;
 		color : white;
-		background-color:rgb(0,176,176);		
-		border: 0;
-		width:70px;
-		height:30px;
-		box-shadow: 3px 3px 5px 3px rgb(180,180,180);
+		background-color:rgb(30 156 156);		
+		border:2px solid #328596;
 	}
 	.blue_Btn1{
 					font-weight:bold;
@@ -627,7 +625,6 @@
 		border-radius:10px;
 		margin:0 18px 0 9px;
 		font-size:17px;
-		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 		font-family:'Noto Sans KR', sans-serif;
 	}
 
@@ -639,15 +636,19 @@
 		width:295px;
 		height:127px;
 		margin-left:8px;
-		padding:5px;
-		border-radius:10px;
+		padding:10px;
+		border-radius:5px;
 		border:none;
-		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+		font-size:18px;
+		font-weight:bold;
+		box-shadow:2px 2px 3px 2px rgb(180,180,180);
+		font-family:'Noto Sans KR', sans-serif;
 	}
 	textarea#description::placeholder {
 		color:gray;
-		font-size:13.5px;
+		font-size:16px;
 		font-weight:400;
+		font-family:'Noto Sans KR', sans-serif;
 	}
 	
 	#saveDiv1{
@@ -766,6 +767,16 @@
 	}
 	
 	
+	.info_tab{
+		height:408px;
+		padding:20px 0 0 35px;
+		background-color:pink;
+	}
+	
+	.info_tab2{
+		padding:20px 0 0 35px;
+		background-color:lightblue;
+	}
 	
 	/* 도움말 모달창 */
 	.modal-header{

@@ -158,7 +158,7 @@ function makeRouteTable(result){
 		listTag += "<li>"+result[i].userid+"</li>";
 		listTag += "<li>"+result[i].rating+"</li>";
 		listTag += "<li>"+result[i].ratecnt+"</li>";
-		listTag += "<li>"+result[i].region+"</li>";
+		listTag += "<li class='wordCut' >"+result[i].region+"</li>";
 		
 		listTag += "<li>";
 		listTag += "<label class='switch'>";
@@ -210,7 +210,7 @@ function makeRouteTable(result){
 							<li>${vo.userid}</li>
 							<li>${vo.rating}</li>
 							<li>${vo.ratecnt }</li>
-							<li>${vo.region}</li>
+							<li class='wordCut'>${vo.region}</li>
 							<li>								
 								<label class="switch">
 								<c:if test="${vo.closed==null||vo.closed=='F'}">
