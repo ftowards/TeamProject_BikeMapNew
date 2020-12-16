@@ -161,6 +161,12 @@ function sendMsg(){
 	if(receiver == null || receiver ==""){
 		toast("받을 사람을 입력하세요.",1500);
 		return false;
+	}else if(receiver == 'admin'){
+		toast("관리자에게 쪽지를 보낼 수 없습니다.</br/>1:1 문의사항을 이용해주세요.",1500);
+		return false;
+	}else if(receiver == sender){
+		toast("본인에게 쪽지를 보낼 수 없습니다.", 1500);
+		return false;
 	}
 	
 	if($("#message").val() == ""){
