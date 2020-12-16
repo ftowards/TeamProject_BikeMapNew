@@ -573,12 +573,11 @@ body{
     left: 50%;
     padding: 10px;
     transform: translate(-50%, 10px);
-    border-radius: 0;
+    border-radius: 8px;
     visibility: hidden;
     transition: opacity .5s, visibility .5s, transform .5s;
     background: rgba(0, 0, 0, .35);
-    background: repeating-linear-gradient(-45deg, #ED0000, #ED0000 10px, #2F9D27 0, #2F9D27 20px);   
-    color: #666;
+    color: white;
     z-index: 10000;
     box-shadow: 3px 3px 3px rgb(130,130,130);
 }
@@ -591,7 +590,6 @@ body{
 }
 
 .toastMsg{
-	background-color: #FFFFE4;
     width : fit-content;
     height : fit-content;
     line-height : 30px;
@@ -632,7 +630,9 @@ body{
     line-height : 30px;
     font-size: 16px;
     padding : 15px;	
+    color: #888;
 }
+
 .toastChristmas .mintBtn , .toastChristmas .btn{
 	font-weight: bold;
     border-radius: 10px;
@@ -657,6 +657,10 @@ body{
     background-color: #FFFFE4;
 }
 
+.toastChristmas a:link, .toastChristmas a:hover, .toastChristmas a:visit{
+	text-decoration : none;
+}
+
 .toast.reveal, .toastChristmas.reveal {
     opacity: 1;
     visibility: visible;
@@ -672,19 +676,19 @@ body{
 	height:30px;
     text-align: center;
     padding: 3px 6px;
-    margin : 8px 5px 0 0;
-    color: #2F9D27;
-    border: #ED0000 3px solid;
-    background-color: #FFFFE4;    
+    margin : 5px 8px 0 0;
+    color: white;
+    border:none;
+    background-color: #00B0B0;  
     float: right;
     line-height :20px;
     box-shadow: 3px 3px 3px rgb(84,84,84);
 }
 
 .toast .btn{	
-	color: #ED0000;
-    border: 1px solid #2F9D27;
-    background-color: #FFFFE4;
+	color: #00B0B0;
+    border: 1px solid #00B0B0;
+    background-color: white;
 }
 
 .toast a:link, .toast a:hover, .toast a:visited{

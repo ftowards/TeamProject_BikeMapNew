@@ -92,6 +92,6 @@
 	
 	<div id="toastLogin" class="toastChristmas">
 		<img src="<%=request.getContextPath() %>/img/img_main/leaf.png"/>
-		<div id="toastMsg" class="toastChristmasMsg"></div>
+		<div id="toastLoginMsg" class="toastChristmasMsg"></div>
 	</div>
 	

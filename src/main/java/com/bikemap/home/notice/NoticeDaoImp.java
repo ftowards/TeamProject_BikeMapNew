@@ -38,4 +38,7 @@ public interface NoticeDaoImp {
 	
 	// 문의사항 삭제
 	public int deleteQna(int nonotice);
+	
+	// 미확인 알림 확인
+	public int getReadYetMsg(String userid);
 }

@@ -82,4 +82,7 @@
 	<delete id="deleteQna">
 		delete from qna where noqna = #{param1}
 	</delete>
+	<select id="getReadYetMsg" resultType="int">
+		select count(nonotice) from notice where userid=#{param1} and read ='F'
+	</select>
 </mapper>

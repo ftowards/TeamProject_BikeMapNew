@@ -12,6 +12,20 @@ $(function(){
 	}
 
 	sock.onopen = function(){
+		
+		if(sessionStorage.getItem("notice") == null){
+			$.ajax({
+				url:"/home/chkReadYetMsg",
+				success: function(result){
+					toastLogin("<a href='/home/messageBox'>확인하지 않은 쪽지와 알람이 "+result+"개 있습니다.</a>");
+				}, error : function(err){
+					console.log(err);
+				}
+			});		
+			sessionStorage.setItem("notice", "Y");
+		}
+		
+		console.log(sessionStorage.getItem("notice"));
 		console.log("통신 연결 완료");
 	}
 
@@ -41,6 +55,22 @@ $(function(){
     	if(time == null || time == 'undefined'){
     		var tag = "<br><input type='button' class='mintBtn' value='닫기' onclick='"+click+"'/>";
     		$("#toastMsg").append(tag);
+		}else {
+			setTimeout(function(){
+				toast.removeClass("reveal");
+			}, time);
+		}
+	}
+	
+	function toastLogin(msg, time) {
+		var toast = $("#toastLogin");
+    	toast.addClass("reveal");
+    	$("#toastLoginMsg").html(msg);
+    	
+    	var click = '$("#toastLogin").removeClass("reveal")';
+    	if(time == null || time == 'undefined'){
+    		var tag = "<br><input type='button' class='mintBtn' value='닫기' onclick='"+click+"'/>";
+    		$("#toastLoginMsg").append(tag);
 		}else {
 			setTimeout(function(){
 				toast.removeClass("reveal");

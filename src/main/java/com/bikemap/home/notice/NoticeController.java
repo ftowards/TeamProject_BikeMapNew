@@ -237,5 +237,19 @@ public SqlSession sqlSession ;
 		}
 		return result;
 	}
-
+	
+	// 로그인 메세지용 알림 갯수 체크
+	@RequestMapping("/chkReadYetMsg")
+	@ResponseBody
+	public int chkReadYetMsg(HttpSession ses) {
+		int result = 0;
+		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
+		try {
+			result = dao.getReadYetMsg((String) ses.getAttribute("logId"));
+	
+		}catch(Exception e) {
+			System.out.println("미확인 알람 갯수 확인 에러 " + e.getMessage());
+		}
+		return result;
+	}
 }
