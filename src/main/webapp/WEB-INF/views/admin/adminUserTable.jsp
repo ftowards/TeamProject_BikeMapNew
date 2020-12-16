@@ -31,7 +31,8 @@
 			listTag += "<li>"+result[i].birth+"대</li>";
 			listTag += "<li>"+result[i].tourcnt+"회</li>";
 			listTag += "<li>"+result[i].heart+"회</li>";			
-			listTag += "<li style='color:red'>";
+			if(result[i].userid!='admin'){
+				listTag += "<li style='color:red'>";
 				if(result[i].endday==null){
 					listTag +="<input type='button' title="+result[i].userid+" id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/>";
 					listTag += "</li>";
@@ -41,7 +42,11 @@
 					listTag += "</li>";
 					listTag += "<li style='color:red'>~"+result[i].endday+"</li>";
 				}		
+			}else{
+				listTag += "<li style='padding-left:50px; color:red'>관리자</li>"; 
+				listTag += "<li style='color:red'>-</li>";
 			}
+			
 			$("#userList").append(listTag);
 		}
 </script>
