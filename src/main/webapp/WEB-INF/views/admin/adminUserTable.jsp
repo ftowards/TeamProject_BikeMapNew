@@ -31,7 +31,8 @@
 			listTag += "<li>"+result[i].birth+"대</li>";
 			listTag += "<li>"+result[i].tourcnt+"회</li>";
 			listTag += "<li>"+result[i].heart+"회</li>";			
-			listTag += "<li style='color:red'>";
+			if(result[i].userid!='admin'){
+				listTag += "<li style='color:red'>";
 				if(result[i].endday==null){
 					listTag +="<input type='button' title="+result[i].userid+" id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/>";
 					listTag += "</li>";
@@ -41,7 +42,11 @@
 					listTag += "</li>";
 					listTag += "<li style='color:red'>~"+result[i].endday+"</li>";
 				}		
+			}else{
+				listTag += "<li style='padding-left:50px; color:red'>관리자</li>"; 
+				listTag += "<li style='color:red'>-</li>";
 			}
+			
 			$("#userList").append(listTag);
 		}
 </script>
@@ -86,6 +91,7 @@
 								<li>${vo.birth}대</li>
 								<li>${vo.tourcnt}회</li>
 								<li>${vo.heart}회</li>
+								<c:if test="${vo.userid!='admin'}">
 								<li style="padding-left:50px; color:red">
 									<c:if test="${vo.endday==null}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
 										<input type="button" title="${vo.userid}" id="suspendBtn" data-toggle="modal" data-target="#modal_simple"/>
@@ -95,6 +101,12 @@
 									</c:if>
 							
 								</li>
+								</c:if>
+								<c:if test="${vo.userid=='admin'}">
+									<li style="padding-left:50px; color:red"> 
+										관리자
+									</li>
+								</c:if>
 								<li style="color:red">~${vo.endday}</li>
 							</c:forEach>
 					</ul>

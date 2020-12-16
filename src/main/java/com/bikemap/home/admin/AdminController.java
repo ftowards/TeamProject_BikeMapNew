@@ -64,7 +64,7 @@ public class AdminController {
 			vo.setTotalRecord(totalRecord);
 			list = dao.selectRegistAll(vo);		
 		}catch(Exception e) {
-			System.out.println("회원 검색 화면 호출 에러111"+e.getMessage());
+			System.out.println("회원 검색 화면 호출 에러"+e.getMessage());
 		}	
 		return list;
 	}
