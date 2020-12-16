@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bikemap.home.mailng.MailHandler;
+import com.bikemap.home.notice.NoticeDaoImp;
 import com.bikemap.home.route.RouteDaoImp;
 
 @Controller

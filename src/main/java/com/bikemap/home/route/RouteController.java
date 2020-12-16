@@ -203,7 +203,7 @@ public class RouteController {
 	}
 	
 	// 루트 저장하기
-	@RequestMapping("/insertRouteList")
+	@RequestMapping(value="/insertRouteList")
 	@ResponseBody
 	public int insertRouteList(HttpSession session, RouteListVO vo) {
 		int result = 0;

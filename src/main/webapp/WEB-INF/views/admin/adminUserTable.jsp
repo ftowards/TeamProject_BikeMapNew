@@ -28,7 +28,7 @@
 			}
 			listTag += "</li>";
 			
-			listTag += "<li>"+result[i].birth+"세</li>";
+			listTag += "<li>"+result[i].birth+"대</li>";
 			listTag += "<li>"+result[i].tourcnt+"회</li>";
 			listTag += "<li>"+result[i].heart+"회</li>";			
 			listTag += "<li style='color:red'>";
@@ -83,7 +83,7 @@
 										여
 									</c:if>
 								</li>
-								<li>${vo.birth}세</li>
+								<li>${vo.birth}대</li>
 								<li>${vo.tourcnt}회</li>
 								<li>${vo.heart}회</li>
 								<li style="padding-left:50px; color:red">

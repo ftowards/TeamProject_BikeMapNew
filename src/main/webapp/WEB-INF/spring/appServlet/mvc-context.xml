@@ -97,5 +97,4 @@
 	 		<bean class="com.bikemap.home.interceptor.AdminInterceptor"/>	
 	 	</mvc:interceptor>
 	 </mvc:interceptors>
-	 
 </beans>
