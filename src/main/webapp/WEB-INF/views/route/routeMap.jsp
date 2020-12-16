@@ -19,7 +19,7 @@
 				<li><label for="tab2"><img src="<%=request.getContextPath() %>/img/img_course/mapGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/mapColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/mapGray.png'"></label></li>
 				<li><label for="tab3"><img src="<%=request.getContextPath() %>/img/img_course/buildingGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/buildingColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/buildingGray.png'"></label></li>
 				<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/saveColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/saveGray.png'"></label></li>
-				<li><label for="tab5" data-target="#dialog1" data-toggle="modal"><img src="<%=request.getContextPath() %>/img/img_course/info2.png"></label></li>
+				<li><label for="tab5"><img src="<%=request.getContextPath() %>/img/img_course/info2.png"></label></li>
 			</ul>
 		</div>
 		
@@ -163,13 +163,26 @@
 				</form>
 				</c:if>
 			</div>
+			
+			
+			<!-- 루트짜기 도움말 탭 -->
+			<div class="tab">
+				<div>
+					<span>1. [검색]</span></br/>
+					<button data-target="#dialog1" data-toggle="modal">이용가이드</button><br/>
+					<span>2. [길찾기]</span></br/>
+					<button data-target="#dialog2" data-toggle="modal">이용가이드</button><br/>
+					<span>3. [저장 장소]</span></br/>
+					<button data-target="#dialog3" data-toggle="modal">이용가이드</button><br/>
+					<span>4. [저장]</span></br/>
+					<button data-target="#dialog4" data-toggle="modal">이용가이드</button><br/>
+				</div>
+			</div>			
+			
 		</div>
 		
 		
-			<!-- 루트짜기 도움말 탭 -->
-			<div class="tab">
-				도움말 들어가는 탭
-			</div>
+
 			
 			
 			
@@ -189,7 +202,7 @@
 				</div>
 				<!-- body -->
 				<div class="modal-body">
-					<img src="<%=request.getContextPath() %>/img/img_course/설명임시9.png"'/>
+					<img src="<%=request.getContextPath() %>/img/img_course/1_search_info.png"'/>
 				</div>
 				<!-- footer -->
 				<div class="modal-footer" style="border:none">
@@ -211,7 +224,7 @@
 				</div>
 				<!-- body -->
 				<div class="modal-body">
-					<img src="<%=request.getContextPath() %>/img/img_course/설명임시9.png"'/>
+					<img src="<%=request.getContextPath() %>/img/img_course/2_routepoint_info.png"'/>
 				</div>
 				<!-- footer -->
 				<div class="modal-footer" style="border:none">
@@ -223,13 +236,13 @@
 	
 	
 	
-			<!-- 루트짜기 이용가이드 : 3.장소 모달창 -->
+			<!-- 루트짜기 이용가이드 : 3.저장 장소 모달창 -->
 	<div class="modal" id="dialog3">
 		<div class="modal-dialog" style='margin:85px 0 0 350px; padding:15px 0 10px 23px;'>
 			<div class="modal-content">
 				<!-- header -->
 				<div class="modal-header" style="border:none">
-					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:blue'>[장소]</span></label>
+					<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span style='font-size:25px; color:blue'>[저장 장소]</span></label>
 					<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 				</div>
 				<!-- body -->
