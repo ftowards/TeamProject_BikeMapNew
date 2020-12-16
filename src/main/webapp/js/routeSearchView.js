@@ -474,6 +474,7 @@ $("#grayBtn").on('click', function(){
       height: $("#elevation_chart").height(),
       legend: "none",
       titleY: "Elevation (m)",
+      colors:["#ffb437"],
     });
   }
   

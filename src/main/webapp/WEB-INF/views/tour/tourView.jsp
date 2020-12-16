@@ -459,13 +459,13 @@ function sendMsg(noboard, receiver, type){
 	var socketMsg = "";
 	
 	if(type == 1){
-		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 승인하였습니다.</a>";
+		msg = "<a href='/home/tourView?noboard="+noboard+"' target='_blank'>"+ sender + "님이 " + noboard + "번 투어 참가를 승인하였습니다.</a>";
 		socketMsg = "confirmTour,"+receiver+","+sender+","+noboard;
 	}else if(type == 2){ // 참가 신청 메세지
-		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가 신청하였습니다.</a>";
+		msg = "<a href='/home/tourView?noboard="+noboard+"' target='_blank'>"+ sender + "님이 " + noboard + "번 투어 참가 신청하였습니다.</a>";
 		socketMsg = "applyTour,"+receiver+","+sender+","+noboard;
 	}else if(type == 3){
-		msg = "<a href='/home/tourView?noboard="+noboard+"'>"+ sender + "님이 " + noboard + "번 투어 참가를 취소였습니다.</a>";
+		msg = "<a href='/home/tourView?noboard="+noboard+"' target='_blank'>"+ sender + "님이 " + noboard + "번 투어 참가를 취소였습니다.</a>";
 		socketMsg = "cancelTour,"+receiver+","+sender+","+noboard;
 	}
 	
@@ -507,14 +507,25 @@ function setComplist(result){
 		tag += "<li>"+heartImg+v.heart+"</li>";
 		
 		
-		if(v.state == '2'){
-			tag += "<li><div class='applying'><label>참가중</label></div></li>";
-		}else if(v.state == '1' && manageCondition != 'ok'){
-			tag += "<li><div class='applyWait'><label>승인대기</label></div></li>";	
-		}else if(manageCondition == 'ok' && v.state =='1'){
-			tag +="<li><div class='applyWait'><label onclick='confirmComplist(title)' title='"+$("#noboard").val()+"/"+v.userid+"'>승인</label></div></li>";
+		if($("#logId").val() == $("#userid").val()){ // 작성자면
+			// 리스트 참가 여부
+			if($("#logId").val() == v.userid){ // 작성자 정보
+				tag += "<li><div class='applying'><label>참가중</label></div></li>";
+			}else {
+				if(v.state == '2'){
+					tag +="<li><div class='applyWait'><label onclick='revertComplist(title)' title='"+$("#noboard").val()+"/"+v.userid+"'>추방</label></div></li>";					
+				}else if(v.state == '1'){
+					tag +="<li><div class='applyWait'><label onclick='confirmComplist(title)' title='"+$("#noboard").val()+"/"+v.userid+"'>승인</label></div></li>";
+				}
+			}
+		}else{ // 작성자가 아닐 때
+			if(v.state == '2'){
+				tag += "<li><div class='applying'><label>참가중</label></div></li>";
+			}else if(v.state == '1'){
+				tag += "<li><div class='applyWait'><label>승인대기</label></div></li>";
+			}
 		}
-
+		
 		if($("#logId").val() != v.userid){
 			tag += "<li><img src='<%=request.getContextPath()%>/img/img_tour/messge.png' style='width:35px;' onclick='popMsgSend(title);' title='"+v.userid+"'/></li>";
 		}else{
@@ -545,6 +556,29 @@ function confirmComplist(title){
 		}
 	});	
 }
+
+function revertComplist(title){
+	var strs = title.split("/");
+	var data = "noboard="+strs[0]+"&userid="+strs[1];
+	
+	$.ajax({
+		url : "/home/mytour/revertComplist",
+		data : data,
+		success : function(result){
+			if(result == 5){
+				toast("마감 시간이 지나 참가 취소 처리가 불가합니다.");
+			}else if(result == 1){
+				toast("참가 취소 처리 되었습니다.",1500);
+				sendMsg(strs[0], strs[1], 2);
+			}else{
+				toast("참가 취소 처리 오류입니다.");
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	});	
+}
+
 function cancleTour(){
 	var url = "/home/cancelTour";
 	var data = "noboard="+$("#noboard").val();
@@ -805,6 +839,7 @@ function plotElevation(elevations, status) {
 	  height: $("#elevation_chart").height(),
 	  legend: "none",
 	  titleY: "Elevation (m)",
+      colors:["#ffb437"],
 	});
 }
 //기존에 표시한 마커 제거

@@ -260,6 +260,14 @@ $(function(){
 	});
 	
 	$("input[name=search]").on('click', function(){
+		
+		if($("input[name=distance1]").val() == ""){
+			$("input[name=distance1]").val(0);
+		}
+		if($("input[name=distance2]").val() == ""){
+			$("input[name=distance2]").val(0);
+		}
+
 		movePage(1);
 	});
 	

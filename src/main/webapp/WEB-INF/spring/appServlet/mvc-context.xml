@@ -75,9 +75,9 @@
 			<mvc:mapping path="/scrapReviewAll"/>
 	 		<mvc:mapping path="/releaseReview"/>
 		 		
-	 		<bean class="com.bikemap.home.interceptor.LoginInterceptor"/>	
-	 	</mvc:interceptor>
-	 	<mvc:interceptor>
+	 		<bean class="com.bikemap.home.interceptor.LoginInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
 	 		<mvc:mapping path="/adminUser"/>
 	 		<mvc:mapping path="/adminUserAjax"/>
 	 		

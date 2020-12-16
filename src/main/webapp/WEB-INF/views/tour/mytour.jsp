@@ -219,7 +219,7 @@ function setList(result){
 
 // 투어 완료 처리
 function completeTour(noboard){
-	if(confirm("투어를 완료하면 현재 참가 중인 회원 모두 참가 완료 처리 됩니다.\n투어를 완료하시겠습니까?")){
+	toastConfirm("투어를 완료하면 현재 참가 중인 회원 모두 참가 완료 처리 됩니다.\n투어를 완료하시겠습니까?"), function(){
 		$.ajax({
 			url : "/home/mytour/completeTour",
 			data : "noboard="+noboard,
@@ -232,7 +232,7 @@ function completeTour(noboard){
 				console.log(err);
 			}
 		});
-	}
+	});
 }
 
 function sendCompleteMsg(noboard){
@@ -350,7 +350,7 @@ function setAcodianList(result, noboard){
 				tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
 				
 				if(val.state == '3'){
-					tag += "<li><div class='tourOut>불참</div></li>";
+					tag += "<li><div class='tourOut' style='margin: 7.5px auto;'>불&nbsp;참</div></li>";
 					tag += "<li></li>";
 				}else if(val.state == '2'){
 					tag += "<li><button class='tourOk'>참가 중</button></li>";
@@ -398,7 +398,7 @@ function addLike(title){
 	var strs = title.split("/");
 	var data = "noboard="+strs[0]+"&objid="+strs[1];
 	
-	if(confirm("좋아요 평가는 취소할 수 없으며, 평가 여부를 상대방이 알 수 없습니다.\n"+strs[1]+" 님에게 좋아요를 보내시겠습니까?")){
+	toastConfirm("좋아요 평가는 취소할 수 없으며, 평가 여부를 상대방이 알 수 없습니다.<br/>"+strs[1]+" 님에게 좋아요를 보내시겠습니까?"), function(){
 		
 		$.ajax({
 			url : "/home/mytour/addHeart",
@@ -414,14 +414,14 @@ function addLike(title){
 			}
 		});	
 		getTourComplist(strs[0]);
-	}
+	});
 }
 
 function absentComplist(title){
 	var strs = title.split("/");
 	var data = "noboard="+strs[0]+"&userid="+strs[1];
 	
-	if(confirm("불참(결석) 처리는 다시 되돌릴 수 없습니다.\n"+strs[1]+" 님을 불참 처리하시겠습니까?")){
+	toastConfirm("불참(결석) 처리는 다시 되돌릴 수 없습니다.<br/>"+strs[1]+" 님을 불참 처리하시겠습니까?"), function(){
 		
 		$.ajax({
 			url : "/home/mytour/absentComplist",
@@ -438,7 +438,7 @@ function absentComplist(title){
 			}
 		});	
 		getTourComplist(strs[0]);
-	}
+	});
 }
 
 function confirmComplist(title){

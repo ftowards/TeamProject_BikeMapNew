@@ -424,7 +424,7 @@ $(function(){
  	
  	// 로그인 팝업 띄우기
  	$("#login").on('click',function(){
- 		window.open("/home/loginPopup","Bikemap Login","width=600px, height=200px, left =200px, top=200px");
+ 		window.open("/home/loginPopup","Bikemap Login","width=780px, height=400px, left =200px, top=200px");
  	});
  	
  	// map 사이즈 조절
@@ -877,7 +877,8 @@ $(function(){
      width : $("#elevation_chart").width(),
      height: $("#elevation_chart").height(),
      legend: "none",
-      titleY: "Elevation (m)",
+	 titleY: "Elevation (m)",
+      colors:["#ffb437"],
     });
   }
     

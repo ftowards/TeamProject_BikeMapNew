@@ -906,6 +906,7 @@ function getTourTime(){
       height: $("#elevation_chart").height(),
       legend: "none",
       titleY: "Elevation (m)",
+      colors:["#ffb437"],
     });
   }
 	
