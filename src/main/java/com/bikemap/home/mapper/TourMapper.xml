@@ -16,8 +16,11 @@
 			(select * from 
 				(select noboard, title, to_char(departure,'YY/MM/DD') departure, to_char(arrive,'YY/MM/DD') arrive, distance, reference from tour
 					where state = '1'
+					<if test='reggender !=null and reggender neq ""'>
+	 					and reggender like '%'||#{reggender}||'%'
+	 				</if>
 					<if test='regage != null and regage neq ""'>
-			 			and regage like '%'||#{regage}||'%' and reggender like '%'||#{reggender}||'%' 
+			 			and regage like '%'||#{regage}||'%' 
 				 	</if>
 				 	<if test='departuredate neq null and !"".equals(departuredate)'>
 				 		and departure <![CDATA[>= ]]> to_date(#{departure}, 'YYYY/MM/DD HH24') 
@@ -44,8 +47,11 @@
 	<select id="getTourRecord" resultType="int" parameterType="com.bikemap.home.tour.PagingVO">
 		select count(noboard) from tour
 	 		where state = '1'
-		 	<if test='regage != null and regage neq ""'>
-		 		and regage like '%'||#{regage}||'%' and reggender like '%'||#{reggender}||'%' 
+	 		<if test='reggender !=null and reggender neq ""'>
+				and reggender like '%'||#{reggender}||'%'
+			</if>
+			<if test='regage != null and regage neq ""'>
+	 			and regage like '%'||#{regage}||'%' 
 		 	</if>
 		 	<if test='departuredate neq null and !"".equals(departuredate)'>
 		 		and departure <![CDATA[>= ]]> to_date(#{departure}, 'YYYY/MM/DD HH24') 

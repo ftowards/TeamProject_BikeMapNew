@@ -236,43 +236,43 @@ public class TourVO {
 		this.arriveTime = arriveTime;
 	}
 	public boolean getGenderM() {
-		if(reggender != null  && reggender.indexOf("1") >= 0) {
+		if(reggender != null  && reggender.indexOf("1") > -1) {
 			genderM = true;
 			}
 		return genderM;
 	}
 	public boolean getGenderF() {
-		if(reggender != null  && reggender.indexOf("2") > 0) {
+		if(reggender != null  && reggender.indexOf("2") > -1) {
 			genderF = true;
 		}
 		return genderF;
 	}
 	public boolean getAge10() {
-		if(regage != null && regage.indexOf("1") >= 0) {
+		if(regage != null && regage.indexOf("1") > -1) {
 			age10 = true;
 		}
 		return age10;
 	}
 	public boolean getAge20() {
-		if(regage != null &&regage.indexOf("2") > 0) {
+		if(regage != null &&regage.indexOf("2") > -1) {
 			age20 = true;
 		}
 		return age20;
 	}
 	public boolean getAge30() {
-		if(regage != null &&regage.indexOf("3") > 0) {
+		if(regage != null &&regage.indexOf("3") > -1) {
 			age30 = true;
 		}
 		return age30;
 	}
 	public boolean getAge40() {
-		if(regage != null &&regage.indexOf("4") > 0) {
+		if(regage != null &&regage.indexOf("4") > -1) {
 			age40 = true;
 		}
 		return age40;
 	}
 	public boolean getAge50() {
-		if(regage != null &&regage.indexOf("5") > 0) {
+		if(regage != null &&regage.indexOf("5") > -1) {
 			age50 = true;
 		}
 		return age50;

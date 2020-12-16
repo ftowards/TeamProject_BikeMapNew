@@ -469,7 +469,7 @@
 			  box-shadow: 2px 2px 4px 2px rgb(171 171 171);
 			  font-size:15px;
 			  width:840px;
-			  height: 110px;
+			  height: auto;
 			  margin-bottom:20px;
 	}
 	

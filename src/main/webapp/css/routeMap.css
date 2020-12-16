@@ -146,6 +146,9 @@
 	#tab4:checked~div:nth-of-type(4){
 		display:block;
 	}
+	#tab5:checked~div:nth-of-type(5){
+		display:block;
+	}
 	
 	
 	#pannel1{

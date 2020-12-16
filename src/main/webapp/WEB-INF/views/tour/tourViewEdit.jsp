@@ -648,6 +648,7 @@ function plotElevation(elevations, status) {
 	  height: $("#elevation_chart").height(),
 	  legend: "none",
 	  titleY: "Elevation (m)",
+      colors:["#ffb437"],
 	});
 }
 //기존에 표시한 마커 제거

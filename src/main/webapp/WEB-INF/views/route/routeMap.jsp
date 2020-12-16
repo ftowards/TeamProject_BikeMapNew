@@ -19,7 +19,7 @@
 				<li><label for="tab2"><img src="<%=request.getContextPath() %>/img/img_course/mapGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/mapColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/mapGray.png'"></label></li>
 				<li><label for="tab3"><img src="<%=request.getContextPath() %>/img/img_course/buildingGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/buildingColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/buildingGray.png'"></label></li>
 				<li><label for="tab4"><img src="<%=request.getContextPath() %>/img/img_course/saveGray.png" onmouseover="this.src='<%=request.getContextPath() %>/img/img_course/saveColor.png'" onmouseout="this.src='<%=request.getContextPath() %>/img/img_course/saveGray.png'"></label></li>
-				<li><label for="tab5" data-target="#dialog1" data-toggle="modal"><img src="<%=request.getContextPath() %>/img/img_course/info2.png"></label></li>
+				<li><label for="tab5"><img src="<%=request.getContextPath() %>/img/img_course/info2.png"></label></li>
 			</ul>
 		</div>
 		
@@ -163,20 +163,13 @@
 				</form>
 				</c:if>
 			</div>
-		</div>
-		
-		
 			<!-- 루트짜기 도움말 탭 -->
 			<div class="tab">
 				도움말 들어가는 탭
 			</div>
-			
-			
-			
+		</div>
 
 		<!-- =====================================모달창====================================== -->
-		
-		
 
 			<!-- 루트짜기 이용가이드 : 1.검색 모달창-->
 	<div class="modal" id="dialog1">
