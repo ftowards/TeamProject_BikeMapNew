@@ -12,21 +12,11 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bikemap.home.notice.NoticeDaoImp;
-import com.bikemap.home.notice.NoticeVO;
-import com.bikemap.home.regist.RegistDaoImp;
-import com.bikemap.home.reply.ReplyDaoImp;
-import com.bikemap.home.reply.ReplyVO;
-import com.bikemap.home.route.RouteDaoImp;
-import com.bikemap.home.route.RouteVO;
 
 
 @Controller

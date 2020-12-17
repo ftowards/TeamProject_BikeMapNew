@@ -13,7 +13,7 @@
 		for(var i = 0; i < result.length ; i++){			
 			//alert(result.length+" : 결과 줄");
 			if(i==0){
-				listTag +=  "<li>번&nbsp;&nbsp;호</li> <li>아이디</li> <li>이&nbsp;&nbsp;름</li> <li>성&nbsp;&nbsp;별</li> <li>나&nbsp;&nbsp;이</li> <li>모임횟수</li> <li>좋아요</li> <li>상태</li> <li>정지기간</li>"	;
+				listTag +=  "<li>번&nbsp;&nbsp;호</li> <li>아이디</li> <li>이&nbsp;&nbsp;름</li> <li>성&nbsp;&nbsp;별</li> <li>나&nbsp;&nbsp;이</li> <li>모임횟수</li> <li>좋아요</li> <li>상태</li> <li>정지설정</li>"	;
 			}
 			listNum = i+(nowPage-1)*10+1;
 			//list안에 데이터 추가
@@ -33,18 +33,23 @@
 			listTag += "<li>"+result[i].birth+"대</li>";
 			listTag += "<li>"+result[i].tourcnt+"회</li>";
 			listTag += "<li>"+result[i].heart+"회</li>";			
-			listTag += "<li style='padding-left:50px; color:red'>";
-		
+			listTag += "<li>";
 			if(result[i].endday==null){
-				listTag +="<input type='button' title="+result[i].userid+" id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/>";
-				listTag += "</li>";
-				listTag += "<li style='color:red'>-</li>";
-			}else{ 
-				listTag +="<input type='button' title="+result[i].userid+" id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/>";
-				listTag += "</li>";
-				listTag += "<li style='color:red'>~"+result[i].endday+"</li>";
-			}
+				if(result[i].active=='N'){
+					listTag += "<span class='status text-warning'>•</span> 미인증</li>";
+				}else{
+					listTag += "<span class='status text-success'>•</span> 활동</li>";
+				}
 				
+				listTag += "<li style='padding-left:50px; color:red'><input type='button' title='"+result[i].userid+"'id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/></li>";
+				
+			}else{
+				listTag += "<span class='status text-danger'>•</span> 정지";
+				listTag += "<p class='arrow_box'>~"+result[i].endday+"</p></li>";
+				//<!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
+				listTag += "<li style='padding-left:50px; color:red'><input type='button' title='"+result[i].userid+"' id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/></li>";	
+			}
+			
 			$("#userList").html(listTag);
 		}
 	}
@@ -68,7 +73,7 @@
 							<li>모임횟수</li>
 							<li>좋아요</li>
 							<li>상태</li>
-							<li>정지기간</li>
+							<li>정지 설정</li>
 							<!-- DB작업완료 후 for문 생성 -->
 							<c:forEach items="${list}" var="vo" varStatus="status">
 								<li>${status.count+(pagingVO.nowPage-1)*10}</li>
@@ -91,7 +96,20 @@
 								<li>${vo.birth}대</li>
 								<li>${vo.tourcnt}회</li>
 								<li>${vo.heart}회</li>
-								<c:if test="${vo.userid!='admin'}">
+								<li>
+									<c:if test="${vo.endday==null}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
+											<c:if test="${vo.active=='N'}">
+												<span class='status text-warning'>•</span> 미인증
+											</c:if>
+											<c:if test="${vo.active=='Y'}">
+												<span class="status text-success">•</span> 활동중
+											</c:if>
+									</c:if>
+									<c:if test="${vo.endday!=null}">
+										<span class="status text-danger">•</span> 정지
+										<p class="arrow_box">~${vo.endday}</p>
+									</c:if>	
+								</li>
 								<li style="padding-left:50px; color:red">
 									<c:if test="${vo.endday==null}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
 										<input type="button" title="${vo.userid}" id="suspendBtn" data-toggle="modal" data-target="#modal_simple"/>
@@ -99,15 +117,7 @@
 									<c:if test="${vo.endday!=null}">
 										<input type="button"  title="${vo.userid}" id="suspendEditBtn" data-toggle="modal" data-target="#modal_suspendEdit"/>
 									</c:if>
-							
 								</li>
-								</c:if>
-								<c:if test="${vo.userid=='admin'}">
-									<li style="padding-left:50px; color:red"> 
-										관리자
-									</li>
-								</c:if>
-								<li style="color:red">~${vo.endday}</li>
 							</c:forEach>
 					</ul>
 					      

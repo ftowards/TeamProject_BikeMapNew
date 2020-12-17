@@ -292,7 +292,7 @@ function sendMsg(noboard, receiver, type){
 	    	userid = $(this).attr("title");
 	        $('#userid').val(userid);        
 	        $('#spUserid').text(userid);
-	       
+	        $("#suspendTime").val(0);
 	        
     	});
     	
@@ -301,7 +301,7 @@ function sendMsg(noboard, receiver, type){
 	    	userid = $(this).attr("title");
 	        $('#suspendEditUserid').val(userid);
 	        $('#spEditUserid').text(userid);
-	   
+	        $("#suspendTime").val(0);
    		 });
     	
     	$(document).on('submit',"#userSuspendFrm", function(){	
