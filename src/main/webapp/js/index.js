@@ -90,7 +90,7 @@ $(function(){
     	$("#toastConfirmMsg").html(msg);
     	
     	var cnt = 0;
-    	$("#toastConfirm").children(".btn").click(function(){
+    	$("#toastConfirm .btn").click(function(){
     		if(typeof callback != 'undefined' && callback && cnt == 0){
     			if(typeof callback == 'function'){
     				callback();
