@@ -19,7 +19,10 @@
 		select userid, userpwd, username, email, gender, to_char(birth,'YYYY-MM-DD') birth from regist where userid = #{userid}
 	</select>
 	<update id="updateUser" parameterType="com.bikemap.home.regist.RegistVO">
-		update regist set userpwd = #{userpwd}, email = #{email} where userid=#{userid}
+		update regist set userpwd = #{userpwd} where userid=#{userid}
+	</update>
+	<update id="updateUser2" parameterType="com.bikemap.home.regist.RegistVO">
+		update regist set userpwd = #{userpwd}, email = #{email}, active='N', code=#{code} where userid=#{userid}
 	</update>
 	<delete id="delUser" parameterType="com.bikemap.home.regist.RegistVO">
 		delete from regist where userid=#{userid} and userpwd=#{userpwd}
@@ -47,5 +50,8 @@
 	</select>
 	<select id="selectTourcnt" resultType="int">
 		select tourcnt from regist where userid =#{param1}
+	</select>
+	<select id="selectUserEmail" resultType="String">
+		select email from regist where userid=#{param1}
 	</select>
 </mapper> 
