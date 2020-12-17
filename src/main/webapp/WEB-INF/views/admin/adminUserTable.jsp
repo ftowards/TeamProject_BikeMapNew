@@ -158,16 +158,16 @@
 					    	
 						    	<div class="pop2Row"> 
 						    		<span class="pop2Left">정지 기간</span> <input type="number" id="suspendTime" name="endday" min="0" max="90"/><span style='font-size:20px; margin:0 15px 0 4px'>일</span>
-						    		<input type="button" name="30days" value="30" class="mint_Btn stopDayBtn" onclick="change_suspendTime(this.value)"/>
-						    		<input type="button" name="60days" value="60" class="mint_Btn stopDayBtn" onclick="change_suspendTime(this.value)"/>
-						    		<input type="button" name="90days" value="90" class="mint_Btn stopDayBtn" onclick="change_suspendTime(this.value)"/>
+						    		<input type="button" name="30days" value="+30" class="stopDayBtn" onclick="change_suspendTime(this.value)"/>
+						    		<input type="button" name="60days" value="+60" class="stopDayBtn" onclick="change_suspendTime(this.value)"/>
+						    		<input type="button" name="90days" value="+90" class="stopDayBtn" onclick="change_suspendTime(this.value)"/>
 						    	</div>
 						    	<div class="pop2Row" style='color: #b90000'><span class="pop2Left" style='color:black'>사유</span><span id="spUserid"></span>회원님은 <span id="spReportNum">10회</span>
 						    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.
 						    	</div>
 						    	<div>
 						    		<span class="pop2Left">메세지</span> 
-						    		<textarea cols="30" rows="6" id="reportMsg" style="overflow:hidden; width:517px; padding:10px; font-size:17px" name="cause">이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.</textarea>
+						    		<textarea cols="30" rows="6" id="reportMsg" style="overflow:hidden; width:517px; padding:17px; font-size:17px" name="cause">이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.</textarea>
 								</div>
 								</div>
 						    	

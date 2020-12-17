@@ -55,6 +55,7 @@ a{
 	margin:30px 15px 0px 5px;
 	border-radius: 15px;
 }
+
 /* ================네비게이션(사이드바) ==============*/
 .navigation {
 	float: left;
@@ -745,8 +746,14 @@ input:checked + .slider:before {
 }
 .stopDayBtn{
 	width:47px;
+	height: 30px;
 	margin-right:5px;
-	
+	background-color: #404040;
+    box-shadow: 2px 2px 4px #828282;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 2px;	
 }
 
 #userStoptitle{
