@@ -177,6 +177,7 @@ function makeRouteTable(result){
 		}
 		listTag += "><span class='slider round'></span>";
 		listTag += "</label>";
+		listTag += "<input type='hidden' class='userid' value='"+result[i].userid+"'/>";
 		listTag += "</li>";
 			
 		}$("#routeList").append(listTag);
