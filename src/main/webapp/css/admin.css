@@ -219,7 +219,7 @@ a{
 
 .adminListHead{
 	margin:60px auto 35px;
-	letter-spacing:8px;
+	letter-spacing:5px;
 }
 .orderRadio{
     text-align:right;
@@ -719,6 +719,13 @@ input:checked + .slider:before {
 	text-align:right;
 	padding-right:100px;
 }
+
+
+.modal-content{
+	width:700px;
+	font-size:14px;
+}
+
 .pop2Row{
 	margin-bottom:20px;
 }
@@ -726,6 +733,26 @@ input:checked + .slider:before {
 	float:left;
 	width:60px;
 	font-weight:bold;
+	text-align:right;
+	margin-right:10px;
+}
+#suspendTime{
+	font-size:17px;
+	width:70px;
+	height:30px;
+	padding-left:5px;
+	
+}
+.stopDayBtn{
+	width:47px;
+	margin-right:5px;
+	
+}
+
+#userStoptitle{
+	font-size: 23px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
 
