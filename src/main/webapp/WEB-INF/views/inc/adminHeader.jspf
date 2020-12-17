@@ -458,7 +458,7 @@ function sendMsg(noboard, receiver, type){
 			            	console.log("스크랩완료~"); 
 			            	console.log(noboard);
 			            	leaveMessage(noboard, userid);
-			            	toast(userid+"님의 글이 추천되었습니다.");
+			            	toast(userid+"님의 글이 추천되었습니다.", 1500);
 		            	}else{
 		            		console.log("스크랩 실패;;")
 		            	}	    
@@ -614,7 +614,7 @@ function sendMsg(noboard, receiver, type){
 			            	console.log("스크랩완료~"); 
 			            	console.log(noboard);
 			            	leaveMessage(noboard, userid);
-			            	toast(userid+"님의 글이 추천되었습니다.");
+			            	toast(userid+"님의 글이 추천되었습니다.", 1500);
 		            	}else{
 		            		console.log("스크랩 실패;;")
 		            	}	    
@@ -632,7 +632,7 @@ function sendMsg(noboard, receiver, type){
 		            success: function (result) {
 		            	if(result>0){
 			            	console.log("스크랩 해제완료");  
-			            	toast(userid+"님의 글이 추천 해제 되었습니다.");      
+			            	toast(userid+"님의 글이 추천 해제 되었습니다.", 1500);      
 		            	}else{
 		            		console.log("스크랩 해제 실패;;")
 		            	}	    

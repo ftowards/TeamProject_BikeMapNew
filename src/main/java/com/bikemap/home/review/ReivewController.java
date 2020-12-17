@@ -119,9 +119,10 @@ public class ReivewController {
 		ModelAndView mav = new ModelAndView();
 		
 		try {
-			ReviewVO vo = dao.reviewSelect(pagingVO.getNoboard());
+			//조회수를 먼저 증가하기
 			dao.hitCount(pagingVO.getNoboard());
 			
+			ReviewVO vo = dao.reviewSelect(pagingVO.getNoboard());
 			pagingVO.setTotalRecord(dao.searchTotalRecord(pagingVO));
 			// 이전 글 다음 글 검색하기
 			
@@ -173,6 +174,7 @@ public class ReivewController {
 	public int reviewEditOk(ReviewVO vo, HttpSession ses) {
 		vo.setUserid((String)ses.getAttribute("logId"));
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
+		System.out.println(vo.getContent()+": content ");
 		int result = 0;
 
 		try {	

@@ -47,23 +47,23 @@ function makeReviewTable(result){
 }
 
 function deleteReview(){
-	$("#reviewList input[type=checkbox]").each(function(i, val){
-		if($(this).prop("checked")){
-			
-			$.ajax({
-				url : "/home/reviewDel",
-				data : "noboard="+$(this).val(),
-				success : function(result){
-					if(result > 0){
-						movePage(1);
-					}else {
-						toast("후기 삭제 오류 입니다. 다시 시도해주십시오.", 1500);
-					}
-				}, error : function(err){
-					console.log(err);
-				}
-			});
-		}
+	$('input[name=listChk]:checked').each(function(i, val){
+			var noboard = $(this).val();
+			toastConfirm(noboard+"번 리뷰 게시물을 삭제하시겠습니까?", function(){
+        $.ajax({
+          url : "/home/reviewDel",
+          data : "noboard="+noboard,
+          success : function(result){
+            if(result > 0){
+              movePage(1);
+            }else {
+              toast("후기 삭제 오류 입니다. 다시 시도해주십시오.", 1500);
+            }
+          }, error : function(err){
+            console.log(err);
+          }
+  			});
+		  });
 	});
 }
 </script>

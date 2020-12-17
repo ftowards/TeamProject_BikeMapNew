@@ -181,7 +181,6 @@ function makeRouteTable(result){
 		listTag += "</li>";
 			
 		}$("#routeList").append(listTag);
-		
 }
 
 </script>	

@@ -18,6 +18,8 @@ $(function(){
 	});
 	
 	$("#writeform").submit(function(){
+		CKEDITOR.instances.content.updateElement();
+		
 		if($("input[name=subject]").val() == ""){
 			toast("제목을 입력하세요.",1500);
 			return false
