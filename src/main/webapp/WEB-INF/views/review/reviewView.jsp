@@ -314,7 +314,9 @@ function popMsgSend(userid){
 				<li class="listBtn">
 					<input type="button" onclick="goReviewList()" value="목록"/>
 				</li>
+				
 			</ul>
+			<a id="back-to-top" href="#"><i class="fa fa-angle-up"></i></a>
 		</div>
 	<!--댓글-->
 		<input type='hidden' id="noboard" value="${vo.noboard }"/>
