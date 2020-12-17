@@ -71,13 +71,13 @@
 		</div>		
 		<div id="input">
 			<ul>
-				<li><input type="text" name="userid" id="userid" class="i4" maxlength="12" size="12" value="${user.userid }" disabled/>
+				<li><input type="text" name="userid" id="userid" class="i4 blocked_input" maxlength="12" size="12" value="${user.userid }" disabled/>
 					<li><span class="reg">&ensp;</span></li>
-				<li><input type="password" name="userpwd" id="userpwd" class="i4" maxlength="12" size="20"/>
+				<li><input type="password" name="userpwd" id="userpwd" class="i4" maxlength="12" size="20" style='font-size: 43px; padding-bottom:10px;'/>
 					<li><span class="reg">&ensp;</span></li>
-				<li><input type="password" name="userpwdChk" id="userpwdChk" class="i4" maxlength="12" size="20"/></li>
+				<li><input type="password" name="userpwdChk" id="userpwdChk" class="i4" maxlength="12" size="20" style='font-size: 43px; padding-bottom:10px;'/></li>
 					<li><span class="reg">&ensp;</span></li>
-				<li><input type="text" name="username" id="username" class="i4" maxlength="5" size="20" value="${user.username }" disabled/>
+				<li><input type="text" name="username" id="username" class="i4 blocked_input" maxlength="5" size="20" value="${user.username }" disabled/>
 					<li><span class="reg">&ensp;</span></li>
 				<li><input type="text" name="email1" id="email1" class="i3" size="6" value="${user.email1 }"/><span class="tlbl"> @ </span><input type="text" id="email2" class="i3" name="email2" size="6" value="${user.email2 }"/>
 					<select id="domainSelect">
@@ -91,7 +91,7 @@
 				<li><input type="radio" name="gender" id="gender" value="1" disabled <c:if test="${user.gender == 1}">checked</c:if>/><span class="tlbl">남 자</span>
 					<input type="radio" name="gender" id="gender" value="2" disabled <c:if test="${user.gender == 2}">checked</c:if>/><span class="tlbl">여 자</span></li>
 					<li><span class="reg">&ensp;</span></li>
-				<li><input type="text" name="birth" id="datepicker" maxlength="10" value="${user.birth }" disabled/>	
+				<li><input type="text" name="birth" id="datepicker" class='blocked_input' maxlength="10" value="${user.birth }" disabled/>	
 					<li><span class="reg">&ensp;</span></li>		
 			</ul>
 		</div>
