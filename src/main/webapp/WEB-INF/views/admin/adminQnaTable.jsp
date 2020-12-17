@@ -104,7 +104,8 @@ $(function(){
 				</div>
 				<!-- /paging -->
 				<div id="partnerBtn">
-					<input type="button" id="partnerBtn1" name="partnerDeleteBtn" onclick="deleteQna();" value="삭제하기" class="mint_Btn"/>
+					<input type="button" id="partnerBtn1" name="partnerDeleteBtn" onclick="deleteQna();" value="삭제하기" class="mint_Btn" style='position: relative; bottom: 17px; right: 65px;
+}'/>
 				</div><!-- btn -->
 			</div><!-- adminContent -->
 			

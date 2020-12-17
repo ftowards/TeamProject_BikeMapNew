@@ -24,11 +24,11 @@ $(function(){
         	<li><input type="text" value="${vo.userid }" readonly/></li>
         	<li>문의유형</li>
         	<li><input type="text" value="${vo.typename }" readonly/></li>
-        	<li>제목</li>
+        	<li>제  목</li>
         	<li><input type="text" value="${vo.subject }" readonly/></li>
-        	<li class="qnaLong">내용</li>
+        	<li class="qnaLong">내  용</li>
         	<li class="qnaLong"><textarea readonly>"${vo.content }"</textarea></li>
-          	<li class="qnaLong">답변</li>
+          	<li class="qnaLong">답  변</li>
 			<c:if test="${vo.answer==null||vo.answer=='N'}">
 				<li class="qnaLong"><textarea name="answercontent" maxlength="200">
 안녕하세요 바이크맵 입니다.
@@ -40,8 +40,8 @@ $(function(){
 			</c:if>
 			<c:if test="${vo.answer==null||vo.answer=='N'}">
 				<li>
-					<input type="submit" value="답변달기" id="replySubmit" class="mint_Btn"/>
-					<input type="reset" value="다시쓰기" class="mint_Btn"/>
+					<input type="submit" value="답변달기" id="replySubmit" class="mint_Btn QnaWriteBtn"/>
+					<input type="reset" value="다시쓰기" class="mint_Btn QnaWriteBtn"/>
 				</li>
         	</c:if>
         </ul>
