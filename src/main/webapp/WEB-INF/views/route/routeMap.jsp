@@ -226,7 +226,7 @@
 						</div>
 						<div id="saveDiv1">
 							<img
-								src="<%=request.getContextPath()%>/img/img_route/bicycle.gif" />
+								src="<%=request.getContextPath()%>/img/img_route/bicycle.gif"/>
 						</div>
 					</form>
 				</c:if>
@@ -234,18 +234,17 @@
 			<!-- 루트짜기 도움말 탭 -->
 			<div class="tab">
 				<div class="info_tab">
-					<span class='info_title'>1. 검색</span></br/>
+					<span class='info_title'>1. 검색</span><br/>
 					<button data-target="#dialog1" data-toggle="modal" class='info_btn'>이용가이드</button>
-					<br /> <span class='info_title'>2. 길찾기</span></br/>
+					<br /> <span class='info_title'>2. 길찾기</span><br/>
 					<button data-target="#dialog2" data-toggle="modal" class='info_btn'>이용가이드</button>
-					<br /> <span class='info_title'>3. 저장 장소</span></br/>
+					<br /> <span class='info_title'>3. 저장 장소</span><br/>
 					<button data-target="#dialog3" data-toggle="modal" class='info_btn'>이용가이드</button>
-					<br /> <span class='info_title'>4. 저장</span></br/>
+					<br /> <span class='info_title'>4. 저장</span><br/>
 					<button data-target="#dialog4" data-toggle="modal" class='info_btn'>이용가이드</button>
-					<br />
+					<br/>
 				</div>
-				<br /> <img
-					src="<%=request.getContextPath()%>/img/img_course/speech_bubble.png" style="width:350px"/>
+				<br/> <img src="<%=request.getContextPath()%>/img/img_course/speech_bubble.png" style="width:350px"/>
 				<div class="info_tab2">
 					<img src="<%=request.getContextPath()%>/img/img_course/bike_black.png" style="width: 165px; margin:25px 0 22px 0"/><br/>
 						<span class="info_txt1">바이크맵 이용이 어려우신가요?</span><br/>
@@ -254,7 +253,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 		<!-- =====================================모달창====================================== -->
