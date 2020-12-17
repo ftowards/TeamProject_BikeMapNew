@@ -264,16 +264,14 @@
 				<div class="modal-content">
 					<!-- header -->
 					<div class="modal-header" style="border: none">
-						<label><img
-							src="<%=request.getContextPath()%>/img/img_course/info.png"
-							style="width: 30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span
-							style='font-size: 25px; color: #EB3807'>[검색]</span></label>
+						<label><img	src="<%=request.getContextPath()%>/img/img_course/info.png" style="width: 30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;
+							<span style='font-size: 25px; color: #EB3807'>[검색]</span>
+						</label>
 						<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 					</div>
 					<!-- body -->
 					<div class="modal-body">
-						<img
-							src="<%=request.getContextPath()%>/img/img_course/1_search_info.png" '/>
+						<img src="<%=request.getContextPath()%>/img/img_course/1_search_info.png"/>
 					</div>
 					<!-- footer -->
 					<div class="modal-footer" style="border: none"></div>
@@ -289,16 +287,14 @@
 				<div class="modal-content">
 					<!-- header -->
 					<div class="modal-header" style="border: none">
-						<label><img
-							src="<%=request.getContextPath()%>/img/img_course/info.png"
-							style="width: 30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span
-							style='font-size: 25px; color: #002060'>[길찾기]</span></label>
+						<label><img src="<%=request.getContextPath()%>/img/img_course/info.png" style="width:30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;
+							<span style='font-size: 25px; color: #002060'>[길찾기]</span>
+						</label>
 						<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 					</div>
 					<!-- body -->
 					<div class="modal-body">
-						<img
-							src="<%=request.getContextPath()%>/img/img_course/2_routepoint_info.png" '/>
+						<img src="<%=request.getContextPath()%>/img/img_course/2_routepoint_info.png"/>
 					</div>
 					<!-- footer -->
 					<div class="modal-footer" style="border: none"></div>
@@ -315,16 +311,14 @@
 				<div class="modal-content">
 					<!-- header -->
 					<div class="modal-header" style="border: none">
-						<label><img
-							src="<%=request.getContextPath()%>/img/img_course/info.png"
-							style="width: 30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span
-							style='font-size: 25px; color: #5A147A'>[저장장소]</span></label>
+						<label><img	src="<%=request.getContextPath()%>/img/img_course/info.png" style="width: 30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;
+							<span style='font-size: 25px; color: #5A147A'>[저장장소]</span>
+						</label>
 						<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 					</div>
 					<!-- body -->
 					<div class="modal-body">
-						<img
-							src="<%=request.getContextPath()%>/img/img_course/3_show_place_list.png" '/>
+						<img src="<%=request.getContextPath()%>/img/img_course/3_show_place_list.png"/>
 					</div>
 					<!-- footer -->
 					<div class="modal-footer" style="border: none"></div>
@@ -341,16 +335,14 @@
 				<div class="modal-content">
 					<!-- header -->
 					<div class="modal-header" style="border: none">
-						<label><img
-							src="<%=request.getContextPath()%>/img/img_course/info.png"
-							style="width: 30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;<span
-							style='font-size: 25px; color: #2E75B6'>[저장]</span></label>
+						<label><img	src="<%=request.getContextPath()%>/img/img_course/info.png" style="width: 30px">&ensp;한 눈에 보는 바이크맵 이용가이드&nbsp;
+							<span style='font-size: 25px; color: #2E75B6'>[저장]</span>
+						</label>
 						<button data-dismiss="modal" class="applyTourCloseBtn">X</button>
 					</div>
 					<!-- body -->
 					<div class="modal-body">
-						<img
-							src="<%=request.getContextPath() %>/img/img_course/4_route_save.png" '/>
+						<img src="<%=request.getContextPath() %>/img/img_course/4_route_save.png"/>
 					</div>
 					<!-- footer -->
 					<div class="modal-footer" style="border: none"></div>
