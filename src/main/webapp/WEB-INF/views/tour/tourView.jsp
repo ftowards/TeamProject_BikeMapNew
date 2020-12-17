@@ -491,7 +491,7 @@ function setComplist(result){
 	var $result = $(result);
 	
 	var manageCondition = $("#manageConditon").val();
-	var heartImg = "<img src='<%=request.getContextPath()%>/img/img_myRoute/like.png' style='width:25px;'>";
+	var heartImg = "<img src='<%=request.getContextPath()%>/img/img_myRoute/like3.png' style='width:19px; margin-right:5px'>";
 	
 	$result.each(function(i, v){
 		tag += "<li>"+v.userid+"</li>";
@@ -504,7 +504,7 @@ function setComplist(result){
 		
 		tag += "<li>"+gender+"</li>";
 		tag += "<li>"+v.tourcnt+"</li>";
-		tag += "<li>"+heartImg+v.heart+"</li>";
+		tag += "<li>"+heartImg+"<span style='color:#cc113c; font-weight:bold;'>"+v.heart+"</span>"+"</li>";
 		
 		
 		if($("#logId").val() == $("#userid").val()){ // 작성자면
