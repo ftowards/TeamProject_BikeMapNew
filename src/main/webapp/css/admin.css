@@ -181,8 +181,10 @@ a{
 	display : inline-block;
 }
 .adminContent a{
-	color: #000000;
+	color:currentColor;
 	text-decoration: none;
+	font-size: 17px;
+    letter-spacing: 1px;
 }
 
 #tableContent {
@@ -477,7 +479,7 @@ small {
 }
  #questionList>li {
  	float: left;
-	width: 15%;
+	width: 12%;
  	font-size:16px;
 	height:50px;
 	line-height : 50px;
@@ -485,11 +487,11 @@ small {
 	background-color: #fff;
 }
 #questionList>li:nth-child(6n+4) {
-	width: 37%;
+	width: 41%;
 	text-align : left;
 }
 #questionList>li:nth-child(6n+1){
-	width: 3%;
+	width: 6%;
 }
 #questionList>li:nth-child(4) {
 	text-align : center;
@@ -775,6 +777,7 @@ input:checked + .slider:before {
 	margin : 60px 60px;
 }
 .answerYet{
+	color:#2e7bcc;
 	font-weight : 700;
 }
 

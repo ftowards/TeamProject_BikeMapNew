@@ -21,7 +21,7 @@ $(function(){
         <input type="hidden" name="noqna" value="${vo.noqna}"/>
         <ul class="adminQnaView">
         	<li>작성자</li>
-        	<li><input type="text" value="${vo.subject }" readonly/></li>
+        	<li><input type="text" value="${vo.userid }" readonly/></li>
         	<li>문의유형</li>
         	<li><input type="text" value="${vo.typename }" readonly/></li>
         	<li>제목</li>
