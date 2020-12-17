@@ -35,12 +35,17 @@
 			listTag += "<li>"+result[i].heart+"회</li>";			
 			listTag += "<li>";
 			if(result[i].endday==null){
-				listTag += "<span class='status text-success'>•</span> Active</li>";
+				if(result[i].active=='N'){
+					listTag += "<span class='status text-warning'>•</span> 미인증</li>";
+				}else{
+					listTag += "<span class='status text-success'>•</span> 활동</li>";
+				}
+				
 				listTag += "<li style='padding-left:50px; color:red'><input type='button' title='"+result[i].userid+"'id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/></li>";
 				
 			}else{
-				listTag += "<span class='status text-danger'>•</span> Suspended";
-				listTag += "<p class='arrow_box'>정지기간 : ~"+result[i].endday+"까지</p></li>";
+				listTag += "<span class='status text-danger'>•</span> 정지";
+				listTag += "<p class='arrow_box'>~"+result[i].endday+"</p></li>";
 				//<!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
 				listTag += "<li style='padding-left:50px; color:red'><input type='button' title='"+result[i].userid+"' id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/></li>";	
 			}
@@ -93,10 +98,15 @@
 								<li>${vo.heart}회</li>
 								<li>
 									<c:if test="${vo.endday==null}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
-										<span class="status text-success">•</span> Active
+											<c:if test="${vo.active=='N'}">
+												<span class='status text-warning'>•</span> 미인증
+											</c:if>
+											<c:if test="${vo.active=='Y'}">
+												<span class="status text-success">•</span> 활동중
+											</c:if>
 									</c:if>
 									<c:if test="${vo.endday!=null}">
-										<span class="status text-danger">•</span> Suspended
+										<span class="status text-danger">•</span> 정지
 										<p class="arrow_box">~${vo.endday}</p>
 									</c:if>	
 								</li>
