@@ -35,13 +35,13 @@ $(function(){
 			if(result[i].answer == 'N'){
 				listTag += "<li class='answerYet'>"+result[i].noqna+"</li>";
 				listTag += "<li class='answerYet'>"+result[i].userid+"</li>";
-				listTag += "<li id='subject' class='wordCut answerYet' ><a href='/home/adminQnaWrite?noqna="+result[i].noqna+"'>"+result[i].subject+"</a></li>";
+				listTag += "<li id='subject' class='wordCut answerYet'><a href='/home/adminQnaWrite?noqna="+result[i].noqna+"'>"+result[i].subject+"</a></li>";
 				listTag += "<li class='answerYet'>"+result[i].writedate+"</li>";
-				listTag += "<li style='color:00B0B0'  class='answerYet'>답변 대기</li>";
+				listTag += "<li class='answerYet' style='letter-spacing:1px; font-size:17px;'>대기중</li>";
 			}else{
 				listTag += "<li>"+result[i].noqna+"</li>";
 				listTag += "<li >"+result[i].userid+"</li>";
-				listTag += "<li id='subject' class='wordCut' ><a href='/home/adminQnaWrite?noqna="+result[i].noqna+"'>"+result[i].subject+"</a></li>";
+				listTag += "<li id='subject' class='wordCut' style='color:black'><a href='/home/adminQnaWrite?noqna="+result[i].noqna+"'>"+result[i].subject+"</a></li>";
 				listTag += "<li>"+result[i].writedate+"</li>";
 				listTag += "<li style='color:00B0B0'>답변 완료</li>";
 			}
@@ -75,7 +75,7 @@ $(function(){
 					<h1 class=adminListHead>1:1 문의사항</h1>
 						<div class="answerAlready">
 							<input type="checkbox" id="answer" name="answer" value="N" />
-							<span>미답변 만 보기</span>
+							<span>대기중인 답변만 보기</span>
 						</div>
 					<ul id="questionList"></ul>			
 				</div>
