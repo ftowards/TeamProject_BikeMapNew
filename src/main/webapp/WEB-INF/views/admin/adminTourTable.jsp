@@ -47,7 +47,7 @@ function setAcodianList(result, noboard){
            }
            
            tag += "<li>"+val.tourcnt+"</li>";
-           tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
+           tag += "<li><img src='/home/img/img_myRoute/like3.png'/>"+"<span style='color:#cc113c'>"+val.heart+"</span>"+"</li>";
            tag += "<li><button class='tourOk'>참가 중</button></li>";
         }
      });
