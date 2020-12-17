@@ -32,10 +32,7 @@
 	 		<mvc:mapping path="/route/setCloseRoute3"/>	 
 	 		<mvc:mapping path="/route/setOpenRoute"/>
 	 		<mvc:mapping path="/route/deleteRoute"/>
-	 		<mvc:mapping path="/scrapRoute"/>	 
- 		
-	 		<mvc:mapping path="/tourWriteForm"/>
-	 		<mvc:mapping path="/tourWriteFormOk"/>
+		
 	 		<mvc:mapping path="/applyTour"/>
 	 		<mvc:mapping path="/checkCompllistIn"/>
 	 		<mvc:mapping path="/cancelTour"/>
@@ -47,9 +44,6 @@
 	 		<mvc:mapping path="/mytour/addHeart"/>
 	 		<mvc:mapping path="/mytour"/>
 	 		<mvc:mapping path="/tourApply"/>
-	 		<mvc:mapping path="/deleteTourView"/>
-	 		<mvc:mapping path="/tourViewEdit"/>
-	 		<mvc:mapping path="/tourEditFormOk"/>
 
 			<mvc:mapping path="/insertNotice"/>
 			<mvc:mapping path="/sendMsg"/>
@@ -65,17 +59,28 @@
 			<mvc:mapping path="/delReply"/>
 	 		<mvc:mapping path="/updateReply"/>
 	 		
-	 		<mvc:mapping path="/reviewWriteForm"/>
+	 		<mvc:mapping path="/setThumb"/>
+		 		
+	 		<bean class="com.bikemap.home.interceptor.LoginInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/tourWriteForm"/>
+	 		<mvc:mapping path="/tourWriteFormOk"/>
+			<mvc:mapping path="/deleteTourView"/>
+	 		<mvc:mapping path="/tourViewEdit"/>
+	 		<mvc:mapping path="/tourEditFormOk"/>
+			
+		
+			<bean class="com.bikemap.home.interceptor.TourInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/reviewWriteForm"/>
 			<mvc:mapping path="/reviewWriteFormOk"/>
 	 		<mvc:mapping path="/reviewEdit"/>
 		 	<mvc:mapping path="/reviewEditOk"/>
 			<mvc:mapping path="/reviewDel"/>
-	 		<mvc:mapping path="/setThumb"/>
-		 	<mvc:mapping path="/scrapReview"/>
-			<mvc:mapping path="/scrapReviewAll"/>
-	 		<mvc:mapping path="/releaseReview"/>
-		 		
-	 		<bean class="com.bikemap.home.interceptor.LoginInterceptor"/>
+		
+			<bean class="com.bikemap.home.interceptor.ReviewInterceptor"/>
 		</mvc:interceptor>
 		<mvc:interceptor>
 	 		<mvc:mapping path="/adminUser"/>
@@ -90,9 +95,14 @@
 	 		
 	 		<mvc:mapping path="/adminRoute"/>
 	 		<mvc:mapping path="/adminRouteAjax"/>
+	 		<mvc:mapping path="/scrapRoute"/>	 
+ 
 	 		
 	 		<mvc:mapping path="/adminTour"/>
 	 		<mvc:mapping path="/adminTourAjax"/>	 	 
+	 		<mvc:mapping path="/scrapReview"/>
+			<mvc:mapping path="/scrapReviewAll"/>
+			<mvc:mapping path="/releaseReview"/>
 	 			 		
 	 		<bean class="com.bikemap.home.interceptor.AdminInterceptor"/>	
 	 	</mvc:interceptor>

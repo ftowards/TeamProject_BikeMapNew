@@ -15,7 +15,7 @@ function setCloseRoute1(noboard, type){
   		data : "noboard="+noboard,
   		success : function(result){
   			if(result > 0){
-  				toast("현재 투어나 후기에 사용 중으로 "+msg+"가 불가합니다");
+  				toast("현재 투어에 사용 중으로 "+msg+"가 불가합니다");
 			}else{
 			  	// 1. 스크랩 여부 >> 진행 시 스크랩 취소 됨
 			  	
@@ -45,7 +45,7 @@ function setCloseRoute1(noboard, type){
   // 2. 현재 해당 루트를 가지고 있는 사람 수 체크 + 명단 가져오기
   function setCloseRoute2(noboard, type){
   	
-  	var msg = "삭제";
+  	var msg = "비공개 처리";
   	
 	$.ajax({
   	  	url : "/home/route/setCloseRoute2",

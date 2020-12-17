@@ -45,4 +45,7 @@
 	<select id="searchId" resultType="String" parameterType="String">
 		select userid from regist where userid like '%'||#{param1}||'%'
 	</select>
+	<select id="selectTourcnt" resultType="int">
+		select tourcnt from regist where userid =#{param1}
+	</select>
 </mapper> 

@@ -138,6 +138,21 @@ function goReviewView(noboard){
 	$("#pagingVO").submit();
 }
 
+function goWriteForm(){
+	
+	$.ajax({
+		url: "/home/checkTourcnt",
+		success : function(result){
+			if(result < 1){
+				toast("투어 참가 횟수가 1회 미만일 경우 리뷰를 작성할 수 없습니다.");
+			}else {
+				location.href='<%=request.getContextPath()%>/reviewWriteForm';
+			}
+		},error : function(err){
+			console.log(err);
+		}
+	});
+}
 
 </script>
 <!-- 후기보기메인 -->
@@ -170,7 +185,7 @@ function goReviewView(noboard){
 				<input type="radio" name="orderReview" id="orderAsc" value="thumb" <c:if test="${pagingVO.order == 'thumb' }">checked</c:if>/>
 					<label for="orderAsc" class="orderBtn">추천순</label></li>
 				<li>
-				<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/reviewWriteForm'"></li>
+				<input type="button" class="gray_Btn" name="reviewWriteBoard" value="글쓰기" onclick="goWriteForm()"></li>
 			</ul>
 		</div>
 

@@ -43,6 +43,7 @@ public interface RegistDaoImp {
 	// 아이디 찾기
 	public List<String> searchId(String word);
 	
-	
+	// 투어 카운트 확인하기
+	public int selectTourcnt(String userid);
 
 }

@@ -55,4 +55,5 @@ public interface ReviewDaoImp {
 	
 	// 추천 비추천 호출
 	public ReviewVO selectReviewThumb(int noboard);
+	
 }
