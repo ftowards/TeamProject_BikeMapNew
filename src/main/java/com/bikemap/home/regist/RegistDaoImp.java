@@ -45,5 +45,11 @@ public interface RegistDaoImp {
 	
 	// 투어 카운트 확인하기
 	public int selectTourcnt(String userid);
+	
+	// 이메일 확인
+	public String selectUserEmail(String userid);
+	
+	// 회원 정보 수정 2
+	public int updateUser2(RegistVO vo);
 
 }

@@ -55,6 +55,7 @@ a{
 	margin:30px 15px 0px 5px;
 	border-radius: 15px;
 }
+
 /* ================네비게이션(사이드바) ==============*/
 .navigation {
 	float: left;
@@ -219,7 +220,7 @@ a{
 
 .adminListHead{
 	margin:60px auto 35px;
-	letter-spacing:8px;
+	letter-spacing:5px;
 }
 .orderRadio{
     text-align:right;
@@ -740,13 +741,46 @@ input:checked + .slider:before {
 	text-align:right;
 	padding-right:100px;
 }
+
+
+.modal-content{
+	width:700px;
+	font-size:14px;
+}
+
 .pop2Row{
 	margin-bottom:20px;
 }
 .pop2Left{
-	float:left;
-	width:60px;
-	font-weight:bold;
+    float: left;
+    width: 73px;
+    font-weight: bold;
+    text-align: right;
+    font-size: 16px;
+}
+#suspendTime{
+	font-size:17px;
+	width:70px;
+	height:30px;
+	padding-left:5px;
+	
+}
+.stopDayBtn{
+	width:47px;
+	height: 30px;
+	margin-right:5px;
+	background-color: #404040;
+    box-shadow: 2px 2px 4px #828282;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 2px;	
+}
+
+#userStoptitle{
+	font-size: 23px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
 
