@@ -221,7 +221,7 @@ a{
 
 
 .adminListHead{
-	margin:60px auto 35px;
+	margin:50px auto 10px;
 	letter-spacing:5px;
 }
 .orderRadio{
@@ -484,8 +484,10 @@ small {
 }
 
 #reviewBtnDiv{
-	text-align : right;
-	margin-right : 10%;	
+    text-align: right;
+    margin-right: 8%;
+    position: relative;
+    bottom: 23px;
 }
 
 #reviewBtnDiv>*{
@@ -805,12 +807,13 @@ input:checked + .slider:before {
 /*1:1문의내역 수정 페이지*/
 
 #questionReplyDiv{
+	padding-left:100px;
     width: calc(100% - 300px);
 	height:auto;
 	float:left;
 }
 .question_title{
-	margin : 60px 60px;
+	margin:70px 60px 33px 60px;
 }
 .answerYet{
 	color:#2e7bcc;
@@ -823,7 +826,7 @@ input:checked + .slider:before {
 }
 .adminQnaView>li{
 	float: left;
-	margin : 15px 0;
+	margin : 13px 0;
 	height : 30px;
 	line-height : 30px;
 }
@@ -840,23 +843,30 @@ input:checked + .slider:before {
 	font-size : 14px;
 }
 .adminQnaView>li:nth-of-type(2n+2)>input{
+	font-size:19px;
     border-radius:6px;
 	border:none;
-	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-	height : 30px;
+	/*box-shadow:2px 2px 5px #9b9c9c;*/
+	height : 36px;
 	min-width : 200px;
 	width : auto;
+	margin-left:50px;
+	padding:0 10px;
 }
 
 .adminQnaView>li:nth-of-type(2n+2)>textarea{
-	width : 400px;
-	height : 150px;
-	line-height : 30px;
-	resize: none;	
-	   border-radius:6px;
-	border:none;
-	box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-	
+    width: 500px;
+    height: 160px;
+    line-height: 28px;
+    margin-left:60px;
+    resize: none;
+    border-radius: 6px;
+    word-spacing: 2px;
+    padding: 8px 0 10px 15px;
+    font-size: 17px;
+    border: none;
+    background-color:#eee;
+    box-shadow: 2px 2px 5px #9b9c9c;
 }
 .adminQnaView .qnaLong{
 	height : 150px;
@@ -866,7 +876,8 @@ input:checked + .slider:before {
     height: 50px;
     margin: 20px auto;
     text-align: center;
-    }
+    padding-left:140px;
+}
 .adminQnaView>li:nth-of-type(11)>*{
 	margin : 0 10px;
    }
@@ -915,4 +926,13 @@ input:checked + .slider:before {
 .modal-dialog{
 	width : fit-content;	
 }
+
+
+.QnaWriteBtn{
+	width: 100px;
+    height: 40px;
+    font-size: 17px;
+    letter-spacing: 1px;
+}	
+	
 }

@@ -148,7 +148,7 @@
 						<option value="hotmail.com">hotmail.com</option>
 					</select>
 					<input type="button" id="emailReset" value="변경" onclick="resetEmail();"/>
-					<input type="button" class="gray_Btn" id="emailChk" style='font-size:15px; display:none;' value="중복검사"/>
+					<input type="button" id="emailChk" value="중복검사체크" style='background-image: url(../img/img_register/email_check.png);'/>
 				</li>
 					<li><span class="reg">&ensp;</span></li>
 				<li><input type="radio" name="gender" id="gender" value="1" disabled <c:if test="${user.gender == 1}">checked</c:if>/><span class="tlbl">남 자</span>

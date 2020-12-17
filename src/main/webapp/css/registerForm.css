@@ -20,6 +20,28 @@
 	input:focus {
 		outline: none;
 	}
+	#email1:disabled, #email2:disabled{
+		background:#ddddec;
+		color:#464698;
+	}
+	#emailReset{
+		background:#484848;
+		color:white;
+	}
+	#emailChk{
+		font-size:15px;
+		display:none;
+		position:relative;
+		left:315px;
+		bottom:-9px;
+	    width: 137px;
+    	color: blue;
+    	font-weight: 400;
+    	text-decoration: none;
+    	text-align: center;
+    	margin-left: 8px;
+    	background-image: url(../img/img_register/email_check.png);
+	}
 	#domainSelect{
 		font-size:14px;
 		height:30px;
