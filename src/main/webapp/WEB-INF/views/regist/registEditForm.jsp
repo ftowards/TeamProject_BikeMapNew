@@ -89,9 +89,10 @@
 				data : data,
 				success : function(result){
 					if(result > 0){
-						alert("회원 정보 수정 완료")
+						toast("회원 정보 수정 완료",1500);
+						setTimeout(function(){location.href="/home";},1500);
 					} else{
-						alert("회원 정보 수정에 실패하였습니다.");
+						toast("회원 정보 수정에 실패하였습니다.");
 					}
 				},error: function(){
 					console.log("회원 정보 수정 오류");
@@ -101,6 +102,16 @@
 		});
 	});
 	
+	function resetEmail(){
+		toastConfirm("이메일을 변경하실 경우 회원 인증이 취소되며,<br/>이메일을 다시 인증하실 때까지 서비스 이용이 불가합니다.<br/>진행하시겠습니까?", function(){
+			$("#email1").prop("disabled", false).val("");
+			$("#email2").prop("disabled", false).val("");
+			$("#domainSelect").prop("disabled", false);
+			
+			$("#emailReset").css("display", "none");
+			$("#emailChk").css("display", "block");
+		});
+	}
 </script>
 <div class="registerMainDiv" style='margin-bottom:150px'>
 	<form id="registerForm" method="post" action="<%=request.getContextPath()%>/registerFormOk">
@@ -134,8 +145,10 @@
 						<option value="naver.com">naver.com</option>
 						<option value="google.com">google.com</option>
 						<option value="daum.net">daum.net</option>
-						<option value="hotmali.com">hotmail.com</option>
+						<option value="hotmail.com">hotmail.com</option>
 					</select>
+					<input type="button" id="emailReset" value="변경" onclick="resetEmail();"/>
+					<input type="button" class="gray_Btn" id="emailChk" style='font-size:15px; display:none;' value="중복검사"/>
 				</li>
 					<li><span class="reg">&ensp;</span></li>
 				<li><input type="radio" name="gender" id="gender" value="1" disabled <c:if test="${user.gender == 1}">checked</c:if>/><span class="tlbl">남 자</span>
