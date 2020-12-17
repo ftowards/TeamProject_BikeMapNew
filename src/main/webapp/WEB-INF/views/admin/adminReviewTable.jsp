@@ -6,9 +6,6 @@
 <!-- Page Content -->
 <script>
 $(function(){
-	movePage(1);	
-	
-	
 	$("#checkAll").on("change", function(){
 		console.log(11);
 		if($("#checkAll").prop("checked")){

@@ -82,8 +82,7 @@ function movePage(page){
 		}else if(${type=='tour'}){
 			data += "&state="+$("input[name=state]:checked").val();
 		}
-		
-		
+			
 		console.log(data);	
 		
 		$.ajax({
@@ -114,7 +113,7 @@ function movePage(page){
 			data : data,
 			success : function(result){
 				if( result.length <= 0 ){
-					alert("검색 결과가 없습니다.");
+					toast("검색 결과가 없습니다.", 1500);
 					location.reload();
 					//history.back();//넣을지 말지 확인후
 				} else{ 
@@ -424,8 +423,8 @@ function sendMsg(noboard, receiver, type){
     	
     	$("#adminSearchFrm").submit(function(){
     		if($("#userSearchWord").val() == ""){
-    			alert("검색어를 입력하세요.");
-    			location.reload();
+    			toast("검색어를 입력하세요.", 1500);
+    			movePage($("#nowPage").val());
     			return false;
     		}
     		return true;

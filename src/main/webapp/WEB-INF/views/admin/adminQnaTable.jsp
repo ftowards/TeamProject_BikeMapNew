@@ -7,7 +7,6 @@
 
 $(function(){
 	movePage(1);
-
 	$("input[name=answer]").on('change', function(){
 		movePage(1);
 	});
