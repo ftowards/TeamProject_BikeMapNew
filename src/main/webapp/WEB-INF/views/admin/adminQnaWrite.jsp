@@ -30,9 +30,10 @@ $(function(){
         	<li class="qnaLong"><textarea readonly>"${vo.content }"</textarea></li>
           	<li class="qnaLong">답변</li>
 			<c:if test="${vo.answer==null||vo.answer=='N'}">
-				<li class="qnaLong"><textarea name="answercontent" maxlength="200">안녕하세요 바이크맵 입니다.
-					이용에 불편을 드려서 죄송합니다.
-					바이크맵 드림.</textarea></li>
+				<li class="qnaLong"><textarea name="answercontent" maxlength="200">
+안녕하세요 바이크맵 입니다.
+이용에 불편을 드려서 죄송합니다.
+바이크맵 드림.</textarea></li>
 			</c:if>					
 			<c:if test="${vo.answer=='Y'}">
 				<li class="qnaLong"><textarea readonly>${vo.answercontent}</textarea></li>
