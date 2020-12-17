@@ -398,7 +398,7 @@ function addLike(title){
 	var strs = title.split("/");
 	var data = "noboard="+strs[0]+"&objid="+strs[1];
 	
-	toastConfirm("좋아요 평가는 취소할 수 없으며, 평가 여부를 상대방이 알 수 없습니다.<br/>"+strs[1]+" 님에게 좋아요를 보내시겠습니까?"), function(){
+	toastConfirm("좋아요 평가는 취소할 수 없으며, 평가 여부를 상대방이 알 수 없습니다.<br/>"+strs[1]+" 님에게 좋아요를 보내시겠습니까?", function(){
 		
 		$.ajax({
 			url : "/home/mytour/addHeart",
@@ -414,14 +414,14 @@ function addLike(title){
 			}
 		});	
 		getTourComplist(strs[0]);
-	}
+	});
 }
 
 function absentComplist(title){
 	var strs = title.split("/");
 	var data = "noboard="+strs[0]+"&userid="+strs[1];
 	
-	toastConfirm("불참(결석) 처리는 다시 되돌릴 수 없습니다.<br/>"+strs[1]+" 님을 불참 처리하시겠습니까?"), function(){
+	toastConfirm("불참(결석) 처리는 다시 되돌릴 수 없습니다.<br/>"+strs[1]+" 님을 불참 처리하시겠습니까?", function(){
 		
 		$.ajax({
 			url : "/home/mytour/absentComplist",
@@ -438,7 +438,7 @@ function absentComplist(title){
 			}
 		});	
 		getTourComplist(strs[0]);
-	}
+	});
 }
 
 function confirmComplist(title){

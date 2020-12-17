@@ -99,6 +99,7 @@ $(function(){
     		}
     		$("#toastConfirm").removeClass("reveal");
     	});
+    	console.log("이미끝남");
    	}	
    	
    	function searchRegion(title){
