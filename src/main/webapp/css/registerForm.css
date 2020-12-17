@@ -96,7 +96,7 @@
 				border-radius: 7px;
 				border:none;
 				box-shadow: 2px 2px 5px #9c9b9b;	
-				height:45px;
+				height:40px;
 				padding:0 11px;
 				font-family:'Noto Sans KR', sans-serif;
 	}
@@ -222,7 +222,7 @@
 		text-decoration: none;
 		text-align : center;
 		background-color: #FF6347;	
-		margin:40px 0 0 20px;
+		margin:15px 0 0 20px;
 		box-shadow: 3px 3px 5px 3px rgb(230,230,230);	
 		
 	}
