@@ -447,4 +447,17 @@ public class RegistController {
 		return list;
 	}
 	
+	// 투어 카운트 체크
+	@RequestMapping("/checkTourcnt")
+	@ResponseBody
+	public int checkTourcnt(HttpSession ses) {
+		int result = 0;
+		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
+		try {
+			result = dao.selectTourcnt((String)ses.getAttribute("logId"));
+		}catch(Exception e) {
+			System.out.println("투어 참가 횟수 확인 에러 " + e.getMessage());
+		}
+		return result;
+	}
 }

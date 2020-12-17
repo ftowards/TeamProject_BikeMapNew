@@ -102,7 +102,3 @@ $(function(){
    		obj.html(tag);
    		obj.submit();
    	}
-   	
-   	function goViewPage(noboard){
-   		return false;
-   	}

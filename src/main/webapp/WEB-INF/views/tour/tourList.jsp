@@ -88,7 +88,7 @@
 	</div>
 	<div>
 		<div id="tourSearchTitleDiv"><label id="tourSearchTitleLbl"><b>동행찾기</b></label>
-			<input type="button" name="tourWriteBoard" value="글쓰기" onclick="location.href='<%=request.getContextPath()%>/tourWriteForm'"></div>
+			<input type="button" name="tourWriteBoard" value="글쓰기" onclick="goWriteForm()"></div>
 		
 	
 		<!--  ===========================db작업 / 코스짜기 받아서 수정할 부분 -->
@@ -418,5 +418,21 @@ $(function(){
 		
 		console.log($("#searchTour").serialize());
 		$("#searchTour").submit();
+	}
+	
+	function goWriteForm(){
+		
+		$.ajax({
+			url: "/home/checkTourcnt",
+			success : function(result){
+				if(result < 5){
+					toast("투어 참가 횟수가 5회 미만일 경우 투어를 모집할 수 없습니다.");
+				}else {
+					location.href='<%=request.getContextPath()%>/tourWriteForm';
+				}
+			},error : function(err){
+				console.log(err);
+			}
+		});
 	}
 </script>

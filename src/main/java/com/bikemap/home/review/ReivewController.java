@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bikemap.home.notice.NoticeDaoImp;
 import com.bikemap.home.notice.NoticeVO;
+import com.bikemap.home.regist.RegistDaoImp;
 import com.bikemap.home.reply.ReplyDaoImp;
 import com.bikemap.home.reply.ReplyVO;
 import com.bikemap.home.route.RouteDaoImp;
@@ -326,4 +327,5 @@ public class ReivewController {
 		}
 		return vo;
 	}
+
 }

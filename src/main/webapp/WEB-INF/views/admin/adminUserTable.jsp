@@ -27,27 +27,27 @@
 			}else if(result[i].gender=='2'){
 				listTag +="여";
 			}
+			
 			listTag += "</li>";
 			
 			listTag += "<li>"+result[i].birth+"대</li>";
 			listTag += "<li>"+result[i].tourcnt+"회</li>";
 			listTag += "<li>"+result[i].heart+"회</li>";			
 			listTag += "<li style='padding-left:50px; color:red'>";
-				if(result[i].endday==null){
-					listTag +="<input type='button' title="+result[i].userid+" id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/>";
-					listTag += "</li>";
-					listTag += "<li style='color:red'>-</li>";
-				}else{ 
-					listTag +="<input type='button' title="+result[i].userid+" id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/>";
-					listTag += "</li>";
-					listTag += "<li style='color:red'>~"+result[i].endday+"</li>";
-				}		
-			}else{
-				listTag += "<li style='padding-left:50px; color:red'>관리자</li>"; 
+		
+			if(result[i].endday==null){
+				listTag +="<input type='button' title="+result[i].userid+" id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/>";
+				listTag += "</li>";
 				listTag += "<li style='color:red'>-</li>";
+			}else{ 
+				listTag +="<input type='button' title="+result[i].userid+" id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/>";
+				listTag += "</li>";
+				listTag += "<li style='color:red'>~"+result[i].endday+"</li>";
 			}
+				
 			$("#userList").html(listTag);
 		}
+	}
 	
 </script>
 
