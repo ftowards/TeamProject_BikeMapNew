@@ -41,6 +41,7 @@ function makeReviewTable(result){
 		}
 		listTag += "><span class='slider round'></span>";
 		listTag += "</label>";
+		listTag += "<input type='hidden' class='userid' ""
 		listTag += "</li>";
 		}$("#reviewList").html(listTag);
 }
