@@ -219,7 +219,7 @@ function setList(result){
 
 // 투어 완료 처리
 function completeTour(noboard){
-	toastConfirm("투어를 완료하면 현재 참가 중인 회원 모두 참가 완료 처리 됩니다.\n투어를 완료하시겠습니까?"), function(){
+	toastConfirm("투어를 완료하면 현재 참가 중인 회원 모두 참가 완료 처리 됩니다.<br/>투어를 완료하시겠습니까?", function(){
 		$.ajax({
 			url : "/home/mytour/completeTour",
 			data : "noboard="+noboard,
@@ -232,7 +232,7 @@ function completeTour(noboard){
 				console.log(err);
 			}
 		});
-	}
+	});
 }
 
 function sendCompleteMsg(noboard){

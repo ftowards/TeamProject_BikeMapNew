@@ -10,18 +10,21 @@
 		$("#datepicker").datepicker({
 			changeYear : true,
 			changeMonth : true,
-			constraintInput : true,
 			dateFormat : "yy-mm-dd",
 			dayNames : ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
 			dayNamesMin : ['일','월','화','수','목','금','토'],
 			monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 			monthNames : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-			yearRange : "1950:2010"
+			yearRange : "1950:2010",
 		});
+		
+		$('#datepicker').datepicker('setDate', 'today');
 		
 		var idChk = "N";
 		var emailChk = "N";
 		var regId = /^[A-Za-z]{1}\w{7,11}$/ ;
+		var regEmail1 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*$/i;
+		var regEmail2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		var regName = /^[가-힣]{2,5}$/ ;
 		
 		
@@ -33,7 +36,7 @@
 				return false;
 			} 
 			if(!regId.test($("#userid").val())){
-				toast("아이디는 8~12자리\n영문자로 시작하여야 하고, 숫자와 특수문자 _ 만 사용 가능합니다.",1500);
+				toast("아이디는 8~12자리, 영문자로 시작하여야 하고, 숫자와 특수문자 _ 만 사용 가능합니다.",1500);
 				return false;
 			}
 			
@@ -68,8 +71,19 @@
 		
 		// 이메일 중복 검사 로직	
 		$("#emailChk").click(function(){
-			if($("#email1").val()=="" || $("#email2").val=="" ){
+			if($("#email1").val()=="" || $("#email2").val()=="" ){
 				toast("이메일을 입력하세요.", 1500);
+				return false;
+			}
+			
+			if(!regEmail1.test($("#email1").val())){
+				console.log($("#email1").val());
+				toast("이메일 주소는 영문자와 숫자, 특수문자 _ 만 사용 가능합니다.",1500);
+				return false;
+			}
+			
+			if(!regEmail2.test($("#email2").val())){
+				toast("이메일 도메인은 영문자와 숫자, 특수문자 _ 만 사용 가능합니다.",1500);
 				return false;
 			}
 			
