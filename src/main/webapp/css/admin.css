@@ -731,11 +731,11 @@ input:checked + .slider:before {
 	margin-bottom:20px;
 }
 .pop2Left{
-	float:left;
-	width:60px;
-	font-weight:bold;
-	text-align:right;
-	margin-right:10px;
+    float: left;
+    width: 73px;
+    font-weight: bold;
+    text-align: right;
+    font-size: 16px;
 }
 #suspendTime{
 	font-size:17px;
