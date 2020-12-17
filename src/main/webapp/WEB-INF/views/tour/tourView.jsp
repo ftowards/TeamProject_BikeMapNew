@@ -392,6 +392,8 @@ $(function(){
 					toast("이미 참가 신청 중 입니다.",1500);
 				}else if(result == 3){
 					toast("이미 참가 중 입니다.",1500);
+				}else if(result == 4){
+					toast("더이상 참가가 불가능합니다.", 1500);	
 				}else if(result == 5){
 					toast("마감 시간이 지나 참가 신청이 처리되지 않았습니다.",1500);
 				}else{
@@ -548,7 +550,9 @@ function confirmComplist(title){
 			if(result == 1){
 				toast("참가 승인 완료되었습니다.",1500);
 				sendMsg(strs[0], strs[1], 1);
-			}else{
+			}else if(result == 2){
+				toast("참여 인원이 마감되었습니다.", 1500);
+			}else {
 				toast("승인 오류 입니다.",1500);
 			}
 		},error : function(err){

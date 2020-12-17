@@ -1,11 +1,17 @@
 package com.bikemap.home.mailng;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
@@ -44,7 +50,14 @@ public class MailHandler {
 		messageHelper.addInline(contentId, dataSource);
 	}
 	
-	public void send() {
+	public void setInline(String contentId, String pathToInline) throws MessagingException, IOException {
+        File file = new File(pathToInline);
+        FileDataSource fsr = new FileDataSource(file);
+
+        messageHelper.addInline(contentId, fsr);
+    }
+	
+	public void send() throws FileNotFoundException, MessagingException {
 		try {
 			mailSender.send(message);
 		}catch (Exception e) {

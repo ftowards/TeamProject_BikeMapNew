@@ -5,7 +5,7 @@
 <script>
 	function registDel(){
 		if(!$("#caution").prop("checked")){
-			alert("안내사항을 확인해주세요.");
+			toast("안내사항을 확인해주세요.",1500);
 			return false;
 		}
 		location.href="/home/registDelChk";
