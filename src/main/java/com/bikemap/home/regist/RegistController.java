@@ -110,7 +110,7 @@ public class RegistController {
 			        
 			        sendMail.setText(
 			        		new StringBuffer().append("<div class='container'>").
-			        		append("<img src='http://localhost:9090/home/img/img_logo/bikemap.png' style='width:400px; margin-top:-60px'>").
+			        		append("<img src='cid:bikemapLogo' style='width:400px; margin-top:-60px'>").
 			        		append("<h1 style='margin:-100px 0 0 40px; z-index:9; color:rgb(0,176,176)'>").
 			        		append("<b>이메일 주소 인증</b></h1>").
 			        		append("<div style='margin:20px 0 0 40px'>").
@@ -118,14 +118,15 @@ public class RegistController {
 			        		append("<p style='margin-top:20px'>회원가입을 위한 본인인증절차를 완료하기 위해<br/>").
 			        		append("아래 링크를 클릭하여 주세요.</p></div>").
 			        		append("<div style='margin:20px 0 0 40px;'>").
-			        		append("<a href='http://localhost:9090/home/registAuthorize?email=").
+			        		append("<a href='http://192.168.0.216:9090/home/registAuthorize?email=").
 			        		append(vo.getEmail()).append("&code=").append(vo.getCode()).
 			        		append("' target='_blank'><button style='border:none; width:150px; height:30px; border-radius:10px; background-color:rgb(0,176,176); color:#fff;'><b>이메일 인증하기</b></button></a>").
 			        		append("</div>").
 			        		append("<div style='margin:20px 0 0 40px; height:30px; width:60%; background-color:#eee;'>").
 			        		append("<p style='padding-top:5px;'>본 메일은 발신전용입니다. 궁금하신 점이나 불편하신 사항은 고객센터를 이용해 주시기 바랍니다.</p>").
 			        		append("</div></div>").toString());
-			        		
+			        
+			        sendMail.setInline("bikemapLogo", "D:\\workspaceSpring\\TeamProject_BikeMap\\src\\main\\webapp\\img\\img_logo\\bikemap.png");
 			        sendMail.setFrom("project.bikemap@gmail.com", "바이크맵");
 			        
 			        sendMail.setTo(vo.getEmail());
@@ -301,7 +302,7 @@ public class RegistController {
 			        
 			        sendMail.setText(
 			        		new StringBuffer().append("<div class='container'>").
-			        		append("<img src='https://drive.google.com/file/d/1HWotSPKp_EfXNcijlTErbKit3n31bosu/view?usp=sharing' style='width:400px; margin-top:-60px'>").
+			        		append("<img src='cid:bikemapLogo' style='width:400px; margin-top:-60px'>").
 			        		append("<h1 style='margin:-100px 0 0 40px; z-index:9; color:rgb(0,176,176)'>").
 			        		append("<b>이메일 주소 인증</b></h1>").
 			        		append("<div style='margin:20px 0 0 40px'>").
@@ -309,7 +310,7 @@ public class RegistController {
 			        		append("<p style='margin-top:20px'>회원가입을 위한 본인인증절차를 완료하기 위해<br/>").
 			        		append("아래 링크를 클릭하여 주세요.</p></div>").
 			        		append("<div style='margin:20px 0 0 40px;'>").
-			        		append("<a href='http://localhost:9090/home/registAuthorize?email=").
+			        		append("<a href='http://192.168.0.216:9090/home/registAuthorize?email=").
 			        		append(vo.getEmail()).append("&code=").append(vo.getCode()).
 			        		append("' target='_blank'><button style='border:none; width:150px; height:30px; border-radius:10px; background-color:rgb(0,176,176); color:#fff;'><b>이메일 인증하기</b></button></a>").
 			        		append("</div>").
@@ -317,6 +318,7 @@ public class RegistController {
 			        		append("<p style='padding-top:5px;'>본 메일은 발신전용입니다. 궁금하신 점이나 불편하신 사항은 고객센터를 이용해 주시기 바랍니다.</p>").
 			        		append("</div></div>").toString());
 			        		
+			        sendMail.setInline("bikemapLogo", "D:\\workspaceSpring\\TeamProject_BikeMap\\src\\main\\webapp\\img\\img_logo\\bikemap.png");
 			        sendMail.setFrom("project.bikemap@gmail.com", "바이크맵");
 			        
 			        sendMail.setTo(vo.getEmail());
@@ -424,7 +426,7 @@ public class RegistController {
 		        
 		        sendMail.setText(
 		        		new StringBuffer().append("<div class='container'>").
-		        		append("<img src='http://localhost:9090/home/img/img_logo/bikemap.png' style='width:400px; margin-top:-60px'>").
+		        		append("<img src='cid:bikemapLogo' style='width:400px; margin-top:-60px'>").
 		        		append("<h1 style='margin:-100px 0 0 40px; z-index:9; color:rgb(0,176,176)'>").
 		        		append("<b>임시 비밀번호</b></h1>").
 		        		append("<div style='margin:20px 0 0 40px'>").
@@ -432,7 +434,9 @@ public class RegistController {
 		        		append("<div style='margin:20px 0 0 40px'>").
 		        		append("임시 비밀번호 : " +tempPwd +"</div><br/>").
 		        		append("<div style='margin:20px 0 0 40px'>").
-		        		append("<a href='http://localhost:9090/home/login'target='_blank'><button style='border:none; width:150px; height:30px; border-radius:10px; background-color:rgb(0,176,176); color:#fff;'><b>로그인 하러 가기</b></button></a></div></div>").toString());
+		        		append("<a href='http://192.168.0.216:9090/home/login'target='_blank'><button style='border:none; width:150px; height:30px; border-radius:10px; background-color:rgb(0,176,176); color:#fff;'><b>로그인 하러 가기</b></button></a></div></div>").toString());
+		        
+		        sendMail.setInline("bikemapLogo", "D:\\workspaceSpring\\TeamProject_BikeMap\\src\\main\\webapp\\img\\img_logo\\bikemap.png");
 		        sendMail.setFrom("project.bikemap@gmail.com", "바이크맵");
 		        sendMail.setTo(resultVO.getEmail());
 		        

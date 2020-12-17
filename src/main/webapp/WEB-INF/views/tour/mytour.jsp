@@ -452,8 +452,10 @@ function confirmComplist(title){
 			if(result == 1){
 				toast("참가 승인 완료되었습니다.",1500);
 				sendMsg(strs[0], strs[1], 1);
-			}else{
-				toast("승인 오류 입니다.");
+			}else if(result == 2){
+				toast("참여 인원이 마감되었습니다.", 1500);
+			}else {
+				toast("승인 오류 입니다.",1500);
 			}
 		},error : function(err){
 			console.log(err);

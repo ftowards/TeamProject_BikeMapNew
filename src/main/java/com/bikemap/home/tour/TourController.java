@@ -298,7 +298,11 @@ public class TourController {
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
 		try {
-			result = dao.confirmComplist(vo);
+			if(dao.checkTourRoom(vo.getNoboard()) <= 0) {
+				return 2;
+			}else {
+				result = dao.confirmComplist(vo);
+			}
 		}catch(Exception e) {
 			System.out.println("투어 참가 승인 에러" + e.getMessage());
 		}		

@@ -6,7 +6,7 @@
 	$(function(){
 		$("#pwdChk").submit(function(){
 			if($("#userpwd").val()==""){
-				alert("비밀번호를 입력하세요.");
+				toast("비밀번호를 입력하세요.",1500);
 				return false;
 			}
 			
@@ -21,7 +21,7 @@
 					if(result >0 ){
 						location.href="/home/registEditForm";
 					}else{
-						alert("비밀번호가 틀립니다.");
+						toast("비밀번호가 틀립니다.");
 					}
 				},error : function(){
 					console.log("비밀번호 확인 오류");
