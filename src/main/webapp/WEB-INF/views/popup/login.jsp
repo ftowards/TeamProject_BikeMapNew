@@ -8,6 +8,7 @@
 	body{
 		width : fit-content;
 		height : fit-content;
+		margin : 0 auto;
 	}
 	.registerMainDiv{
 		margin: 15px auto 5px;

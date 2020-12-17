@@ -47,6 +47,9 @@ $(function(){
 // 알림
 
 	function toast(msg, time) {
+		var y = window.scrollY + 200 + "px";
+		$(".noticeBoard").css("top",y);
+		
 		var toast = $("#toast");
     	toast.addClass("reveal");
     	$("#toastMsg").html(msg);
@@ -79,17 +82,22 @@ $(function(){
 	}
 	
 	function toastConfirm(msg, callback) {
+		var y = window.scrollY + 200 + "px";
+		$(".noticeBoard").css("top",y);
+	
 		var toast = $("#toastConfirm");
     	toast.addClass("reveal");
     	$("#toastConfirmMsg").html(msg);
     	
+    	var cnt = 0;
     	$("#toastConfirm").children(".btn").click(function(){
-    		$("#toastConfirm").removeClass("reveal");
-    		if(typeof callback != 'undefined' && callback){
+    		if(typeof callback != 'undefined' && callback && cnt == 0){
     			if(typeof callback == 'function'){
     				callback();
+    				cnt ++;
     			}
     		}
+    		$("#toastConfirm").removeClass("reveal");
     	});
    	}	
    	

@@ -193,7 +193,11 @@ public class ReivewController {
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 		int result = 0;
 		try {
-			result = dao.reviewDelete(noboard,(String)ses.getAttribute("logId"));			
+			System.out.println(noboard);
+			System.out.println((String)ses.getAttribute("logId"));
+			result = dao.reviewDelete(noboard,(String)ses.getAttribute("logId"));
+			
+			System.out.println(result);
 		}catch(Exception e) {
 			System.out.println("리뷰 삭제 에러" + e.getMessage());
 		}	

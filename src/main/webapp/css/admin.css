@@ -103,31 +103,49 @@ a{
 	margin-bottom:30px;
 }
 
+.noticeBoard{
+	position: absolute;
+	top: 250px;
+	width : fit-content;
+    height : fit-content;
+    left: 50%;
+}
+
 .toast{
-    position: fixed;
-    top: 250px;
+    position: relative;
     width : fit-content;
     height : fit-content;
-    line-height : 30px;
-    left: 50%;
-    padding: 15px 20px;
-    transform: translate(-50%, 10px);
-    border-radius: 20px;
-    font-size: 18px;
-    opacity: 0.3;
+    padding: 10px;
+    border-radius: 8px;
     visibility: hidden;
+    transform: translate(-50%, 10px);
     transition: opacity .5s, visibility .5s, transform .5s;
     background: rgba(0, 0, 0, .35);
-    color: #fff;
+    color: white;
     z-index: 10000;
     box-shadow: 3px 3px 3px rgb(130,130,130);
 }
 
+.toastMsg{
+    width : fit-content;
+    height : fit-content;
+    line-height : 30px;
+    font-size: 16px;
+    padding : 15px;
+	
+}
 .toast.reveal {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0)
 }
+
+.toast .btnBox{
+	display: inline-block;
+	margin : 0 auto;
+	width : 100%;	
+}
+
 
 .toast .mintBtn,.toast .btn{	
 	font-weight: bold;

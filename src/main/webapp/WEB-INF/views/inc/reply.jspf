@@ -243,6 +243,7 @@
 				url : url,
 				data : data,
 				success : function(result){
+					console.log(result);
 					if(result == 1){
 						movePage(1);
 					}else{
@@ -252,6 +253,7 @@
 					console.log("댓글 삭제 오류");
 				}
 			});
+			return false;
 		});
 	}
 	

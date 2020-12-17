@@ -208,8 +208,11 @@ public class AdminController {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		List<ReviewVO>list = new LinkedList<ReviewVO>();
 		try {	
+
 			int totalRecord = dao.searchReviewRecord(vo);
 			vo.setTotalRecord(totalRecord);
+			
+			System.out.println("dfdafdsa" + totalRecord);
 			list = dao.reviewAllRecord(vo);		
 		}catch(Exception e) {
 			System.out.println("리뷰 검색 aJax 화면 호출 에러111"+e.getMessage());

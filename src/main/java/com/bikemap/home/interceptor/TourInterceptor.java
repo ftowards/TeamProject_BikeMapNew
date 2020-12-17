@@ -30,13 +30,14 @@ public class TourInterceptor extends HandlerInterceptorAdapter{
 		HttpSession ses = request.getSession();
 		
 		String logStatus = (String)ses.getAttribute("logStatus");
+		String logId = (String)ses.getAttribute("logId");
 		
 		if(logStatus == null||!logStatus.equals("Y")) {
 			response.sendRedirect(request.getContextPath()+"/login");
 			return false;
-		}else {
+		}else if(!logId.equals("admin")){
 			RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
-			int result = dao.selectTourcnt((String)ses.getAttribute("logId"));
+			int result = dao.selectTourcnt(logId);
 			if(result < 5) {
 				response.sendRedirect(request.getContextPath()+"/tourList");
 				return false;

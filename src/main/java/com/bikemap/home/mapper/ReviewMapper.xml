@@ -41,7 +41,6 @@
  	<delete id = "reviewDelete" >
  		delete from review where noboard=#{param1} 
  		<choose>
- 			<when test='param2 neq null and param2 eq "admin"'></when>
  			<when test='param2 neq null and param2 neq "admin"'>
  				and userid=#{param2}
  			</when>

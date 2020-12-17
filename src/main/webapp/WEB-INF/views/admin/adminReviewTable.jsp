@@ -50,21 +50,20 @@ function deleteReview(){
 	$('input[name=listChk]:checked').each(function(i, val){
 			var noboard = $(this).val();
 			toastConfirm(noboard+"번 리뷰 게시물을 삭제하시겠습니까?", function(){
-		
-			$.ajax({
-				url : "/home/reviewDel",
-				data : "noboard="+noboard,
-				success : function(result){
-					if(result > 0){
-						movePage(1);
-					}else {
-						toast("후기 삭제 오류 입니다. 다시 시도해주십시오.", 1500);
-					}
-				}, error : function(err){
-					console.log(err);
-				}
-			});
-		});
+        $.ajax({
+          url : "/home/reviewDel",
+          data : "noboard="+noboard,
+          success : function(result){
+            if(result > 0){
+              movePage(1);
+            }else {
+              toast("후기 삭제 오류 입니다. 다시 시도해주십시오.", 1500);
+            }
+          }, error : function(err){
+            console.log(err);
+          }
+  			});
+		  });
 	});
 }
 </script>

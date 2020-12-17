@@ -565,16 +565,21 @@ body{
 	
 	/* 알림창 */
 	
-.toast{
-    position: fixed;
-    top: 250px;
-    width : fit-content;
+.noticeBoard{
+	position: absolute;
+	top: 250px;
+	width : fit-content;
     height : fit-content;
     left: 50%;
+}
+.toast{
+    position: relative;
+    width : fit-content;
+    height : fit-content;
     padding: 10px;
-    transform: translate(-50%, 10px);
     border-radius: 8px;
     visibility: hidden;
+    transform: translate(-50%, 10px);
     transition: opacity .5s, visibility .5s, transform .5s;
     background: rgba(0, 0, 0, .35);
     color: white;
@@ -587,6 +592,12 @@ body{
     width: 80px;
     top: -30px;
     left: -20px;
+}
+
+.toast .btnBox{
+	display: inline-block;
+	margin : 0 auto;
+	width : 100%;	
 }
 
 .toastMsg{

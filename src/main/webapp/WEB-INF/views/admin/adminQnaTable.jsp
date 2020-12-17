@@ -12,12 +12,12 @@ $(function(){
 		movePage(1);
 	});
 	
-	$(document).on("change", $("#checkAll"), function(){
+	$(document).on("change", "input[id=checkAll]", function(){
 		console.log(11);
 		if($("#checkAll").prop("checked")){
-			$("#questionList input[type=checkbox]").prop("checked",true);
+			$("#questionList input[name=chkList]").prop("checked",true);
 		}else{
-			$("#questionList input[type=checkbox]").prop("checked",false);
+			$("#questionList input[name=chkList]").prop("checked",false);
 		}
 	});
 });
@@ -31,7 +31,7 @@ $(function(){
 				listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번호</li> <li>아이디</li> <li>제목</li> <li>작성일자</li> <li>답변여부</li> "	;
 			}
 			//list안에 데이터 추가
-			listTag += "<li><input type='checkbox' value='"+result[i].noqna+"' /></li>";
+			listTag += "<li><input type='checkbox' name='chkList' value='"+result[i].noqna+"' /></li>";
 			console.log(result[i]);
 			if(result[i].answer == 'N'){
 				listTag += "<li class='answerYet'>"+result[i].noqna+"</li>";
