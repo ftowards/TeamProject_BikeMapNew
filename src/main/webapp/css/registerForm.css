@@ -27,14 +27,15 @@
 	#emailReset{
 		background:#484848;
 		color:white;
+		width:70px;
 	}
 	#emailChk{
 		font-size:15px;
 		display:none;
 		position:relative;
-		left:315px;
-		bottom:-9px;
-	    width: 137px;
+		left:457px;
+		bottom:36px;
+	    width: 125px;
     	color: blue;
     	font-weight: 400;
     	text-decoration: none;
@@ -60,14 +61,13 @@
 	}
 	
 	.registerWriteForm{
-					
 						float:left;
 						width:20%;
 						margin-left:160px;
 	}
 	.registerTitle{
 					height:80px;
-					margin:35px 0 -10px 150px;
+					margin:65px 0 -10px 150px;
 	}
 	.registerTitleLbl{
 						font-size:36px; 
@@ -90,6 +90,11 @@
 						
 	}
 	
+	.registerFormLbl > li{
+	    margin-bottom: 60px;
+	    font-size: 22px;
+	}
+	
 	.input_ul{
 		width:590px;
 		height:540px;
@@ -102,12 +107,12 @@
 	}
 	#input input{
 		font-size:18px;
-		letter-spacing:2px;
+		letter-spacing:1px;
 	}
 	
 	#input>ul>li:nth-of-type(2n+1){
 		margin:30px 0 0 0;
-		height : 30px;
+		height : 40px;
 	}
 	#input>ul>li:nth-of-type(2n+2){
 		margin : 8px 0 41px 0;
@@ -115,10 +120,10 @@
 		
 	}
 	#input input,#domainSelect{
-				border-radius: 7px;
+				border-radius: 10px;
 				border:none;
 				box-shadow: 2px 2px 5px #9c9b9b;	
-				height:40px;
+				height:48px;
 				padding:0 11px;
 				font-family:'Noto Sans KR', sans-serif;
 	}
@@ -153,9 +158,11 @@
 	}
 
 	.tlbl{
-		font-size: 19px;
+		margin: 0px 4px;
+	    font-size: 19px;
+	    vertical-align: super;
+	    font-weight: 400;
 	    font-family: 'Noto Sans KR', sans-serif;
-	    margin: 0 4px;
 	}
 	
 	.tlbl2{
@@ -183,9 +190,11 @@
 		width:140px;
 	}
 	.i4{
-		width:260px;
+		width:460px;
 	}
-	
+	.i5{
+		width:315px;
+	}
 	
 	
 	.mint_Btn{
