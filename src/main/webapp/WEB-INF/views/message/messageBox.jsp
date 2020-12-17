@@ -75,7 +75,6 @@
 					<input type="checkbox" id="read2" name="read" value="F" />
 					<span>안 읽은 쪽지만 보기</span>
 				</span>				<input type="button" name="deleteMsg" value="삭제" class="btn_del"/>
-				<input type="button" name="readMsg" value="읽음" class="btn"/>
 				<div class="myBoardMainDiv">
 		     		<div>
 		     			<div >

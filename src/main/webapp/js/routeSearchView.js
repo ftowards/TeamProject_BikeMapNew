@@ -524,8 +524,21 @@ $("#grayBtn").on('click', function(){
 			  		success : function(result){
 			  			if(result == 1){
 			  				toastConfirm("현재 추천 루트로 게시 중입니다. "+ msg +" 시 추천 루트 게시가 취소됩니다.<br/>진행 하시겠습니까?", function(){
-			  					setCloseRoute2(noboard, type);
 			  					// 스크랩 취소하는 펑션 필요
+			  					$.ajax({
+									url : "/home/releaseRoute",
+									data : "noboard="+noboard,
+									success : function(result){
+										if(result > 0){
+											toast("스크랩 해제",1000);
+											setTimeout(function(){setCloseRoute2(noboard, type);},1500);
+										}else{
+											toast("스크랩 해제 오류",1500);
+										}
+									}, error : function(err){
+										console.log(err);
+									}
+								});
 			  				});
 			  			}else {
 			  				setCloseRoute2(noboard, type);
@@ -617,7 +630,7 @@ $("#grayBtn").on('click', function(){
 	  		data : "noboard="+noboard,
 	  		success : function(result){
 	  			if(result >0){
-	  				toast(noboard+"번 루트를 삭제하였습니다.",1500);
+	  				toast(noboard+"번 루트를 삭제하였습니다.",1000);
 	  				setTimeout(function(){location.href='/home/routeSearch';},1500);
 	  			}else{
 	  				toast("루트 삭제 오류입니다.<br/>관리자에게 문의하세요.");
@@ -637,7 +650,7 @@ $("#grayBtn").on('click', function(){
 	  		data : "noboard="+noboard,
 	  		success : function(result){
 	  			if(result >0 ){
-	  				toast(noboard+"번 루트를 비공개 처리하였습니다.",1500);
+	  				toast(noboard+"번 루트를 비공개 처리하였습니다.",1000);
 					setTimeout(function(){console.log(noboard); goViewPage(noboard);}, 1500);
 	  			}else{
 	  				toast("루트 비공개 처리 오류입니다.");
@@ -659,8 +672,8 @@ $("#grayBtn").on('click', function(){
 			data : "noboard="+noboard,
 			success : function(result){
 				if(result == 1){
-					toast(noboard + "번 루트가 공개처리 되었습니다.",1500);
-					setTimeout(goViewPage(noboard), 1500);
+					toast(noboard + "번 루트가 공개처리 되었습니다.",1000);
+					setTimeout(function(){goViewPage(noboard);}, 1500);
 					
 				}else{
 					toast("루트 공개 처리 오류입니다.");

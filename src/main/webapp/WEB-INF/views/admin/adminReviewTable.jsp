@@ -49,7 +49,7 @@ function makeReviewTable(result){
 function deleteReview(){
 	$("#reviewList input[type=checkbox]").each(function(i, val){
 		if($(this).prop("checked")){
-
+			
 			$.ajax({
 				url : "/home/reviewDel",
 				data : "noboard="+$(this).val(),

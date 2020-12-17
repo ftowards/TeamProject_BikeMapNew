@@ -232,7 +232,7 @@ function completeTour(noboard){
 				console.log(err);
 			}
 		});
-	});
+	}
 }
 
 function sendCompleteMsg(noboard){
@@ -414,7 +414,7 @@ function addLike(title){
 			}
 		});	
 		getTourComplist(strs[0]);
-	});
+	}
 }
 
 function absentComplist(title){
@@ -438,7 +438,7 @@ function absentComplist(title){
 			}
 		});	
 		getTourComplist(strs[0]);
-	});
+	}
 }
 
 function confirmComplist(title){

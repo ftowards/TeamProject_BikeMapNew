@@ -210,14 +210,17 @@ function sendMsg(noboard, receiver, type){
 // 알림
 
 	function toast(msg, time) {
+		var y = window.scrollY + 200 + "px";
+		$(".noticeBoard").css("top",y);
+
 		var toast = $("#toast");
     	toast.addClass("reveal");
-    	toast.html(msg);
+    	$("#toastMsg").html(msg);
     	
     	var click = '$("#toast").removeClass("reveal")';
     	if(time == null || time == 'undefined'){
     		var tag = "<br><input type='button' class='mintBtn' value='닫기' onclick='"+click+"'/>";
-    		toast.append(tag);
+    		$("#toastMsg").append(tag);
 		}else {
 			setTimeout(function(){
 				toast.removeClass("reveal");
@@ -226,20 +229,24 @@ function sendMsg(noboard, receiver, type){
 	}
 	
 	function toastConfirm(msg, callback) {
+		var y = window.scrollY + 200 + "px";
+		$(".noticeBoard").css("top",y);
+		
 		var toast = $("#toastConfirm");
     	toast.addClass("reveal");
     	$("#toastConfirmMsg").html(msg);
     	
+       	var cnt = 0;
     	$("#toastConfirm").children(".btn").click(function(){
-    		$("#toastConfirm").removeClass("reveal");
-    		if(typeof callback != 'undefined' && callback){
-    			if(typeof callback == 'function'){
+       		if(typeof callback != 'undefined' && callback && cnt == 0){
+       		 	if(typeof callback == 'function'){
     				callback();
+    				cnt++;
     			}
     		}
+    		$("#toastConfirm").removeClass("reveal");
     	});
    	}	
-	
 
 	  
 	 var btn, userid;
@@ -790,11 +797,15 @@ function sendMsg(noboard, receiver, type){
 			</li>
 		</ul>
 	</div>
+<div class="noticeBoard">
 	<div id="toast" class="toast">
-		<div id="toastMsg" class="toastMsg"></div>
-	</div>
-	<div id="toastConfirm" class="toast">
-		<div id="toastConfirmMsg" class="toastMsg"></div>
-		<input type="button" class="mintBtn" value="닫기" onclick="$('#toastConfirm').removeClass('reveal');"/>
-		<input type="button" class="btn" value="확인" />
-	</div>
+			<div id="toastMsg" class="toastMsg"></div>
+		</div>
+		<div id="toastConfirm" class="toast">
+			<div id="toastConfirmMsg" class="toastMsg"></div>
+			<div class="btnBox">
+				<input type="button" class="mintBtn" value="닫기" onclick="$('#toastConfirm').removeClass('reveal');"/>
+				<input type="button" class="btn" value="확인" />
+			</div>
+		</div>
+</div>
