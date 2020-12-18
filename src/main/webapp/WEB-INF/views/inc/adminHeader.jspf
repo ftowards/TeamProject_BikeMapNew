@@ -745,7 +745,7 @@ function sendMsg(noboard, receiver, type){
 				
 			</li>
 			<li>
-				<span class="icon">1대1 문의사항</span>
+				<span class="icon">1:1 문의사항</span>
 				<a href="/home/adminQna">
 					<span class ="title" <c:if test="${type=='qna'}">style='color:#00B0B0'</c:if>>문의사항</span>
 				</a>
