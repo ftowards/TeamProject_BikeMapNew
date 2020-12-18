@@ -218,7 +218,7 @@ function goWriteForm(){
 		</div>
 			
 <!-- 		=============================페이징============================= -->
-		<div id="paging">
+		<div id="paging" style='margin:35px auto 120px'>
 			<ul>
 			<!-- 이전 페이지 -->
 				<c:if test="${pagingVO.nowPage != 1 }">

@@ -55,17 +55,17 @@ $(function(){
 	});
 </script>
 
-<div class="container">
+<div class="container" style='margin-bottom:50px'>
 	<div class="mainDiv">
 		<form id="writeform">
 			<input type="hidden" >
 			<div class = "toplayout">
 					<div class = "box-body">
 						<div class = "reviewtitle">
-							<span class="title">후기 글쓰기 게시판</span>
+							<span class="title" style='font-size:25px'>후기 글쓰기 게시판</span>
 						</div>
 		<!-- 			제목					 -->
-						<input class="form-control" id ="subject" name="subject" placeholder="제목을 입력해주세요." style="width:99%">
+						<input class="form-control" id ="subject" name="subject" placeholder="제목을 입력해주세요.">
 					</div>
 		<!-- 			내용 					 -->
 					<div class = "form-group">
