@@ -94,7 +94,7 @@ function deleteReview(){
 							<li>${vo.userid}</li>
 							<li>${vo.reference }</li>
 							<li><input type="hidden" value="${vo.scrap }" />${vo.hit}회</li>
-							<li><span style='color:blue'>${vo.thumbup} </span>/ <span >${vo.thumbdown} </span></li>
+							<li style='letter-spacing:2px'><span style='color:#0000b5; font-size:19px'>${vo.thumbup} </span><span class='review_lBar'>/</span> <span style='color:#b30200; font-size:19px'>${vo.thumbdown} </span></li>
 							<li>
 								<c:if test="${vo.scrap==null||vo.scrap=='F'}">
 									<label class="switch">
@@ -141,9 +141,9 @@ function deleteReview(){
 					</ul>
 			</div>			<!-- /paging -->
 			<div id="reviewBtnDiv">
-        <input type="button" id="partnerBtn1" name="adminReviewScrapAllBtn" value="관리자 추천" class="mint_Btn"/>
-        <input type="button" id="partnerBtn2" name="adminReviewReleaseAllBtn" value="관리자 추천 해제" class="red_Btn"/>
-        <input type="button" class="mint_Btn" onclick="deleteReview();" value="삭제" />
+        <input type="button" id="partnerBtn1" name="adminReviewScrapAllBtn" value="관리자 추천" class="red_Btn"/>
+        <input type="button" id="partnerBtn2" name="adminReviewReleaseAllBtn" value="관리자 추천 해제" class="mint_Btn"/>
+        <input type="button" class="gray_Btn" onclick="deleteReview();" value="삭제" />
 			</div><!-- btn -->
 
 		</div><!-- adminContent -->
