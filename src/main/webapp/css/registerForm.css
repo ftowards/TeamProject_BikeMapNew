@@ -66,6 +66,10 @@
 						margin-left:160px;
 	}
 	.registerTitle{
+		    padding-left: 150px;
+		    padding-top: 50px;
+	}
+	.registerFormTitle{
 					height:80px;
 					margin:65px 0 -10px 150px;
 	}
@@ -81,6 +85,16 @@
 	}
 	.registerFormLblDiv li{
 							margin:30px 0 50px 0;
+							text-align : left;
+							font-size : 20px;
+							font-weight: bold;
+							color:rgb(64,64,64);
+							height: 30px;
+							line-height: 30px;
+						
+	}
+	.registerFormLblDiv2 li{
+							margin:30px 0 60px 0;
 							text-align : left;
 							font-size : 20px;
 							font-weight: bold;
@@ -139,11 +153,16 @@
 		    font-weight: 400;
 		    font-family: 'Noto Sans KR', sans-serif;
 	}
+	#registerBtn{
+		text-align: center;
+		margin-top:15px;	
+	}
+	
 	#buttons2{
 		text-align: center;
 		margin-top:15px;
 	}
-	#buttons2>input{
+	#buttons2>input, #registerBtn>input{
 		margin: 10px;
 	    font-family: 'Noto Sans KR', sans-serif;
 	}
