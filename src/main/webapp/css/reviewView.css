@@ -37,7 +37,7 @@
 	
 	 .reviewtitle{
 		 text-align: left; 
-		 margin: 60px 0 20px 0;
+		 margin: 70px 0 30px 0;
 	 }
 	 
 	 .reviewtitle li{
@@ -657,16 +657,19 @@
 	
 }
 .form-control{
-	width : 99%;
-	margin: 20px 0px 20px 0px;
-	height: 30px;
-	border: 1px solid #ebecef;
+	width: 100%;
+    margin: 20px 0px 12px 0px;
+    height: 40px;
+    border: 1px solid #cecece;
+    font-size: 18px;
+    letter-spacing: 2px;
+    box-shadow:2px 2px 5px #dedede;
 }
 
 .form-group{
 	margin-bottom: 6px;
-	border: 1px solid #ebecef;
-	
+	border: 1px solid #cecece;
+	box-shadow:2px 2px 5px #dedede;
 }
 .toplayout{
 	margin : 6px;
