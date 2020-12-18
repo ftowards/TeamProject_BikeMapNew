@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
 @Controller
 public class ReivewController {
 
@@ -107,6 +106,7 @@ public class ReivewController {
 				
 		ReviewDaoImp dao =  sqlSession.getMapper(ReviewDaoImp.class);		
 		ModelAndView mav = new ModelAndView();
+
 		
 		try {
 			//조회수를 먼저 증가하기
@@ -323,5 +323,6 @@ public class ReivewController {
 		}
 		return vo;
 	}
+	
 
 }
