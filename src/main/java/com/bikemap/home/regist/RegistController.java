@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -106,26 +107,32 @@ public class RegistController {
 			// 회원 가입에 오류가 없을 시 인증 메일 발송
 			if(result == 1) {
 				MailHandler sendMail = new MailHandler(mailSender);
+				
+				
+					
 			        sendMail.setSubject("[바이크맵] 회원 인증 메일입니다.");
-			        
+		
 			        sendMail.setText(
+			        		
 			        		new StringBuffer().append("<div class='container'>").
-			        		append("<img src='http://localhost:9090/home/img/img_logo/bikemap.png' style='width:400px; margin-top:-60px'>").
-			        		append("<h1 style='margin:-100px 0 0 40px; z-index:9; color:rgb(0,176,176)'>").
+			        		append("<h1 style='margin-left:40px; z-index:9; color:rgb(0,176,176)'>").
 			        		append("<b>이메일 주소 인증</b></h1>").
 			        		append("<div style='margin:20px 0 0 40px'>").
 			        		append("<p>안녕하세요. bikemap입니다.</p>").
 			        		append("<p style='margin-top:20px'>회원가입을 위한 본인인증절차를 완료하기 위해<br/>").
 			        		append("아래 링크를 클릭하여 주세요.</p></div>").
 			        		append("<div style='margin:20px 0 0 40px;'>").
-			        		append("<a href='http://localhost:9090/home/registAuthorize?email=").
+			        		append("<a href='http://192.168.0.216:9090/home/registAuthorize?email=").
 			        		append(vo.getEmail()).append("&code=").append(vo.getCode()).
 			        		append("' target='_blank'><button style='border:none; width:150px; height:30px; border-radius:10px; background-color:rgb(0,176,176); color:#fff;'><b>이메일 인증하기</b></button></a>").
 			        		append("</div>").
 			        		append("<div style='margin:20px 0 0 40px; height:30px; width:60%; background-color:#eee;'>").
 			        		append("<p style='padding-top:5px;'>본 메일은 발신전용입니다. 궁금하신 점이나 불편하신 사항은 고객센터를 이용해 주시기 바랍니다.</p>").
 			        		append("</div></div>").toString());
-			        		
+			        
+			       
+			       
+			       
 			        sendMail.setFrom("project.bikemap@gmail.com", "바이크맵");
 			        
 			        sendMail.setTo(vo.getEmail());
@@ -378,8 +385,8 @@ public class RegistController {
 		        
 		        sendMail.setText(
 		        		new StringBuffer().append("<div class='container'>").
-		        		append("<img src='http://localhost:9090/home/img/img_logo/bikemap.png' style='width:400px; margin-top:-60px'>").
-		        		append("<h1 style='margin:-100px 0 0 40px; z-index:9; color:rgb(0,176,176)'>").
+		  
+		        		append("<h1 style='margin-left:40px; z-index:9; color:rgb(0,176,176)'>").
 		        		append("<b>임시 비밀번호</b></h1>").
 		        		append("<div style='margin:20px 0 0 40px'>").
 		        		append("<p>"+resultVO.getUserid()+" 회원님의 임시 비밀번호가 설정되었습니다.<br/>임시 비밀번호로 접속하신 후 비밀번호 변경하시기 바랍니다.<br/></div>").
