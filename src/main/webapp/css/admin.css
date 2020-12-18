@@ -739,6 +739,7 @@ input:checked + .slider:before {
     margin-top:7px;
     background: url("../img/img_admin/edit_25_25.png")no-repeat;
     object-fit: fill;
+    border:none;
 }
 #suspendEditBtn{
 	width: 26px;
@@ -748,6 +749,7 @@ input:checked + .slider:before {
     margin-top:7px;
     background: url("../img/img_admin/stop_25_25.png")no-repeat;
     object-fit: fill;
+    border:none;
 }
 #suspendDiv{
 	float:left;
