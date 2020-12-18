@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/home/css/myTour.css" type="text/css"/>
 <div id="page-wrapper">
   <!-- 사이드바 -->
@@ -316,7 +318,7 @@ function setAcodianList(result, noboard){
 			}
 			
 			tag += "<li>"+val.tourcnt+"</li>";
-			tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
+			tag += "<li><img src='/home/img/img_myRoute/like3.png'/>"+"<span class='acodianList_like'>"+val.heart+"</span>"+"</li>";
 			
 			if(val.state == '1'){
 				tag += "<li>승인 대기</li>";
@@ -347,7 +349,7 @@ function setAcodianList(result, noboard){
 				}
 				
 				tag += "<li>"+val.tourcnt+"</li>";
-				tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
+				tag += "<li><img src='/home/img/img_myRoute/like3.png'/>"+"<span class='acodianList_like'>"+val.heart+"</span>"+"</li>";
 				
 				if(val.state == '3'){
 					tag += "<li><div class='tourOut' style='margin: 7.5px auto;'>불&nbsp;참</div></li>";
@@ -379,7 +381,7 @@ function setAcodianList(result, noboard){
 			}
 			
 			tag += "<li>"+val.tourcnt+"</li>";
-			tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
+			tag += "<li><img src='/home/img/img_myRoute/like3.png'/>"+"<span class='acodianList_like'>"+val.heart+"</span>"+"</li>";
 			
 			if(val.eval == 'N'){
 				tag += "<li>미평가</li>";

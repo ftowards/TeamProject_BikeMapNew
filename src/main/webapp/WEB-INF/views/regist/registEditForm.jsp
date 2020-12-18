@@ -43,7 +43,7 @@
 					<input type="image" id="emailChk" src="<%=request.getContextPath() %>/img/img_register/email_check6.png" style='box-shadow:none; height:35px'/>
 				</li>
 					<li><span class="reg">&ensp;</span></li>
-				<li><input type="radio" name="gender" id="gender" value="1" disabled <c:if test="${user.gender == 1}">checked</c:if>/><span class="tlbl">남 자</span>
+				<li><input type="radio" name="gender" id="gender" value="1" disabled <c:if test="${user.gender == 1}">checked</c:if>/><span class="tlbl" style='margin-right:95px'>남 자</span>
 					<input type="radio" name="gender" id="gender" value="2" disabled <c:if test="${user.gender == 2}">checked</c:if>/><span class="tlbl">여 자</span></li>
 					<li><span class="reg">&ensp;</span></li>
 				<li><input type="text" name="birth" id="datepicker" class='i5 blocked_input' maxlength="10" value="${user.birth }" disabled/>	

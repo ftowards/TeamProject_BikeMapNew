@@ -258,7 +258,7 @@ function setAcodianList(result, noboard, userid){
 			}
 			
 			tag += "<li>"+val.tourcnt+"</li>";
-			tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
+			tag += "<li><img src='/home/img/img_myRoute/like3.png'/>"+"<span class='acodianList_like'>"+val.heart+"</span>"+"</li>";
 			
 			if(val.state == '1'){
 				tag += "<li>승인 대기</li>";
@@ -288,7 +288,7 @@ function setAcodianList(result, noboard, userid){
 			}
 			
 			tag += "<li>"+val.tourcnt+"</li>";
-			tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
+			tag += "<li><img src='/home/img/img_myRoute/like3.png'/>"+"<span class='acodianList_like'>"+val.heart+"</span>"+"</li>";
 			
 			if(val.state == '3'){
 				tag += "<li>불참</li>";
@@ -318,7 +318,7 @@ function setAcodianList(result, noboard, userid){
 			}
 			
 			tag += "<li>"+val.tourcnt+"</li>";
-			tag += "<li><img src='/home/img/img_myRoute/like.png'/>"+val.heart+"</li>";
+			tag += "<li><img src='/home/img/img_myRoute/like3.png'/>"+"<span class='acodianList_like'>"+val.heart+"</span>"+"</li>";
 			
 			if(val.eval == 'N'){
 				tag += "<li><div class='tourOut' style='color:rgb(64,64,64); background-color:#fff; margin:7px 0 0 60px;'>미평가</div></li>";

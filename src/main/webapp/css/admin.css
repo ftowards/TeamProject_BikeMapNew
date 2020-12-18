@@ -3,7 +3,7 @@ body{
 	font-family: 'Noto Sans KR', sans-serif;
 	width:100%;
 	margin: 0 auto;
-	overflow-y: hidden; overflow-x: hidden;
+	/*overflow-y: hidden; overflow-x: hidden;*/
 }
 textarea:focus {
 	outline: none;
@@ -55,6 +55,28 @@ a{
 	margin:30px 15px 0px 5px;
 	border-radius: 15px;
 }
+
+.text-danger, .text-warning, .text-success{
+	font-size:50px;
+	float:left;
+	position: relative;
+    left: 25px;
+    bottom: 5px;
+    letter-spacing:5px;
+}
+.text-danger{
+	color:#ca201d;
+	letter-spacing: 4px;
+}
+.text-warning{
+	color:#f9a91e;
+}
+.text-success{
+	color:#007302;
+	letter-spacing: 4px;
+}
+
+
 
 /* ================네비게이션(사이드바) ==============*/
 .navigation {
@@ -739,6 +761,7 @@ input:checked + .slider:before {
     margin-top:7px;
     background: url("../img/img_admin/edit_25_25.png")no-repeat;
     object-fit: fill;
+    border:none;
 }
 #suspendEditBtn{
 	width: 26px;
@@ -748,6 +771,7 @@ input:checked + .slider:before {
     margin-top:7px;
     background: url("../img/img_admin/stop_25_25.png")no-repeat;
     object-fit: fill;
+    border:none;
 }
 #suspendDiv{
 	float:left;
