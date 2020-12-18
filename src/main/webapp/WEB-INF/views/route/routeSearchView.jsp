@@ -7,41 +7,7 @@
 <link rel="stylesheet" href="/home/css/routeSearchView.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-//뷰페이지 이동
-function goViewPage(noboard){
-	
-	$("input[name=noboard]").val(noboard)
-	var data = $("#pagingVO").serialize();
-
-	$("#pagingVO").attr("action","/home/routeSearchView" );
-	$("#pagingVO").submit();
-}
-
-// 리스트 이동
-function goList(){
-	var data = $("#pagingVO").serialize();
-	
-	$("#pagingVO").attr("action","/home/routeSearch" );
-	$("#pagingVO").submit();
-}
-
-// 쪽지창 열기
-//쪽지창 열기
-function popMsgSend(userid){
-	
-	if($("#logId").val()== "" || $("#logId").val() == null){
-		toast("쪽지 보내기는 회원만 이용 가능합니다.",1500);	
-		return false;	
-	}
-	
-	if(userid == 'admin' || userid == $("#logId").val()){
-		return false
-	}
-	
-	window.open('/home/sendMsg?userid='+userid, 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0');	
-}
-</script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/route/routeSearchView.js"></script>
 <div class="routeSearchViewDiv2">
 	<div id="mapDiv" style='width:1200px;'>
 		<b>코스정보보기</b><br/><hr id="titleLine"/>
@@ -292,4 +258,3 @@ function popMsgSend(userid){
 	<%@ include file="../inc/reply.jspf"%>
 </div>
 <input type="hidden" id="polyline" value="${routeVO.polyline }"/>
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/routeSearchView.js"></script>
