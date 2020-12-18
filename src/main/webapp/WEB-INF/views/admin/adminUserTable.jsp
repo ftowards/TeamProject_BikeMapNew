@@ -63,7 +63,7 @@
 	<div class="adminContent">
 		
 		<div class="adminTable">
-				<h1 class="adminListHead">회원관리</h1>
+				<h1 class="adminListHead" style='margin-bottom:35px'>회원관리</h1>
 				<ul id="userList">
 							<li>번&nbsp;&nbsp;호</li>
 							<li>아이디</li>
@@ -200,7 +200,6 @@
 				    	<form id="userSuspendEditFrm">
 				    	<input type="hidden" name="userid" id="suspendEditUserid" value=""/><!-- DB쪽 보낼데이터 -->
 					    	<div class="modal-header">
-				        		<h5 class="modal-title">회원 정지 수정 및 설정</h5>
 					        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          		<span aria-hidden="true">&times;</span>
 					        		</button>
@@ -208,24 +207,22 @@
 					      	<div class="modal-body">
 					    	<div id="supspendDiv">
 					    		<div class="pop2Row">
-					    			<input type="radio" name="selSuspend" value="0" >정지해제
-					    			<input type="radio" name="selSuspend" value="1" checked="checked">정지기간연장
+					    			<input type="radio" name="selSuspend" value="0" class='selSuspend_radio'><span class='pop2RowTitle'>정지해제</span>
+					    			<input type="radio" name="selSuspend" value="1" checked="checked" class='selSuspend_radio'><span class='pop2RowTitle'>정지기간연장</span>
 					    		</div> 
 					    		
 						    	<div class="pop2Row" id="aa"> 
-						    		<span class="pop2Left">정지 기간 변경</span> <input type="number" id="suspendEditTime" name="endday"  placeholder="(-입력시 정지기간 감소)"/>일
-						    		<input type="button" name="days" value="3" class="mint_Btn" onclick="change_suspendEditTime(this.value)"/>
-						    		<input type="button" name="days" value="6" class="mint_Btn" onclick="change_suspendEditTime(this.value)"/>
-						    		<input type="button" name="days" value="9" class="mint_Btn" onclick="change_suspendEditTime(this.value)"/> 
+						    		<span class="pop2Left">기간 변경</span> <input type="number" id="suspendEditTime" name="endday"  placeholder="(-입력시 정지기간 감소)"/><span style='font-size:20px; margin:0 15px 0 4px'>일</span>
+						    		<input type="button" name="days" value="3" class="mint_Btn stopDayBtn2" onclick="change_suspendEditTime(this.value)"/>
+						    		<input type="button" name="days" value="6" class="mint_Btn stopDayBtn2" onclick="change_suspendEditTime(this.value)"/>
+						    		<input type="button" name="days" value="9" class="mint_Btn stopDayBtn2" onclick="change_suspendEditTime(this.value)"/> 
 						    	</div>
-						    	<div class="pop2Row"><span class="pop2Left">사유</span><span id="spEditUserid"> </span> 회원님은 <span id="spReportNum">10회</span>
+						    	<div class="pop2Row" style='color:#0101c3'><span class="pop2Left" style='color:black'>사유</span><span id="spEditUserid"></span>회원님은 <span id="spReportNum">10회</span>
 						    	이상 신고 접수되어 아래와 같이 서비스 이용이 제한되었습니다.
 						    	</div>
 						    	<div>
 						    		<span class="pop2Left">메세지</span> 
-						    		<textarea cols="30" rows="6" id="reportMsg" style="overflow:hidden" name="cause">
-						    			이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.
-						    		</textarea>
+						    		<textarea cols="30" rows="6" id="reportMsg" style="overflow:hidden; width:517px; padding:17px; font-size:17px" name="cause">이용정지 관련 문의가 있으시면 아래 1:1 문의하기 버튼을 클릭하여 고객센터로 문의해 주시기 바랍니다.</textarea>
 								</div>
 					    	</div>
 					    	</div>

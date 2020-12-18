@@ -48,6 +48,16 @@ a{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+#searchBtn{
+    width: 55px;
+    height: 34px;
+    letter-spacing: 3px;
+    margin-left: 5px;
+    position: relative;
+    bottom: 2px;
+}
+
 .adminTable{
 	padding:5px;
 }
@@ -742,16 +752,18 @@ input:checked + .slider:before {
 .mint_Btn{
 	  	  border: 1px solid #00B0B0;
 		  background-color: #00B0B0;
+		  box-shadow: 2px 2px 4px #828282;
 }
 .gray_Btn{
 		  border: 1px solid #343434;
 		  background-color: #343434;
+		  box-shadow: 2px 2px 4px #828282;
 }
 .red_Btn{
-
 		  margin:0 10px;
 		  border: 1px solid red;
 		  background-color: red;
+		  box-shadow: 2px 2px 4px #828282;
 }
 #suspendBtn{
     width: 26px;
@@ -795,6 +807,11 @@ input:checked + .slider:before {
 .pop2Row{
 	margin-bottom:20px;
 }
+.pop2RowTitle{
+	font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
 .pop2Left{
     float: left;
     width: 73px;
@@ -802,12 +819,24 @@ input:checked + .slider:before {
     text-align: right;
     font-size: 16px;
 }
+
+.selSuspend_radio{
+	width: 30px;
+    height: 17px;
+}
+    
 #suspendTime{
 	font-size:17px;
 	width:70px;
 	height:30px;
 	padding-left:5px;
 	
+}
+#suspendEditTime{
+	font-size: 15px;
+    width: 180px;
+    height: 30px;
+    padding: 0 5px;
 }
 .stopDayBtn{
 	width:47px;
@@ -826,7 +855,10 @@ input:checked + .slider:before {
     letter-spacing: 1px;
     margin-bottom: 12px;
 }
-
+.stopDayBtn2{
+    width: 29px;
+    margin-right: 5px;
+}
 
 /*1:1문의내역 수정 페이지*/
 
