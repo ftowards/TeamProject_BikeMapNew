@@ -107,6 +107,7 @@
 	}
 	#userPwdDiv input{
 		font-size:41px;
+		padding-bottom: 10px;
 	}
 	
 	.loginLabel{
