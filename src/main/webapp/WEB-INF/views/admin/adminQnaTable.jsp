@@ -12,7 +12,6 @@ $(function(){
 	});
 	
 	$(document).on("change", "input[id=checkAll]", function(){
-		console.log(11);
 		if($("#checkAll").prop("checked")){
 			$("#questionList input[name=chkList]").prop("checked",true);
 		}else{
@@ -31,7 +30,6 @@ $(function(){
 			}
 			//list안에 데이터 추가
 			listTag += "<li><input type='checkbox' name='chkList' value='"+result[i].noqna+"' /></li>";
-			console.log(result[i]);
 			if(result[i].answer == 'N'){
 				listTag += "<li class='answerYet'>"+result[i].noqna+"</li>";
 				listTag += "<li class='answerYet'>"+result[i].userid+"</li>";

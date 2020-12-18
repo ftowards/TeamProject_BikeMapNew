@@ -102,7 +102,7 @@
 												<span class='status text-warning'>•</span> 미인증
 											</c:if>
 											<c:if test="${vo.active=='Y'}">
-												<span class="status text-success">•</span> 활동중
+												<span class="status text-success">•</span> 활동
 											</c:if>
 									</c:if>
 									<c:if test="${vo.endday!=null}">
