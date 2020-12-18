@@ -315,6 +315,7 @@ a{
   background: #333;
   color: #fff;
   font-size: 14px;
+  z-index:500;
 }
 
 .arrow_box:after {

@@ -386,6 +386,42 @@ var btn, userid;
     			movePage($("#nowPage").val());
     		}
     	});
+    	
+		movePage(1);
+		$("input[name=state]").on('change', function(){
+			movePage(1);
+		});
+		
+		$("#checkAll").on("change", function(){
+			if($("#checkAll").prop("checked")){
+				$("#reviewList input[name=listChk]").prop("checked",true);
+			}else{
+				$("#reviewList input[name=listChk]").prop("checked",false);
+			}
+		});
+		
+		$(function(){
+			$("#replyFrm").submit(function(){
+				if($("#questionReplyTxt").val()==""){
+					alert("답변을 입력하세요..");
+					return false;
+				}
+				return true;
+			});
+		});	
+		
+		$("input[name=answer]").on('change', function(){
+			movePage(1);
+		});
+		
+		$(document).on("change", "input[id=checkAll]", function(){
+			if($("#checkAll").prop("checked")){
+				$("#questionList input[name=chkList]").prop("checked",true);
+			}else{
+				$("#questionList input[name=chkList]").prop("checked",false);
+			}
+		});
+				
     });
 
 
@@ -644,3 +680,457 @@ var btn, userid;
 			$("#userList").html(listTag);
 		}
 	}
+	
+	function getTourComplist(noboard ){
+     url = "/home/selectComplist";
+	   
+	   $.ajax({
+	      url : url,
+	      data : "noboard="+noboard,
+	      success : function(result){
+	         setAcodianList(result, noboard);
+	      },error : function(err){
+	         console.log(err);
+	      }
+	   });
+	}
+	
+	// 참가자 목록 만들기
+	function setAcodianList(result, noboard){
+	   console.log(result);
+	   var $result = $(result);
+	   
+	   var tag =""
+	     tag += "<li><b>참가자</b></li><li><b>나이</b></li><li><b>성별</b></li><li><b>모임횟수</b></li><li><b>좋아요</b></li><li><b>참가상태</b></li>";
+	      
+	     $result.each(function(idx, val){
+	        if(val.state == '2'){
+	           tag += "<li><span onclick='popMsgSend(title)' title='"+val.userid+"'>"+val.userid+"</span></li>";
+	           tag += "<li>"+val.age+"대</li>";
+	           
+	           if(val.gender == '1'){
+	              tag += "<li>남</li>";
+	           }else{ 
+	              tag += "<li>여</li>";
+	           }
+	           
+	           tag += "<li>"+val.tourcnt+"</li>";
+	           tag += "<li><img src='/home/img/img_myRoute/like3.png'/>"+"<span style='color:#cc113c'>"+val.heart+"</span>"+"</li>";
+	           tag += "<li><button class='tourOk'>참가 중</button></li>";
+	        }
+	     });
+	     
+	     $("#complist"+noboard).html(tag);
+	}
+
+	function makeTourTable(result){
+		
+		
+		var listTag = "";
+		for(var i = 0; i < result.length ; i++){
+	
+			//list안에 데이터 추가
+			listTag += "<li><input type='checkbox' name='listChk' value='"+result[i].noboard+"'/>";
+			listTag += "<li>"+result[i].noboard+"</li>";
+			listTag += "<li class='wordCut'><a href = '/home/tourView?noboard="+result[i].noboard+"'>"+result[i].title+"</a></li>";
+			listTag += "<li>"+result[i].userid+"</li>";
+			listTag += "<li>"+result[i].party+"</li>";
+			listTag += "<li><a data-toggle='collapse' href='#viewAcodian"+result[i].noboard+"' onclick='getTourComplist("+result[i].noboard+")'>▼</a></li>";
+			listTag += "<li>";
+			if(result[i].state=='1'||result[i].state==null){
+				listTag +="<span class='complete'>미완료</span>";
+			}else if(result[i].state=='2'){
+				listTag +="<span class='imperfect'>완료</span>";
+			}
+			listTag += "</li>";
+			listTag += "<div id='viewAcodian"+result[i].noboard+"' class='panel-collapse collapse'><ul id='complist"+result[i].noboard+"' class='acodianList'></ul></div>";
+			
+			}$("#tourList").html(listTag);
+	}
+	
+	function deleteTour(){
+		var cnt = 0;
+		$("input[name=listChk]").each(function(i, val){
+			if($(this).prop("checked")){
+				cnt ++;
+			}
+		});
+		
+		if(cnt > 1){
+			toast("투어 삭제는 하나씩 진행해주십시오.", 1500);
+			return false;
+		}
+		
+		var noboard =$("input[name=listChk]:checked").val(); 
+		
+		var url ="/home/tourViewDeleteChk";
+		var data = "noboard="+noboard;
+		
+		$.ajax({
+			url: url,
+			data : data,
+			success: function(result){
+				if(result == 1){
+					toast("완료된 여행은 삭제가 불가능합니다.",1500);
+				}else if(result == 2){
+					selectTourCompList(noboard);
+				}else if(result == 3){
+					toastConfirm("삭제된 글은 복구가 불가능합니다.<br/>그래도 삭제하시겠습니까?",function(){
+						deleteTourView(noboard);
+					});
+			}else{
+					toast("글삭제에 실패하였습니다.",1500);
+					}
+				},error:function(){
+					console.log("글삭제 조건 에러");
+				}
+		});
+	}
+
+	//글삭제하기
+	function deleteTourView(noboard){
+		
+		var url = "/home/deleteTourView";
+		var data = "noboard="+noboard;
+		
+		$.ajax({
+			url:url
+			,data:data
+			,success:function(result){
+				if(result == 1){
+					toast("게시글이 삭제되었습니다.",1500);
+					setTimeout(function(){movePage($("#nowPage").val());}, 1500);
+				}else{
+					toast("글삭제에 실패하였습니다.",1500);
+				}
+			},error:function(){
+				console.log("글삭제 에러");
+			}
+		});
+	}	
+
+	// 참여인원 리스트 구하기
+	function selectTourCompList(noboard){
+		var url = "/home/selectTourCompList";
+		var data ="noboard="+noboard;
+		
+		$.ajax({
+			url:url
+			,data:data
+			,success : function(result){
+				if(result.length>0){
+					toastConfirm("현재 "+result.length+"명의 참여인원이 있습니다.<br/>그래도 삭제하시겠습니까?",function(){
+						selectTourCompReceiver(result, noboard);
+					});	
+				}else{
+					toast("참여인원 리스트불러오기에 실패하였습니다.",1500);	
+				}
+			},error:function(){
+				console.log("동행찾기 참여리스트 불러오기 에러");
+			}
+		});
+	}
+
+	// 참여인원
+	function selectTourCompReceiver(result, noboard){
+		var $result = $(result);
+		
+		$result.each(function(i,val){
+			setTimeout(sendTourDeleteMsg(val, noboard), 1500);
+		});
+		
+		deleteTourView(noboard);
+	}	
+	
+	// 게시글 삭제 메세지 보내기
+	function sendTourDeleteMsg(receiver, noboard){
+		var receiver = receiver;
+		var sender = $("#logId").val();
+			
+		var msg = sender + "님이 " + noboard + "번 투어를 취소하였습니다.";
+		var socketMsg = "cancelTourAdmin,"+receiver+","+sender+","+noboard; 
+		
+		var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
+		
+		$.ajax({
+			url: "/home/insertNotice",
+			data: data,
+			success : function(result){
+			},error:function(err){
+				console.log(err);
+			}
+		});
+	}
+	
+	function setCloseRoute1(noboard, type){
+	  	// ++ 레퍼런스 사용 여부
+	  	var msg = "비공개 처리";
+	  	
+	  	$.ajax({
+	  		url : "/home/route/chkReference",
+	  		data : "noboard="+noboard,
+	  		success : function(result){
+	  			if(result > 0){
+	  				toast("현재 투어에 사용 중으로 "+msg+"가 불가합니다");
+				}else{
+				  	// 1. 스크랩 여부 >> 진행 시 스크랩 취소 됨
+				  	
+				  	$.ajax({
+				  		url :"/home/route/setCloseRoute1",
+				  		data : "noboard="+noboard,
+				  		success : function(result){
+				  			if(result == 1){
+				  				toastConfirm("현재 추천 루트로 게시 중입니다. "+ msg +" 시 추천 루트 게시가 취소됩니다.<br/>진행 하시겠습니까?", function(){
+				  					setCloseRoute2(noboard, type);
+				  					// 스크랩 취소하는 펑션 필요
+				  				});
+				  			}else {
+				  				setCloseRoute2(noboard, type);
+				  			}
+				  		}, error : function(err){
+				  			console.log(err);
+				  		}
+				  	});
+				}
+	  		},error : function(err){
+	  			console.log(err);
+	  		}
+	  	});
+	  }
+  
+  // 2. 현재 해당 루트를 가지고 있는 사람 수 체크 + 명단 가져오기
+  function setCloseRoute2(noboard, type){
+  	
+  	var msg = "비공개 처리";
+  	
+	$.ajax({
+  	  	url : "/home/route/setCloseRoute2",
+  	  	data : "noboard="+noboard,
+  	  	success : function(result){
+  	  		console.log(result.length);
+  	  		
+  			if(result.length > 1){
+  				toastConfirm("현재 "+result.length+"명이 해당 루트를 저장하고 있습니다.<br/>"+msg+" 시 루트 저장이 취소됩니다.<br/>진행 하시겠습니까?", function(){
+  					// 저장 취소 , 안내 메세지 발송
+  					cancelRouteSave(noboard, result, type);
+  					
+  					if(type == 'close'){
+  						setCloseRoute3(noboard);
+					}else if(type == 'del'){
+						deleteRoute(noboard);
+					}
+  				});
+  			}else {
+  				if(type == 'close'){
+  					setCloseRoute3(noboard);
+				}else if(type == 'del'){
+					deleteRoute(noboard);
+				}
+  			}
+  		}, error : function(err){
+  			console.log(err);
+  		}
+	});
+  	
+  }
+ 
+ // 3. 비공개로 인한 루트 저장 취소 처리
+ // 4. 루트 저장해서 가지고 있던 사람들에게 메세지 발송
+	  function cancelRouteSave(noboard, result, type){
+	  	var $result = $(result);
+	  	
+	  	var msgType = 1; // 1 : 비공개  , 2 : 삭제
+	
+	  	
+	  	var cnt = 0 ;
+	  	$result.each(function(i,val){  	
+	  		$.ajax({
+	  			url : "/home/route/revertRoutelist",
+	  			data : "noboard="+noboard+"&userid="+val,
+	  			success : function(result){
+	  				if(result == 1){
+	  					sendMsg(noboard, val, msgType);
+	  				}else{
+				  		toast("루트 저장 취소 오류<br/>관리자에 문의하십시오.");
+	  				}
+	  			}, error : function(err){
+	  				console.log(err);
+	  			}
+	  		});
+	  	});
+	}
+	  //비공개 처리
+	function setCloseRoute3(noboard){
+	  	toastConfirm(noboard+"번 루트를 비공개 하시겠습니까?", function(){
+		  	$.ajax({
+		  		url : "/home/route/setCloseRoute3",
+		  		data : "noboard="+noboard,
+		  		success : function(result){
+		  			if(result >0 ){
+		  				toast(noboard+"번 루트를 비공개 처리하였습니다.",1500);
+						setTimeout(function(){}, 1500);
+						movePage($("#nowPage").val());	
+		  			}else{
+		  				toast("루트 비공개 처리 오류입니다.");
+		  			}
+		  		},error : function(err){
+		  			console.log(err);
+		  		}
+		  	});
+	  	});
+  	}
+  
+	function setOpenRoute(noboard){
+	  	
+	  	toastConfirm("루트를 공개 처리하면 검색 및 다른 회원들의 리스트에 저장이 가능합니다.<br/>진행하시겠습니까?", function(){
+	  		$.ajax({
+				url : "/home/route/setOpenRoute",
+				data : "noboard="+noboard,
+				success : function(result){
+					if(result == 1){
+						toast(noboard + "번 루트가 공개처리 되었습니다.",1500);
+						movePage($("#nowPage").val());				
+					}else{
+						toast("루트 공개 처리 오류입니다.");
+					}
+				},error : function(err){
+					console.log(err);
+				}
+	  		});
+	  	});
+	}	
+	  
+	function makeRouteTable(result){
+		$("#routeList").children().remove();
+		var listTag = "";
+		for(var i = 0; i < result.length ; i++){
+			
+			if(i==0){
+				listTag +=  "<li><input type='checkbox' id='checkAll'/></li><li>번&nbsp;&nbsp;호</li> <li>제&nbsp;&nbsp;목</li> <li>작성자</li> <li>평&nbsp;&nbsp;점</li><li>평가횟수</li><li>지&nbsp;&nbsp;역</li><li>비공개여부</li><li>관리자추천</li>"	;
+			}			
+			//list안에 데이터 추가
+			listTag += "<li><input type='checkbox' name='listChk' value='"+result[i].noboard+"'/></li>";
+			listTag += "<li>"+result[i].noboard+"</li>";
+			listTag += "<li class='wordCut'><a href = '/home/routeSearchView?noboard="+result[i].noboard+"'>"+result[i].title+"</a></li>";
+			listTag += "<li>"+result[i].userid+"</li>";
+			listTag += "<li>"+result[i].rating+"</li>";
+			listTag += "<li>"+result[i].ratecnt+"</li>";
+			listTag += "<li class='wordCut' >"+result[i].region+"</li>";
+			
+			listTag += "<li>";
+			listTag += "<label class='switch'>";
+			listTag += "<input type='checkbox' name='adminHideBtn' value='"+result[i].noboard+"'";
+			if(result[i].closed=='T'){
+				listTag += "checked='checked'";
+			}
+			listTag += "><span class='slider round'></span>";
+			
+			listTag += "</li>";
+			listTag += "<li>";
+			listTag += "<label class='switch'>";
+			listTag += "<input type='checkbox' name='adminScrapBtn' value='"+result[i].noboard+"'";
+			if(result[i].scrap=='T'){
+				listTag += "checked='checked'";
+			}
+			listTag += "><span class='slider round'></span>";
+			listTag += "</label>";
+			listTag += "<input type='hidden' class='userid' value='"+result[i].userid+"'/>";
+			listTag += "</li>";
+				
+		}
+		$("#routeList").append(listTag);
+	}
+	
+	function makeReviewTable(result){
+		var listTag = "";
+		for(var i = 0; i < result.length ; i++){
+			if(i==0){
+				listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번&nbsp;&nbsp;호</li> <li>제&nbsp;&nbsp;목</li> <li>작성자</li> <li>레퍼런스 번호</li><li>조회수</li><li>추천/비추천</li> <li>관리자추천</li>"	;
+			}			
+			//list안에 데이터 추가
+			listTag += "<li><input type='checkbox'  name='listChk' value='"+result[i].noboard+"'/></li>"
+			listTag += "<li>"+result[i].noboard+"</li>";
+			listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>"+result[i].subject+"</a></li>";
+			listTag += "<li>"+result[i].userid+"</li>";
+			listTag += "<li>"+result[i].reference+"</li>";
+			listTag += "<li><input type='hidden' value='"+result[i].scrap+"' />"+result[i].hit+"회</li>";
+			listTag += "<li><span style='color:blue'>"+result[i].thumbup+" </span>/ <span >"+result[i].thumbdown+" </span></li>";
+			listTag += "<li>";
+			listTag += "<label class='switch'>";
+			listTag += "<input type='checkbox' name='adminReviewScrapBtn' value='"+result[i].noboard+"'";
+			if(result[i].scrap=='T'){
+				listTag += "checked='checked'";
+			}
+			listTag += "><span class='slider round'></span>";
+			listTag += "</label>";
+			listTag += "<input type='hidden' class='userid' value='"+result[i].userid+"'/>";
+			listTag += "</li>";
+			}$("#reviewList").html(listTag);
+	}
+	
+	function deleteReview(){
+		$('input[name=listChk]:checked').each(function(i, val){
+				var noboard = $(this).val();
+				toastConfirm(noboard+"번 리뷰 게시물을 삭제하시겠습니까?", function(){
+	        $.ajax({
+	          url : "/home/reviewDel",
+	          data : "noboard="+noboard,
+	          success : function(result){
+	            if(result > 0){
+	           		toast("후기를 삭제하였습니다.", 1500);
+	           		setTimeout(movePage(1),1500);
+	            }else {
+	              toast("후기 삭제 오류 입니다. 다시 시도해주십시오.", 1500);
+	            }
+	          }, error : function(err){
+	            console.log(err);
+	          }
+	  			});
+			  });
+		});
+	}
+	
+	function makeQnaTable(result){
+		var listTag = "";
+		for(var i = 0; i < result.length ; i++){		
+			//alert(result.length+" : 결과 줄");
+			if(i==0){
+				listTag +=  "<li><input type='checkbox' id='checkAll' /></li><li>번호</li> <li>아이디</li> <li>제목</li> <li>작성일자</li> <li>답변여부</li> "	;
+			}
+			//list안에 데이터 추가
+			listTag += "<li><input type='checkbox' name='chkList' value='"+result[i].noqna+"' /></li>";
+			if(result[i].answer == 'N'){
+				listTag += "<li class='answerYet'>"+result[i].noqna+"</li>";
+				listTag += "<li class='answerYet'>"+result[i].userid+"</li>";
+				listTag += "<li id='subject' class='wordCut answerYet'><a href='/home/adminQnaWrite?noqna="+result[i].noqna+"'>"+result[i].subject+"</a></li>";
+				listTag += "<li class='answerYet'>"+result[i].writedate+"</li>";
+				listTag += "<li class='answerYet' style='letter-spacing:1px; font-size:17px;'>대기중</li>";
+			}else{
+				listTag += "<li>"+result[i].noqna+"</li>";
+				listTag += "<li >"+result[i].userid+"</li>";
+				listTag += "<li id='subject' class='wordCut' style='color:black'><a href='/home/adminQnaWrite?noqna="+result[i].noqna+"'>"+result[i].subject+"</a></li>";
+				listTag += "<li>"+result[i].writedate+"</li>";
+				listTag += "<li style='color:00B0B0'>답변 완료</li>";
+			}
+		}$("#questionList").html(listTag);
+	}
+	
+	function deleteQna(){
+		$("#questionList input[type=checkbox]").each(function(i, val){
+			if($(this).prop("checked")){
+
+				$.ajax({
+					url : "/home/deleteQna",
+					data : "noqna="+$(this).val(),
+					success : function(result){
+						if(result == 1){
+							movePage(1);
+						}
+					}, error : function(err){
+						console.log(err);
+					}
+				});
+			}
+		});	
+	}
+		
