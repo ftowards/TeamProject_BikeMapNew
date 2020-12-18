@@ -12,7 +12,7 @@
 			    <option value="region" <c:if test="${pagingVO.searchKey != null && pagingVO.searchKey == 'region' }">selected</c:if>>지역</option>
 			</select>
 			<input type="text" id="searchBarWord" name="searchBarWord" class="schBar" style='padding-left:20px; color:#7F7F7F; font-size:17px; font-weight:bolder;'
-				<c:if test="${pagingVO.searchKey != null}">value='${pagingVO.searchWord }'</c:if>/>
+				<c:if test="${pagingVO.searchWord != null}">value='${pagingVO.searchWord }'</c:if>/>
 			<input type="submit" class="mint_Btn" value="검 색" style='width:70px; height:40px'/>
 		</form>
 		<form id="pagingVO" method="post" action="/home/routeSearchView" style="diplay:none">

@@ -105,10 +105,16 @@
 				url : url,
 				data : data,
 				success : function(result){
-					if(result > 0){
+					if(result == 1){
 						toast("회원 정보 수정 완료",1500);
 						setTimeout(function(){location.href="/home";},1500);
-					} else{
+					}else if(result == 2){
+						toast("회원 정보 수정 완료<br/>이메일 인증 비활성화로 로그아웃 됩니다.", 1500);
+						setTimeout(function(){
+							sessionStorage.removeItem('key');
+							location.href="<%=request.getContextPath()%>/logout";
+						}, 1500);
+					}else{
 						toast("회원 정보 수정에 실패하였습니다.");
 					}
 				},error: function(){

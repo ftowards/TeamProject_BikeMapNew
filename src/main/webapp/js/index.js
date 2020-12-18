@@ -13,7 +13,8 @@ $(function(){
 
 	sock.onopen = function(){
 		
-		if(sessionStorage.getItem("notice") == null){
+		var sessionVal = $("#logId").val();
+		if(sessionStorage.getItem('key') == null){
 			$.ajax({
 				url:"/home/chkReadYetMsg",
 				success: function(result){
@@ -22,10 +23,9 @@ $(function(){
 					console.log(err);
 				}
 			});		
-			sessionStorage.setItem("notice", "Y");
+			sessionStorage.setItem('key', sessionVal);
 		}
 		
-		console.log(sessionStorage.getItem("notice"));
 		console.log("통신 연결 완료");
 	}
 

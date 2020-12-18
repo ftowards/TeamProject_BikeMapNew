@@ -60,7 +60,7 @@
 												<li><a href="<%=request.getContextPath()%>/adminUser">관리자 페이지</a></li>
 											</c:if>
 		                                    <li><a href="<%=request.getContextPath()%>/userQandA">1:1문의</a></li>
-		                                    <li><a href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
+											<li><a href="javascript: sessionStorage.removeItem('key'); location.href='<%=request.getContextPath()%>/logout';">로그아웃</a></li>
 		                                </ul>                            
 		                            </li>
 		                     </c:if>       

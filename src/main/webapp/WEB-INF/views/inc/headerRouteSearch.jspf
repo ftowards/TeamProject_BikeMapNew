@@ -5,26 +5,13 @@
 <link rel="stylesheet" href="/home/api/jquery.bxslider.css" type="text/css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/home/api/jquery.bxslider.js"></script>
-<script>
-	$(function(){
-		/*=========================소라 수정20/11/13===========================================*/
-		$("#bxsliderTour").bxSlider({
-			mode: 'horizontal'			
-			,auto: true				
-			,speed: 200			
-			,infiniteLoop: true		
-			,autoHover: true		
-			,pager: false //페이징삭제
-		});
-		
-	});
-</script>		
-	<div id="mainDivHeaderSub">
-		<ul id="bxsliderTour">
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp11.jpg"class="bxsliderTourImg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp1.jpg"class="bxsliderTourImg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp9.jpg"class="bxsliderTourImg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxslider5.jpg" class="bxsliderTourImg"/></a></li>
-			<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp10.jpg"class="bxsliderTourImg"/></a></li>
-		</ul>
-	</div>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/inc/bxSlider.js"></script>
+<div id="mainDivHeaderSub">
+	<ul id="bxsliderSub">
+		<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp11.jpg"class="bxsliderTourImg"/></a></li>
+		<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp1.jpg"class="bxsliderTourImg"/></a></li>
+		<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp9.jpg"class="bxsliderTourImg"/></a></li>
+		<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxslider5.jpg" class="bxsliderTourImg"/></a></li>
+		<li><a href="#"><img src="<%=request.getContextPath() %>/img/img_tour/bxsliderComp10.jpg"class="bxsliderTourImg"/></a></li>
+	</ul>
+</div>

@@ -40,7 +40,7 @@
 						<option value="hotmail.com">hotmail.com</option>
 					</select>
 					<input type="button" id="emailReset" value="변경" onclick="resetEmail();"/>
-					<input type="image" id="emailChk" src="<%=request.getContextPath() %>/img/img_register/email_check6.png" style='box-shadow:none; height:35px'/>
+					<input type="image" id="emailChk" src="<%=request.getContextPath() %>/img/img_register/email_check6.png" style='box-shadow:none; height:35px; display:none; position : relative ; top: -40px; left: 450px;'/>
 				</li>
 					<li><span class="reg">&ensp;</span></li>
 				<li><input type="radio" name="gender" id="gender" value="1" disabled <c:if test="${user.gender == 1}">checked</c:if>/><span class="tlbl" style='margin-right:95px'>남 자</span>

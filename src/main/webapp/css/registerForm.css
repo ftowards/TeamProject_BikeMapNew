@@ -31,13 +31,7 @@
 	}
 	#emailChk{
 		font-size:15px;
-		display:none;
-		position:relative;
-		left:457px;
-		bottom:36px;
-	    width: 125px;
-    	color: blue;
-    	font-weight: 400;
+		font-weight: 400;
     	text-decoration: none;
     	text-align: center;
     	margin-left: 8px;
