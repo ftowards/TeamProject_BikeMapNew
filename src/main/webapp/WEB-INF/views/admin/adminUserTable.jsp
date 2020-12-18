@@ -5,54 +5,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <script>
-	function makeUserTable(result){
-		
-		var nowPage =$("#nowPage").val();
-		var listNum = 0;
-		var listTag = "";
-		for(var i = 0; i < result.length ; i++){			
-			//alert(result.length+" : 결과 줄");
-			if(i==0){
-				listTag +=  "<li>번&nbsp;&nbsp;호</li> <li>아이디</li> <li>이&nbsp;&nbsp;름</li> <li>성&nbsp;&nbsp;별</li> <li>나&nbsp;&nbsp;이</li> <li>모임횟수</li> <li>좋아요</li> <li>상태</li> <li>정지설정</li>"	;
-			}
-			listNum = i+(nowPage-1)*10+1;
-			//list안에 데이터 추가
-			listTag += "<li>"+listNum+"</li>";
-			listTag += "<li class='contents' ><input type='hidden' class='hiddenEmail' value='"+result[i].email+"'/><input type='hidden' class='hiddenRegdate' value='"+result[i].regdate+"'/>";
-			listTag += "<a href='#' data-toggle='modal' data-target='#modal_User' title=' 사용자 프로필 보기 ' id='userprofileShow' >"+result[i].userid+"</a></li>";
-			listTag += "<li>"+result[i].username+"</li>";
-			listTag += "<li class='fa fa-square fa-stack-2x'>";
-			if(result[i].gender=='1'){
-				listTag +="남";
-			}else if(result[i].gender=='2'){
-				listTag +="여";
-			}
-			
-			listTag += "</li>";
-			
-			listTag += "<li>"+result[i].birth+"대</li>";
-			listTag += "<li>"+result[i].tourcnt+"회</li>";
-			listTag += "<li>"+result[i].heart+"회</li>";			
-			listTag += "<li>";
-			if(result[i].endday==null){
-				if(result[i].active=='N'){
-					listTag += "<span class='status text-warning'>•</span>  미인증</li>";
-				}else{
-					listTag += "<span class='status text-success'>•</span>활 동</li>";
-				}
-				
-				listTag += "<li style='padding-left:27px; color:red'><input type='button' title='"+result[i].userid+"'id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/></li>";
-				
-			}else{
-				listTag += "<span class='status text-danger'>•</span>정 지";
-				listTag += "<p class='arrow_box'>~"+result[i].endday+"</p></li>";
-				//<!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
-				listTag += "<li style='padding-left:27px; color:red'><input type='button' title='"+result[i].userid+"' id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/></li>";	
-			}
-			
-			$("#userList").html(listTag);
-		}
-	}
+
 	
 </script>
 
