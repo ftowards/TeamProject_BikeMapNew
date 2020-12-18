@@ -120,7 +120,7 @@
 						<option value="recommended" selected>추천 경로</option>
 						<option value="shortest">최단 거리</option>
 					</select> <input type="button" value="경로 탐색" onclick="searchRoute();"
-						class="mint_Btn" style='font-size: 14px; height: 35px' />
+						class="mint_Btn" style='font-size:14px; height:35px; border-radius:7px;' />
 				</div>
 				<div style='text-align: center'>
 					<input type="button" value="지점 전환" onclick="changeStartArrive();"
@@ -193,14 +193,14 @@
 					<form id="routeSave">
 						<input type="text" name="title" id="title"
 							placeholder="루트 이름을 입력하세요" /><br /> <select id="catename"
-							class="selectBox" style='width: 190px; margin-left: 8px'>
+							class="selectBox" style='width:192px; border-radius:7px; margin-left:7px'>
 							<c:forEach var="list" items="${category }">
 								<option value="${list.noroutecate }" title="${list.catename }">${list.catename}</option>
 							</c:forEach>
 							<c:if test="${fn:length(category) < 5}">
 								<option value="addCategory">카테고리 추가</option>
 							</c:if>
-						</select><br /> <span class="saveTxt">※ 루트 공개여부를 설정해주세요.</span><br />
+						</select><br/> <span class="saveTxt">※ 루트 공개여부를 설정해주세요.</span><br/>
 						<div style='margin: 8px 0 12px 18px;'>
 							<input type="radio" name="closed" value="F" checked /><span
 								class="saveTxt2"> 공개</span>&emsp;&emsp;&emsp; <input
@@ -215,8 +215,7 @@
 							<br />
 						</div>
 						<div id="saveDiv2">
-							<input type="submit" value="나의 루트 저장하기" class="blue_Btn"
-								id="saveBtn" />
+							<input type="submit" value="나의 루트 저장하기" class="blue_Btn" id="saveBtn" />
 						</div>
 						<div id="saveDiv1">
 							<img

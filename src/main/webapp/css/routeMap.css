@@ -112,22 +112,19 @@
 	}
 
 	.startBox{
-		color:#548434;
-		border-radius:10px;
-		background-color:#E6F2DE;
-		border:none;	
-		box-shadow: 3px 3px 5px 3px rgb(180,180,180);
-		
+		color: #548434;
+	    background-color: #E6F2DE;
+	    border: 2px solid #548434;
+	    box-shadow: 3px 3px 5px 3px rgb(210 210 210);
 	}
 	input.startBox::-webkit-input-placeholder {
 		color: #548434;
 	}
 	.arriveBox{
-		color:#EA3E3E;
-		background-color:#FFE5E5;
-		border:none;
-		border-radius:10px;
-		box-shadow: 3px 3px 5px 3px rgb(180,180,180);
+		color: #EA3E3E;
+	    background-color: #FFE5E5;
+	    border: 2px solid #EA3E3E;
+	    box-shadow: 3px 3px 5px 3px rgb(210 210 210);
 	}
 	input.arriveBox::-webkit-input-placeholder {
 		color: #EA3E3E;
@@ -162,20 +159,20 @@
 	}
 
 	#searchWord{
-		width : 88%;
-		height : 40px;
-		border-radius :10px;
-		margin : 21px;
-		border : none;
-		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
-		padding-left:10px;
-		letter-spacing:1px;
-		color:black;
+	    width: 88%;
+	    height: 40px;
+	    border-radius: 10px;
+	    margin: 21px;
+	    border: none;
+	    box-shadow: 3px 2px 1px 3px rgb(224 224 224);
+	    padding-left: 10px;
+	    letter-spacing: 1px;
+	    color: black;
 	}
 	input#searchWord{
-		 background-image: url(../img/img_route/search.png);
+		 background-image: url(../img/img_route/search3.png);
 		 background-repeat: no-repeat;
-		 text-indent: 15px;
+		 text-indent: 16px;
 		 font-family:'Noto Sans KR', sans-serif;
 	}
 	
@@ -399,7 +396,7 @@
 		color : white;
 		background-color: rgb(0,176,176);
 		border: 0;
-		box-shadow: 3px 3px 5px 3px rgb(230,230,230);
+		box-shadow: 2px 2px 3px 2px rgb(180,180,180);
 	}
 	.mint_Btn:hover{
 		color : white;
@@ -452,22 +449,22 @@
 	}
 
 	.selectBox{
-		height:38px;
-		font-size:14px;
-		font-weight:bold;
-		color:#353535;
-		border:0px;
-		border-radius:10px;
-		font-family:'Noto Sans KR', sans-serif;
-		background: url(../img/img_route/selectBox.png) no-repeat 92% 55%;
-		-webkit-appearance: none;
-    	-moz-appearance: none;
-    	appearance: none;
-    	margin-right:15px;
-    	padding-left:15px;
-    	margin-bottom:38px;
-    	border:none;
-    	box-shadow: 2px 2px 3px 2px rgb(180,180,180);
+		height: 36px;
+	    font-size: 14px;
+	    font-weight: bold;
+	    color: #353535;
+	    border: 0px;
+	    border-radius: 10px;
+	    font-family: 'Noto Sans KR', sans-serif;
+	    background: url(../img/img_route/selectBox.png) no-repeat 92% 55%;
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    margin-right: 8px;
+	    padding-left: 15px;
+	    margin-bottom: 38px;
+	    border: none;
+	    box-shadow: 2px 2px 3px 2px rgb(180,180,180);
 	}
 	select:focus{
 				outline:none;
