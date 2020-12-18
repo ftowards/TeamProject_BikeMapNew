@@ -201,7 +201,7 @@ function sendTourDeleteMsg(receiver, noboard){
 		
 		<h1 class="adminListHead">동행모집게시판</h1>
 		<!-- 모집중인게시판만보기 -->
-		<div class="answerAlready">
+		<div class="answerAlready" style='padding-left:95px'>
 					<input type="checkbox" id="state" name="state" value="1" />
 					<span> 모집 게시글만 검색</span>
 		</div>
@@ -241,7 +241,7 @@ function sendTourDeleteMsg(receiver, noboard){
 		</div> 
 		<!-- /paging -->
 		<div id="partnerBtn">
-			<input type="button" id="partnerBtn1" name="partnerDeleteBtn" onclick="deleteTour();" value="삭제하기" class="mint_Btn deleteBtn"/>
+			<input type="button" id="partnerBtn1" name="partnerDeleteBtn" onclick="deleteTour();" value="삭제하기" class="gray_Btn deleteBtn"/>
 		</div><!-- btn -->
 	</div><!-- adminContent -->
 		

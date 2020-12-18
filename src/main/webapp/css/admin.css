@@ -676,7 +676,10 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-
+.review_lBar{
+	font-size: 12px;
+    color: gray;
+}
 
 .layerpop {
     display: none;
@@ -957,9 +960,10 @@ input:checked + .slider:before {
    
 .answerAlready{
     height: 30px;
-    font-size: 20px;
+    font-size: 19px;
+    color: #000090;
     text-align: left;
-    padding-left: 95px;
+    padding-left: 131px;
     margin-bottom: 10px;
 }
 
