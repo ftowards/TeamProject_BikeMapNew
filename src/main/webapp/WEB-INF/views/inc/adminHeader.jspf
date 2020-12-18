@@ -327,7 +327,6 @@ function sendMsg(noboard, receiver, type){
 	});
 	
     $(document).on('submit',"#userSuspendEditFrm", function(){	
-		console.log('222222222222');
 		var params = jQuery("#userSuspendEditFrm").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
 	        jQuery.ajax({
 	            url: 'userSuspendUpdateOk',
@@ -368,58 +367,6 @@ function sendMsg(noboard, receiver, type){
             }
         }); 
     	
-//         // 동행모집, 리뷰, 루트 비공개 버튼/    배열로 넘겨준다.
-//     	$('input:button[name=hideBtn]').click(function(){
-//     		var chkArray = new Array();
-//     		if(${type=='tour'}){
-//     			$('input:checkbox[name=tourCheck]:checked').each(function(){
-//         			chkArray.push(this.value);
-//         		});
-// 			}else if(${type=='review'}){
-// 				$('input:checkbox[name=reviewCheck]:checked').each(function(){
-// 	    			chkArray.push(this.value);
-// 	    		});
-// 			}else if(${type=='route'}){
-// 				$('input:checkbox[name=routeCheck]:checked').each(function(){
-// 	    			chkArray.push(this.value);
-// 	    		});
-// 			}	
-			
-//     		if(chkArray.length==0){
-// 				alert("선택한 항목이 없습니다. 다시 확인해주세요.");
-// 				return false;
-//             }
-//     		alert(chkArray);
-//     		//배열을 ajax로 넘겨준 후리스트 다시받는다.
-//     		jQuery.ajax({
-//     		   url: 'hideOk',
-//     		   type: 'POST',
-//     		   traditional:true,         
-//     		   data : {
-// 			   	hideNo:chkArray,
-//            	   },
-//     		   success: function (result) {   
-//     			if( result.length <= 0 ){
-//    					alert("검색 결과가 없습니다.");
-//    					location.reload();
-//    					//history.back();//넣을지 말지 확인후
-//    				} else{ 
-//    					if(${type=='tour'}){
-//    						makeTourTable(result)
-//    					}else if(${type=='review'}){
-//    						makeReviewTable(result)
-//    					}else if(${type=='route'}){
-//    						makeRouteTable(result)
-//    					}		
-//    				}
-// 	           },
-// 		       error:function(e){
-// 	            	console.log('비공개 선택중 에러가 발생했습니다. 에러코드:', e.responseText);
-// 	           }
-//     		 });	
-//    		 	 return false;
-//     	});
-    	
     	
     	$("#adminSearchFrm").submit(function(){
     		if($("#userSearchWord").val() == ""){
@@ -442,13 +389,21 @@ function sendMsg(noboard, receiver, type){
 		});	
     	
     	// 체크된 개별 버튼  클릭시 
-    	$(document).on('change','input:checkbox[name=adminScrapBtn]', function(){	
+    	
+    	$(document).on('change','input:checkbox[name=adminScrapBtn]', function(){
     		var noboard = $(this).val();
     		var userid = $(this).parents().next(".userid").val();
+    		var closed = $(this).parents().parents().prev().children("label").children("input").is(":checked");
     		
     		var dataSingle = {"noboard":noboard};
     		//추천하는경우
-    		if($(this).is(":checked") == true) {  
+    		if($(this).is(":checked") == true) {
+    			if(closed == true){
+    				toast("현재 비공개 중인 루트 입니다.",1500);
+    				$(this).prop("checked", false);
+    				return false;	
+    			}
+    			
     			$.ajax({
 		            url: 'scrapRoute',
 		            data:dataSingle,
@@ -487,11 +442,11 @@ function sendMsg(noboard, receiver, type){
     		}
     	});
     	// 관리자 루트 추천 한꺼번에 여러개
-    	$(document).on('click','input:button[name=adminScrapAllBtn]', function(){	    		
+    	$(document).on('click','input:button[name=adminScrapAllBtn]', function(){
+    	
     		var chkArray = new Array();
     		var noboards = "";
     		var useridAll = "";
-			//console.log("외않되?");
 			
     		$('input:checkbox[name=listChk]:checked').each(function(){	
 				chkArray.push(this.value);
@@ -502,7 +457,6 @@ function sendMsg(noboard, receiver, type){
 			for(var i=0; i<chkArray.length; i++){
 				for(var j = 0 ; j< 10 ; j++){
 					if(chkArray[i] == $("#routeList>li").eq(9*(j+1)+1).text()){
-						//useridAll.push($("#routeList>li").eq(9*(j+1)+3).text());
 						useridAll += $("#routeList>li").eq(9*(j+1)+3).text()+"/";
 					}
 				}

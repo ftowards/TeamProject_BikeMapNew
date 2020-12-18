@@ -53,7 +53,7 @@ function setCloseRoute1(noboard, type){
   	  	success : function(result){
   	  		console.log(result.length);
   	  		
-  			if(result.length > 0){
+  			if(result.length > 1){
   				toastConfirm("현재 "+result.length+"명이 해당 루트를 저장하고 있습니다.<br/>"+msg+" 시 루트 저장이 취소됩니다.<br/>진행 하시겠습니까?", function(){
   					// 저장 취소 , 안내 메세지 발송
   					cancelRouteSave(noboard, result, type);

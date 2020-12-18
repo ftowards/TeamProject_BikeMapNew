@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/home/css/registerForm.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-
 <div class="registerMainDiv2">
 	<p id="welcome">환영합니다!</p>
 	<div id="box">

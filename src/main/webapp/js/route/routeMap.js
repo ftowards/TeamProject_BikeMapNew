@@ -1,12 +1,50 @@
+var map ;
+var ps ; 
+var markers = [];
+var routeMarker = [];
+	
+var foodMarker = [],
+	sightsMarker = [],
+	accomodationMarker = [],
+	convenientMarker = [];
+
+var bounds ;
+var infowindow =new kakao.maps.InfoWindow({zIndex:1, removable : true});
+
+// 루트 저장용 데이터
+var geocode = "";
+var region = "";
+
+// 루트 표시 마커 생성
+var markerStart ;
+var markerVia ;
+var markerArrive ;
+
+// 장소 마커
+var markerFood ;
+var markerSights ;
+var markerAccom ;
+var markerConve ;
+
+// 마커 이미지 미리 생성
+var markerSize = new kakao.maps.Size(46, 46); // 출발 마커이미지의 크기입니다
+var markerOption = {offset: new kakao.maps.Point(21, 50)}; // 출발 마커이미지에서 마커의 좌표에 일치시킬 좌표를 설정합니다 (기본값은 이미지의 가운데 아래입니다)  
+
+// 루트 마커 이미지를 생성합니다
+var startImage = new kakao.maps.MarkerImage('./img/img_route/markerStart.png', markerSize, markerOption);
+var arriveImage = new kakao.maps.MarkerImage('./img/img_route/markerArrive2.png', markerSize, markerOption);
+var viaImage = new kakao.maps.MarkerImage('./img/img_route/markerVia.png', markerSize, markerOption);
+
+// 장소 마커 이미지 생성
+var foodImage = new kakao.maps.MarkerImage('./img/img_route/markerFood.png', markerSize, markerOption);
+var sightsImage = new kakao.maps.MarkerImage('./img/img_route/markerSights.png', markerSize, markerOption);
+var accomImage = new kakao.maps.MarkerImage('./img/img_route/markerAccom.png', markerSize, markerOption);
+var conveImage = new kakao.maps.MarkerImage('./img/img_route/markerConve.png', markerSize, markerOption);
+
 // 1. 지도 만들기
-	var markers = [];
-	var routeMarker = [];
-	
-	var foodMarker = [],
-		sightsMarker = [],
-		accomodationMarker = [],
-		convenientMarker = [];
-	
+
+
+$(function(){
 	
 	var container = document.getElementById("map");
 	var options = {
@@ -14,41 +52,13 @@
 			level : 3,
 			draggable : 'true',
 	};
-	var bounds = new kakao.maps.LatLngBounds();
 	
-	// 루트 저장용 데이터
-	var geocode = "";
-	var region = "";
+	bounds = new kakao.maps.LatLngBounds();
 	
-	// 루트 표시 마커 생성
-	var markerStart ;
-	var markerVia ;
-	var markerArrive ;
-	
-	// 장소 마커
-	var markerFood ;
-	var markerSights ;
-	var markerAccom ;
-	var markerConve ;
-	
-	// 마커 이미지 미리 생성
-	var markerSize = new kakao.maps.Size(46, 46); // 출발 마커이미지의 크기입니다
-	var markerOption = {offset: new kakao.maps.Point(21, 50)}; // 출발 마커이미지에서 마커의 좌표에 일치시킬 좌표를 설정합니다 (기본값은 이미지의 가운데 아래입니다)  
-	
-	// 루트 마커 이미지를 생성합니다
-	var startImage = new kakao.maps.MarkerImage('./img/img_route/markerStart.png', markerSize, markerOption);
-	var arriveImage = new kakao.maps.MarkerImage('./img/img_route/markerArrive2.png', markerSize, markerOption);
-	var viaImage = new kakao.maps.MarkerImage('./img/img_route/markerVia.png', markerSize, markerOption);
-	
-	// 장소 마커 이미지 생성
-	var foodImage = new kakao.maps.MarkerImage('./img/img_route/markerFood.png', markerSize, markerOption);
-	var sightsImage = new kakao.maps.MarkerImage('./img/img_route/markerSights.png', markerSize, markerOption);
-	var accomImage = new kakao.maps.MarkerImage('./img/img_route/markerAccom.png', markerSize, markerOption);
-	var conveImage = new kakao.maps.MarkerImage('./img/img_route/markerConve.png', markerSize, markerOption);
-	
+
 	// 지도 추가
-	var map = new kakao.maps.Map(container, options);
-	var infowindow = new kakao.maps.InfoWindow({zIndex:1, removable : true});
+	map = new kakao.maps.Map(container, options);
+	infowindow = new kakao.maps.InfoWindow({zIndex:1, removable : true});
 	
 	// 지도 컨트롤러 추가
 	var mapTypeControl = new kakao.maps.MapTypeControl();
@@ -58,19 +68,172 @@
 	map.addControl(zoomControl, kakao.maps.ControlPosition.Right);
 
 // 검색을 위한 장소 객체 생성
-	var ps = new kakao.maps.services.Places();
+	ps = new kakao.maps.services.Places();
 	
 	// 검색 버튼 클릭 시 키워드 검색 실시
 	$("#searchWord").on("keydown", function(){
 		if(event.keyCode == 13){
 			var keyword = $("#searchWord").val();
 			if(keyword == ""){
-				toast("검색어를 입력하세요.");
+				toast("검색어를 입력하세요.",1500);
 				return false;
 			}
 			ps.keywordSearch(keyword, placeSearchCB, {size: 10});
 		}
 	});
+	
+	///////////////////////////////// sortable 리스트 세팅 경로 루트 이동 가능하도록
+
+	$("#routePoint").sortable();
+	$("#routePoint").children("input[type=text]").disableSelection();
+	
+	// 리스트 순서가 바뀔 때 마커 새로 설정
+	$( "#routePoint" ).on( "sortstop", function() {
+		setRouteMarker();
+		setDeleteBtn();	
+		setStartArriveClass();
+ 	});
+ 	
+ 	// 로그인 팝업 띄우기
+ 	$("#login").on('click',function(){
+ 		window.open("/home/loginPopup","Bikemap Login","width=780px, height=400px, left =200px, top=200px");
+ 	});
+ 	
+ 		
+// 카테고리 추가
+	$("#catename").on('change',function(){
+		if($(this).val() == 'addCategory'){
+			var catename = prompt("새 카테고리 이름을 입력하세요.", "새 코스");
+			var overlap = 0;
+			
+			// 카테고리 추가 시 중복 확인
+			$("#catename").children("option").each(function(){
+				var names = $(this).attr("title");
+				if(names == catename){
+					toast("이미 등록된 이름입니다.",1500);
+					overlap++;
+					return false;
+				}
+			});
+			
+			// 중복이 없다면 비동기식으로 새로운 카테고리 추가
+			if(overlap ==0){
+				var url = "/home/insertCategory";
+				var data = "catename="+catename;
+	
+				console.log(111);
+				$.ajax({
+					type : 'POST',
+					url : url,
+					data : data,
+					success : function(result){
+						if(result == 1){
+							toast("새로운 카테고리가 추가되었습니다.",1500);
+							selectCategory();
+						}else{
+							toast("카테고리 추가 에러",1500);
+						}
+					}, error : function(){
+						console.log("카테고리 새로 추가 에러");
+					}
+				});
+			}			
+		}else{
+			return false;
+		}
+	});
+ 	
+	
+		// 코스 저장하기
+	$("#routeSave").submit(function(){
+		var data = "";
+		// 1. 타이틀 입력 여부 확인
+		if($("#title").val() != ""){
+			data+="title="+$("#title").val();
+		}else{
+			toast("루트 제목을 입력하세요.",1500);
+			return false;
+		}
+		
+		// 2. 루트 포인트 2개 이상 존재하는 지 확인
+		var cntRoute = 0;
+		$("#routePoint>li").each(function(){
+			if($(this).children("input[type=text]").val() != null){
+				data += "&routepoint"+ ++cntRoute + "=" +$(this).children("input[type=text]").val(); // 루트 장소 이름
+				data += "[/]"+$(this).children("input[name=routePoint]").val();
+			}
+		});
+		
+		if(cntRoute < 2){
+			toast("저장할 경로를 2개 이상 입력하세요.",1500);
+			return false;
+		}
+		
+		// 3. geocode 데이터 존재 여부 확인
+		if(geocode == ""){
+			toast("경로 탐색을 먼저 실행하세요.",1500);
+			return false;
+		}else{
+			data += "&geocode="+geocode;
+			data += "&polyline="+linePath;
+			data += "&mapcenter="+ map.getCenter();
+			data += "&maplevel="+ map.getLevel();
+		}
+		
+		// 4. 거리 상승 하강 고도 설정
+		data += "&distance="+$("#distance").text();
+		data += "&ascent="+$("#ascent").text();
+		data += "&descent="+$("#descent").text();
+		
+		var region = getRegion();
+		data += "&region="+region;
+		data += "&closed="+$("input[name=closed]").val();
+		data += "&description="+$("#description").val();
+		
+		////////// 루트 데이터 //////////
+		
+		data += "&noroutecate="+$("#catename").val();
+		////////// 루트 리스트 데이터 //////////
+		
+		for(var i = 1 ; i <= $("input[name=foodList]").length ; i++){
+			data += "&food"+i+"="+$("input[name=foodList]").eq(i-1).val();
+		}
+		
+		for(var i = 1 ; i <= $("input[name=sightsList]").length ; i++){
+			data += "&sights"+i+"="+$("input[name=sightsList]").eq(i-1).val();
+		}
+		
+		for(var i = 1 ; i <= $("input[name=accomodationList]").length ; i++){
+			data += "&accom"+i+"="+$("input[name=accomodationList]").eq(i-1).val();
+		}
+		
+		for(var i = 1 ; i <= $("input[name=convenientList]").length ; i++){
+			data += "&conve"+i+"="+$("input[name=convenientList]").eq(i-1).val();
+		}
+		/////////// 장소 데이터 ////////////
+		
+		var url = "/home/insertRoute";
+		
+		$.ajax({
+			type : 'POST',
+			url : url,
+			data : data,
+			success : function(result){
+				if(result == 1){
+					toast("루트가 저장되었습니다.",1500);
+					clearRoute();
+				}else{
+					toast("루트가 저장되지 않았습니다.<br/>다시 시도해주십시오.",1500);
+				}
+			},error : function(){
+				console.log("루트 저장 에러");
+			}
+		});
+		return false;
+	});
+	
+});
+	
 
 // 장소 검색 결과값 처리
 	function placeSearchCB(data, status, pagination){
@@ -82,10 +245,10 @@
 			displayPagination(pagination);
 			
 		}else if(status === kakao.maps.services.Status.ZERO_RESULT){
-			toast("검색 결과가 존재하지 않습니다.");
+			toast("검색 결과가 존재하지 않습니다.",1500);
 			return ;
 		}else if(satus === kakao.maps.services.Statuas.ERROR){
-			toast("검색 결과 중 오류가 발생했습니다.");
+			toast("검색 결과 중 오류가 발생했습니다.",1500);
 			return;
 		}
 	};
@@ -266,10 +429,8 @@
 		var mapType = kakao.maps.MapTypeId.BICYCLE;
 		
 		if(chkBicycle.checked){
-			console.log('checked');
 			map.addOverlayMapTypeId(mapType);
 		}else{
-			console.log('Unchecked');
 			map.removeOverlayMapTypeId(mapType);
 		}
 	};
@@ -308,7 +469,7 @@
 			else if(type== 'convenientList'){removeMarker(convenientMarker);}
 		}else{
 			if($("#"+type).children("li").length == 0){
-				toast("찜한 리스트가 없습니다.");
+				toast("찜한 리스트가 없습니다.",1500);
 			}else{
 				$("#"+type).css("display", "block");
 				if(type == 'foodList') { setPlaceMarker(foodMarker);}
@@ -364,7 +525,7 @@
 				return false;
 			}
 		} else{
-			toast("장소는 코스당 종류 별로 최대 5개 등록이 가능합니다.");
+			toast("장소는 코스당 종류 별로 최대 5개 등록이 가능합니다.",1500);
 			return false;
 		}
 	}
@@ -392,7 +553,6 @@
 			var json = JSON.parse($(this).val());
 			var p = new kakao.maps.LatLng(json.y, json.x);
 			
-			console.log(p);
 			routePosition.push(p);
 		});
 		
@@ -409,31 +569,7 @@
 		}
 	}
 
-///////////////////////////////// sortable 리스트 세팅 경로 루트 이동 가능하도록
 
-$(function(){
-	$("#routePoint").sortable();
-	$("#routePoint").children("input[type=text]").disableSelection();
-	
-	// 리스트 순서가 바뀔 때 마커 새로 설정
-	$( "#routePoint" ).on( "sortstop", function() {
-		setRouteMarker();
-		setDeleteBtn();	
-		setStartArriveClass();
- 	});
- 	
- 	// 로그인 팝업 띄우기
- 	$("#login").on('click',function(){
- 		window.open("/home/loginPopup","Bikemap Login","width=780px, height=400px, left =200px, top=200px");
- 	});
- 	
- 	// map 사이즈 조절
- 	resizeMap();
- 	
- 	$(window).resize(function(){
- 		resizeMap();
- 	});
-});
 	// map 사이즈 변경
 	function resizeMap(){
 		var width = window.innerWidth - 430 + "px";	
@@ -451,9 +587,6 @@ $(function(){
 		
 		// 위치 데이터 추출
 		var point = json.x+"/"+json.y;
-		
-		console.log(value);
-		console.log(json.address_name);
 		
 		// 이미 등록된 장소인지 확인
 		var overlap = 0;
@@ -562,50 +695,6 @@ $(function(){
 			searchRoute();
 		}
 	}
-	
-// 카테고리 추가
-	$("#catename").on('change',function(){
-		if($(this).val() == 'addCategory'){
-			var catename = prompt("새 카테고리 이름을 입력하세요.", "새 코스");
-			var overlap = 0;
-			
-			// 카테고리 추가 시 중복 확인
-			$("#catename").children("option").each(function(){
-				var names = $(this).attr("title");
-				console.log(names);
-				if(names == catename){
-					toast("이미 등록된 이름입니다.");
-					overlap++;
-					return false;
-				}
-			});
-			
-			// 중복이 없다면 비동기식으로 새로운 카테고리 추가
-			if(overlap ==0){
-				var url = "/home/insertCategory";
-				var data = "catename="+catename;
-	
-				console.log(111);
-				$.ajax({
-					type : 'POST',
-					url : url,
-					data : data,
-					success : function(result){
-						if(result == 1){
-							toast("새로운 카테고리가 추가되었습니다.");
-							selectCategory();
-						}else{
-							toast("카테고리 추가 에러");
-						}
-					}, error : function(){
-						console.log("카테고리 새로 추가 에러");
-					}
-				});
-			}			
-		}else{
-			return false;
-		}
-	});
 
 // 카테고리 새로 설정하기
 	function selectCategory(){
@@ -672,10 +761,10 @@ $(function(){
 			var bound = new kakao.maps.LatLng(points[1], points[0]); // 지도 범위 좌표 재설정
 			if ( i < cnt-1){
 				coordinates += p+",";
-				radiuses += "50,";
+				radiuses += "500,";
 			} else{
 				coordinates += p +"]";
-				radiuses += "50"+"]";
+				radiuses += "500"+"]";
 			}
 			bounds.extend(bound);
 		};
@@ -701,9 +790,9 @@ $(function(){
 		
 		request.onreadystatechange = function (){
 		  if (this.readyState === 4) {
-		    console.log('Status:', this.status);
-		    console.log('Headers:', this.getAllResponseHeaders());
-		    console.log('Body:', this.responseText);
+		    //console.log('Status:', this.status);
+		    //console.log('Headers:', this.getAllResponseHeaders());
+		    //console.log('Body:', this.responseText);
 		    
 		    data = this.responseText;
 		    
@@ -722,19 +811,6 @@ $(function(){
 		  }
 		};
 		
-			// *** api 세팅
-		    
-		    // 필요한 데이터
-		    // 1. summary
-		    
-		    //var routeFinding = JSON.parse(data);
-		    //var route = routeFinding.routes;
-		    //console.log(route[0].summary);
-		    
-		    // 2. geometry 
-		    //console.log(route[0].geometry);
-		    //decode(route[0].geometry, true); 
-		    
 		request.send(body);
 	}
 	
@@ -919,99 +995,12 @@ $(function(){
 	
 	function getRegion(){
 		var result ="";
-		$("#routePoint>li").children("input[name=region]").each(function(){
-			var array = $(this).val().split(" ");
-			result += array[0]+"/"+array[1]+"/";
-		});
-		console.log(result);
+		
+		var array = $("#routePoint>li").children("input[name=region]:first").val().split(" ");
+		result += array[0]+"/"+array[1]+"/";
+		
+		array = $("#routePoint>li").children("input[name=region]:last").val().split(" ");
+		result += array[0]+"/"+array[1]+"/";
+			
 		return result;
 	}
-	
-	// 코스 저장하기
-	$("#routeSave").submit(function(){
-		var data = "";
-		// 1. 타이틀 입력 여부 확인
-		if($("#title").val() != ""){
-			data+="title="+$("#title").val();
-		}else{
-			toast("루트 제목을 입력하세요.");
-			return false;
-		}
-		
-		// 2. 루트 포인트 2개 이상 존재하는 지 확인
-		var cntRoute = 0;
-		$("#routePoint>li").each(function(){
-			if($(this).children("input[type=text]").val() != null){
-				console.log(11);
-				data += "&routepoint"+ ++cntRoute + "=" +$(this).children("input[type=text]").val(); // 루트 장소 이름
-				data += "[/]"+$(this).children("input[name=routePoint]").val();
-			}
-		});
-		
-		if(cntRoute < 2){
-			toast("저장할 경로를 2개 이상 입력하세요.");
-			return false;
-		}
-		
-		// 3. geocode 데이터 존재 여부 확인
-		if(geocode == ""){
-			toast("경로 탐색을 먼저 실행하세요.");
-			return false;
-		}else{
-			data += "&geocode="+geocode;
-			data += "&polyline="+linePath;
-			data += "&mapcenter="+ map.getCenter();
-			data += "&maplevel="+ map.getLevel();
-		}
-		
-		// 4. 거리 상승 하강 고도 설정
-		data += "&distance="+$("#distance").text();
-		data += "&ascent="+$("#ascent").text();
-		data += "&descent="+$("#descent").text();
-		
-		var region = getRegion();
-		data += "&region="+region;
-		data += "&closed="+$("input[name=closed]").val();
-		data += "&description="+$("#description").val();
-		
-		////////// 루트 데이터 //////////
-		
-		data += "&noroutecate="+$("#catename").val();
-		////////// 루트 리스트 데이터 //////////
-		
-		for(var i = 1 ; i <= $("input[name=foodList]").length ; i++){
-			data += "&food"+i+"="+$("input[name=foodList]").eq(i-1).val();
-		}
-		
-		for(var i = 1 ; i <= $("input[name=sightsList]").length ; i++){
-			data += "&sights"+i+"="+$("input[name=sightsList]").eq(i-1).val();
-		}
-		
-		for(var i = 1 ; i <= $("input[name=accomodationList]").length ; i++){
-			data += "&accom"+i+"="+$("input[name=accomodationList]").eq(i-1).val();
-		}
-		
-		for(var i = 1 ; i <= $("input[name=convenientList]").length ; i++){
-			data += "&conve"+i+"="+$("input[name=convenientList]").eq(i-1).val();
-		}
-		/////////// 장소 데이터 ////////////
-		
-		var url = "/home/insertRoute";
-		
-		$.ajax({
-			type : 'POST',
-			url : url,
-			data : data,
-			success : function(result){
-				if(result == 1){
-					toast("루트가 저장되었습니다.");
-					clearRoute();
-				}else{
-					toast("루트가 저장되지 않았습니다.\n다시 시도해주십시오.");
-				}
-			},error : function(){
-				console.log("루트 저장 에러");
-			}
-		});
-		return false;
-	});

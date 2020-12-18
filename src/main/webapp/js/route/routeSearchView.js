@@ -222,7 +222,7 @@ $("#grayBtn").on('click', function(){
   				toast("이미 평점을 등록한 루트입니다.",1500);
   			}else {
   				toast("평점이 등록되었습니다.",1500);
-				setTimeout(setRating(),1500);
+				setTimeout(setRating(),2000);
   			}
   		},error : function(){
   			console.log("평점 입력 오류");

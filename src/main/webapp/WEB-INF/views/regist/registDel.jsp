@@ -2,15 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/home/css/register.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<script>
-	function registDel(){
-		if(!$("#caution").prop("checked")){
-			toast("안내사항을 확인해주세요.",1500);
-			return false;
-		}
-		location.href="/home/registDelChk";
-	};
-</script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/regist/registDel.js"></script>
+
 <div class="registerMainDiv">
 	<div class="registerDelContentBox" style='height:270px; margin-top:100px; padding-top:40px;'>
 		<div>

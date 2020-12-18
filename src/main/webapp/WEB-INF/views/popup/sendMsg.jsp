@@ -198,14 +198,17 @@ function sendMsg(){
 }
 
 function toast(msg, time) {
+	var y = 50 + "px";
+	$(".noticeBoard").css("top",y);
+	
 	var toast = $("#toast");
 	toast.addClass("reveal");
-	toast.html(msg);
+	$("#toastMsg").html(msg);
 	
 	var click = '$("#toast").removeClass("reveal")';
 	if(time == null || time == 'undefined'){
 		var tag = "<br><input type='button' class='mintBtn' value='닫기' onclick='"+click+"'/>";
-		toast.append(tag);
+		$("#toastMsg").append(tag);
 	}else {
 		setTimeout(function(){
 			toast.removeClass("reveal");
@@ -234,8 +237,10 @@ function toast(msg, time) {
 		<li><input type="button" class="sendMintBtn" onclick="sendMsg();" value="보내기"/></li>
 	</ul>
 </div>
-	<div id="toast" class="toast" style="top : 40px;">
-		<div id="toastMsg" class="toastMsg"></div>
+	<div class="noticeBoard">
+		<div id="toast" class="toast">
+			<div id="toastMsg" class="toastMsg"></div>
+		</div>
 	</div>
 </body>
 </html>

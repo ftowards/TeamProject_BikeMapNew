@@ -2,35 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/home/css/register.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<script>
-	$(function(){
-		$("#pwdChk").submit(function(){
-			if($("#userpwd").val()==""){
-				toast("비밀번호를 입력하세요.",1500);
-				return false;
-			}
-			
-			var url = "/home/registPwdChk";
-			var data = $("#pwdChk").serialize();
-			
-			console.log(data);
-			$.ajax({
-				url : url,
-				data : data,
-				success : function(result){
-					if(result >0 ){
-						location.href="/home/registEditForm";
-					}else{
-						toast("비밀번호가 틀립니다.");
-					}
-				},error : function(){
-					console.log("비밀번호 확인 오류");
-				}
-			});
-			return false;
-		});
-	});
-</script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/regist/registEdit.js"></script>
 <div class="registerMainDiv">
 	<div class="contentBox2">
 		<div style='height:245px'>

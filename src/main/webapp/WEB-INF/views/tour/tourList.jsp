@@ -15,19 +15,19 @@
 					<div class="labelClass1"><label>일&nbsp;정</label></div>
 				</li>
 				<li>
-					<input type="text" name="departuredate" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"/>
+					<input type="text" name="departuredate" placeholder="출발날짜" id="departure" maxlength="10" autocomplete="off"value="${paging.departuredate}"/>
 					<select name="departureTime" id="departureTime" class="departureTime">
 						<option value="">시간</option>
 						<c:forEach var="i" begin="0" end="24" step="1">
-							<option value="${i }">${i }시</option>
+							<option value="${i }" <c:if test="${paging.departureTime != '' && paging.departureTime == i }">selected</c:if>>${i }시</option>
 						</c:forEach>
 					</select>
 					<label class="label1">~</label>
-					<input type="text" name="arrivedate"	placeholder="도착날짜" id="arrive" maxlength="10" autocomplete="off">
+					<input type="text" name="arrivedate"	placeholder="도착날짜" id="arrive" maxlength="10" autocomplete="off" value="${paging.arrivedate}"/>
 					<select name="arriveTime" id="arriveTime" class="arriveTime">
 						<option value="">시간</option>
 						<c:forEach var="i" begin="0" end="24" step="1">
-							<option value="${i }">${i }시</option>
+							<option value="${i }"<c:if test="${paging.arriveTime != '' && paging.arriveTime == i }">selected</c:if>>${i }시</option>
 						</c:forEach>
 					</select>
 				</li>

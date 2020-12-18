@@ -137,9 +137,16 @@ function goList(){
 
 //쪽지창 열기
 function popMsgSend(userid){
-	if(userid == 'admin' || userid == $("logId").val()){
+	
+	if($("#logId").val()== "" || $("#logId").val() == null){
+		toast("쪽지 보내기는 회원만 이용 가능합니다.",1500);	
+		return false;	
+	}
+	
+	if(userid == 'admin' || userid == $("#logId").val()){
 		return false
 	}
+	
 	window.open('/home/sendMsg?userid='+userid, 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0');	
 }
 </script>
@@ -519,6 +526,8 @@ function setComplist(result){
 					tag +="<li><div class='applyWait'><label onclick='revertComplist(title)' title='"+$("#noboard").val()+"/"+v.userid+"'>추방</label></div></li>";					
 				}else if(v.state == '1'){
 					tag +="<li><div class='applyWait'><label onclick='confirmComplist(title)' title='"+$("#noboard").val()+"/"+v.userid+"'>승인</label></div></li>";
+				}else if(v.state == '3'){
+					tag +="<li><div class='applyWait'><label >불참</label></div></li>";
 				}
 			}
 		}else{ // 작성자가 아닐 때
@@ -526,6 +535,8 @@ function setComplist(result){
 				tag += "<li><div class='applying'><label>참가중</label></div></li>";
 			}else if(v.state == '1'){
 				tag += "<li><div class='applyWait'><label>승인대기</label></div></li>";
+			}else if(v.state == '3'){
+				tag +="<li><div class='applyWait'><label >불참</label></div></li>";
 			}
 		}
 		
@@ -596,7 +607,7 @@ function cancleTour(){
 				toast("참가 내역이 취소되었습니다.");
 				sendMsg($("#noboard").val(), $("#userid").val(), 3);
 			}else if(result == 5){
-				toast("마감 시간이 지나 신청 취소가 불가능합니다.\n주최자에게 불참을 알려주세요.",1500);
+				toast("마감 시간이 지나 신청 취소가 불가능합니다.<br/>주최자에게 불참을 알려주세요.",1500);
 			}else{
 				toast("취소 신청 오류입니다. 다시 시도해주십시오.",1500);
 			}

@@ -52,7 +52,8 @@ function deleteReview(){
           data : "noboard="+noboard,
           success : function(result){
             if(result > 0){
-              movePage(1);
+           		toast("후기를 삭제하였습니다.", 1500);
+           		setTimeout(movePage(1),1500);
             }else {
               toast("후기 삭제 오류 입니다. 다시 시도해주십시오.", 1500);
             }
