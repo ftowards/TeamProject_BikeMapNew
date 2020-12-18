@@ -161,7 +161,7 @@ public class RouteVO {
 		region = list[0];
 		for(int i = 1 ; i < list.length ; i++) {
 			if(list[i] != null) {
-				region += "/"+list[i];
+				region += " "+list[i];
 			}
 		}
 		

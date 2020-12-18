@@ -920,10 +920,9 @@ $(function(){
 	function getRegion(){
 		var result ="";
 		$("#routePoint>li").children("input[name=region]").each(function(){
-			var array = $(this).val().split(" " );
+			var array = $(this).val().split(" ");
 			result += array[0]+"/"+array[1]+"/";
 		});
-		
 		console.log(result);
 		return result;
 	}
@@ -963,7 +962,6 @@ $(function(){
 			data += "&polyline="+linePath;
 			data += "&mapcenter="+ map.getCenter();
 			data += "&maplevel="+ map.getLevel();
-			
 		}
 		
 		// 4. 거리 상승 하강 고도 설정

@@ -130,6 +130,7 @@ $(function(vo){
 function goList(){
 	var data = $("#pagingVO").serialize();
 	console.log(data);
+	
 	$("#pagingVO").attr("action", "/home/tourList");
 	$("#pagingVO").submit();
 }

@@ -42,7 +42,6 @@ public class TourController {
 		ModelAndView mav = new ModelAndView();
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
-		System.out.println("nowPage" + vo.getNowPage());
 		try {
 			vo.setTotalRecord(dao.getTourRecord(vo));
 		}catch(Exception e) {
@@ -298,10 +297,10 @@ public class TourController {
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
 		try {
-			if(dao.checkTourRoom(vo.getNoboard()) <= 0) {
-				return 2;
-			}else {
+			if(dao.checkTourRoom(vo.getNoboard()) > 0) {
 				result = dao.confirmComplist(vo);
+			}else{
+				return 2;
 			}
 		}catch(Exception e) {
 			System.out.println("투어 참가 승인 에러" + e.getMessage());
