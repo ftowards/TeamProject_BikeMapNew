@@ -56,6 +56,28 @@ a{
 	border-radius: 15px;
 }
 
+.text-danger, .text-warning, .text-success{
+	font-size:50px;
+	float:left;
+	position: relative;
+    left: 25px;
+    bottom: 5px;
+    letter-spacing:5px;
+}
+.text-danger{
+	color:#ca201d;
+	letter-spacing: 4px;
+}
+.text-warning{
+	color:#f9a91e;
+}
+.text-success{
+	color:#007302;
+	letter-spacing: 4px;
+}
+
+
+
 /* ================네비게이션(사이드바) ==============*/
 .navigation {
 	float: left;

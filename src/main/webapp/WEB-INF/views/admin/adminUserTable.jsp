@@ -36,18 +36,18 @@
 			listTag += "<li>";
 			if(result[i].endday==null){
 				if(result[i].active=='N'){
-					listTag += "<span class='status text-warning'>•</span> 미인증</li>";
+					listTag += "<span class='status text-warning'>•</span>  미인증</li>";
 				}else{
-					listTag += "<span class='status text-success'>•</span> 활동</li>";
+					listTag += "<span class='status text-success'>•</span>활 동</li>";
 				}
 				
-				listTag += "<li style='padding-left:50px; color:red'><input type='button' title='"+result[i].userid+"'id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/></li>";
+				listTag += "<li style='padding-left:27px; color:red'><input type='button' title='"+result[i].userid+"'id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/></li>";
 				
 			}else{
-				listTag += "<span class='status text-danger'>•</span> 정지";
+				listTag += "<span class='status text-danger'>•</span>정 지";
 				listTag += "<p class='arrow_box'>~"+result[i].endday+"</p></li>";
 				//<!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
-				listTag += "<li style='padding-left:50px; color:red'><input type='button' title='"+result[i].userid+"' id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/></li>";	
+				listTag += "<li style='padding-left:27px; color:red'><input type='button' title='"+result[i].userid+"' id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/></li>";	
 			}
 			
 			$("#userList").html(listTag);
@@ -99,14 +99,14 @@
 								<li>
 									<c:if test="${vo.endday==null}"><!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
 											<c:if test="${vo.active=='N'}">
-												<span class='status text-warning'>•</span> 미인증
+												<span class='status text-warning'>•</span><span style='color:#9a6303'> 미인증</span>
 											</c:if>
 											<c:if test="${vo.active=='Y'}">
-												<span class="status text-success">•</span> 활동
+												<span class="status text-success">•</span><span style='color:#002701'>활&ensp;동</span>
 											</c:if>
 									</c:if>
 									<c:if test="${vo.endday!=null}">
-										<span class="status text-danger">•</span> 정지
+										<span class="status text-danger">•</span><span style='color:#900200'>정&ensp;지</span>
 										<p class="arrow_box">~${vo.endday}</p>
 									</c:if>	
 								</li>
