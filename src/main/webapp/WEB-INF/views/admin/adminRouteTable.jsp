@@ -259,7 +259,7 @@ function makeRouteTable(result){
 						</c:forEach>
 					
 						<c:if test="${pagingVO.nowPage != pagingVO.totalPage }">
-							<li><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
+							<li style='margin-left:15px'><a href="javascript:movePage(${pagingVO.nowPage+1})">Next</a></li>
 						</c:if>
 					</ul>
 			</div><br/>

@@ -115,6 +115,7 @@ a{
 .icon {
 	font-size:27.5px;
 	color: #000000;
+	letter-spacing:2px;
 }
 .navigation li {
 	line-height:26px;
@@ -237,14 +238,14 @@ a{
 #paging>ul {
 	overflow: auto;
 	margin: 0 auto;
-	width: 15%;
+	width: 24%;
 	padding:15px 0 0 20px;
 
 }
 
 #paging li {
 	float: Left;
-	width: 35px;
+	width: 40px;
 	height: 30px;
 	text-align: center;
 	font-size: 17px;
@@ -740,6 +741,12 @@ input:checked + .slider:before {
 #bigCate{
 	width:200px;
 }
+
+.deleteBtn{
+	position: relative;
+    bottom: 24px;
+}
+
 .mint_Btn, .gray_Btn, .red_Btn{
 		  font-size:15px;
 		  border-radius: 5px;
@@ -798,6 +805,15 @@ input:checked + .slider:before {
 	padding-right:100px;
 }
 
+.complete{
+	color:#846d00;
+	letter-spacing: 1px;
+}
+.imperfect{
+	color:#1f009a;
+	letter-spacing: 16px;
+    padding-left: 14px;
+}
 
 .modal-content{
 	width:700px;
@@ -940,11 +956,11 @@ input:checked + .slider:before {
    
    
 .answerAlready{
-	height : 30px;
-	font-size : 18px;
-	text-align : left;
-	padding-left : 120px;
-	
+    height: 30px;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 95px;
+    margin-bottom: 10px;
 }
 
 
@@ -989,6 +1005,4 @@ input:checked + .slider:before {
     height: 40px;
     font-size: 17px;
     letter-spacing: 1px;
-}	
-	
 }

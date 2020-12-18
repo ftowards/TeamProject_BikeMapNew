@@ -70,9 +70,9 @@ function makeTourTable(result){
 		listTag += "<li><a data-toggle='collapse' href='#viewAcodian"+result[i].noboard+"' onclick='getTourComplist("+result[i].noboard+")'>▼</a></li>";
 		listTag += "<li>";
 		if(result[i].state=='1'||result[i].state==null){
-			listTag +="미완료";
+			listTag +="<span class='complete'>미완료</span>";
 		}else if(result[i].state=='2'){
-			listTag +="완료";
+			listTag +="<span class='imperfect'>완료</span>";
 		}
 		listTag += "</li>";
 		listTag += "<div id='viewAcodian"+result[i].noboard+"' class='panel-collapse collapse'><ul id='complist"+result[i].noboard+"' class='acodianList'></ul></div>";
@@ -241,7 +241,7 @@ function sendTourDeleteMsg(receiver, noboard){
 		</div> 
 		<!-- /paging -->
 		<div id="partnerBtn">
-			<input type="button" id="partnerBtn1" name="partnerDeleteBtn" onclick="deleteTour();" value="삭제하기" class="mint_Btn"/>
+			<input type="button" id="partnerBtn1" name="partnerDeleteBtn" onclick="deleteTour();" value="삭제하기" class="mint_Btn deleteBtn"/>
 		</div><!-- btn -->
 	</div><!-- adminContent -->
 		
