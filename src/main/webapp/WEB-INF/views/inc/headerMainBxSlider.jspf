@@ -7,18 +7,7 @@
 <script src="/home/api/jquery.bxslider.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;900&display=swap" rel="stylesheet">
-<script>
-	$(function(){
-		$("#bxslider").bxSlider({
-			mode: 'horizontal'		//horizontal랑 fade중 고르기.
-			,auto: true				//자동 실행
-			,speed: 1000			//속도
-			,infiniteLoop: true		//무한루프
-			,autoHover: true		//마우스 hover시 화면전환 정지
-			,pager: true //페이징삭제
-		});
-	});
-</script>		
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/inc/bxSlider.js"></script>
 	<div class="mainBxSliderFrontground"></div>
 	<div id="mainLabel">
 		<label>To Travel is to Live</label>

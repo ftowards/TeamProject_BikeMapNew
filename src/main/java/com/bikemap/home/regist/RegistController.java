@@ -324,11 +324,13 @@ public class RegistController {
 			        sendMail.setTo(vo.getEmail());
 			        sendMail.send();
 				}
+				result = 2;
 			}
 			transactionManager.commit(status);
 		}catch(Exception e) {
 			System.out.println("회원 정보 수정 에러 "+ e.getMessage());
 			transactionManager.rollback(status);
+			result = 0;
 		}
 		return result;
 	}

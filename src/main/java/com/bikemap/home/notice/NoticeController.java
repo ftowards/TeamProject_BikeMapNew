@@ -1,6 +1,5 @@
 package com.bikemap.home.notice;
 
-import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +44,6 @@ public SqlSession sqlSession ;
 		try {
 			if(rDao.idDoubleChk(vo.getUserid())>0) {
 				result = dao.insertNotice(vo);
-				System.out.println(result);
 			}
 		}catch(Exception e) {
 			System.out.println("메세지 입력 에러 " + e.getMessage());
@@ -177,8 +175,6 @@ public SqlSession sqlSession ;
 		vo.setUserid((String)ses.getAttribute("logId"));
 		vo.setIp(req.getRemoteAddr());
 		
-		System.out.println(vo.getSubject());
-		System.out.println(vo.getContent());
 		try {
 			result = dao.insertQna(vo);
 		}catch(Exception e) {
@@ -193,7 +189,6 @@ public SqlSession sqlSession ;
 	public QnaPagingVO qnaPaging(QnaPagingVO vo, HttpSession ses) {
 		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
 		vo.setId((String)ses.getAttribute("logId"));
-		
 		try {
 			vo.setTotalRecord(dao.selectQnaRecord(vo));
 		}catch(Exception e) {
@@ -217,6 +212,7 @@ public SqlSession sqlSession ;
 		}
 		return list;
 	}
+
 	//나의 문의사항 글보기
 	@RequestMapping("/userQandAView")
 	public String userQandAView() {
@@ -246,7 +242,6 @@ public SqlSession sqlSession ;
 		NoticeDaoImp dao = sqlSession.getMapper(NoticeDaoImp.class);
 		try {
 			result = dao.getReadYetMsg((String) ses.getAttribute("logId"));
-	
 		}catch(Exception e) {
 			System.out.println("미확인 알람 갯수 확인 에러 " + e.getMessage());
 		}
