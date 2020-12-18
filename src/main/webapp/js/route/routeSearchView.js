@@ -7,7 +7,7 @@
 		accommodationMarker = [],
 		convenientMarker = [];
 	
-	var container = document.getElementById("map");
+	var container ;
 	var options = {
 			center : new kakao.maps.LatLng(37.5510907243016, 126.937364458741),
 			draggable: false,
@@ -46,11 +46,14 @@
 	var conveImage = new kakao.maps.MarkerImage('./img/img_route/markerConve.png', markerSize, markerOption);
 	
 	// 지도 추가
-	var map = new kakao.maps.Map(container, options);
+	var map ;
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1, removable : true});
 	
 /////////////////// 기본 데이터 세팅 /////////////////
 $(function(){
+
+	container = document.getElementById("map");
+	map = new kakao.maps.Map(container, options);
 
 	// 루트 마커 세팅하기 
 	// 마커 지정할 좌표 순서대로 입력
@@ -145,92 +148,104 @@ $(function(){
  	});
  	
  	$("#recruitment").on('click', function(){
- 		$("input[name=reference]").val($("#noboard").val());
- 		$("#tourWriteWithReference").submit();
+ 		
+ 		$.ajax({
+			url: "/home/checkTourcnt",
+			success : function(result){
+				if(result < 5){
+					toast("투어 참가 횟수가 5회 미만일 경우 투어를 모집할 수 없습니다.");
+				}else {
+			 		$("input[name=reference]").val($("#noboard").val());
+			 		$("#tourWriteWithReference").submit();
+				}
+			},error : function(err){
+				console.log(err);
+			}
+		});
+		
  	});
-});
-/////////////////// event //////////////////////////
-
-// 장소 마커 표시 -- 푸드
-$("input[name=foodMarker]").on("change",function(){
-	if($(this).prop("checked")){
-		setPlaceMarker(foodMarker);
-	}else{
-		removeMarker(foodMarker);
-	}
-});
-
-// 장소 마커 표시 -- 관광지
-$("input[name=sightsMarker]").on("change",function(){
-	if($(this).prop("checked")){
-		setPlaceMarker(sightsMarker);
-	}else{
-		removeMarker(sightsMarker);
-	}
-});
-
-// 장소 마커 표시 -- 숙박
-$("input[name=accommodationMarker]").on("change",function(){
-	if($(this).prop("checked")){
-		setPlaceMarker(accommodationMarker);
-	}else{
-		removeMarker(accommodationMarker);
-	}
-});
-
-// 장소 마커 표시 -- 편의시설
-$("input[name=convenientMarker]").on("change",function(){
-	if($(this).prop("checked")){
-		setPlaceMarker(convenientMarker);
-	}else{
-		removeMarker(convenientMarker);
-	}
-});
-
-////// 평점 주기
-$("#grayBtn").on('click', function(){
+	/////////////////// event //////////////////////////
 	
-	// 로그인 상태가 아닐 때 로그인 팝업 띄우기
-	var logId = $("#replyUseridDiv").text();
-	if(logId == ""){
-		window.open("/home/loginPopup","Bikemap Login","width=600px, height=200px, left =200px, top=200px");
-		return false;
-	}
+	// 장소 마커 표시 -- 푸드
+	$("input[name=foodMarker]").on("change",function(){
+		if($(this).prop("checked")){
+			setPlaceMarker(foodMarker);
+		}else{
+			removeMarker(foodMarker);
+		}
+	});
 	
-	if($("#logId").val() == $("#userid").text()){
-		toast("회원님이 작성한 루트는 평가할 수 없습니다.",1500);
-		return false;
-	}
+	// 장소 마커 표시 -- 관광지
+	$("input[name=sightsMarker]").on("change",function(){
+		if($(this).prop("checked")){
+			setPlaceMarker(sightsMarker);
+		}else{
+			removeMarker(sightsMarker);
+		}
+	});
+	
+	// 장소 마커 표시 -- 숙박
+	$("input[name=accommodationMarker]").on("change",function(){
+		if($(this).prop("checked")){
+			setPlaceMarker(accommodationMarker);
+		}else{
+			removeMarker(accommodationMarker);
+		}
+	});
+	
+	// 장소 마커 표시 -- 편의시설
+	$("input[name=convenientMarker]").on("change",function(){
+		if($(this).prop("checked")){
+			setPlaceMarker(convenientMarker);
+		}else{
+			removeMarker(convenientMarker);
+		}
+	});
+	
+	////// 평점 주기
+	$("#grayBtn").on('click', function(){
+		
+		// 로그인 상태가 아닐 때 로그인 팝업 띄우기
+		var logId = $("#replyUseridDiv").text();
+		if(logId == ""){
+			window.open("/home/loginPopup","Bikemap Login","width=800px, height=400px, left =200px, top=200px");
+			return false;
+		}
+		
+		if($("#logId").val() == $("#userid").text()){
+			toast("회원님이 작성한 루트는 평가할 수 없습니다.",1500);
+			return false;
+		}
+	
+	  	var rating = $("#gradeSelect").val();
+	  	
+	  	if(rating == ""){
+	  		toast("평점을 선택해주세요.",1500);
+	  		return false;
+	  	}
+	  	
+	  	var url = "/home/rateRoute";
+	  	var data = "noboard="+$("#noboard").val();
+	  		data += "&rating="+rating;
+	  		
+	  	$.ajax({
+	  		type : 'POST',
+	  		url : url,
+	  		data : data,
+	  		success : function(result){
+	  			if(result == 2){
+	  				toast("이미 평점을 등록한 루트입니다.",1500);
+	  			}else {
+	  				toast("평점이 등록되었습니다.",1500);
+					setTimeout(setRating(),2000);
+	  			}
+	  		},error : function(){
+	  			console.log("평점 입력 오류");
+	  		}
+	  	});
+	});
 
-  	var rating = $("#gradeSelect").val();
-  	
-  	if(rating == ""){
-  		toast("평점을 선택해주세요.",1500);
-  		return false;
-  	}
-  	
-  	var url = "/home/rateRoute";
-  	var data = "noboard="+$("#noboard").val();
-  		data += "&rating="+rating;
-  		
-  	$.ajax({
-  		type : 'POST',
-  		url : url,
-  		data : data,
-  		success : function(result){
-  			if(result == 2){
-  				toast("이미 평점을 등록한 루트입니다.",1500);
-  			}else {
-  				toast("평점이 등록되었습니다.",1500);
-				setTimeout(setRating(),2000);
-  			}
-  		},error : function(){
-  			console.log("평점 입력 오류");
-  		}
-  	});
 });
-
-
 /////////////////// function //////////////////////
 
 // 기존에 표시한 마커 제거
@@ -240,21 +255,6 @@ $("#grayBtn").on('click', function(){
 		}
 		markerGroup =[];
 	}
-	
-// 자전거 도로 표시 온오프 처리
-	function setOverlayMapTypeId(){
-		var chkBicycle = document.getElementById("chkBicycle");
-		var mapType = kakao.maps.MapTypeId.BICYCLE;
-		
-		if(chkBicycle.checked){
-			console.log('checked');
-			map.addOverlayMapTypeId(mapType);
-		}else{
-			console.log('Unchecked');
-			map.removeOverlayMapTypeId(mapType);
-		}
-	};
-
 
 // 장소 마커 설정하기
 	function setPlaceMarker(markers){		
@@ -566,7 +566,6 @@ $("#grayBtn").on('click', function(){
   	  	url : "/home/route/setCloseRoute2",
   	  	data : "noboard="+noboard,
   	  	success : function(result){
-  	  		console.log(result.length);
   	  		
   			if(result.length > 0){
   				toastConfirm("현재 "+result.length+"명이 해당 루트를 저장하고 있습니다.<br/>"+msg+" 시 루트 저장이 취소됩니다.<br/>진행 하시겠습니까?", function(){
@@ -769,7 +768,6 @@ function sendMsg(noboard, receiver, type){
 	}
 	
 	var data = "userid="+receiver+"&idsend="+sender+"&msg="+msg;
-	console.log(data);
 	
 	$.ajax({
 		url : "/home/insertNotice",
@@ -787,4 +785,36 @@ function sendMsg(noboard, receiver, type){
 function setRatingStar(){
 	var rateWidth =  $("#rating").attr("title")/5 *125;
 	$("#rating").css('width', rateWidth+'px');
+}
+
+function goViewPage(noboard){
+	
+	$("input[name=noboard]").val(noboard)
+	var data = $("#pagingVO").serialize();
+
+	$("#pagingVO").attr("action","/home/routeSearchView" );
+	$("#pagingVO").submit();
+}
+
+// 리스트 이동
+function goList(){
+	var data = $("#pagingVO").serialize();
+	
+	$("#pagingVO").attr("action","/home/routeSearch" );
+	$("#pagingVO").submit();
+}
+
+// 쪽지창 열기
+//쪽지창 열기
+function popMsgSend(userid){
+	
+	if($("#logId").val()== "" || $("#logId").val() == null){
+		toast("쪽지 보내기는 회원만 이용 가능합니다.",1500);	
+		return false;	
+	}
+	if(userid == 'admin' || userid == $("#logId").val()){
+		return false
+	}
+	
+	window.open('/home/sendMsg?userid='+userid, 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0');	
 }

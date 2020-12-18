@@ -47,7 +47,6 @@ public class TourController {
 		}catch(Exception e) {
 			System.out.println("동행찾기게시판 페이징 에러"+ e.getMessage());
 		}
-	
 		mav.addObject("paging", vo);
 		mav.setViewName("tour/tourList");
 		return mav;

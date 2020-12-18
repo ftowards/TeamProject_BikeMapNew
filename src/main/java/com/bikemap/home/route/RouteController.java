@@ -89,6 +89,7 @@ public class RouteController {
 			int totalRecord = dao.searchResultRecord(pagingVO);
 			pagingVO.setTotalRecord(totalRecord);
 			
+			System.out.println("dafafdsaf" + totalRecord);
 		}catch(Exception e) {
 			System.out.println("루트 검색 페이징 에러 " + e.getMessage());
 		}
