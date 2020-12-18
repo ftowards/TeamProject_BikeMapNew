@@ -1,22 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <link rel="stylesheet" href="/home/css/routeMap.css" type="text/css" />
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript"	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://www.google.com/jsapi"></script>
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly"
-	defer></script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly"	defer></script>
+<link rel="stylesheet"	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
-	rel="stylesheet">
+<link	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"	rel="stylesheet">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript"	src="<%=request.getContextPath() %>/js/route/routeMap.js"></script>
 <div id="mainDivMap">
 	<div id="info">
 		<!-- 탭 아이콘 패널 -->
@@ -350,9 +344,6 @@
 			</div>
 		</div>
 
-
 	</div>
 	<div id="map"></div>
 </div>
-<script type="text/javascript"
-	src="<%=request.getContextPath() %>/js/routeMap.js"></script>

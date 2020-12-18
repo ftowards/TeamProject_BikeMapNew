@@ -220,10 +220,18 @@ function sendMsg(noboard, receiver, type){
 }
   
 //쪽지창 열기
+//쪽지창 열기
 function popMsgSend(userid){
-	if(userid == 'admin' || userid == $("logId").val()){
+	
+	if($("#logId").val()== "" || $("#logId").val() == null){
+		toast("쪽지 보내기는 회원만 이용 가능합니다.",1500);	
+		return false;	
+	}
+	
+	if(userid == 'admin' || userid == $("#logId").val()){
 		return false
 	}
+	
 	window.open('/home/sendMsg?userid='+userid, 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0');	
 }
 </script>
