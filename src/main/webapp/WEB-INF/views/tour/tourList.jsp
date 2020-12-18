@@ -36,12 +36,12 @@
 					<div><label class="labelClass1">장&nbsp;소</label></div>
 				</li>
 				<li>
-					<input type="text" name="place" placeholder="출발장소" id="place" autocomplete="off">
+					<input type="text" name="place" placeholder="출발장소" id="place" autocomplete="off" value="${paging.place }">
 					<label class="labelClass1 distanceLbl">이동거리</label>
-					<div class="distanceGroup"><input type="number" name="distance1" class="distance" maxlength="4" autocomplete="off" value="0">
+					<div class="distanceGroup"><input type="number" name="distance1" class="distance" maxlength="4" autocomplete="off" value="0" value="${paging.distance1 }">
 						<label class="kmLbl">km</label></div>
 					<label class="label1">~</label>
-					<div class="distanceGroup"><input type="number" name="distance2" class="distance" maxlength="4" autocomplete="off" value="0">
+					<div class="distanceGroup"><input type="number" name="distance2" class="distance" maxlength="4" autocomplete="off" value="0" value="${paging.distance2 }">
 						<label class="kmLbl">km</label></div>
 				</li>
 		
@@ -54,6 +54,7 @@
 					<label id="gendergirl" for="girl">여</label>
 					
 					<input type="checkbox" id="reggender"/>
+					<input type="hidden" id="reggenderPaging" value="${paging.reggender }"/>
 					<input type="checkbox" name="reggender" id="boy" value="1" />
 					<input type="checkbox" name="reggender" id="girl" value="2" />
 				</li>
@@ -70,6 +71,7 @@
 					<label id="regagefiftyOver" for="fiftyOver" style="width:100px">50대 이상</label>
 					
 					<input type="checkbox" id="regage" />
+					<input type="hidden" id="regagePaging" value="${paging.regage }"/>
 					<input type="checkbox" name="regage" id="ten" value="1" />
 					<input type="checkbox" name="regage" id="twenty" value="2"/>
 					<input type="checkbox" name="regage" id="thirty" value="3" />
@@ -270,6 +272,35 @@ $(function(){
 
 		movePage(1);
 	});
+	
+	if($("#reggenderPaging").val() != "" ){
+		var reggender = $("#reggenderPaging").val();
+		if(reggender.indexOf("1") > -1 ){
+			$("#genderbod").trigger("click");
+		}
+		if(reggender.indexOf("2") > -1) {
+			$("#gendergirl").trigger("click");
+		}
+	}
+		
+	if($("#regagePaging").val() != "" ){
+		var regage = $("#regagePaging").val();
+		if(regage.indexOf("1") > -1 ){
+			$("#regageten").trigger("click");
+		}
+		if(regage.indexOf("2") > -1) {
+			$("#regagetwenty").trigger("click");
+		}
+		if(regage.indexOf("3") > -1 ){
+			$("#regagethirty").trigger("click");
+		}
+		if(regage.indexOf("4") > -1) {
+			$("#regageforty").trigger("click");
+		}
+		if(regage.indexOf("5") > -1 ){
+			$("#regagefiftyOver").trigger("click");
+		}
+	}
 	
 	movePage(nowPage);	
 		

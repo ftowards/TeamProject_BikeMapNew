@@ -64,7 +64,6 @@ public class ReviewVO {
 	}
 	public void setContent(String content) {
 		this.content = content;
-		System.out.println(content+": 컨텐츠 데이터");
 	}
 	public int getReference() {
 		return reference;
