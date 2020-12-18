@@ -18,7 +18,7 @@ $(function(){
 			$.ajax({
 				url:"/home/chkReadYetMsg",
 				success: function(result){
-					toastLogin("<a href='/home/messageBox'>확인하지 않은 쪽지와 알람이 "+result+"개 있습니다.</a>");
+					toastLogin("<a href='/home/messageBox'>새 알람이 "+result+"개 있습니다.</a>");
 				}, error : function(err){
 					console.log(err);
 				}

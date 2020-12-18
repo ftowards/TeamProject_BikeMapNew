@@ -5,54 +5,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <script>
-	function makeUserTable(result){
-		
-		var nowPage =$("#nowPage").val();
-		var listNum = 0;
-		var listTag = "";
-		for(var i = 0; i < result.length ; i++){			
-			//alert(result.length+" : 결과 줄");
-			if(i==0){
-				listTag +=  "<li>번&nbsp;&nbsp;호</li> <li>아이디</li> <li>이&nbsp;&nbsp;름</li> <li>성&nbsp;&nbsp;별</li> <li>나&nbsp;&nbsp;이</li> <li>모임횟수</li> <li>좋아요</li> <li>상태</li> <li>정지설정</li>"	;
-			}
-			listNum = i+(nowPage-1)*10+1;
-			//list안에 데이터 추가
-			listTag += "<li>"+listNum+"</li>";
-			listTag += "<li class='contents' ><input type='hidden' class='hiddenEmail' value='"+result[i].email+"'/><input type='hidden' class='hiddenRegdate' value='"+result[i].regdate+"'/>";
-			listTag += "<a href='#' data-toggle='modal' data-target='#modal_User' title=' 사용자 프로필 보기 ' id='userprofileShow' >"+result[i].userid+"</a></li>";
-			listTag += "<li>"+result[i].username+"</li>";
-			listTag += "<li class='fa fa-square fa-stack-2x'>";
-			if(result[i].gender=='1'){
-				listTag +="남";
-			}else if(result[i].gender=='2'){
-				listTag +="여";
-			}
-			
-			listTag += "</li>";
-			
-			listTag += "<li>"+result[i].birth+"대</li>";
-			listTag += "<li>"+result[i].tourcnt+"회</li>";
-			listTag += "<li>"+result[i].heart+"회</li>";			
-			listTag += "<li>";
-			if(result[i].endday==null){
-				if(result[i].active=='N'){
-					listTag += "<span class='status text-warning'>•</span>  미인증</li>";
-				}else{
-					listTag += "<span class='status text-success'>•</span>활 동</li>";
-				}
-				
-				listTag += "<li style='padding-left:27px; color:red'><input type='button' title='"+result[i].userid+"'id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/></li>";
-				
-			}else{
-				listTag += "<span class='status text-danger'>•</span>정 지";
-				listTag += "<p class='arrow_box'>~"+result[i].endday+"</p></li>";
-				//<!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
-				listTag += "<li style='padding-left:27px; color:red'><input type='button' title='"+result[i].userid+"' id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/></li>";	
-			}
-			
-			$("#userList").html(listTag);
-		}
-	}
+
 	
 </script>
 
@@ -195,8 +148,8 @@
 			
 			<!-- suspend Editpopup -->
 			<div id="modal_suspendEdit" class="modal fade" tabindex="-1" role="dialog">
-				  <div class="modal-dialog modal-dialog-centered" role="document">
-				    <div class="modal-content">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
 				    	<form id="userSuspendEditFrm">
 				    	<input type="hidden" name="userid" id="suspendEditUserid" value=""/><!-- DB쪽 보낼데이터 -->
 					    	<div class="modal-header">
@@ -232,48 +185,37 @@
 							</div>
 
 				    	</form>
-			</div>
-		</div>
-	</div>
-	
-<!-- 완료 -->
-<!-- 	// 가입일 이모티콘 변경 -->
-<!-- 	// 필요없는거 빼기 -->
-<!-- 	// 하단 클로즈 가운데정렬 -->
-
-<!-- 이것만 해결하자... -->
-<!-- // 가로사이즈 줄이기 -->
-<!-- // rownum순서 제대로 나오게 db query문 수정  -->
-
-	<div id="modal_User" class="modal fade modal-userprofile"  tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document" >
-			<div class="modal-content">	
-				<div class="modal-header">
-					<h3 class="modal-title">회원 정보</h3>
-			    </div>
-				<ul class="userInfo">
-			    	<li>
-						<img src='img/img_reply/p.png' alt="" class="img-rounded img-responsive" />
-					</li>
-					<li	>
-						<h4><span id="modalUsername">홍길동</span></h4>
-						<p>
-							<i class="glyphicon glyphicon-envelope"></i><span id="modalEmail">bikemap@bikemap.com</span>
-			                <br />
-			                <i class="glyphicon glyphicon glyphicon-ok-circle"></i><span id="modalRegidate">June 02, 1988</span>
-		                </p>
-	                </li>
-                </ul>
-               
-               	<div class="modal-footer" style="text-align:center">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						  
+					</div>
 				</div>
-			 </div>
-		</div>
-	</div>
+			</div>
 	
-		
-</div> <!-- modal-bialog .// -->
+			<div id="modal_User" class="modal fade modal-userprofile"  tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document" >
+					<div class="modal-content" style="width:auto">	
+						<div class="modal-header">
+							<h3 class="modal-title">회원 정보</h3>
+					    </div>
+						<ul class="userInfo">
+					    	<li>
+								<img src='img/img_reply/p.png' alt="" class="img-rounded img-responsive" />
+							</li>
+							<li	>
+								<h4><span id="modalUsername">홍길동</span></h4>
+								<p>
+									<i class="glyphicon glyphicon-envelope"></i><span id="modalEmail">bikemap@bikemap.com</span>
+					                <br />
+					                <i class="glyphicon glyphicon glyphicon-ok-circle"></i><span id="modalRegidate">June 02, 1988</span>
+				                </p>
+			                </li>
+		                </ul>
+		               
+		               	<div class="modal-footer" style="text-align:center">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						  
+						</div>
+					 </div>
+				</div>
+			</div>
+		</div> <!-- modal-bialog .// -->
 			<!-- suspend POP -->
 <!--  adminBottom -->
 </div>
