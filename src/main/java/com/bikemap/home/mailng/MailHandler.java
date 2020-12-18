@@ -1,11 +1,12 @@
 package com.bikemap.home.mailng;
 
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -47,12 +48,16 @@ public class MailHandler {
 	
 	public void addInLine(String contentId, DataSource dataSource) throws MessagingException{
 		messageHelper.addInline(contentId, dataSource);
-		
-		
 	}
 	
+	public void setInline(String contentId, String pathToInline) throws MessagingException, IOException {
+        File file = new File(pathToInline);
+        FileDataSource fsr = new FileDataSource(file);
+
+        messageHelper.addInline(contentId, fsr);
+    }
 	
-	public void send() {
+	public void send() throws FileNotFoundException, MessagingException {
 		try {
 			mailSender.send(message);
 		}catch (Exception e) {
