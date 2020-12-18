@@ -13,7 +13,6 @@
 	<div id="bottomDiv">
 		<div><img src="<%=request.getContextPath()%>/img/img_logo/bikemap.png"/></div>
 		<div id="bottomLogoDiv"></div>
-	
 	</div>
 </div>
 </body>

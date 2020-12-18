@@ -195,8 +195,8 @@
 			
 			<!-- suspend Editpopup -->
 			<div id="modal_suspendEdit" class="modal fade" tabindex="-1" role="dialog">
-				  <div class="modal-dialog modal-dialog-centered" role="document">
-				    <div class="modal-content">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
 				    	<form id="userSuspendEditFrm">
 				    	<input type="hidden" name="userid" id="suspendEditUserid" value=""/><!-- DB쪽 보낼데이터 -->
 					    	<div class="modal-header">
@@ -235,48 +235,37 @@
 							</div>
 
 				    	</form>
-			</div>
-		</div>
-	</div>
-	
-<!-- 완료 -->
-<!-- 	// 가입일 이모티콘 변경 -->
-<!-- 	// 필요없는거 빼기 -->
-<!-- 	// 하단 클로즈 가운데정렬 -->
-
-<!-- 이것만 해결하자... -->
-<!-- // 가로사이즈 줄이기 -->
-<!-- // rownum순서 제대로 나오게 db query문 수정  -->
-
-	<div id="modal_User" class="modal fade modal-userprofile"  tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document" >
-			<div class="modal-content">	
-				<div class="modal-header">
-					<h3 class="modal-title">회원 정보</h3>
-			    </div>
-				<ul class="userInfo">
-			    	<li>
-						<img src='img/img_reply/p.png' alt="" class="img-rounded img-responsive" />
-					</li>
-					<li	>
-						<h4><span id="modalUsername">홍길동</span></h4>
-						<p>
-							<i class="glyphicon glyphicon-envelope"></i><span id="modalEmail">bikemap@bikemap.com</span>
-			                <br />
-			                <i class="glyphicon glyphicon glyphicon-ok-circle"></i><span id="modalRegidate">June 02, 1988</span>
-		                </p>
-	                </li>
-                </ul>
-               
-               	<div class="modal-footer" style="text-align:center">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						  
+					</div>
 				</div>
-			 </div>
-		</div>
-	</div>
+			</div>
 	
-		
-</div> <!-- modal-bialog .// -->
+			<div id="modal_User" class="modal fade modal-userprofile"  tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document" >
+					<div class="modal-content" style="width:auto">	
+						<div class="modal-header">
+							<h3 class="modal-title">회원 정보</h3>
+					    </div>
+						<ul class="userInfo">
+					    	<li>
+								<img src='img/img_reply/p.png' alt="" class="img-rounded img-responsive" />
+							</li>
+							<li	>
+								<h4><span id="modalUsername">홍길동</span></h4>
+								<p>
+									<i class="glyphicon glyphicon-envelope"></i><span id="modalEmail">bikemap@bikemap.com</span>
+					                <br />
+					                <i class="glyphicon glyphicon glyphicon-ok-circle"></i><span id="modalRegidate">June 02, 1988</span>
+				                </p>
+			                </li>
+		                </ul>
+		               
+		               	<div class="modal-footer" style="text-align:center">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						  
+						</div>
+					 </div>
+				</div>
+			</div>
+		</div> <!-- modal-bialog .// -->
 			<!-- suspend POP -->
 <!--  adminBottom -->
 </div>
