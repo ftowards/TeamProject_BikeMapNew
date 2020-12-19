@@ -73,7 +73,6 @@ public class TourController {
 		ModelAndView mav = new ModelAndView();
 		TourVO vo = new TourVO();
 		try {
-			System.out.println(pagingVO.getRegage());
 			vo = dao.tourSelect(pagingVO);
 		}catch(Exception e) {
 			System.out.println("투어 보기 에러" + e.getMessage());
@@ -139,8 +138,8 @@ public class TourController {
 	@RequestMapping(value="/searchTourPagingAll", method=RequestMethod.POST)
 	@ResponseBody
 	public PagingVO searchTourPagingAll(PagingVO vo) {	
+		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		try {
-			TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 			vo.setTotalRecord(dao.getTourRecord(vo));
 		}catch(Exception e) {
 			System.out.println("페이징에러"+e.getMessage());
@@ -158,6 +157,7 @@ public class TourController {
 			
 //			String sql = sqlSession.getConfiguration().getMappedStatement("getTotalTourRecord").getBoundSql(vo).getSql();
 //			System.out.println("sql->"+sql);
+
 			vo.setTotalRecord(dao.getTourRecord(vo));
 		}catch(Exception e) {
 			System.out.println("페이징에러"+e.getMessage());
@@ -187,7 +187,7 @@ public class TourController {
 					result = Integer.parseInt(state)+1;
 				}else if(dao.checkTourRoom(vo.getNoboard()) <= 0) {
 					return 4;
-				}else {
+				}else { // 참가 내역이 없을 경우 신청
 					vo.setState("1");
 					result = dao.insertTourComplist(vo);
 				}
@@ -209,15 +209,9 @@ public class TourController {
 		String result = "";
 		TourDaoImp dao = sqlSession.getMapper(TourDaoImp.class);
 		
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setPropagationBehavior(DefaultTransactionDefinition.PROPAGATION_REQUIRED);
-		
-		TransactionStatus status = transactionManager.getTransaction(def);
-
 		try {			
 			vo.setUserid((String)session.getAttribute("logId"));
-			result = dao.checkTourComplist(vo);
-			
+			result = dao.checkTourComplist(vo);			
 		}catch(Exception e) {
 			System.out.println("투어 참가 확인 오류 " + e.getMessage());
 		}
@@ -278,12 +272,8 @@ public class TourController {
 		dead.set(Integer.parseInt(deadArray[0]), Integer.parseInt(deadArray[1])-1, Integer.parseInt(deadArray[2]), Integer.parseInt(deadArray[3]), 0,0);
 		
 		if(now.compareTo(dead) > 0) {
-			System.out.println("마감 시간 후");
 			chk = false;
 		}
-		
-//		System.out.println(now.getTime());
-//		System.out.println(dead.getTime());
 		
 		return chk;
 	}
@@ -440,10 +430,8 @@ public class TourController {
 		try {
 			if(vo.getTourState() != null && vo.getApplyState() == null) {
 				vo.setTotalRecord(dao.getMytourRecordCount(vo));	
-//				System.out.println("총 레코드 수 " +dao.getMytourRecordCount(vo));
 			}else if(vo.getTourState() == null && vo.getApplyState() != null) {
 				vo.setTotalRecord(dao.getApplytourRecordCount(vo));
-				System.out.println("참가 신청한 투어 총 레코드 수 " +dao.getApplytourRecordCount(vo));
 			}
 		}catch(Exception e) {
 			System.out.println("투어 페이징 에러 " + e.getMessage());
@@ -552,14 +540,10 @@ public class TourController {
 	@RequestMapping("/tourViewEdit")
 	@ResponseBody
 	public ModelAndView tourViewEdit(@RequestParam("noboard") int noboard,HttpSession ses) {
-		
-
 		ModelAndView mav = new ModelAndView();
 		try {
-			
 			TourDaoImp dao  = sqlSession.getMapper(TourDaoImp.class);
 			TourVO vo = dao.tourEditSelect(noboard,(String)ses.getAttribute("logId"));
-		
 			
 			mav.addObject("vo",vo);
 			
@@ -589,4 +573,3 @@ public class TourController {
 		return result;
 	}
 }
-

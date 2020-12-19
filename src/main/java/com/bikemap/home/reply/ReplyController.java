@@ -50,13 +50,11 @@ public class ReplyController {
 		ReplyDaoImp dao = sqlSession.getMapper(ReplyDaoImp.class);
 		List<ReplyVO> list = new ArrayList<ReplyVO>();
 		try {
-			int totalReply = dao.getTotalReplyRecord(vo);
-			vo.setTotalRecord(totalReply);
+			vo.setTotalRecord(dao.getTotalReplyRecord(vo));
 			list = dao.replyAllSelect(vo);
 		}catch(Exception e) {
 			System.out.println("댓글 페이징 에러 " + e.getMessage());
 		}
-		
 		return list;
 	}
 	
@@ -67,8 +65,7 @@ public class ReplyController {
 		ReplyDaoImp dao = sqlSession.getMapper(ReplyDaoImp.class);
 		
 		try {
-			int totalReply = dao.getTotalReplyRecord(vo);
-			vo.setTotalRecord(totalReply);
+			vo.setTotalRecord(dao.getTotalReplyRecord(vo));
 			
 		}catch(Exception e) {
 			System.out.println("댓글 페이징 에러 " + e.getMessage());
@@ -103,5 +100,4 @@ public class ReplyController {
 		}
 		return result;
 	}
-	
 }

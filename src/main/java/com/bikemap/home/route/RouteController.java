@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,15 +45,10 @@ public class RouteController {
 		ModelAndView mav = new ModelAndView();
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 
-		System.out.println(pagingVO.getSearchKey());
-		System.out.println(pagingVO.getSearchWord());
-		
 		try {
-			int totalRecord = dao.searchResultRecord(pagingVO);
-			pagingVO.setTotalRecord(totalRecord);
+			pagingVO.setTotalRecord(dao.searchResultRecord(pagingVO));
 			mav.addObject("pagingVO", pagingVO);
 			
-			System.out.println(pagingVO.getTotalRecord());
 		}catch(Exception e) {
 			System.out.println("루트 검색 화면 호출 에러 " + e.getMessage());
 		}		
@@ -70,9 +64,7 @@ public class RouteController {
 		List<RouteVO> list = new ArrayList<RouteVO>();
 		
 		try {
-			int totalRecord = dao.searchResultRecord(pagingVO);
-			pagingVO.setTotalRecord(totalRecord);
-			
+			pagingVO.setTotalRecord(dao.searchResultRecord(pagingVO));
 			list = dao.selectRouteSearch(pagingVO);
 		}catch(Exception e) {
 			System.out.println("루트 리스트 검색 에러 " + e.getMessage());
@@ -86,10 +78,7 @@ public class RouteController {
 	public RoutePagingVO searchRoutePageing(RoutePagingVO pagingVO) {		
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		try {
-			int totalRecord = dao.searchResultRecord(pagingVO);
-			pagingVO.setTotalRecord(totalRecord);
-			
-			System.out.println("dafafdsaf" + totalRecord);
+			pagingVO.setTotalRecord(dao.searchResultRecord(pagingVO));
 		}catch(Exception e) {
 			System.out.println("루트 검색 페이징 에러 " + e.getMessage());
 		}
@@ -141,10 +130,10 @@ public class RouteController {
 	public ModelAndView routeMap(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		RouteDaoImp routeDao = sqlSession.getMapper(RouteDaoImp.class);
+		
 		if(session.getAttribute("logId") != null) {
 			try {
-				String userid  = (String)session.getAttribute("logId");
-				List<RouteCateVO> categoryList = routeDao.selectCategory(userid);
+				List<RouteCateVO> categoryList = routeDao.selectCategory((String)session.getAttribute("logId"));
 				mav.addObject("category", categoryList);
 			}catch(Exception e) {
 				System.out.println(e.getMessage());
@@ -281,13 +270,11 @@ public class RouteController {
 		
 		vo.setUserid((String)session.getAttribute("logId"));
 		try {			
-			result = dao.checkRateAlready(vo);
-			if(result == 1) {
+			if(dao.checkRateAlready(vo) == 1) {
 				return 2; // 이미 평점을 줬을 경우 2를 리턴
 			}else {
 				// 평점이 없을 경우 평점 부여 / routerate 테이블에 아이디 추가
-				result = dao.ratingRoute(vo);
-				if(result == 1) {
+				if(dao.ratingRoute(vo) == 1) {
 					result = dao.insertRouteRateList(vo);
 				}
 			}
@@ -320,7 +307,6 @@ public class RouteController {
 		RouteDaoImp dao = sqlSession.getMapper(RouteDaoImp.class);
 		RouteVO vo = new RouteVO();
 		try {
-			System.out.println("noboard" + noboard);
 			vo = dao.selectRoute2(noboard);
 		}catch(Exception e) {
 			System.out.println("썸네일용 데이터 호출 에러"+ e.getMessage());
@@ -563,7 +549,6 @@ public class RouteController {
 		
 		try {
 			result = dao.scrapRoute(noboard);
-			System.out.println(noboard + " 스크랩 리절트 " + result);
 		}catch(Exception e) {
 			System.out.println("루트 스크랩 에러 " + e.getMessage());
 		}
@@ -592,7 +577,7 @@ public class RouteController {
 					NoticeVO nVO = new NoticeVO();
 					nVO.setIdsend("admin");
 					nVO.setUserid(userid[i]);
-					nVO.setMsg("<a href='/home/routeSearchView?noboard="+noArray[i]+"'>"+noArray[i]+ "번 루트가 추천 루트로 등록되었습니다.</a>");
+					nVO.setMsg("<a href='/home/routeSearchView?noboard="+noArray[i]+"' target='_blank'>"+noArray[i]+ "번 루트가 추천 루트로 등록되었습니다.</a>");
 					nDao.insertNotice(nVO);
 					
 					// 메세지
@@ -627,13 +612,7 @@ public class RouteController {
 		}
 		return result;
 	}
-	
-	// 추천 루트 주소
-	@RequestMapping("/recommendRoute")
-	public String recommednRoute() {
-		return "/inc/recRoute";
-	}
-	
+		
 	// 추천 루트 가져오기
 	@RequestMapping("/route/getRecRoute")
 	@ResponseBody
