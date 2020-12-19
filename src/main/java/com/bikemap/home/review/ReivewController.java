@@ -68,8 +68,7 @@ public class ReivewController {
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
 		
 		try {
-			int totalRecord = dao.searchTotalRecord(pagingVO);
-			pagingVO.setTotalRecord(totalRecord);
+			pagingVO.setTotalRecord(dao.searchTotalRecord(pagingVO));
 			
 			list = dao.reviewAllRecord(pagingVO);
 		}catch(Exception e) {
@@ -91,7 +90,6 @@ public class ReivewController {
 		
 		try {
 			result = dao.reviewInsert(vo);
-			System.out.println(result);
 		}catch(Exception e) {
 			System.out.println("후기 글쓰기 에러 " + e.getMessage());
 		}
@@ -107,7 +105,6 @@ public class ReivewController {
 		ReviewDaoImp dao =  sqlSession.getMapper(ReviewDaoImp.class);		
 		ModelAndView mav = new ModelAndView();
 
-		
 		try {
 			//조회수를 먼저 증가하기
 			dao.hitCount(pagingVO.getNoboard());
@@ -145,9 +142,11 @@ public class ReivewController {
 	@RequestMapping("/reviewEdit")
 	public ModelAndView reviewEdit(int noboard) {
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-		ReviewVO vo = dao.reviewSelect(noboard);
 		ModelAndView mav = new ModelAndView();
+
 		try {
+			ReviewVO vo = dao.reviewSelect(noboard);
+
 			mav.addObject("vo", vo);
 			mav.setViewName("review/reviewEdit");
 		}catch(Exception e) {
@@ -164,7 +163,7 @@ public class ReivewController {
 	public int reviewEditOk(ReviewVO vo, HttpSession ses) {
 		vo.setUserid((String)ses.getAttribute("logId"));
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
-		System.out.println(vo.getContent()+": content ");
+
 		int result = 0;
 
 		try {	
@@ -182,12 +181,9 @@ public class ReivewController {
 	public int reviewDel(int noboard, HttpSession ses) {
 		ReviewDaoImp dao = sqlSession.getMapper(ReviewDaoImp.class);
 		int result = 0;
+
 		try {
-			System.out.println(noboard);
-			System.out.println((String)ses.getAttribute("logId"));
 			result = dao.reviewDelete(noboard,(String)ses.getAttribute("logId"));
-			
-			System.out.println(result);
 		}catch(Exception e) {
 			System.out.println("리뷰 삭제 에러" + e.getMessage());
 		}	
@@ -323,6 +319,4 @@ public class ReivewController {
 		}
 		return vo;
 	}
-	
-
 }

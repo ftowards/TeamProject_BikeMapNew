@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bikemap.home.review.ReviewVO;
-import com.bikemap.home.route.RouteDaoImp;
 import com.bikemap.home.route.RouteVO;
-import com.bikemap.home.tour.PagingVO;
-import com.bikemap.home.tour.TourDaoImp;
 import com.bikemap.home.tour.TourVO;
 
 @Controller
@@ -36,18 +33,14 @@ public class AdminController {
 	public ModelAndView adminUser(AdminPagingVO vo) {
 		ModelAndView mav = new ModelAndView();
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
+
 		try {	
-			int totalRecord = 0;
-			List<AdminRegistVO>list;
-			//vo.setOnePageRecord(10);
-			totalRecord = dao.searchRegistRecord(vo);
-			vo.setTotalRecord(totalRecord);
-			list = dao.selectRegistAll(vo);
-			System.out.println(vo.getLastPageRecordCount()+": 마지막 페이지 레코드수");
+			vo.setTotalRecord(dao.searchRegistRecord(vo));
+			List<AdminRegistVO> list = dao.selectRegistAll(vo);
+
 			mav.addObject("type", "user");
 			mav.addObject("list", list);
 			mav.addObject("pagingVO", vo);	
-			
 		}catch(Exception e) {
 			System.out.println("회원 검색 화면 호출 에러111"+e.getMessage());
 		}	
@@ -60,8 +53,7 @@ public class AdminController {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		List<AdminRegistVO>list = new ArrayList<AdminRegistVO>();
 		try {	
-			int totalRecord = dao.searchRegistRecord(vo);
-			vo.setTotalRecord(totalRecord);
+			vo.setTotalRecord(dao.searchRegistRecord(vo));
 			list = dao.selectRegistAll(vo);		
 		}catch(Exception e) {
 			System.out.println("회원 검색 화면 호출 에러"+e.getMessage());
@@ -74,11 +66,14 @@ public class AdminController {
 	public AdminSuspendVO userSuspendOk(AdminSuspendVO vo) {
 		AdminSuspendVO Avo = null;
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-		int result = dao.suspendInsert(vo);
-		if(result>0) {
-			Avo = dao.getEndday(vo);
+		
+		try{
+			if(dao.suspendInsert(vo) > 0) {
+				Avo = dao.getEndday(vo);
+			}
+		}catch(Exception e) {
+			System.out.println("회원 정지 처리 에러 " + e.getMessage());
 		}
-		//System.out.println(Avo.getEnddayStr()+"    log");
 		return Avo;
 	}
 	
@@ -87,9 +82,13 @@ public class AdminController {
 	public AdminSuspendVO userSuspendUpdateOk(AdminSuspendVO vo) {
 		AdminSuspendVO Avo = null;
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-		int result = dao.suspendUpdate(vo);
-		if(result>0) {
-			Avo = dao.getEndday(vo);
+		
+		try {
+			if( dao.suspendUpdate(vo) > 0) {
+				Avo = dao.getEndday(vo);
+			}
+		}catch(Exception e) {
+			System.out.println("회원 정지 수정 에러 " +  e.getMessage());
 		}
 		return Avo;
 	}
@@ -97,54 +96,44 @@ public class AdminController {
 	//루트패널
 	@RequestMapping("/adminRoute")
 	public ModelAndView adminRoute(AdminPagingVO vo) {
-			ModelAndView mav = new ModelAndView();
-			AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-			try {	
-				int totalRecord = 0;
-				List<RouteVO>list;
-				totalRecord = dao.searchRouteRecord(vo);
-				vo.setTotalRecord(totalRecord);
-				list = dao.routeAllRecord(vo);
-				
-				mav.addObject("type", "route");
-				mav.addObject("list", list);
-				mav.addObject("pagingVO", vo);	
-			}catch(Exception e) {
-				System.out.println("리뷰 검색 화면 호출 에러"+e.getMessage());
-			}	
-			mav.setViewName("admin/adminRouteTable");
-			return mav;
-		}
+		ModelAndView mav = new ModelAndView();
+		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
+		try {	
+			vo.setTotalRecord(dao.searchRouteRecord(vo));
+			List<RouteVO> list = dao.routeAllRecord(vo);
+			
+			mav.addObject("type", "route");
+			mav.addObject("list", list);
+			mav.addObject("pagingVO", vo);	
+		}catch(Exception e) {
+			System.out.println("리뷰 검색 화면 호출 에러"+e.getMessage());
+		}	
+		mav.setViewName("admin/adminRouteTable");
+		return mav;
+	}
+	
 	@RequestMapping(value="/adminRouteAjax", method=RequestMethod.POST)
 	@ResponseBody
 	public List<RouteVO> adminRouteAjax(AdminPagingVO vo) {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		List<RouteVO>list = new ArrayList<RouteVO>();
 		try {	
-			int totalRecord = dao.searchRouteRecord(vo);
-			vo.setTotalRecord(totalRecord);
+			vo.setTotalRecord(dao.searchRouteRecord(vo));
 			list = dao.routeAllRecord(vo);		
 		}catch(Exception e) {
 			System.out.println("리뷰 검색 aJax 화면 호출 에러111"+e.getMessage());
 		}	
 		return list;
 	}
+	
 	//동행찾기패널
 	@RequestMapping("/adminTour")
 	public ModelAndView adminTour(AdminPagingVO vo) {
 		ModelAndView mav = new ModelAndView();
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		try {	
-			int totalRecord = 0;
-			List<TourVO>list;
-			//if(vo.getSearchType()!=null||vo.getSearchType()!="") {
-				//System.out.println(vo.getSearchType()+"dddddd/"+vo.getSearchWord());
-			totalRecord = dao.searchTourRecord(vo);
-			vo.setTotalRecord(totalRecord);
-			list = dao.tourAllRecord(vo);
-			System.out.println("확인확인"+totalRecord);
-			
-
+			vo.setTotalRecord(dao.searchTourRecord(vo));
+			List<TourVO> list = dao.tourAllRecord(vo);
 			
 			mav.addObject("type", "tour");
 			mav.addObject("list", list);
@@ -161,8 +150,7 @@ public class AdminController {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		List<TourVO>list = new ArrayList<TourVO>();
 		try {	
-			int totalRecord = dao.searchTourRecord(vo);
-			vo.setTotalRecord(totalRecord);
+			vo.setTotalRecord(dao.searchTourRecord(vo));
 			list = dao.tourAllRecord(vo);		
 		}catch(Exception e) {
 			System.out.println("투어 검색 화면 호출 에러111"+e.getMessage());
@@ -173,46 +161,36 @@ public class AdminController {
 	//리뷰패널
 	@RequestMapping("/adminReview")
 	public ModelAndView adminReview(AdminPagingVO vo) {
-			ModelAndView mav = new ModelAndView();
-			AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
-		
-			try {	
-				int totalRecord = 0;
-				List<ReviewVO>list;
-				if(vo.getSearchType()!=null||vo.getSearchType()!="") {
-					totalRecord = dao.searchReviewRecord(vo);
-					vo.setTotalRecord(totalRecord);
-					System.out.println("!!!!!    "+vo.getTotalRecord());
-					list = dao.reviewAllRecord(vo);
-				}
-				else{
-					
-					totalRecord = dao.reviewTotalRecord();
-					vo.setTotalRecord(totalRecord);
-					System.out.println("!!!!!    "+vo.getTotalRecord());
-					list = dao.reviewAllRecord(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
-					
-				}
-				mav.addObject("type", "review");
-				mav.addObject("list", list);
-				mav.addObject("pagingVO", vo);	
-			}catch(Exception e) {
-				System.out.println("리뷰 검색 화면 호출 에러"+e.getMessage());
-			}	
-			mav.setViewName("admin/adminReviewTable");
-			return mav;
-		}
+		ModelAndView mav = new ModelAndView();
+		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
+	
+		try {	
+			List<ReviewVO> list;
+			if(vo.getSearchType()!=null||vo.getSearchType()!="") {
+				vo.setTotalRecord(dao.searchReviewRecord(vo));
+				list = dao.reviewAllRecord(vo);
+			}else {
+				vo.setTotalRecord(dao.reviewTotalRecord());
+				list = dao.reviewAllRecord(null);//처음에는 검색어 없으므로 그냥 널값넣어준다.
+			}
+			
+			mav.addObject("type", "review");
+			mav.addObject("list", list);
+			mav.addObject("pagingVO", vo);	
+		}catch(Exception e) {
+			System.out.println("리뷰 검색 화면 호출 에러"+e.getMessage());
+		}	
+		mav.setViewName("admin/adminReviewTable");
+		return mav;
+	}
+
 	@RequestMapping(value="/adminReviewAjax", method=RequestMethod.POST)
 	@ResponseBody
 	public List<ReviewVO> adminReviewAjax(AdminPagingVO vo) {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		List<ReviewVO>list = new LinkedList<ReviewVO>();
 		try {	
-
-			int totalRecord = dao.searchReviewRecord(vo);
-			vo.setTotalRecord(totalRecord);
-			
-			System.out.println("dfdafdsa" + totalRecord);
+			vo.setTotalRecord(dao.searchReviewRecord(vo));
 			list = dao.reviewAllRecord(vo);		
 		}catch(Exception e) {
 			System.out.println("리뷰 검색 aJax 화면 호출 에러111"+e.getMessage());
@@ -227,9 +205,7 @@ public class AdminController {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		try {	
 			//전체 답변테이블 구하기
-			int totalRecord = dao.searchQnaRecord(vo);
-			
-			vo.setTotalRecord(totalRecord);
+			vo.setTotalRecord(dao.searchQnaRecord(vo));
 
 			List<AdminQnaVO>list = dao.selectQnaAll(vo);//처음에는 검색어 없으므로 그냥 널값넣어준다.
 			mav.addObject("type", "qna");
@@ -241,17 +217,14 @@ public class AdminController {
 		mav.setViewName("admin/adminQnaTable");
 		return mav;
 	}
+
 	@RequestMapping(value="/adminQnaAjax", method=RequestMethod.POST)
 	@ResponseBody
 	public List<AdminQnaVO> adminQnaAjax(AdminPagingVO vo) {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		List<AdminQnaVO>list = new ArrayList<AdminQnaVO>();
 		try {	
-			System.out.println("앤서 "+vo.getAnswer());
-			int totalRecord = dao.searchQnaRecord(vo);
-			
-			System.out.println("qna 전체 레코드" + totalRecord);
-			vo.setTotalRecord(totalRecord);
+			vo.setTotalRecord(dao.searchQnaRecord(vo));
 			list = dao.selectQnaAll(vo);		
 		}catch(Exception e) {
 			System.out.println("회원 답변테이블 Ajax 화면 호출 에러111"+e.getMessage());
@@ -286,16 +259,12 @@ public class AdminController {
 		try {
 			dao.qnaUpdate(vo);
 			mav.setViewName("redirect:adminQna");
-//				mav.addObject("msg", "1대1문의 답변 제출 오류");
-//				mav.setViewName("admin/result");	
 		}catch(Exception e) {
 			System.out.println("1대1문의 답변 제출 오류"+e.getMessage());
 		}
 		return mav;
 	}
-//	@RequestMapping(value="/hideBtn", method=RequestMethod.POST)
-//	@ResponseBody
-//	public 
+
 	//페이징
 	@RequestMapping(value="/adminPaging", method=RequestMethod.POST)
 	@ResponseBody
@@ -304,6 +273,7 @@ public class AdminController {
 		AdminDaoImp dao = sqlSession.getMapper(AdminDaoImp.class);
 		try {
 			String type = paging.getType();
+			
 			int totalRecord = 0;
 			if(type.equals("user")) {
 				totalRecord = dao.searchRegistRecord(paging);				
@@ -323,6 +293,4 @@ public class AdminController {
 		}
 		return paging;
 	}
-	
-
 }
