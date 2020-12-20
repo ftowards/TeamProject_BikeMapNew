@@ -390,11 +390,14 @@
 	    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
   	}
   	.btn_del{
-  			 background-color: #FF6347;	
-  			 color: #fff;
-  			 border: none;
-  				
-  	
+		background-color: #FF6347;
+	    color: #fff;
+	    border: none;
+	    width: 95px;
+	    height: 35px;
+	    font-size: 16px;
+	    letter-spacing: 10px;
+	    padding-left: 14px;
   	}
   	.readYetChk{
   		margin-left : 5px;

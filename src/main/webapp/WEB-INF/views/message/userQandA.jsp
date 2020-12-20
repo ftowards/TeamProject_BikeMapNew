@@ -257,7 +257,7 @@ function deleteQna(){
 			<div class="titleMyDiv1 tab"><label>나의 문의사항</label>
 				<input type="checkbox" id="answer" name="answer" value="Y" />
 				<span>답변 완료만 보기</span>
-				<input type="button" name="deleteQna" onclick='deleteQna();' value="삭제" class="btn_del"/>
+				
 				<div class="myBoardMainDiv">
 		     		<div>
 		     			<div >
@@ -317,7 +317,9 @@ function deleteQna(){
 							</div>
 						</div>
 					</div>
-				</div>	
+				</div>
+				
+				<input type="button" name="deleteQna" onclick='deleteQna();' value="삭제" class="btn_del"/>
 			</div>
 			
 		</div>
