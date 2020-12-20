@@ -53,7 +53,7 @@
 
 <div class="banner_wrap2"></div>
 <div class="bg_bikemap">
-	<img src="<%=request.getContextPath() %>/img/img_main/bg_bikemap.png"/>
+	<img src="<%=request.getContextPath() %>/img/img_main/bg_bikemap3.png"/>
 </div>
 
 <div id="mainDivHome">
