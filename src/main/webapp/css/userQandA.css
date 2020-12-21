@@ -373,7 +373,7 @@
   		color:rgb(0,176,176);
   	}
   	
-  	.btn,.btn_del{
+ 	.btn,.btn_del{
   		font-weight: bold;
 	    border-radius: 10px;
 	    text-decoration: none;
@@ -382,7 +382,7 @@
 	    margin : -11px 8px 0 0;
 	    color: white;
 	    border:none;
-	    background-color: rgb(64,64,64);
+	    background-color: rgb(0,64,64);
 	    float: right;
 	    height : 30px;
 	    line-height :20px;
@@ -390,14 +390,11 @@
 	    box-shadow: 3px 3px 5px 3px rgb(230,230,230);
   	}
   	.btn_del{
-		background-color: #FF6347;
-	    color: #fff;
-	    border: none;
-	    width: 95px;
-	    height: 35px;
-	    font-size: 16px;
-	    letter-spacing: 10px;
-	    padding-left: 14px;
+  			 background-color: #FF6347;	
+  			 color: #fff;
+  			 border: none;
+  				
+  	
   	}
   	.readYetChk{
   		margin-left : 5px;

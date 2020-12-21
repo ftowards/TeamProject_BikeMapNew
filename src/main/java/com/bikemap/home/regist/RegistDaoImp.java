@@ -47,7 +47,7 @@ public interface RegistDaoImp {
 	public int selectTourcnt(String userid);
 	
 	// 이메일 확인
-	public String selectUserEmail(String userid);
+	public String selectUserEmail(RegistVO vo);
 	
 	// 회원 정보 수정 2
 	public int updateUser2(RegistVO vo);

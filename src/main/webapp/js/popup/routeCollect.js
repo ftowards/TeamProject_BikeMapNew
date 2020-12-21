@@ -98,7 +98,7 @@
 	});
 	
 	function toast(msg, time) {
-		var y = window.scrollY + 200 + "px";
+		var y = window.scrollY + 30 + "px";
 		$(".noticeBoard").css("top",y);
 		
 		var toast = $("#toast");

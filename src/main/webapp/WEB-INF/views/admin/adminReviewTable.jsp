@@ -8,7 +8,7 @@
 				<h1 class="adminListHead">후기게시판</h1>
 				<div class="orderRadio_review">
 					<input type="radio" name="order" id="orderNoboard" value="noboard" checked><label for="orderNoboard" class="subTxt">최신순</label><span id="lBar"> | </span>
-					<input type="radio" name="order" id="orderHit" value="hit"><label for="orderHit" class="subTxt">조회수</label>
+					<input type="radio" name="order" id="orderHit" value="thumb"><label for="orderHit" class="subTxt">추천순</label>
 				</div>
 				<ul id="reviewList">	
 					

@@ -189,7 +189,6 @@ public class RegistController {
 		
 		try {
 			RegistVO chk = dao.login(vo);
-			System.out.println(chk);
 			if(chk != null) {
 				if(chk.getActive().equals("Y")) {
 					RegistVO chk2 = dao.selectCause(chk);
@@ -274,7 +273,7 @@ public class RegistController {
 	// 회원 정보 수정 처리
 	@RequestMapping("/registerEditFormOk")
 	@ResponseBody
-	public int registEditFormOk(RegistVO vo) {		
+	public int registEditFormOk(RegistVO vo, HttpSession ses) {		
 		RegistDaoImp dao = sqlSession.getMapper(RegistDaoImp.class);
 		int result = 0;
 		
@@ -283,8 +282,9 @@ public class RegistController {
 		
 		TransactionStatus status = transactionManager.getTransaction(def);
 		
+		vo.setUserid((String)ses.getAttribute("logId"));
 		try {
-			String emailBefore = dao.selectUserEmail(vo.getUserid());
+			String emailBefore = dao.selectUserEmail(vo);
 			if(emailBefore.equals(vo.getEmail())) {
 				result = dao.updateUser(vo);
 			}else {

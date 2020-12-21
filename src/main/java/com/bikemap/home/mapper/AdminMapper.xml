@@ -101,7 +101,7 @@
 	</select>
 	<select id = "reviewAllRecord" resultType="com.bikemap.home.review.ReviewVO">
 		select * from(select * from(
-		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit, thumbup, thumbdown, scrap
+		select noboard, subject, userid, content, reference, to_char(writedate, 'YYYY-MM-DD') writedate, hit, thumbup, thumbdown, (thumbup - thumbdown) thumb, scrap
 		from review <include refid="search"></include> order by ${order} desc)
 		<![CDATA[where rownum <=]]> (#{nowPage} * #{onePageRecord}) order by ${order} asc) 
 		<![CDATA[where rownum <=]]> #{lastPageRecordCount} order by ${order} desc

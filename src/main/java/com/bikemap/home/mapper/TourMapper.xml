@@ -167,7 +167,7 @@
 			where a.userid <![CDATA[<>]]> #{userid} and b.userid = #{userid} and
 				<choose>
 					<when test='applyState neq null and applyState eq "1"'>
-						a.state = '1' and b.state = '1'
+						a.state = '1' and b.state = '1' and deadline > sysdate
 					</when>
 					<when test='applyState neq null and applyState eq "2"'>
 						a.state = '1' and b.state = '2'

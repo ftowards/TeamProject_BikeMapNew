@@ -15,7 +15,7 @@
 		var emailChk = "N";
 		var regId = /^[A-Za-z]{1}\w{7,11}$/ ;
 		var regEmail1 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*$/i;
-		var regEmail2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var regEmail2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*[.]{1}[a-zA-Z]{2,3}$/i;
 		var regName = /^[가-힣]{2,5}$/ ;
 		
 		
@@ -114,6 +114,11 @@
 			
 			if($("#userpwd").val()==""){
 				toast("비밀번호를 입력하세요.", 1500);
+				return false;
+			}
+			
+			if($("#userpwd").val().length < 8 || $("#userpwd").val().length > 12){
+				toast("비밀번호는 8 ~ 12자 입력하세요.",1500);
 				return false;
 			}
 			
