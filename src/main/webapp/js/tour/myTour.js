@@ -226,7 +226,7 @@ function setAcodianList(result, noboard){
 			tag += "<li><img src='/home/img/img_myRoute/like3.png'/>"+"<span class='acodianList_like'>"+val.heart+"</span>"+"</li>";
 			
 			if(val.state == '1'){
-				tag += "<li>승인 대기</li>";
+				tag += "<li><button class='tourOk'>대기</button></li>";
 				tag += "<li><button class='tourIn' onclick='confirmComplist(title)' title='"+noboard+"/"+val.userid+"'>승&nbsp;인</button></li>";
 			}else if(val.state == '2'){
 				tag += "<li><button class='tourOk'>참가 중</button></li>";
@@ -289,10 +289,10 @@ function setAcodianList(result, noboard){
 			tag += "<li><img src='/home/img/img_myRoute/like3.png'/>"+"<span class='acodianList_like'>"+val.heart+"</span>"+"</li>";
 			
 			if(val.eval == 'N'){
-				tag += "<li>미평가</li>";
+				tag += "<li><div class='tourOut' style='color:rgb(64,64,64); background-color:#fff; margin:7px 0 0 60px;'>미평가</div></li>";
 				tag += "<li><button class='tourOut' onclick='addLike(title)' title='"+noboard+"/"+val.objid+"'>좋아요</button></li>";
 			}else if(val.eval == 'Y'){
-				tag += "<li>완료</li>";
+				tag += "<li><button class='tourOk'>평가</button></li>";
 				tag +="<li></li>";
 			}
 		});

@@ -187,7 +187,9 @@ $(function(){
 		
 		var region = getRegion();
 		data += "&region="+region;
-		data += "&closed="+$("input[name=closed]").val();
+		data += "&closed="+$("input[name=closed]:checked").val();
+		
+		console.log(data);
 		data += "&description="+$("#description").val();
 		
 		////////// 루트 데이터 //////////

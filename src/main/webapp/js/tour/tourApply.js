@@ -230,7 +230,7 @@ function setAcodianList(result, noboard, userid){
 				tag += "<li><div class='tourOut' style='color:rgb(64,64,64); background-color:#fff; margin:7px 0 0 60px;'>미평가</div></li>";
 				tag += "<li><button class='tourOut' onclick='addLike(title)' title='"+noboard+"/"+val.objid+"'>좋아요</button></li>";
 			}else if(val.eval == 'Y'){
-				tag += "<li>완료</li>";
+				tag += "<li><button class='tourOk'>평가</button></li>";
 				tag +="<li></li>";
 			}
 		});

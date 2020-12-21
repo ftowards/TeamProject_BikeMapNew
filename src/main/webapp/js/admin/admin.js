@@ -663,15 +663,15 @@ var btn, userid;
 			listTag += "<li>";
 			if(result[i].endday==null){
 				if(result[i].active=='N'){
-					listTag += "<span class='status text-warning'>•</span>  미인증</li>";
+					listTag += "<span class='status text-warning'>•</span><span style='color:#9a6303'>미인증</span></li>";
 				}else{
-					listTag += "<span class='status text-success'>•</span>활 동</li>";
+					listTag += "<span class='status text-success'>•</span><span style='color:#002701'>활&ensp;동</span></li>";
 				}
 				
 				listTag += "<li style='padding-left:27px; color:red'><input type='button' title='"+result[i].userid+"'id='suspendBtn' data-toggle='modal' data-target='#modal_simple'/></li>";
 				
 			}else{
-				listTag += "<span class='status text-danger'>•</span>정 지";
+				listTag += "<span class='status text-danger'>•</span><span style='color:#900200'>정&ensp;지</span>";
 				listTag += "<p class='arrow_box'>~"+result[i].endday+"</p></li>";
 				//<!-- endday가 없을때, 정지기간이 지났을때 정지 버튼이 생긴다.  -->
 				listTag += "<li style='padding-left:27px; color:red'><input type='button' title='"+result[i].userid+"' id='suspendEditBtn' data-toggle='modal' data-target='#modal_suspendEdit'/></li>";	
@@ -1050,11 +1050,11 @@ var btn, userid;
 			//list안에 데이터 추가
 			listTag += "<li><input type='checkbox'  name='listChk' value='"+result[i].noboard+"'/></li>"
 			listTag += "<li>"+result[i].noboard+"</li>";
-			listTag += "<li class='wordCut'><a href = '<%=request.getContextPath()%>/reviewView?noboard="+result[i].noboard+"'>"+result[i].subject+"</a></li>";
+			listTag += "<li class='wordCut'><a href = '/home/reviewView?noboard="+result[i].noboard+"'>"+result[i].subject+"</a></li>";
 			listTag += "<li>"+result[i].userid+"</li>";
 			listTag += "<li>"+result[i].reference+"</li>";
 			listTag += "<li><input type='hidden' value='"+result[i].scrap+"' />"+result[i].hit+"회</li>";
-			listTag += "<li><span style='color:blue'>"+result[i].thumbup+" </span>/ <span >"+result[i].thumbdown+" </span></li>";
+			listTag += "<li style='letter-spacing:2px'><span style='color:#0000b5; font-size:19px'>"+result[i].thumbup+" </span><span class='review_lBar'>/</span> <span style='color:#b30200; font-size:19px'>"+result[i].thumbdown+" </span></li>";
 			listTag += "<li>";
 			listTag += "<label class='switch'>";
 			listTag += "<input type='checkbox' name='adminReviewScrapBtn' value='"+result[i].noboard+"'";

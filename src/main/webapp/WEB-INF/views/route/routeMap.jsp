@@ -202,10 +202,9 @@
 							</c:if>
 						</select><br/> <span class="saveTxt">※ 루트 공개여부를 설정해주세요.</span><br/>
 						<div style='margin: 8px 0 12px 18px;'>
-							<input type="radio" name="closed" value="F" checked /><span
-								class="saveTxt2"> 공개</span>&emsp;&emsp;&emsp; <input
-								type="radio" name="closed" value="T" /><span class="saveTxt2">
-								비공개</span>
+							<input type="radio" name="closed" value="F" checked />
+							<span class="saveTxt2"> 공개</span>&emsp;&emsp;&emsp; 
+							<input type="radio" name="closed" value="T" /><span class="saveTxt2">비공개</span>
 						</div>
 						<br />
 						<div id="saveDiv3">

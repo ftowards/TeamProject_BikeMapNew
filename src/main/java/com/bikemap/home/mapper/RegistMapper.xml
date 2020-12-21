@@ -51,7 +51,7 @@
 	<select id="selectTourcnt" resultType="int">
 		select tourcnt from regist where userid =#{param1}
 	</select>
-	<select id="selectUserEmail" resultType="String">
-		select email from regist where userid=#{param1}
+	<select id="selectUserEmail" resultType="String" parameterType="com.bikemap.home.regist.RegistVO">
+		select email from regist where userid=#{userid}
 	</select>
 </mapper> 

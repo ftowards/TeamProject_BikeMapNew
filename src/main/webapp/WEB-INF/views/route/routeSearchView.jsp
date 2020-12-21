@@ -155,28 +155,28 @@
 		<div id="routeInfoDiv">
 			<div id="routeInfo">
 				<ul>
-					<li><input type="text" value="${routeVO.routepoint1name }"/>
+					<li><input type="text" value="${routeVO.routepoint1name }" readonly/>
 						<input type="hidden" name="routePoint" value="${routeVO.routepoint1point }"/></li>
-					<li><input type="text" value="${routeVO.routepoint2name }"/>
+					<li><input type="text" value="${routeVO.routepoint2name }" readonly/>
 						<input type="hidden" name="routePoint" value="${routeVO.routepoint2point }"/></li>
 					<c:if test="${routeVO.routepoint3 != null }">
-						<li><input type="text" value="${routeVO.routepoint3name }"/>
+						<li><input type="text" value="${routeVO.routepoint3name }" readonly/>
 							<input type="hidden" name="routePoint" value="${routeVO.routepoint3point }"/></li>
 					</c:if>
 					<c:if test="${routeVO.routepoint4 != null }">
-						<li><input type="text" value="${routeVO.routepoint4name }"/>
+						<li><input type="text" value="${routeVO.routepoint4name }" readonly/>
 							<input type="hidden" name="routePoint" value="${routeVO.routepoint4point }"/></li>
 					</c:if>
 					<c:if test="${routeVO.routepoint5 != null }">
-						<li><input type="text" value="${routeVO.routepoint5name }"/>
+						<li><input type="text" value="${routeVO.routepoint5name }" readonly/>
 							<input type="hidden" name="routePoint" value="${routeVO.routepoint5point }"/></li>
 					</c:if>
 					<c:if test="${routeVO.routepoint6 != null }">
-						<li><input type="text" value="${routeVO.routepoint6name }"/>
+						<li><input type="text" value="${routeVO.routepoint6name }" readonly/>
 							<input type="hidden" name="routePoint" value="${routeVO.routepoint6point }"/></li>
 					</c:if>
 					<c:if test="${routeVO.routepoint7 != null }">
-						<li><input type="text" value="${routeVO.routepoint7name }"/>
+						<li><input type="text" value="${routeVO.routepoint7name }" readonly/>
 							<input type="hidden" name="routePoint" value="${routeVO.routepoint7point }"/></li>
 					</c:if>
 				</ul>

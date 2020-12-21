@@ -129,7 +129,7 @@ function setList(result){
 		
 		if(messageBox == 2){
 			if(val.read == 'T' ){
-				tag += "<li>"+val.userid+"</a></li>";
+				tag += "<li>"+val.userid+"</li>";
 				tag += "<li class='wordcut' onclick='viewMsg(title)' title='"+val.nonotice+"' >"+val.msg+"</li>";
 				tag += "<li>"+val.writedate+"</li>";
 			}else if(val.read =='F'){
@@ -139,11 +139,15 @@ function setList(result){
 			}
 		}else{
 			if(val.read == 'T' ){
-				tag += "<li>"+val.idsend+"</a></li>";
+				if(messageBox == 1){
+					tag += "<li onclick='popMsgSend(title)' title='"+val.idsend+"'>"+val.idsend+"</li>";		
+				}else {
+					tag += "<li>"+val.idsend+"</li>";
+				}
 				tag += "<li class='wordcut' onclick='viewMsg(title)' title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li>"+val.writedate+"</li>";
 			}else if(val.read =='F'){
-				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.idsend+"</a></li>";
+				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.idsend+"</li>";
 				tag += "<li onclick='readMsg(title); viewMsg(title)' class='wordcut readYet' title='"+val.nonotice+"'>"+val.msg+"</li>";
 				tag += "<li onclick='readMsg(title);' class='readYet' title='"+val.nonotice+"'>"+val.writedate+"</li>";
 			}
@@ -249,4 +253,17 @@ function sendMsg(noboard, receiver, type){
 			console.log(err);
 		}
 	})
+}
+
+function popMsgSend(userid){
+	
+	if($("#logId").val()== "" || $("#logId").val() == null){
+		toast("쪽지 보내기는 회원만 이용 가능합니다.",1500);	
+		return false;	
+	}
+	if(userid == 'admin' || userid == $("#logId").val()){
+		return false
+	}
+	
+	window.open('/home/sendMsg?userid='+userid, 'msg', 'width=425px, height=360px, left =200px, top=200px, resizable=0');	
 }
