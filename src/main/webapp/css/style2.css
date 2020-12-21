@@ -581,7 +581,7 @@ body{
     visibility: hidden;
     transform: translate(-50%, 10px);
     transition: opacity .5s, visibility .5s, transform .5s;
-    background: rgba(0, 0, 0, .35);
+    background: rgba(0, 0, 0, .55);
     color: white;
     z-index: 10000;
     box-shadow: 3px 3px 3px rgb(130,130,130);
@@ -704,7 +704,7 @@ body{
 
 .toast a:link, .toast a:hover, .toast a:visited{
 	text-decoration : none;
-	
+	color : white;
 }
 
 #msgContainer .textCntDiv{
