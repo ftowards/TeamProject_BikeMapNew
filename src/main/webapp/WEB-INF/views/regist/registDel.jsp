@@ -23,7 +23,7 @@
 	</p>
 	<hr/>
 	<div id="btnBox">
-		<input type="button" value="탈퇴신청" class="red_Btn" style="width:115px; height:43px" onclick="registDel()"/>
+		<input type="button" value="탈퇴신청" class="red_Btn" style="width:115px; height:43px" onclick="location.href='<%=request.getContextPath()%>/registDelChk'"/>
 		<input type="button" value="홈으로" class="gray_Btn" style="width:115px; height:43px" onclick="location.href='<%=request.getContextPath()%>'"/>
 	</div>
 </div> 
