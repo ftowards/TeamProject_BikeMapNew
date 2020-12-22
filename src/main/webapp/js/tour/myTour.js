@@ -44,18 +44,29 @@ function setPaging(result){
 			tag += "<li onclick='movePage("+(result.nowPage+1)+")'>Next</li>";
 		}
 		
-		getList(result.nowPage);
+		if(tourState == '1'){
+			$("#paging1").html(tag);
+			getList(result.nowPage);
+		}else if(tourState == '2'){
+			$("#paging2").html(tag);
+			getList(result.nowPage);
+		}else if(tourState == '3'){
+			$("#paging3").html(tag);
+			getList(result.nowPage);
+		}
+		
 	}else {
 		tag +="<li>검색 결과가 없습니다.</li></ul>";
+		if(tourState == '1'){
+			$("#paging1").html(tag);
+		}else if(tourState == '2'){
+			$("#paging2").html(tag);
+		}else if(tourState == '3'){
+			$("#paging3").html(tag);
+		}
 	}
 	
-	if(tourState == '1'){
-		$("#paging1").html(tag);
-	}else if(tourState == '2'){
-		$("#paging2").html(tag);
-	}else if(tourState == '3'){
-		$("#paging3").html(tag);
-	}
+
 }
 
 function getList(page){
@@ -313,6 +324,7 @@ function addLike(title){
 			success : function(result){
 				if(result == 1){
 					toast("좋아요", 1500);
+					getTourComplist(strs[0]);
 				}else{
 					toast("좋아요 처리 처리 오류입니다.");
 				}
@@ -320,7 +332,6 @@ function addLike(title){
 				console.log(err);
 			}
 		});	
-		getTourComplist(strs[0]);
 	});
 }
 
@@ -337,6 +348,7 @@ function absentComplist(title){
 				if(result == 1){
 					toast("불참 처리 완료되었습니다.",1500);
 					sendMsg(strs[0], strs[1], 3);
+					getTourComplist(strs[0]);
 				}else{
 					toast("처리 오류입니다.");
 				}
@@ -344,7 +356,6 @@ function absentComplist(title){
 				console.log(err);
 			}
 		});	
-		getTourComplist(strs[0]);
 	});
 }
 
@@ -359,6 +370,7 @@ function confirmComplist(title){
 			if(result == 1){
 				toast("참가 승인 완료되었습니다.",1500);
 				sendMsg(strs[0], strs[1], 1);
+				getTourComplist(strs[0]);
 			}else if(result == 2){
 				toast("참여 인원이 마감되었습니다.", 1500);
 			}else {
@@ -368,7 +380,6 @@ function confirmComplist(title){
 			console.log(err);
 		}
 	});	
-	getTourComplist(strs[0]);
 }
 
 function cancelComplist(title){
@@ -384,6 +395,7 @@ function cancelComplist(title){
 			}else if(result == 1){
 				toast("참가 취소 처리 되었습니다.",1500);
 				sendMsg(strs[0], strs[1], 2);
+				getTourComplist(strs[0]);
 			}else{
 				toast("참가 취소 처리 오류입니다.");
 			}
@@ -391,7 +403,6 @@ function cancelComplist(title){
 			console.log(err);
 		}
 	});	
-	getTourComplist(strs[0]);
 }
 
 // 메세지 저장하기 ++ 통신으로 메세지 보내기

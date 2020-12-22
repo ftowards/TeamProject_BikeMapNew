@@ -15,6 +15,11 @@
 				margin:0 auto;
 				padding-top:105px;		
 	}
+		.wordCut{
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
 	#tourViewFormTitleDiv{
 							width:88%;
 							float:left;

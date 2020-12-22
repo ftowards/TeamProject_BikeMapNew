@@ -101,8 +101,6 @@
 	}
 	
 	.tourIn{
-				
-		padding-top:4px;
 		text-align:center;
 		border:none;
 		border-radius:10px;
@@ -219,6 +217,7 @@
 		float:left; 
 		border-bottom : 1px solid lightgray;
 		font-family: 'Noto Sans KR', sans-serif;
+		font-weight: normal;
   	}
 
   	.tourlist2,.tourlist,.tourlist3{
@@ -258,6 +257,7 @@
   		font-family: 'Noto Sans KR', sans-serif;
   		border-bottom:1px solid #eee;
   		background-color:rgba(0,176,176,0.05);
+  		font-weight: normal;
   	}
   	
   	 .acodianList>li:nth-of-type(7n+7){
@@ -271,12 +271,16 @@
   	 
   	.acodianList_like{
 		color:#cc113c;
-		font-weight:bold;
+		
 	
 	}
   	
   	.tourlistTitle2>li:nth-of-type(7n+2), .tourlist2>li:nth-of-type(7n+2){
   		width : 30%;
+  	}
+  	.tourlist2>li:nth-of-type(7n+2){
+  		text-align: left; 
+  		text-indent: 5%;
   	}
   	.tourlistTitle2>li:nth-of-type(7n+3), .tourlist2>li:nth-of-type(7n+3){
   		width : 15%;
