@@ -70,7 +70,7 @@
 			</div>
 			
 			<!-- tourComplete 시작 -->
-			<div class="titleMyTourDiv1 tab"><label>마감된 여행</label>
+			<div class="titleMyTourDiv1 tab"><label>완료 여행</label>
 				<div class="myTourBoardMainDiv">
 		     		<div>
 		     			<div >

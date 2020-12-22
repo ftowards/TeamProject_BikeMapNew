@@ -66,7 +66,7 @@
 			<div class="conditionDivTop">
 				<div><label class="labelClass">장&nbsp;소</label></div>
 				<div>   
-					<label id="place">${vo.place}</label>
+					<label id="place" class="wordCut">${vo.place}</label>
 				</div>
 			</div>
 			<div class="conditionDivTop" style="margin-top:20px;">

@@ -120,9 +120,10 @@
 						color:rgb(64,64,64);
 						box-shadow: 3px 3px 5px 3px rgb(230,230,230);
 						position : absolute;
-						opacity: 0.7;
+						opacity: 0.9;
 						display:none;
 						z-index : 50;
+						transform: translate(40px, -40px);
 	}
 	
 	#searchResultList a:link, #searchResultList a:visited, #searchResultList a:hover{

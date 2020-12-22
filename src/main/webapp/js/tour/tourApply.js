@@ -47,6 +47,9 @@ function setPaging(result){
 		getList(result.nowPage);
 	}else {
 		tag +="<li>검색 결과가 없습니다.</li></ul>";
+		$("#tourApplyList").html("");
+		$("#tourPartinList").html("");
+		$("#tourEndList").html("");
 	}
 
 	if(applyState == 1){
@@ -268,8 +271,9 @@ function cancelApply(title){
 			data : data,
 			success : function(result){
 				if(result == 1){
-					toast(strs[0] +"번 투어 "+msg+ "취소하였습니다.",1500);
+					toast(strs[0] +"번 투어 "+msg+ " 취소하였습니다.",1500);
 					sendMsg(strs[0], strs[1], 1);
+					movePage(1);
 				}else if(result == 5){
 					toast("마감시간이 지났습니다.<br/>주최자에게 불참을 알려주세요.");
 				}else{
@@ -279,7 +283,6 @@ function cancelApply(title){
 				console.log(err);
 			}
 		});	
-		getTourComplist(strs[0]);
 	});
 }
 
@@ -295,6 +298,7 @@ function addLike(title){
 			success : function(result){
 				if(result == 1){
 					toast("좋아요",1500);
+					getTourComplist(strs[0]);
 				}else{
 					toast("좋아요 처리 처리 오류입니다.");
 				}
@@ -302,7 +306,6 @@ function addLike(title){
 				console.log(err);
 			}
 		});	
-		getTourComplist(strs[0]);
 	});
 }
 

@@ -18,7 +18,9 @@ $(function(){
 			$.ajax({
 				url:"/home/chkReadYetMsg",
 				success: function(result){
-					toastLogin("<a href='/home/messageBox'>새 알람이 "+result+"개 있습니다.</a>");
+					if(result > 0){
+						toastLogin("<a href='/home/messageBox'>새 알람이 "+result+"개 있습니다.</a>");
+					}
 				}, error : function(err){
 					console.log(err);
 				}
