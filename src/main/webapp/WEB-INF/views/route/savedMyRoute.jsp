@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
+<!-- kakao maps api -->
 <link rel="stylesheet" href="/home/css/mySavedRouteBoardStyle.css" type="text/css"/>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/route/myTourList.js"></script>
 <div id="page-wrapper">
