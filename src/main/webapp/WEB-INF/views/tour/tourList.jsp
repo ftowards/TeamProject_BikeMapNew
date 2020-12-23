@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="/home/css/tourListStyle.css" type="text/css"/>  
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-/* kakao maps api */
+<!-- kakao maps api -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/tour/tourList.js"></script>
 <div id="mainDivTour">
 	<div class="tourSearchListDiv">
