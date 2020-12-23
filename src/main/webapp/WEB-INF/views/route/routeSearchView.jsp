@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
+<!-- kakao maps api -->
+<!-- google api key -->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://www.google.com/jsapi"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly" defer></script>
 <link rel="stylesheet" href="/home/css/routeSearchView.css" type="text/css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
