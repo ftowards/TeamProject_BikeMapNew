@@ -2,10 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <link rel="stylesheet" href="/home/css/routeMap.css" type="text/css" />
-<script type="text/javascript"	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=48c22e89a35cac9e08cf90a3b17fdaf2&libraries=services,clusterer,drawing"></script>
+<!-- kakao maps api -->
+<!-- google api key -->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://www.google.com/jsapi"></script>
-<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2p-2EeJLzkfyPDjoo7RUtwrPmFtZxrnU&libraries=&v=weekly"	defer></script>
 <link rel="stylesheet"	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"	rel="stylesheet">
