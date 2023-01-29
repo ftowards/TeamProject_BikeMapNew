@@ -63,7 +63,7 @@
 
 
 ## 핵심 기능
-자세한 내용을 확인 하고 싶으시면, [Wiki Documentation](https://github.com/jihwooon/Algorithm-JavaScript/wiki)를 참조 하시면 됩니다.
+자세한 내용을 확인 하고 싶으시면, [Wiki Documentation](https://github.com/ftowards/TeamProject_BikeMapNew/wiki)를 참조 하시면 됩니다.
 
 ## 프로젝트를 통해 느낀점
 
