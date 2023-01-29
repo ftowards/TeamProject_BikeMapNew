@@ -9,9 +9,11 @@
 ## 사용 기술
 ### 백엔드
 #### 주요 프레임워크 / 라이브러리
+![java](https://img.shields.io/badge/Java-14-DEB887?style=flat)&nbsp;![springframework](https://img.shields.io/badge/Springframework-5.2.7-3CB371?style=flat&logo=springframework)&nbsp;![Mybatis](https://img.shields.io/badge/Mybatis-3.5.6-inactive)
 - Java 14
 - Springframework 5.2.7.RELEASE
 - Mybatis 3.5.6
+
 
 #### Build tool
 - Maven
@@ -54,6 +56,9 @@
 
 이 서비스를 통해 동행인을 모집할 수 있는 커뮤니티를 제공합니다.
 
+
+## 핵심 기능
+자세한 내용을 확인 하고 싶으시면, [Wiki Documentation](https://github.com/jihwooon/Algorithm-JavaScript/wiki)를 참조 하시면 됩니다.
 
 ## 프로젝트를 통해 느낀점
 
