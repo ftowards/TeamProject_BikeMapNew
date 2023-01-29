@@ -1,5 +1,10 @@
 # BikeMap
+![GitHub last commit][GitHub-last-commit]
+[![Guide Documents](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/jihwooon/BikeMap/wiki)
+[![Version](https://img.shields.io/badge/version-2020.12.26-red.svg)](./CHANGELOG)
 
+> 자전거 여행을 준비하거나 즐기는 바이커들에게
+도움을 주기 위한 웹페이지를 만들자!
 ## 개발 환경
 - Eclipse
 - Postman
@@ -66,3 +71,6 @@
 
 ## 기획
 [BikeMap 3조 프로젝트](https://docs.google.com/presentation/d/1hxi5sWPLwCNGNBLY3NTbQ3sgz97kPD2D/edit#slide=id.p7)
+
+[GitHub-last-commit]: https://img.shields.io/github/last-commit/jihwooon/BikeMap?style=flat-square
+[GitHub-pull-request]: https://img.shields.io/github/issues-pr/jihwooon/BikeMap?color=ff69b4
