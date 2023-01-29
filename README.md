@@ -22,7 +22,7 @@
 - Eclipse
 - Postman
 - GitHub
-- Mysql Workbench
+- Oracle Database
 
 ## 사용 기술
 ![java](https://img.shields.io/badge/Java-14-DEB887?style=flat)&nbsp;![springframework](https://img.shields.io/badge/Springframework-5.2.7-3CB371?style=flat&logo=springframework)&nbsp;![Mybatis](https://img.shields.io/badge/Mybatis-3.5.6-inactive)
