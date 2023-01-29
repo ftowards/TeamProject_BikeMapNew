@@ -74,9 +74,5 @@
 
 이번 프로젝트를 통해 많은 것을 알게 되었고 문제를 해결하는 과정에서 많은 성장을 이루었다고 생각합니다.
 
-
-## 기획
-[BikeMap 3조 프로젝트](https://docs.google.com/presentation/d/1hxi5sWPLwCNGNBLY3NTbQ3sgz97kPD2D/edit#slide=id.p7)
-
 [GitHub-last-commit]: https://img.shields.io/github/last-commit/jihwooon/BikeMap?style=flat-square
 [GitHub-pull-request]: https://img.shields.io/github/issues-pr/jihwooon/BikeMap?color=ff69b4
