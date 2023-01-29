@@ -12,9 +12,9 @@
 - Mysql Workbench
 
 ## 사용 기술
+![java](https://img.shields.io/badge/Java-14-DEB887?style=flat)&nbsp;![springframework](https://img.shields.io/badge/Springframework-5.2.7-3CB371?style=flat&logo=springframework)&nbsp;![Mybatis](https://img.shields.io/badge/Mybatis-3.5.6-inactive)
 ### 백엔드
 #### 주요 프레임워크 / 라이브러리
-![java](https://img.shields.io/badge/Java-14-DEB887?style=flat)&nbsp;![springframework](https://img.shields.io/badge/Springframework-5.2.7-3CB371?style=flat&logo=springframework)&nbsp;![Mybatis](https://img.shields.io/badge/Mybatis-3.5.6-inactive)
 - Java 14
 - Springframework 5.2.7.RELEASE
 - Mybatis 3.5.6
