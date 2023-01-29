@@ -43,14 +43,13 @@
 ### E-R 다이어그램
 
 #### 루트 모델링
-![DB 모델링_루트](https://user-images.githubusercontent.com/68071599/215322038-e531e4a2-d800-4967-8e7b-0c0b2ee386e4.png)
+<img src="https://user-images.githubusercontent.com/68071599/215322038-e531e4a2-d800-4967-8e7b-0c0b2ee386e4.png" width="70%" height="70%"/>  
 
 #### 회원 모델링
-![DB 모델링_회원](https://user-images.githubusercontent.com/68071599/215322084-840e0b80-82a5-4176-9964-7374e363ed85.png)
+<img src="https://user-images.githubusercontent.com/68071599/215322084-840e0b80-82a5-4176-9964-7374e363ed85.png" width="70%" height="70%"/>  
 
 #### 투어&리뷰 모델링
-
-![DB 모델링_투어 리뷰](https://user-images.githubusercontent.com/68071599/215322115-c33d1dc0-01ad-4e2c-8e12-728b62125a5e.png)
+<img src="https://user-images.githubusercontent.com/68071599/215322115-c33d1dc0-01ad-4e2c-8e12-728b62125a5e.png" width="70%" height="70%"/>  
 
 ## 프로젝트 목적
 "자전거 여행을 준비하거나 즐기는 바이커들에게 도움을 주기 위한 웹페이지를 만들자!" 목적으로 웹 페이지를 만들게 되었습니다. 
