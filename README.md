@@ -63,6 +63,9 @@
 #### 투어&리뷰 모델링
 <img src="https://user-images.githubusercontent.com/68071599/215322115-c33d1dc0-01ad-4e2c-8e12-728b62125a5e.png" width="70%" height="70%"/>  
 
+### Usecase
+<img src="https://user-images.githubusercontent.com/68071599/215326569-30722d90-3c3f-4489-9d0e-5c4eff08a67c.jpg" width="70%" height="70%"/>
+
 ## 프로젝트 목적
 "자전거 여행을 준비하거나 즐기는 바이커들에게 도움을 주기 위한 웹페이지를 만들자!" 목적으로 웹 페이지를 만들게 되었습니다. 
 
