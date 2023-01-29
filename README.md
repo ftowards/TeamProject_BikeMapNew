@@ -1,6 +1,6 @@
 # BikeMap
 ![GitHub last commit][GitHub-last-commit]
-[![Guide Documents](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/jihwooon/BikeMap/wiki)
+[![Guide Documents](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/ftowards/TeamProject_BikeMapNew/wiki)
 [![Version](https://img.shields.io/badge/version-2020.12.26-red.svg)](./CHANGELOG)
 
 > 자전거 여행을 준비하거나 즐기는 바이커들에게
